@@ -1,0 +1,11 @@
+friendly_name: "Quality"
+value_template: >-
+  {% if is_state_attr("fan.bedroom_air_purifier", "air_quality", "excellent") %}
+    Excellent
+  {% elif is_state_attr("fan.bedroom_air_purifier", "air_quality", "good") %}
+    Good
+  {% elif is_state_attr("fan.bedroom_air_purifier", "air_quality", "fine") %}
+    Fine
+  {% elif is_state_attr("fan.bedroom_air_purifier", "air_quality", "bad") %}
+    Bad
+  {% endif %}

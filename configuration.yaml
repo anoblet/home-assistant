@@ -1,4 +1,3 @@
-
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
@@ -11,6 +10,64 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
+homeassistant:
+  external_url: https://anoblet.duckdns.org:8123
+
 http:
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
+
+logger:
+  default: info
+  logs:
+    homeassistant.components.automation: debug
+    homeassistant.core: debug
+    homeassistant.components.cast: debug
+    homeassistant.components.cast.media_player: debug
+    pychromecast: debug
+    pychromecast.discovery: info
+    pychromecast.socket_client: debug
+    homeassistant.components.zeroconf: debug
+    zeroconf: info
+
+lovelace:
+  dashboards:
+    dashboard-categories:
+      mode: yaml
+      title: Categories
+      icon: mdi:script
+      show_in_sidebar: true
+      filename: lovelace/dashboards/dashboard-categories.yaml
+    dashboard-remotes:
+      mode: yaml
+      title: Remotes
+      icon: mdi:script
+      show_in_sidebar: true
+      filename: lovelace/dashboards/dashboard-remotes.yaml
+    dashboard-rooms:
+      mode: yaml
+      title: Rooms
+      icon: mdi:script
+      show_in_sidebar: true
+      filename: lovelace/dashboards/dashboard-rooms.yaml
+  decluttering_templates:
+    sample_template:
+      default:
+        - icon: fire
+      card:
+        type: custom:button-card
+        name: '[[name]]'
+        icon: 'mdi:[[icon]]'
+  mode: yaml
+  resources:
+    - url: /local/community/button-card/button-card.js
+      type: module
+    - url: /local/community/decluttering-card/decluttering-card.js
+      type: module
+    - url: /local/community/mini-graph-card/mini-graph-card-bundle.js
+      type: module
+    - url: /local/community/lovelace-swipe-navigation/swipe-navigation.js?v=1.0.0
+      type: module
+sensor:
+  - platform: template
+    sensors: !include_dir_named sensor/sensors/
