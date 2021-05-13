@@ -22,77 +22,91 @@ views:
   - title: Lights
     panel: true
     cards:
-    - type: vertical-stack
-      cards:
-        - type: entities
-          entities:
-            - entity: light.table
-            - entity: light.ceiling
-            - entity: light.dresser
-          show_header_toggle: true
-          title: Bedroom
-        - type: entities
-          entities:
-            - entity: light.ceiling_2
-          show_header_toggle: true
-          title: Living Room
-        - type: entities
-          entities:
-            - entity: light.kitchen_one
-            - entity: light.kitchen_two
-            - entity: light.kitchen_three
-            - entity: light.kitchen_four
-            - entity: light.kitchen_five
-          show_header_toggle: true
-          title: Kitchen
-  - title: Air Quality
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - type: custom:slider-entity-row
+                entity: light.table
+              - type: custom:slider-entity-row
+                entity: light.ceiling
+              - type: custom:slider-entity-row
+                entity: light.dresser
+            show_header_toggle: true
+            title: Bedroom
+          - type: entities
+            entities:
+              - type: custom:slider-entity-row
+                entity: light.ceiling_2
+            show_header_toggle: true
+            title: Living Room
+          - type: entities
+            entities:
+              - type: custom:slider-entity-row
+                entity: light.kitchen_one
+              - type: custom:slider-entity-row
+                entity: light.kitchen_two
+              - type: custom:slider-entity-row
+                entity: light.kitchen_three
+              - type: custom:slider-entity-row
+                entity: light.kitchen_four
+              - type: custom:slider-entity-row
+                entity: light.kitchen_five
+            show_header_toggle: true
+            title: Kitchen
+  - title: Fans
     panel: true
     cards:
-    - type: vertical-stack
-      cards:
-        - type: vertical-stack
-          cards:
-            - type: custom:mini-graph-card
-              entities:
-                - sensor.living_room_air_quality_numeric
-              line_width: 1
-              lower_bound: 0
-              points_per_hour: 4
-              show:
-                fill: false
-                icon: false
-                name: false
-              unit: "%"
-              update_interval: 15
-          title: Living Room
-        - type: vertical-stack
-          cards:
-            - type: custom:mini-graph-card
-              entities:
-                - sensor.bedroom_air_quality_numeric
-              line_width: 1
-              lower_bound: 0
-              points_per_hour: 4
-              show:
-                fill: false
-                icon: false
-                name: false
-                # state: false
-              # state_map:
-              # - value: "0"
-              #   label: Bad
-              # - value: "33"
-              #   label: Fair
-              # - value: "66"
-              #   label: Good
-              # - value: "100"
-              #   label: Excellent
-              unit: "%"
-              update_interval: 15
-              upper_bound: "100"
-          title: Bedroom
-
-
-
-
-
+      - type: vertical-stack
+        cards:
+          # Bedroom
+          - type: vertical-stack
+            cards:
+              # Fan
+              - type: custom:fan-card
+                entity: fan.bedroom_air_purifier
+                sensors:
+                  - air_quality_numeric: bedroom_air_quality_numeric
+              # Graph
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.bedroom_air_quality_numeric
+                line_width: 1
+                lower_bound: 0
+                points_per_hour: 4
+                show:
+                  fill: false
+                  icon: false
+                  labels: false
+                  name: false
+                  points: true
+                  state: false
+                unit: "%"
+                update_interval: 15
+            title: Bedroom
+          # Living Room
+          - type: vertical-stack
+            cards:
+              # Fan
+              - type: custom:fan-card
+                entity: fan.living_room_air_purifier
+              # Graph
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.living_room_air_quality_numeric
+                line_width: 1
+                lower_bound: 0
+                points_per_hour: 4
+                show:
+                  fill: false
+                  icon: false
+                  labels: false
+                  name: false
+                  points: true
+                  state: false
+                unit: "%"
+                update_interval: 15
+              # Buttons
+              - type: custom:buttons-card
+                entity: fan.living_room_air_purifier
+            title: Living Room

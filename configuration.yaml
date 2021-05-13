@@ -17,13 +17,24 @@ http:
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
 
+light:
+  - platform:
+    entities:
+      - light.ceiling
+      - light.dresser
+      - light.table
+    name: Bedroom Lights
+
 logger:
   default: info
   logs:
+    async_upnp_client: debug
+    async_upnp_client.traffic: info
     homeassistant.components.automation: debug
-    homeassistant.core: debug
     homeassistant.components.cast: debug
     homeassistant.components.cast.media_player: debug
+    homeassistant.components.upnp: debug
+    homeassistant.core: debug
     pychromecast: debug
     pychromecast.discovery: info
     pychromecast.socket_client: debug
@@ -50,23 +61,31 @@ lovelace:
       icon: mdi:script
       show_in_sidebar: true
       filename: lovelace/dashboards/dashboard-rooms.yaml
-  decluttering_templates:
-    sample_template:
-      default:
-        - icon: fire
-      card:
-        type: custom:button-card
-        name: '[[name]]'
-        icon: 'mdi:[[icon]]'
+  # decluttering_templates:
+  #   sample_template:
+  #     default:
+  #       - icon: fire
+  #     card:
+  #       type: custom:button-card
+  #       name: '[[name]]'
+  #       icon: 'mdi:[[icon]]'
   mode: yaml
   resources:
     - url: /local/community/button-card/button-card.js
       type: module
+    - url: /local/community/buttons-card/buttons-card.js
+      type: module
     - url: /local/community/decluttering-card/decluttering-card.js
+      type: module
+    - url: /local/community/fan-card/fan-card.js
       type: module
     - url: /local/community/mini-graph-card/mini-graph-card-bundle.js
       type: module
     - url: /local/community/lovelace-swipe-navigation/swipe-navigation.js?v=1.0.0
+      type: module
+    - url: /local/community/lovelace-slider-entity-row/slider-entity-row.js
+      type: module
+    - url: /local/community/state-card/state-card.js
       type: module
 sensor:
   - platform: template
