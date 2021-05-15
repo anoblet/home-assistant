@@ -4,3 +4,5 @@
 
 !.gitignore
 !**/*.yaml
+!www/custom/**.*
+custom_components
