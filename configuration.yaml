@@ -10,6 +10,17 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
+adaptive_lighting:
+  lights:
+    - light.bedroom_lights
+    - light.hallway_lights
+    - light.kitchen_lights
+    - light.living_room_lights
+
+cast:
+  known_hosts:
+    - 192.168.0.113
+
 homeassistant:
   external_url: https://anoblet.duckdns.org:8123
 
@@ -17,11 +28,36 @@ http:
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
 
+light:
+  - platform: group
+    name: Bedroom Lights
+    entities:
+      - light.ceiling
+      - light.table
+      - light.dresser
+  - platform: group
+    name: Living Room Lights
+    entities:
+      - light.ceiling_2
+  - platform: group
+    name: Hallway Lights
+    entities:
+      - light.hallway_one
+      - light.hallway_two
+  - platform: group
+    name: Kitchen Lights
+    entities:
+      - light.kitchen_one
+      - light.kitchen_two
+      - light.kitchen_three
+      - light.kitchen_four
+      - light.kitchen_five
+
 logger:
   default: info
   logs:
     async_upnp_client: debug
-    async_upnp_client.traffic: info
+    async_upnp_client.traffic: debug
     homeassistant.components.automation: debug
     homeassistant.components.cast: debug
     homeassistant.components.cast.media_player: debug
@@ -31,7 +67,7 @@ logger:
     pychromecast.discovery: info
     pychromecast.socket_client: debug
     homeassistant.components.zeroconf: debug
-    zeroconf: info
+    zeroconf: debug
 
 lovelace:
   dashboards:
@@ -67,6 +103,8 @@ lovelace:
       type: module
     - url: /local/custom/buttons-card/buttons-card.js
       type: module
+    - url: /local/custom/container-card/container-card.js
+      type: module
     - url: /local/community/decluttering-card/decluttering-card.js
       type: module
     - url: /local/custom/fan-card/fan-card.js
@@ -79,6 +117,12 @@ lovelace:
       type: module
     - url: /local/custom/state-card/state-card.js
       type: module
+
+media_player: !include media_player.yaml
+
+recorder:
+  db_url: !secret db_url
+
 sensor:
   - platform: template
     sensors: !include_dir_named sensor/sensors/
