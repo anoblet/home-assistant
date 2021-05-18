@@ -1,0 +1,84 @@
+title: Rooms
+views:
+  - title: Bedroom
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: entities
+                entities:
+                  - entity: light.table
+                  - entity: light.ceiling
+                  - entity: light.dresser
+            title: Lights
+          - type: vertical-stack
+            cards:
+              - type: media-control
+                entity: media_player.bedroom_tv
+              - type: media-control
+                entity: media_player.bedroom_display
+            title: Media
+          - type: vertical-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.bedroom_air_quality_numeric
+                hours_to_show: 72
+                line_width: 1
+                lower_bound: 0
+                points_per_hour: 4
+                show:
+                  fill: false
+                  icon: false
+                  labels: true
+                  name: false
+                unit: "%"
+                update_interval: 15
+            title: Air Quality
+    panel: true
+  - title: Kitchen
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: light
+                entity: light.kitchen_one
+              - type: light
+                entity: light.kitchen_two
+              - type: light
+                entity: light.kitchen_three
+              - type: light
+                entity: light.kitchen_four
+              - type: light
+                entity: light.kitchen_five
+        title: Lights
+  - title: Living Room
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: media-control
+            entity: media_player.living_room_tv
+          - type: media-control
+            entity: media_player.living_room_speaker
+      - type: vertical-stack
+        cards:
+          - type: light
+            entity: light.ceiling_2
+        title: Lights
+      - type: vertical-stack
+        cards:
+          - type: button
+            tap_action:
+              action: toggle
+            entity: fan.living_room_air_purifier
+            show_icon: true
+            show_state: true
+            icon_height: 32px
+          - type: sensor
+            entity: sensor.living_room_air_quality_numeric
+            detail: 2
+            graph: line
+            unit: "%"
+        title: Fan

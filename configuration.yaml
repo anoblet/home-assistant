@@ -6,7 +6,6 @@ tts:
   - platform: google_translate
 
 group: !include groups.yaml
-automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
@@ -16,6 +15,12 @@ adaptive_lighting:
     - light.hallway_lights
     - light.kitchen_lights
     - light.living_room_lights
+
+automation: !include_dir_list automations
+
+camera:
+  - platform: generic
+    still_image_url: http://194.218.96.92/jpg/image.jpg
 
 cast:
   known_hosts:
@@ -27,6 +32,15 @@ homeassistant:
 http:
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
+
+influxdb:
+  host: 192.168.0.120
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: !secret influxdb_password
+  max_retries: 3
+  default_measurement: state
 
 light:
   - platform: group
@@ -76,19 +90,25 @@ lovelace:
       title: Categories
       icon: mdi:script
       show_in_sidebar: true
-      filename: lovelace/dashboards/dashboard-categories.yaml
+      filename: dashboards/dashboard-categories.yaml
+    dashboard-generic:
+      mode: yaml
+      title: Generic
+      icon: mdi:script
+      show_in_sidebar: true
+      filename: dashboards/dashboard-generic.yaml
     dashboard-remotes:
       mode: yaml
       title: Remotes
       icon: mdi:script
       show_in_sidebar: true
-      filename: lovelace/dashboards/dashboard-remotes.yaml
+      filename: dashboards/dashboard-remotes.yaml
     dashboard-rooms:
       mode: yaml
       title: Rooms
       icon: mdi:script
       show_in_sidebar: true
-      filename: lovelace/dashboards/dashboard-rooms.yaml
+      filename: dashboards/dashboard-rooms.yaml
   # decluttering_templates:
   #   sample_template:
   #     default:
@@ -108,6 +128,8 @@ lovelace:
     - url: /local/community/decluttering-card/decluttering-card.js
       type: module
     - url: /local/custom/fan-card/fan-card.js
+      type: module
+    - url: /local/custom/iframe-card/iframe-card.js
       type: module
     - url: /local/community/mini-graph-card/mini-graph-card-bundle.js
       type: module

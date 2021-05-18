@@ -1,6 +1,6 @@
 import { css } from "https://unpkg.com/lit?module";
 
-export default css`
+export const base = css`
   .capitalize {
     text-transform: capitalize;
   }
@@ -30,3 +30,11 @@ export default css`
     justify-content: space-between;
   }
 `;
+
+export const center = css`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+`;
+
+export default base;

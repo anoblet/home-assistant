@@ -1,0 +1,319 @@
+{
+    "version": 1,
+    "key": "core.config_entries",
+    "data": {
+        "entries": [
+            {
+                "entry_id": "32fe0459f0f4b13de37cb90b4bfde17b",
+                "version": 1,
+                "domain": "hassio",
+                "title": "Supervisor",
+                "data": {},
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "system",
+                "connection_class": "local_push",
+                "unique_id": "hassio",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "e77c28e7d0f0ce759fbb56c5d5e1006a",
+                "version": 1,
+                "domain": "met",
+                "title": "Home",
+                "data": {
+                    "track_home": true
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "onboarding",
+                "connection_class": "cloud_poll",
+                "unique_id": null,
+                "disabled_by": null
+            },
+            {
+                "entry_id": "87769c483a746167e21258cd33946586",
+                "version": 1,
+                "domain": "cast",
+                "title": "Google Cast",
+                "data": {
+                    "ignore_cec": [],
+                    "known_hosts": [
+                        "192.168.0.100",
+                        "192.168.0.105",
+                        "192.168.0.113",
+                        "192.168.0.224",
+                        "192.168.0.179",
+                        "192.168.0.234"
+                    ],
+                    "uuid": [],
+                    "user_id": "b8261b15d3e74c84b57eeed5fc0840e7"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "zeroconf",
+                "connection_class": "local_push",
+                "unique_id": "cast",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "d1bb73545400713830a4ae1171b36b51",
+                "version": 1,
+                "domain": "harmony",
+                "title": "Harmony Hub",
+                "data": {
+                    "name": "Harmony Hub",
+                    "host": "192.168.0.157"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "ssdp",
+                "connection_class": "local_push",
+                "unique_id": "17448964",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "37999a42754f4af29632cd05b48cd312",
+                "version": 1,
+                "domain": "hue",
+                "title": "Philips hue",
+                "data": {
+                    "host": "192.168.0.124",
+                    "username": "n2p0TuVZYWvuOiD7-879b2jYj9V58seTS5MDcmCL"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "ssdp",
+                "connection_class": "local_poll",
+                "unique_id": "001788b3439e",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "34b29b3b543a861b33fb95e1101b1f2b",
+                "version": 1,
+                "domain": "upnp",
+                "title": "ArcherA7v5",
+                "data": {
+                    "udn": "uuid:356902a2-82e7-4aeb-8cb0-a45049483339",
+                    "st": "urn:schemas-upnp-org:device:InternetGatewayDevice:1",
+                    "hostname": "192.168.0.1"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "ssdp",
+                "connection_class": "local_poll",
+                "unique_id": "uuid:356902a2-82e7-4aeb-8cb0-a45049483339::urn:schemas-upnp-org:device:InternetGatewayDevice:1",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "2e6837c7ecba89a080e7140a3e041a73",
+                "version": 1,
+                "domain": "hacs",
+                "title": "",
+                "data": {
+                    "token": "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"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "user",
+                "connection_class": "cloud_poll",
+                "unique_id": null,
+                "disabled_by": null
+            },
+            {
+                "entry_id": "0dc888b7dd611de4aa4feedcb51c2880",
+                "version": 1,
+                "domain": "wyzeapi",
+                "title": "Wyze Home Assistant Integration",
+                "data": {
+                    "password": "u4zJb7Pjwi_N26i",
+                    "username": "andrewbnoblet@gmail.com"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "user",
+                "connection_class": "cloud_poll",
+                "unique_id": null,
+                "disabled_by": null
+            },
+            {
+                "entry_id": "88bec279eb03b8089014ed07da367290",
+                "version": 1,
+                "domain": "mobile_app",
+                "title": "Pixel 4",
+                "data": {
+                    "app_id": "io.homeassistant.companion.android",
+                    "app_name": "Home Assistant",
+                    "app_version": "2021.5.1-full (677)",
+                    "device_name": "Pixel 4",
+                    "manufacturer": "Google",
+                    "model": "Pixel 4",
+                    "os_name": "Android",
+                    "os_version": "30",
+                    "supports_encryption": false,
+                    "app_data": {
+                        "push_url": "https://mobile-apps.home-assistant.io/api/sendPush/android/v1",
+                        "push_token": "fVWMGuYNSJaHdi7Z4u01Fh:APA91bH157IJ7X86wYvR6oWRe7k8XksponFrwu_R5nYGEipPaEfT4coxr1cRZtMFj0C6Q-tQWNusylMocJaWycpux0iGVGV3eVBX2f4WqB88tWR1X0puXCm5zx1iOGXwkUSDgPVfJmN9"
+                    },
+                    "webhook_id": "cec8e2d96e09a685bba41755449eff2babd737dcc3a7a40b424288eac6234d0a",
+                    "user_id": "8f6c8e391e954c5bbfa3c7920a2814c0",
+                    "device_id": "573b3fe43f2243df9da0ea696c739a2e"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "registration",
+                "connection_class": "cloud_push",
+                "unique_id": null,
+                "disabled_by": null
+            },
+            {
+                "entry_id": "15a691ef11df77f5f8870a4548d6a805",
+                "version": 1,
+                "domain": "vesync",
+                "title": "andrewbnoblet@gmail.com",
+                "data": {
+                    "username": "andrewbnoblet@gmail.com",
+                    "password": "MyPass123"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "user",
+                "connection_class": "cloud_poll",
+                "unique_id": null,
+                "disabled_by": null
+            },
+            {
+                "entry_id": "2f99159a27c275b61056673f97c628ca",
+                "version": 1,
+                "domain": "adaptive_lighting",
+                "title": "default",
+                "data": {
+                    "lights": [
+                        "light.bedroom_lights",
+                        "light.hallway_lights",
+                        "light.kitchen_lights",
+                        "light.living_room_lights"
+                    ],
+                    "max_brightness": 100,
+                    "take_over_control": true,
+                    "sleep_color_temp": 1000,
+                    "transition": 45.0,
+                    "initial_transition": 1.0,
+                    "detect_non_ha_changes": false,
+                    "min_color_temp": 2000,
+                    "max_color_temp": 5500,
+                    "sunrise_offset": 0.0,
+                    "separate_turn_on_commands": false,
+                    "name": "default",
+                    "prefer_rgb_color": false,
+                    "min_brightness": 1,
+                    "sunset_offset": 0.0,
+                    "interval": 90.0,
+                    "only_once": false,
+                    "sleep_brightness": 1
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "import",
+                "connection_class": "unknown",
+                "unique_id": "default",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "5113a833472d40e868c158a7cad6d6ec",
+                "version": 1,
+                "domain": "mobile_app",
+                "title": "Pixel 4",
+                "data": {
+                    "app_id": "io.homeassistant.companion.android",
+                    "app_name": "Home Assistant",
+                    "app_version": "2021.5.1-full (677)",
+                    "device_name": "Pixel 4",
+                    "manufacturer": "Google",
+                    "model": "Pixel 4",
+                    "os_name": "Android",
+                    "os_version": "30",
+                    "supports_encryption": false,
+                    "app_data": {
+                        "push_url": "https://mobile-apps.home-assistant.io/api/sendPush/android/v1",
+                        "push_token": "dimuxJXiRl-23B5Thzx-7-:APA91bFI046JA1OOP7hiAUPY9ysZAO8Rugeatm_HbGDtMkE1WYE1IzkTbRn7B65lCVO3pTSadgXXpeOLCk6epKB8amBsqCJBS79_WO_AEGNYPrWaR5F_hZWyUtMvoD-qJ88Le8QssMzV"
+                    },
+                    "device_id": "f63e97c4b0197f12",
+                    "webhook_id": "73e48f008edaeec2c05eabd20caaaae4d41f708879d707ef5e4ca0c8650bda66",
+                    "user_id": "8f6c8e391e954c5bbfa3c7920a2814c0"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "registration",
+                "connection_class": "cloud_push",
+                "unique_id": "io.homeassistant.companion.android-f63e97c4b0197f12",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "aa7cf1989ce3e4c15789f023125cf99c",
+                "version": 1,
+                "domain": "speedtestdotnet",
+                "title": "SpeedTest",
+                "data": {},
+                "options": {
+                    "scan_interval": 60,
+                    "manual": false,
+                    "server_id": ""
+                },
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "user",
+                "connection_class": "local_poll",
+                "unique_id": null,
+                "disabled_by": null
+            },
+            {
+                "entry_id": "0fea076c5a1e4e8b56fbb295ff6ec11e",
+                "version": 2,
+                "domain": "openweathermap",
+                "title": "OpenWeatherMap",
+                "data": {
+                    "name": "OpenWeatherMap",
+                    "latitude": 41.08045911384246,
+                    "longitude": -73.85875046253206,
+                    "mode": "onecall_daily",
+                    "language": "en",
+                    "api_key": "6c9dbea0f90ed2c45fb6bddc36f1649f"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "user",
+                "connection_class": "cloud_poll",
+                "unique_id": "41.08045911384246--73.85875046253206",
+                "disabled_by": null
+            }
+        ]
+    }
+}
