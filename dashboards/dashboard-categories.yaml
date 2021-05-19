@@ -64,27 +64,11 @@ views:
             cards:
               - type: custom:fan-card
                 cards:
-                  - type: custom:mini-graph-card
-                    entities:
-                      - sensor.bedroom_air_quality_numeric
-                    line_width: 1
-                    lower_bound: 0
-                    points_per_hour: 4
-                    # slot: quality_graph
-                    show:
-                      # fill: false
-                      icon: false
-                      labels: false
-                      name: false
-                      points: false
-                      state: false
-                    unit: "%"
-                    update_interval: 15
-                  - aspect_ratio: 20%
+                  - aspect_ratio: 30%
                     slot: quality_graph
                     type: iframe
                     url: >-
-                      https://anoblet.duckdns.org:3000/api/hassio_ingress/US8_r4L34UbOMiwbsNQft89HxmTVfKTRETZagNTfMPw/d-solo/XYXLRzqGk/my-dashboard?orgId=1&from=1621246301175&to=1621332701176&panelId=2
+                      https://anoblet.duckdns.org:3000/api/hassio_ingress/US8_r4L34UbOMiwbsNQft89HxmTVfKTRETZagNTfMPw/d-solo/XYXLRzqGk/my-dashboard?orgId=1&panelId=2
                 entity: fan.bedroom_air_purifier
             styles:
               - "--ha-card-background": "#111"
@@ -93,21 +77,11 @@ views:
             cards:
               # Fan
               - type: custom:fan-card
+                cards:
+                  - aspect_ratio: 30%
+                    slot: quality_graph
+                    type: iframe
+                    url: >-
+                      https://anoblet.duckdns.org:3000/api/hassio_ingress/US8_r4L34UbOMiwbsNQft89HxmTVfKTRETZagNTfMPw/d-solo/XYXLRzqGk/my-dashboard?orgId=1&panelId=4
                 entity: fan.living_room_air_purifier
-              # Graph
-              - type: custom:mini-graph-card
-                entities:
-                  - sensor.living_room_air_quality_numeric
-                line_width: 1
-                lower_bound: 0
-                points_per_hour: 4
-                show:
-                  fill: false
-                  icon: false
-                  labels: false
-                  name: false
-                  points: true
-                  state: false
-                unit: "%"
-                update_interval: 15
             title: Living Room

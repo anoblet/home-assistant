@@ -148,3 +148,7 @@ recorder:
 sensor:
   - platform: template
     sensors: !include_dir_named sensor/sensors/
+
+spotify:
+  client_id: 48631722b2f2421297ea74ad18852d5e
+  client_secret: dcb30644d4fb4ca18225626f040c505f
