@@ -1,13 +1,7 @@
 title: Overview
 views:
-  - title: Default
-    cards:
-      - type: custom:container-card
-        cards:
-          - type: weather-forecast
-            entity: weather.openweathermap
-            secondary_info_attribute: humidity
-            name: Home
-            css: >-
-              background: red;
-    panel: true
+  - !include lovelace/views/view-home.yaml
+  - !include lovelace/views/view-lights.yaml
+  - !include lovelace/views/view-remotes.yaml
+  - !include lovelace/views/view-fans.yaml
+  - !include lovelace/views/view-network.yaml

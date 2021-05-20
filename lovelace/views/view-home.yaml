@@ -1,0 +1,11 @@
+title: Home
+cards:
+  - type: custom:container-card
+    cards:
+      - type: weather-forecast
+        entity: weather.openweathermap
+        secondary_info_attribute: humidity
+        name: Home
+        css: >-
+          background: red;
+panel: true

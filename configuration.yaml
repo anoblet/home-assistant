@@ -70,18 +70,19 @@ light:
 logger:
   default: info
   logs:
-    async_upnp_client: debug
-    async_upnp_client.traffic: debug
-    homeassistant.components.automation: debug
-    homeassistant.components.cast: debug
-    homeassistant.components.cast.media_player: debug
-    homeassistant.components.upnp: debug
-    homeassistant.core: debug
-    pychromecast: debug
-    pychromecast.discovery: info
-    pychromecast.socket_client: debug
-    homeassistant.components.zeroconf: debug
-    zeroconf: debug
+    # async_upnp_client: debug
+    # async_upnp_client.traffic: debug
+    # homeassistant.components.automation: debug
+    # homeassistant.components.cast: debug
+    # homeassistant.components.cast.media_player: debug
+    # homeassistant.components.upnp: debug
+    homeassistant.components.vesync: debug
+    # homeassistant.core: debug
+    # pychromecast: debug
+    # pychromecast.discovery: info
+    # pychromecast.socket_client: debug
+    # homeassistant.components.zeroconf: debug
+    # zeroconf: debug
 
 lovelace:
   dashboards:
@@ -90,55 +91,27 @@ lovelace:
       title: Categories
       icon: mdi:script
       show_in_sidebar: true
-      filename: dashboards/dashboard-categories.yaml
+      filename: lovelace/dashboards/dashboard-categories.yaml
     dashboard-generic:
       mode: yaml
       title: Generic
       icon: mdi:script
       show_in_sidebar: true
-      filename: dashboards/dashboard-generic.yaml
+      filename: lovelace/dashboards/dashboard-generic.yaml
     dashboard-remotes:
       mode: yaml
       title: Remotes
       icon: mdi:script
       show_in_sidebar: true
-      filename: dashboards/dashboard-remotes.yaml
+      filename: lovelace/dashboards/dashboard-remotes.yaml
     dashboard-rooms:
       mode: yaml
       title: Rooms
       icon: mdi:script
       show_in_sidebar: true
-      filename: dashboards/dashboard-rooms.yaml
-  # decluttering_templates:
-  #   sample_template:
-  #     default:
-  #       - icon: fire
-  #     card:
-  #       type: custom:button-card
-  #       name: '[[name]]'
-  #       icon: 'mdi:[[icon]]'
+      filename: lovelace/dashboards/dashboard-rooms.yaml
   mode: yaml
-  resources:
-    - url: /local/community/button-card/button-card.js
-      type: module
-    - url: /local/custom/buttons-card/buttons-card.js
-      type: module
-    - url: /local/custom/container-card/container-card.js
-      type: module
-    - url: /local/community/decluttering-card/decluttering-card.js
-      type: module
-    - url: /local/custom/fan-card/fan-card.js
-      type: module
-    - url: /local/custom/iframe-card/iframe-card.js
-      type: module
-    - url: /local/community/mini-graph-card/mini-graph-card-bundle.js
-      type: module
-    - url: /local/community/lovelace-swipe-navigation/swipe-navigation.js?v=1.0.0
-      type: module
-    - url: /local/community/lovelace-slider-entity-row/slider-entity-row.js
-      type: module
-    - url: /local/custom/state-card/state-card.js
-      type: module
+  resources: !include lovelace/resources.yaml
 
 media_player: !include media_player.yaml
 
@@ -150,5 +123,9 @@ sensor:
     sensors: !include_dir_named sensor/sensors/
 
 spotify:
-  client_id: 48631722b2f2421297ea74ad18852d5e
-  client_secret: dcb30644d4fb4ca18225626f040c505f
+  client_id: !secret spotify_client_id
+  client_secret: !secret spotify_client_secret
+
+vesync:
+  username: !secret vesync_username
+  password: !secret vesync_password

@@ -1,0 +1,13 @@
+title: Remotes
+cards:
+  - type: custom:container-card
+    cards:
+      - type: custom:button-card
+        icon: mdi:air-conditioner
+        show_name: false
+        styles:
+          card:
+            - height: 128px
+            - width: 128px
+        entity: switch.harmony_hub_air_conditioner
+panel: true
