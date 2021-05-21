@@ -4,11 +4,15 @@
   type: module
 - url: /local/custom/container-card/container-card.js
   type: module
+- url: /local/custom/default-view/default-view.js
+  type: module
 - url: /local/community/decluttering-card/decluttering-card.js
   type: module
 - url: /local/custom/fan-card/fan-card.js
   type: module
 - url: /local/custom/generic-card/generic-card.js
+  type: module
+- url: /local/custom/grid-card/grid-card.js
   type: module
 - url: /local/custom/iframe-card/iframe-card.js
   type: module

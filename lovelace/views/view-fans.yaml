@@ -18,6 +18,6 @@ cards:
             slot: quality_graph
             type: iframe
             url: >-
-              https://anoblet.duckdns.org:3000/api/hassio_ingress/US8_r4L34UbOMiwbsNQft89HxmTVfKTRETZagNTfMPw/d-solo/XYXLRzqGk/my-dashboard?orgId=1&panelId=2
+              https://anoblet.duckdns.org:3000/api/hassio_ingress/US8_r4L34UbOMiwbsNQft89HxmTVfKTRETZagNTfMPw/d-solo/XYXLRzqGk/my-dashboard?orgId=1&panelId=4
         entity: fan.living_room_air_purifier
 panel: true

@@ -9,3 +9,4 @@ cards:
         css: >-
           background: red;
 panel: true
+type: custom:default-view

@@ -1,6 +1,10 @@
 import { css } from "https://unpkg.com/lit?module";
 
 export const base = css`
+  :host {
+    display: block;
+  }
+
   .capitalize {
     text-transform: capitalize;
   }
