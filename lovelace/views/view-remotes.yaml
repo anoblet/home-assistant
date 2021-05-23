@@ -7,7 +7,7 @@ cards:
         type: custom:grid-card
         cards:
           - type: custom:button-card
-            icon: mdi:air-conditioner
+            icon: mdi:power
             show_name: false
             styles:
               card:
@@ -18,12 +18,12 @@ cards:
     type: custom:generic-card
     cards:
       - type: custom:button-card
-        icon: mdi:air-conditioner
+        icon: mdi:power
         show_name: false
         styles:
           card:
             - height: 128px
             - width: 128px
-        entity: switch.harmony_hub_air_conditioner
+        entity: switch.harmony_hub_humidifier
 title: Remotes
 type: custom:default-view

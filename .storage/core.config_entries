@@ -43,12 +43,8 @@
                 "data": {
                     "ignore_cec": [],
                     "known_hosts": [
-                        "192.168.0.100",
-                        "192.168.0.105",
-                        "192.168.0.113",
-                        "192.168.0.224",
-                        "192.168.0.179",
-                        "192.168.0.234"
+                        "192.168.0.130",
+                        "192.168.0.131"
                     ],
                     "uuid": [],
                     "user_id": "b8261b15d3e74c84b57eeed5fc0840e7"
@@ -69,7 +65,7 @@
                 "title": "Harmony Hub",
                 "data": {
                     "name": "Harmony Hub",
-                    "host": "192.168.0.157"
+                    "host": "192.168.0.158"
                 },
                 "options": {},
                 "system_options": {
@@ -86,7 +82,7 @@
                 "domain": "hue",
                 "title": "Philips hue",
                 "data": {
-                    "host": "192.168.0.124",
+                    "host": "192.168.0.125",
                     "username": "n2p0TuVZYWvuOiD7-879b2jYj9V58seTS5MDcmCL"
                 },
                 "options": {},
@@ -130,38 +126,6 @@
                 },
                 "source": "user",
                 "connection_class": "cloud_poll",
-                "unique_id": null,
-                "disabled_by": null
-            },
-            {
-                "entry_id": "88bec279eb03b8089014ed07da367290",
-                "version": 1,
-                "domain": "mobile_app",
-                "title": "Pixel 4",
-                "data": {
-                    "app_id": "io.homeassistant.companion.android",
-                    "app_name": "Home Assistant",
-                    "app_version": "2021.5.1-full (677)",
-                    "device_name": "Pixel 4",
-                    "manufacturer": "Google",
-                    "model": "Pixel 4",
-                    "os_name": "Android",
-                    "os_version": "30",
-                    "supports_encryption": false,
-                    "app_data": {
-                        "push_url": "https://mobile-apps.home-assistant.io/api/sendPush/android/v1",
-                        "push_token": "fVWMGuYNSJaHdi7Z4u01Fh:APA91bH157IJ7X86wYvR6oWRe7k8XksponFrwu_R5nYGEipPaEfT4coxr1cRZtMFj0C6Q-tQWNusylMocJaWycpux0iGVGV3eVBX2f4WqB88tWR1X0puXCm5zx1iOGXwkUSDgPVfJmN9"
-                    },
-                    "webhook_id": "cec8e2d96e09a685bba41755449eff2babd737dcc3a7a40b424288eac6234d0a",
-                    "user_id": "8f6c8e391e954c5bbfa3c7920a2814c0",
-                    "device_id": "573b3fe43f2243df9da0ea696c739a2e"
-                },
-                "options": {},
-                "system_options": {
-                    "disable_new_entities": false
-                },
-                "source": "registration",
-                "connection_class": "cloud_push",
                 "unique_id": null,
                 "disabled_by": null
             },
@@ -223,38 +187,6 @@
                 "disabled_by": null
             },
             {
-                "entry_id": "5113a833472d40e868c158a7cad6d6ec",
-                "version": 1,
-                "domain": "mobile_app",
-                "title": "Pixel 4",
-                "data": {
-                    "app_id": "io.homeassistant.companion.android",
-                    "app_name": "Home Assistant",
-                    "app_version": "2021.5.1-full (677)",
-                    "device_name": "Pixel 4",
-                    "manufacturer": "Google",
-                    "model": "Pixel 4",
-                    "os_name": "Android",
-                    "os_version": "30",
-                    "supports_encryption": false,
-                    "app_data": {
-                        "push_url": "https://mobile-apps.home-assistant.io/api/sendPush/android/v1",
-                        "push_token": "dimuxJXiRl-23B5Thzx-7-:APA91bFI046JA1OOP7hiAUPY9ysZAO8Rugeatm_HbGDtMkE1WYE1IzkTbRn7B65lCVO3pTSadgXXpeOLCk6epKB8amBsqCJBS79_WO_AEGNYPrWaR5F_hZWyUtMvoD-qJ88Le8QssMzV"
-                    },
-                    "device_id": "f63e97c4b0197f12",
-                    "webhook_id": "73e48f008edaeec2c05eabd20caaaae4d41f708879d707ef5e4ca0c8650bda66",
-                    "user_id": "8f6c8e391e954c5bbfa3c7920a2814c0"
-                },
-                "options": {},
-                "system_options": {
-                    "disable_new_entities": false
-                },
-                "source": "registration",
-                "connection_class": "cloud_push",
-                "unique_id": "io.homeassistant.companion.android-f63e97c4b0197f12",
-                "disabled_by": null
-            },
-            {
                 "entry_id": "aa7cf1989ce3e4c15789f023125cf99c",
                 "version": 1,
                 "domain": "speedtestdotnet",
@@ -303,12 +235,12 @@
                 "data": {
                     "auth_implementation": "spotify",
                     "token": {
-                        "access_token": "BQBTFpZuJfFMVCUg6l2JJ0bPX6mD-CRKWNyLnj4qXNIRq_WVQY1EbMV0dXVUCiDSQM9KVvUK5OqWixAH0tXTnHi7Yi8qiXgoajGd3NTpA03IIzw0FKCMnBWisRH7DbyxzCEtdt4mi3-WKg1Hf-Hz-n6KYG6HpmhO4dzL4wgga8rOCBxN0YvaCqCiQnlgCyopcoWV1I0",
+                        "access_token": "BQAZjgv68uvPAI8nyv2gVe5SnrPElJBjKrF3NlKHKkgj3KOO2vMPov5gjWGlyo6lMK-MQaB7T5PBOO2jLpjKLQXA1r0p-k4QkyexGzHs6pr9YgJlxLjNF6kQ6Q91v1IlNg9aiaZ79h2fZeDtJMvZjy45wiGIcIP_7_lyuK20PaAvtd0o-vbgZ0rGlXBvQC2ZVofm6Jg",
                         "token_type": "Bearer",
                         "expires_in": 3600,
                         "refresh_token": "AQBAkzI7f8GAFg5uBjakdyfp20busAJDwpC0dJnyvAkPFXw4j3Y0KXLkZxx65D1514nC_uYnXqYyo2a46Mlld_JGCGvhgE48aONTXTWJqWqFcoHOj2k91WCsvRxRxcg113o",
                         "scope": "playlist-read-private playlist-read-collaborative user-modify-playback-state user-library-read user-follow-read user-read-playback-state user-read-recently-played user-read-playback-position user-read-private user-top-read",
-                        "expires_at": 1621610474.6443
+                        "expires_at": 1621779663.8470247
                     },
                     "id": "raheimsg",
                     "name": "Andrew Noblet"
@@ -323,12 +255,12 @@
                 "disabled_by": null
             },
             {
-                "entry_id": "09fe90bba08b42b3f8cbfda3b67207c5",
+                "entry_id": "748d91f15a440fdc459e81277f543870",
                 "version": 1,
                 "domain": "upnp",
                 "title": "ArcherA7v5",
                 "data": {
-                    "udn": "uuid:30775f5b-a1e2-431d-8047-e36e642c8577",
+                    "udn": "uuid:ecd7c64d-5c41-45cf-8551-f15fca00ae00",
                     "st": "urn:schemas-upnp-org:device:InternetGatewayDevice:1",
                     "hostname": "192.168.0.1"
                 },
@@ -338,7 +270,39 @@
                 },
                 "source": "ssdp",
                 "connection_class": "local_poll",
-                "unique_id": "uuid:30775f5b-a1e2-431d-8047-e36e642c8577::urn:schemas-upnp-org:device:InternetGatewayDevice:1",
+                "unique_id": "uuid:ecd7c64d-5c41-45cf-8551-f15fca00ae00::urn:schemas-upnp-org:device:InternetGatewayDevice:1",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "0ab85ac920a0a223c1a1f39b3b5f5957",
+                "version": 1,
+                "domain": "mobile_app",
+                "title": "Pixel 4",
+                "data": {
+                    "app_id": "io.homeassistant.companion.android",
+                    "app_name": "Home Assistant",
+                    "app_version": "2021.5.1-full (677)",
+                    "device_name": "Pixel 4",
+                    "manufacturer": "Google",
+                    "model": "Pixel 4",
+                    "os_name": "Android",
+                    "os_version": "30",
+                    "supports_encryption": false,
+                    "app_data": {
+                        "push_url": "https://mobile-apps.home-assistant.io/api/sendPush/android/v1",
+                        "push_token": "cT2uOpuYR36Ncy_pXB7Vs2:APA91bE8ZQBXzA3i_0Ft_MTMt7ec6T13I9iNfn-j0ZDE8RVNDz7U0BKYwamtpTWnZrMZa3gugaU02AyRZsyY_DRe4HS2FG3LX3rNKQ4gQukgJaWa1HclKwpPiqTMhTAFicf5Cj2EnMTa"
+                    },
+                    "device_id": "f63e97c4b0197f12",
+                    "webhook_id": "73f44f582119030cee1c4479440d497b736d8c54d3c95f5ea30095704461845d",
+                    "user_id": "8f6c8e391e954c5bbfa3c7920a2814c0"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "registration",
+                "connection_class": "cloud_push",
+                "unique_id": "io.homeassistant.companion.android-f63e97c4b0197f12",
                 "disabled_by": null
             }
         ]
