@@ -17,13 +17,7 @@ cards:
   - title: Humidifier
     type: custom:generic-card
     cards:
-      - type: custom:button-card
-        icon: mdi:power
-        show_name: false
-        styles:
-          card:
-            - height: 128px
-            - width: 128px
+      - type: custom:humidifier-remote-card
         entity: switch.harmony_hub_humidifier
 title: Remotes
 type: custom:default-view

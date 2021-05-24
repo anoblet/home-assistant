@@ -235,12 +235,12 @@
                 "data": {
                     "auth_implementation": "spotify",
                     "token": {
-                        "access_token": "BQAZjgv68uvPAI8nyv2gVe5SnrPElJBjKrF3NlKHKkgj3KOO2vMPov5gjWGlyo6lMK-MQaB7T5PBOO2jLpjKLQXA1r0p-k4QkyexGzHs6pr9YgJlxLjNF6kQ6Q91v1IlNg9aiaZ79h2fZeDtJMvZjy45wiGIcIP_7_lyuK20PaAvtd0o-vbgZ0rGlXBvQC2ZVofm6Jg",
+                        "access_token": "BQBo1y8GmV2F5lMUlT3Z4kVxAIjNtfMktE7oMRrskmrlPp3oQsaX6ZlNAgq2qpTd6gHFyB4achaeKg1Fa2VU04VfmQTAKwTE6XxSLUzIl3SiHVt8u51HQdVvFLy-F-J04x_wT7qxTdDEoeN3iFR9TNJj4ssuPd7o-zOknU1SXHvnqqfV_UHgaGL49UHwMj5s2vqpDaE",
                         "token_type": "Bearer",
                         "expires_in": 3600,
                         "refresh_token": "AQBAkzI7f8GAFg5uBjakdyfp20busAJDwpC0dJnyvAkPFXw4j3Y0KXLkZxx65D1514nC_uYnXqYyo2a46Mlld_JGCGvhgE48aONTXTWJqWqFcoHOj2k91WCsvRxRxcg113o",
                         "scope": "playlist-read-private playlist-read-collaborative user-modify-playback-state user-library-read user-follow-read user-read-playback-state user-read-recently-played user-read-playback-position user-read-private user-top-read",
-                        "expires_at": 1621779663.8470247
+                        "expires_at": 1621884067.1846535
                     },
                     "id": "raheimsg",
                     "name": "Andrew Noblet"
@@ -303,6 +303,71 @@
                 "source": "registration",
                 "connection_class": "cloud_push",
                 "unique_id": "io.homeassistant.companion.android-f63e97c4b0197f12",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "037c78c83f2f0a0d0a3234e1c1a7a0b4",
+                "version": 1,
+                "domain": "almond",
+                "title": "Home Assistant Cloud",
+                "data": {
+                    "auth_implementation": "cloud",
+                    "token": {
+                        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5MWY5NzYzZTJiOWU1ODM1IiwiYXVkIjoib2F1dGgyIiwic2NvcGUiOlsicHJvZmlsZSIsInVzZXItcmVhZCIsInVzZXItcmVhZC1yZXN1bHRzIiwidXNlci1leGVjLWNvbW1hbmQiXSwiaWF0IjoxNjIxODgyOTExLCJleHAiOjE2MjE4ODY1MTF9.Er1ikx05uZLQqA7ejZO1eJSDVGpy057JREo84U11f-M",
+                        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiMjg1ZjBmMzViODkzMzVjIiwidXNlcl9pZCI6IjkxZjk3NjNlMmI5ZTU4MzUiLCJncmFudF90eXBlIjoicmVmcmVzaF90b2tlbiIsInNjb3BlIjpbInByb2ZpbGUiLCJ1c2VyLXJlYWQiLCJ1c2VyLXJlYWQtcmVzdWx0cyIsInVzZXItZXhlYy1jb21tYW5kIl0sImlhdCI6MTYyMTc5NzU0Nn0.T1Cw6OVa3h8YFChvinbnt-qsiO2CoTTyiLydevXyp3s",
+                        "expires_in": 3600,
+                        "token_type": "Bearer",
+                        "service": "almond",
+                        "expires_at": 1621886511.966438
+                    },
+                    "type": "oauth2",
+                    "host": "https://almond.stanford.edu/me"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "user",
+                "connection_class": "cloud_poll",
+                "unique_id": null,
+                "disabled_by": null
+            },
+            {
+                "entry_id": "128656d2ad8012f91520e1fdb766cb15",
+                "version": 1,
+                "domain": "august",
+                "title": "andrewbnoblet@gmail.com",
+                "data": {
+                    "login_method": "email",
+                    "username": "andrewbnoblet@gmail.com",
+                    "install_id": null,
+                    "access_token_cache_file": ".andrewbnoblet@gmail.com.august.conf"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "user",
+                "connection_class": "cloud_poll",
+                "unique_id": "andrewbnoblet@gmail.com",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "4d70e94aeb0274d89b3c7f0867aa134a",
+                "version": 1,
+                "domain": "tile",
+                "title": "andrewbnoblet@gmail.com",
+                "data": {
+                    "password": "?sY-xkamBqub9d&",
+                    "username": "andrewbnoblet@gmail.com"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "user",
+                "connection_class": "cloud_poll",
+                "unique_id": "andrewbnoblet@gmail.com",
                 "disabled_by": null
             }
         ]
