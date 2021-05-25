@@ -12,12 +12,19 @@ class GenericCard extends BaseElement {
       baseStyle,
       css`
         :host {
+          --padding: 2rem;
+
           background-color: var(--card-background-color);
           display: block;
         }
 
+        #footer {
+          display: contents;
+        }
+
         #title {
           font-size: 2rem;
+          text-align: center;
         }
       `,
     ];
@@ -27,6 +34,7 @@ class GenericCard extends BaseElement {
     return html`
       <div class="grid grid-gap padding">
         <div id="title">${this.config.title}</div>
+        <hr />
         <div id="content">
           <slot></slot>
         </div>

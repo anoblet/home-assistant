@@ -35,12 +35,12 @@ class ButtonsCard extends BaseElement {
       baseStyle,
       css`
         #container {
-          padding: var(--container-padding, 2rem);
+          padding: var(--padding, 2rem);
         }
 
         #buttons {
-          font-size: var(--state-font-size, 2rem);
-          grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+          font-size: var(--font-size, 2rem);
+          grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
         }
       `,
     ];

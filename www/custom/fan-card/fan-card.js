@@ -21,7 +21,7 @@ class FanCard extends BaseElement {
         <div class="grid grid-gap padding" id="attributes">
           <label>Air Quality</label>
           <span class="capitalize">${entity.attributes.air_quality}</span>
-          <div class="full-row" id="hi">
+          <div class="full-row graph">
             <slot name="quality_graph"></slot>
           </div>
           <label>Speed</label>
@@ -30,7 +30,7 @@ class FanCard extends BaseElement {
               ? html`Off`
               : html`${entity.attributes.speed}`}
           </span>
-          <div class="full-row" id="hi">
+          <div class="full-row">
             <slot name="speed_graph"></slot>
           </div>
           <label>Filter Life</label>
@@ -74,6 +74,10 @@ class FanCard extends BaseElement {
 
         .full-row {
           grid-column: 1/-1;
+        }
+
+        .graph {
+          /* height: 10rem; */
         }
       `,
     ];

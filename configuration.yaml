@@ -19,15 +19,13 @@ adaptive_lighting:
 automation: !include_dir_list automations
 
 camera:
-  - platform: generic
-    still_image_url: http://194.218.96.92/jpg/image.jpg
-
-cast:
-  known_hosts:
-    - 192.168.0.113
+  - name: bedroom_air_quality
+    platform: generic
+    still_image_url: >-
+      https://anoblet.duckdns.org:3000/api/hassio_ingress/US8_r4L34UbOMiwbsNQft89HxmTVfKTRETZagNTfMPw/render/d-solo/XYXLRzqGk/my-dashboard?orgId=1&panelId=2&width=2048&height=256&tz=America%2FNew_York
 
 homeassistant:
-  external_url: https://anoblet.duckdns.org:8123
+  external_url: https://anoblet.duckdns.org
 
 http:
   # ssl_certificate: /ssl/fullchain.pem

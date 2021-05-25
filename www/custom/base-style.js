@@ -5,6 +5,10 @@ export const base = css`
     display: block;
   }
 
+  hr {
+    width: 100%;
+  }
+
   .capitalize {
     text-transform: capitalize;
   }
@@ -23,11 +27,11 @@ export const base = css`
   }
 
   .grid-gap {
-    grid-gap: 1rem;
+    grid-gap: 2rem;
   }
 
   .padding {
-    padding: var(--container-padding, 1rem);
+    padding: var(--padding, 1rem);
   }
 
   .flex.space-between {

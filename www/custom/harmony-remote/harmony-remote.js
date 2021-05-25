@@ -39,12 +39,8 @@ class HarmonyRemoteElement extends BaseElement {
     return [
       baseStyle,
       css`
-        :host {
-          padding: 1rem;
-        }
-
         #grid {
-          grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
         }
       `,
     ];
