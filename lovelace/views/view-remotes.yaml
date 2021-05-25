@@ -6,18 +6,14 @@ cards:
           - grid-template-columns: 1fr
         type: custom:grid-card
         cards:
-          - type: custom:button-card
-            icon: mdi:power
-            show_name: false
-            styles:
-              card:
-                - height: 128px
-                - width: 128px
-            entity: switch.harmony_hub_air_conditioner
+          - type: custom:harmony-remote
+            entity_id: remote.harmony_hub
+            device: FrigidaireClimateControl
   - title: Humidifier
     type: custom:generic-card
     cards:
-      - type: custom:humidifier-remote-card
-        entity: switch.harmony_hub_humidifier
+      - type: custom:harmony-remote
+        entity_id: remote.harmony_hub
+        device: LevoitClimateControl
 title: Remotes
 type: custom:default-view

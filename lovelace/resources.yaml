@@ -18,6 +18,8 @@
   type: module
 - url: /local/custom/humidifier-remote/humidifier-remote.js
   type: module
+- url: /local/custom/harmony-remote/harmony-remote.js
+  type: module
 - url: /local/custom/iframe-card/iframe-card.js
   type: module
 - url: /local/community/mini-graph-card/mini-graph-card-bundle.js
