@@ -1,3 +1,5 @@
+- url: /local/community/apexcharts-card/apexcharts-card.js?v=1.9.0
+  type: module
 # - url: /local/community/button-card/button-card.js
 #   type: module
 - url: /local/custom/button-card/button-card.js
@@ -15,8 +17,6 @@
 - url: /local/custom/generic-card/generic-card.js
   type: module
 - url: /local/custom/grid-card/grid-card.js
-  type: module
-- url: /local/custom/humidifier-remote/humidifier-remote.js
   type: module
 - url: /local/custom/harmony-remote/harmony-remote.js
   type: module

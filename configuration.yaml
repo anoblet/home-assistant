@@ -73,6 +73,7 @@ logger:
     # homeassistant.components.automation: debug
     # homeassistant.components.cast: debug
     # homeassistant.components.cast.media_player: debug
+    homeassistant.components.garmin_connect: debug
     # homeassistant.components.upnp: debug
     homeassistant.components.vesync: debug
     # homeassistant.core: debug

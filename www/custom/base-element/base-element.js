@@ -52,7 +52,12 @@ export class BaseElement extends LitElement {
   }
 
   _createCard(config) {
-    const el = this._helpers.createCardElement(config);
+    // Some cards don't allow extra fields
+    const _config = { ...config };
+    delete _config.slot;
+    
+    const el = this._helpers.createCardElement(_config);
+
     this._setSlot(el, config);
 
     el.hass = this.hass;
