@@ -9,11 +9,13 @@ cards:
           - type: custom:harmony-remote
             entity_id: remote.harmony_hub
             device: FrigidaireClimateControl
+            switch: switch.harmony_hub_air_conditioner
   - title: Humidifier
     type: custom:generic-card
     cards:
       - type: custom:harmony-remote
         entity_id: remote.harmony_hub
         device: LevoitClimateControl
+        switch: switch.harmony_hub_humidifier
 title: Remotes
 type: custom:default-view

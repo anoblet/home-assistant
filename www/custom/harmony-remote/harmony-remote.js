@@ -40,18 +40,24 @@ class HarmonyRemoteElement extends BaseElement {
       baseStyle,
       css`
         #grid {
-          grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+          grid-template-columns: repeat(auto-fit, 10rem);
         }
       `,
     ];
   }
 
   _onClick(e) {
-    this.hass.callService("remote", "send_command", {
-      entity_id: this.config.entity_id,
-      command: e.target.dataset.command,
-      device: this.device.id,
-    });
+    const command = e.target.dataset.command;
+
+    command === "Activity"
+      ? this.hass.callService("switch", "toggle", {
+          entity_id: this.config.switch,
+        })
+      : this.hass.callService("remote", "send_command", {
+          entity_id: this.config.entity_id,
+          command: e.target.dataset.command,
+          device: this.device.id,
+        });
   }
 }
 customElements.define("harmony-remote", HarmonyRemoteElement);
