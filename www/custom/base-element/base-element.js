@@ -1,7 +1,8 @@
 import { LitElement, nothing } from "https://unpkg.com/lit?module";
 import mergeWith from "https://unpkg.com/lodash-es@4.17.21/mergeWith.js";
+import { SlotMixin } from "./SlotMixin.js";
 
-export class BaseElement extends LitElement {
+export class BaseElement extends SlotMixin(LitElement) {
   _children = [];
   _defaultConfig = {};
   _requiredConfig = [];
@@ -55,7 +56,7 @@ export class BaseElement extends LitElement {
     // Some cards don't allow extra fields
     const _config = { ...config };
     delete _config.slot;
-    
+
     const el = this._helpers.createCardElement(_config);
 
     this._setSlot(el, config);

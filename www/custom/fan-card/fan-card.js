@@ -1,4 +1,6 @@
 import { css, html, nothing } from "https://unpkg.com/lit?module";
+import { classMap } from "https://unpkg.com/lit/directives/class-map.js?module";
+
 import { BaseElement } from "../base-element/base-element.js";
 import baseStyle from "../base-style.js";
 
@@ -21,7 +23,11 @@ class FanCard extends BaseElement {
         <div class="grid grid-gap padding" id="attributes">
           <label>Air Quality</label>
           <span class="capitalize">${entity.attributes.air_quality}</span>
-          <div class="full-row graph">
+          <div
+            class="content full-row graph ${classMap({
+              none: this._isSlotEmpty("quality_graph"),
+            })}"
+          >
             <slot name="quality_graph"></slot>
           </div>
           <label>Speed</label>
@@ -30,7 +36,11 @@ class FanCard extends BaseElement {
               ? html`Off`
               : html`${entity.attributes.speed}`}
           </span>
-          <div class="full-row">
+          <div
+            class="content full-row ${classMap({
+              none: this._isSlotEmpty("speed_graph"),
+            })}"
+          >
             <slot name="speed_graph"></slot>
           </div>
           <label>Filter Life</label>
@@ -51,7 +61,7 @@ class FanCard extends BaseElement {
         }
 
         #attributes {
-          grid-template-columns: min-content auto;
+          grid-template-columns: min-content 1fr;
         }
 
         #attributes > label,

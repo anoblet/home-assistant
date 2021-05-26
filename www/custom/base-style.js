@@ -13,6 +13,10 @@ export const base = css`
     text-transform: capitalize;
   }
 
+  .contents {
+    display: contents;
+  }
+
   .flex.center {
     align-items: center;
     justify-content: center;
@@ -28,6 +32,10 @@ export const base = css`
 
   .grid-gap {
     grid-gap: 2rem;
+  }
+
+  .none {
+    display: none;
   }
 
   .padding {

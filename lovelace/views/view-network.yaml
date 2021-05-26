@@ -1,1 +1,9 @@
 title: Network
+cards:
+  - type: custom:container-card
+    cards:
+      - type: custom:apexcharts-card
+        config_templates: default_chart
+        series:
+          - entity: sensor.speedtest_download
+panel: true

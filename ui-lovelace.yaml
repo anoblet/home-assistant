@@ -5,3 +5,24 @@ views:
   - !include lovelace/views/view-remotes.yaml
   - !include lovelace/views/view-fans.yaml
   - !include lovelace/views/view-network.yaml
+apexcharts_card_templates:
+  default_chart:
+    apex_config:
+      chart:
+        height: 256px
+      yaxis:
+        min: 0
+        max: 100
+    # layout: minimal
+    graph_span: 24h
+    # span:
+    # start: day
+    # offset: -1d
+    all_series_config:
+      curve: stepline
+      fill_raw: last
+      group_by:
+        func: min
+        duration: 15m
+      stroke_width: 2
+      # type: column

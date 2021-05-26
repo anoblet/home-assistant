@@ -5,43 +5,19 @@ cards:
       # Bedroom Air Purifier
       - type: custom:fan-card
         cards:
-          - aspect_ratio: 30%
-            # slot: quality_graph
-            type: iframe
-            url: >-
-              https://anoblet.duckdns.org:3000/api/hassio_ingress/US8_r4L34UbOMiwbsNQft89HxmTVfKTRETZagNTfMPw/d-solo/XYXLRzqGk/my-dashboard?orgId=1&panelId=2
-
           - type: custom:apexcharts-card
-            apex_config:
-              chart:
-                height: 256px
-              yaxis:
-                min: 0
-                max: 100
-            # layout: minimal
-            graph_span: 24h
-            # span:
-              # start: day
-              # offset: -1d
+            config_templates: default_chart
             series:
               - entity: sensor.bedroom_air_quality_numeric
-                curve: stepline
-                fill_raw: last
-                group_by:
-                  func: min
-                  duration: 15m
-                stroke_width: 2
-                # type: column
             slot: quality_graph
-
         entity: fan.bedroom_air_purifier
       # Living Room Air Purifier
       - type: custom:fan-card
         cards:
-          - aspect_ratio: 30%
+          - type: custom:apexcharts-card
+            config_templates: default_chart
+            series:
+              - entity: sensor.living_room_air_quality_numeric
             slot: quality_graph
-            type: iframe
-            url: >-
-              https://anoblet.duckdns.org:3000/api/hassio_ingress/US8_r4L34UbOMiwbsNQft89HxmTVfKTRETZagNTfMPw/d-solo/XYXLRzqGk/my-dashboard?orgId=1&panelId=4
         entity: fan.living_room_air_purifier
 panel: true
