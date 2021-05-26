@@ -5,6 +5,6 @@
 !**/*.yaml
 !.gitignore
 !.storage/core.config_entries
-!www/custom/**/*.*
+!www/custom/**
 
 custom_components

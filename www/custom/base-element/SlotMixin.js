@@ -24,7 +24,7 @@ export const SlotMixin = (superClass) =>
       [...this.shadowRoot.querySelectorAll("slot")].map((slot) => {
         slots[slot.getAttribute("name")] = slot;
 
-        slot.addEventListener("slotchanged", this.requestUpdate);
+        slot.addEventListener("slotchange", () => this.requestUpdate());
       });
 
       this._slots = slots;
