@@ -67,48 +67,9 @@ light:
 
 logger:
   default: info
-  logs:
-    # async_upnp_client: debug
-    # async_upnp_client.traffic: debug
-    # homeassistant.components.automation: debug
-    # homeassistant.components.cast: debug
-    # homeassistant.components.cast.media_player: debug
-    homeassistant.components.garmin_connect: debug
-    # homeassistant.components.upnp: debug
-    homeassistant.components.vesync: debug
-    # homeassistant.core: debug
-    # pychromecast: debug
-    # pychromecast.discovery: info
-    # pychromecast.socket_client: debug
-    # homeassistant.components.zeroconf: debug
-    # zeroconf: debug
+  logs: !include ./logger.yaml
 
 lovelace:
-  dashboards:
-    # dashboard-categories:
-    #   mode: yaml
-    #   title: Categories
-    #   icon: mdi:script
-    #   show_in_sidebar: true
-    #   filename: lovelace/dashboards/dashboard-categories.yaml
-    dashboard-generic:
-      mode: yaml
-      title: Generic
-      icon: mdi:script
-      show_in_sidebar: true
-      filename: lovelace/dashboards/dashboard-generic.yaml
-    # dashboard-remotes:
-    #   mode: yaml
-    #   title: Remotes
-    #   icon: mdi:script
-    #   show_in_sidebar: true
-    #   filename: lovelace/dashboards/dashboard-remotes.yaml
-    # dashboard-rooms:
-    #   mode: yaml
-    #   title: Rooms
-    #   icon: mdi:script
-    #   show_in_sidebar: true
-    #   filename: lovelace/dashboards/dashboard-rooms.yaml
   mode: yaml
   resources: !include lovelace/resources.yaml
 

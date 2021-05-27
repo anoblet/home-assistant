@@ -67,7 +67,7 @@
                 "title": "Harmony Hub",
                 "data": {
                     "name": "Harmony Hub",
-                    "host": "192.168.0.158"
+                    "host": "192.168.0.157"
                 },
                 "options": {},
                 "system_options": {
@@ -84,7 +84,7 @@
                 "domain": "hue",
                 "title": "Philips hue",
                 "data": {
-                    "host": "192.168.0.125",
+                    "host": "192.168.0.124",
                     "username": "n2p0TuVZYWvuOiD7-879b2jYj9V58seTS5MDcmCL"
                 },
                 "options": {},
@@ -237,12 +237,12 @@
                 "data": {
                     "auth_implementation": "spotify",
                     "token": {
-                        "access_token": "BQAESsNLRZqTqE8aWwryRZwAxjAmuCT0lyPw7szGcqcDjODO-Uo8q1lusW4YhrWP1Iiik2O6dffWQkDXyQscKq5bJVp23xOh05JwJc0_j2uJnYLpmu8p5Xt9s0RiMaYD5-z1SRCVGZWLE6ixR-eP05mGC9bjGDWAqYDhok_n385QUGE7zA-4aN5Sts_cmpNBDrzJkns",
+                        "access_token": "BQDmY2xuKB7pbNqVMKBVV6eOREqXwwB0QC6CkQB8q15aaukUELk5KYeIMFrzXiAX4DAoCuCCdhhrSv9nEffrY9gIHNZSq1Lf4ijCT8BR2jxSBCrNDzQAUJadtz_z_jLiiBnSqWqtm0bDRxlm-GSv2lBgz3j1nlQpAhYCbXrKnyWVZVoKtExg10zj3C_Cc9OkMGq9Jno",
                         "token_type": "Bearer",
                         "expires_in": 3600,
                         "refresh_token": "AQBAkzI7f8GAFg5uBjakdyfp20busAJDwpC0dJnyvAkPFXw4j3Y0KXLkZxx65D1514nC_uYnXqYyo2a46Mlld_JGCGvhgE48aONTXTWJqWqFcoHOj2k91WCsvRxRxcg113o",
                         "scope": "playlist-read-private playlist-read-collaborative user-modify-playback-state user-library-read user-follow-read user-read-playback-state user-read-recently-played user-read-playback-position user-read-private user-top-read",
-                        "expires_at": 1622045876.5113041
+                        "expires_at": 1622128688.0439198
                     },
                     "id": "raheimsg",
                     "name": "Andrew Noblet"
@@ -315,15 +315,16 @@
                 "data": {
                     "auth_implementation": "cloud",
                     "token": {
-                        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5MWY5NzYzZTJiOWU1ODM1IiwiYXVkIjoib2F1dGgyIiwic2NvcGUiOlsicHJvZmlsZSIsInVzZXItcmVhZCIsInVzZXItcmVhZC1yZXN1bHRzIiwidXNlci1leGVjLWNvbW1hbmQiXSwiaWF0IjoxNjIyMDM5MjM4LCJleHAiOjE2MjIwNDI4Mzh9.Ue7h1DX9_C-z97Tj4vS4fKFjeBsVDzuYpPG61Zcx7ss",
+                        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5MWY5NzYzZTJiOWU1ODM1IiwiYXVkIjoib2F1dGgyIiwic2NvcGUiOlsicHJvZmlsZSIsInVzZXItcmVhZCIsInVzZXItcmVhZC1yZXN1bHRzIiwidXNlci1leGVjLWNvbW1hbmQiXSwiaWF0IjoxNjIyMTIwMDU4LCJleHAiOjE2MjIxMjM2NTh9.X6DwFBCFb927SokIjF7_rNYw1YZolfX2VZnm2v1M-pc",
                         "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiMjg1ZjBmMzViODkzMzVjIiwidXNlcl9pZCI6IjkxZjk3NjNlMmI5ZTU4MzUiLCJncmFudF90eXBlIjoicmVmcmVzaF90b2tlbiIsInNjb3BlIjpbInByb2ZpbGUiLCJ1c2VyLXJlYWQiLCJ1c2VyLXJlYWQtcmVzdWx0cyIsInVzZXItZXhlYy1jb21tYW5kIl0sImlhdCI6MTYyMTc5NzU0Nn0.T1Cw6OVa3h8YFChvinbnt-qsiO2CoTTyiLydevXyp3s",
                         "expires_in": 3600,
                         "token_type": "Bearer",
                         "service": "almond",
-                        "expires_at": 1622042838.1775196
+                        "expires_at": 1622123658.9360092
                     },
                     "type": "oauth2",
-                    "host": "https://almond.stanford.edu/me"
+                    "host": "https://almond.stanford.edu/me",
+                    "onboarded": true
                 },
                 "options": {},
                 "system_options": {

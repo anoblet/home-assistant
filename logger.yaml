@@ -1,0 +1,14 @@
+# async_upnp_client: debug
+# async_upnp_client.traffic: debug
+# homeassistant.components.automation: debug
+# homeassistant.components.cast: debug
+# homeassistant.components.cast.media_player: debug
+homeassistant.components.garmin_connect: debug
+# homeassistant.components.upnp: debug
+homeassistant.components.vesync: debug
+# homeassistant.core: debug
+# pychromecast: debug
+# pychromecast.discovery: info
+# pychromecast.socket_client: debug
+# homeassistant.components.zeroconf: debug
+# zeroconf: debug
