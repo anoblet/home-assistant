@@ -41,6 +41,7 @@ class HarmonyRemoteElement extends BaseElement {
       css`
         #grid {
           grid-template-columns: repeat(auto-fit, 10rem);
+          justify-content: center;
         }
       `,
     ];

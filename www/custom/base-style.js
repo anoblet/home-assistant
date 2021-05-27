@@ -31,7 +31,7 @@ export const base = css`
   }
 
   .grid-gap {
-    grid-gap: 2rem;
+    grid-gap: 1rem;
   }
 
   .none {
