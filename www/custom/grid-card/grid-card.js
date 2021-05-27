@@ -10,14 +10,6 @@ class GridCard extends BaseElement {
     },
   };
 
-  firstUpdated() {
-    this.config.style.map((property) => {
-      for (const key in property) {
-        this.style.setProperty(key, property[key]);
-      }
-    });
-  }
-
   static get styles() {
     return [
       baseStyle,

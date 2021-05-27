@@ -73,10 +73,6 @@ class FanCard extends BaseElement {
           content: ":";
         }
 
-        #container {
-          padding: 2rem;
-        }
-
         #friendly_name {
           font-size: var(--state-font-size, 2rem);
           line-height: 2rem;
@@ -84,10 +80,6 @@ class FanCard extends BaseElement {
 
         .full-row {
           grid-column: 1/-1;
-        }
-
-        .graph {
-          /* height: 10rem; */
         }
       `,
     ];

@@ -11,13 +11,20 @@ class DefaultView extends LitElement {
   }
 
   static get styles() {
-    return [baseStyle, css``];
+    return [
+      baseStyle,
+      css`
+        :host {
+          --padding: 1rem;
+        }
+      `,
+    ];
   }
 
   render() {
     return html`
       <div class="grid grid-gap padding">
-        ${this.cards?.map((card) => html`<div>${card}</div>`)}
+        ${this.cards?.map((card) => html`${card}`)}
       </div>
     `;
   }

@@ -12,8 +12,6 @@ class GenericCard extends BaseElement {
       baseStyle,
       css`
         :host {
-          --padding: 2rem;
-
           background-color: var(--card-background-color);
           display: block;
         }

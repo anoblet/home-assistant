@@ -1,6 +1,6 @@
 import { css } from "https://unpkg.com/lit?module";
 
-export const base = css`
+export const baseStyle = css`
   :host {
     display: block;
   }
@@ -31,7 +31,7 @@ export const base = css`
   }
 
   .grid-gap {
-    grid-gap: 1rem;
+    grid-gap: var(--padding, 1rem);
   }
 
   .none {
@@ -47,10 +47,4 @@ export const base = css`
   }
 `;
 
-export const center = css`
-  align-items: center;
-  display: flex;
-  justify-content: center;
-`;
-
-export default base;
+export default baseStyle;
