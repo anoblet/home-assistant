@@ -25,7 +25,6 @@ class HarmonyRemoteElement extends BaseElement {
 
   render() {
     return html`
-      <h2 class="center flex padding" id="title">${this.device?.name}</h2>
       <div class="grid grid-gap" id="grid">
         ${this.device?.buttons.map(
           (button) =>

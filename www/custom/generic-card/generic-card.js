@@ -1,4 +1,4 @@
-import { css, html } from "https://unpkg.com/lit?module";
+import { css, html, nothing } from "https://unpkg.com/lit?module";
 import { BaseElement } from "../base-element/base-element.js";
 import baseStyle from "../base-style.js";
 
@@ -31,8 +31,12 @@ class GenericCard extends BaseElement {
   render() {
     return html`
       <div class="grid grid-gap padding">
-        <div id="title">${this.config.title}</div>
-        <hr />
+        ${this.config.title
+          ? html`
+              <div class="padding" id="title">${this.config.title}</div>
+              <hr />
+            `
+          : nothing}
         <div id="content">
           <slot></slot>
         </div>

@@ -15,7 +15,7 @@ class DefaultView extends LitElement {
       baseStyle,
       css`
         :host {
-          --padding: 1rem;
+          --padding: 2rem;
         }
       `,
     ];
