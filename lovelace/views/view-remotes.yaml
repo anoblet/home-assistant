@@ -1,15 +1,20 @@
 cards:
+  - title: Samsung TV
+    type: custom:generic-card
+    cards:
+      - type: custom:harmony-remote
+        entity_id: remote.harmony_hub
+        device: SamsungTV
+        show:
+          icon: true
+        switch: switch.harmony_hub_television
   - title: Air Conditioner
     type: custom:generic-card
     cards:
-      - style:
-          - grid-template-columns: 1fr
-        type: custom:grid-card
-        cards:
-          - type: custom:harmony-remote
-            entity_id: remote.harmony_hub
-            device: FrigidaireClimateControl
-            switch: switch.harmony_hub_air_conditioner
+      - type: custom:harmony-remote
+        entity_id: remote.harmony_hub
+        device: FrigidaireClimateControl
+        switch: switch.harmony_hub_air_conditioner
   - title: Humidifier
     type: custom:generic-card
     cards:

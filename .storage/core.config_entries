@@ -237,12 +237,12 @@
                 "data": {
                     "auth_implementation": "spotify",
                     "token": {
-                        "access_token": "BQDZeET-OXQ00FwehU8PD-wCoOyhbcL-m2zLGQc0tismSj-_R3tVDY0uurnMr-HS6miXRZFshHxCt4GiMg-Ra1UInNDYmIqwfvIgudfsJPDcSEN38axeWtQ2e-CVNcPzy6ACsdUnxpwRUELLjcl_SXnDy-OS5RXTb82PGqKdxLKe0VnNBL07P4dE97c-sVa6rUtsUAI",
+                        "access_token": "BQAB0mep0wuHvl_2uyWfZaDLamB4W0ex4YobmaVszdz5LSY4HgMTUggMZ017StlI_CLcxc2Ez9Y5PBbeBfSYeesLWP9I8M7tQ2Pxti00m6Dag5a1T1DAHfuqpV22-wc1NdU7WCcsoleCRqOjGhnrllvDlmzAUHCIVm2P8uz5x06_SrxwJ5OeriWYUPHZLqdLFJ5m_Eg",
                         "token_type": "Bearer",
                         "expires_in": 3600,
                         "refresh_token": "AQBAkzI7f8GAFg5uBjakdyfp20busAJDwpC0dJnyvAkPFXw4j3Y0KXLkZxx65D1514nC_uYnXqYyo2a46Mlld_JGCGvhgE48aONTXTWJqWqFcoHOj2k91WCsvRxRxcg113o",
                         "scope": "playlist-read-private playlist-read-collaborative user-modify-playback-state user-library-read user-follow-read user-read-playback-state user-read-recently-played user-read-playback-position user-read-private user-top-read",
-                        "expires_at": 1622204298.569004
+                        "expires_at": 1622409503.6477847
                     },
                     "id": "raheimsg",
                     "name": "Andrew Noblet"
@@ -315,12 +315,12 @@
                 "data": {
                     "auth_implementation": "cloud",
                     "token": {
-                        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5MWY5NzYzZTJiOWU1ODM1IiwiYXVkIjoib2F1dGgyIiwic2NvcGUiOlsicHJvZmlsZSIsInVzZXItcmVhZCIsInVzZXItcmVhZC1yZXN1bHRzIiwidXNlci1leGVjLWNvbW1hbmQiXSwiaWF0IjoxNjIyMTk4ODE3LCJleHAiOjE2MjIyMDI0MTd9.UqaNoEUUUBkh13k3jJrKaWtvNiwpOaeiTdTfgGM5OCQ",
+                        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5MWY5NzYzZTJiOWU1ODM1IiwiYXVkIjoib2F1dGgyIiwic2NvcGUiOlsicHJvZmlsZSIsInVzZXItcmVhZCIsInVzZXItcmVhZC1yZXN1bHRzIiwidXNlci1leGVjLWNvbW1hbmQiXSwiaWF0IjoxNjIyNDA4NzAyLCJleHAiOjE2MjI0MTIzMDJ9.qmsF0Z7qPq8DboX_NeGQqxcnnvYm8P3N68DMAV6xO0s",
                         "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiMjg1ZjBmMzViODkzMzVjIiwidXNlcl9pZCI6IjkxZjk3NjNlMmI5ZTU4MzUiLCJncmFudF90eXBlIjoicmVmcmVzaF90b2tlbiIsInNjb3BlIjpbInByb2ZpbGUiLCJ1c2VyLXJlYWQiLCJ1c2VyLXJlYWQtcmVzdWx0cyIsInVzZXItZXhlYy1jb21tYW5kIl0sImlhdCI6MTYyMTc5NzU0Nn0.T1Cw6OVa3h8YFChvinbnt-qsiO2CoTTyiLydevXyp3s",
                         "expires_in": 3600,
                         "token_type": "Bearer",
                         "service": "almond",
-                        "expires_at": 1622202417.5174148
+                        "expires_at": 1622412302.4439929
                     },
                     "type": "oauth2",
                     "host": "https://almond.stanford.edu/me",

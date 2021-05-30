@@ -1,4 +1,4 @@
-import { css, html } from "https://unpkg.com/lit?module";
+import { css, html, nothing } from "https://unpkg.com/lit?module";
 import { BaseElement } from "../base-element/base-element.js";
 import baseStyle from "../base-style.js";
 
@@ -9,6 +9,13 @@ class HarmonyRemoteElement extends BaseElement {
     };
   }
 
+  _defaultConfig = {
+    show: {
+      icon: false,
+      label: true,
+    },
+  };
+
   firstUpdated() {
     (async () => {
       const { device } = await import(`./devices/${this.config.device}.js`);
@@ -18,6 +25,7 @@ class HarmonyRemoteElement extends BaseElement {
 
   render() {
     return html`
+      <h2 class="center flex padding" id="title">${this.device?.name}</h2>
       <div class="grid grid-gap" id="grid">
         ${this.device?.buttons.map(
           (button) =>
@@ -25,9 +33,12 @@ class HarmonyRemoteElement extends BaseElement {
               <mwc-button
                 @click=${this._onClick}
                 data-command=${button.command}
+                icon=${this.config.show.icon && button.icon
+                  ? button.icon
+                  : nothing}
                 outlined
               >
-                ${button.label}
+                ${this.config.show.label ? html`${button.label}` : nothing}
               </mwc-button>
             `
         )}

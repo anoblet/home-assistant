@@ -3,11 +3,12 @@ export const device = {
     {
       label: "Activity",
       command: "Activity",
+      icon: "mdi:power",
     },
-    {
-      label: "Power",
-      command: "PowerToggle",
-    },
+    // {
+    //   label: "Power",
+    //   command: "PowerToggle",
+    // },
     {
       label: "Auto",
       command: "AutoFan",
@@ -25,12 +26,12 @@ export const device = {
       command: "FanMode",
     },
     {
-      label: "Speed Down",
-      command: "FanSpeedDown",
-    },
-    {
       label: "Speed Up",
       command: "FanSpeedUp",
+    },
+    {
+      label: "Speed Down",
+      command: "FanSpeedDown",
     },
     {
       label: "Cooler",
