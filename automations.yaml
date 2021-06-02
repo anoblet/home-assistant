@@ -1,1 +1,42 @@
-[]
+- id: '0'
+  alias: Turn on living room light in the evening
+  trigger:
+  - platform: state
+    entity_id: sun.sun
+    from: above_horizon
+    to: below_horizon
+  action:
+  - service: light.turn_on
+    target:
+      entity_id:
+      - light.living_room
+    data:
+      brightness_pct: 25%
+- id: '1622464029480'
+  alias: Living Room Lights - Night
+  description: Turn off living room lights at night
+  trigger:
+  - platform: time
+    at: '22:00:00'
+  condition: []
+  action:
+  - service: light.turn_off
+    target:
+      area_id: living_room
+    data:
+      transition: 30
+  mode: single
+- id: '1622464772523'
+  alias: Bedroom Lights - Sleep
+  description: ''
+  trigger:
+  - platform: event
+    event_type: Sleep
+  condition: []
+  action:
+  - service: light.turn_off
+    target:
+      area_id: bedroom
+    data:
+      transition: 30
+  mode: single
