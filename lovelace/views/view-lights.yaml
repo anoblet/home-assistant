@@ -27,7 +27,9 @@ cards:
       - type: entities
         entities:
           - type: custom:slider-entity-row
-            entity: light.ceiling_2
+            entity: light.living_room_ceiling_one
+          - type: custom:slider-entity-row
+            entity: light.living_room_ceiling_two
         show_header_toggle: true
         title: Living Room
       # Kitchen

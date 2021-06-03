@@ -42,7 +42,8 @@ light:
   - platform: group
     name: Living Room Lights
     entities:
-      - light.ceiling_2
+      - light.living_room_ceiling_one
+      - light.living_room_ceiling_two
   - platform: group
     name: Hallway Lights
     entities:

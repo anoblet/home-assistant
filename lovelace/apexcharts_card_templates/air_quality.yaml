@@ -8,3 +8,6 @@ all_series_config:
   fill_raw: last
   group_by:
     func: min
+graph_span: 72h
+span:
+  start: day

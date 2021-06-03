@@ -220,12 +220,12 @@
                 "data": {
                     "auth_implementation": "spotify",
                     "token": {
-                        "access_token": "BQCmE6MTSdSb2yFWXv1b8cYwFbp884uJ3RYNVgLH-YfuvXPIVpCrG6Ur8p5DVJzjLZt_OmcqKgd2Wtkx30ZYcSZCC360BhPTxHoxstL8bHrWATT75uqouGdwi652BkVbRklll7FrjC7dMJAPqDOLa9savK5rPWRm50JzOo-eNPM55oQTneD3Ulg34Lo2jME9G3C5bss",
+                        "access_token": "BQDrYlkInjcijHBo62aFisch1acS0mF5cWGmelGEVDJD1fFZjWEoPqqElQcQ1CLV7J9Z3tW-op2GqDk3-Mk3SRYZUZbfwwXDklneHGHdzab14YV7zKXaKgjIQH8ZoyFK1mVs7oCp6-AbBrAYMcNyIfwKBMbRMtcLs4rPfA-CPoJagVjqCqE-1BYKjHIM0I5CKubPQgw",
                         "token_type": "Bearer",
                         "expires_in": 3600,
                         "refresh_token": "AQBAkzI7f8GAFg5uBjakdyfp20busAJDwpC0dJnyvAkPFXw4j3Y0KXLkZxx65D1514nC_uYnXqYyo2a46Mlld_JGCGvhgE48aONTXTWJqWqFcoHOj2k91WCsvRxRxcg113o",
                         "scope": "playlist-read-private playlist-read-collaborative user-modify-playback-state user-library-read user-follow-read user-read-playback-state user-read-recently-played user-read-playback-position user-read-private user-top-read",
-                        "expires_at": 1622636434.038747
+                        "expires_at": 1622740811.5271769
                     },
                     "id": "raheimsg",
                     "name": "Andrew Noblet"
@@ -237,25 +237,6 @@
                 "source": "user",
                 "connection_class": "cloud_poll",
                 "unique_id": "raheimsg",
-                "disabled_by": null
-            },
-            {
-                "entry_id": "748d91f15a440fdc459e81277f543870",
-                "version": 1,
-                "domain": "upnp",
-                "title": "ArcherA7v5",
-                "data": {
-                    "udn": "uuid:ecd7c64d-5c41-45cf-8551-f15fca00ae00",
-                    "st": "urn:schemas-upnp-org:device:InternetGatewayDevice:1",
-                    "hostname": "192.168.0.1"
-                },
-                "options": {},
-                "system_options": {
-                    "disable_new_entities": false
-                },
-                "source": "ssdp",
-                "connection_class": "local_poll",
-                "unique_id": "uuid:ecd7c64d-5c41-45cf-8551-f15fca00ae00::urn:schemas-upnp-org:device:InternetGatewayDevice:1",
                 "disabled_by": null
             },
             {
@@ -288,34 +269,6 @@
                 "source": "registration",
                 "connection_class": "cloud_push",
                 "unique_id": "io.homeassistant.companion.android-f63e97c4b0197f12",
-                "disabled_by": null
-            },
-            {
-                "entry_id": "037c78c83f2f0a0d0a3234e1c1a7a0b4",
-                "version": 1,
-                "domain": "almond",
-                "title": "Home Assistant Cloud",
-                "data": {
-                    "auth_implementation": "cloud",
-                    "token": {
-                        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5MWY5NzYzZTJiOWU1ODM1IiwiYXVkIjoib2F1dGgyIiwic2NvcGUiOlsicHJvZmlsZSIsInVzZXItcmVhZCIsInVzZXItcmVhZC1yZXN1bHRzIiwidXNlci1leGVjLWNvbW1hbmQiXSwiaWF0IjoxNjIyNjM0NDgwLCJleHAiOjE2MjI2MzgwODB9.9lcWO3HkxxAXPoS2HPhKO5i0tfBGuC6SDX47iGIy-X8",
-                        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiMjg1ZjBmMzViODkzMzVjIiwidXNlcl9pZCI6IjkxZjk3NjNlMmI5ZTU4MzUiLCJncmFudF90eXBlIjoicmVmcmVzaF90b2tlbiIsInNjb3BlIjpbInByb2ZpbGUiLCJ1c2VyLXJlYWQiLCJ1c2VyLXJlYWQtcmVzdWx0cyIsInVzZXItZXhlYy1jb21tYW5kIl0sImlhdCI6MTYyMTc5NzU0Nn0.T1Cw6OVa3h8YFChvinbnt-qsiO2CoTTyiLydevXyp3s",
-                        "expires_in": 3600,
-                        "token_type": "Bearer",
-                        "service": "almond",
-                        "expires_at": 1622638080.1360333
-                    },
-                    "type": "oauth2",
-                    "host": "https://almond.stanford.edu/me",
-                    "onboarded": true
-                },
-                "options": {},
-                "system_options": {
-                    "disable_new_entities": false
-                },
-                "source": "user",
-                "connection_class": "cloud_poll",
-                "unique_id": null,
                 "disabled_by": null
             },
             {
@@ -371,6 +324,25 @@
                 "source": "user",
                 "connection_class": "cloud_poll",
                 "unique_id": null,
+                "disabled_by": null
+            },
+            {
+                "entry_id": "e00540eec7322eb24d75fe250b123106",
+                "version": 1,
+                "domain": "upnp",
+                "title": "ArcherA7v5",
+                "data": {
+                    "udn": "uuid:5b01e891-fc39-464b-9a0f-00f973f8ea2b",
+                    "st": "urn:schemas-upnp-org:device:InternetGatewayDevice:1",
+                    "hostname": "192.168.0.1"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "ssdp",
+                "connection_class": "local_poll",
+                "unique_id": "uuid:5b01e891-fc39-464b-9a0f-00f973f8ea2b::urn:schemas-upnp-org:device:InternetGatewayDevice:1",
                 "disabled_by": null
             }
         ]
