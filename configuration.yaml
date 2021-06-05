@@ -9,12 +9,7 @@ group: !include groups.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
-adaptive_lighting:
-  lights:
-    - light.bedroom_lights
-    - light.hallway_lights
-    - light.kitchen_lights
-    - light.living_room_lights
+adaptive_lighting: !include_dir_list adaptive_lighting/
 
 automation: !include automations.yaml
 
