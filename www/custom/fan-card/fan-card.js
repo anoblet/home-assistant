@@ -16,8 +16,8 @@ class FanCard extends BaseElement {
   render() {
     const entity = this.hass.states[this.config.entity];
     return html`
-      <div class="grid grid-gap padding" id="container">
-        <div class="grid grid-gap" id="attributes">
+      <div class="grid grid-gap" id="container">
+        <div class="grid grid-gap padding" id="attributes">
           <label>Air Quality</label>
           <span class="capitalize">${entity.attributes.air_quality}</span>
           <div
@@ -43,6 +43,7 @@ class FanCard extends BaseElement {
           <label>Filter Life</label>
           <span class="capitilize">${entity.attributes.filter_life}%</span>
         </div>
+        <hr />
         <buttons-card .config=${this.config} .hass=${this.hass}></buttons-card>
       </div>
     `;

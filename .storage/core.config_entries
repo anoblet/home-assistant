@@ -220,12 +220,12 @@
                 "data": {
                     "auth_implementation": "spotify",
                     "token": {
-                        "access_token": "BQDFpkLoNAveb6mRhxBL8RFjRjZXuzWTXMrxWEOoWjxFp-Ofpa29C_eejCda3mOv9TtV4K935evYxnX441cKzz0FpWqvHTqoaFwWz-u-Cul8Y8hc0kUd0iPN17SNbdB4F3oAj1ISg9AX7sA6XURjEs1D2jd3D34hjVA9H66TEQSN86NBV-GwowD9Qi-NfUZmGW-c9dY",
+                        "access_token": "BQCOTXyYHamLXB6KjU5BLBFvXZ6_o1ruDyi02GkqTlMZFL9cIbSa1c2RFlIjTa-RKRyex195x0z8IRAdYuNjTyZgMUXc5gBJr9VwpCT4yEQcSMDmca7oVwisT-M-xicQnefOsyy8Hr2cEX-AUwUWcCJLe_Qtx2vrNUStzSZ3Eu5HTcAc2QIAfmyC5-V1g7xJBqtSbhs",
                         "token_type": "Bearer",
                         "expires_in": 3600,
                         "refresh_token": "AQBAkzI7f8GAFg5uBjakdyfp20busAJDwpC0dJnyvAkPFXw4j3Y0KXLkZxx65D1514nC_uYnXqYyo2a46Mlld_JGCGvhgE48aONTXTWJqWqFcoHOj2k91WCsvRxRxcg113o",
                         "scope": "playlist-read-private playlist-read-collaborative user-modify-playback-state user-library-read user-follow-read user-read-playback-state user-read-recently-played user-read-playback-position user-read-private user-top-read",
-                        "expires_at": 1622884793.2738886
+                        "expires_at": 1622891993.6370487
                     },
                     "id": "raheimsg",
                     "name": "Andrew Noblet"
@@ -343,6 +343,74 @@
                 "source": "ssdp",
                 "connection_class": "local_poll",
                 "unique_id": "uuid:5b01e891-fc39-464b-9a0f-00f973f8ea2b::urn:schemas-upnp-org:device:InternetGatewayDevice:1",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "c4b12e2d1139f1ec41a77c60012118f2",
+                "version": 1,
+                "domain": "adaptive_lighting",
+                "title": "Kitchen",
+                "data": {
+                    "name": "Kitchen"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "user",
+                "connection_class": "unknown",
+                "unique_id": "Kitchen",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "89959de5a282e5f57dff188780576083",
+                "version": 1,
+                "domain": "adaptive_lighting",
+                "title": "Living Room",
+                "data": {
+                    "name": "Living Room"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "user",
+                "connection_class": "unknown",
+                "unique_id": "Living Room",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "767b77fa7d81858d730e9cbe232a202f",
+                "version": 1,
+                "domain": "adaptive_lighting",
+                "title": "Hallway",
+                "data": {
+                    "name": "Hallway"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "user",
+                "connection_class": "unknown",
+                "unique_id": "Hallway",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "af8ec2d6ef520c8377dd9e4894daa905",
+                "version": 1,
+                "domain": "adaptive_lighting",
+                "title": "Bedroom",
+                "data": {
+                    "name": "Bedroom"
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "user",
+                "connection_class": "unknown",
+                "unique_id": "Bedroom",
                 "disabled_by": null
             }
         ]

@@ -3,6 +3,23 @@ import { BaseElement } from "../base-element/base-element.js";
 import baseStyle from "../base-style.js";
 
 class ButtonsCard extends BaseElement {
+  static get styles() {
+    return [
+      baseStyle,
+      css`
+        #container {
+          padding: var(--padding, 2rem);
+        }
+
+        #buttons {
+          align-items: center;
+          justify-content: center;
+          grid-template-columns: repeat(auto-fit, 10rem);
+        }
+      `,
+    ];
+  }
+
   render() {
     const entity = this.hass.states[this.config.entity];
     return html`
@@ -28,41 +45,6 @@ class ButtonsCard extends BaseElement {
         </div>
       </ha-card>
     `;
-  }
-
-  static get styles() {
-    return [
-      baseStyle,
-      css`
-        #container {
-          padding: var(--padding, 2rem);
-        }
-
-        #buttons {
-          font-size: var(--font-size, 2rem);
-          grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-        }
-      `,
-    ];
-  }
-
-  setConfig(config) {
-    if (!config.entity) {
-      throw new Error("You need to define an entity");
-    }
-    this.config = config;
-  }
-
-  // The height of your card. Home Assistant uses this to automatically
-  // distribute all cards over the available columns.
-  getCardSize() {
-    return this.config.entities.length + 1;
-  }
-
-  _toggle() {
-    this.hass.states[this.config.entity].state === "on"
-      ? this._setSpeed("off")
-      : this._setSpeed("auto");
   }
 
   _setSpeed(speed) {
