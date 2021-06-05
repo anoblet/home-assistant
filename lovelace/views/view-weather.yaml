@@ -1,20 +1,18 @@
 cards:
-  - type: custom:container-card
+  - type: custom:generic-card
+    title: Temperature
     cards:
-      - type: custom:generic-card
-        title: Temperature
-        cards:
-          - type: custom:apexcharts-card
-            config_templates: default
-            series:
-              - entity: sensor.openweathermap_temperature
-              - entity: sensor.openweathermap_feels_like_temperature
-      - type: custom:generic-card
-        title: Humidity
-        cards:
-          - type: custom:apexcharts-card
-            config_templates: default
-            series:
-              - entity: sensor.openweathermap_humidity
+      - type: custom:apexcharts-card
+        config_templates: default
+        series:
+          - entity: sensor.openweathermap_temperature
+          - entity: sensor.openweathermap_feels_like_temperature
+  - type: custom:generic-card
+    title: Humidity
+    cards:
+      - type: custom:apexcharts-card
+        config_templates: default
+        series:
+          - entity: sensor.openweathermap_humidity
 title: Weather
 type: custom:default-view

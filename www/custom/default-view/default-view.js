@@ -15,7 +15,12 @@ class DefaultView extends LitElement {
       baseStyle,
       css`
         :host {
-          --padding: 2rem;
+          --padding: 1rem;
+          padding: var(--padding);
+        }
+
+        hui-entities-card {
+          overflow: hidden;
         }
       `,
     ];
@@ -23,7 +28,7 @@ class DefaultView extends LitElement {
 
   render() {
     return html`
-      <div class="grid grid-gap padding">
+      <div class="grid grid-gap">
         ${this.cards?.map((card) => html`${card}`)}
       </div>
     `;
