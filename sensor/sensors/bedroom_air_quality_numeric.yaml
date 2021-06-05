@@ -1,4 +1,4 @@
-friendly_name: "Air Quality"
+friendly_name: "Bedroom Air Quality"
 value_template: >-
   {% if is_state_attr("fan.bedroom_air_purifier", "air_quality", "excellent") %}
     100
