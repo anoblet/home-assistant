@@ -6,7 +6,7 @@ cards:
         config_templates: default
         series:
           - entity: sensor.openweathermap_temperature
-          - entity: sensor.openweathermap_feels_like_temperature
+          # - entity: sensor.openweathermap_feels_like_temperature
   - type: custom:generic-card
     title: Humidity
     cards:

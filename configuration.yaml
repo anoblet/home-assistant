@@ -18,40 +18,7 @@ homeassistant:
 
 http:
 
-# influxdb:
-#   host: 192.168.0.120
-#   port: 8086
-#   database: homeassistant
-#   username: homeassistant
-#   password: !secret influxdb_password
-#   max_retries: 3
-#   default_measurement: state
-
-light:
-  - platform: group
-    name: Bedroom Lights
-    entities:
-      - light.ceiling
-      - light.table
-      - light.dresser
-  - platform: group
-    name: Living Room Lights
-    entities:
-      - light.living_room_ceiling_one
-      - light.living_room_ceiling_two
-  - platform: group
-    name: Hallway Lights
-    entities:
-      - light.hallway_one
-      - light.hallway_two
-  - platform: group
-    name: Kitchen Lights
-    entities:
-      - light.kitchen_one
-      - light.kitchen_two
-      - light.kitchen_three
-      - light.kitchen_four
-      - light.kitchen_five
+light: !include_dir_list light/
 
 logger:
   default: info

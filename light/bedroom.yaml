@@ -1,0 +1,6 @@
+platform: group
+name: Bedroom Lights
+entities:
+  - light.ceiling
+  - light.table
+  - light.dresser

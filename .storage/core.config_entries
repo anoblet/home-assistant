@@ -181,12 +181,12 @@
                 "data": {
                     "auth_implementation": "spotify",
                     "token": {
-                        "access_token": "BQCOTXyYHamLXB6KjU5BLBFvXZ6_o1ruDyi02GkqTlMZFL9cIbSa1c2RFlIjTa-RKRyex195x0z8IRAdYuNjTyZgMUXc5gBJr9VwpCT4yEQcSMDmca7oVwisT-M-xicQnefOsyy8Hr2cEX-AUwUWcCJLe_Qtx2vrNUStzSZ3Eu5HTcAc2QIAfmyC5-V1g7xJBqtSbhs",
+                        "access_token": "BQABZm6JrQRkp6R2Rsa9Cn5r4W20aFc4G78Qjktpkveu8q3BaL4TRPHF7S1Z6Ab8HdpkkCejeE7fUM6cltncgs1EmYUSK6tbMr6tcD1o2ym0CKWwe7Fw_3pFQuSW1sULynGec3ofhA2Ih7meRVQ97YPA41WXt-HhALOCkdIkNNWZo2UJHkPT9ttg1438HqJZpzMPSng",
                         "token_type": "Bearer",
                         "expires_in": 3600,
                         "refresh_token": "AQBAkzI7f8GAFg5uBjakdyfp20busAJDwpC0dJnyvAkPFXw4j3Y0KXLkZxx65D1514nC_uYnXqYyo2a46Mlld_JGCGvhgE48aONTXTWJqWqFcoHOj2k91WCsvRxRxcg113o",
                         "scope": "playlist-read-private playlist-read-collaborative user-modify-playback-state user-library-read user-follow-read user-read-playback-state user-read-recently-played user-read-playback-position user-read-private user-top-read",
-                        "expires_at": 1622891993.6370487
+                        "expires_at": 1622978479.912603
                     },
                     "id": "raheimsg",
                     "name": "Andrew Noblet"
