@@ -40,3 +40,49 @@
     data:
       transition: 30
   mode: single
+- id: '1'
+  alias: Bedroom Air Purifier
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: '0'
+    seconds: '0'
+  condition:
+  - condition: time
+    after: '10:00:00'
+    before: '18:00:00'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - service: fan.set_speed
+    data:
+      speed: medium
+  mode: single
+- id: '2'
+  alias: Bedroom Air Purifier
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: '1'
+    seconds: '0'
+  condition:
+  - condition: time
+    after: '10:00:00'
+    before: '18:00:00'
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - service: fan.set_preset_mode
+    target:
+      entity_id: fan.bedroom_air_purifier
+    data:
+      preset_mode: auto
+  mode: single

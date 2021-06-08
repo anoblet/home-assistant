@@ -44,4 +44,11 @@ cards:
         entity: light.kitchen_five
     show_header_toggle: true
     title: Kitchen
+  # Storage Room
+  - type: entities
+    entities:
+      - type: custom:slider-entity-row
+        entity: light.storage_room_ceiling
+    show_header_toggle: true
+    title: Storage Room
 type: custom:default-view

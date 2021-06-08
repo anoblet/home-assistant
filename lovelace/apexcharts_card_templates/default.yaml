@@ -7,6 +7,7 @@ graph_span: 24h
 # start: day
 # offset: -1d
 all_series_config:
+  color: var(--primary-color)
   extend_to_end: true
   group_by:
     func: avg

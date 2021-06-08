@@ -181,12 +181,12 @@
                 "data": {
                     "auth_implementation": "spotify",
                     "token": {
-                        "access_token": "BQABZm6JrQRkp6R2Rsa9Cn5r4W20aFc4G78Qjktpkveu8q3BaL4TRPHF7S1Z6Ab8HdpkkCejeE7fUM6cltncgs1EmYUSK6tbMr6tcD1o2ym0CKWwe7Fw_3pFQuSW1sULynGec3ofhA2Ih7meRVQ97YPA41WXt-HhALOCkdIkNNWZo2UJHkPT9ttg1438HqJZpzMPSng",
+                        "access_token": "BQCrvqT-A7abJhvX07r2OseFbC8CrNQQScLrRQ_dQQarZ4oefZPZwCkFUk88VQgBVQzSFp0aKOPueZ3iB8pZQBBMVlGoLyHIxHnQPF1vb6yp0ekJWX1tvehimgYtyVnN3iMcJsVZDheEjjDTOGbwRfqKb8C4f36hac4uXn2weCTQSg10TfnxOBFw1FyN9T88gW-dAbo",
                         "token_type": "Bearer",
                         "expires_in": 3600,
                         "refresh_token": "AQBAkzI7f8GAFg5uBjakdyfp20busAJDwpC0dJnyvAkPFXw4j3Y0KXLkZxx65D1514nC_uYnXqYyo2a46Mlld_JGCGvhgE48aONTXTWJqWqFcoHOj2k91WCsvRxRxcg113o",
                         "scope": "playlist-read-private playlist-read-collaborative user-modify-playback-state user-library-read user-follow-read user-read-playback-state user-read-recently-played user-read-playback-position user-read-private user-top-read",
-                        "expires_at": 1622978479.912603
+                        "expires_at": 1623147664.1754005
                     },
                     "id": "raheimsg",
                     "name": "Andrew Noblet"
@@ -448,6 +448,42 @@
                 "source": "user",
                 "connection_class": "unknown",
                 "unique_id": "Bedroom",
+                "disabled_by": null
+            },
+            {
+                "entry_id": "fd5db1698d9bb520a004136ba774e73c",
+                "version": 1,
+                "domain": "adaptive_lighting",
+                "title": "Storage Room",
+                "data": {
+                    "name": "Storage Room",
+                    "lights": [
+                        "light.storage_room_lights"
+                    ],
+                    "min_brightness": 1,
+                    "sleep_color_temp": 1000,
+                    "max_color_temp": 5500,
+                    "take_over_control": true,
+                    "separate_turn_on_commands": false,
+                    "only_once": false,
+                    "prefer_rgb_color": false,
+                    "max_brightness": 100,
+                    "detect_non_ha_changes": false,
+                    "sleep_brightness": 1,
+                    "initial_transition": 1.0,
+                    "interval": 90.0,
+                    "transition": 45.0,
+                    "sunrise_offset": 0.0,
+                    "sunset_offset": 0.0,
+                    "min_color_temp": 2000
+                },
+                "options": {},
+                "system_options": {
+                    "disable_new_entities": false
+                },
+                "source": "import",
+                "connection_class": "unknown",
+                "unique_id": "Storage Room",
                 "disabled_by": null
             }
         ]
