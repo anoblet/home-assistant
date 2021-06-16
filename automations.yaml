@@ -58,16 +58,16 @@
     - thu
     - fri
   action:
-  - service: fan.set_speed
+  - service: fan.set_percentage
     data:
-      speed: medium
+      percentage: 100
   mode: single
 - id: '2'
   alias: Bedroom Air Purifier
   description: ''
   trigger:
   - platform: time_pattern
-    minutes: '1'
+    minutes: '5'
     seconds: '0'
   condition:
   - condition: time
@@ -86,3 +86,28 @@
     data:
       preset_mode: auto
   mode: single
+- id: '1623323556246'
+  alias: New Automation
+  description: Set air purifier to high after leaving
+  trigger:
+  - platform: zone
+    entity_id: device_tracker.pixel_4
+    zone: zone.home
+    event: leave
+  condition: []
+  action:
+  - service: fan.set_percentage
+    target:
+      entity_id: fan.bedroom_air_purifier
+    data:
+      percentage: 100
+  mode: single
+- id: '1623765646510'
+  alias: Zone Notification
+  description: ''
+  use_blueprint:
+    path: homeassistant/notify_leaving_zone.yaml
+    input:
+      person_entity: person.andrew_noblet
+      zone_entity: zone.home
+      notify_device: 087e51cb9afba95498f007d44e9aa749
