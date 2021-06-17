@@ -9,6 +9,6 @@ all_series_config:
   group_by:
     func: min
 graph_span: 24h
-span:
-  end: hour
-  offset: -1d
+# span:
+#   end: hour
+#   offset: -1d

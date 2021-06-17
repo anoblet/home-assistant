@@ -22,6 +22,10 @@ homeassistant:
   external_url: https://anoblet.duckdns.org
 
 http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 10.0.0.200
+    - 172.30.33.0/24
 
 light: !include_dir_list light/
 
@@ -36,6 +40,7 @@ lovelace:
 media_player: !include media_player.yaml
 
 recorder:
+  commit_interval: 60
   db_url: !secret db_url
 
 script: !include_dir_named scripts/
@@ -48,6 +53,6 @@ spotify:
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
 
-vesync:
-  username: !secret vesync_username
-  password: !secret vesync_password
+# vesync:
+#   username: !secret vesync_username
+#   password: !secret vesync_password
