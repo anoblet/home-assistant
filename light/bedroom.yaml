@@ -2,5 +2,5 @@ platform: group
 name: Bedroom Lights
 entities:
   - light.ceiling
-  - light.table
-  - light.dresser
+  - light.hue_color_lamp_1
+  - light.hue_color_lamp_1_2
