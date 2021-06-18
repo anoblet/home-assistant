@@ -1,0 +1,8 @@
+platform: group
+name: Kitchen Lights
+entities:
+  - light.kitchen_one
+  - light.kitchen_two
+  - light.kitchen_three
+  - light.kitchen_four
+  - light.kitchen_five

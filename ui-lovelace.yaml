@@ -1,0 +1,13 @@
+title: Overview
+views:
+  - !include lovelace/views/view-home.yaml
+  - !include lovelace/views/view-lights.yaml
+  - !include lovelace/views/view-remotes.yaml
+  - !include lovelace/views/view-fans.yaml
+  - !include lovelace/views/view-media.yaml
+  - !include lovelace/views/view-network.yaml
+  - !include lovelace/views/view-weather.yaml
+  - !include lovelace/views/view-admin.yaml
+apexcharts_card_templates: !include_dir_named lovelace/apexcharts_card_templates
+
+

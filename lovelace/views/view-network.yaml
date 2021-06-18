@@ -1,0 +1,10 @@
+title: Network
+cards:
+  - type: custom:generic-card
+    title: Download Speed
+    cards:
+      - type: custom:apexcharts-card
+        config_templates: default
+        series:
+          - entity: sensor.speedtest_download
+type: custom:default-view

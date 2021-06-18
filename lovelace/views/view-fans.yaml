@@ -1,0 +1,27 @@
+title: Fans
+cards:
+  # Bedroom Air Purifier
+  - title: Bedroom Air Purifier
+    type: custom:generic-card
+    cards:
+      - type: custom:fan-card
+        cards:
+          - type: custom:apexcharts-card
+            config_templates: air_quality
+            series:
+              - entity: sensor.bedroom_air_quality_numeric
+            slot: quality_graph
+        entity: fan.bedroom_air_purifier
+  # Living Room Air Purifier
+  - title: Living Room Air Purifier
+    type: custom:generic-card
+    cards:
+      - type: custom:fan-card
+        cards:
+          - type: custom:apexcharts-card
+            config_templates: air_quality
+            series:
+              - entity: sensor.living_room_air_quality_numeric
+            slot: quality_graph
+        entity: fan.living_room_air_purifier
+type: custom:default-view

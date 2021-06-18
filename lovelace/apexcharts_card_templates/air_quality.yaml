@@ -1,0 +1,14 @@
+apex_config:
+  yaxis:
+    min: 0
+    max: 100
+config_templates: default
+all_series_config:
+  curve: stepline
+  fill_raw: last
+  group_by:
+    func: min
+graph_span: 24h
+# span:
+#   end: hour
+#   offset: -1d

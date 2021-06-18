@@ -1,6 +1,9 @@
 *
-
 !*/
+!**/*.yaml
+secrets.yaml
 
 !.gitignore
-!**/*.yaml
+!www/custom/**
+
+custom_components

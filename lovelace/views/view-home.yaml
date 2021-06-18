@@ -1,0 +1,7 @@
+title: Home
+cards:
+  - type: weather-forecast
+    entity: weather.openweathermap
+    secondary_info_attribute: humidity
+    name: Home
+type: custom:default-view

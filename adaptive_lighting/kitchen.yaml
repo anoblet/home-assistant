@@ -1,0 +1,3 @@
+name: "Kitchen"
+lights: light.kitchen_lights
+max_brightness: 25

@@ -1,0 +1,16 @@
+apex_config:
+  chart:
+    height: 256px
+# layout: minimal
+graph_span: 24h
+# span:
+# start: day
+# offset: -1d
+all_series_config:
+  color: var(--primary-color)
+  extend_to_end: true
+  group_by:
+    func: avg
+    duration: 15m
+  stroke_width: 2
+  # type: column
