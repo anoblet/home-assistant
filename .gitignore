@@ -1,8 +1,8 @@
 *
-
 !*/
-
 !**/*.yaml
+secrets.yaml
+
 !.gitignore
 !www/custom/**
 
