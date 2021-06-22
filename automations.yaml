@@ -111,3 +111,36 @@
       person_entity: person.andrew_noblet
       zone_entity: zone.home
       notify_device: 087e51cb9afba95498f007d44e9aa749
+- id: '1624233736997'
+  alias: Kitchen - Motion Detected
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_81b0c306_ias_zone
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: light.turn_on
+    target:
+      area_id: kitchen
+    data:
+      transition: 30
+  mode: single
+- id: '1624234430681'
+  alias: Kitchen - Motion Detected (Cleared)
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_81b0c306_ias_zone
+    from: 'on'
+    to: 'off'
+    for: 00:02:00
+  condition: []
+  action:
+  - service: light.turn_off
+    target:
+      area_id: kitchen
+    data:
+      transition: 30
+  mode: single
