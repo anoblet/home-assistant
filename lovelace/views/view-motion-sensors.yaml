@@ -1,0 +1,8 @@
+title: Motion Sensors
+cards:
+  - type: entities
+    entities:
+      - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_81b0c306_occupancy
+        name: Kitchen
+        secondary_info: "last-changed"
+type: custom:default-view
