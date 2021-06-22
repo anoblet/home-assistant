@@ -1,5 +1,5 @@
 - id: '0'
-  alias: Turn on living room light in the evening
+  alias: Living Room - Lights - Evening
   trigger:
   - platform: state
     entity_id: sun.sun
@@ -8,12 +8,13 @@
   action:
   - service: light.turn_on
     target:
-      entity_id:
-      - light.living_room
+      area_id: living_room
     data:
-      brightness_pct: 25%
+      transition: 30
+      brightness_pct: 25
+  mode: single
 - id: '1622464029480'
-  alias: Living Room Lights - Night
+  alias: Living Room - Lights - Night
   description: Turn off living room lights at night
   trigger:
   - platform: time
@@ -26,22 +27,8 @@
     data:
       transition: 30
   mode: single
-- id: '1622464772523'
-  alias: Bedroom Lights - Sleep
-  description: ''
-  trigger:
-  - platform: event
-    event_type: Sleep
-  condition: []
-  action:
-  - service: light.turn_off
-    target:
-      area_id: bedroom
-    data:
-      transition: 30
-  mode: single
 - id: '1'
-  alias: Bedroom Air Purifier
+  alias: Bedroom - Fan - Hourly
   description: ''
   trigger:
   - platform: time_pattern
@@ -60,35 +47,23 @@
   action:
   - service: fan.set_percentage
     data:
-      percentage: 100
-  mode: single
-- id: '2'
-  alias: Bedroom Air Purifier
-  description: ''
-  trigger:
-  - platform: time_pattern
-    minutes: '5'
-    seconds: '0'
-  condition:
-  - condition: time
-    after: '10:00:00'
-    before: '18:00:00'
-    weekday:
-    - mon
-    - tue
-    - wed
-    - thu
-    - fri
-  action:
-  - service: fan.set_preset_mode
+      percentage: 66
     target:
       entity_id: fan.bedroom_air_purifier
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - service: fan.set_percentage
     data:
-      preset_mode: auto
+      percentage: 33
+    target:
+      entity_id: fan.bedroom_air_purifier
   mode: single
 - id: '1623323556246'
-  alias: New Automation
-  description: Set air purifier to high after leaving
+  alias: Bedroom - Fan - Away
+  description: ''
   trigger:
   - platform: zone
     entity_id: device_tracker.pixel_4
@@ -100,7 +75,7 @@
     target:
       entity_id: fan.bedroom_air_purifier
     data:
-      percentage: 100
+      percentage: 50
   mode: single
 - id: '1623765646510'
   alias: Zone Notification
@@ -110,9 +85,9 @@
     input:
       person_entity: person.andrew_noblet
       zone_entity: zone.home
-      notify_device: 087e51cb9afba95498f007d44e9aa749
+      notify_device: d1a44f8638db4133026efb806cdf894b
 - id: '1624233736997'
-  alias: Kitchen - Motion Detected
+  alias: Kitchen - Motion Sensor - Detected
   description: ''
   trigger:
   - platform: state
@@ -128,7 +103,7 @@
       transition: 30
   mode: single
 - id: '1624234430681'
-  alias: Kitchen - Motion Detected (Cleared)
+  alias: Kitchen - Motion Sensor - Cleared
   description: ''
   trigger:
   - platform: state
