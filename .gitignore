@@ -1,10 +1,11 @@
 *
 !*/
 !**/*.yaml
-secrets.yaml
 
 !.gitignore
-!www/custom/**
+!www/custom
 
 custom_components
 node_modules
+secrets.yaml
+
