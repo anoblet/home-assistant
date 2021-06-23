@@ -35,6 +35,9 @@
     minutes: '0'
     seconds: '0'
   condition:
+  - condition: state
+    entity_id: fan.bedroom_air_purifier
+    state: 'on'
   - condition: time
     after: '10:00:00'
     before: '18:00:00'
