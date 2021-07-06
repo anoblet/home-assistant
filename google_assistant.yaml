@@ -1,0 +1,19 @@
+project_id: home-assistant-489de
+secure_devices_pin: "3113"
+service_account:
+  private_key: !secret google_assistant_private_key
+  client_email: !secret google_assistant_client_email
+report_state: true
+entity_config:
+  light.bedroom_lamps:
+    name: Lamps
+    room: Bedroom
+  light.living_room_ceiling_lights:
+    name: Ceiling Lights
+    room: Living Room
+  lock.back_door:
+    name: Back Door
+exposed_domains:
+  - light
+  - lock
+  - switch

@@ -4,7 +4,7 @@ cards:
   - title: Bedroom Air Purifier
     type: custom:generic-card
     cards:
-      - type: custom:fan-card
+      - type: custom:fan-element
         cards:
           - type: custom:apexcharts-card
             config_templates: air_quality
@@ -16,7 +16,7 @@ cards:
   - title: Living Room Air Purifier
     type: custom:generic-card
     cards:
-      - type: custom:fan-card
+      - type: custom:fan-element
         cards:
           - type: custom:apexcharts-card
             config_templates: air_quality

@@ -1,0 +1,8 @@
+title: Locks
+cards:
+  - type: entities
+    entities:
+      - entity: lock.back_door
+        name: Back Door
+        secondary_info: "last-changed"
+type: custom:default-view
