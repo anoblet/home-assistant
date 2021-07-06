@@ -1,6 +1,5 @@
-import { css, html, nothing } from "https://unpkg.com/lit?module";
 import { classMap } from "https://unpkg.com/lit/directives/class-map.js?module";
-
+import { css, html } from "https://unpkg.com/lit?module";
 import { BaseElement } from "../base-element/base-element.js";
 import baseStyle from "../base-style.js";
 
@@ -21,7 +20,7 @@ class FanCard extends BaseElement {
           <label>Air Quality</label>
           <span class="capitalize">${entity.attributes.air_quality}</span>
           <div
-            class="content full-row graph ${classMap({
+            class="full-row${classMap({
               none: this._isSlotEmpty("quality_graph"),
             })}"
           >
@@ -34,7 +33,7 @@ class FanCard extends BaseElement {
               : html`${entity.attributes.speed}`}
           </span>
           <div
-            class="content full-row ${classMap({
+            class="full-row ${classMap({
               none: this._isSlotEmpty("speed_graph"),
             })}"
           >
@@ -54,7 +53,7 @@ class FanCard extends BaseElement {
       baseStyle,
       css`
         :host {
-          font-size: var(--state-font-size, 1rem);
+          font-size: var(--font-size, 1rem);
         }
 
         #attributes {
@@ -71,7 +70,7 @@ class FanCard extends BaseElement {
         }
 
         #friendly_name {
-          font-size: var(--state-font-size, 2rem);
+          font-size: var(--font-size, 2rem);
           line-height: 2rem;
         }
 

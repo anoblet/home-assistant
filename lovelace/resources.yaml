@@ -2,6 +2,8 @@
   type: css
 - url: /local/community/apexcharts-card/apexcharts-card.js?v=1.9.0
   type: module
+- url: /local/community/lovelace-auto-entities/auto-entities.js
+  type: module
 # - url: /local/community/button-card/button-card.js
 #   type: module
 - url: /local/custom/button-card/button-card.js
@@ -15,6 +17,8 @@
 - url: /local/community/decluttering-card/decluttering-card.js
   type: module
 - url: /local/custom/fan-card/fan-card.js
+  type: module
+- url: /local/custom/fan-element/fan-element.js
   type: module
 - url: /local/custom/generic-card/generic-card.js
   type: module

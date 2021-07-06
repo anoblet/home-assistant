@@ -7,11 +7,11 @@
     to: below_horizon
   action:
   - service: light.turn_on
-    target:
-      area_id: living_room
     data:
       transition: 30
       brightness_pct: 25
+    target:
+      device_id: 159ccd586ed56fe4105ec328db331bba
   mode: single
 - id: '1622464029480'
   alias: Living Room - Lights - Night
@@ -21,11 +21,12 @@
     at: '22:00:00'
   condition: []
   action:
-  - service: light.turn_off
-    target:
-      area_id: living_room
+  - service: light.turn_on
     data:
       transition: 30
+      brightness: 1
+    target:
+      device_id: 159ccd586ed56fe4105ec328db331bba
   mode: single
 - id: '1'
   alias: Bedroom - Fan - Hourly
@@ -78,7 +79,7 @@
     target:
       entity_id: fan.bedroom_air_purifier
     data:
-      percentage: 50
+      percentage: 33
   mode: single
 - id: '1623765646510'
   alias: Zone Notification
@@ -121,4 +122,52 @@
       area_id: kitchen
     data:
       transition: 30
+  mode: single
+- id: '1624629970511'
+  alias: Bedroom - Fan - Night
+  description: ''
+  trigger:
+  - platform: time
+    at: '22:00'
+  condition: []
+  action:
+  - service: fan.set_preset_mode
+    target:
+      entity_id: fan.bedroom_air_purifier
+    data:
+      preset_mode: auto
+  mode: single
+- id: '1624826924089'
+  alias: Storage Room - Motion Sensor - Detected
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_33b0c306_ias_zone
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: light.turn_on
+    target:
+      area_id:
+      - storage_room
+    data:
+      transition: 30
+  mode: single
+- id: '1624826963295'
+  alias: Storage Room - Motion Sensor - Cleared
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.lumi_lumi_sensor_motion_aq2_33b0c306_ias_zone
+    from: 'on'
+    to: 'off'
+    for: 00:02:00
+  condition: []
+  action:
+  - service: light.turn_off
+    data:
+      transition: 30
+    target:
+      area_id: storage_room
   mode: single
