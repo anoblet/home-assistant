@@ -7,4 +7,5 @@ cards:
         config_templates: default
         series:
           - entity: sensor.speedtest_download
+icon: mdi:web
 type: custom:default-view

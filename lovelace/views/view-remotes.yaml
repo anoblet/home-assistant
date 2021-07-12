@@ -22,5 +22,6 @@ cards:
         entity_id: remote.harmony_hub
         device: LevoitClimateControl
         switch: switch.harmony_hub_humidifier
+icon: mdi:remote
 title: Remotes
 type: custom:default-view

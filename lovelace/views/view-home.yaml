@@ -4,4 +4,5 @@ cards:
     entity: weather.openweathermap
     secondary_info_attribute: humidity
     name: Home
+icon: mdi:home
 type: custom:default-view

@@ -28,6 +28,8 @@
   type: module
 - url: /local/custom/iframe-card/iframe-card.js
   type: module
+- url: /local/custom/kiosk-mode/kiosk-mode.js
+  type: module
 - url: /local/community/mini-graph-card/mini-graph-card-bundle.js
   type: module
 - url: /local/community/lovelace-swipe-navigation/swipe-navigation.js?v=1.0.0

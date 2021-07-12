@@ -24,4 +24,5 @@ cards:
               - entity: sensor.living_room_air_quality_numeric
             slot: quality_graph
         entity: fan.living_room_air_purifier
+icon: mdi:fan
 type: custom:default-view
