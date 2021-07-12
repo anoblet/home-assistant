@@ -27,6 +27,8 @@ cards:
         entity: light.living_room_ceiling_one
       - type: custom:slider-entity-row
         entity: light.living_room_ceiling_two
+      - type: custom:slider-entity-row
+        entity: light.living_room_floor_lamp
     show_header_toggle: true
     title: Living Room
   # Kitchen
@@ -51,4 +53,5 @@ cards:
         entity: light.storage_room_ceiling
     show_header_toggle: true
     title: Storage Room
+icon: mdi:lightbulb
 type: custom:default-view

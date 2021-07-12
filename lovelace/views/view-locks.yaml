@@ -5,4 +5,5 @@ cards:
       - entity: lock.back_door
         name: Back Door
         secondary_info: "last-changed"
+icon: mdi:lock
 type: custom:default-view

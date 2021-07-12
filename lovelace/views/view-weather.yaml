@@ -14,5 +14,6 @@ cards:
         config_templates: default
         series:
           - entity: sensor.openweathermap_humidity
+icon: mdi:weather-cloudy
 title: Weather
 type: custom:default-view
