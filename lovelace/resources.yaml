@@ -28,7 +28,7 @@
   type: module
 - url: /local/custom/iframe-card/iframe-card.js
   type: module
-- url: /local/custom/kiosk-mode/kiosk-mode.js
+- url: /local/community/kiosk-mode/kiosk-mode.js
   type: module
 - url: /local/community/mini-graph-card/mini-graph-card-bundle.js
   type: module

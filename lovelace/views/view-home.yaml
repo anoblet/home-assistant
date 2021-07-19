@@ -1,8 +1,17 @@
-title: Home
 cards:
-  - type: weather-forecast
-    entity: weather.openweathermap
-    secondary_info_attribute: humidity
-    name: Home
+  - type: custom:generic-card
+    title: Bedroom
+    cards:
+      - type: glance
+        entities:
+          - entity: light.bedroom_ceiling
+            tap_action:
+              action: toggle
+          - entity: light.bedroom_lamps
+            name: Lamps
+            tap_action:
+              action: toggle
 icon: mdi:home
+path: home
+title: Home
 type: custom:default-view
