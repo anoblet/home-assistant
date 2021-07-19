@@ -16,4 +16,6 @@ entity_config:
 exposed_domains:
   - light
   - lock
+  - media_player
+  - script
   - switch

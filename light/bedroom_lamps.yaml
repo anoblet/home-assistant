@@ -1,5 +1,5 @@
 platform: group
 name: Bedroom Lamps
 entities:
-  - light.hue_color_lamp_1
-  - light.hue_color_lamp_1_2
+  - light.bedroom_bureau
+  - light.bedroom_table

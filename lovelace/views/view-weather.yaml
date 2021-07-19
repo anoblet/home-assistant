@@ -16,4 +16,5 @@ cards:
           - entity: sensor.openweathermap_humidity
 icon: mdi:weather-cloudy
 title: Weather
+path: weather
 type: custom:default-view

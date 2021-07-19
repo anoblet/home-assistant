@@ -1,4 +1,3 @@
-title: Network
 cards:
   - type: custom:generic-card
     title: Download Speed
@@ -8,4 +7,6 @@ cards:
         series:
           - entity: sensor.speedtest_download
 icon: mdi:web
+path: network
+title: Network
 type: custom:default-view

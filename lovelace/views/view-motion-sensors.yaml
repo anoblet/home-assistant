@@ -1,4 +1,3 @@
-title: Motion Sensors
 cards:
   - type: entities
     entities:
@@ -11,4 +10,6 @@ cards:
         name: Storage Room
         secondary_info: "last-changed"
 icon: mdi:motion-sensor
+path: motion_sensors
+title: Motion Sensors
 type: custom:default-view

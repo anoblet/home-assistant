@@ -24,4 +24,5 @@ cards:
         switch: switch.harmony_hub_humidifier
 icon: mdi:remote
 title: Remotes
+path: remotes
 type: custom:default-view
