@@ -35,9 +35,7 @@ http:
 
 light: !include_dir_list light/
 
-logger:
-  default: info
-  logs: !include ./logger.yaml
+logger: !include ./logger.yaml
 
 lovelace:
   mode: yaml
