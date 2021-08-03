@@ -32,8 +32,6 @@ http:
   trusted_proxies:
     - 10.0.0.200
     - 172.30.33.0/24
-  cors_allowed_origins:
-    - https://cast.home-assistant.io
 
 light: !include_dir_list light/
 
