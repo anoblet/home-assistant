@@ -102,7 +102,7 @@
     target:
       area_id: kitchen
     data:
-      transition: 5
+      transition: 10
   mode: single
 - id: '1624234430681'
   alias: Kitchen - Motion Sensor - Cleared
@@ -145,23 +145,19 @@
     to: 'on'
   condition: []
   action:
-  - service: switch.turn_off
-    target:
+  - service: adaptive_lighting.apply
+    data:
       entity_id: switch.adaptive_lighting_storage_room
+      adapt_brightness: true
+      adapt_color: true
+      turn_on_lights: false
+      lights: light.storage_room_lights
   - service: light.turn_on
     target:
       area_id:
       - storage_room
     data:
-      transition: 5
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 5
-      milliseconds: 0
-  - service: switch.turn_on
-    target:
-      entity_id: switch.adaptive_lighting_storage_room
+      transition: 10
   mode: single
 - id: '1624826963295'
   alias: Storage Room - Motion Sensor - Cleared
