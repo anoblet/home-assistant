@@ -1,26 +1,28 @@
-# async_upnp_client: debug
-# async_upnp_client.traffic: debug
-# homeassistant.components.automation: debug
-# homeassistant.components.cast: debug
-# homeassistant.components.cast.media_player: debug
-# homeassistant.components.garmin_connect: debug
-# homeassistant.components.upnp: debug
-# homeassistant.components.vesync: debug
-# homeassistant.core: debug
-# pychromecast: debug
-# pychromecast.discovery: info
-# pychromecast.socket_client: debug
-# homeassistant.components.zeroconf: debug
-# zeroconf: debug
-# homeassistant.components.zha: debug
-# bellows.zigbee.application: debug
-# bellows.ezsp: debug
-# zigpy: debug
-# zigpy_cc: debug
-# zigpy_deconz.zigbee.application: debug
-# zigpy_deconz.api: debug
-# zigpy_xbee.zigbee.application: debug
-# zigpy_xbee.api: debug
-# zigpy_zigate: debug
-# zigpy_znp: debug
-# zhaquirks: debug
+default: info
+logs:
+  # async_upnp_client: debug
+  # async_upnp_client.traffic: debug
+  # homeassistant.components.automation: debug
+  # homeassistant.components.cast: debug
+  # homeassistant.components.cast.media_player: debug
+  # homeassistant.components.garmin_connect: debug
+  # homeassistant.components.upnp: debug
+  # homeassistant.components.vesync: debug
+  # homeassistant.core: debug
+  # pychromecast: debug
+  # pychromecast.discovery: info
+  # pychromecast.socket_client: debug
+  # homeassistant.components.zeroconf: debug
+  # zeroconf: debug
+  # homeassistant.components.zha: debug
+  # bellows.zigbee.application: debug
+  # bellows.ezsp: debug
+  # zigpy: debug
+  # zigpy_cc: debug
+  # zigpy_deconz.zigbee.application: debug
+  # zigpy_deconz.api: debug
+  # zigpy_xbee.zigbee.application: debug
+  # zigpy_xbee.api: debug
+  # zigpy_zigate: debug
+  # zigpy_znp: debug
+  # zhaquirks: debug
