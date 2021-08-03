@@ -1,5 +1,5 @@
 default: info
-logs:
+# logs:
   # async_upnp_client: debug
   # async_upnp_client.traffic: debug
   # homeassistant.components.automation: debug
