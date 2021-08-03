@@ -27,10 +27,13 @@ homeassistant:
   external_url: https://anoblet.duckdns.org
 
 http:
+  base_url: https://anoblet.duckdns.org
   use_x_forwarded_for: true
   trusted_proxies:
     - 10.0.0.200
     - 172.30.33.0/24
+  cors_allowed_origins:
+    - https://cast.home-assistant.io
 
 light: !include_dir_list light/
 

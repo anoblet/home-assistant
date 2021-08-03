@@ -81,15 +81,6 @@
     data:
       percentage: 33
   mode: single
-- id: '1623765646510'
-  alias: Zone Notification
-  description: ''
-  use_blueprint:
-    path: homeassistant/notify_leaving_zone.yaml
-    input:
-      person_entity: person.andrew_noblet
-      zone_entity: zone.home
-      notify_device: d1a44f8638db4133026efb806cdf894b
 - id: '1624233736997'
   alias: Kitchen - Motion Sensor - Detected
   description: ''
@@ -100,11 +91,22 @@
     to: 'on'
   condition: []
   action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.adaptive_lighting_kitchen
   - service: light.turn_on
     target:
       area_id: kitchen
     data:
-      transition: 30
+      transition: 5
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - service: switch.turn_on
+    target:
+      entity_id: switch.adaptive_lighting_kitchen
   mode: single
 - id: '1624234430681'
   alias: Kitchen - Motion Sensor - Cleared
@@ -147,12 +149,23 @@
     to: 'on'
   condition: []
   action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.adaptive_lighting_storage_room
   - service: light.turn_on
     target:
       area_id:
       - storage_room
     data:
-      transition: 30
+      transition: 5
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - service: switch.turn_on
+    target:
+      entity_id: switch.adaptive_lighting_storage_room
   mode: single
 - id: '1624826963295'
   alias: Storage Room - Motion Sensor - Cleared
@@ -171,3 +184,55 @@
     target:
       area_id: storage_room
   mode: single
+- id: '1627403162160'
+  alias: Location - Away - Air Conditioner
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: device_tracker.pixel_4
+    zone: zone.tarrytown
+    event: leave
+  condition: []
+  action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.harmony_hub_air_conditioner
+  mode: single
+- id: '1627403570362'
+  alias: Location - Tarrytown - Air Conditioner
+  description: ''
+  trigger:
+  - platform: zone
+    entity_id: device_tracker.pixel_4
+    zone: zone.tarrytown
+    event: enter
+  condition: []
+  action:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.harmony_hub_air_conditioner
+  mode: single
+- id: '1627917470477'
+  alias: Nest Hub - Home Assistant
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: media_player.nest_hub
+    to: idle
+  condition: []
+  action:
+  - service: cast.show_lovelace_view
+    data:
+      entity_id: media_player.nest_hub
+      view_path: '0'
+      dashboard_path: lovelace
+  mode: single
+- id: '1627917861328'
+  alias: Cast to Google Hub
+  description: ''
+  use_blueprint:
+    path: kind3r/cast-and-re-cast-a-lovelace-view-to-a-google-hub.yaml
+    input:
+      dashboard: lovelace
+      player: media_player.nest_hub
+      view: lights
