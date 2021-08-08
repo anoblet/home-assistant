@@ -93,16 +93,17 @@
   action:
   - service: adaptive_lighting.apply
     data:
-      entity_id: switch.adaptive_lighting_kitchen
       adapt_brightness: true
       adapt_color: true
-      turn_on_lights: false
+      entity_id: switch.adaptive_lighting_kitchen
       lights: light.kitchen_lights
+      transition: 30
+      turn_on_lights: false
   - service: light.turn_on
     target:
-      area_id: kitchen
+      entity_id: light.kitchen_lights
     data:
-      transition: 10
+      transition: 30
   mode: single
 - id: '1624234430681'
   alias: Kitchen - Motion Sensor - Cleared
@@ -147,17 +148,17 @@
   action:
   - service: adaptive_lighting.apply
     data:
-      entity_id: switch.adaptive_lighting_storage_room
       adapt_brightness: true
       adapt_color: true
-      turn_on_lights: false
+      entity_id: switch.adaptive_lighting_storage_room
       lights: light.storage_room_lights
+      transition: 30
+      turn_on_lights: false
   - service: light.turn_on
     target:
-      area_id:
-      - storage_room
+      entity_id: light.storage_room_lights
     data:
-      transition: 10
+      transition: 30
   mode: single
 - id: '1624826963295'
   alias: Storage Room - Motion Sensor - Cleared

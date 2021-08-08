@@ -27,7 +27,6 @@ homeassistant:
   external_url: https://anoblet.duckdns.org
 
 http:
-  base_url: https://anoblet.duckdns.org
   use_x_forwarded_for: true
   trusted_proxies:
     - 10.0.0.200
@@ -47,7 +46,7 @@ recorder:
   commit_interval: 60
   db_url: !secret db_url
 
-script: !include_dir_named scripts/
+script: !include scripts.yaml
 
 sensor:
   - platform: template
