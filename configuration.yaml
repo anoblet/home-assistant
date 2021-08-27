@@ -17,6 +17,8 @@ automation: !include automations.yaml
 #     host: 192.168.0.1
 #     username: !secret tplink_router_username
 #     password: !secret tplink_router_password
+#     new_device_defaults:
+#       track_new_devices: true
 
 frontend:
   themes: !include_dir_merge_named themes

@@ -11,6 +11,16 @@ cards:
             name: Lamps
             tap_action:
               action: toggle
+  - type: custom:generic-card
+    cards:
+      - type: glance
+        entities:
+          - entity: sensor.lumi_lumi_weather_d2e3fb06_temperature
+            name: Temperature
+          - entity: sensor.lumi_lumi_weather_d2e3fb06_humidity
+            name: Humidity
+          - entity: sensor.lumi_lumi_weather_d2e3fb06_pressure
+            name: Pressure
 icon: mdi:home
 path: home
 title: Home

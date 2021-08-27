@@ -11,5 +11,3 @@ views:
   - !include lovelace/views/view-weather.yaml
   - !include lovelace/views/view-admin.yaml
 apexcharts_card_templates: !include_dir_named lovelace/apexcharts_card_templates
-
-

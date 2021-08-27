@@ -1,19 +1,45 @@
 cards:
   - type: custom:generic-card
-    title: Temperature
+    title: Bedroom
     cards:
-      - type: custom:apexcharts-card
-        config_templates: default
-        series:
-          - entity: sensor.openweathermap_temperature
-          # - entity: sensor.openweathermap_feels_like_temperature
-  - type: custom:generic-card
-    title: Humidity
-    cards:
-      - type: custom:apexcharts-card
-        config_templates: default
-        series:
-          - entity: sensor.openweathermap_humidity
+      - type: glance
+        entities:
+          - entity: sensor.lumi_lumi_weather_d2e3fb06_temperature
+            name: Temperature
+          - entity: sensor.lumi_lumi_weather_d2e3fb06_humidity
+            name: Humidity
+          - entity: sensor.lumi_lumi_weather_d2e3fb06_pressure
+            name: Pressure
+      - type: custom:generic-card
+        title: Temperature
+        cards:
+          - type: custom:apexcharts-card
+            config_templates: climate
+            series:
+              - entity: sensor.openweathermap_temperature
+                name: Temperature
+              - entity: sensor.lumi_lumi_weather_d2e3fb06_temperature
+                name: Bedroom Temperature
+      - type: custom:generic-card
+        title: Humidity
+        cards:
+          - type: custom:apexcharts-card
+            config_templates: climate
+            series:
+              - entity: sensor.openweathermap_humidity
+                name: Humidity
+              - entity: sensor.lumi_lumi_weather_d2e3fb06_humidity
+                name: Bedroom Humidity
+      - type: custom:generic-card
+        title: Air Pressure
+        cards:
+          - type: custom:apexcharts-card
+            config_templates: climate
+            series:
+              - entity: sensor.openweathermap_pressure
+                name: Air Pressure
+              - entity: sensor.lumi_lumi_weather_d2e3fb06_pressure
+                name: Bedroom Air Pressure
 icon: mdi:weather-cloudy
 title: Weather
 path: weather

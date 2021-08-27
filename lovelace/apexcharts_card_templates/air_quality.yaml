@@ -4,6 +4,7 @@ apex_config:
     max: 100
 config_templates: default
 all_series_config:
+  color: var(--primary-color)
   curve: stepline
   fill_raw: last
   group_by:

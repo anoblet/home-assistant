@@ -18,4 +18,5 @@ exposed_domains:
   - lock
   - media_player
   - script
+  - sensor
   - switch
