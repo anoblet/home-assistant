@@ -280,3 +280,27 @@
     target:
       area_id: living_room
   mode: single
+- id: '1630087693865'
+  alias: Bedroom - Weather - Temperature - Low
+  description: ''
+  trigger:
+  - platform: template
+    value_template: '{{states.sensor.openweathermap_temperature.state < states.sensor.bedroom_temperature.state}}'
+  condition: []
+  action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.harmony_hub_air_conditioner
+  mode: single
+- id: '1630087918095'
+  alias: Bedroom - Weather - Temperature - High
+  description: ''
+  trigger:
+  - platform: template
+    value_template: '{{states.sensor.openweathermap_temperature.state > states.sensor.bedroom_temperature.state}}'
+  condition: []
+  action:
+  - service: switch.turn_on
+    target:
+      entity_id: switch.harmony_hub_air_conditioner
+  mode: single
