@@ -7,7 +7,7 @@ air_conditioner_temperature_down:
     data:
       device: '74936935'
       command: TempCooler
-      num_repeats: 4
+      num_repeats: 5
   mode: single
 air_conditioner_temperature_up:
   alias: Air Conditioner Temperature Up
@@ -18,7 +18,7 @@ air_conditioner_temperature_up:
     data:
       device: '74936935'
       command: TempHotter
-      num_repeats: 4
+      num_repeats: 5
   mode: single
 air_conditioner_speed_down:
   alias: Air Conditioner - Speed Down
@@ -41,4 +41,16 @@ air_conditioner_speed_up:
       device: '74936935'
       command: FanSpeedDown
       num_repeats: 3
+  mode: single
+bedroom_light_relax:
+  alias: Bedroom - Light - Relax
+  sequence:
+  - service: light.turn_off
+    target:
+      device_id: a369e669d4e1225b3d118c573c8c97da
+  - service: light.turn_on
+    target:
+      entity_id: light.bedroom_lamps
+    data:
+      kelvin: 2500
   mode: single

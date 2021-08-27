@@ -59,11 +59,11 @@
       minutes: 5
       seconds: 0
       milliseconds: 0
-  - service: fan.set_percentage
-    data:
-      percentage: 33
+  - service: fan.set_preset_mode
     target:
       entity_id: fan.bedroom_air_purifier
+    data:
+      preset_mode: auto
   mode: single
 - id: '1623323556246'
   alias: Bedroom - Fan - Away
@@ -97,13 +97,24 @@
       adapt_color: true
       entity_id: switch.adaptive_lighting_kitchen
       lights: light.kitchen_lights
-      transition: 30
       turn_on_lights: false
   - service: light.turn_on
     target:
       entity_id: light.kitchen_lights
     data:
       transition: 30
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  - service: adaptive_lighting.apply
+    data:
+      adapt_brightness: true
+      adapt_color: true
+      entity_id: switch.adaptive_lighting_kitchen
+      lights: light.kitchen_lights
+      transition: 45
   mode: single
 - id: '1624234430681'
   alias: Kitchen - Motion Sensor - Cleared
@@ -152,13 +163,12 @@
       adapt_color: true
       entity_id: switch.adaptive_lighting_storage_room
       lights: light.storage_room_lights
-      transition: 30
       turn_on_lights: false
   - service: light.turn_on
     target:
       entity_id: light.storage_room_lights
     data:
-      transition: 30
+      transition: 45
   mode: single
 - id: '1624826963295'
   alias: Storage Room - Motion Sensor - Cleared
@@ -205,27 +215,68 @@
     target:
       entity_id: switch.harmony_hub_air_conditioner
   mode: single
-- id: '1627917470477'
-  alias: Nest Hub - Home Assistant
+- id: '1629809644856'
+  alias: Bedroom - Temperature - High
   description: ''
   trigger:
-  - platform: state
-    entity_id: media_player.nest_hub
-    to: idle
+  - platform: numeric_state
+    entity_id: sensor.lumi_lumi_weather_d2e3fb06_temperature
+    above: '80'
   condition: []
   action:
-  - service: cast.show_lovelace_view
-    data:
-      entity_id: media_player.nest_hub
-      view_path: '0'
-      dashboard_path: lovelace
+  - device_id: d1a44f8638db4133026efb806cdf894b
+    domain: mobile_app
+    type: notify
+    title: ''
+    message: Bedroom temperature is 80°
   mode: single
-- id: '1627917861328'
-  alias: Cast to Google Hub
+- id: '1629939843926'
+  alias: Bedroom - Humidity - High
   description: ''
-  use_blueprint:
-    path: kind3r/cast-and-re-cast-a-lovelace-view-to-a-google-hub.yaml
-    input:
-      dashboard: lovelace
-      player: media_player.nest_hub
-      view: lights
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.lumi_lumi_weather_d2e3fb06_humidity
+    above: '50'
+  condition: []
+  action:
+  - device_id: d1a44f8638db4133026efb806cdf894b
+    domain: mobile_app
+    type: notify
+    title: ''
+    message: The humidity is the bedroom is high. Turning off the humidifier.
+  - type: turn_off
+    device_id: 5e8dfa10b4bf027e5bc8f55902eb331d
+    entity_id: switch.harmony_hub_humidifier
+    domain: switch
+  mode: single
+- id: '1629975317908'
+  alias: Bedroom - Humidity - Low
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.lumi_lumi_weather_d2e3fb06_humidity
+    below: '30'
+  condition: []
+  action:
+  - device_id: d1a44f8638db4133026efb806cdf894b
+    domain: mobile_app
+    type: notify
+    title: ''
+    message: The humidity in the bedroom is low. Turning on the humidifier.
+  - type: turn_on
+    device_id: 5e8dfa10b4bf027e5bc8f55902eb331d
+    entity_id: switch.harmony_hub_humidifier
+    domain: switch
+  mode: single
+- id: '1629986046617'
+  alias: Living Room - Lights - Morning
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunrise
+  condition: []
+  action:
+  - service: light.turn_off
+    target:
+      area_id: living_room
+  mode: single

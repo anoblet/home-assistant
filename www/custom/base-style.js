@@ -9,6 +9,10 @@ export const baseStyle = css`
     width: 100%;
   }
 
+  hui-glance-card {
+    display: block;
+  }
+
   .capitalize {
     text-transform: capitalize;
   }
