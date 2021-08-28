@@ -1,0 +1,6 @@
+friendly_name: Humidifier
+turn_on:
+  service: script.bedroom_humidifier_on
+turn_off:
+  service: script.bedroom_humidifier_off
+unique_id: bedroom_humidifier

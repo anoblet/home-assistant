@@ -220,7 +220,7 @@
   description: ''
   trigger:
   - platform: numeric_state
-    entity_id: sensor.lumi_lumi_weather_d2e3fb06_temperature
+    entity_id: sensor.bedroom_temperature
     above: '80'
   condition: []
   action:
@@ -229,13 +229,19 @@
     type: notify
     title: ''
     message: Bedroom temperature is 80°
+  - condition: zone
+    entity_id: person.andrew_noblet
+    zone: zone.home
+  - service: switch.turn_on
+    target:
+      entity_id: switch.bedroom_air_conditioner
   mode: single
 - id: '1629939843926'
   alias: Bedroom - Humidity - High
   description: ''
   trigger:
   - platform: numeric_state
-    entity_id: sensor.lumi_lumi_weather_d2e3fb06_humidity
+    entity_id: sensor.bedroom_humidity
     above: '50'
   condition: []
   action:
@@ -244,29 +250,30 @@
     type: notify
     title: ''
     message: The humidity is the bedroom is high. Turning off the humidifier.
-  - type: turn_off
-    device_id: 5e8dfa10b4bf027e5bc8f55902eb331d
-    entity_id: switch.harmony_hub_humidifier
-    domain: switch
+  - service: switch.turn_off
+    target:
+      entity_id: switch.bedroom_humidifier
   mode: single
 - id: '1629975317908'
   alias: Bedroom - Humidity - Low
   description: ''
   trigger:
   - platform: numeric_state
-    entity_id: sensor.lumi_lumi_weather_d2e3fb06_humidity
-    below: '30'
-  condition: []
+    entity_id: sensor.bedroom_humidity
+    below: '50'
+  condition:
+  - condition: zone
+    entity_id: person.andrew_noblet
+    zone: zone.tarrytown
   action:
   - device_id: d1a44f8638db4133026efb806cdf894b
     domain: mobile_app
     type: notify
     title: ''
     message: The humidity in the bedroom is low. Turning on the humidifier.
-  - type: turn_on
-    device_id: 5e8dfa10b4bf027e5bc8f55902eb331d
-    entity_id: switch.harmony_hub_humidifier
-    domain: switch
+  - service: switch.turn_on
+    target:
+      entity_id: switch.bedroom_humidifier
   mode: single
 - id: '1629986046617'
   alias: Living Room - Lights - Morning
@@ -284,23 +291,51 @@
   alias: Bedroom - Weather - Temperature - Low
   description: ''
   trigger:
-  - platform: template
-    value_template: '{{states.sensor.openweathermap_temperature.state < states.sensor.bedroom_temperature.state}}'
+  - platform: state
+    entity_id: sensor.bedroom_weather_temperature_low
+    to: 'on'
   condition: []
   action:
+  - device_id: d1a44f8638db4133026efb806cdf894b
+    domain: mobile_app
+    type: notify
+    title: ''
+    message: It is colder outside than it is in your bedroom
   - service: switch.turn_off
     target:
-      entity_id: switch.harmony_hub_air_conditioner
+      entity_id: switch.bedroom_air_conditioner
   mode: single
 - id: '1630087918095'
   alias: Bedroom - Weather - Temperature - High
   description: ''
   trigger:
-  - platform: template
-    value_template: '{{states.sensor.openweathermap_temperature.state > states.sensor.bedroom_temperature.state}}'
+  - platform: state
+    entity_id: sensor.bedroom_weather_temperature_high
+    to: 'on'
   condition: []
   action:
+  - device_id: d1a44f8638db4133026efb806cdf894b
+    domain: mobile_app
+    type: notify
+    title: ''
+    message: It is warmer outside than it is in your bedroom
+  - condition: zone
+    entity_id: person.andrew_noblet
+    zone: zone.tarrytown
   - service: switch.turn_on
     target:
-      entity_id: switch.harmony_hub_air_conditioner
+      entity_id: switch.bedroom_air_conditioner
+  mode: single
+- id: '1630132249783'
+  alias: Bedroom - Air Conditioner - Temperature - Low
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.bedroom_temperature
+    to: '75'
+  condition: []
+  action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.bedroom_air_conditioner
   mode: single

@@ -25,8 +25,8 @@ frontend:
 
 google_assistant: !include google_assistant.yaml
 
-homeassistant:
-  external_url: https://anoblet.duckdns.org
+# homeassistant:
+#   external_url: https://anoblet.duckdns.org
 
 http:
   use_x_forwarded_for: true
@@ -51,9 +51,17 @@ recorder:
 script: !include scripts.yaml
 
 sensor:
+  - platform: google_fit
+    name: Google Fit
+    client_id: !secret google_fit_client_id
+    client_secret: !secret google_fit_client_secret
   - platform: template
     sensors: !include_dir_named sensor/sensors/
 
 spotify:
   client_id: !secret spotify_client_id
   client_secret: !secret spotify_client_secret
+
+switch:
+  - platform: template
+    switches: !include_dir_named switch/switches/

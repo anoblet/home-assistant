@@ -1,12 +1,8 @@
 export const device = {
   buttons: [
     {
-      label: "Activity",
-      command: "Activity",
-    },
-    {
       label: "Power",
-      command: "PowerToggle",
+      command: "Power",
     },
     {
       label: "Auto",

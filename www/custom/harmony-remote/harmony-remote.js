@@ -61,7 +61,7 @@ class HarmonyRemoteElement extends BaseElement {
   _onClick(e) {
     const command = e.target.dataset.command;
 
-    command === "Activity"
+    command === "Power"
       ? this.hass.callService("switch", "toggle", {
           entity_id: this.config.switch,
         })
