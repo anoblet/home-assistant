@@ -1,7 +1,8 @@
-default: info
+default: warning
 # logs:
   # async_upnp_client: debug
   # async_upnp_client.traffic: debug
+  # custom_components.garmin_connect: debug
   # homeassistant.components.automation: debug
   # homeassistant.components.cast: debug
   # homeassistant.components.cast.media_player: debug

@@ -13,10 +13,14 @@ entity_config:
     room: Living Room
   lock.back_door:
     name: Back Door
+  switch.harmony_hub_air_conditioner:
+    expose: false
+  switch.harmony_hub_humidifier:
+    expose: false
 exposed_domains:
   - light
   - lock
-  - media_player
+  # - media_player
   - script
   - sensor
   - switch

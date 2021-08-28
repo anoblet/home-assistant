@@ -1,0 +1,6 @@
+friendly_name: Air Conditioner
+turn_on:
+  service: script.bedroom_air_conditioner_on
+turn_off:
+  service: script.bedroom_air_conditioner_off
+unique_id: bedroom_air_conditioner

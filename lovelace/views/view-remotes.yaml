@@ -14,14 +14,14 @@ cards:
       - type: custom:harmony-remote
         entity_id: remote.harmony_hub
         device: FrigidaireClimateControl
-        switch: switch.harmony_hub_air_conditioner
+        switch: switch.bedroom_air_conditioner
   - title: Humidifier
     type: custom:generic-card
     cards:
       - type: custom:harmony-remote
         entity_id: remote.harmony_hub
         device: LevoitClimateControl
-        switch: switch.harmony_hub_humidifier
+        switch: switch.bedroom_humidifier
 icon: mdi:remote
 title: Remotes
 path: remotes

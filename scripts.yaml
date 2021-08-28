@@ -54,3 +54,67 @@ bedroom_light_relax:
     data:
       kelvin: 2500
   mode: single
+bedroom_air_conditioner_off:
+  alias: Bedroom - Air Conditioner - Off
+  sequence:
+  - condition: state
+    entity_id: switch.bedroom_air_conditioner
+    state: 'on'
+  - service: remote.send_command
+    target:
+      device_id: 5e8dfa10b4bf027e5bc8f55902eb331d
+    data:
+      device: '74936935'
+      command: PowerToggle
+      num_repeats: 2
+  mode: single
+bedroom_air_conditioner_on:
+  alias: Bedroom - Air Conditioner - On
+  sequence:
+  - condition: state
+    entity_id: switch.bedroom_air_conditioner
+    state: 'off'
+  - service: remote.send_command
+    target:
+      device_id: 5e8dfa10b4bf027e5bc8f55902eb331d
+    data:
+      device: '74936935'
+      command: PowerToggle
+  mode: single
+bedroom_humidifier_off:
+  alias: Bedroom - Humidifier - Off
+  sequence:
+  - condition: state
+    entity_id: switch.bedroom_humidifier
+    state: 'on'
+  - service: remote.send_command
+    target:
+      device_id: 5e8dfa10b4bf027e5bc8f55902eb331d
+    data:
+      device: '74749294'
+      command: PowerToggle
+  mode: single
+bedroom_humidifier_on:
+  alias: Bedroom - Humidifier - On
+  sequence:
+  - condition: state
+    entity_id: switch.bedroom_humidifier
+    state: 'off'
+  - service: remote.send_command
+    target:
+      device_id: 5e8dfa10b4bf027e5bc8f55902eb331d
+    data:
+      device: '74749294'
+      command: PowerToggle
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - service: remote.send_command
+    target:
+      device_id: 5e8dfa10b4bf027e5bc8f55902eb331d
+    data:
+      device: '74749294'
+      command: Display
+  mode: single

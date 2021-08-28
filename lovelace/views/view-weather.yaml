@@ -4,11 +4,11 @@ cards:
     cards:
       - type: glance
         entities:
-          - entity: sensor.lumi_lumi_weather_d2e3fb06_temperature
+          - entity: sensor.bedroom_temperature
             name: Temperature
-          - entity: sensor.lumi_lumi_weather_d2e3fb06_humidity
+          - entity: sensor.bedroom_humidity
             name: Humidity
-          - entity: sensor.lumi_lumi_weather_d2e3fb06_pressure
+          - entity: sensor.bedroom_pressure
             name: Pressure
       - type: custom:generic-card
         title: Temperature
@@ -18,7 +18,7 @@ cards:
             series:
               - entity: sensor.openweathermap_temperature
                 name: Temperature
-              - entity: sensor.lumi_lumi_weather_d2e3fb06_temperature
+              - entity: sensor.bedroom_temperature
                 name: Bedroom Temperature
       - type: custom:generic-card
         title: Humidity
@@ -28,7 +28,7 @@ cards:
             series:
               - entity: sensor.openweathermap_humidity
                 name: Humidity
-              - entity: sensor.lumi_lumi_weather_d2e3fb06_humidity
+              - entity: sensor.bedroom_humidity
                 name: Bedroom Humidity
       - type: custom:generic-card
         title: Air Pressure
@@ -38,7 +38,7 @@ cards:
             series:
               - entity: sensor.openweathermap_pressure
                 name: Air Pressure
-              - entity: sensor.lumi_lumi_weather_d2e3fb06_pressure
+              - entity: sensor.bedroom_pressure
                 name: Bedroom Air Pressure
 icon: mdi:weather-cloudy
 title: Weather
