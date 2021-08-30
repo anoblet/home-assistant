@@ -8,6 +8,8 @@
 #   type: module
 - url: /local/custom/button-card/button-card.js
   type: module
+- url: /local/custom/button-card/button-card.js
+  type: module
 - url: /local/custom/buttons-card/buttons-card.js
   type: module
 - url: /local/custom/container-card/container-card.js
@@ -40,4 +42,5 @@
   type: module
 - url: /local/custom/state-card/state-card.js
   type: module
-  
+- url: /local/custom/button-card/button-card.js
+  type: module

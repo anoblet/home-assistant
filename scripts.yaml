@@ -109,7 +109,7 @@ bedroom_humidifier_on:
   - delay:
       hours: 0
       minutes: 0
-      seconds: 5
+      seconds: 30
       milliseconds: 0
   - service: remote.send_command
     target:
