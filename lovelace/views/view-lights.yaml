@@ -20,6 +20,19 @@ cards:
         entity: light.hallway_two
     show_header_toggle: true
     title: Hallway
+  # Bathroom
+  - type: entities
+    entities:
+      - type: custom:slider-entity-row
+        entity: light.bathroom_one
+      - type: custom:slider-entity-row
+        entity: light.bathroom_two
+      - type: custom:slider-entity-row
+        entity: light.bathroom_three
+      - type: custom:slider-entity-row
+        entity: light.bathroom_four
+    show_header_toggle: true
+    title: Bathroom
   # Living Room
   - type: entities
     entities:

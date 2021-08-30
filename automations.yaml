@@ -339,3 +339,75 @@
     target:
       entity_id: switch.bedroom_air_conditioner
   mode: single
+- id: '1630162886046'
+  alias: Weather - Cool
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.openweathermap_feels_like_temperature
+    below: '70'
+  condition: []
+  action:
+  - device_id: d1a44f8638db4133026efb806cdf894b
+    domain: mobile_app
+    type: notify
+    title: ''
+    message: The temperature outside feels like it is < 70°. Consider opening up the
+      windows.
+  mode: single
+- id: '1630162941846'
+  alias: Weather - Hot
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.openweathermap_feels_like_temperature
+    above: '70'
+  condition: []
+  action:
+  - device_id: d1a44f8638db4133026efb806cdf894b
+    domain: mobile_app
+    type: notify
+    title: ''
+    message: The temperature outside feels like it is > 70°. Consider closing the
+      windows.
+  mode: single
+- id: '1630358476326'
+  alias: Bathroom - Motion Sensor - Detected
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.bathroom_motion_ias
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: adaptive_lighting.apply
+    data:
+      adapt_brightness: true
+      adapt_color: true
+      entity_id: switch.adaptive_lighting_storage_room
+      lights: light.storage_room_lights
+      turn_on_lights: false
+  - service: light.turn_on
+    data:
+      transition: 5
+    target:
+      area_id: bathroom
+  mode: single
+- id: '1630358731986'
+  alias: Bathroom - Motion Sensor - Cleared
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.bathroom_motion_ias
+    from: 'on'
+    to: 'off'
+    for: 00:02:00
+  condition: []
+  action:
+  - service: light.turn_off
+    data:
+      transition: 30
+    target:
+      area_id: bathroom
+  mode: single

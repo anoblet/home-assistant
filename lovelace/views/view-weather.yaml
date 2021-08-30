@@ -16,8 +16,8 @@ cards:
           - type: custom:apexcharts-card
             config_templates: climate
             series:
-              - entity: sensor.openweathermap_temperature
-                name: Temperature
+              - entity: sensor.openweathermap_feels_like_temperature
+                name: Feels Like Temperature
               - entity: sensor.bedroom_temperature
                 name: Bedroom Temperature
       - type: custom:generic-card

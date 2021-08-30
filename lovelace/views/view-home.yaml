@@ -21,6 +21,10 @@ cards:
             name: Humidity
           - entity: sensor.bedroom_pressure
             name: Pressure
+  # - type: custom:generic-card
+  #   cards:
+  #     - type: custom:button-card
+  #       entity: switch.bedroom_air_conditioner
 icon: mdi:home
 path: home
 title: Home
