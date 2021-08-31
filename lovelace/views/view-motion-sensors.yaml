@@ -1,17 +1,17 @@
 cards:
   - type: entities
     entities:
-      - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_81b0c306_occupancy
+      - entity: binary_sensor.kitchen_motion_ias
         name: Kitchen
         secondary_info: "last-changed"
   - type: entities
     entities:
-      - entity: binary_sensor.lumi_lumi_sensor_motion_aq2_33b0c306_occupancy
+      - entity: binary_sensor.storage_room_motion_ias
         name: Storage Room
         secondary_info: "last-changed"
   - type: entities
     entities:
-      - entity: binary_sensor.bathroom_motion_occupancy
+      - entity: binary_sensor.bathroom_motion_ias
         name: Bathroom
         secondary_info: "last-changed"
 icon: mdi:motion-sensor
