@@ -1,0 +1,17 @@
+adaptive_lighting_sleep_mode_off:
+  automation:
+    - action:
+        - service: switch.turn_off
+          target:
+            entity_id: group.adaptive_lighting_sleep_mode
+      alias: Adaptive Lighting - Sleep Mode - Off
+      id: adaptive_lighting_sleep_mode_off
+      mode: single
+      trigger:
+        - at: input_datetime.morning
+          platform: time
+  input_datetime:
+    adaptive_lighting_sleep_mode_off:
+      has_date: false
+      has_time: true
+      name: Adaptive Lighting - Sleep Mode - Off

@@ -1,0 +1,19 @@
+zone_tarrytown_leave:
+  automation:
+    action:
+      # Turn off the thermostat
+      - service: climate.turn_off
+        target:
+          entity_id: climate.bedroom_thermostat
+      # Turn off the humidifier
+      - service: switch.turn_off
+        target:
+          entity_id: switch.bedroom_humidifier
+    alias: Tarrytown - Andrew - Leave
+    id: zone_tarrytown_andrew_leave
+    mode: single
+    trigger:
+      - entity_id: device_tracker.pixel_4
+        event: leave
+        platform: zone
+        zone: zone.tarrytown

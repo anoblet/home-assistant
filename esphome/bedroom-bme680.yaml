@@ -1,0 +1,69 @@
+api:
+bme680_bsec:
+  address: 0x77
+  temperature_offset: 3
+captive_portal:
+esp8266:
+  board: nodemcuv2
+esphome:
+  name: bedroom-bme680
+i2c:
+  scan: false
+  scl: 5
+  sda: 4
+logger:
+ota:
+  password: !secret esphome_ota_password
+sensor:
+  - platform: bme680_bsec
+    temperature:
+      # Temperature in °C
+      name: "Bedroom BME680 Temperature"
+      filters:
+        - median
+    pressure:
+      # Pressure in hPa
+      name: "Bedroom BME680 Pressure"
+      filters:
+        - median
+    humidity:
+      # Relative humidity %
+      name: "Bedroom BME680 Humidity"
+      filters:
+        - median
+    gas_resistance:
+      # Gas resistance in Ω
+      name: "Bedroom BME680 Gas Resistance"
+      filters:
+        - median
+    iaq:
+      # Indoor air quality value
+      name: "Bedroom BME680 IAQ"
+      filters:
+        - median
+    iaq_accuracy:
+      # IAQ accuracy as a numeric value of 0, 1, 2, 3
+      name: "Bedroom BME680 Numeric IAQ Accuracy"
+    co2_equivalent:
+      # CO2 equivalent estimate in ppm
+      name: "Bedroom BME680 CO2 Equivalent"
+      filters:
+        - median
+    breath_voc_equivalent:
+      # Volatile organic compounds equivalent estimate in ppm
+      name: "Bedroom BME680 Breath VOC Equivalent"
+      filters:
+        - median
+
+text_sensor:
+  - platform: bme680_bsec
+    iaq_accuracy:
+      name: "Bedroom BME680 IAQ Accuracy"
+
+wifi:
+  ap:
+    password: !secret esphome_wifi_ap_password
+    ssid: Bedroom-BME680
+  # fast_connect: true
+  ssid: !secret esphome_wifi_ssid
+  password: !secret esphome_wifi_password

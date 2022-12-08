@@ -1,0 +1,14 @@
+substitutions:
+  friendly_name: "Bedroom Air Conditioner"
+  name: bedroom-air-conditioner
+packages:
+  athom.smart-plug-v2: github://athom-tech/athom-configs/athom-smart-plug-v2.yaml
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+time:
+  - platform: sntp
+    id: my_time
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password

@@ -1,0 +1,10 @@
+alias: Air Conditioner - Speed Down
+sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.harmony_hub
+    data:
+      device: "74936935"
+      command: FanSpeedDown
+      num_repeats: 3
+mode: single

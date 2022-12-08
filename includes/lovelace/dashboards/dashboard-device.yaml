@@ -1,0 +1,14 @@
+apexcharts_card_templates: !include_dir_named ../apexcharts_card_templates
+title: Devices
+views:
+  - !include ../views/blinds.yaml
+  - !include ../views/view-fans.yaml
+  - !include ../views/view-lights.yaml
+  - !include ../views/view-locks.yaml
+  - !include ../views/view-media.yaml
+  - !include ../views/view-motion.yaml
+  - !include ../views/view-remotes.yaml
+  - !include ../views/view-climate.yaml
+  - !include ../views/view-battery.yaml
+  - !include ../views/vacuum.yaml
+  - !include ../views/octoprint.yaml

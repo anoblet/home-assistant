@@ -1,0 +1,9 @@
+hallway_motion_occupancy_group:
+  binary_sensor:
+    - platform: group
+      name: "Hallway Motion Occupancy Group"
+      device_class: "motion"
+      entities:
+        - binary_sensor.hallway_motion_one_occupancy
+        - binary_sensor.hallway_motion_two_occupancy
+      unique_id: hallway_motion_occupancy_group

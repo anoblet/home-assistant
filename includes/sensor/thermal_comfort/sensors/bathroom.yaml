@@ -1,0 +1,3 @@
+friendly_name: Bathroom
+temperature_sensor: sensor.bathroom_temperature
+humidity_sensor: sensor.bathroom_humidity

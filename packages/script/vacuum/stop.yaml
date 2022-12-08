@@ -1,0 +1,15 @@
+script_vacuum_stop:
+  google_assistant:
+    entity_config:
+      script.vacuum_stop:
+        expose: true
+  script:
+    vacuum_stop:
+      alias: Vacuum - Stop
+      sequence:
+        - service: vacuum.stop
+          target:
+            entity_id: vacuum.valetudo_vacuum
+        - service: vacuum.return_to_base
+          target:
+            entity_id: vacuum.valetudo_vacuum

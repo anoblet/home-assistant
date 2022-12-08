@@ -1,0 +1,9 @@
+light_living_room_ceiling_light_group_zigbee:
+  google_assistant:
+    entity_config:
+      light.living_room_ceiling_light_group_zigbee:
+        expose: true
+  homeassistant:
+    customize:
+      light.living_room_ceiling_light_group_zigbee:
+        friendly_name: "Living Room Ceiling Lights"

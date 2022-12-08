@@ -1,0 +1,14 @@
+living_room_google_assistant_entity_config:
+  google_assistant:
+    entity_config:
+      light.living_room_floor_lamp:
+        expose: true
+      sensor.living_room_climate_humidity:
+        expose: true
+        name: Living Room Humidity
+      sensor.living_room_climate_pressure:
+        expose: true
+        name: Living Room Pressure
+      sensor.living_room_climate_temperature:
+        expose: true
+        name: Living Room Temperature

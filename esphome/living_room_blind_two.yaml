@@ -1,0 +1,7 @@
+substitutions:
+  cover_name: "Living Room Blind Two"
+  device_id: "living_room_blind_two"
+  esphome_name: "living-room-blind-two"
+
+packages:
+  blinds: !include packages/blinds.yaml

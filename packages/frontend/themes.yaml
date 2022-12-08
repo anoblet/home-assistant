@@ -1,0 +1,19 @@
+frontend_themes:
+  frontend:
+    themes:
+      happy:
+        primary-color: pink
+        text-primary-color: purple
+        mdc-theme-primary: plum
+      sad:
+        primary-color: steelblue
+        modes:
+          dark:
+            secondary-text-color: slategray
+      day_and_night:
+        primary-color: coral
+        modes:
+          light:
+            secondary-text-color: olive
+          dark:
+            secondary-text-color: slategray

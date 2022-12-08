@@ -1,0 +1,21 @@
+cards:
+  - title: Samsung TV
+    type: custom:generic-card
+    cards:
+      - type: custom:harmony-remote-card
+        entity_id: remote.harmony_hub
+        device: SamsungTV
+        show:
+          icon: true
+        switch: switch.harmony_hub_television
+  - title: Air Conditioner
+    type: custom:generic-card
+    cards:
+      - type: custom:harmony-remote-card
+        entity_id: remote.harmony_hub
+        device: FrigidaireClimateControl
+        switch: switch.bedroom_air_conditioner_virtual
+icon: mdi:remote
+title: Remotes
+path: remotes
+type: custom:default-view

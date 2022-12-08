@@ -1,0 +1,4 @@
+friendly_name: "Bedroom - Weather - Temperature - High"
+value_template: >-
+  {{states('sensor.openweathermap_temperature') > states('sensor.bedroom_climate_temperature')}}
+

@@ -1,0 +1,138 @@
+homeassistant_customize:
+  homeassistant:
+    customize:
+      binary_sensor.bathroom_contact_open:
+        friendly_name: Bathroom Door
+      binary_sensor.bathroom_motion_occupancy:
+        friendly_name: Bathroom Motion Occupancy
+      binary_sensor.hallway_motion_occupancy:
+        friendly_name: Hallway Motion Occupancy
+      binary_sensor.kitchen_motion_occupancy:
+        friendly_name: Kitchen Motion Occupancy
+      binary_sensor.living_room_motion_occupancy:
+        friendly_name: Living Room Motion Occupancy
+      binary_sensor.living_room_motion_power:
+        friendly_name: Living Room Motion Power
+      binary_sensor.storage_room_motion_occupancy:
+        friendly_name: Storage Room Motion Occupancy
+      fan.living_room_air_purifier:
+        icon: mdi:air-purifier
+      light.bathroom_four:
+        friendly_name: Bathroom Four
+      light.bathroom_one:
+        friendly_name: Bathroom One
+      light.bathroom_three:
+        friendly_name: Bathroom Three
+      light.bathroom_two:
+        friendly_name: Bathroom Two
+      light.bedroom_bureau:
+        friendly_name: Bedroom Bureau
+      light.bedroom_ceiling:
+        friendly_name: Bedroom Ceiling
+      light.bedroom_table:
+        friendly_name: Bedroom Table
+      light.hallway_one:
+        friendly_name: Hallway One
+      light.hallway_two:
+        friendly_name: Hallway Two
+      light.kitchen_five:
+        friendly_name: Kitchen Five
+      light.kitchen_four:
+        friendly_name: Kitchen Four
+      light.kitchen_one:
+        friendly_name: Kitchen One
+      light.kitchen_three:
+        friendly_name: Kitchen Three
+      light.kitchen_two:
+        friendly_name: Kitchen Two
+      light.living_room_ceiling_one:
+        friendly_name: Living Room Ceiling One
+      light.living_room_ceiling_two:
+        friendly_name: Living Room Ceiling Two
+      light.living_room_floor_lamp:
+        friendly_name: Living Room Floor Lamp
+      sensor.bathroom_contact_temperature:
+        friendly_name: Bathroom Contact Temperature
+      sensor.bathroom_motion_illuminance:
+        friendly_name: Bathroom Motion Illuminance
+      sensor.bathroom_motion_power:
+        friendly_name: Bathroom Motion Power
+      sensor.bedroom_climate_humidity:
+        friendly_name: Bedroom Climate Humidity
+      sensor.bedroom_climate_pressure:
+        friendly_name: Bedroom Climate Pressure
+      sensor.bedroom_climate_temperature:
+        friendly_name: Bedroom Climate Temperature
+      sensor.hallway_motion_illuminance:
+        friendly_name: Hallway Motion Illuminance
+      sensor.hallway_motion_power:
+        friendly_name: Hallway Motion Power
+      sensor.kitchen_climate_humidity:
+        friendly_name: Kitchen Humidity
+      sensor.kitchen_climate_pressure:
+        friendly_name: Kitchen Pressure
+      sensor.kitchen_climate_temperature:
+        friendly_name: Kitchen Temperature
+      sensor.kitchen_motion_illuminance:
+        friendly_name: Kitchen Motion Illuminance
+      sensor.kitchen_motion_power:
+        friendly_name: Kitchen Motion Power
+      sensor.living_room_motion_illuminance:
+        friendly_name: Living Room Motion Illuminance
+      sensor.living_room_motion_power:
+        friendly_name: Living Room Motion Power
+      sensor.nodemcu_277da0_humidity:
+        friendly_name: Humidity
+      sensor.nodemcu_277da0_temperature:
+        friendly_name: Temperature
+      sensor.storage_room_motion_illuminance:
+        friendly_name: Storage Room Motion Illuminance
+      sensor.storage_room_motion_power:
+        friendly_name: Storage Room Motion Power
+      switch.adaptive_lighting_adapt_brightness_bathroom:
+        friendly_name: Bathroom Adaptive Lighting Brightness
+      switch.adaptive_lighting_adapt_brightness_bedroom:
+        friendly_name: Bedroom Adaptive Lighting Brightness
+      switch.adaptive_lighting_adapt_brightness_hallway:
+        friendly_name: Hallway Adaptive Lighting Brightness
+      switch.adaptive_lighting_adapt_brightness_kitchen:
+        friendly_name: Kitchen Adaptive Lighting Brightness
+      switch.adaptive_lighting_adapt_brightness_living_room:
+        friendly_name: Living Room Adaptive Lighting Brightness
+      switch.adaptive_lighting_adapt_brightness_storage_room:
+        friendly_name: Storage Room Adaptive Lighting Brightness
+      switch.adaptive_lighting_adapt_color_bathroom:
+        friendly_name: Bathroom Adaptive Lighting Color
+      switch.adaptive_lighting_adapt_color_bedroom:
+        friendly_name: Bedroom Adaptive Lighting Color
+      switch.adaptive_lighting_adapt_color_hallway:
+        friendly_name: Hallway Adaptive Lighting Color
+      switch.adaptive_lighting_adapt_color_kitchen:
+        friendly_name: Kitchen Adaptive Lighting Color
+      switch.adaptive_lighting_adapt_color_living_room:
+        friendly_name: Living Room Adaptive Lighting Color
+      switch.adaptive_lighting_adapt_color_storage_room:
+        friendly_name: Storage Room Adaptive Lighting Color
+      switch.adaptive_lighting_sleep_mode_bedroom:
+        friendly_name: Bedroom Adaptive Lighting Sleep Mode
+      switch.adaptive_lighting_sleep_mode_kitchen:
+        friendly_name: Kitchen Adaptive Lighting Sleep Mode
+      switch.adaptive_lighting_storage_room:
+        friendly_name: Storage Room Adaptive Lighting
+      switch.bedroom_air_conditioner_virtual:
+        assumed_state: false
+        icon: mdi:air-conditioner
+      switch.bedroom_air_purifier:
+        assumed_state: false
+        icon: mdi:air-purifier
+      switch.bedroom_heater:
+        assumed_state: false
+        friendly_name: Bedroom Heater
+        icon: mdi:fire
+      switch.bedroom_humidifier:
+        assumed_state: false
+        icon: mdi:air-humidifier
+      switch.kitchen_coffee_pot:
+        friendly_name: Kitchen Coffee Pot
+      switch.living_room_heater:
+        friendly_name: Living Room Heater

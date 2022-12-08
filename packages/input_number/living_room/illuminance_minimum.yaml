@@ -1,0 +1,6 @@
+input_number_living_room_illuminance_minimum:
+  input_number:
+    living_room_illuminance_minimum:
+      min: 0
+      max: 1000
+      name: Living Room Illuminance Minimum

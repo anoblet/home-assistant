@@ -1,0 +1,12 @@
+speech:
+  text: Setting the {{ room }} humidity to {{ percentage }}
+action:
+  - service: notify.notify
+    data:
+      message: Hello from an intent!
+  - service: input_number.set_value
+    data_template:
+      value: "{{ percentage.replace('%', '') }}"
+    target:
+      entity_id: input_number.bedroom_humidity_target
+

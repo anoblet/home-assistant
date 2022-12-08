@@ -1,0 +1,21 @@
+andrew_home:
+  automation:
+    action:
+      service: climate.set_temperature
+      target:
+        entity_id: climate.bedroom_thermostat
+      data:
+        temperature: >
+          {{ states("input_number.bedroom_thermostat_default") }}
+    alias: Andrew - Home
+    condition:
+      - condition: state
+        entity_id: sun.sun
+        state: "above_horizon"
+    id: andrew_home
+    mode: single
+    trigger:
+      - entity_id: device_tracker.pixel_4
+        event: "leave"
+        platform: zone
+        zone: zone.home

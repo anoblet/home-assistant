@@ -1,0 +1,6 @@
+storage_room_adaptive_lighting:
+  adaptive_lighting:
+    - lights:
+        - light.storage_room_ceiling
+      max_color_temp: 3500
+      name: Storage Room

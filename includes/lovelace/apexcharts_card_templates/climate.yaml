@@ -1,0 +1,10 @@
+apex_config:
+  grid:
+    show: false
+  legend:
+    position: top
+config_templates: default
+all_series_config:
+  fill_raw: last
+experimental:
+  hidden_by_default: true

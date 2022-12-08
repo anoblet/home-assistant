@@ -1,0 +1,8 @@
+kitchen_adaptive_lighting:
+  adaptive_lighting:
+    - lights: light.kitchen_light_group_zigbee
+      max_color_temp: 5000
+      min_brightness: 100
+      min_color_temp: 3000
+      sleep_brightness: 75
+      name: Kitchen

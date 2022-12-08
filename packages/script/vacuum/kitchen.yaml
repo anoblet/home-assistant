@@ -1,0 +1,13 @@
+script_vacuum_kitchen:
+  google_assistant:
+    entity_config:
+      script.vacuum_kitchen:
+        expose: true
+  script:
+    vacuum_kitchen:
+      alias: Vacuum - Kitchen
+      sequence:
+        - data:
+            payload: '{"segment_ids": ["6"], "iterations": 2, "customOrder": true}'
+            topic: valetudo/Vacuum/MapSegmentationCapability/clean/set
+          service: mqtt.publish

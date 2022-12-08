@@ -1,0 +1,7 @@
+lovelace_dashboards_default:
+  lovelace:
+    dashboards:
+      dashboard-default:
+        filename: includes/lovelace/dashboards/default.yaml
+        mode: yaml
+        title: Dashboard

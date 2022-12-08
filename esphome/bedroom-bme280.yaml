@@ -1,0 +1,28 @@
+api:
+captive_portal:
+esphome:
+  board: nodemcuv2
+  name: bedroom-bme280
+  platform: ESP8266
+i2c:
+  scan: false
+  scl: 5
+  sda: 4
+logger:
+ota:
+sensor:
+  - address: 0x76
+    humidity:
+      name: Bedroom BME280 Humidity
+    platform: bme280
+    pressure:
+      name: Bedroom BME280 Pressure
+    temperature:
+      name: Bedroom BME280 Temperature
+wifi:
+  ap:
+    password: !secret esphome_fallback_password
+    ssid: NodeMCU Fallback Hotspot
+  # fast_connect: true
+  password: !secret wifi_password
+  ssid: !secret wifi_ssid

@@ -1,0 +1,18 @@
+cards:
+  - cards:
+      - entities:
+          - cover.bedroom_blinds        
+          - cover.bedroom_blind_one
+          - cover.bedroom_blind_two
+          - cover.bedroom_blind_three
+        type: entities
+      - entities:
+          - cover.living_room_blinds        
+          - cover.living_room_blind_one
+          - cover.living_room_blind_two
+          - cover.living_room_blind_three
+        type: entities
+    type: custom:generic-card
+path: blinds
+title: Blinds
+type: custom:default-view

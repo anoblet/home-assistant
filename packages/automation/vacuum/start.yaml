@@ -1,0 +1,22 @@
+automation_vacuum_start:
+  automation:
+    - action:
+        - service: script.vacuum_start
+      alias: Vacuum - Start
+      condition:
+        - condition: and
+          conditions:
+            # Make sure the vacuum is not already running
+            - condition: state
+              entity_id: vacuum.valetudo_vacuum
+              state: "docked"
+            # Only run on Monday, Wednesday, and Friday
+            - condition: time
+              weekday:
+                # - mon
+                - wed
+                # - fri
+      id: vacuum_start
+      trigger:
+        - at: "13:00:00"
+          platform: time

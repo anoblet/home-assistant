@@ -1,0 +1,34 @@
+logger:
+  logger:
+    default: warning
+    # logs:
+      # async_upnp_client: debug
+      # async_upnp_client.traffic: debug
+      # bellows.ezsp: debug
+      # bellows.zigbee.application: debug
+      # custom_components.garmin_connect: debug
+      # custom_components.adaptive_lighting: debug
+      # custom_components.wyzeapi: debug
+      # homeassistant.components.automation: debug
+      # homeassistant.components.cast: debug
+      # homeassistant.components.cast.media_player: debug
+      # homeassistant.components.garmin_connect: debug
+      # homeassistant.components.upnp: debug
+      # homeassistant.components.vesync: debug
+      # homeassistant.components.zeroconf: debug
+      # homeassistant.components.zha: debug
+      # homeassistant.core: debug
+      # pychromecast: debug
+      # pychromecast.discovery: info
+      # pychromecast.socket_client: debug
+      # wyzeapy: debug
+      # zeroconf: debug
+      # zigpy: debug
+      # zigpy_cc: debug
+      # zigpy_deconz.zigbee.application: debug
+      # zigpy_deconz.api: debug
+      # zigpy_xbee.zigbee.application: debug
+      # zigpy_xbee.api: debug
+      # zigpy_zigate: debug
+      # zigpy_znp: debug
+      # zhaquirks: debug

@@ -1,0 +1,12 @@
+living_room_blinds_sunset:
+  automation:
+    - action:
+        - service: cover.close_cover
+          target:
+            entity_id: cover.living_room_blinds
+      alias: Living Room Blinds - Sunset
+      id: living_room_blinds_sunset
+      mode: single
+      trigger:
+        - event: sunset
+          platform: sun

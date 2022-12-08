@@ -1,0 +1,31 @@
+automation_cover_bedroom_automatic:
+  automation:
+    # Off
+    - action:
+        - data:
+            entity_id: input_boolean.bedroom_blinds_automatic
+          service: input_boolean.turn_off
+      alias: Cover - Bedroom - Automatic - Off
+      condition:
+        - condition: template
+          value_template: "{{ trigger.to_state.context.user_id != None }}"
+      id: cover_bedroom_automatic_off
+      mode: single
+      trigger:
+        - entity_id:
+            - cover.bedroom_blinds
+            - cover.bedroom_blind_one
+            - cover.bedroom_blind_two
+            - cover.bedroom_blind_three
+          platform: state
+    # Reset
+    - trigger:
+        - platform: time
+          at: "00:00:00"
+      action:
+        - data:
+            entity_id: input_boolean.bedroom_blinds_automatic
+          service: input_boolean.turn_on
+      id: cover_bedroom_automatic_reset
+      mode: single
+      alias: Cover - Bedroom - Automatic - Reset

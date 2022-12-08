@@ -1,0 +1,12 @@
+script_printer_stop:
+  google_assistant:
+    entity_config:
+      script.printer_stop:
+        expose: true
+  script:
+    printer_stop:
+      alias: Printer - Stop
+      sequence:
+        - service: button.press
+          target:
+            entity_id: button.octoprint_stop_job

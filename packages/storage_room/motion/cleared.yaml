@@ -1,0 +1,15 @@
+storage_room_motion_cleared:
+  automation:
+    action:
+      - service: light.turn_off
+        target:
+          entity_id: light.storage_room_lights
+    alias: Storage Room - Motion Sensor - Cleared
+    id: "storage_room_motion_cleared"
+    mode: single
+    trigger:
+      - entity_id: binary_sensor.storage_room_motion_occupancy
+        for: "00:02:00"
+        from: "on"
+        platform: state
+        to: "off"

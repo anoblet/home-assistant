@@ -1,0 +1,14 @@
+zone_home_leave:
+  automation:
+    action:
+      - service: light.turn_off
+        target:
+          entity_id: light.bedroom_lights
+    alias: Home - Andrew - Leave
+    id: zone_home_andrew_leave
+    mode: single
+    trigger:
+      - entity_id: device_tracker.pixel_4
+        event: leave
+        platform: zone
+        zone: zone.home

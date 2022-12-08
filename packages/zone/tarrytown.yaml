@@ -1,0 +1,6 @@
+zone_tarrytown:
+  zone:
+    name: Tarrytown
+    latitude: 41.080228
+    longitude: -73.8593
+    radius: 1000

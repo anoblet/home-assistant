@@ -1,0 +1,15 @@
+script_bedroom_cast_display:
+  script:
+    bedroom_cast_display:
+      sequence:
+        - service: cast.show_lovelace_view
+          data:
+            entity_id: media_player.bedroom_display
+            dashboard_path: lovelace
+            view_path: '0'
+        - delay: 30
+        - service: cast.show_lovelace_view
+          data:
+            entity_id: media_player.bedroom_display
+            dashboard_path: bedroom-display
+            view_path: '0'

@@ -1,11 +1,18 @@
+# Block by default
 *
 !*/
+
+# Include
 !**/*.yaml
-
 !.gitignore
-!www/custom
+!package.json
+!www/custom/**/*
+!www/custom-elements/**/*
 
+#Exclude
 custom_components
+esphome/secrets.yaml
 node_modules
 secrets.yaml
-
+www/custom-elements/build
+zigbee2mqtt/coordinator_backup.json

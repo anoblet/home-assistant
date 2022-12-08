@@ -1,0 +1,6 @@
+intent_script_vacuum_battery:
+  intent_script:
+    VacuumBattery:
+      speech:
+        text: >
+          The vacuum battery level is: {{ state_attr("vacuum.valetudo_vacuum", "battery_level") }}%.

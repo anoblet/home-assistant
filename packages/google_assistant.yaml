@@ -1,0 +1,9 @@
+google_assistant:
+  google_assistant:
+    expose_by_default: false
+    project_id: home-assistant-f993a
+    report_state: true
+    secure_devices_pin: "3113"
+    service_account:
+      private_key: !secret google_assistant_private_key
+      client_email: !secret google_assistant_client_email

@@ -1,0 +1,57 @@
+cards:
+  - chart:
+      options:
+        animation:
+          duration: 0
+        elements:
+          line:
+            borderWidth: 1
+            cubicInterpolationMode: 'monotone'
+          point:
+            pointStyle: line
+            radius: 0
+        interaction:
+          mode: nearest
+          axis: x
+          intersect: false
+        parsing: false
+        plugins:
+          decimation:
+            algorithm: lttb
+            enabled: true
+            samples: 100
+            threshold: 1
+          legend:
+            display: false
+        scales:
+          x:
+            grid:
+              color: hsla(0, 0%, 100%, 0.1)
+            ticks:
+              font:
+                family: Roboto
+            time:
+              unit: hour
+            type: time
+          y:
+            grid:
+              color: hsla(0, 0%, 100%, 0.1)
+            ticks:
+              font:
+                family: Roboto
+            type: linear
+      type: line
+    class:
+      - absolute
+    datasets:
+      - dataset:
+          backgroundColor: hsla(200, 100%, 50%, 25%)
+          borderColor: hsl(200, 100%, 50%)
+          # fill: true
+        entity_id: sensor.bedroom_pressure
+    type: custom:chart-js-card
+class:
+  - padding
+  - relative
+title: Pressure
+type: custom:generic-card

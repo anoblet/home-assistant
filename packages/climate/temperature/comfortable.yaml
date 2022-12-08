@@ -1,0 +1,13 @@
+climate_temperature_comforatble:
+  automation: 
+    - action:
+        - data:
+            message: The temperature outside is comfortable.
+          service: notify.mobile_app_pixel_4
+      alias: Temperature - Comfortable
+      id: climate_temperature_comfortable
+      mode: single
+      trigger:
+        - for: "00:01:00"
+          platform: template
+          value_template: "{{ states('sensor.openweathermap_temperature') | int < 70 }}"

@@ -1,0 +1,33 @@
+cards:
+  - type: custom:full-screen-card
+    cards:
+      - type: custom:grid-card
+        cards:
+          - type: glance
+            card_mod:
+              style: |
+                ha-card {
+                  box-shadow: none;
+                  display: flex;
+                  flex: 1;
+                  flex-direction: column;
+                }
+
+                ha-card .entities {
+                  display: flex;
+                  flex: 1;
+                  flex-direction: column;
+                }
+            entities:
+              - entity: sensor.bedroom_temperature
+                name: Temperature
+              - entity: sensor.bedroom_humidity
+                name: Humidity
+              - entity: sensor.bedroom_carbon_dioxide
+                name: CO2
+              - entity: sensor.bedroom_pressure
+                name: Pressure
+icon: mdi:bed
+title: Bedroom
+type: custom:default-view
+path: bedroom

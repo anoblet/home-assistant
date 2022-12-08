@@ -1,0 +1,21 @@
+hallway_motion_detected:
+  automation:
+    - action:
+        - data:
+            entity_id: light.hallway_light_group_zigbee
+            transition: "{{ states('input_number.hallway_light_transition_on') | int }}"
+          service: light.turn_on
+      alias: Hallway - Motion - Detected
+      condition:
+        - condition: state
+          entity_id: input_boolean.hallway_light_manual
+          state: "off"
+        - condition: template
+          value_template: "{{ (states('sensor.hallway_motion_two_illuminance') | int) < (states('input_number.hallway_motion_illuminance_minimum') | int) }}"
+      id: hallway_motion_detected
+      mode: single
+      trigger:
+        - entity_id: binary_sensor.hallway_motion_occupancy_group
+          from: "off"
+          platform: state
+          to: "on"

@@ -1,0 +1,13 @@
+bedroom_blinds:
+  cover:
+    - entities:
+        - cover.bedroom_blind_one
+        - cover.bedroom_blind_three
+        - cover.bedroom_blind_two
+      name: Bedroom Blinds
+      platform: group
+      unique_id: bedroom_blinds
+  google_assistant:
+    entity_config:
+      cover.bedroom_blinds:
+        expose: true

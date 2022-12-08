@@ -1,0 +1,14 @@
+automation_remote_on_press:
+  automation:
+    - action:
+        - data:
+            entity_id:
+              - light.living_room_ceiling_lights
+              - light.living_room_floor_lamp
+          service: light.toggle
+      alias: Living Room - Remote - On - Press
+      id: living_room_remote_on_press
+      trigger:
+        - entity_id: sensor.living_room_remote_action
+          platform: state
+          to: on_press

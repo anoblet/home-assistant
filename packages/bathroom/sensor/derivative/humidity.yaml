@@ -1,0 +1,5 @@
+bathroom_sensor_derivative_humidity:
+  sensor:
+    - platform: derivative
+      source: sensor.bathroom_climate_humidity
+      name: Bathroom Humidity Derivative

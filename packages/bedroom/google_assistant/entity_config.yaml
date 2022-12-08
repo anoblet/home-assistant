@@ -1,0 +1,10 @@
+bedroom_google_assistant_entity_config:
+  google_assistant:
+    entity_config:
+      light.bedroom_ceiling:
+        expose: true
+      light.bedroom_lamp_group_zigbee:
+        expose: true
+        name: Bedroom Lamps
+      script.bedroom_bedtime:
+        expose: true

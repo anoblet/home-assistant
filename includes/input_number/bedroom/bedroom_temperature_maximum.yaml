@@ -1,0 +1,6 @@
+max: 100
+min: 0
+mode: box
+name: Bedroom Temperature Maximum
+step: 1
+unit_of_measurement: "°F"

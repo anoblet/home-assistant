@@ -1,0 +1,32 @@
+bedroom_blinds_one:
+  automation:
+    - action:
+        - condition: state
+          entity_id: input_boolean.bedroom_blinds_automatic
+          state: "on"
+        - choose:
+            - conditions:
+                - condition: template
+                  value_template: "{{ state_attr('sun.sun', 'azimuth') > 90 and state_attr('sun.sun', 'azimuth') < 180 }}"
+              sequence:
+                - service: cover.set_cover_position
+                  data:
+                    position: 90
+                  target:
+                    entity_id: cover.bedroom_blind_one
+          default:
+            - service: cover.set_cover_position
+              data:
+                position: 60
+              target:
+                entity_id: cover.bedroom_blind_one
+      alias: Bedroom - Blinds - One
+      id: bedroom_blinds_one
+      mode: single
+      trigger:
+        - platform: state
+          entity_id: sun.sun
+  google_assistant:
+    entity_config:
+      cover.bedroom_blind_one:
+        expose: true

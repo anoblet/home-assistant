@@ -1,0 +1,13 @@
+bedroom_bedtime:
+  automation:
+    - trigger:
+        platform: time
+        at: input_datetime.bedroom_bedtime
+      action:
+        - service: fan.turn_on
+          data:
+            preset_mode: auto
+          target:
+            entity_id: fan.bedroom_air_purifier
+      alias: "Bedroom - Bedtime"
+      id: bedroom_bedtime

@@ -1,0 +1,11 @@
+bathroom_homeassistant_customize:
+  homeassistant:
+    customize:
+      light.bathroom_light_group_zigbee:
+        friendly_name: Bathroom Lights
+      sensor.bathroom_climate_humidity:
+        friendly_name: Bathroom Humidity
+      sensor.bathroom_climate_pressure:
+        friendly_name: Bathroom Pressure
+      sensor.bathroom_climate_temperature:
+        friendly_name: Bathroom Temperature

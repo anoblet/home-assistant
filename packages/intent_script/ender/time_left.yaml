@@ -1,0 +1,7 @@
+intent_script_printer_ender_time_left:
+  intent_script:
+    EnderTimeLeft:
+      speech:
+        text: >
+          {% set timeDelta = strptime(states('sensor.octoprint_estimated_finish_time'), '%Y-%m-%dT%H:%M:%S%z') - now() %}
+          There is: {{ timeDelta.seconds | timestamp_custom('%H', 0) }} hours, {{ timeDelta.seconds | timestamp_custom('%M', 0) }} minutes left.

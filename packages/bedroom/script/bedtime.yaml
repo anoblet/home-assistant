@@ -1,0 +1,29 @@
+script_bedroom_bedtime:
+  script:
+    bedroom_bedtime:
+      alias: Bedroom - Bedtime
+      sequence:
+        - service: light.turn_on
+          data:
+            brightness_pct: 1
+            kelvin: 2000
+          target:
+            entity_id:
+              - light.bedroom_lamp_group_zigbee
+              - light.bedroom_ceiling
+        - delay: 5
+        - service: light.turn_off
+          target:
+            entity_id: light.bedroom_ceiling
+        - delay: 5
+        - service: light.turn_on
+          data:
+            transition: 300
+            brightness_pct: 0
+          target:
+            entity_id: light.bedroom_lamp_group_zigbee
+        # - service: mqtt.publish
+        #   data:
+        #     topic: "iotlink/workgroup/desktop-fns2el4/commands/displays/off"
+        #     payload: ""
+      mode: single

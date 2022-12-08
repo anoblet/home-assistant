@@ -1,0 +1,11 @@
+apartment_motion_group_all:
+  group:
+    motion_all:
+      all: true
+      entities:
+        - input_boolean.bathroom_motion
+        - input_boolean.hallway_motion
+        - input_boolean.kitchen_motion
+        - input_boolean.living_room_motion
+        - input_boolean.storage_room_motion
+      name: Motion All

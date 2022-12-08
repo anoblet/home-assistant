@@ -1,0 +1,15 @@
+automation_remote_down_press:
+  automation:
+    - action:
+        - data:
+            brightness_step_pct: -10
+            entity_id:
+              - light.living_room_ceiling_lights
+              - light.living_room_floor_lamp
+          service: light.turn_on
+      alias: Living Room - Remote - Down - Press
+      id: living_room_remote_down_press
+      trigger:
+        - entity_id: sensor.living_room_remote_action
+          platform: state
+          to: down_press

@@ -1,0 +1,13 @@
+script_vacuum_bedroom_three:
+  google_assistant:
+    entity_config:
+      script.vacuum_bedroom_three:
+        expose: true
+  script:
+    vacuum_bedroom_three:
+      alias: Vacuum - Bedroom Three
+      sequence:
+        - data:
+            payload: '{"segment_ids": ["1"], "iterations": 2, "customOrder": true}'
+            topic: valetudo/Vacuum/MapSegmentationCapability/clean/set
+          service: mqtt.publish

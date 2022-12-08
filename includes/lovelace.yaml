@@ -1,0 +1,14 @@
+dashboards:
+  dashboard-room:
+    filename: includes/lovelace/dashboards/dashboard-room.yaml
+    mode: yaml
+    title: Rooms
+  dashboard-device:
+    filename: includes/lovelace/dashboards/dashboard-device.yaml
+    mode: yaml
+    title: Devices
+  dashboard-overview:
+    filename: includes/lovelace/dashboards/dashboard-overview.yaml
+    mode: yaml
+    title: Overview
+mode: yaml

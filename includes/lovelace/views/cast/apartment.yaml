@@ -1,0 +1,26 @@
+cards:
+  - cards:
+      - !include bedroom.yaml
+      - type: custom:grid-card
+        cards:
+          - !include bathroom/temperature.yaml
+          - !include bathroom/humidity.yaml
+          - !include bathroom/pressure.yaml
+        style:
+          gap: 1rem
+          "grid-template-columns": repeat(auto-fit, minmax(256px, auto))
+    style:
+      "--box-sizing": border-box
+      "--generic-card-border-color": "#333"
+      "--generic-card-border-style": "solid"
+      "--generic-card-border-width": "1px"
+      "--hr-border-color": "#333"
+      "--gap": 1rem
+      "--padding": "var(--gap)"
+      gap: 1rem
+      "grid-template-rows": "repeat(auto-fit, minmax(256px, auto))"
+    type: custom:grid-card
+icon: mdi:bed
+path: apartment
+title: Apartment
+type: custom:default-view

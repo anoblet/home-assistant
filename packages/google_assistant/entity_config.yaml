@@ -1,0 +1,18 @@
+google_assistant_entity_config:
+  google_assistant:
+    entity_config:
+      group.adaptive_lighting_sleep_mode:
+        expose: true
+      group.motion_all:
+        expose: true
+      group.motion_common:
+        expose: true
+      light.storage_room_lights:
+        expose: true
+        room: Storage Room
+      script.bedroom_cast_display:
+        expose: true
+      script.bedroom_sleep:
+        expose: true
+      script.home_assistant_restart:
+        expose: true

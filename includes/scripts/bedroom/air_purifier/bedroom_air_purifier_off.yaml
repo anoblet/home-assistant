@@ -1,0 +1,6 @@
+alias: Bedroom Air Pufifier - Off
+sequence:
+  - service: fan.turn_off
+    target:
+      entity_id: fan.bedroom_air_purifier
+mode: single

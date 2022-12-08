@@ -1,0 +1,18 @@
+input_boolean_vacuum:
+  input_boolean:
+    vacuum_bathroom:
+      name: Bathroom
+    vacuum_bedroom:
+      name: Bedroom
+    vacuum_bedroom_two:
+      name: Bedroom Two
+    vacuum_bedroom_three:
+      name: Bedroom Three
+    vacuum_hallway:
+      name: Hallway
+    vacuum_kitchen:
+      name: Kitchen
+    vacuum_living_room:
+      name: Living Room
+    vacuum_storage_room:
+      name: Storage Room

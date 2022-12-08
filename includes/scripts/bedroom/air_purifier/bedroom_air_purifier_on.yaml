@@ -1,0 +1,8 @@
+alias: Bedroom Air Pufifier - On
+sequence:
+  - service: fan.turn_on
+    target:
+      entity_id: fan.bedroom_air_purifier
+    data:
+      preset_mode: auto
+mode: single

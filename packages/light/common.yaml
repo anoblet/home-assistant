@@ -1,0 +1,8 @@
+light_common:
+  light:
+    - platform: group
+      name: Common Lights
+      entities:
+        - light.hallway_lights
+        - light.living_room_lights
+        - light.kitchen_lights

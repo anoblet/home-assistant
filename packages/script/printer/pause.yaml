@@ -1,0 +1,12 @@
+script_printer_pause:
+  google_assistant:
+    entity_config:
+      script.printer_pause:
+        expose: true
+  script:
+    printer_pause:
+      alias: Printer - Pause
+      sequence:
+        - service: button.press
+          target:
+            entity_id: button.octoprint_pause_job

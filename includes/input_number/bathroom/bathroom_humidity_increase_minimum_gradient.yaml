@@ -1,0 +1,6 @@
+max: 1
+min: 0
+mode: box
+name: Bathroom Humidity Increase Minimum Gradient
+step: 0.005
+unit_of_measurement: "%"

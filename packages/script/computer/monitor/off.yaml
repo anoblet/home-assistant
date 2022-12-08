@@ -1,0 +1,12 @@
+script_bedroom_computer_monitor_off:
+  google_assistant:
+    entity_config:
+      script.bedroom_computer_monitor_off:
+        expose: true
+  script:
+    bedroom_computer_monitor_off:
+      alias: Bedroom - Computer - Monitor - Off
+      sequence:
+        - service: switch.turn_on
+          target:
+            entity_id: switch.bedroom_computer_monitor_off

@@ -1,0 +1,11 @@
+script_bedroom_cast_display:
+  script:
+    bedroom_cast_display:
+      alias: Bedroom - Cast - Display
+      sequence:
+        - service: cast.show_lovelace_view
+          data:
+            entity_id: media_player.bedroom_display
+            dashboard_path: dashboard-room
+            view_path: bedroom
+      mode: single

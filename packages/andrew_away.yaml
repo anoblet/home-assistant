@@ -1,0 +1,16 @@
+andrew_away:
+  automation:
+    action:
+      - data:
+          message: Bedroom door has been opened.
+        service: notify.mobile_app_pixel_4
+    alias: Andrew - Away
+    condition:
+      - condition: template
+        value_template: “{{ not is_state('device_tracker.pixel_4','home') }}”
+    id: andrew_away
+    mode: single
+    trigger:
+      - entity_id: binary_sensor.bedroom_door_contact
+        platform: state
+        to: "on"

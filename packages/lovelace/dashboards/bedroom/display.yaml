@@ -1,0 +1,7 @@
+lovelace_dashboards_bedroom_display:
+  lovelace:
+    dashboards:
+      bedroom-display:
+        filename: includes/lovelace/dashboards/bedroom/display.yaml
+        mode: yaml
+        title: Bedroom

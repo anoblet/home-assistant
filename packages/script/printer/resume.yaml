@@ -1,0 +1,12 @@
+script_printer_resume:
+  google_assistant:
+    entity_config:
+      script.printer_resume:
+        expose: true
+  script:
+    printer_resume:
+      alias: Printer - Resume
+      sequence:
+        - service: button.press
+          target:
+            entity_id: button.octoprint_resume_job

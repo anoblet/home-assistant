@@ -1,0 +1,10 @@
+intent_script_occupancy_bathroom:
+  intent_script:
+    OccupancyBathroom:
+      speech:
+        text: >
+          {% if states('binary_sensor.bathroom_contact_open') %}
+            No
+          {% else %}
+            Yes
+          {% endif %}

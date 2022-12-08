@@ -1,0 +1,5 @@
+hallway_homeassistant_customize:
+  homeassistant:
+    customize:
+      light.hallway_light_group_zigbee:
+        friendly_name: Hallway Lights

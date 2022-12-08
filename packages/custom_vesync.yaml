@@ -1,0 +1,5 @@
+# custom_vesync:
+#   logger:
+#     logs:
+#       custom_components.vesync: debug
+#       pyvesync: debug

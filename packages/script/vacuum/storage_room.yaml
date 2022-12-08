@@ -1,0 +1,13 @@
+script_vacuum_storage_room:
+  google_assistant:
+    entity_config:
+      script.vacuum_storage_room:
+        expose: true
+  script:
+    vacuum_storage_room:
+      alias: Vacuum - Storage Room
+      sequence:
+        - data:
+            payload: '{"segment_ids": ["5"], "iterations": 2, "customOrder": true}'
+            topic: valetudo/Vacuum/MapSegmentationCapability/clean/set
+          service: mqtt.publish

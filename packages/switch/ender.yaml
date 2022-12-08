@@ -1,0 +1,5 @@
+switch_ender:
+  google_assistant:
+    entity_config:
+      switch.ender:
+        expose: true

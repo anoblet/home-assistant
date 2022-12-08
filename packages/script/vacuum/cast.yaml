@@ -1,0 +1,15 @@
+script_vacuum_cast:
+  script:
+    vacuum_cast:
+      alias: Vacuum - Cast
+      sequence:
+        - data:
+            dashboard_path: lovelace
+            entity_id: media_player.bedroom_display
+            view_path: '0'
+          service: cast.show_lovelace_view
+        - data:
+            dashboard_path: dashboard-cast
+            entity_id: media_player.bedroom_display
+            view_path: vacuum
+          service: cast.show_lovelace_view

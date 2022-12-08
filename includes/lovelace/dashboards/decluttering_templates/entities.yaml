@@ -1,0 +1,12 @@
+card:
+  type: custom:auto-entities
+  card:
+    type: entities
+  filter:
+    exclude:
+      - name: "Espressif*"
+      - name: "* update available"
+    include:
+      - area: "[[area]]"
+  sort:
+    method: name

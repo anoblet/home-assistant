@@ -1,0 +1,9 @@
+kitchen_motion_occupancy_group:
+  binary_sensor:
+    - platform: group
+      name: "Kitchen Motion Occupancy Group"
+      device_class: "motion"
+      entities:
+        - binary_sensor.kitchen_motion_one_occupancy
+        - binary_sensor.kitchen_motion_two_occupancy
+      unique_id: kitchen_motion_occupancy_group

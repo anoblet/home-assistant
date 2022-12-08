@@ -1,0 +1,20 @@
+adaptive_lighting_reset:
+  automation:
+    action:
+      - delay: "01:00:00"
+      - condition: template
+        value_template: "{{ light in state_attr(switch, 'manual_control') }}"
+      - data:
+          entity_id: "{{ switch }}"
+          lights: "{{ light }}"
+          manual_control: false
+        service: adaptive_lighting.set_manual_control
+    alias: Adaptive Lighting - Manual Control - Reset
+    id: adaptive_lighting_reset
+    mode: parallel
+    trigger:
+      event_type: adaptive_lighting.manual_control
+      platform: event
+    variables:
+      light: "{{ trigger.event.data.entity_id }}"
+      switch: "{{ trigger.event.data.switch }}"

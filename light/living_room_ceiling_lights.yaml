@@ -1,5 +1,0 @@
-platform: group
-name: Living Room Ceiling Lights
-entities:
-  - light.living_room_ceiling_one
-  - light.living_room_ceiling_two

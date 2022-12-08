@@ -1,0 +1,28 @@
+{
+  "name": "@anoblet/home-assistant",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "commit": "git add . && git commit -m \"save\" && git push",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "chokidar \"**/*.js\" \"**/*.yaml\" -c \"npm run commit\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anoblet/home-assistant.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anoblet/home-assistant/issues"
+  },
+  "homepage": "https://github.com/anoblet/home-assistant#readme",
+  "workspaces": [
+    "packages\\custom-theme"
+  ],
+  "dependencies": {
+    "chokidar-cli": "^3.0.0"
+  }
+}

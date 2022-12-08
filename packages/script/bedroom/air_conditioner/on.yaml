@@ -1,0 +1,15 @@
+script_bedroom_air_conditioner_on:
+  script:
+      bedroom_air_conditioner_on:
+        alias: Bedroom - Air Conditioner - On
+        sequence:
+          - condition: state
+            entity_id: switch.bedroom_air_conditioner_virtual
+            state: "off"
+          - service: remote.send_command
+            target:
+              entity_id: remote.harmony_hub
+            data:
+              device: "74936935"
+              command: PowerToggle
+        mode: single

@@ -1,0 +1,39 @@
+api:
+  # services:
+  #   - service: scd30_forced_recalibration
+  #     then:
+  #       - scd30.start_forced_recalibration: scd30_id
+captive_portal:
+esp8266:
+  board: nodemcuv2
+esphome:
+  name: bedroom-scd30
+# external_components:
+#   - source: github://pr#1237
+#     components:
+#       - scd30
+i2c:
+  scan: false
+  scl: 5
+  sda: 4
+logger:
+ota:
+  password: !secret esphome_ota_password
+sensor:
+  - address: 0x61
+    # automatic_self_calibration: false
+    co2:
+      name: "Bedroom SCD30 Carbon Dioxide"
+    humidity:
+      name: "Bedroom SCD30 Humidity"
+    id: scd30_id
+    platform: scd30
+    temperature:
+      name: "Bedroom SCD30 Temperature"
+    update_interval: 15s
+wifi:
+  ap:
+    password: !secret esphome_fallback_password
+    ssid: NodeMCU Fallback Hotspot
+  ssid: !secret esphome_wifi_ssid
+  password: !secret esphome_wifi_password

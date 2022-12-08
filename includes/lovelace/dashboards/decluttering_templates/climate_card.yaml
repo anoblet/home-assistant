@@ -1,0 +1,6 @@
+card:
+  collapsible_controls: true
+  entity: "[[entity]]"
+  name: "[[name]]"
+  show_temperature_control: true
+  type: custom:mushroom-climate-card

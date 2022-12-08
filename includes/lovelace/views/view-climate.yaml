@@ -1,0 +1,60 @@
+cards:
+  - type: custom:generic-card
+    title: Bedroom
+    cards:
+      - type: glance
+        entities:
+          - entity: sensor.bedroom_climate_temperature
+            name: Temperature
+          - entity: sensor.bedroom_climate_humidity
+            name: Humidity
+          - entity: sensor.bedroom_climate_pressure
+            name: Pressure
+  - type: custom:generic-card
+    title: Temperature
+    cards:
+      - type: custom:apexcharts-card
+        config_templates: climate
+        series:
+          - entity: sensor.openweathermap_temperature
+            name: Temperature
+          - entity: sensor.bedroom_climate_temperature
+            name: Bedroom Temperature
+          - entity: sensor.bathroom_climate_temperature
+            name: Bathroom Temperature
+          - entity: sensor.openweathermap_feels_like_temperature
+            name: Feels Like Temperature
+            show:
+              hidden_by_default: true
+          - entity: sensor.openweathermap_forecast_temperature
+            name: Forecast Temperature
+            show:
+              hidden_by_default: true
+  - type: custom:generic-card
+    title: Humidity
+    cards:
+      - type: custom:apexcharts-card
+        config_templates: climate
+        series:
+          - entity: sensor.openweathermap_humidity
+            name: Humidity
+          - entity: sensor.bedroom_climate_humidity
+            name: Bedroom Humidity
+          - entity: sensor.bathroom_climate_humidity
+            name: Bathroom Humidity
+  - type: custom:generic-card
+    title: Air Pressure
+    cards:
+      - type: custom:apexcharts-card
+        config_templates: climate
+        series:
+          - entity: sensor.openweathermap_pressure
+            name: Air Pressure
+          - entity: sensor.bedroom_climate_pressure
+            name: Bedroom Air Pressure
+          - entity: sensor.bathroom_climate_pressure
+            name: Bathroom Air Pressure
+icon: mdi:weather-cloudy
+title: Climate
+path: climate
+type: custom:default-view

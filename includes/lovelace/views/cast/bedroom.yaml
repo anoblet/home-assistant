@@ -1,0 +1,9 @@
+type: custom:generic-card
+class:
+  - padding
+  - relative
+cards:
+  - !include bedroom/temperature.yaml
+style:
+  "grid-column": 1 / -1
+title: Temperature

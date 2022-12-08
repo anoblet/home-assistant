@@ -1,0 +1,24 @@
+living_room_blinds:
+  automation:
+    - action:
+        - service: cover.open_cover
+          target:
+            entity_id: cover.living_room_blinds
+      alias: Living Room Blinds - Sunrise
+      id: living_room_blinds_sunrise
+      mode: single
+      trigger:
+        - event: sunrise
+          platform: sun
+  cover:
+    - entities:
+        - cover.living_room_blind_one
+        - cover.living_room_blind_three
+        - cover.living_room_blind_two
+      name: Living Room Blinds
+      platform: group
+      unique_id: living_room_blinds
+  google_assistant:
+    entity_config:
+      cover.living_room_blinds:
+        expose: true

@@ -1,0 +1,20 @@
+hallway_light_manual:
+  automation:
+    action:
+      - delay: 5
+      - condition: state
+        entity_id: light.hallway_light_group_zigbee
+        state: 'on'
+      - data:
+          entity_id: input_boolean.hallway_light_manual
+        service: input_boolean.turn_on
+    alias: Hallway Light Manual
+    condition:
+      - condition: template
+        value_template: '{{ trigger.to_state.context.user_id != None }}'
+    id: hallway_light_manual
+    mode: single
+    trigger:
+      - entity_id:
+          - light.hallway_light_group_zigbee
+        platform: state

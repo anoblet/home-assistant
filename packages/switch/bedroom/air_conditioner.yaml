@@ -1,0 +1,16 @@
+switch_bedroom_air_conditioner_virtual:
+  google_assistant:
+    entity_config:
+      switch.bedroom_air_conditioner_virtual:
+        expose: true
+
+  switch:
+  - platform: template
+    switches:
+      bedroom_air_conditioner_virtual:
+        friendly_name: Bedroom Air Conditioner Virtual
+        turn_on:
+          service: script.bedroom_air_conditioner_on
+        turn_off:
+          service: script.bedroom_air_conditioner_off
+        unique_id: bedroom_air_conditioner_virtual

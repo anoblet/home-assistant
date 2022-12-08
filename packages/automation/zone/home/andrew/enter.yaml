@@ -1,0 +1,15 @@
+# automation_zone_home_andrew_enter:
+#   automation:
+#     - action:
+#         - service: lock.unlock
+#           target:
+#             entity_id: lock.back_door
+#         - data:
+#             message: The kitchen door has been unlocked.
+#           service: notify.mobile_app_pixel_4
+#       alias: Zone - Home - Andrew - Enter
+#       trigger:
+#         - entity_id: person.andrew_noblet
+#           event: enter
+#           platform: zone
+#           zone: zone.home

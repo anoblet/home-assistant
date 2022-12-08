@@ -1,0 +1,5 @@
+bedroom_humidifier:
+  google_assistant:
+    entity_config:
+      humidifier.bedroom_humidifier:
+        expose: true

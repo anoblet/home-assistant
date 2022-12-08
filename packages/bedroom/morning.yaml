@@ -1,0 +1,5 @@
+bedroom_morning:
+  input_datetime:
+    bedroom_morning:
+      has_time: true
+      name: "Bedroom Morning"

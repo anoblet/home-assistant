@@ -1,0 +1,9 @@
+# bedroom_air_conditioner:
+#   google_assistant:
+#     entity_config:
+#       climate.bedroom_air_conditioner:
+#         expose: true
+#   homeassistant:
+#     customize:
+#       climate.bedroom_air_conditioner:
+#         friendly_name: Bedroom Air Conditioner

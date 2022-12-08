@@ -1,0 +1,13 @@
+bathroom_google_assistant_entity_config:
+  google_assistant:
+    entity_config:
+      binary_sensor.bathroom_contact_open:
+        expose: true
+      light.bathroom_light_group_zigbee:
+        expose: true
+      sensor.bathroom_climate_humidity:
+        expose: true
+      sensor.bathroom_climate_pressure:
+        expose: true
+      sensor.bathroom_climate_temperature:
+        expose: true

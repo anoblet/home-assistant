@@ -1,0 +1,17 @@
+adaptive_lighting_sleep_mode_on_weekend:
+  automation:
+    - action:
+        - service: switch.turn_on
+          target:
+            entity_id: group.adaptive_lighting_sleep_mode
+      alias: Adaptive Lighting - Sleep Mode - On - Weekend
+      id: adaptive_lighting_sleep_mode_on_weekend
+      mode: single
+      trigger:
+        - at: input_datetime.adaptive_lighting_sleep_mode_on_weekend
+          platform: time
+  input_datetime:
+    adaptive_lighting_sleep_mode_on_weekend:
+      has_date: false
+      has_time: true
+      name: Adaptive Lighting - Sleep Mode - On - Weekend

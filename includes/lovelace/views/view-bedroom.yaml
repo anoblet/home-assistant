@@ -1,0 +1,78 @@
+cards:
+  - type: custom:generic-card
+    style:
+      "background-color": "initial"
+    cards:
+      - type: custom:grid-card
+        style:
+          "gap": "1rem"
+        cards:
+          - type: custom:flex-card
+            style:
+              "--flex-card-min-width": "320px"
+              "--flex-card-max-width": "100vw"
+              "gap": "1rem"
+            cards:
+              - type: custom:mushroom-climate-card
+                entity: climate.bedroom_thermostat
+                name: Thermostat
+                show_temperature_control: true
+              - type: custom:mushroom-light-card
+                entity: light.bedroom_lights
+                name: Lights
+                show_brightness_control: true
+                show_color_temp_control: true
+              - type: custom:mushroom-cover-card
+                entity: cover.bedroom_blinds
+                name: Blinds
+                # show_buttons_control: true
+                show_position_control: true
+              - type: custom:mushroom-fan-card
+                entity: fan.bedroom_air_purifier
+                name: Air Purifier
+                show_percentage_control: true
+                collapsible_controls: true
+              - type: custom:mushroom-humidifier-card
+                entity: humidifier.bedroom_humidifier
+                name: Humidifier
+                show_target_humidity_control: true
+              - type: custom:decluttering-card
+                template: media_player_card
+                variables:
+                  - entity: media_player.bedroom_tv
+                  - name: "Television"
+              - type: custom:decluttering-card
+                template: media_player_card
+                variables:
+                  - entity: media_player.bedroom_display
+                  - name: "Display"
+          - type: custom:grid-card
+            style:
+              "gap": "1rem"
+              "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: sensor.bedroom_climate_temperature
+                icon: mdi:thermometer
+                name: Temperature
+              - type: custom:mushroom-entity-card
+                entity: sensor.bedroom_climate_humidity
+                icon: mdi:water-percent
+                name: Humidity
+              - type: custom:mushroom-entity-card
+                entity: sensor.bedroom_climate_pressure
+                icon: mdi:gauge
+                name: Pressure
+              - type: custom:mushroom-entity-card
+                entity: sensor.bedroom_bme680_iaq
+                name: Air Quality 
+              - type: custom:mushroom-entity-card
+                entity: sensor.bedroom_scd30_carbon_dioxide
+                name: Carbon Dioxide
+icon: mdi:bed
+title: Bedroom
+type: custom:default-view
+path: bedroom
+visible:
+  - user: e19a51e0a67944d782371b93c2a2c2e7
+  - user: 06072035e79742f3a21c5127612d5385

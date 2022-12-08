@@ -1,0 +1,59 @@
+bedroom_climate_mean:
+  homeassistant:
+    customize:
+      sensor.bedroom_climate_temperature:
+        device_class: temperature
+      sensor.bedroom_climate_humidity:
+        device_class: humidity
+      sensor.bedroom_climate_pressure:
+        device_class: pressure
+  sensor:
+    - entity_ids:
+        - sensor.bedroom_bme280_temperature
+        - sensor.bedroom_bme680_temperature
+        - sensor.bedroom_scd30_temperature
+      name: Bedroom Climate Temperature
+      platform: min_max
+      type: mean
+      # unique_id: bedroom_temperature
+    - entity_ids:
+        - sensor.bedroom_bme280_humidity
+        - sensor.bedroom_bme680_humidity
+        - sensor.bedroom_scd30_humidity
+      name: Bedroom Climate Humidity
+      platform: min_max
+      type: mean
+      unique_id: bedroom_climate_humidity
+    - entity_ids:
+        - sensor.bedroom_bme280_pressure
+        - sensor.bedroom_bme680_pressure
+      name: Bedroom Climate Pressure
+      platform: min_max
+      type: mean
+      # unique_id: bedroom_pressure
+
+    ### Deprecated
+    - entity_ids:
+        - sensor.bedroom_bme280_temperature
+        - sensor.bedroom_bme680_temperature
+        - sensor.bedroom_scd30_temperature
+      name: Bedroom Temperature
+      platform: min_max
+      type: mean
+      # unique_id: bedroom_temperature
+    - entity_ids:
+        - sensor.bedroom_bme280_humidity
+        - sensor.bedroom_bme680_humidity
+        - sensor.bedroom_scd30_humidity
+      name: Bedroom Humidity
+      platform: min_max
+      type: mean
+      # unique_id: bedroom_humidity
+    - entity_ids:
+        - sensor.bedroom_bme280_pressure
+        - sensor.bedroom_bme680_pressure
+      name: Bedroom Pressure
+      platform: min_max
+      type: mean
+      # unique_id: bedroom_pressure
+

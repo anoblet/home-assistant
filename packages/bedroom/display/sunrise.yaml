@@ -1,0 +1,15 @@
+bedroom_display_sunrise:
+  automation:
+    action:
+      data:
+        volume_level: 0.4
+      service: media_player.volume_set
+      target:
+        entity_id: media_player.bedroom_display
+    alias: Bedroom - Display - Volume - Sunrise
+    description: ''
+    id: bedroom_display_volume_sunrise
+    mode: single
+    trigger:
+      - event: sunrise
+        platform: sun

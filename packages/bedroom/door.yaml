@@ -1,0 +1,5 @@
+bedroom_door:
+  homeassistant:
+    customize:
+      binary_sensor.bedroom_door_contact:
+        friendly_name: Bedroom Door

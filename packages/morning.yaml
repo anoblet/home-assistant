@@ -1,0 +1,6 @@
+morning:
+  input_datetime:
+    morning:
+      name: Morning
+      has_date: false
+      has_time: true

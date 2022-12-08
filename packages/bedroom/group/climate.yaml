@@ -1,0 +1,8 @@
+bedroom_group_climate:
+  group:
+    bedroom_climate:
+      all: true
+      entities:
+        # - climate.bedroom_thermostat
+        - humidifier.bedroom_humidifier
+      name: Bedroom Climate

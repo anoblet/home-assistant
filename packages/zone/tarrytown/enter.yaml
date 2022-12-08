@@ -1,0 +1,14 @@
+zone_tarrytown_enter:
+  automation:
+    action:
+      - service: climate.turn_on
+        target:
+          entity_id: climate.bedroom_thermostat
+    alias: Tarrytown - Andrew - Enter
+    id: zone_tarrytown_andrew_enter
+    mode: single
+    trigger:
+      - entity_id: device_tracker.pixel_4
+        event: enter
+        platform: zone
+        zone: zone.tarrytown

@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "experimentalDecorators": true,
+        "lib": ["es2017", "dom", "DOM.Iterable"],
+        "module": "esnext",
+        "moduleResolution": "node",
+        "target": "ES6",
+        "outDir": "build",
+        "rootDir": "."
+    },
+    "include": ["packages/**/*"],
+    "exclude": ["node_modules", "**/*.spec.ts"]
+  }

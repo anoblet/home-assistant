@@ -1,0 +1,7 @@
+card:
+  type: custom:mushroom-vacuum-card
+  entity: vacuum.valetudo_vacuum
+  name: Vacuum
+  tap_action:
+    action: call-service
+    service: [[service]]

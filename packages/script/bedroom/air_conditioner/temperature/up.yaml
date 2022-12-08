@@ -1,0 +1,18 @@
+script_bedroom_air_conditioner_temperature_up:
+  google_assistant:
+    entity_config:
+      script.bedroom_air_conditioner_temperature_up:
+        expose: true
+  script:
+    bedroom_air_conditioner_temperature_up:
+      alias: Bedroom - Air Conditioner - Temperature - Up
+      sequence:
+        - service: remote.send_command
+          target:
+            entity_id: remote.harmony_hub
+          data:
+            delay_secs: 1
+            device: "74936935"
+            command: TempHotter
+            num_repeats: 4
+      mode: single

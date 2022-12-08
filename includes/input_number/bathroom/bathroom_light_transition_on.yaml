@@ -1,0 +1,5 @@
+max: 60
+min: 0
+mode: box
+name: Bathroom Light Transition On
+unit_of_measurement: "s"

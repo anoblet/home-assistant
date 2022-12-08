@@ -1,0 +1,8 @@
+apartment_climate_temperature:
+  sensor:
+    - entity_ids:
+        - sensor.bedroom_climate_temperature
+        - sensor.living_room_climate_temperature
+      name: Apartment Temperature
+      platform: min_max
+      type: mean

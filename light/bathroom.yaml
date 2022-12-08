@@ -1,7 +1,0 @@
-platform: group
-name: Bathroom Lights
-entities:
-  - light.bathroom_one
-  - light.bathroom_two
-  - light.bathroom_three
-  - light.bathroom_four

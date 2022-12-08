@@ -1,0 +1,21 @@
+living_room_motion_detected:
+  automation:
+    - action:
+        - data:
+            entity_id: light.living_room_light_group_zigbee
+            transition: "{{ states('input_number.living_room_light_transition_on') | int }}"
+          service: light.turn_on
+      alias: Living Room - Motion - Detected
+      condition:
+        - condition: state
+          entity_id: input_boolean.living_room_light_manual
+          state: "off"
+        - condition: template
+          value_template: "{{ (states('sensor.living_room_motion_two_illuminance') | int) < (states('input_number.living_room_illuminance_minimum') | int) }}"
+      id: living_room_motion_detected
+      mode: single
+      trigger:
+        - entity_id: binary_sensor.living_room_motion_occupancy_group
+          from: "off"
+          platform: state
+          to: "on"

@@ -1,0 +1,46 @@
+cards:
+  - chart:
+      options:
+        animation:
+          duration: 0
+        elements:
+          line:
+            borderWidth: 5
+          point:
+            pointStyle: line
+            radius: 0
+        plugins:
+          legend:
+            display: false
+        scales:
+          x:
+            ticks:
+              font:
+                family: Roboto
+            time:
+              unit: hour
+            type: time
+          "y":
+            ticks:
+              font:
+                family: Roboto
+            type: linear
+      parsing: false
+      type: line
+    class:
+      - absolute
+    datasets:
+      - dataset:
+          borderColor: "hsl(200, 100%, 50%)"
+          backgroundColor: "hsla(200, 100%, 50%, 25%)"
+          fill: true
+        entity_id: sensor.bathroom_climate_humidity
+    entities:
+      - sensor.bedroom_climate_temperature
+    entity: sensor.bedroom_climate_humidity
+    type: custom:chart-js-card
+class:
+  - padding
+  - relative
+title: Humidity
+type: custom:generic-card

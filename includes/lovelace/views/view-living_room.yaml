@@ -1,0 +1,75 @@
+cards:
+  - cards:
+      - type: custom:grid-card
+        style:
+          "gap": "1rem"
+        cards:
+          - type: custom:flex-card
+            style:
+              "--flex-card-min-width": "320px"
+              "--flex-card-max-width": "100vw"
+              "gap": "1rem"
+            cards:
+              # - type: custom:mushroom-climate-card
+              #   entity: climate.living_room_thermostat
+              #   name: Thermostat
+              #   show_temperature_control: true
+              - type: custom:mushroom-light-card
+                entity: light.living_room_light_group_zigbee
+                name: Lights
+                show_brightness_control: true
+                show_color_temp_control: true
+              - type: custom:mushroom-cover-card
+                entity: cover.living_room_blinds
+                name: Blinds
+                # show_buttons_control: true
+                show_position_control: true
+              - type: custom:mushroom-fan-card
+                entity: fan.living_room_air_purifier
+                name: "Air Purifier"
+                show_percentage_control: true
+              - type: custom:decluttering-card
+                template: media_player_card
+                variables:
+                  - entity: media_player.living_room_tv
+                  - name: "Television"
+              - type: custom:decluttering-card
+                template: media_player_card
+                variables:
+                  - entity: media_player.living_room_pair
+                  - name: "Speakers"
+          - type: custom:grid-card
+            style:
+              "gap": "1rem"
+              "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: sensor.living_room_climate_temperature
+                name: Temperature
+              - type: custom:mushroom-entity-card
+                entity: sensor.living_room_climate_humidity
+                name: Humidity
+              - type: custom:mushroom-entity-card
+                entity: sensor.living_room_climate_pressure
+                name: Air Pressure
+              - type: custom:mushroom-entity-card
+                entity: binary_sensor.living_room_motion_occupancy_group
+                name: Motion
+                secondary_info: last-changed
+              - type: custom:decluttering-card
+                template: vacuum_card
+                variables:
+                  - service: script.vacuum_living_room
+          # - type: custom:collapse-card
+          #   cards:
+          #     - type: custom:decluttering-card
+          #       template: entities
+          #       variables:
+          #         - area: living_room
+          #   summary: "Entities"
+    style:
+      "background-color": "initial"
+    type: custom:generic-card
+icon: mdi:sofa
+title: Living Room
+type: custom:default-view

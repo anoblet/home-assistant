@@ -1,0 +1,154 @@
+cover:
+  - platform: template
+    device_class: blind
+    # lambda: |-
+    #   if (((id($stepper_id).current_position * id($stepper_id).current_position) / id($stepper_id).current_position)  == id(open_position)) {
+    #     return COVER_OPEN;
+    #   } else {
+    #     return COVER_CLOSED;
+    #   }
+    name: $cover_name
+    id: $device_id
+    open_action:
+      - stepper.set_target:
+          id: $stepper_id
+          target: "0"
+      - cover.template.publish:
+          id: $device_id
+          current_operation: IDLE
+          position: "1"
+      - globals.set:
+          id: current_position
+          value: "0"
+    close_action:
+      - stepper.set_target:
+          id: $stepper_id
+          target: !lambda "return $step_total / 2;"
+      - cover.template.publish:
+          id: $device_id
+          current_operation: IDLE
+          position: "0"
+      - globals.set:
+          id: current_position
+          value: !lambda "return $step_total / 2;"
+    position_action:
+      then:
+        - logger.log:
+            format: "Current: %d | Target: %.2f | Steps: %d"
+            args: ["id($stepper_id).current_position", "pos", "( $step_total * pos ) - ( $step_total / 2 )"]
+        - stepper.set_target:
+            id: $stepper_id
+            target: !lambda |-
+              return -(( $step_total * pos ) - ( $step_total / 2 ));
+        - cover.template.publish:
+            id: $device_id
+            current_operation: IDLE
+            position: !lambda "return pos;"
+        - globals.set:
+            id: current_position
+            value: !lambda |-
+              return -(( $step_total * pos ) - ( $step_total / 2 ));
+    stop_action:
+      - stepper.set_target:
+          id: $stepper_id
+          target: !lambda return id($stepper_id).current_position;
+      - globals.set:
+          id: current_position
+          value: !lambda "return id($stepper_id).current_position;"
+    has_position: true
+
+esphome:
+  name: $esphome_name
+  on_boot:
+    priority: -200
+    then:
+      - stepper.report_position:
+          id: $stepper_id
+          position: !lambda "return id(current_position);"
+      - stepper.set_target:
+          id: $stepper_id
+          target: !lambda "return id(current_position);"
+      - cover.template.publish:
+          id: $device_id
+          current_operation: IDLE
+          position: !lambda "return (id($stepper_id).current_position + ( $step_total / 2 )) / $step_total;"
+
+esp8266:
+  board: nodemcuv2
+
+globals:
+  - id: open_position
+    type: int
+    initial_value: "0"
+  - id: current_position
+    type: int
+    initial_value: "0"
+    restore_value: true
+
+# Enable logging
+logger:
+  level: DEBUG
+
+# Enable Home Assistant API
+api:
+  services:
+    - service: set_target
+      variables:
+        target: int
+      then:
+        - stepper.set_target:
+            id: $stepper_id
+            target: !lambda "return -(target);"
+    - service: report_position
+      variables:
+        position: int
+      then:
+        - logger.log:
+            format: "Reporting position to %d"
+            args: ["position"]
+        - stepper.report_position:
+            id: $stepper_id
+            position: !lambda "return -(position);"
+        - stepper.set_target:
+            id: $stepper_id
+            target: !lambda "return -(position);"
+        - globals.set:
+            id: current_position
+            value: !lambda "return -(position);"
+
+ota:
+  password: "2515291ea63617d85b4bee51325fcd12"
+
+wifi:
+  fast_connect: true
+  power_save_mode: none
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Fallback Hotspot"
+    password: "X87rZCD9TMHF"
+
+captive_portal:
+
+stepper:
+  - platform: uln2003
+    id: $stepper_id
+    pin_a: D1
+    pin_b: D2
+    pin_c: D3
+    pin_d: D5
+    max_speed: 250 steps/s
+    sleep_when_done: true
+
+    # Optional:
+    acceleration: inf
+    deceleration: inf
+
+substitutions:
+  cover_name: ""
+  device_id: ""
+  esphome_name: ""
+  step_total: "19000"
+  stepper_id: "my_stepper"

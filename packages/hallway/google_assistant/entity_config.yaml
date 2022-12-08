@@ -1,0 +1,5 @@
+hallway_google_assistant:
+  google_assistant:
+    entity_config:
+      light.hallway_light_group_zigbee:
+        expose: true

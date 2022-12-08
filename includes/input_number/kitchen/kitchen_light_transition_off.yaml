@@ -1,0 +1,5 @@
+max: 600
+min: 0
+mode: box
+name: Kitchen Light Transition Off
+unit_of_measurement: "s"

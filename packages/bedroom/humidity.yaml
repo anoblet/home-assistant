@@ -1,0 +1,5 @@
+bedroom_humidity:
+  google_assistant:
+    entity_config:
+      sensor.bedroom_climate_humidity:
+        expose: true

@@ -1,0 +1,6 @@
+intent_script_climate_bedroom_carbon_dioxide:
+  intent_script:
+    ClimateBedroomCarbonDioxide:
+      speech:
+        text: >
+          The carbon dioxide level is {{ states('sensor.bedroom_scd30_carbon_dioxide') }}ppm.

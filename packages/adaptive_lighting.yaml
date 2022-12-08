@@ -1,0 +1,42 @@
+adaptive_lighting:
+  homeassistant:
+    customize:
+      switch.adaptive_lighting_bathroom:
+        friendly_name: Bathroom Adaptive Lighting
+      switch.adaptive_lighting_bedroom:
+        friendly_name: Bedroom Adaptive Lighting
+      switch.adaptive_lighting_hallway:
+        friendly_name: Hallway Adaptive Lighting
+      switch.adaptive_lighting_kitchen:
+        friendly_name: Kitchen Adaptive Lighting
+      switch.adaptive_lighting_living_room:
+        friendly_name: Living Room Adaptive Lighting
+      switch.adaptive_lighting_storage_room:
+        friendly_name: Storage Room Adaptive Lighting
+
+  google_assistant:
+    entity_config:
+      switch.adaptive_lighting_bathroom:
+        expose: true
+      switch.adaptive_lighting_bedroom:
+        expose: true
+      switch.adaptive_lighting_hallway:
+        expose: true
+      switch.adaptive_lighting_kitchen:
+        expose: true
+      switch.adaptive_lighting_living_room:
+        expose: true
+      switch.adaptive_lighting_storage_room:
+        expose: true
+        
+  group:
+    adaptive_lighting_all:
+      all: true
+      entities:
+        - switch.adaptive_lighting_bathroom
+        - switch.adaptive_lighting_bedroom
+        - switch.adaptive_lighting_hallway
+        - switch.adaptive_lighting_living_room
+        - switch.adaptive_lighting_storage_room
+        - switch.adaptive_lighting_kitchen
+      name: Adaptive Lighting - All

@@ -1,0 +1,6 @@
+input_number_kitchen_illuminance_minimum:
+  input_number:
+    kitchen_illuminance_minimum:
+      min: 0
+      max: 1000
+      name: Kitchen Illuminance Minimum

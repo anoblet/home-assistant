@@ -1,0 +1,11 @@
+sun_blinds:
+  template:
+    - sensor:
+      - name: "Sun - Blinds"
+        state: >
+          {% if states("sensor.elevation") | int < 0 %}
+            {{ ( ( states("sensor.elevation") | int / states("sensor.min_elevation") | int ) * 50 - 50 ) | int }}
+          {% elif states("sensor.elevation") | int > 0 %}
+            {{ ( ( states("sensor.elevation") | int / states("sensor.max_elevation") | int ) * 50 + 45 ) | int }}
+          {% endif %}
+        unique_id: "sun_blinds"

@@ -1,0 +1,13 @@
+script_vacuum_start:
+  google_assistant:
+    entity_config:
+      script.vacuum_start:
+        expose: true
+  script:
+    vacuum_start:
+      alias: Vacuum - Start
+      sequence:
+        - data:
+            payload: '{"segment_ids": ["2","3","5","6","8","9","10"], "iterations": 2}'
+            topic: valetudo/Vacuum/MapSegmentationCapability/clean/set
+          service: mqtt.publish

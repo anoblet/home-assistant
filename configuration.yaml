@@ -1,67 +1,93 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+dialogflow:
+
 # Text to speech
 tts:
   - platform: google_translate
 
-group: !include groups.yaml
 scene: !include scenes.yaml
 
-adaptive_lighting: !include_dir_list adaptive_lighting/
-
-automation: !include automations.yaml
-
-# device_tracker:
-#   - platform: tplink_router
-#     host: 192.168.0.1
-#     username: !secret tplink_router_username
-#     password: !secret tplink_router_password
-#     new_device_defaults:
-#       track_new_devices: true
+automation manual: !include_dir_list includes/automations
+automation ui: !include automations.yaml
 
 frontend:
   themes: !include_dir_merge_named themes
+  # themes custom: !include_dir_merge_named includes/frontend/themes
 
-google_assistant: !include google_assistant.yaml
+# generic_hygrostat: !include_dir_list includes/generic_hygrostat
 
-# homeassistant:
-#   external_url: https://anoblet.duckdns.org
+group ui: !include groups.yaml
 
 http:
-  use_x_forwarded_for: true
+  cors_allowed_origins:
+    - http://192.168.0.140 # Valetudo
+    - https://cast.home-assistant.io
+    - https://anoblet.duckdns.org
+  # server_port: 443
   trusted_proxies:
     - 10.0.0.200
     - 172.30.33.0/24
+    # Cloudflare
+    - 173.245.48.0/20
+    - 103.21.244.0/22
+    - 103.22.200.0/22
+    - 103.31.4.0/22
+    - 141.101.64.0/18
+    - 108.162.192.0/18
+    - 190.93.240.0/20
+    - 188.114.96.0/20
+    - 197.234.240.0/22
+    - 198.41.128.0/17
+    - 162.158.0.0/15
+    - 104.16.0.0/13
+    - 104.24.0.0/14
+    - 172.64.0.0/13
+    - 131.0.72.0/22
+  use_x_forwarded_for: true
 
-light: !include_dir_list light/
+homeassistant:
+  # customize: !include includes/homeassistant/customize.yaml
+  external_url: https://anoblet.duckdns.org
+  packages: !include_dir_merge_named packages/
 
-logger: !include ./logger.yaml
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: !secret influxdb_password
+  max_retries: 3
+  default_measurement: state
 
-lovelace:
-  mode: yaml
-  resources: !include lovelace/resources.yaml
+input_boolean: !include_dir_named includes/input_booleans
 
-media_player: !include media_player.yaml
+input_datetime: !include_dir_named includes/input_datetime
 
-recorder:
-  commit_interval: 60
-  db_url: !secret db_url
+input_number: !include_dir_named includes/input_number
 
-script: !include scripts.yaml
+intent_script: !include_dir_named includes/intent_script
+
+light: !include_dir_list includes/light
+
+lovelace: !include includes/lovelace.yaml
+
+# lovelace_gen:
+
+script ui: !include scripts.yaml
+script manual: !include_dir_named includes/scripts
 
 sensor:
-  - platform: google_fit
-    name: Google Fit
-    client_id: !secret google_fit_client_id
-    client_secret: !secret google_fit_client_secret
   - platform: template
-    sensors: !include_dir_named sensor/sensors/
-
-spotify:
-  client_id: !secret spotify_client_id
-  client_secret: !secret spotify_client_secret
+    sensors: !include_dir_named includes/sensor/template/sensors/
 
 switch:
   - platform: template
-    switches: !include_dir_named switch/switches/
+    switches: !include_dir_named includes/switch/switches/
+
+zha:
+  zigpy_config:
+    topology_scan_period: 20 # set the scan interval to 20 mn
+
+zone: !include_dir_list includes/zone

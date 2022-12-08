@@ -1,0 +1,8 @@
+input_number_light_transition_on:
+  input_number:
+    light_transition_on:
+      max: 60
+      min: 0
+      mode: box
+      name: Light - Transition - On
+      unit_of_measurement: "s"

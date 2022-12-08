@@ -1,0 +1,12 @@
+automation_media_player_living_room_tv_playing:
+  automation:
+    - action:
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.living_room_motion
+      alias: Media Player - Living Room - TV - Playing
+      id: media_player_living_room_playing
+      trigger:
+        - entity_id: media_player.living_room_tv
+          platform: state
+          to: playing

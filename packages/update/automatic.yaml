@@ -1,0 +1,37 @@
+update_automatic:
+  automation:
+    action:
+      - data:
+          backup: true
+        service: update.install
+        target:
+          entity_id:
+            - update.adguard_home_update
+            - update.cloudflared_update
+            - update.duck_dns_update
+            - update.esphome_update
+            - update.glances_update
+            - update.grafana_update
+            - update.grocy_update
+            - update.hdd_tools_update
+            - update.home_assistant_core_update
+            - update.home_assistant_google_drive_backup_update
+            - update.home_assistant_supervisor_update
+            - update.influxdb_update
+            - update.mariadb_update
+            - update.mosquitto_broker_update
+            - update.nginx_home_assistant_ssl_proxy_update
+            - update.samba_share_update
+            - update.ssh_web_terminal_update
+            - update.studio_code_server_update
+            - update.z_wave_js_update
+            - update.zigbee2mqtt_update
+      - service: update.install
+        target:
+          entity_id:
+            - update.home_assistant_operating_system_update
+    alias: "Update - Automatic"
+    id: update_automatic
+    trigger:
+      - at: "00:00:00"
+        platform: time

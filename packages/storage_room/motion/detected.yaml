@@ -1,0 +1,14 @@
+storage_room_motion_detected:
+  automation:
+    action:
+      - service: light.turn_on
+        target:
+          entity_id: light.storage_room_lights
+    alias: Storage Room - Motion - Detected
+    id: "storage_room_motion_detected"
+    mode: single
+    trigger:
+      - entity_id: binary_sensor.storage_room_motion_occupancy
+        from: "off"
+        platform: state
+        to: "on"

@@ -1,0 +1,31 @@
+vacuum:
+  group:
+    vacuum_rooms:
+      entities:
+        - input_boolean.vacuum_bathroom
+        - input_boolean.vacuum_bedroom
+        - input_boolean.vacuum_bedroom_two
+        - input_boolean.vacuum_bedroom_three
+        - input_boolean.vacuum_hallway
+        - input_boolean.vacuum_kitchen
+        - input_boolean.vacuum_living_room
+        - input_boolean.vacuum_storage_room
+      name: Vacuum - Rooms
+  homeassistant:
+    customize:
+      input_boolean.vacuum_bathroom:
+        room_id: 8
+      input_boolean.vacuum_bedroom:
+        room_id: 4
+      input_boolean.vacuum_bedroom_two:
+        room_id: 2
+      input_boolean.vacuum_bedroom_three:
+        room_id: 1
+      input_boolean.vacuum_hallway:
+        room_id: 7
+      input_boolean.vacuum_kitchen:
+        room_id: 6
+      input_boolean.vacuum_living_room:
+        room_id: 3
+      input_boolean.vacuum_storage_room:
+        room_id: 5

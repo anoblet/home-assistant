@@ -1,0 +1,14 @@
+substitutions:
+  friendly_name: "Ender"
+  name: "ender"
+packages:
+  athom.smart-plug: github://athom-tech/athom-configs/athom-smart-plug.yaml
+esphome:
+  name_add_mac_suffix: false
+time:
+  - platform: sntp
+    id: my_time
+wifi:
+  fast_connect: true
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password

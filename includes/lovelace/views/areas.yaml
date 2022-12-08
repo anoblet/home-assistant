@@ -1,0 +1,4 @@
+cards:
+  - type: custom:areas-card
+title: Areas
+type: custom:default-view

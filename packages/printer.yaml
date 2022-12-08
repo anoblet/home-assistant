@@ -1,0 +1,18 @@
+printer:
+  automation:
+    - action:
+        - data:
+            message: Printing has finished
+          service: notify.mobile_app_pixel_4
+      # - service: tts.google_translate_say
+      #   entity_id: media_player.home_group
+      #   data:
+      #     message: 'Printing has finished'
+      alias: "Printer - Finished"
+      id: printer_finished
+      mode: single
+      trigger:
+        - entity_id: binary_sensor.octoprint_printing
+          platform: state
+          from: "on"
+          to: "off"

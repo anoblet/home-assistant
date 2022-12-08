@@ -1,0 +1,12 @@
+automation_bedroom_carbon_dioxide_maximum:
+  automation:
+    - action:
+        - data:
+            message: Bedroom CO2 is > 2000ppm.
+          service: notify.mobile_app_pixel_4
+      alias: Bedroom - Carbon Dioxide - Maximum
+      id: bedroom_carbon_dioxide_maximum
+      mode: single
+      trigger:
+        - platform: template
+          value_template: "{{ states('sensor.bedroom_scd30_carbon_dioxide') | int > states('input_number.bedroom_carbon_dioxide_maximum') | int }}"

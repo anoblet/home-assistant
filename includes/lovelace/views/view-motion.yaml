@@ -1,0 +1,30 @@
+cards:
+  - entities:
+      - entity: binary_sensor.hallway_motion_occupancy
+        name: Hallway
+        secondary_info: last-changed
+    type: entities
+  - entities:
+      - entity: binary_sensor.bathroom_motion_occupancy
+        name: Bathroom
+        secondary_info: last-changed
+    type: entities
+  - entities:
+      - entity: binary_sensor.storage_room_motion_occupancy
+        name: Storage Room
+        secondary_info: last-changed
+    type: entities
+  - entities:
+      - entity: binary_sensor.living_room_motion_occupancy_group
+        name: Living Room
+        secondary_info: last-changed
+    type: entities
+  - entities:
+      - entity: binary_sensor.kitchen_motion_occupancy_group
+        name: Kitchen
+        secondary_info: last-changed
+    type: entities
+icon: mdi:motion-sensor
+path: motion
+title: Motion
+type: custom:default-view

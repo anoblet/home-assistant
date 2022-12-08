@@ -1,0 +1,13 @@
+script_vacuum_living_room:
+  google_assistant:
+    entity_config:
+      script.vacuum_living_room:
+        expose: true
+  script:
+    vacuum_living_room:
+      alias: Vacuum - Living Room
+      sequence:
+        - data:
+            payload: '{"segment_ids": ["3"], "iterations": 2, "customOrder": true}'
+            topic: valetudo/Vacuum/MapSegmentationCapability/clean/set
+          service: mqtt.publish

@@ -1,0 +1,5 @@
+kitchen_homeassistant_customize:
+  homeassistant:
+    customize:
+      light.kitchen_light_group_zigbee:
+        friendly_name: Kitchen Lights

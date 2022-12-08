@@ -1,0 +1,8 @@
+input_number_bedroom_carbon_dioxide_warning:
+  input_number:
+    bedroom_carbon_dioxide_warning:
+      max: 10000
+      min: 0
+      mode: box
+      name: Bedroom - Carbon Dioxide - Warning
+      unit_of_measurement: "ppm"

@@ -1,0 +1,7 @@
+input_number_hallway_motion_illuminance_minimum:
+  input_number:
+    hallway_motion_illuminance_minimum:
+      max: 1000
+      min: 0
+      mode: box
+      name: Hallway Motion Illuminance Minimum

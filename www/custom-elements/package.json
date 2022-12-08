@@ -1,0 +1,46 @@
+{
+  "name": "custom-elements",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && npm run build:typescript && npm run build:rollup",
+    "build:watch": "npm run build && run-p build:typescript:watch build:rollup:watch",
+    "build:rollup": "rollup -c rollup.config.js",
+    "build:rollup:watch": "rollup -c rollup.config.js -w",
+    "build:snowpack": "snowpack build",
+    "build:typescript": "tsc",
+    "build:typescript:watch": "tsc --watch",
+    "clean": "rimraf build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@material/mwc-button": "^0.25.3",
+    "@material/mwc-select": "^0.25.3",
+    "@material/mwc-textfield": "^0.25.3",
+    "lit": "^2.1.1",
+    "lodash-es": "^4.17.21"
+  },
+  "devDependencies": {
+    "@rollup/plugin-multi-entry": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.64.0",
+    "rollup-plugin-exclude-dependencies-from-bundle": "^1.1.22",
+    "rollup-plugin-ignore": "^1.0.10",
+    "snowpack": "^3.8.8",
+    "typescript": "^4.5.4"
+  },
+  "peerDependencies": {
+    "@material/mwc-icon": "^0.25.3",
+    "@material/mwc-list": "^0.25.3",
+    "@material/mwc-ripple": "^0.25.3"
+  },
+  "workspaces": [
+    "packages/chart-js-card"
+  ]
+}

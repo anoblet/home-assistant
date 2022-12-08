@@ -1,0 +1,54 @@
+cards:
+  - type: custom:generic-card
+    style:
+      "background-color": "initial"
+    cards:
+      - type: custom:grid-card
+        style:
+          "gap": "1rem"
+        cards:
+          - type: custom:flex-card
+            style:
+              "--flex-card-min-width": "320px"
+              "--flex-card-max-width": "100vw"
+              "gap": "1rem"
+            cards:
+              - type: custom:mushroom-light-card
+                entity: light.bathroom_light_group_zigbee
+                name: Lights
+                show_brightness_control: true
+                show_color_temp_control: true
+              - type: custom:decluttering-card
+                template: media_player_card
+                variables:
+                  - entity: media_player.bathroom_speaker
+                  - name: "Speaker"
+          - type: custom:grid-card
+            style:
+              "gap": "1rem"
+              "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: sensor.bathroom_climate_temperature
+                icon: mdi:thermometer
+                name: Temperature
+              - type: custom:mushroom-entity-card
+                entity: sensor.bathroom_climate_humidity
+                icon: mdi:water-percent
+                name: Humidity
+              - type: custom:mushroom-entity-card
+                entity: sensor.bathroom_climate_pressure
+                icon: mdi:gauge
+                name: Pressure
+              - type: custom:mushroom-entity-card
+                entity: binary_sensor.bathroom_contact_open
+                icon: mdi:gauge
+                name: Door
+              - type: custom:mushroom-entity-card
+                entity: binary_sensor.bathroom_motion_occupancy
+                icon: mdi:gauge
+                name: Occupancy
+icon: mdi:toilet
+path: bathroom
+title: Bathroom
+type: custom:default-view

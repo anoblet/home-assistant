@@ -1,0 +1,13 @@
+script_vacuum_empty:
+  google_assistant:
+    entity_config:
+      script.vacuum_empty:
+        expose: true
+  script:
+    vacuum_empty:
+      alias: Vacuum - Empty
+      sequence:
+        - service: mqtt.publish
+          data:
+            topic: valetudo/Vacuum/AutoEmptyDockManualTriggerCapability/trigger/set
+            payload: "PERFORM"

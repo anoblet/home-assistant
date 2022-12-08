@@ -1,0 +1,32 @@
+bathroom_light:
+  automation:
+    - trigger:
+        - platform: time_pattern
+          minutes: 0
+      action:
+        - condition: state
+          entity_id: binary_sensor.bathroom_contact_open
+          state: "on"
+        - condition: state
+          entity_id: binary_sensor.bathroom_motion_occupancy
+          state: "off"
+        - service: light.turn_on
+          data:
+            brightness_pct: 100
+            color_temp: 153
+          target:
+            entity_id: light.bathroom_light_group_zigbee
+        - delay:
+            seconds: 60
+        - condition: state
+          entity_id: binary_sensor.bathroom_contact_open
+          state: "on"
+        - condition: state
+          entity_id: binary_sensor.bathroom_motion_occupancy
+          state: "off"
+        - service: light.turn_off
+          target:
+            entity_id: light.bathroom_light_group_zigbee
+      alias: Bathroom - Light
+      id: bathroom_light
+      mode: single

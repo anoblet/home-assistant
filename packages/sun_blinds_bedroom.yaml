@@ -1,0 +1,17 @@
+sun_blinds_bedroom:
+  automation:
+    - action:
+        - data:
+            position: "{{ states('sensor.sun_blinds') }}"
+          service: cover.set_cover_position
+          target:
+            entity_id: cover.bedroom_blinds
+      alias: Sun - Blinds - Bedroom
+      condition:
+        - condition: state
+          entity_id: input_boolean.bedroom_blinds_automatic
+          state: "on"
+      id: sun_blinds_bedroom
+      trigger:
+        - entity_id: sensor.sun_blinds
+          platform: state

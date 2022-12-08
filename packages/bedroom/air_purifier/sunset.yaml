@@ -1,0 +1,14 @@
+bedroom_air_purifier_sunset:
+  automation:
+    - action:
+        - service: fan.set_preset_mode
+          data:
+            preset_mode: auto
+          target:
+            entity_id: fan.bedroom_air_purifier
+      alias: Bedroom - Air Purifier - Sunset
+      id: bedroom_air_purifier_sunset
+      mode: single
+      trigger:
+        - event: sunset
+          platform: sun

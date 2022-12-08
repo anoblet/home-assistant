@@ -1,0 +1,7 @@
+substitutions:
+  cover_name: "Bedroom Blind One"
+  device_id: "bedroom_blind_one"
+  esphome_name: "bedroom-blind-one"
+
+packages:
+  blinds: !include packages/blinds_reversed.yaml

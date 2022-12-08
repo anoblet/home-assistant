@@ -1,0 +1,8 @@
+input_number_hallway_light_transition_off:
+  input_number:
+    hallway_light_transition_off:
+      max: 1000
+      min: 0
+      mode: box
+      name: Hallway Light Transition Off
+      unit_of_measurement: "s"
