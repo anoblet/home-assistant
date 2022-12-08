@@ -50,7 +50,7 @@ http:
 homeassistant:
   country: US
   # customize: !include includes/homeassistant/customize.yaml
-  external_url: https://anoblet.duckdns.org
+  external_url: https://31w3e.andrewnoblet.com
   packages: !include_dir_merge_named packages/
 
 influxdb:
