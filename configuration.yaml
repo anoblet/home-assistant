@@ -48,6 +48,7 @@ http:
   use_x_forwarded_for: true
 
 homeassistant:
+  country: US
   # customize: !include includes/homeassistant/customize.yaml
   external_url: https://anoblet.duckdns.org
   packages: !include_dir_merge_named packages/
