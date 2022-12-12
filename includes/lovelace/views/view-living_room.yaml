@@ -38,6 +38,9 @@ cards:
                 variables:
                   - entity: media_player.living_room_pair
                   - name: "Speakers"
+              - type: custom:mushroom-entity-card
+                entity: switch.living_room_christmas_tree
+                fill_container: true
           - type: custom:grid-card
             style:
               "gap": "1rem"

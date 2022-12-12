@@ -18,7 +18,7 @@ living_room_christmas_tree:
       id: living_room_christmas_tree_sunset
       mode: single
       trigger:
-        - event: sunrise
+        - event: sunset
           platform: sun
   google_assistant:
     entity_config:
