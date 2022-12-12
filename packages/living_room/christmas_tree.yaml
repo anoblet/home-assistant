@@ -4,8 +4,8 @@ living_room_christmas_tree:
         - service: switch.turn_off
           target:
             entity_id: switch.living_room_christmas_tree
-      alias: Living Room - Christmas Tree - Sunrise
-      id: living_room_christmas_tree_sunrise
+      alias: Living Room - Christmas Tree - Off
+      id: living_room_christmas_tree_off
       mode: single
       trigger:
         - platform: time
