@@ -1,4 +1,25 @@
 living_room_christmas_tree:
+  automation:
+    - action:
+        - service: switch.turn_off
+          target:
+            entity_id: switch.living_room_christmas_tree
+      alias: Living Room - Christmas Tree - Sunrise
+      id: living_room_christmas_tree_sunrise
+      mode: single
+      trigger:
+        - event: sunrise
+          platform: sun
+    - action:
+        - service: switch.turn_on
+          target:
+            entity_id: switch.living_room_christmas_tree
+      alias: Living Room - Christmas Tree - Sunset
+      id: living_room_christmas_tree_sunset
+      mode: single
+      trigger:
+        - event: sunrise
+          platform: sun
   google_assistant:
     entity_config:
       switch.living_room_christmas_tree:
