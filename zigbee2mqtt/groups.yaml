@@ -5,14 +5,14 @@
     - 0x00178801039e2849/11
     - 0x0017880104e103a6/11
   device_options:
-    transition: 3
+    transition: 2
 '2':
   friendly_name: hallway_light_group_zigbee
   devices:
     - 0x00178801037aa6d8/11
     - 0x00178801037ca557/11
   device_options:
-    transition: 3
+    transition: 2
 '3':
   friendly_name: bathroom_light_group_zigbee
   devices:
@@ -21,7 +21,7 @@
     - 0xccccccfffee2f1e9/1
     - 0xccccccfffee0b01b/1
   device_options:
-    transition: 3
+    transition: 2
 '4':
   friendly_name: living_room_light_group_zigbee
   devices:
@@ -29,7 +29,7 @@
     - 0x001788010b61c1fd/11
     - 0x001788010b61bba5/11
   device_options:
-    transition: 3
+    transition: 2
 '5':
   friendly_name: kitchen_light_group_zigbee
   devices:
@@ -39,18 +39,18 @@
     - 0x001788010b5daccd/11
     - 0x001788010b5d81a7/11
   device_options:
-    transition: 3
+    transition: 2
 '6':
   friendly_name: bedroom_lamp_group_zigbee
   devices:
     - 0x0017880104603a8b/11
     - 0x0017880104e103a6/11
   device_options:
-    transition: 3
+    transition: 2
 '7':
   friendly_name: living_room_ceiling_light_group_zigbee
   devices:
     - 0x001788010b5da5ff/11
     - 0x001788010b61c1fd/11
   device_options:
-    transition: 3
+    transition: 2
