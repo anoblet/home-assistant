@@ -1,0 +1,4 @@
+kitchen_motion_input_boolean:
+  input_boolean:
+    kitchen_motion:
+      name: Kitchen Motion
