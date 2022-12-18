@@ -18,3 +18,6 @@ hallway_light_manual:
       - entity_id:
           - light.hallway_light_group_zigbee
         platform: state
+  input_boolean:
+    hallway_light_manual:
+      name: Hallway Light Manual

@@ -1,0 +1,4 @@
+hallway_motion_input_boolean:
+  input_boolean:
+    hallway_motion:
+      name: Hallway Motion
