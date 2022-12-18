@@ -1,0 +1,4 @@
+living_room_motion_input_boolean:
+  input_boolean:
+    living_room_motion:
+      name: Living Room Motion

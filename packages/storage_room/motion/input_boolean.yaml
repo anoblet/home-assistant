@@ -1,0 +1,4 @@
+storage_room_motion_input_boolean:
+  input_boolean:
+    storage_room_motion:
+      name: Storage Room Motion

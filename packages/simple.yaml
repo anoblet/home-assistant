@@ -1,0 +1,4 @@
+simple:
+  input_boolean:
+    simple:
+      name: Simple
