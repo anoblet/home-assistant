@@ -144,10 +144,6 @@ stepper:
     max_speed: 250 steps/s
     sleep_when_done: true
 
-    # Optional:
-    acceleration: inf
-    deceleration: inf
-
 substitutions:
   cover_name: ""
   device_id: ""
