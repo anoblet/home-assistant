@@ -150,5 +150,5 @@ substitutions:
   cover_name: ""
   device_id: ""
   esphome_name: ""
-  step_total: "19000"
+  step_total: "18500"
   stepper_id: "my_stepper"

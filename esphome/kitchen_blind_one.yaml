@@ -4,4 +4,4 @@ substitutions:
   esphome_name: "kitchen-blind-one"
 
 packages:
-  blinds: !include packages/blinds.yaml
+  blinds: !include packages/blinds_reversed.yaml
