@@ -1,5 +1,11 @@
 cards:
   - cards:
+      - type: custom:mushroom-entity-card
+        entity: script.cover_calibrate
+        name: Calibrate
+        tap_action:
+          action: call-service
+          service: script.cover_calibrate
       - entities:
           - cover.bedroom_blinds        
           - cover.bedroom_blind_one
