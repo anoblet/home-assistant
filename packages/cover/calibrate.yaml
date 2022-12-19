@@ -1,0 +1,47 @@
+cover_calibrate:
+  script:
+    cover_calibrate:
+      sequence:
+        - service: esphome.bedroom_blind_one_set_target
+          data:
+            target: -9500
+        - service: esphome.bedroom_blind_two_set_target
+          data:
+            target: -9500
+        - service: esphome.bedroom_blind_three_set_target
+          data:
+            target: -9500
+        - service: esphome.kitchen_blind_one_set_target
+          data:
+            target: -9500
+        - service: esphome.living_room_blind_one_set_target
+          data:
+            target: -9500
+        - service: esphome.living_room_blind_two_set_target
+          data:
+            target: -9500
+        - service: esphome.living_room_blind_three_set_target
+          data:
+            target: -9500
+        - delay: 00:05:00
+        - service: esphome.bedroom_blind_one_set_target
+          data:
+            target: 9500
+        - service: esphome.bedroom_blind_two_set_target
+          data:
+            target: 9500
+        - service: esphome.bedroom_blind_three_set_target
+          data:
+            target: 9500
+        - service: esphome.kitchen_blind_one_set_target
+          data:
+            target: 9500
+        - service: esphome.living_room_blind_one_set_target
+          data:
+            target: 9500
+        - service: esphome.living_room_blind_two_set_target
+          data:
+            target: 9500
+        - service: esphome.living_room_blind_three_set_target
+          data:
+            target: 9500
