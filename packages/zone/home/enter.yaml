@@ -1,6 +1,9 @@
 zone_home_enter:
   automation:
     action:
+      - service: climate.turn_on
+        target:
+          entity_id: climate.bedroom_thermostat
       - service: humidifier.turn_on
         target:
           entity_id: humidifier.bedroom_humidifier_virtual
