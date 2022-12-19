@@ -23,7 +23,7 @@ cover_calibrate:
         - service: esphome.living_room_blind_three_set_target
           data:
             target: -9500
-        - delay: 00:05:00
+        - delay: 00:02:00
         - service: esphome.bedroom_blind_one_set_target
           data:
             target: 9500
