@@ -2,6 +2,7 @@ cover_calibrate:
   script:
     cover_calibrate:
       sequence:
+      # Close - Down
         - service: esphome.bedroom_blind_one_set_target
           data:
             target: -9500
@@ -24,6 +25,7 @@ cover_calibrate:
           data:
             target: -9500
         - delay: 00:02:00
+        # Close - Up
         - service: esphome.bedroom_blind_one_set_target
           data:
             target: 9500
@@ -45,3 +47,48 @@ cover_calibrate:
         - service: esphome.living_room_blind_three_set_target
           data:
             target: 9500
+        - delay: 00:02:00
+        # Open
+        - service: esphome.bedroom_blind_one_set_target
+          data:
+            target: 0
+        - service: esphome.bedroom_blind_two_set_target
+          data:
+            target: 0
+        - service: esphome.bedroom_blind_three_set_target
+          data:
+            target: 0
+        - service: esphome.kitchen_blind_one_set_target
+          data:
+            target: 0
+        - service: esphome.living_room_blind_one_set_target
+          data:
+            target: 0
+        - service: esphome.living_room_blind_two_set_target
+          data:
+            target: 0
+        - service: esphome.living_room_blind_three_set_target
+          data:
+            target: 0
+        - delay: 00:02:00
+        - service: esphome.bedroom_blind_one_report_position
+          data:
+            position: 0
+        - service: esphome.bedroom_blind_two_report_position
+          data:
+            position: 0
+        - service: esphome.bedroom_blind_three_report_position
+          data:
+            position: 0
+        - service: esphome.kitchen_blind_one_report_position
+          data:
+            position: 0
+        - service: esphome.living_room_blind_one_report_position
+          data:
+            position: 0
+        - service: esphome.living_room_blind_two_report_position
+          data:
+            position: 0
+        - service: esphome.living_room_blind_three_report_position
+          data:
+            position: 0
