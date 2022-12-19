@@ -4,7 +4,7 @@ bedroom_humidifier:
       name: Bedroom Humidifier Virtual
       humidifier: humidifier.bedroom_humidifier
       target_sensor: sensor.bedroom_climate_humidity
-      wet_tolerance: 1;
+      wet_tolerance: 1
   google_assistant:
     entity_config:
       humidifier.bedroom_humidifier:
