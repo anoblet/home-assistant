@@ -35,7 +35,12 @@ cover:
       then:
         - logger.log:
             format: "Current: %d | Target: %.2f | Steps: %d"
-            args: ["id($stepper_id).current_position", "pos", "( $step_total * pos ) - ( $step_total / 2 )"]
+            args:
+              [
+                "id($stepper_id).current_position",
+                "pos",
+                "( $step_total * pos ) - ( $step_total / 2 )",
+              ]
         - stepper.set_target:
             id: $stepper_id
             target: !lambda |-
