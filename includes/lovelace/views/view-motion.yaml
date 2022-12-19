@@ -1,6 +1,6 @@
 cards:
   - entities:
-      - entity: binary_sensor.hallway_motion_occupancy
+      - entity: binary_sensor.hallway_motion_occupancy_group
         name: Hallway
         secondary_info: last-changed
     type: entities
