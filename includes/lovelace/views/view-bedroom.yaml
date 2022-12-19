@@ -33,7 +33,7 @@ cards:
                 show_percentage_control: true
                 collapsible_controls: true
               - type: custom:mushroom-humidifier-card
-                entity: humidifier.bedroom_humidifier
+                entity: humidifier.bedroom_humidifier_virtual
                 name: Humidifier
                 show_target_humidity_control: true
               - type: custom:decluttering-card
