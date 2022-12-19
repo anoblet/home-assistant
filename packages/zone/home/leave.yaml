@@ -1,6 +1,9 @@
 zone_home_leave:
   automation:
     action:
+      - service: humidifier.turn_off
+        target:
+          entity_id: humidifier.bedroom_humidifier_virtual
       - service: light.turn_off
         target:
           entity_id: light.bedroom_lights
