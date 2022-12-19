@@ -6,9 +6,6 @@ packages:
 esphome:
   name: ${name}
   name_add_mac_suffix: false
-time:
-  - platform: sntp
-    id: my_time
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
