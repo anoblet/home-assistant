@@ -1,9 +1,18 @@
 zone_tarrytown_enter:
   automation:
     action:
-      - service: climate.turn_on
-        target:
-          entity_id: climate.bedroom_thermostat
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: input_select.bedroom_climate_zone
+                state: "Tarrytown"
+            sequence:
+              - service: climate.turn_on
+                target:
+                  entity_id: climate.bedroom_thermostat
+              - service: humidifier.turn_on
+                target:
+                  entity_id: humidifier.bedroom_humidifier_virtual
     alias: Tarrytown - Andrew - Enter
     id: zone_tarrytown_andrew_enter
     mode: single
