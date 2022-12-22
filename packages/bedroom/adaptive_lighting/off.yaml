@@ -18,4 +18,6 @@ automation_bedroom_adaptive_lighting_off:
             - light.bedroom_ceiling
             - light.bedroom_lamp_group_zigbee
             - light.bedroom_light_group_zigbee
+          from: "on"
           platform: state
+          to: "on"
