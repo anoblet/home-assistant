@@ -72,10 +72,6 @@ intent_script: !include_dir_named includes/intent_script
 
 light: !include_dir_list includes/light
 
-lovelace: !include includes/lovelace.yaml
-
-# lovelace_gen:
-
 script ui: !include scripts.yaml
 script manual: !include_dir_named includes/scripts
 
