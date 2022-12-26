@@ -1,0 +1,8 @@
+kitchen_motion_cooldown:
+  input_number:
+    kitchen_motion_cooldown:
+      max: 60
+      min: 0
+      mode: box
+      name: Kitchen Motion Cooldown
+      unit_of_measurement: "m"

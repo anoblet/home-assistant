@@ -1,5 +1,0 @@
-max: 60
-min: 0
-mode: box
-name: Kitchen Motion Cooldown
-unit_of_measurement: "m"

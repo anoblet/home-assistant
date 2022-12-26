@@ -1,0 +1,8 @@
+kitchen_light_transition_off:
+  input_number:
+    kitchen_light_transition_off:
+      max: 60
+      min: 0
+      mode: box
+      name: Kitchen Light Transition Off
+      unit_of_measurement: "s"
