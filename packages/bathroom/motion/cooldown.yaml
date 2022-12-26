@@ -1,0 +1,8 @@
+bathroom_motion_cooldown:
+  input_number:
+    bathroom_motion_cooldown:
+      max: 60
+      min: 0
+      mode: box
+      name: Bathroom Motion Cooldown
+      unit_of_measurement: "m"
