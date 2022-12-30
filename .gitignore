@@ -10,6 +10,7 @@
 !www/custom-elements/**/*
 
 #Exclude
+.*/
 custom_components
 esphome/secrets.yaml
 node_modules
