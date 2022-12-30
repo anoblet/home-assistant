@@ -2,7 +2,7 @@ bedroom_display_sunset:
   automation:
     action:
       data:
-        volume_level: 0.35
+        volume_level: 0.30
       service: media_player.volume_set
       target:
         entity_id: media_player.bedroom_display
