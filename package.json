@@ -2,27 +2,45 @@
   "name": "@anoblet/home-assistant",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "commit": "git add . && git commit -m \"save\" && git push",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "chokidar \"**/*.js\" \"**/*.yaml\" -c \"npm run commit\""
+  "keywords": [],
+  "homepage": "https://github.com/anoblet/home-assistant#readme",
+  "bugs": {
+    "url": "https://github.com/anoblet/home-assistant/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anoblet/home-assistant.git"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/anoblet/home-assistant/issues"
-  },
-  "homepage": "https://github.com/anoblet/home-assistant#readme",
+  "author": "",
+  "main": "index.js",
   "workspaces": [
     "packages\\custom-theme"
   ],
-  "dependencies": {
-    "chokidar-cli": "^3.0.0"
+  "scripts": {
+    "commit": "wireit",
+    "sort-package-json": "wireit"
+  },
+  "devDependencies": {
+    "sort-package-json": "^2.1.0",
+    "wireit": "^0.9.2"
+  },
+  "wireit": {
+    "commit": {
+      "command": "git add . && git commit --allow-empty-message -m \"\"",
+      "dependencies": [
+        "sort-package-json"
+      ],
+      "files": [
+        "**/*.js",
+        "**/*.yaml"
+      ]
+    },
+    "sort-package-json": {
+      "command": "sort-package-json",
+      "files": [
+        "**/package.json"
+      ]
+    }
   }
 }
