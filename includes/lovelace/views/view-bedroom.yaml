@@ -18,7 +18,7 @@ cards:
                 name: Thermostat
                 show_temperature_control: true
               - type: custom:mushroom-light-card
-                entity: light.bedroom_lights
+                entity: light.bedroom_light_group_zigbee
                 name: Lights
                 show_brightness_control: true
                 show_color_temp_control: true
