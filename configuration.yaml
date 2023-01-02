@@ -9,7 +9,6 @@ tts:
 
 scene: !include scenes.yaml
 
-automation manual: !include_dir_list includes/automations
 automation ui: !include automations.yaml
 
 frontend:
@@ -24,7 +23,7 @@ http:
   cors_allowed_origins:
     - http://192.168.0.140 # Valetudo
     - https://cast.home-assistant.io
-    - https://anoblet.duckdns.org
+    - https://31w3e.andrewnoblet.com
   # server_port: 443
   trusted_proxies:
     - 10.0.0.200
@@ -62,29 +61,8 @@ influxdb:
   max_retries: 3
   default_measurement: state
 
-input_boolean: !include_dir_named includes/input_booleans
-
-input_datetime: !include_dir_named includes/input_datetime
-
-input_number: !include_dir_named includes/input_number
-
-intent_script: !include_dir_named includes/intent_script
-
-light: !include_dir_list includes/light
-
 script ui: !include scripts.yaml
-script manual: !include_dir_named includes/scripts
-
-sensor:
-  - platform: template
-    sensors: !include_dir_named includes/sensor/template/sensors/
-
-switch:
-  - platform: template
-    switches: !include_dir_named includes/switch/switches/
 
 zha:
   zigpy_config:
     topology_scan_period: 20 # set the scan interval to 20 mn
-
-zone: !include_dir_list includes/zone
