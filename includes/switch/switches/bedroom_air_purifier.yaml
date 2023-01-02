@@ -1,6 +1,0 @@
-friendly_name: Air Purifier
-turn_on:
-  - service: script.bedroom_air_purifier_on
-turn_off:
-  - service: script.bedroom_air_purifier_off
-unique_id: bedroom_air_purifier

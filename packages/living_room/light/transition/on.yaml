@@ -1,0 +1,8 @@
+living_room_light_transition_on:
+  input_number:
+    living_room_light_transition_on:
+      max: 600
+      min: 0
+      mode: box
+      name: Living Room Light Transition On
+      unit_of_measurement: "s"

@@ -1,0 +1,8 @@
+living_room_motion_cooldown:
+  input_number:
+    living_room_motion_cooldown:
+      max: 60
+      min: 0
+      mode: box
+      name: Living Room Motion Cooldown
+      unit_of_measurement: "m"

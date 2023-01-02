@@ -1,7 +1,0 @@
-platform: group
-name: Bedroom Lights
-entities:
-  - light.bedroom_bureau
-  - light.bedroom_ceiling
-  - light.bedroom_table
-unique_id: bedroom_lights

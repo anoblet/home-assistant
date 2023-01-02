@@ -1,8 +1,0 @@
-friendly_name: "Bathroom Shower Occupancy"
-unique_id: bathroom_shower_occupancy
-value_template: >-
-  {% if is_state("input_boolean.bathroom_shower_occupancy", "on") %}
-    Detected
-  {% elif is_state("input_boolean.bathroom_shower_occupancy", "off") %}
-    Clear
-  {% endif %}
