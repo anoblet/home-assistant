@@ -9,13 +9,10 @@ tts:
 
 scene: !include scenes.yaml
 
-automation ui: !include automations.yaml
+automation: !include automations.yaml
 
 frontend:
   themes: !include_dir_merge_named themes
-  # themes custom: !include_dir_merge_named includes/frontend/themes
-
-# generic_hygrostat: !include_dir_list includes/generic_hygrostat
 
 group ui: !include groups.yaml
 
@@ -48,7 +45,6 @@ http:
 
 homeassistant:
   country: US
-  # customize: !include includes/homeassistant/customize.yaml
   external_url: https://31w3e.andrewnoblet.com
   packages: !include_dir_merge_named packages/
 
@@ -61,7 +57,7 @@ influxdb:
   max_retries: 3
   default_measurement: state
 
-script ui: !include scripts.yaml
+script: !include scripts.yaml
 
 zha:
   zigpy_config:
