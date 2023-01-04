@@ -1,0 +1,8 @@
+storage_room_lights:
+  light:
+    - platform: group
+      name: "Storage Room Lights"
+      entities:
+        - light.storage_room_ceiling
+      unique_id: storage_room_lights
+    
