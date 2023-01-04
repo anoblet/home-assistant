@@ -10,5 +10,5 @@ common_group_volume_sunset:
     id: common_group_volume_sunset
     mode: single
     trigger:
-      - event: sunrise
+      - event: sunset
         platform: sun
