@@ -1,9 +1,0 @@
-- id: '1645709691727'
-  alias: Cast to Google Hub
-  description: ''
-  use_blueprint:
-    path: kind3r/cast-and-re-cast-a-lovelace-view-to-a-google-hub.yaml
-    input:
-      dashboard: bedroom-display
-      player: media_player.bedroom_display
-      view: bedroom-display
