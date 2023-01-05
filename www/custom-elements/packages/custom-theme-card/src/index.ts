@@ -91,6 +91,8 @@ export class CustomThemeCard extends BaseElement {
   add() {
     const theme = { ...this.theme };
 
+    console.log(this.theme);
+
     this.theme.properties.push({ name: "", value: "" });
 
     this.requestUpdate("theme", theme);
