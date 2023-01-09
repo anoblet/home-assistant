@@ -6,7 +6,7 @@ storage_room_motion_cleared:
           entity_id: light.storage_room_lights
     alias: Storage Room - Motion Sensor - Cleared
     condition:
-      # Only turn off the lights if the printer is not printing
+      # Don't turn off the lights if there is a print happening
       - condition: state
         entity_id: binary_sensor.octoprint_printing
         state: "off"

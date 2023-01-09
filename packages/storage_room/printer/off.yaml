@@ -1,0 +1,14 @@
+storage_room_printer_off:
+  automation:
+    action:
+      - service: light.turn_off
+        target:
+          entity_id: light.storage_room_lights
+    alias: Storage Room - Printer - Off
+    id: storage_room_printer_off
+    mode: single
+    trigger:
+      - entity_id: binary_sensor.octoprint_printing
+        from: "on"
+        platform: state
+        to: "off"
