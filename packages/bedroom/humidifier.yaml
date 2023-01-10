@@ -7,5 +7,5 @@ bedroom_humidifier:
       wet_tolerance: 1
   google_assistant:
     entity_config:
-      humidifier.bedroom_humidifier:
+      humidifier.bedroom_humidifier_virtual:
         expose: true
