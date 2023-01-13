@@ -9,3 +9,4 @@ bedroom_humidifier:
     entity_config:
       humidifier.bedroom_humidifier_virtual:
         expose: true
+        name: "Bedroom Humidifier"

@@ -14,7 +14,7 @@ automation: !include automations.yaml
 frontend:
   themes: !include_dir_merge_named themes
 
-group ui: !include groups.yaml
+group: !include groups.yaml
 
 http:
   cors_allowed_origins:

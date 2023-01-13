@@ -4,6 +4,11 @@ storage_room_printer_off:
       - service: light.turn_off
         target:
           entity_id: light.storage_room_lights
+      # Announce that printing has finished
+      - service: tts.google_translate_say
+        data:
+          entity_id: media_player.bedroom_display
+          message: Printing has finished
     alias: Storage Room - Printer - Off
     condition:
       - condition: state
