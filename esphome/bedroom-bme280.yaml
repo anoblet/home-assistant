@@ -16,7 +16,10 @@ sensor:
       name: Bedroom BME280 Humidity
     platform: bme280
     pressure:
+      filters:
+        - multiply: 68.9476
       name: Bedroom BME280 Pressure
+      unit_of_measurement: "hPa"
     temperature:
       name: Bedroom BME280 Temperature
 wifi:
