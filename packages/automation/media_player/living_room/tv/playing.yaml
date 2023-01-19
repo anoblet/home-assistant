@@ -4,6 +4,10 @@ automation_media_player_living_room_tv_playing:
         - service: input_boolean.turn_off
           target:
             entity_id: input_boolean.living_room_motion
+        # Close the living room blinds
+        - service: cover.close_cover
+          target:
+            entity_id: cover.living_room_blinds
       alias: Media Player - Living Room - TV - Playing
       id: media_player_living_room_playing
       trigger:

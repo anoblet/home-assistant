@@ -1,0 +1,13 @@
+automation_bedroom_media_player_tv_off:
+  automation:
+    - action:
+        # Turn on the automatic blinds
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.bedroom_blinds_automatic
+      alias: Bedroom - Media Player - TV - Off
+      id: bedroom_media_player_tv_off
+      trigger:
+        - entity_id: media_player.bedroom_tv
+          platform: state
+          to: "off"
