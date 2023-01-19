@@ -1,7 +1,6 @@
 import multi from "@rollup/plugin-multi-entry";
 import { nodeResolve } from "@rollup/plugin-node-resolve";
 import ignore from "rollup-plugin-ignore";
-import excludeDependenciesFromBundle from "rollup-plugin-exclude-dependencies-from-bundle";
 
 export default {
   input: "build/packages/**/*.js",
