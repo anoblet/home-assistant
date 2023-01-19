@@ -3,6 +3,6 @@ bedroom_adaptive_lighting:
     - lights:
         - light.bedroom_ceiling
         - light.bedroom_lamp_group_zigbee
-      max_color_temp: 3000
-      min_color_temp: 2700
+      max_color_temp: 3250
+      min_color_temp: 3000
       name: Bedroom

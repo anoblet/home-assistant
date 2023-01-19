@@ -3,7 +3,7 @@ bedroom_blinds_three:
     - action:
         - condition: state
           entity_id: input_boolean.bedroom_blinds_automatic
-          state: 'on'
+          state: "on"
         - choose:
             - conditions:
                 - condition: template
