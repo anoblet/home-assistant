@@ -6,7 +6,9 @@ automation_bedroom_media_player_tv_playing:
           target:
             entity_id: input_boolean.bedroom_blinds_automatic
         # Close the bedroom blinds
-        - service: cover.close_cover
+        - service: cover.set_cover_position
+          data:
+            position: 90
           target:
             entity_id: cover.bedroom_blinds
       alias: Bedroom - Media Player - TV - Playing

@@ -16,6 +16,5 @@ hallway_motion_detected:
       mode: single
       trigger:
         - entity_id: binary_sensor.hallway_motion_occupancy_group
-          from: "off"
           platform: state
           to: "on"
