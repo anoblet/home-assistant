@@ -18,14 +18,3 @@ automation_cover_bedroom_automatic:
             - cover.bedroom_blind_two
             - cover.bedroom_blind_three
           platform: state
-    # Reset
-    - trigger:
-        - platform: time
-          at: "00:00:00"
-      action:
-        - data:
-            entity_id: input_boolean.bedroom_blinds_automatic
-          service: input_boolean.turn_on
-      id: bedroom_blinds_automatic_reset
-      mode: single
-      alias: Bedroom - Blinds - Automatic - Reset
