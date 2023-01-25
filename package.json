@@ -30,9 +30,7 @@
   "wireit": {
     "commit": {
       "dependencies": [
-        "git:push",
-        "git:commit",
-        "sort-package-json"
+        "git:push"
       ],
       "files": [
         "**/*.js",
@@ -40,10 +38,16 @@
       ]
     },
     "git:commit": {
-      "command": "git add . && git commit --allow-empty-message -m \"\""
+      "command": "git add . && git commit --allow-empty-message -m \"\"",
+      "dependencies": [
+        "sort-package-json"
+      ]
     },
     "git:push": {
-      "command": "git push"
+      "command": "git push",
+      "dependencies": [
+        "git:commit"
+      ]
     },
     "sort-package-json": {
       "command": "sort-package-json",
