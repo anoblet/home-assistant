@@ -30,9 +30,9 @@
   "wireit": {
     "commit": {
       "dependencies": [
-        "sort-package-json",
+        "git:push",
         "git:commit",
-        "git:push"
+        "sort-package-json"
       ],
       "files": [
         "**/*.js",
