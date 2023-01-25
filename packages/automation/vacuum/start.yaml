@@ -10,13 +10,11 @@ automation_vacuum_start:
             - condition: state
               entity_id: vacuum.valetudo_vacuum
               state: "docked"
-            # Only run on Monday, Wednesday, and Friday
+            # Only run on Saturday
             - condition: time
               weekday:
-                # - mon
-                - wed
-                # - fri
+                - sat
       id: vacuum_start
       trigger:
-        - at: "13:00:00"
+        - at: "11:00:00"
           platform: time

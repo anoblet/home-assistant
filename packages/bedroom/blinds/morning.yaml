@@ -1,10 +1,10 @@
-bedroom_blinds_sunrise:
+bedroom_blinds_morning:
   automation:
     - action:
         - service: input_boolean.turn_on
           target:
             entity_id: input_boolean.bedroom_blinds_automatic
-      alias: Bedroom Blinds - Morning
+      alias: Bedroom - Blinds - Morning
       id: bedroom_blinds_morning
       mode: single
       trigger:
