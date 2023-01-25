@@ -19,6 +19,8 @@
   ],
   "scripts": {
     "commit": "wireit",
+    "git:commit": "wireit",
+    "git:push": "wireit",
     "sort-package-json": "wireit"
   },
   "devDependencies": {
@@ -27,14 +29,21 @@
   },
   "wireit": {
     "commit": {
-      "command": "git add . && git commit --allow-empty-message -m \"\"",
       "dependencies": [
-        "sort-package-json"
+        "sort-package-json",
+        "git:commit",
+        "git:push"
       ],
       "files": [
         "**/*.js",
         "**/*.yaml"
       ]
+    },
+    "git:commit": {
+      "command": "git add . && git commit --allow-empty-message -m \"\""
+    },
+    "git:push": {
+      "command": "git push"
     },
     "sort-package-json": {
       "command": "sort-package-json",
