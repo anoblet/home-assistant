@@ -1,4 +1,4 @@
-automation_media_player_living_room_tv_off:
+automation_living_room_media_player_tv_off:
   automation:
     - action:
         - service: input_boolean.turn_on
