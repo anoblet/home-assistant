@@ -46,8 +46,8 @@ cards:
                 name: Door
               - type: custom:mushroom-entity-card
                 entity: binary_sensor.bathroom_motion_occupancy
-                icon: mdi:gauge
-                name: Occupancy
+                name: Motion
+                secondary_info: last-changed
 icon: mdi:toilet
 path: bathroom
 title: Bathroom

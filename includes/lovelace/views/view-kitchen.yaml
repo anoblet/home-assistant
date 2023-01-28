@@ -38,8 +38,8 @@ cards:
             cards:
               - type: custom:mushroom-entity-card
                 entity: binary_sensor.kitchen_motion_occupancy_group
-                icon: mdi:gauge
-                name: Occupancy
+                name: Motion
+                secondary_info: last-changed
 icon: mdi:countertop
 title: Kitchen
 type: custom:default-view
