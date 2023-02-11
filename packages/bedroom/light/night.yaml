@@ -1,0 +1,15 @@
+bedroom_light_night:
+  automation:
+    action:
+      - data:
+          brightness_pct: 0
+          transition: 900
+        service: light.turn_off
+        target:
+          entity_id: light.bedroom_light_group_zigbee
+    alias: Bedroom - Light - Night
+    id: bedroom_light_night
+    mode: single
+    trigger:
+      - at: "22:00:00"
+        platform: time

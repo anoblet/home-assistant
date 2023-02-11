@@ -7,7 +7,7 @@ bedroom_blinds_two:
         - choose:
             - conditions:
                 - condition: template
-                  value_template: "{{ state_attr('sun.sun', 'azimuth') > 135 and state_attr('sun.sun', 'azimuth') < 225 }}"
+                  value_template: "{{ state_attr('sun.sun', 'elevevation') > 0 and state_attr('sun.sun', 'azimuth') > 135 and state_attr('sun.sun', 'azimuth') < 225 }}"
               sequence:
                 - service: cover.set_cover_position
                   data:
@@ -15,9 +15,7 @@ bedroom_blinds_two:
                   target:
                     entity_id: cover.bedroom_blind_two
           default:
-            - service: cover.set_cover_position
-              data:
-                position: 60
+            - service: cover.open_cover
               target:
                 entity_id: cover.bedroom_blind_two
       alias: Bedroom - Blinds - Two

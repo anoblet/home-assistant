@@ -7,7 +7,7 @@ bedroom_blinds_three:
         - choose:
             - conditions:
                 - condition: template
-                  value_template: "{{ state_attr('sun.sun', 'azimuth') > 180 and state_attr('sun.sun', 'azimuth') < 270 }}"
+                  value_template: "{{ state_attr('sun.sun', 'elevevation') > 0 and state_attr('sun.sun', 'azimuth') > 180 and state_attr('sun.sun', 'azimuth') < 270 }}"
               sequence:
                 - service: cover.set_cover_position
                   data:
@@ -15,9 +15,7 @@ bedroom_blinds_three:
                   target:
                     entity_id: cover.bedroom_blind_three
           default:
-            - service: cover.set_cover_position
-              data:
-                position: 60
+            - service: cover.open_cover
               target:
                 entity_id: cover.bedroom_blind_three
       alias: Bedroom - Blinds - Three

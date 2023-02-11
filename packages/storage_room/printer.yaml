@@ -1,0 +1,5 @@
+storage_room_printer:
+  google_assistant:
+    entity_config:
+      switch.storage_room_printer:
+        expose: true

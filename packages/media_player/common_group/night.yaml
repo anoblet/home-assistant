@@ -1,11 +1,11 @@
-common_group_volume_sunset:
+common_group_night:
   automation:
     action:
       - service: media_player.turn_off
         target:
-          entity_id: media_player.speaker_group
-    alias: Common Group - Volume - Sunset
-    id: common_group_volume_sunset
+          entity_id: media_player.common_group
+    alias: Common Group - Night
+    id: common_group_night
     mode: single
     trigger:
       - at: "22:00:00"
