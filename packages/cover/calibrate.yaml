@@ -20,48 +20,48 @@ cover_calibrate:
         # Close - Down
         - service: esphome.bedroom_blind_one_set_target
           data:
-            target: -9500
+            target: -9250
         - service: esphome.bedroom_blind_two_set_target
           data:
-            target: -9500
+            target: -9250
         - service: esphome.bedroom_blind_three_set_target
           data:
-            target: -9500
+            target: -9250
         - service: esphome.kitchen_blind_one_set_target
           data:
-            target: -9500
+            target: -9250
         - service: esphome.living_room_blind_one_set_target
           data:
-            target: -9500
+            target: -9250
         - service: esphome.living_room_blind_two_set_target
           data:
-            target: -9500
+            target: -9250
         - service: esphome.living_room_blind_three_set_target
           data:
-            target: -9500
+            target: -9250
         - delay: 00:02:00
         # Close - Up
         - service: esphome.bedroom_blind_one_set_target
           data:
-            target: 9500
+            target: 9250
         - service: esphome.bedroom_blind_two_set_target
           data:
-            target: 9500
+            target: 9250
         - service: esphome.bedroom_blind_three_set_target
           data:
-            target: 9500
+            target: 9250
         - service: esphome.kitchen_blind_one_set_target
           data:
-            target: 9500
+            target: 9250
         - service: esphome.living_room_blind_one_set_target
           data:
-            target: 9500
+            target: 9250
         - service: esphome.living_room_blind_two_set_target
           data:
-            target: 9500
+            target: 9250
         - service: esphome.living_room_blind_three_set_target
           data:
-            target: 9500
+            target: 9250
         - delay: 00:02:00
         # Open
         - service: esphome.bedroom_blind_one_set_target
