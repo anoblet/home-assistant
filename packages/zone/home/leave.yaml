@@ -24,6 +24,7 @@ zone_home_leave:
                   percentage: 100
                 target:
                   entity_id: fan.bedroom_air_purifier
+              # Turn off the humidifier
               - service: humidifier.turn_off
                 target:
                   entity_id: humidifier.bedroom_humidifier_virtual

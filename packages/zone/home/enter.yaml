@@ -24,6 +24,7 @@ zone_home_enter:
                   preset_mode: auto
                 target:
                   entity_id: fan.bedroom_air_purifier
+              # Turn on the humidifier
               - service: humidifier.turn_on
                 target:
                   entity_id: humidifier.bedroom_humidifier_virtual
