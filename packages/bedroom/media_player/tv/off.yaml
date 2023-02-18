@@ -10,4 +10,4 @@ automation_bedroom_media_player_tv_off:
       trigger:
         - entity_id: media_player.bedroom_tv
           platform: state
-          to: off
+          to: "off"

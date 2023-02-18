@@ -5,15 +5,15 @@ cover_calibrate:
         - service: script.cover_calibrate
       alias: Cover Calibrate
       condition:
-        - conditions:
-            # Only run on Sunday
-            - condition: time
-              weekday:
-                - sun
+        # Only run on Sunday
+        - condition: time
+          weekday:
+            - sun
       id: vacuum_start
       trigger:
         - at: "08:00:00"
           platform: time
+      unique_id: cover_calibrate
   script:
     cover_calibrate:
       sequence:

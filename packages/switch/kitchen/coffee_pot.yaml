@@ -1,5 +1,0 @@
-switch_kitchen_coffee_pot:
-  google_assistant:
-    entity_config:
-      switch.kitchen_coffee_pot:
-        expose: true

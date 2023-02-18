@@ -132,7 +132,5 @@ homeassistant_customize:
       switch.bedroom_humidifier:
         assumed_state: false
         icon: mdi:air-humidifier
-      switch.kitchen_coffee_pot:
-        friendly_name: Kitchen Coffee Pot
       switch.living_room_heater:
         friendly_name: Living Room Heater
