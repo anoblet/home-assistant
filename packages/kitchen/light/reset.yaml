@@ -11,7 +11,7 @@ kitchen_light_reset:
     id: kitchen_light_manual_reset
     mode: single
     trigger:
-      - entity_id: light.kitchen_lights
+      - entity_id: light.kitchen_light_group_zigbee
         platform: state
         to: "off"
       - entity_id: input_boolean.kitchen_light_manual

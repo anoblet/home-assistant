@@ -1,21 +1,27 @@
 light_common:
   automation:
-    # Turn on the common light at sunset
     - action:
+        # Turn on the common light at sunset
         - service: light.turn_on
           target:
             entity_id: light.common_lights
+        - service: homeassistant.turn_off
+          target:
+            entity_id: group.light_manual_common
       alias: Common - Light - Sunset
       id: common_light_sunset
       mode: single
       trigger:
         - event: sunset
           platform: sun
-    # Turn off the common lights at midnight
     - action:
+        # Turn off the common lights at midnight
         - service: light.turn_off
           target:
             entity_id: light.common_lights
+        - service: homeassistant.turn_on
+          target:
+            entity_id: group.light_manual_common
       alias: Common - Light - Night
       id: common_light_night
       mode: single

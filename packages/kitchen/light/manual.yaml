@@ -3,20 +3,20 @@ kitchen_light_manual:
     action:
       - delay: 5
       - condition: state
-        entity_id: light.kitchen_lights
-        state: 'on'
+        entity_id: light.kitchen_light_group_zigbee
+        state: "on"
       - data:
           entity_id: input_boolean.kitchen_light_manual
         service: input_boolean.turn_on
     alias: Kitchen Light Manual
     condition:
       - condition: template
-        value_template: '{{ trigger.to_state.context.user_id != None }}'
+        value_template: "{{ trigger.to_state.context.user_id != None }}"
     id: kitchen_light_manual
     mode: single
     trigger:
       - entity_id:
-          - light.kitchen_lights
+          - light.kitchen_light_group_zigbee
         platform: state
   input_boolean:
     kitchen_light_manual:
