@@ -1,9 +1,9 @@
 automation_living_room_media_player_tv_playing:
   automation:
     - action:
-        - service: input_boolean.turn_off
+        - service: input_boolean.turn_on
           target:
-            entity_id: input_boolean.living_room_motion
+            entity_id: input_boolean.living_room_light_manual
         # Close the living room blinds
         - service: cover.close_cover
           target:
