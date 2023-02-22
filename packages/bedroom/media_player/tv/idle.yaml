@@ -1,19 +1,22 @@
-automation_bedroom_media_player_tv_playing:
+automation_bedroom_media_player_tv_idle:
   automation:
     - action:
+        # Turn off the ceiling light
+        - service: light.turn_off
+          target:
+            entity_id: light.bedroom_ceiling_light
         # Turn off the automatic blinds
         - service: input_boolean.turn_off
           target:
             entity_id: input_boolean.bedroom_blinds_automatic
         # Close the bedroom blinds
-        - service: cover.set_cover_position
-          data:
-            position: 90
+        - service: cover.close_cover
           target:
             entity_id: cover.bedroom_blinds
-      alias: Bedroom - Media Player - TV - Playing
-      id: bedroom_media_player_tv_playing
+      alias: Bedroom - Media Player - TV - Idle
+      id: bedroom_media_player_tv_idle
       trigger:
         - entity_id: media_player.bedroom_tv
           platform: state
-          to: playing
+          from: "off"
+          to: "idle"
