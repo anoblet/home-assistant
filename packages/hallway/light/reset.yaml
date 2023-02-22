@@ -14,6 +14,3 @@ hallway_light_reset:
       - entity_id: light.hallway_light_group_zigbee
         platform: state
         to: "off"
-      - entity_id: input_boolean.hallway_light_manual
-        for: "01:00:00"
-        platform: state
