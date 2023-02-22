@@ -1,4 +1,4 @@
-bedroom_thermostat_reset:
+bedroom_thermostat_night:
   automation:
     - action:
         - data:
@@ -6,8 +6,8 @@ bedroom_thermostat_reset:
           service: climate.set_temperature
           target:
             entity_id: climate.bedroom_thermostat
-      alias: Bedroom - Thermostat - Reset
-      id: bedroom_thermostat_reset
+      alias: Bedroom - Thermostat - Night
+      id: bedroom_thermostat_night
       trigger:
-        at: "00:00:00"
+        at: "22:00:00"
         platform: time
