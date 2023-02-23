@@ -28,8 +28,8 @@ update_automatic:
             - update.zigbee2mqtt_update
       - service: update.install
         target:
-          entity_id:
-            - update.home_assistant_operating_system_update
+          entity_id: >
+            {{ states.update | selectattr('state','eq', 'on') | map(attribute='entity_id') | list }}
     alias: "Update - Automatic"
     id: update_automatic
     trigger:
