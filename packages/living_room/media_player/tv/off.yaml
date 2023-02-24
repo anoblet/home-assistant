@@ -1,12 +1,16 @@
 automation_living_room_media_player_tv_off:
   automation:
     - action:
-        # Open the living room blinds
-        - service: cover.open_cover
+        # Turn off manual lights
+        - service: input_boolean.turn_off
           target:
-            entity_id: cover.living_room_blinds
+            entity_id: input_boolean.living_room_light_manual
+        # Turn on automatic blinds
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.living_room_blinds_automatic
       alias: Media Player - Living Room - TV - Off
-      id: media_player_living_room_off
+      id: living_room_media_player_tv_off
       trigger:
         - entity_id: media_player.living_room_tv
           platform: state

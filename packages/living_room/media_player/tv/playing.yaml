@@ -1,19 +1,26 @@
-automation_living_room_media_player_tv_playing:
+automation_living_room_media_player_tv_idle:
   automation:
     - action:
-        - service: light.turn_off
-          target:
-            entity_id: light.living_room_ceiling_light_group_zigbee
         - service: input_boolean.turn_on
           target:
             entity_id: input_boolean.living_room_light_manual
-        # Close the living room blinds
-        - service: cover.close_cover
+        - service: light.turn_off
+          target:
+            entity_id: light.living_room_ceiling_light_group_zigbee
+        # Turn off automatic blinds
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.living_room_blinds_automatic
+        # Set blinds to 90%
+        - service: cover.set_cover_position
+          data:
+            position: 90
           target:
             entity_id: cover.living_room_blinds
-      alias: Media Player - Living Room - TV - Playing
-      id: media_player_living_room_playing
+      alias: Media Player - Living Room - TV - Idle
+      id: living_room_media_player_tv_idle
       trigger:
         - entity_id: media_player.living_room_tv
           platform: state
-          to: "playing"
+          from: "off"
+          to: "idle"
