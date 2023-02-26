@@ -11,10 +11,10 @@ automation_living_room_media_player_tv_idle:
         - service: input_boolean.turn_off
           target:
             entity_id: input_boolean.living_room_blinds_automatic
-        # Set blinds to 90%
+        # Set blinds to 70%
         - service: cover.set_cover_position
           data:
-            position: 90
+            position: 70
           target:
             entity_id: cover.living_room_blinds
       alias: Media Player - Living Room - TV - Idle
