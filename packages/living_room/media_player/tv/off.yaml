@@ -5,10 +5,20 @@ automation_living_room_media_player_tv_off:
         - service: input_boolean.turn_off
           target:
             entity_id: input_boolean.living_room_light_manual
-        # Turn on automatic blinds
-        - service: input_boolean.turn_on
-          target:
-            entity_id: input_boolean.living_room_blinds_automatic
+        - choose:
+            - conditions:
+                - condition: state
+                  entity_id: sensor.season
+                  state: "summer"
+              sequence:
+                # Turn on automatic blinds
+                - service: input_boolean.turn_on
+                  target:
+                    entity_id: input_boolean.living_room_blinds_automatic
+          default:
+            - service: cover.open_cover
+              target:
+                entity_id: cover.living_room_blinds
       alias: Media Player - Living Room - TV - Off
       id: living_room_media_player_tv_off
       trigger:

@@ -3,7 +3,7 @@ common_group_volume_sunset:
     action:
       - service: media_player.volume_set
         data:
-          volume_level: 0.3
+          volume_level: 0.25
         target:
           entity_id: media_player.common_group
     alias: Common Group - Volume - Sunset
