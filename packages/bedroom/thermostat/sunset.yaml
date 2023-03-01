@@ -1,0 +1,11 @@
+bedroom_thermostat_sunset:
+  automation:
+    - action:
+        - service: climate.turn_off
+          target:
+            entity_id: climate.bedroom_thermostat
+      alias: Bedroom - Thermostat - Sunset
+      id: bedroom_thermostat_sunset
+      trigger:
+        - event: sunset
+          platform: sun
