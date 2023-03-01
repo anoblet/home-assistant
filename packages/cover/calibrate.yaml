@@ -11,12 +11,13 @@ cover_calibrate:
             - sun
       id: cover_calibrate
       trigger:
-        - at: "12:00:00"
+        - at: "12:00:00"WW
           platform: time
   google_assistant:
     entity_config:
       script.cover_calibrate:
         expose: true
+        name: Cover Calibrate
   script:
     cover_calibrate:
       sequence:
