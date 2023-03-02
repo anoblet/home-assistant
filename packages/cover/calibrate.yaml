@@ -11,7 +11,7 @@ cover_calibrate:
             - sun
       id: cover_calibrate
       trigger:
-        - at: "12:00:00"WW
+        - at: "12:00:00"
           platform: time
   google_assistant:
     entity_config:

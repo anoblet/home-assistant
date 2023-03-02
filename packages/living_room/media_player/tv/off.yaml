@@ -22,6 +22,6 @@ automation_living_room_media_player_tv_off:
       alias: Media Player - Living Room - TV - Off
       id: living_room_media_player_tv_off
       trigger:
-        - entity_id: media_player.living_room_tv
+        - entity_id: media_player.hismarttv_a4
           platform: state
           to: "off"
