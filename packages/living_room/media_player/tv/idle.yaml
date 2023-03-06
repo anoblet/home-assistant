@@ -14,7 +14,7 @@ automation_living_room_media_player_tv_idle:
         # Set blinds to 80%
         - service: cover.set_cover_position
           data:
-            position: 80
+            position: 75
           target:
             entity_id: cover.living_room_blinds
       alias: Media Player - Living Room - TV - Idle
