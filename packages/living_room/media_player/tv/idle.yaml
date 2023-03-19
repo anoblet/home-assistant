@@ -23,3 +23,4 @@ automation_living_room_media_player_tv_idle:
         - entity_id: media_player.hismarttv_a4
           platform: state
           from: "off"
+          to: "idle"
