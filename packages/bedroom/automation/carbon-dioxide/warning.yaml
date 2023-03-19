@@ -9,4 +9,4 @@ automation_bedroom_carbon_dioxide_warning:
       mode: single
       trigger:
         - platform: template
-          value_template: "{{ states('sensor.bedroom_scd30_carbon_dioxide') | int > states('input_number.bedroom_carbon_dioxide_warning') | int }}"
+          value_template: "{{ states('sensor.bedroom_scd30_carbon_dioxide') | int(0) > states('input_number.bedroom_carbon_dioxide_warning') | int(0) }}"
