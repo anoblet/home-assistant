@@ -15,8 +15,6 @@ automation_bedroom_media_player_tv_idle:
             position: 75
           target:
             entity_id: cover.bedroom_blinds
-        - service: cover.close_cover
-          target:
       alias: Bedroom - Media Player - TV - Idle
       id: bedroom_media_player_tv_idle
       trigger:
