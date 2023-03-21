@@ -10,13 +10,13 @@ storage_room_printer_off:
           entity_id: media_player.bedroom_display
           message: Printing has finished
       # Reset the filament dryer
-      - service: switch.turn_off
-        target:
-          entity_id: switch.storage_room_filament_dryer
-      - delay: 00:00:05
-      - service: switch.turn_on
-        target:
-          entity_id: switch.storage_room_filament_dryer
+      # - service: switch.turn_off
+      #   target:
+      #     entity_id: switch.storage_room_filament_dryer
+      # - delay: 00:00:05
+      # - service: switch.turn_on
+      #   target:
+      #     entity_id: switch.storage_room_filament_dryer
     alias: Storage Room - Printer - Off
     condition:
       - condition: state
