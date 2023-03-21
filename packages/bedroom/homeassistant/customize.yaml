@@ -3,8 +3,6 @@ bedroom_homeassistant_customize:
     customize:
       light.bedroom_bureau:
         friendly_name: Bedroom Bureau Lamp
-      light.bedroom_lights_zigbee:
-        friendly_name: Bedroom Lights Zigbee
       light.bedroom_table:
         friendly_name: Bedroom Table Lamp
       sensor.bedroom_climate_humidity:
