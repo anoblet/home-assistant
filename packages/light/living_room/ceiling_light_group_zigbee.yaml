@@ -6,4 +6,4 @@ light_living_room_ceiling_light_group_zigbee:
   homeassistant:
     customize:
       light.living_room_ceiling_light_group_zigbee:
-        friendly_name: "Living Room Ceiling Lights"
+        friendly_name: "Living Room Ceiling"
