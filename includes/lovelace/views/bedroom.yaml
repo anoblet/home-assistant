@@ -65,10 +65,28 @@ cards:
                 name: Pressure
               - type: custom:mushroom-entity-card
                 entity: sensor.bedroom_bme680_iaq
-                name: Air Quality 
+                name: Air Quality
               - type: custom:mushroom-entity-card
                 entity: sensor.bedroom_scd30_carbon_dioxide
                 name: Carbon Dioxide
+              - type: custom:mushroom-entity-card
+                entity: sensor.bedroom_sen55_nox
+                name: NOx
+              - type: custom:mushroom-entity-card
+                entity: sensor.bedroom_sen55_pm_1
+                name: PM 1
+              - type: custom:mushroom-entity-card
+                entity: sensor.bedroom_sen55_pm_2_5
+                name: PM 2.5
+              - type: custom:mushroom-entity-card
+                entity: sensor.bedroom_sen55_pm_4
+                name: PM 4
+              - type: custom:mushroom-entity-card
+                entity: sensor.bedroom_sen55_pm_10
+                name: PM 10
+              - type: custom:mushroom-entity-card
+                entity: sensor.bedroom_sen55_voc
+                name: VOC
 icon: mdi:bed
 title: Bedroom
 type: custom:default-view

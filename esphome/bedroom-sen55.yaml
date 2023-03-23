@@ -1,0 +1,47 @@
+api:
+  services:
+    - service: bedroom_sen55_start_fan_autoclean
+      then:
+        sen5x.start_fan_autoclean: sen55
+captive_portal:
+esp8266:
+  board: nodemcuv2
+esphome:
+  name: bedroom-sen55
+i2c:
+  scan: false
+  scl: 5
+  sda: 4
+logger:
+ota:
+  password: !secret esphome_ota_password
+sensor:
+  - platform: sen5x
+    id: sen55
+    nox:
+      name: "Bedroom SEN55 NOx"
+    pm_1_0:
+      name: "Bedroom SEN55 PM 1"
+      id: pm_1_0
+    pm_2_5:
+      name: "Bedroom SEN55 PM 2.5"
+      id: pm_2_5
+    pm_4_0:
+      name: "Bedroom SEN55 PM 4"
+      id: pm_4_0
+    pm_10_0:
+      name: "Bedroom SEN55 PM 10"
+      id: pm_10_0
+    temperature:
+      name: "Bedroom SEN55 Temperature"
+    humidity:
+      name: "Bedroom SEN55 Humidity"
+    voc:
+      name: "Bedroom Sen55 VOC"
+wifi:
+  ap:
+    password: !secret esphome_fallback_password
+    ssid: NodeMCU Fallback Hotspot
+  fast_connect: true
+  password: !secret esphome_wifi_password
+  ssid: !secret esphome_wifi_ssid
