@@ -4,7 +4,7 @@ substitutions:
 packages:
   athom.smart-plug-v2: github://athom-tech/athom-configs/athom-smart-plug-v2.yaml
 esphome:
-  name: ${name}
+  name: $name
   name_add_mac_suffix: false
 wifi:
   ssid: !secret wifi_ssid
