@@ -21,6 +21,11 @@ cover_calibrate:
   script:
     cover_calibrate:
       sequence:
+        - service: input_boolean.turn_off
+          target:
+            entity_id:
+              - input_boolean.bedroom_blinds_automatic
+              - input_boolean.living_room_blinds_automatic
         # Close - Down
         - service: esphome.bedroom_blind_one_set_target
           data:
