@@ -116,3 +116,9 @@ cover_calibrate:
         - service: esphome.living_room_blind_three_report_position
           data:
             position: 0
+        - delay: 00:02:00
+        - service: input_boolean.turn_on
+          target:
+            entity_id:
+              - input_boolean.bedroom_blinds_automatic
+              - input_boolean.living_room_blinds_automatic
