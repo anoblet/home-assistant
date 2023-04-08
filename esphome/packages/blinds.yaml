@@ -89,7 +89,9 @@ globals:
 
 # Enable logging
 logger:
-  level: DEBUG
+
+packages:
+  wifi: !include wifi.yaml
 
 # Enable Home Assistant API
 api:
@@ -120,17 +122,6 @@ api:
 
 ota:
   password: "2515291ea63617d85b4bee51325fcd12"
-
-wifi:
-  fast_connect: true
-  power_save_mode: none
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
-
-  # Enable fallback hotspot (captive portal) in case wifi connection fails
-  ap:
-    ssid: "Fallback Hotspot"
-    password: "X87rZCD9TMHF"
 
 captive_portal:
 

@@ -92,7 +92,9 @@ globals:
 
 # Enable logging
 logger:
-  level: DEBUG
+
+packages:
+  wifi: !include wifi.yaml
 
 # Enable Home Assistant API
 api:

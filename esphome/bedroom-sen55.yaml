@@ -7,7 +7,7 @@ captive_portal:
 esp8266:
   board: nodemcuv2
 esphome:
-  name: bedroom-sen55
+  name: $esphome_name
 i2c:
   scan: false
   scl: 5
@@ -15,6 +15,8 @@ i2c:
 logger:
 ota:
   password: !secret esphome_ota_password
+packages:
+  wifi: !include packages/wifi.yaml
 sensor:
   - platform: sen5x
     id: sen55
@@ -38,10 +40,5 @@ sensor:
       name: "Bedroom SEN55 Humidity"
     voc:
       name: "Bedroom Sen55 VOC"
-wifi:
-  ap:
-    password: !secret esphome_fallback_password
-    ssid: NodeMCU Fallback Hotspot
-  fast_connect: true
-  password: !secret esphome_wifi_password
-  ssid: !secret esphome_wifi_ssid
+substitutions:
+  esphome_name: bedroom-sen55
