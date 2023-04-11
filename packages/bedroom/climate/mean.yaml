@@ -12,6 +12,7 @@ bedroom_climate_mean:
         - sensor.bedroom_bme280_temperature
         - sensor.bedroom_bme680_temperature
         - sensor.bedroom_scd30_temperature
+        - sensor.bedroom_sen55_temperature
       name: Bedroom Climate Temperature
       platform: min_max
       type: mean
@@ -20,6 +21,7 @@ bedroom_climate_mean:
         - sensor.bedroom_bme280_humidity
         - sensor.bedroom_bme680_humidity
         - sensor.bedroom_scd30_humidity
+        - sensor.bedroom_sen55_humidity
       name: Bedroom Climate Humidity
       platform: min_max
       type: mean
@@ -30,13 +32,14 @@ bedroom_climate_mean:
       name: Bedroom Climate Pressure
       platform: min_max
       type: mean
-      # unique_id: bedroom_pressure
 
+      # unique_id: bedroom_pressure
     ### Deprecated
     - entity_ids:
         - sensor.bedroom_bme280_temperature
         - sensor.bedroom_bme680_temperature
         - sensor.bedroom_scd30_temperature
+        - sensor.bedroom_sen55_temperature
       name: Bedroom Temperature
       platform: min_max
       type: mean
@@ -45,6 +48,7 @@ bedroom_climate_mean:
         - sensor.bedroom_bme280_humidity
         - sensor.bedroom_bme680_humidity
         - sensor.bedroom_scd30_humidity
+        - sensor.bedroom_sen55_humidity
       name: Bedroom Humidity
       platform: min_max
       type: mean
