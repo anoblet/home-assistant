@@ -1,7 +1,7 @@
 wifi:
   ap:
     password: !secret esphome_fallback_password
-    ssid: $esphome_name Fallback Hotspot
+    ssid: $esphome_name
   fast_connect: true
   ssid: !secret wifi_ssid
   password: !secret wifi_password

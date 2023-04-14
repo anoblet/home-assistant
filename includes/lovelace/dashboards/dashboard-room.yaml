@@ -4,7 +4,7 @@ title: Rooms
 views:
   - !include ../views/bedroom.yaml
   - !include ../views/view-bathroom.yaml
-  - !include ../views/view-living_room.yaml
+  - !include ../views/living_room.yaml
   - !include ../views/view-storage_room.yaml
   - !include ../views/view-kitchen.yaml
   - !include ../views/view-configuration.yaml

@@ -10,10 +10,10 @@ cards:
               "--flex-card-max-width": "100vw"
               "gap": "1rem"
             cards:
-              # - type: custom:mushroom-climate-card
-              #   entity: climate.living_room_thermostat
-              #   name: Thermostat
-              #   show_temperature_control: true
+              - type: custom:mushroom-climate-card
+                entity: climate.living_room_thermostat
+                name: Thermostat
+                show_temperature_control: true
               - type: custom:mushroom-light-card
                 entity: light.living_room_light_group_zigbee
                 name: Lights
@@ -38,9 +38,9 @@ cards:
                 variables:
                   - entity: media_player.living_room_pair
                   - name: "Speakers"
-              - type: custom:mushroom-entity-card
-                entity: switch.living_room_christmas_tree
-                fill_container: true
+              # - type: custom:mushroom-entity-card
+              #   entity: switch.living_room_christmas_tree
+              #   fill_container: true
           - type: custom:grid-card
             style:
               "gap": "1rem"
