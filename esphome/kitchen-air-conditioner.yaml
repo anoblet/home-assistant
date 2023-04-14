@@ -3,6 +3,9 @@ substitutions:
   name: kitchen-air-conditioner
 packages:
   athom.smart-plug-v2: github://athom-tech/athom-configs/athom-smart-plug-v2.yaml
+api:
+  encryption:
+    key: !secret esphome_api_encryption_key
 esphome:
   name: ${name}
   name_add_mac_suffix: false
