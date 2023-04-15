@@ -1,10 +1,10 @@
 bedroom_thermostat:
   climate:
     - ac_mode: true
-      cold_tolerance: 0.5
+      cold_tolerance: 1
       heater: switch.bedroom_air_conditioner_virtual
       # heater: switch.bedroom_heater
-      hot_tolerance: 0.5
+      hot_tolerance: 1
       name: Bedroom Thermostat
       platform: generic_thermostat
       target_sensor: sensor.bedroom_temperature
