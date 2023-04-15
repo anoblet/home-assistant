@@ -1,5 +1,0 @@
-living_room_blind_one:
-  google_assistant:
-    entity_config:
-      cover.living_room_blind_one:
-        expose: true

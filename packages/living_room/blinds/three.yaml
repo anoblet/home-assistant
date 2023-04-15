@@ -1,0 +1,30 @@
+living_room_blinds_three:
+  automation:
+    - action:
+        - condition: state
+          entity_id: input_boolean.living_room_blinds_automatic
+          state: "on"
+        - choose:
+            - conditions:
+                - condition: template
+                  value_template: "{{ state_attr('sun.sun', 'elevation') > 0 and state_attr('sun.sun', 'azimuth') > 90 and state_attr('sun.sun', 'azimuth') < 180 }}"
+              sequence:
+                - service: cover.set_cover_position
+                  data:
+                    position: 90
+                  target:
+                    entity_id: cover.living_room_blind_three
+          default:
+            - service: cover.open_cover
+              target:
+                entity_id: cover.living_room_blind_three
+      alias: Living Room - Blinds - Three
+      id: living_room_blinds_three
+      mode: single
+      trigger:
+        - platform: state
+          entity_id: sun.sun
+  google_assistant:
+    entity_config:
+      cover.living_room_blind_three:
+        expose: true

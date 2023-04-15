@@ -1,15 +1,14 @@
-automation_cover_living_room_automatic:
+living_room_blinds_manual:
   automation:
-    # Off
     - action:
         - data:
             entity_id: input_boolean.living_room_blinds_automatic
           service: input_boolean.turn_off
-      alias: Cover - Living Room - Automatic - Off
+      alias: Living Room - Blinds - Manual
       condition:
         - condition: template
           value_template: "{{ trigger.to_state.context.user_id != None }}"
-      id: cover_living_room_automatic_off
+      id: living_room_blinds_manual
       mode: single
       trigger:
         - entity_id:
@@ -18,14 +17,3 @@ automation_cover_living_room_automatic:
             - cover.living_room_blind_two
             - cover.living_room_blind_three
           platform: state
-    # Reset
-    - trigger:
-        - platform: time
-          at: "00:00:00"
-      action:
-        - data:
-            entity_id: input_boolean.living_room_blinds_automatic
-          service: input_boolean.turn_on
-      id: cover_living_room_automatic_reset
-      mode: single
-      alias: Cover - Living Room - Automatic - Reset
