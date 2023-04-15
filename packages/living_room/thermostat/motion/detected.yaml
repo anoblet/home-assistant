@@ -1,0 +1,13 @@
+living_room_thermostat_motion_detected:
+  automation:
+    - trigger:
+        - entity_id: binary_sensor.living_room_motion_occupancy_group
+          from: "off"
+          platform: state
+          to: "on"
+      action:
+        - service: climate.turn_on
+          target:
+            entity_id: climate.living_room_thermostat
+      alias: "Living Room - Thermostat - Motion - Detected"
+      id: living_room_thermostat_motion_detected
