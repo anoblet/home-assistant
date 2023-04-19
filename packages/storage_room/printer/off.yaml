@@ -4,11 +4,14 @@ storage_room_printer_off:
       - service: light.turn_off
         target:
           entity_id: light.storage_room_lights
+      - data:
+        message: Printing has finished
+        service: notify.mobile_app_pixel_4
       # Announce that printing has finished
-      - service: tts.google_translate_say
-        data:
-          entity_id: media_player.bedroom_display
-          message: Printing has finished
+      # - service: tts.google_translate_say
+      #   data:
+      #     entity_id: media_player.bedroom_display
+      #     message: Printing has finished
       # Reset the filament dryer
       # - service: switch.turn_off
       #   target:
