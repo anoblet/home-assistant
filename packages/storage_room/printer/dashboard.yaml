@@ -1,0 +1,7 @@
+storage_room_printer_dashboard:
+  lovelace:
+    dashboards:
+      storage-room-printer-dashboard:
+        filename: includes/lovelace/dashboards/storage_room/printer.yaml
+        mode: yaml
+        title: Printer

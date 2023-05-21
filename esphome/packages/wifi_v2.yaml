@@ -3,5 +3,5 @@ wifi:
     password: !secret wifi_ap_password
     ssid: $esphome_name
   fast_connect: true
-  ssid: !secret wifi_ssid
+  ssid: !secret wifi_v2_ssid
   password: !secret wifi_password

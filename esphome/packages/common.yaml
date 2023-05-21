@@ -1,2 +1,4 @@
+esphome:
+  name_add_mac_suffix: false
 packages:
   wifi: !include wifi.yaml

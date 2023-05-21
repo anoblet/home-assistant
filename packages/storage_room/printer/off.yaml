@@ -1,6 +1,8 @@
 storage_room_printer_off:
   automation:
     action:
+      - alias: "Wait for nozzle temperature to match bed temperature"
+        wait_template: "{{ states('sensor.octoprint_actual_bed_temp') | int < 40 }}"
       - data:
           message: Printing has finished
         service: notify.mobile_app_pixel_4
