@@ -1,0 +1,5 @@
+storage_room_customize:
+homeassistant:
+  customize:
+    sensor.octoprint_actual_bed_temp:
+      # unit_of_measurement: "°C"
