@@ -1,0 +1,23 @@
+bathroom_light_manual:
+  automation:
+    action:
+      - delay: 5
+      - condition: state
+        entity_id: light.bathroom_light_group_zigbee
+        state: 'on'
+      - data:
+          entity_id: input_boolean.bathroom_light_manual
+        service: input_boolean.turn_on
+    alias: Bathroom Light Manual
+    condition:
+      - condition: template
+        value_template: '{{ trigger.to_state.context.user_id != None }}'
+    id: bathroom_light_manual
+    mode: single
+    trigger:
+      - entity_id:
+          - light.bathroom_light_group_zigbee
+        platform: state
+  input_boolean:
+    bathroom_light_manual:
+      name: Bathroom Light Manual

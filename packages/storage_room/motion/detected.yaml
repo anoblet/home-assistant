@@ -5,7 +5,6 @@ storage_room_motion_detected:
         target:
           entity_id:
             - light.storage_room_lights
-            - light.wled
     alias: Storage Room - Motion - Detected
     id: "storage_room_motion_detected"
     mode: single

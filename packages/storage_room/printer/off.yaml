@@ -5,11 +5,15 @@ storage_room_printer_off:
         wait_template: "{{ states('sensor.octoprint_actual_bed_temp') | int < 40 }}"
       - service: light.turn_off
         target:
-          entity_id: light.wled
+          entity_id: light.storage_room_lights
       - data:
           message: Printing has finished
         service: notify.mobile_app_pixel_4
     alias: Storage Room - Printer - Off
+    condition:
+      - condition: state
+        entity_id: binary_sensor.storage_room_occupancy
+        state: "off"
     id: storage_room_printer_off
     mode: single
     trigger:
