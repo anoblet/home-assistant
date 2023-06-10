@@ -6,7 +6,7 @@ cards:
           - switch.ender
           - sensor.octoprint_estimated_finish_time
       - type: picture-entity
-        entity: camera.192_168_0_160
+        entity: camera.storage_room_printer_camera
 title: Octoprint
 path: octoprint
 type: custom:default-view

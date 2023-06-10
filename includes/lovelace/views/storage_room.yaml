@@ -43,6 +43,8 @@ cards:
               - type: custom:mushroom-entity-card
                 entity: sensor.octoprint_estimated_finish_time
                 name: Estimated time left
+          - type: picture-entity
+            entity: camera.storage_room_printer_camera
 icon: mdi:washing-machine
 title: Storage Room
 type: custom:default-view
