@@ -3,7 +3,7 @@ storage_room_printer_on:
     action:
       - service: light.turn_on
         target:
-          entity_id: light.wled
+          entity_id: light.storage_room_printer
     alias: Storage Room - Printer - On
     id: "storage_room_printer_on"
     mode: single

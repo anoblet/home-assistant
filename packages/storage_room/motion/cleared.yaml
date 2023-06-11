@@ -12,7 +12,7 @@ storage_room_motion_cleared:
             sequence:
               - service: light.turn_off
                 target:
-                  entity_id: light.wled
+                  entity_id: light.storage_room_printer
     alias: Storage Room - Motion Sensor - Cleared
     id: "storage_room_motion_cleared"
     mode: single

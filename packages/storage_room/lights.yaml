@@ -4,5 +4,5 @@ storage_room_lights:
       name: "Storage Room Lights"
       entities:
         - light.storage_room_ceiling
-        - light.wled
+        - light.storage_room_printer
       unique_id: storage_room_lights
