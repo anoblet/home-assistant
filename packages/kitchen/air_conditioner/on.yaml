@@ -7,8 +7,8 @@ kitchen_air_conditioner_on:
       condition:
         # Between 8:00 AM and 10:00 PM
         - condition: time
-          before: "22:00:00"
           after: "08:00:00"
+          before: "22:00:00"
         # Feels like temperature is over 80 degrees
         - condition: template
           value_template: >
@@ -17,8 +17,6 @@ kitchen_air_conditioner_on:
       id: kitchen_air_conditioner_on
       mode: single
       trigger:
-          - platform: state
-            entity_id: "binary_sensor.apartment_occupancy"
-            to: "on"
-
-      
+        - platform: state
+          entity_id: "binary_sensor.apartment_occupancy"
+          to: "on"
