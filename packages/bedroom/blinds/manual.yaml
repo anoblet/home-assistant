@@ -17,3 +17,13 @@ bedroom_blinds_manual:
             - cover.bedroom_blind_two
             - cover.bedroom_blind_three
           platform: state
+    - action:
+        - data:
+            entity_id: input_boolean.bedroom_blinds_automatic
+          service: input_boolean.turn_on
+      alias: Bedroom - Blinds - Manual - Reset
+      id: Bedroom_blinds_manual_reset
+      mode: single
+      trigger:
+        - platform: time
+          at: "00:00:00"
