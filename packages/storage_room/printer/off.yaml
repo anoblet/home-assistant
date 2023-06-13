@@ -12,7 +12,7 @@ storage_room_printer_off:
     alias: Storage Room - Printer - Off
     condition:
       - condition: state
-        entity_id: binary_sensor.storage_room_occupancy
+        entity_id: binary_sensor.storage_room_motion_occupancy
         state: "off"
     id: storage_room_printer_off
     mode: single
