@@ -7,4 +7,5 @@ views:
   - !include ../views/living_room.yaml
   - !include ../views/storage_room.yaml
   - !include ../views/view-kitchen.yaml
+  - !include ../views/storage_room/printer.yaml
   - !include ../views/view-configuration.yaml

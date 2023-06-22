@@ -1,0 +1,29 @@
+living_room_thermostat_manual:
+  automation:
+    - action:
+        - data:
+            entity_id: input_boolean.living_room_thermostat_manual
+          service: input_boolean.turn_on
+      alias: Living Room - Thermostat - Manual
+      condition:
+        - condition: template
+          value_template: "{{ trigger.to_state.context.user_id != None }}"
+      id: living_room_thermostat_manual
+      mode: single
+      trigger:
+        - entity_id:
+            - climate.living_room_thermostat
+          platform: state
+    - action:
+        - data:
+            entity_id: input_boolean.living_room_thermostat_manual
+          service: input_boolean.turn_off
+      alias: Living Room - Thermostat - Manual - Reset
+      id: living_room_thermostat_manual_reset
+      mode: single
+      trigger:
+        - platform: time
+          at: "00:00:00"
+  input_boolean:
+    living_room_thermostat_manual:
+      name: Living Room - Thermostat - Manual

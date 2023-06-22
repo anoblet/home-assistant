@@ -3,13 +3,17 @@ living_room_thermostat_motion_cleared:
     - trigger:
         - entity_id: binary_sensor.living_room_motion_occupancy_group
           for:
-            minutes: "15"
-          from: "on"
+            minutes: 15
+          from: on
           platform: state
-          to: "off"
+          to: off
       action:
         - service: climate.turn_off
           target:
             entity_id: climate.living_room_thermostat
       alias: "Living Room - Thermostat - Motion - Cleared"
+      conditions:
+        - condition: state
+          entity_id: binary_sensor.living_room_thermostat_manual
+          state: off
       id: living_room_thermostat_motion_cleared

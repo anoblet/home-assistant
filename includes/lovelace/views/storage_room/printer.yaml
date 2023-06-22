@@ -1,0 +1,32 @@
+cards:
+  - type: custom:generic-card
+    style:
+      "background-color": "initial"
+    cards:
+      - type: custom:grid-card
+        style:
+          "gap": "1rem"
+        cards:
+          - type: custom:grid-card
+            style:
+              "gap": "1rem"
+              "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: sensor.octoprint_current_state
+                name: Printer
+              - type: custom:mushroom-entity-card
+                entity: sensor.octoprint_estimated_finish_time
+                name: Estimated time left
+              - type: custom:mushroom-entity-card
+                entity: sensor.octoprint_actual_bed_temp
+                name: Bed Temperature
+              - type: custom:mushroom-entity-card
+                entity: sensor.octoprint_actual_tool0_temp
+                name: Tool Temperature
+          - type: picture-entity
+            entity: camera.storage_room_printer_camera
+icon: mdi:printer-3d-nozzle
+title: Storage Room - Printer
+type: custom:default-view
+path: storage-room-printer
