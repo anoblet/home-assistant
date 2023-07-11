@@ -26,4 +26,4 @@ living_room_thermostat_manual:
           at: "00:00:00"
   input_boolean:
     living_room_thermostat_manual:
-      name: Living Room - Thermostat - Manual
+      name: Living Room Thermostat Manual
