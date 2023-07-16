@@ -18,6 +18,10 @@ automation_living_room_media_player_tv_idle:
           target:
             entity_id: cover.living_room_blinds
       alias: Media Player - Living Room - TV - Idle
+      condition:
+        - condition: state
+          entity_id: input_boolean.living_room_blinds_automatic
+          state: "on"
       id: living_room_media_player_tv_idle
       trigger:
         - entity_id: media_player.hismarttv_a4

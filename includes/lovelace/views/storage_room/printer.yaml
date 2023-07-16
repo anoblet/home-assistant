@@ -1,20 +1,41 @@
 cards:
-  - type: custom:generic-card
+  - type: custom:flex-card
     style:
       "background-color": "initial"
     cards:
       - type: custom:grid-card
         style:
           "gap": "1rem"
+          "grid-template-rows": "auto max-content"
         cards:
+          - type: custom:flex-card
+            cards:
+              - type: picture-entity
+                camera_view: live
+                entity: camera.storage_room_printer_camera
+            style:
+              "align-items": "center"
+              "margin": "0 auto"
+              "max-width": "50%"
           - type: custom:grid-card
             style:
+              "align-items": "end"
               "gap": "1rem"
               "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
             cards:
               - type: custom:mushroom-entity-card
                 entity: sensor.octoprint_current_state
                 name: Printer
+              - type: custom:timer-bar-card
+                icon: mdi:printer-3d
+                entity: sensor.octoprint_job_percentage
+                end_time:
+                  entity: sensor.octoprint_estimated_finish_time
+                guess_mode: true
+                mushroom:
+                name: Print Progress
+                start_time:
+                  entity: sensor.octoprint_start_time
               - type: custom:mushroom-entity-card
                 entity: sensor.octoprint_estimated_finish_time
                 name: Estimated time left
@@ -24,8 +45,6 @@ cards:
               - type: custom:mushroom-entity-card
                 entity: sensor.octoprint_actual_tool0_temp
                 name: Tool Temperature
-          - type: picture-entity
-            entity: camera.storage_room_printer_camera
 icon: mdi:printer-3d-nozzle
 title: Storage Room - Printer
 type: custom:default-view

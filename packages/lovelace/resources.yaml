@@ -20,4 +20,6 @@ lovelace_resources:
       - type: module
         url: /local/community/mini-graph-card/mini-graph-card-bundle.js
       - type: module
+        url: /local/community/timer-bar-card/timer-bar-card.js
+      - type: module
         url: /local/custom-elements/build/index.bundled.js

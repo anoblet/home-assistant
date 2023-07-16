@@ -14,6 +14,6 @@ living_room_thermostat_motion_cleared:
       alias: "Living Room - Thermostat - Motion - Cleared"
       condition:
         - condition: state
-          entity_id: binary_sensor.living_room_thermostat_manual
+          entity_id: input_boolean.living_room_thermostat_manual
           state: "off"
       id: living_room_thermostat_motion_cleared

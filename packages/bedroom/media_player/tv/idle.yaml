@@ -16,6 +16,10 @@ automation_bedroom_media_player_tv_idle:
           target:
             entity_id: cover.bedroom_blinds
       alias: Bedroom - Media Player - TV - Idle
+      condition:
+        - condition: state
+          entity_id: input_boolean.bedroom_blinds_automatic
+          state: "on"
       id: bedroom_media_player_tv_idle
       trigger:
         - entity_id: media_player.bedroom_tv
