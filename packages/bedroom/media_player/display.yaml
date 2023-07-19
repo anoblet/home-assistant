@@ -1,0 +1,18 @@
+automation_bedroom_display_off:
+  automation:
+    - action:
+        - service: camera.play_stream
+          data:
+            media_player: media_player.bedroom_display
+          target:
+            entity_id: camera.storage_room_printer_camera
+      alias: Bedroom - Display - Off
+      condition:
+        - condition: state
+          entity_id: binary_sensor.octoprint_printing
+          state: "on"
+      id: bedroom__display_off
+      trigger:
+        - entity_id: media_player.bedroom_display
+          platform: state
+          to: "off"
