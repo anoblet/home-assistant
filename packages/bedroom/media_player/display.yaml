@@ -14,5 +14,6 @@ automation_bedroom_display_off:
       id: bedroom__display_off
       trigger:
         - entity_id: media_player.bedroom_display
+          for: "00:01:00"
           platform: state
           to: "off"
