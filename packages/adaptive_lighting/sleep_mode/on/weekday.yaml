@@ -3,7 +3,7 @@ adaptive_lighting_sleep_mode_on_weekday:
     - action:
         - service: switch.turn_on
           target:
-            entity_id: group.adaptive_lighting_sleep_mode
+            entity_id: switch.adaptive_lighting_sleep_mode
       alias: Adaptive Lighting - Sleep Mode - On - Weekday
       id: adaptive_lighting_sleep_mode_on_weekday
       mode: single
