@@ -3,7 +3,7 @@ adaptive_lighting_sleep_mode_off:
     - action:
         - service: switch.turn_off
           target:
-            entity_id: switch.adaptive_lighting_sleep_mode
+            entity_id: switch.adaptive_lighting_sleep_mode_common
       alias: Adaptive Lighting - Sleep Mode - Off
       id: adaptive_lighting_sleep_mode_off
       mode: single
