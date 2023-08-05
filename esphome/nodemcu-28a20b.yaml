@@ -22,7 +22,7 @@ sensor:
     update_interval: 60s
 wifi:
   ap:
-    password: !secret esphome_fallback_password
+    password: !secret wifi_ap_password
     ssid: NodeMCU Fallback Hotspot
   # fast_connect: true
   password: !secret wifi_password

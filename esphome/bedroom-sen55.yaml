@@ -14,7 +14,7 @@ i2c:
   sda: 4
 logger:
 ota:
-  password: !secret esphome_ota_password
+  password: !secret ota_password
 packages:
   wifi: !include packages/wifi.yaml
 sensor:
@@ -40,5 +40,6 @@ sensor:
       name: "Bedroom SEN55 Humidity"
     voc:
       name: "Bedroom Sen55 VOC"
+      unit_of_measurement: "µg/m³"
 substitutions:
   esphome_name: bedroom-sen55

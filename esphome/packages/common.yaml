@@ -1,8 +1,12 @@
 api:
   encryption:
-    key: !secret esphome_api_encryption_key
+    key: !secret api_encryption_key
+captive_portal:
 esphome:
   name: ${esphome_name}
   name_add_mac_suffix: false
+logger:
+ota:
+  password: !secret ota_password
 packages:
   wifi: !include wifi.yaml

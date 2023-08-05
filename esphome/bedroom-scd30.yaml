@@ -1,8 +1,8 @@
 api:
-  # services:
-  #   - service: scd30_forced_recalibration
-  #     then:
-  #       - scd30.start_forced_recalibration: scd30_id
+# services:
+#   - service: scd30_forced_recalibration
+#     then:
+#       - scd30.start_forced_recalibration: scd30_id
 captive_portal:
 esp8266:
   board: nodemcuv2
@@ -18,7 +18,7 @@ i2c:
   sda: 4
 logger:
 ota:
-  password: !secret esphome_ota_password
+  password: !secret ota_password
 sensor:
   - address: 0x61
     # automatic_self_calibration: false
@@ -33,7 +33,7 @@ sensor:
     update_interval: 15s
 wifi:
   ap:
-    password: !secret esphome_fallback_password
+    password: !secret wifi_ap_password
     ssid: NodeMCU Fallback Hotspot
-  ssid: !secret esphome_wifi_ssid
-  password: !secret esphome_wifi_password
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
