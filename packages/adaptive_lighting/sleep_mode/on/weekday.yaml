@@ -5,6 +5,14 @@ adaptive_lighting_sleep_mode_on_weekday:
           target:
             entity_id: switch.adaptive_lighting_sleep_mode_common
       alias: Adaptive Lighting - Sleep Mode - On - Weekday
+      condition:
+        - condition: time
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - sun
       id: adaptive_lighting_sleep_mode_on_weekday
       mode: single
       trigger:
