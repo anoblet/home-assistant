@@ -1,40 +1,13 @@
 bedroom_climate_mean:
   homeassistant:
     customize:
-      sensor.bedroom_climate_temperature:
+      sensor.bedroom_temperature:
         device_class: temperature
-      sensor.bedroom_climate_humidity:
+      sensor.bedroom_humidity:
         device_class: humidity
-      sensor.bedroom_climate_pressure:
+      sensor.bedroom_pressure:
         device_class: pressure
   sensor:
-    - entity_ids:
-        - sensor.bedroom_bme280_temperature
-        - sensor.bedroom_bme680_temperature
-        - sensor.bedroom_scd30_temperature
-        - sensor.bedroom_sen55_temperature
-      name: Bedroom Climate Temperature
-      platform: min_max
-      type: mean
-      # unique_id: bedroom_temperature
-    - entity_ids:
-        - sensor.bedroom_bme280_humidity
-        - sensor.bedroom_bme680_humidity
-        - sensor.bedroom_scd30_humidity
-        - sensor.bedroom_sen55_humidity
-      name: Bedroom Climate Humidity
-      platform: min_max
-      type: mean
-      unique_id: bedroom_climate_humidity
-    - entity_ids:
-        - sensor.bedroom_bme280_pressure
-        - sensor.bedroom_bme680_pressure
-      name: Bedroom Climate Pressure
-      platform: min_max
-      type: mean
-
-      # unique_id: bedroom_pressure
-    ### Deprecated
     - entity_ids:
         - sensor.bedroom_bme280_temperature
         - sensor.bedroom_bme680_temperature
@@ -43,7 +16,7 @@ bedroom_climate_mean:
       name: Bedroom Temperature
       platform: min_max
       type: mean
-      # unique_id: bedroom_temperature
+      unique_id: bedroom_temperature
     - entity_ids:
         - sensor.bedroom_bme280_humidity
         - sensor.bedroom_bme680_humidity
@@ -52,12 +25,11 @@ bedroom_climate_mean:
       name: Bedroom Humidity
       platform: min_max
       type: mean
-      # unique_id: bedroom_humidity
+      unique_id: bedroom_humidity
     - entity_ids:
         - sensor.bedroom_bme280_pressure
         - sensor.bedroom_bme680_pressure
       name: Bedroom Pressure
       platform: min_max
       type: mean
-      # unique_id: bedroom_pressure
-
+      unique_id: bedroom_pressure
