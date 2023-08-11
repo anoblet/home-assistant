@@ -1,7 +1,6 @@
+packages:
+  athom.smart-plug-v2: github://athom-tech/athom-configs/athom-smart-plug-v2.yaml
+  common: !include packages/common.yaml
 substitutions:
   esphome_name: kitchen-water-cooler
   friendly_name: "Kitchen Water Cooler"
-  name: kitchen-water-cooler
-packages:
-  athom.smart-plug: github://athom-tech/athom-configs/athom-smart-plug.yaml
-  common: !include packages/common.yaml

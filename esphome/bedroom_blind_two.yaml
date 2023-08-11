@@ -2,6 +2,5 @@ substitutions:
   cover_name: "Bedroom Blind Two"
   device_id: "bedroom_blind_two"
   esphome_name: "bedroom-blind-two"
-
 packages:
   blinds: !include packages/blinds_reversed.yaml

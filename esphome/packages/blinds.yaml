@@ -87,11 +87,8 @@ globals:
     initial_value: "0"
     restore_value: true
 
-# Enable logging
-logger:
-
 packages:
-  wifi: !include wifi.yaml
+  common: !include common.yaml
 
 # Enable Home Assistant API
 api:
@@ -119,12 +116,6 @@ api:
         - globals.set:
             id: current_position
             value: !lambda "return position;"
-
-ota:
-  password: "2515291ea63617d85b4bee51325fcd12"
-
-captive_portal:
-
 stepper:
   - platform: uln2003
     id: $stepper_id
@@ -134,7 +125,6 @@ stepper:
     pin_d: D5
     max_speed: 250 steps/s
     sleep_when_done: true
-
 substitutions:
   cover_name: ""
   device_id: ""

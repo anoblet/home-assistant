@@ -2,6 +2,5 @@ substitutions:
   cover_name: "Living Room Blind Three"
   device_id: "living_room_blind_three"
   esphome_name: "living-room-blind-three"
-
 packages:
   blinds: !include packages/blinds.yaml
