@@ -4,5 +4,5 @@ input_number_bedroom_carbon_dioxide_maximum:
       max: 10000
       min: 0
       mode: box
-      name: Bedroom - Carbon Dioxide - Maximum
+      name: Bedroom Carbon Dioxide Maximum
       unit_of_measurement: "ppm"
