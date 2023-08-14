@@ -8,6 +8,8 @@ automation_light_living_room_manual_reset:
       id: light_living_room_manual_reset
       mode: single
       trigger:
-        - entity_id: light.living_room_lights
+        - entity_id: light.living_room_light_group_zigbee
           platform: state
           to: "off"
+        - platform: time
+          at: "00:00:00"

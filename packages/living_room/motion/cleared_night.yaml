@@ -5,7 +5,7 @@ living_room_motion_cleared_night:
           transition: "{{ states('input_number.living_room_light_transition_off') | int }}"
         service: light.turn_off
         target:
-          entity_id: light.living_room_lights
+          entity_id: light.living_room_light_group_zigbee
     alias: Living Room - Motion - Cleared - Night
     condition:
       - after: "00:00:00"
