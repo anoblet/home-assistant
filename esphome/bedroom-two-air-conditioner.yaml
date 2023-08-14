@@ -3,4 +3,4 @@ substitutions:
   esphome_name: bedroom-two-air-conditioner
 packages:
   athom.smart-plug-v2: github://athom-tech/athom-configs/athom-smart-plug-v2.yaml
-  commmon: !include packages/common.yaml
+  common: !include packages/common.yaml
