@@ -1,6 +1,5 @@
 bme680_bsec:
   address: 0x77
-  # temperature_offset: 3
 esp8266:
   board: nodemcuv2
 i2c:
