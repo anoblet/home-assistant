@@ -10,8 +10,4 @@ living_room_thermostat_motion_detected:
           target:
             entity_id: climate.living_room_thermostat
       alias: "Living Room - Thermostat - Motion - Detected"
-      condition:
-        - condition: state
-          entity_id: input_boolean.living_room_thermostat_manual
-          state: "off"
       id: living_room_thermostat_motion_detected
