@@ -2,7 +2,6 @@ occupancy:
   binary_sensor:
     - platform: group
       name: Occupancy - All
-      # device_class: opening
       entities:
         - binary_sensor.bathroom_motion_occupancy
         - binary_sensor.hallway_motion_occupancy_group
@@ -11,7 +10,6 @@ occupancy:
         - binary_sensor.storage_room_motion_occupancy
     - platform: group
       name: Occupancy - Common
-      # device_class: opening
       entities:
         - binary_sensor.kitchen_motion_occupancy_group
         - binary_sensor.living_room_motion_occupancy_group
