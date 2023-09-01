@@ -9,4 +9,4 @@ living_room_adaptive_lighting:
       name: Living Room
       sleep_brightness: 50
       sleep_color_temp: 2700
-      sleep_transition: 60
+      sleep_transition: 3600

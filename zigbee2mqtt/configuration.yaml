@@ -35,8 +35,8 @@ advanced:
     - 13
   availability_blocklist: []
   availability_passlist: []
-device_options:
-  transition: 3
+# device_options:
+#   transition: 3
 blocklist: []
 passlist: []
 queue: {}

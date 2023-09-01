@@ -25,7 +25,7 @@ living_room_thermostat_manual:
         - platform: state
           entity_id: input_boolean.living_room_thermostat_manual
           for:
-            hours: 2
+            hours: 1
           to: "on"
   input_boolean:
     living_room_thermostat_manual:
