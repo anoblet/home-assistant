@@ -1,6 +1,0 @@
-ender_camera:
-  camera:
-    - platform: generic
-      still_image_url: http://192.168.0.160:8080/?action=snapshot
-      stream_source: rtsp://192.168.0.160:8554/video3_unicast
-      name: Ender Camera
