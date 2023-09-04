@@ -16,11 +16,11 @@ zone_home_enter:
                 target:
                   entity_id: climate.bedroom_thermostat
               # Set fan mode to auto
-              - service: fan.set_preset_mode
-                data:
-                  preset_mode: auto
-                target:
-                  entity_id: fan.bedroom_air_purifier
+              # - service: fan.set_preset_mode
+              #   data:
+              #     preset_mode: auto
+              #   target:
+              #     entity_id: fan.bedroom_air_purifier
               # Turn on the humidifier
               - service: humidifier.turn_on
                 target:
