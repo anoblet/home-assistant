@@ -22,10 +22,10 @@ living_room_thermostat_manual:
       id: living_room_thermostat_manual_reset
       mode: single
       trigger:
-        - platform: state
-          entity_id: input_boolean.living_room_thermostat_manual
+        - entity_id: input_boolean.living_room_thermostat_manual
           for:
             hours: 1
+          platform: state
           to: "on"
   input_boolean:
     living_room_thermostat_manual:
