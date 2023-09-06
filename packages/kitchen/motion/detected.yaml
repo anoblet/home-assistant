@@ -8,6 +8,9 @@ automation_motion_kitchen_detected:
       alias: Kitchen - Motion - Detected
       condition:
         - condition: state
+          entity_id: input_boolean.kitchen_motion
+          state: "on"
+        - condition: state
           entity_id: input_boolean.kitchen_light_manual
           state: "off"
         - condition: template

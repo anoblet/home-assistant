@@ -13,4 +13,4 @@ kitchen_air_conditioner_virtual:
               target:
                 entity_id: climate.kitchen_air_conditioner
           unique_id: kitchen_air_conditioner_virtual
-          value_template: "{{ is_state('climate.kitchen_air_conditioner', 'auto') }}"
+          value_template: "{{ is_state('climate.kitchen_air_conditioner', 'cool') }}"
