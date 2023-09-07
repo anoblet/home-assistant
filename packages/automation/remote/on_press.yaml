@@ -3,8 +3,7 @@ automation_remote_on_press:
     - action:
         - data:
             entity_id:
-              - light.living_room_ceiling_lights
-              - light.living_room_floor_lamp
+              - light.living_room_light_group_zigbee
           service: light.toggle
       alias: Living Room - Remote - On - Press
       id: living_room_remote_on_press

@@ -1,0 +1,13 @@
+bathroom_speaker_off:
+  automation:
+    action:
+      - service: media_player.turn_off
+        target:
+          entity_id: media_player.bathroom_speaker
+    alias: Bathroom - Speaker - Off
+    id: bathroom_speaker_off
+    mode: single
+    trigger:
+      - platform: state
+        entity_id: media_player.bathroom_speaker
+        to: "playing"
