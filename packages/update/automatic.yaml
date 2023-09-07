@@ -8,11 +8,9 @@ update_automatic:
           entity_id:
             - update.adguard_home_update
             - update.cloudflared_update
-            - update.duck_dns_update
             - update.esphome_update
             - update.glances_update
             - update.grafana_update
-            - update.grocy_update
             - update.hdd_tools_update
             - update.home_assistant_core_update
             - update.home_assistant_google_drive_backup_update
