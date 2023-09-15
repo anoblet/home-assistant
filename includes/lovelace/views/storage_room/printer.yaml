@@ -13,6 +13,7 @@ cards:
               - type: picture-entity
                 camera_view: live
                 entity: camera.storage_room_printer_camera
+                preload_stream: true
             style:
               "align-items": "center"
               "margin": "0 auto"
@@ -37,14 +38,20 @@ cards:
                 start_time:
                   entity: sensor.octoprint_start_time
               - type: custom:mushroom-entity-card
-                entity: sensor.octoprint_estimated_finish_time
-                name: Estimated time left
-              - type: custom:mushroom-entity-card
                 entity: sensor.octoprint_actual_bed_temp
                 name: Bed Temperature
               - type: custom:mushroom-entity-card
                 entity: sensor.octoprint_actual_tool0_temp
                 name: Tool Temperature
+              - type: custom:mushroom-entity-card
+                entity: sensor.storage_room_printer_climate_temperature
+                name: Enclosure Temperature
+              - type: custom:mushroom-entity-card
+                entity: sensor.storage_room_printer_climate_humidity
+                name: Enclosure Humidity
+              - type: custom:mushroom-entity-card
+                entity: sensor.storage_room_printer_climate_pressure
+                name: Enclosure Pressure
 icon: mdi:printer-3d-nozzle
 title: Storage Room - Printer
 type: custom:default-view

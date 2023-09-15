@@ -3,8 +3,7 @@ living_room_motion_detected:
     - action:
         - data:
             entity_id:
-              - light.living_room_ceiling_light_group_zigbee
-              - light.living_room_floor_lamp
+              - light.living_room_light_group_zigbee
             transition: "{{ states('input_number.living_room_light_transition_on') | int }}"
           service: light.turn_on
       alias: Living Room - Motion - Detected
