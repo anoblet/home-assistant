@@ -1,7 +1,7 @@
 media_player_volume_common_group:
   google_assistant:
     entity_config:
-      media_player.volume_commongroup:
+      media_player.volume_common_group:
         expose: true
   media_player:
     - platform: universal
