@@ -3,6 +3,7 @@ cards:
     style:
       "background-color": "initial"
     cards:
+      - type: custom:muuri-card
       - type: custom:grid-card
         style:
           "gap": "1rem"

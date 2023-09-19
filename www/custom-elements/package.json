@@ -21,7 +21,8 @@
     "@material/mwc-select": "^0.25.3",
     "@material/mwc-textfield": "^0.25.3",
     "lit": "^2.1.1",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "muuri": "^0.9.5"
   },
   "devDependencies": {
     "@rollup/plugin-multi-entry": "^4.1.0",
