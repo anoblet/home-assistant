@@ -1,6 +1,6 @@
 import { css, html } from "lit";
 import { BaseElement } from "../../base-element/src/index";
-import "muuri";
+// import "muuri";
 
 class MuuriCard extends BaseElement {
   _defaultConfig = {

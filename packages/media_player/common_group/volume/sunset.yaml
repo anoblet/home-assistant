@@ -5,7 +5,7 @@ common_group_volume_sunset:
         data:
           volume_level: 0.25
         target:
-          entity_id: media_player.common_group
+          entity_id: media_player.volume_common_group
     alias: Common Group - Volume - Sunset
     id: common_group_volume_sunset
     mode: single

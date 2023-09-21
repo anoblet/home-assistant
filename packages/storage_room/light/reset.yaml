@@ -1,0 +1,19 @@
+storage_room_light_reset:
+  automation:
+    action:
+      - data:
+          entity_id: input_boolean.storage_room_light_manual
+        service: input_boolean.turn_off
+    alias: Storage Room Light Manual Reset
+    condition:
+      - condition: template
+        value_template: "{{ trigger.to_state.context.user_id != None }}"
+    id: storage_room_light_manual_reset
+    mode: single
+    trigger:
+      - entity_id: light.storage_room_light_group_zigbee
+        platform: state
+        to: "off"
+      - entity_id: input_boolean.storage_room_light_manual
+        for: "01:00:00"
+        platform: state

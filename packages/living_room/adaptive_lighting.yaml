@@ -1,12 +1,13 @@
 living_room_adaptive_lighting:
   adaptive_lighting:
     - lights:
+        - light.living_room_light_group_zigbee
         - light.living_room_ceiling_light_group_zigbee
         - light.living_room_floor_lamp
       max_color_temp: 3500
       min_brightness: 75
       min_color_temp: 3000
       name: Living Room
-      sleep_brightness: 25
+      sleep_brightness: 50
       sleep_color_temp: 2700
       sleep_transition: 3600
