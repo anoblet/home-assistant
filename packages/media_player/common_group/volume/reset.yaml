@@ -1,14 +1,14 @@
 common_group_volume_sunset:
   automation:
     action:
-      - service: media_player.volume_set
-        data:
+      - data:
           volume_level: 0.25
+        service: media_player.volume_set
         target:
           entity_id: media_player.volume_common_group
-    alias: Common Group - Volume - Sunset
-    id: common_group_volume_sunset
+    alias: Common Group - Volume - Reset
+    id: common_group_volume_reset
     mode: single
     trigger:
-      - event: sunset
-        platform: sun
+      - at: 00:00:00
+        platform: time
