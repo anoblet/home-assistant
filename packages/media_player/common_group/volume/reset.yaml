@@ -5,7 +5,7 @@ common_group_volume_sunset:
           volume_level: 0.25
         service: media_player.volume_set
         target:
-          entity_id: media_player.volume_common_group
+          entity_id: media_player.common_group_volume
     alias: Common Group - Volume - Reset
     id: common_group_volume_reset
     mode: single
