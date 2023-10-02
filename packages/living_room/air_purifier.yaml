@@ -1,4 +1,4 @@
-living_room_air_purifieer_google_assistant:
+living_room_air_purifier_google_assistant:
   google_assistant:
     entity_config:
       fan.living_room_air_purifier:
