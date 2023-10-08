@@ -1,9 +1,9 @@
 bedroom_thermostat:
   climate:
-    - ac_mode: true
-      cold_tolerance: 1
-      heater: switch.bedroom_air_conditioner_virtual
-      # heater: switch.bedroom_heater
+    # - ac_mode: true
+    - cold_tolerance: 1
+      # heater: switch.bedroom_air_conditioner_virtual
+      heater: switch.bedroom_heater
       hot_tolerance: 1
       name: Bedroom Thermostat
       platform: generic_thermostat

@@ -1,4 +1,9 @@
 bedroom_air_conditioner_virtual:
+  google_assistant:
+    entity_config:
+      switch.bedroom_air_conditioner_virtual:
+        expose: true
+        name: Bedroom Air Conditioner
   switch:
     - platform: template
       switches:
