@@ -1,4 +1,4 @@
 apexcharts_card_templates: !include_dir_named ../../apexcharts_card_templates
 title: Printer
 views:
-  - !include ../../views/octoprint.yaml
+  - !include ../../views/storage_room/printer.yaml

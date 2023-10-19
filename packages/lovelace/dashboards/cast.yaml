@@ -1,7 +1,0 @@
-lovelace_dashboards_cast:
-  lovelace:
-    dashboards:
-      dashboard-cast:
-        filename: includes/lovelace/dashboards/cast.yaml
-        mode: yaml
-        title: Cast

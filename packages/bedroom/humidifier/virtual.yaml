@@ -1,4 +1,4 @@
-bedroom_humidifier:
+bedroom_humidifier_virtual:
   generic_hygrostat:
     - dry_tolerance: 1
       name: Bedroom Humidifier Virtual

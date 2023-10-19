@@ -1,5 +1,4 @@
 decluttering_templates: !include_dir_named ./decluttering_templates
-
 title: Rooms
 views:
   - !include ../views/bedroom.yaml
@@ -7,4 +6,3 @@ views:
   - !include ../views/living_room.yaml
   - !include ../views/storage_room.yaml
   - !include ../views/view-kitchen.yaml
-  - !include ../views/storage_room/printer.yaml
