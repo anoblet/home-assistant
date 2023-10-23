@@ -16,5 +16,5 @@ automation_vacuum_start:
                 - sun
       id: vacuum_start
       trigger:
-        - at: "11:00:00"
+        - at: "12:00:00"
           platform: time
