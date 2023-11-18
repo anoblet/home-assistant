@@ -1,5 +1,5 @@
-storage_room_air_purifier:
-  google_assistant:
-    entity_config:
-      fan.storage_room_air_purifier:
-        expose: true
+# storage_room_air_purifier:
+#   google_assistant:
+#     entity_config:
+#       fan.storage_room_air_purifier:
+#         expose: true
