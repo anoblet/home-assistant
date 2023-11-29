@@ -12,7 +12,7 @@ cards:
             cards:
               - type: picture-entity
                 camera_view: live
-                entity: camera.storage_room_printer_camera
+                entity: camera.x1c_00m00a2c0619044_camera
                 preload_stream: true
             style:
               "align-items": "center"
@@ -25,33 +25,14 @@ cards:
               "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
             cards:
               - type: custom:mushroom-entity-card
-                entity: sensor.octoprint_current_state
-                name: Printer
-              - type: custom:timer-bar-card
-                icon: mdi:printer-3d
-                entity: sensor.octoprint_job_percentage
-                end_time:
-                  entity: sensor.octoprint_estimated_finish_time
-                guess_mode: true
-                mushroom:
-                name: Print Progress
-                start_time:
-                  entity: sensor.octoprint_start_time
+                entity: sensor.x1c_00m00a2c0619044_print_status
+                name: Status
               - type: custom:mushroom-entity-card
-                entity: sensor.octoprint_actual_bed_temp
-                name: Bed Temperature
+                entity: sensor.x1c_00m00a2c0619044_print_progress
+                name: Progress
               - type: custom:mushroom-entity-card
-                entity: sensor.octoprint_actual_tool0_temp
-                name: Tool Temperature
-              - type: custom:mushroom-entity-card
-                entity: sensor.storage_room_printer_climate_temperature
-                name: Enclosure Temperature
-              - type: custom:mushroom-entity-card
-                entity: sensor.storage_room_printer_climate_humidity
-                name: Enclosure Humidity
-              - type: custom:mushroom-entity-card
-                entity: sensor.storage_room_printer_climate_pressure
-                name: Enclosure Pressure
+                entity: sensor.x1c_00m00a2c0619044_remaining_time
+                name: Remaining Time
 icon: mdi:printer-3d-nozzle
 title: Storage Room - Printer
 type: custom:default-view
