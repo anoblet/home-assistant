@@ -2,5 +2,5 @@ packages:
   athom.smart-plug-v2: github://athom-tech/athom-configs/athom-smart-plug-v2.yaml
   common: !include packages/common.yaml
 substitutions:
-  friendly_name: "Bedroom Air Conditioner"
   esphome_name: bedroom-air-conditioner
+  friendly_name: "Bedroom Air Conditioner"
