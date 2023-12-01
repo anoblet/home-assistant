@@ -58,7 +58,3 @@ influxdb:
   default_measurement: state
 
 script: !include scripts.yaml
-
-zha:
-  zigpy_config:
-    topology_scan_period: 20 # set the scan interval to 20 mn
