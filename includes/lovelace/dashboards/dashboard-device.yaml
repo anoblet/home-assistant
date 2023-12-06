@@ -11,4 +11,3 @@ views:
   - !include ../views/view-climate.yaml
   - !include ../views/view-battery.yaml
   - !include ../views/vacuum.yaml
-  - !include ../views/octoprint.yaml
