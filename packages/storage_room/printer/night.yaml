@@ -3,7 +3,7 @@ storage_room_printer_night:
     action:
       - service: input_select.select_option
         data:
-          option: Silent
+          option: silent
         target:
           entity_id: select.x1c_00m00a2c0619044_printing_speed
     alias: Storage Room - Printer - Night
