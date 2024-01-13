@@ -1,0 +1,14 @@
+living_room_light_on:
+  automation:
+    - action:
+        - data:
+            brightness_pct: 100
+          service: light.turn_on
+      alias: Living Room - Light - On
+      id: living_room_light_on
+      mode: single
+      trigger:
+        - entity_id: light.living_room_light_group_zigbee
+          platform: state
+          from: "off"
+          to: "on"

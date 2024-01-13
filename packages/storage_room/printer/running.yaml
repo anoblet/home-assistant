@@ -1,0 +1,25 @@
+storage_room_printer_running:
+  automation:
+    action:
+      - service: fan.set_percentage
+        data:
+          percentage: 100
+        target:
+          entity_id: fan.storage_room_air_purifier
+      - if:
+          condition: state
+          entity_id: media_player.bedroom_display
+          state: "off"
+        then:
+          - service: camera.play_stream
+            data:
+              media_player: media_player.bedroom_display
+            target:
+              entity_id: camera.x1c_00m00a2c0619044_camera
+    alias: Storage Room - Printer - Running
+    id: storage_room_printer_running
+    mode: single
+    trigger:
+      - to: "running"
+        entity_id: sensor.x1c_00m00a2c0619044_print_status
+        platform: state

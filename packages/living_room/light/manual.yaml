@@ -5,6 +5,9 @@ living_room_light_manual:
         - condition: state
           entity_id: light.living_room_light_group_zigbee
           state: "on"
+        - service: switch.turn_off
+          target:
+            entity_id: switch.adaptive_lighting_adapt_brightness_living_room
         - data:
             entity_id: input_boolean.living_room_light_manual
           service: input_boolean.turn_on

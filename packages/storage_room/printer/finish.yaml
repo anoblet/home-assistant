@@ -1,0 +1,15 @@
+storage_room_printer_finish:
+  automation:
+    action:
+      - service: fan.set_preset_mode
+        data:
+          preset_mode: auto
+        target:
+          entity_id: fan.storage_room_air_purifier
+    alias: Storage Room - Printer - Finish
+    id: storage_room_printer_finish
+    mode: single
+    trigger:
+      - to: "finish"
+        entity_id: sensor.x1c_00m00a2c0619044_print_status
+        platform: state
