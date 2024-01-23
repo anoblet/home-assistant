@@ -1,9 +1,7 @@
 hallway_adaptive_lighting:
   adaptive_lighting:
     - lights: light.hallway_light_group_zigbee
-      max_color_temp: 3500
+      max_color_temp: 4000
+      min_brightness: 75
       min_color_temp: 3000
       name: Hallway
-      sleep_brightness: 25
-      sleep_color_temp: 3600
-      sleep_transition: 60
