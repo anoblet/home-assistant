@@ -11,7 +11,7 @@ bedroom_display_off:
         - condition: state
           entity_id: sensor.x1c_00m00a2c0619044_print_status
           state: "running"
-      id: bedroom__display_off
+      id: bedroom_display_off
       trigger:
         - entity_id: media_player.bedroom_display
           for: "00:01:00"

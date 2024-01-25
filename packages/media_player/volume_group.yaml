@@ -10,10 +10,8 @@ media_player_volume_group:
       children:
         - media_player.bathroom_speaker
         - media_player.bedroom_display
-        - media_player.bedroom_tv
         - media_player.kitchen_speaker
         - media_player.living_room_pair
-        - media_player.living_room_tv
       commands:
         turn_on:
           service: media_player.turn_on
@@ -21,30 +19,24 @@ media_player_volume_group:
             entity_id:
               - media_player.bathroom_speaker
               - media_player.bedroom_display
-              - media_player.bedroom_tv
               - media_player.kitchen_speaker
               - media_player.living_room_pair
-              - media_player.living_room_tv
         turn_off:
           service: media_player.turn_off
           data:
             entity_id:
               - media_player.bathroom_speaker
               - media_player.bedroom_display
-              - media_player.bedroom_tv
               - media_player.kitchen_speaker
               - media_player.living_room_pair
-              - media_player.living_room_tv
         volume_up:
           service: media_player.volume_up
           data:
             entity_id:
               - media_player.bathroom_speaker
               - media_player.bedroom_display
-              - media_player.bedroom_tv
               - media_player.kitchen_speaker
               - media_player.living_room_pair
-              - media_player.living_room_tv
         volume_down:
           service: media_player.volume_down
           data:
@@ -61,9 +53,7 @@ media_player_volume_group:
             entity_id:
               - media_player.bathroom_speaker
               - media_player.bedroom_display
-              - media_player.bedroom_tv
               - media_player.kitchen_speaker
               - media_player.living_room_pair
-              - media_player.living_room_tv
             volume_level: "{{ volume_level }}"
       unique_id: volume_group

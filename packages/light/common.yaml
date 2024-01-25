@@ -15,10 +15,6 @@ light_common:
         - event: sunset
           platform: sun
     - action:
-        # Turn off the common lights at midnight
-        - service: light.turn_off
-          target:
-            entity_id: light.common_lights
         - service: homeassistant.turn_off
           target:
             entity_id: group.light_manual_common
@@ -26,7 +22,7 @@ light_common:
       id: common_light_night
       mode: single
       trigger:
-        - at: "00:00:00"
+        - at: input_datetime.night
           platform: time
   light:
     - platform: group
