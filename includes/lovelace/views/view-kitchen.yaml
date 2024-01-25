@@ -40,6 +40,14 @@ cards:
                 entity: binary_sensor.kitchen_motion_occupancy_group
                 name: Motion
                 secondary_info: last-changed
+          - type: custom:grid-card
+            style:
+              "gap": "1rem"
+              "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: switch.kitchen_coffee_pot
+                name: Coffee Pot
 icon: mdi:countertop
 title: Kitchen
 type: custom:default-view

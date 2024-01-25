@@ -32,19 +32,6 @@ cards:
                 entity: binary_sensor.storage_room_motion_occupancy
                 name: Motion
                 secondary_info: last-changed
-          - type: custom:grid-card
-            style:
-              "gap": "1rem"
-              "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
-            cards:
-              - type: custom:mushroom-entity-card
-                entity: sensor.octoprint_current_state
-                name: Printer
-              - type: custom:mushroom-entity-card
-                entity: sensor.octoprint_estimated_finish_time
-                name: Estimated time left
-          - type: picture-entity
-            entity: camera.storage_room_printer_camera
 icon: mdi:washing-machine
 title: Storage Room
 type: custom:default-view
