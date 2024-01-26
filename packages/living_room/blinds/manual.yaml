@@ -17,13 +17,3 @@ living_room_blinds_manual:
             - cover.living_room_blind_two
             - cover.living_room_blind_three
           platform: state
-    - action:
-        - data:
-            entity_id: input_boolean.living_room_blinds_automatic
-          service: input_boolean.turn_on
-      alias: Living Room - Blinds - Manual - Reset
-      id: living_room_blinds_manual_reset
-      mode: single
-      trigger:
-        - platform: time
-          at: "00:00:00"

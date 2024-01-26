@@ -1,0 +1,27 @@
+living_room_blinds_sunrise:
+  automation:
+    - action:
+        - choose:
+            - conditions:
+                - condition: template
+                  value_template: "{{ is_state('sensor.season', 'summer') }}"
+              sequence:
+                - data:
+                    entity_id: input_boolean.living_room_blinds_automatic
+                  service: input_boolean.turn_on
+            - conditions:
+                - condition: template
+                  value_template: "{{ is_state('sensor.season', 'winter') }}"
+              sequence:
+                - service: cover.open_cover
+                  target:
+                    entity_id: cover.living_room_blinds
+        - data:
+            entity_id: input_boolean.living_room_blinds_automatic
+          service: input_boolean.turn_on
+      alias: Living Room - Blinds - Sunrise
+      id: living_room_blinds_sunrise
+      mode: single
+      trigger:
+        - event: sunrise
+          platform: sun
