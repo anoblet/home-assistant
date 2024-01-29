@@ -1,13 +1,11 @@
 automation_living_room_media_player_tv_idle:
   automation:
     - action:
-        - service: input_boolean.turn_on
-          target:
-            entity_id: input_boolean.living_room_light_manual
+        # Turn off the ceiling light
         - service: light.turn_off
           target:
-            entity_id: light.living_room_ceiling_light_group_zigbee
-        # Turn off automatic blinds
+            entity_id: light.living_room_ceiling
+        # Turn off the automatic blinds
         - service: input_boolean.turn_off
           target:
             entity_id: input_boolean.living_room_blinds_automatic
@@ -17,14 +15,10 @@ automation_living_room_media_player_tv_idle:
             position: 75
           target:
             entity_id: cover.living_room_blinds
-      alias: Media Player - Living Room - TV - Idle
-      condition:
-        - condition: state
-          entity_id: input_boolean.living_room_blinds_automatic
-          state: "on"
+      alias: Living Room - Media Player - TV - Idle
       id: living_room_media_player_tv_idle
       trigger:
-        - entity_id: media_player.hismarttv_a4
+        - entity_id: media_player.living_room_tv
           platform: state
           from: "off"
           to: "idle"

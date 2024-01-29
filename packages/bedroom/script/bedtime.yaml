@@ -4,17 +4,20 @@ script_bedroom_bedtime:
       alias: Bedroom - Bedtime
       mode: single
       sequence:
-        - data:
-            brightness_pct: 1
-            kelvin: 2000
-          service: light.turn_on
-          target:
-            entity_id: light.bedroom_light_group_zigbee
-        - delay: 5
+        # - data:
+        #     brightness_pct: 1
+        #     kelvin: 2000
+        #   service: light.turn_on
+        #   target:
+        #     entity_id: light.bedroom_light_group_zigbee
+        # - delay: 5
         - service: light.turn_off
+          data:
+            transition: 5
           target:
             entity_id: light.bedroom_ceiling
-        - delay: 300
         - service: light.turn_off
+          data:
+            transition: 300
           target:
-            entity_id: light.bedroom_lamp_group_zigbee
+            entity_id: light.bedroom_light_group_zigbee
