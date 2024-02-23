@@ -6,7 +6,7 @@ living_room_adaptive_lighting_sync:
             entity_id: switch.adaptive_lighting_adapt_brightness_living_room
         - data:
             entity_id: switch.adaptive_lighting_living_room
-          service: adaptive_lighting.apply
+        - service: adaptive_lighting.apply
         - service: switch.turn_on
           target:
             entity_id: switch.adaptive_lighting_adapt_brightness_living_room

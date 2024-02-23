@@ -16,9 +16,6 @@ living_room_blinds_sunrise:
                 - service: cover.open_cover
                   target:
                     entity_id: cover.living_room_blinds
-        - data:
-            entity_id: input_boolean.living_room_blinds_automatic
-          service: input_boolean.turn_on
       alias: Living Room - Blinds - Sunrise
       id: living_room_blinds_sunrise
       mode: single

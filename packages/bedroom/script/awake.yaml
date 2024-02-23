@@ -1,0 +1,15 @@
+script_bedroom_awake:
+  google_assistant:
+    entity_config:
+      script.bedroom_awake:
+        expose: true
+  script:
+    bedroom_awake:
+      alias: Bedroom - Awake
+      mode: single
+      sequence:
+        - service: light.turn_off
+          data:
+            transition: 300
+          target:
+            entity_id: light.bedroom_lamp_group_zigbee

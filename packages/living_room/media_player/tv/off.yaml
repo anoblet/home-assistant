@@ -1,10 +1,21 @@
 automation_living_room_media_player_tv_off:
   automation:
     - action:
-        # Turn on the automatic blinds
-        - service: input_boolean.turn_on
-          target:
-            entity_id: input_boolean.living_room_blinds_automatic
+        - choose:
+            - conditions:
+                - condition: template
+                  value_template: "{{ is_state('sensor.season', 'summer') }}"
+              sequence:
+                - data:
+                    entity_id: input_boolean.living_room_blinds_automatic
+                  service: input_boolean.turn_on
+            - conditions:
+                - condition: template
+                  value_template: "{{ is_state('sensor.season', 'winter') }}"
+              sequence:
+                - service: cover.open_cover
+                  target:
+                    entity_id: cover.living_room_blinds
       alias: Living Room - Media Player - TV - Off
       id: living_room_media_player_tv_off
       trigger:

@@ -6,6 +6,13 @@ storage_room_printer_finish:
           preset_mode: auto
         target:
           entity_id: fan.storage_room_air_purifier
+      - service: switch.turn_on
+        target:
+          entity_id: fan.x1c_00m00a2c0619044_chamber_fan
+      - delay: "00:10:00"
+      - service: switch.turn_off
+        target:
+          entity_id: fan.x1c_00m00a2c0619044_chamber_fan
     alias: Storage Room - Printer - Finish
     id: storage_room_printer_finish
     mode: single
