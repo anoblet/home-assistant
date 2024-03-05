@@ -1,11 +1,11 @@
 storage_room_printer_running:
   automation:
     action:
-      - service: fan.set_percentage
-        data:
-          percentage: 100
-        target:
-          entity_id: fan.storage_room_air_purifier
+      # - service: fan.set_percentage
+      #   data:
+      #     percentage: 100
+      #   target:
+      #     entity_id: fan.storage_room_air_purifier
       - if:
           condition: state
           entity_id: media_player.bedroom_display
