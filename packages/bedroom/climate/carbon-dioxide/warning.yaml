@@ -1,4 +1,4 @@
-automation_bedroom_carbon_dioxide_warning:
+bedroom_carbon_dioxide_warning:
   automation:
     - action:
         - data:

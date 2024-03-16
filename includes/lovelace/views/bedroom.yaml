@@ -88,6 +88,22 @@ cards:
               - type: custom:mushroom-entity-card
                 entity: sensor.bedroom_sen55_voc
                 name: VOC
+          - type: custom:grid-card
+            style:
+              "gap": "1rem"
+              "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
+            cards:
+              - type: custom:auto-entities
+                card:
+                  square: false
+                  columns: 1
+                  type: grid
+                card_param: cards
+                filter:
+                  include:
+                    - domain: switch
+                      options:
+                        type: custom:mushroom-cover-card
 icon: mdi:bed
 title: Bedroom
 type: custom:default-view
