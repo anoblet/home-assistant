@@ -1,0 +1,16 @@
+living_room_air_purifier_occupancy_cleared:
+  automation:
+    - action:
+        - service: fan.set_percentage
+          data:
+            percentage: 100
+          target:
+            entity_id: fan.living_room_air_purifier
+      alias: Living Room - Air Purifier - Occupancy - Cleared
+      id: living_room_air_purifier_occupancy_cleared
+      mode: single
+      trigger:
+        - entity_id: binary_sensor.living_room_motion_occupancy_group
+          platform: state
+          to: "off"
+          for: "00:05:00"
