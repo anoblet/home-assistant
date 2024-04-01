@@ -116,9 +116,15 @@ cover_calibrate:
         - service: esphome.living_room_blind_three_report_position
           data:
             position: 0
-        - delay: 00:02:00
+        - choose:
+            - conditions:
+                - condition: template
+                  value_template: "{{ is_state('sensor.season', 'summer') }}"
+              sequence:
+                - data:
+                    entity_id: input_boolean.living_room_blinds_automatic
+                  service: input_boolean.turn_on
         - service: input_boolean.turn_on
           target:
             entity_id:
               - input_boolean.bedroom_blinds_automatic
-              - input_boolean.living_room_blinds_automatic

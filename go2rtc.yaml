@@ -1,2 +1,2 @@
 streams:
-  bambux1c: rtspx://bblp:[ACCESS_CODE]@10.10.10.95:322/streaming/live/1
+  bambux1c: rtsps://bblp:d92bfee2@192.168.0.110:322/streaming/live/1

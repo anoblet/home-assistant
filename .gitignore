@@ -13,6 +13,7 @@
 .*/
 custom_components
 esphome/secrets.yaml
+go2rtc.yaml
 node_modules
 secrets.yaml
 www/custom-elements/build
