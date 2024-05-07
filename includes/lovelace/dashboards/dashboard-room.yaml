@@ -5,4 +5,4 @@ views:
   - !include ../views/view-bathroom.yaml
   - !include ../views/living_room.yaml
   - !include ../views/storage_room.yaml
-  - !include ../views/view-kitchen.yaml
+  - !include ../views/kitchen.yaml

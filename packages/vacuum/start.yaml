@@ -18,3 +18,20 @@ automation_vacuum_start:
       trigger:
         - at: "12:00:00"
           platform: time
+    - action:
+        - service: cast.show_lovelace_view
+          data:
+            entity_id: media_player.bedroom_display
+            dashboard_path: dashboard-device
+            view_path: vacuum
+      alias: Vacuum - Start - Cast
+      condition:
+        - condition: state
+          entity_id: vacuum.valetudo_vacuum
+          state: "cleaning"
+      id: vacuum_start_cast
+      trigger:
+        - entity_id: media_player.living_room_tv
+          for: "00:01:00"
+          platform: state
+          to: "off"
