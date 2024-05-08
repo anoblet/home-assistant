@@ -3,7 +3,7 @@ kitchen_air_conditioner_on:
     - action:
         - service: climate.turn_on
           target:
-            entity_id: climate.kitchen_air_conditioner
+            entity_id: climate.living_room_thermostat
       condition:
         # Between 8:00 AM and 10:00 PM
         - condition: time
