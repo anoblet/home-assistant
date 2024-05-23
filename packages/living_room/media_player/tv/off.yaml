@@ -4,7 +4,7 @@ automation_living_room_media_player_tv_off:
         - choose:
             - conditions:
                 - condition: template
-                  value_template: "{{ !is_state('sensor.season', 'winter') }}"
+                  value_template: "{{ states('sensor.season') != 'winter' }}"
               sequence:
                 - data:
                     entity_id: input_boolean.living_room_blinds_automatic

@@ -22,10 +22,6 @@ cards:
                 entity: cover.kitchen_blind_one
                 name: Blinds
                 show_position_control: true
-              - type: custom:mushroom-climate-card
-                entity: climate.kitchen_air_conditioner
-                name: Air Conditioner
-                show_temperature_control: true
               - type: custom:decluttering-card
                 template: media_player_card
                 variables:

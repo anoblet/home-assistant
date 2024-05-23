@@ -33,6 +33,9 @@ cards:
               - type: custom:mushroom-entity-card
                 entity: sensor.x1c_00m00a2c0619044_remaining_time
                 name: Remaining Time
+              - type: custom:mushroom-entity-card
+                entity: sensor.storage_room_printer_ams_humidity
+                name: AMS Humidity
 icon: mdi:printer-3d-nozzle
 title: Storage Room - Printer
 type: custom:default-view
