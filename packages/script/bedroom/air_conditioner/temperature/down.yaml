@@ -14,5 +14,5 @@ script_bedroom_air_conditioner_temperature_down:
             delay_secs: 1
             device: "74936935"
             command: TempCooler
-            num_repeats: 4
+            num_repeats: 5
       mode: single

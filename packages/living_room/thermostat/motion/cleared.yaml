@@ -13,7 +13,7 @@ living_room_thermostat_motion_cleared:
       trigger:
         - entity_id: binary_sensor.living_room_motion_occupancy_group
           for:
-            minutes: 30
+            minutes: 15
           from: "on"
           platform: state
           to: "off"
