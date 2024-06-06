@@ -10,7 +10,7 @@ sensor:
   - address: 0x76
     humidity:
       name: Bedroom BME280 Humidity
-    platform: bme280
+    platform: bme280_i2c
     pressure:
       name: Bedroom BME280 Pressure
     temperature:
