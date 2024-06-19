@@ -88,6 +88,9 @@ cards:
               - type: custom:mushroom-entity-card
                 entity: sensor.bedroom_sen55_voc
                 name: VOC
+              - type: custom:mushroom-entity-card
+                entity: binary_sensor.bedroom_presence_presence
+                name: Presence
           - type: custom:grid-card
             style:
               "gap": "1rem"
