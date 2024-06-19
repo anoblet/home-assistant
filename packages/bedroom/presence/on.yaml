@@ -1,0 +1,15 @@
+bedroom_presence_on:
+  automation:
+    action:
+      - service: climate.turn_on
+        data: {}
+        target:
+          entity_id: climate.bedroom_thermostat
+    alias: Bedroom - Presence - On
+    id: bedroom_presence_on
+    mode: single
+    trigger:
+      - entity_id: binary_sensor.bedroom_presence_presence
+        from: "off"
+        platform: state
+        to: "on"
