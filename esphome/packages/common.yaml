@@ -7,6 +7,7 @@ esphome:
   name_add_mac_suffix: false
 logger:
 ota:
-  password: !secret ota_password
+  - platform: esphome
+    password: !secret ota_password
 packages:
   wifi: !include wifi.yaml
