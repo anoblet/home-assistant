@@ -13,7 +13,7 @@ mqtt:
 serial:
   port: /dev/ttyUSB2
 advanced:
-  log_level: warn
+  log_level: debug
   pan_id: 6754
   channel: 25
   network_key:
@@ -35,8 +35,6 @@ advanced:
     - 13
   availability_blocklist: []
   availability_passlist: []
-# device_options:
-#   transition: 3
 blocklist: []
 passlist: []
 queue: {}

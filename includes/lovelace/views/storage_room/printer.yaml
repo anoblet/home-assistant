@@ -10,8 +10,10 @@ cards:
         cards:
           - type: custom:flex-card
             cards:
-              - type: custom:webrtc-camera
-                url: bambux1c
+              - type: picture-entity
+                camera_view: live
+                entity: camera.x1c_00m00a2c0619044_camera
+                preload_stream: true
             style:
               "align-items": "center"
               "margin": "0 auto"

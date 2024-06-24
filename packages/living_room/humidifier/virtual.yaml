@@ -1,0 +1,12 @@
+living_room_humidifier_virtual:
+  generic_hygrostat:
+    - dry_tolerance: 1
+      name: living_room Humidifier Virtual
+      humidifier: humidifier.living_room_humidifier
+      target_sensor: sensor.living_room_climate_humidity
+      wet_tolerance: 1
+  google_assistant:
+    entity_config:
+      humidifier.living_room_humidifier_virtual:
+        expose: true
+        name: "Living Room Humidifier"
