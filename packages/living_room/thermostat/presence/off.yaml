@@ -1,19 +1,19 @@
-living_room_thermostat_motion_cleared:
+living_room_thermostat_presence_off:
   automation:
     - action:
         - service: climate.turn_off
           target:
             entity_id: climate.living_room_thermostat
-      alias: Living Room - Thermostat - Motion - Cleared
+      alias: Living Room - Thermostat - Presence - Off
       condition:
         - condition: state
           entity_id: input_boolean.living_room_thermostat_manual
           state: "off"
-      id: living_room_thermostat_motion_cleared
+      id: living_room_thermostat_presence_off
       trigger:
-        - entity_id: binary_sensor.living_room_motion_occupancy_group
+        - entity_id: binary_sensor.living_room_presence_presence
           for:
-            minutes: 15
+            minutes: 5
           from: "on"
           platform: state
           to: "off"

@@ -1,6 +1,0 @@
-bathroom_speaker_volume_default:
-  input_number:
-    bathroom_speaker_volume_default:
-      max: 100
-      min: 0
-      name: Bathroom Speaker Volume Default

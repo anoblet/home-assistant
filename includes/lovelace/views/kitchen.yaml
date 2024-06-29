@@ -36,6 +36,9 @@ cards:
                 entity: binary_sensor.kitchen_motion_occupancy_group
                 name: Motion
                 secondary_info: last-changed
+              - type: custom:mushroom-entity-card
+                entity: binary_sensor.kitchen_presence_presence
+                name: Presence
           - type: custom:grid-card
             style:
               "gap": "1rem"
