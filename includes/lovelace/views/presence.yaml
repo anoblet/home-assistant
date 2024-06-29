@@ -1,0 +1,31 @@
+cards:
+  - type: custom:generic-card
+    style:
+      "background-color": "initial"
+    cards:
+      - type: custom:muuri-card
+      - type: custom:grid-card
+        style:
+          "gap": "1rem"
+        cards:
+          - type: custom:grid-card
+            style:
+              "gap": "1rem"
+              "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: binary_sensor.bedroom_presence_presence
+                name: Presence
+              - type: custom:mushroom-entity-card
+                entity: binary_sensor.living_room_presence_presence
+                name: Presence
+              - type: custom:mushroom-entity-card
+                entity: binary_sensor.kitchen_presence_presence
+                name: Presence
+icon: mdi:motion-sensor
+title: Presence
+type: custom:default-view
+path: presence
+visible:
+  - user: e19a51e0a67944d782371b93c2a2c2e7
+  - user: 06072035e79742f3a21c5127612d5385

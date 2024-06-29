@@ -2,6 +2,7 @@ apexcharts_card_templates: !include_dir_named ../apexcharts_card_templates
 title: Devices
 views:
   - !include ../views/blinds.yaml
+  - !include ../views/presence.yaml
   - !include ../views/view-fans.yaml
   - !include ../views/view-lights.yaml
   - !include ../views/view-locks.yaml
