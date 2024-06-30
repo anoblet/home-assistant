@@ -17,3 +17,9 @@ living_room_thermostat_presence_off:
           from: "on"
           platform: state
           to: "off"
+        - entity_id: binary_sensor.living_room_motion_occupancy_group
+          for:
+            minutes: 60
+          from: "on"
+          platform: state
+          to: "off"
