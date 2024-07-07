@@ -13,3 +13,7 @@ bedroom_presence_on:
         from: "off"
         platform: state
         to: "on"
+      - entity_id: binary_sensor.bedroom_ld2410c_presence
+        from: "off"
+        platform: state
+        to: "on"

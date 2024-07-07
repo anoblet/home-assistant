@@ -2,5 +2,5 @@ packages:
   common: !include packages/common.yaml
   ld2410c: !include packages/ld2410c.yaml
 substitutions:
-  esphome_name: bedroom-ld2410c
-  friendly_name: Bedroom LD2410C
+  esphome_name: living-room-ld2410c
+  friendly_name: Living Room LD2410C

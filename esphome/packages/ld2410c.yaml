@@ -1,0 +1,158 @@
+binary_sensor:
+  - platform: ld2410
+    has_target:
+      name: ${friendly_name} Presence
+    has_moving_target:
+      name: ${friendly_name} Moving Target
+    has_still_target:
+      name: ${friendly_name} Still Target
+    out_pin_presence_status:
+      name: ${friendly_name} out pin presence status
+button:
+  - platform: restart
+    icon: mdi:power-cycle
+    name: "ESP Reboot"
+  - platform: ld2410
+    factory_reset:
+      name: ${friendly_name} Factory Reset Radar
+    restart:
+      name: ${friendly_name} Restart Radar
+esp32:
+  board: esp32dev
+ld2410:
+logger:
+  baud_rate: 0
+number:
+  - platform: ld2410
+    timeout:
+      name: ${friendly_name} Radar Timeout
+    max_move_distance_gate:
+      name: ${friendly_name} Radar Max Move Distance
+    max_still_distance_gate:
+      name: ${friendly_name} Radar Max Still Distance
+    g0:
+      move_threshold:
+        name: ${friendly_name} G0 move threshold
+      still_threshold:
+        name: ${friendly_name} G0 still threshold
+    g1:
+      move_threshold:
+        name: ${friendly_name} G1 move threshold
+      still_threshold:
+        name: ${friendly_name} G1 still threshold
+    g2:
+      move_threshold:
+        name: ${friendly_name} G2 move threshold
+      still_threshold:
+        name: ${friendly_name} G2 still threshold
+    g3:
+      move_threshold:
+        name: ${friendly_name} G3 move threshold
+      still_threshold:
+        name: ${friendly_name} G3 still threshold
+    g4:
+      move_threshold:
+        name: ${friendly_name} G4 move threshold
+      still_threshold:
+        name: ${friendly_name} G4 still threshold
+    g5:
+      move_threshold:
+        name: ${friendly_name} G5 move threshold
+      still_threshold:
+        name: ${friendly_name} G5 still threshold
+    g6:
+      move_threshold:
+        name: ${friendly_name} G6 move threshold
+      still_threshold:
+        name: ${friendly_name} G6 still threshold
+    g7:
+      move_threshold:
+        name: ${friendly_name} G7 move threshold
+      still_threshold:
+        name: ${friendly_name} G7 still threshold
+    g8:
+      move_threshold:
+        name: ${friendly_name} G8 move threshold
+      still_threshold:
+        name: ${friendly_name} G8 still threshold
+select:
+  - platform: ld2410
+    distance_resolution:
+      name: "Radar Distance Resolution"
+sensor:
+  - platform: ld2410
+    moving_distance:
+      name: ${friendly_name} Radar Moving Distance
+      id: moving_distance
+    still_distance:
+      name: ${friendly_name} Radar Still Distance
+      id: still_distance
+    moving_energy:
+      name: ${friendly_name} Radar Move Energy
+    still_energy:
+      name: ${friendly_name} Radar Still Energy
+    detection_distance:
+      name: ${friendly_name} Radar Detection Distance
+      id: radar_detection_distance
+    g0:
+      move_energy:
+        name: ${friendly_name} G0 move energy
+      still_energy:
+        name: ${friendly_name} G0 still energy
+    g1:
+      move_energy:
+        name: ${friendly_name} G1 move energy
+      still_energy:
+        name: ${friendly_name} G1 still energy
+    g2:
+      move_energy:
+        name: ${friendly_name} G2 move energy
+      still_energy:
+        name: ${friendly_name} G2 still energy
+    g3:
+      move_energy:
+        name: ${friendly_name} G3 move energy
+      still_energy:
+        name: ${friendly_name} G3 still energy
+    g4:
+      move_energy:
+        name: ${friendly_name} G4 move energy
+      still_energy:
+        name: ${friendly_name} G4 still energy
+    g5:
+      move_energy:
+        name: ${friendly_name} G5 move energy
+      still_energy:
+        name: ${friendly_name} G5 still energy
+    g6:
+      move_energy:
+        name: ${friendly_name} G6 move energy
+      still_energy:
+        name: ${friendly_name} G6 still energy
+    g7:
+      move_energy:
+        name: ${friendly_name} G7 move energy
+      still_energy:
+        name: ${friendly_name} G7 still energy
+    g8:
+      move_energy:
+        name: ${friendly_name} G8 move energy
+      still_energy:
+        name: ${friendly_name} G8 still energy
+switch:
+  - platform: ld2410
+    bluetooth:
+      name: ${friendly_name} Radar Control Bluetooth
+      id: radar_bluetooth
+    engineering_mode:
+      name: ${friendly_name} Radar Engineering Mode
+text_sensor:
+  - platform: ld2410
+    version:
+      name: "Radar Firmware Version"
+uart:
+  tx_pin: GPIO1
+  rx_pin: GPIO3
+  baud_rate: 256000
+  parity: NONE
+  stop_bits: 1
