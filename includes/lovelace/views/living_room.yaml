@@ -64,7 +64,7 @@ cards:
                 name: Motion
                 secondary_info: last-changed
               - type: custom:mushroom-entity-card
-                entity: binary_sensor.living_room_presence_presence
+                entity: binary_sensor.living_room_ld2410c_presence
                 name: Presence
               - type: custom:decluttering-card
                 template: vacuum_card

@@ -11,7 +11,7 @@ living_room_thermostat_presence_off:
           state: "off"
       id: living_room_thermostat_presence_off
       trigger:
-        - entity_id: binary_sensor.living_room_presence_presence
+        - entity_id: binary_sensor.living_room_ld2410c_presence
           for:
             minutes: 5
           from: "on"
@@ -19,7 +19,7 @@ living_room_thermostat_presence_off:
           to: "off"
         - entity_id: binary_sensor.living_room_motion_occupancy_group
           for:
-            minutes: 60
+            minutes: 15
           from: "on"
           platform: state
           to: "off"
