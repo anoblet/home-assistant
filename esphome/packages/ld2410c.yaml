@@ -17,6 +17,8 @@ button:
       name: ${friendly_name} Factory Reset Radar
     restart:
       name: ${friendly_name} Restart Radar
+    query_params:
+      name: Query Parameters
 esp32:
   board: esp32dev
 ld2410:
