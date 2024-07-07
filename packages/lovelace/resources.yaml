@@ -14,6 +14,8 @@ lovelace_resources:
       - type: module
         url: /local/community/lovelace-mushroom/mushroom.js
       - type: module
+        url: /local/community/lovelace-plotly-graph-card/plotly-graph-card.js
+      - type: module
         url: /local/community/lovelace-slider-entity-row/slider-entity-row.js
       - type: module
         url: /local/community/lovelace-valetudo-map-card/valetudo-map-card.js
