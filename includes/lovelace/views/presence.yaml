@@ -13,14 +13,14 @@ cards:
               "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
             cards:
               - type: custom:mushroom-entity-card
-                entity: binary_sensor.kitchen_presence_presence
-                name: Presence
-              - type: custom:mushroom-entity-card
                 entity: binary_sensor.bedroom_ld2410c_presence
                 name: Bedroom LD2410C Presence
               - type: custom:mushroom-entity-card
                 entity: binary_sensor.living_room_ld2410c_presence
                 name: Living Room LD2410C Presence
+              - type: custom:mushroom-entity-card
+                entity: binary_sensor.kitchen_presence_presence
+                name: Kitchen Presence
           - type: custom:plotly-graph
             title: Still Energy
             refresh_interval: 1
