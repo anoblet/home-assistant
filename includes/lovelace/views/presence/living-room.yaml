@@ -13,14 +13,11 @@ cards:
               "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
             cards:
               - type: custom:mushroom-entity-card
-                entity: binary_sensor.bedroom_ld2410c_presence
-                name: Bedroom LD2410C Presence
-              - type: custom:mushroom-entity-card
                 entity: binary_sensor.living_room_ld2410c_presence
                 name: Living Room LD2410C Presence
               - type: custom:mushroom-entity-card
-                entity: binary_sensor.kitchen_presence_presence
-                name: Kitchen Presence
+                entity: script.living_room_ld2410c_calibrate
+                name: Calibrate
           - type: custom:plotly-graph
             title: Still Energy
             refresh_interval: 1
@@ -68,15 +65,15 @@ cards:
                   - 7
                   - 8
                 'y':
-                  - $ex hass.states["number.bedroom_ld2410c_g0_still_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g1_still_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g2_still_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g3_still_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g4_still_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g5_still_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g6_still_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g7_still_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g8_still_threshold"].state
+                  - $ex hass.states["number.living_room_ld2410c_g0_still_threshold"].state
+                  - $ex hass.states["number.living_room_ld2410c_g1_still_threshold"].state
+                  - $ex hass.states["number.living_room_ld2410c_g2_still_threshold"].state
+                  - $ex hass.states["number.living_room_ld2410c_g3_still_threshold"].state
+                  - $ex hass.states["number.living_room_ld2410c_g4_still_threshold"].state
+                  - $ex hass.states["number.living_room_ld2410c_g5_still_threshold"].state
+                  - $ex hass.states["number.living_room_ld2410c_g6_still_threshold"].state
+                  - $ex hass.states["number.living_room_ld2410c_g7_still_threshold"].state
+                  - $ex hass.states["number.living_room_ld2410c_g8_still_threshold"].state
               - entity: ''
                 name: Energy
                 mode: lines
@@ -95,20 +92,20 @@ cards:
                   - 7
                   - 8
                 'y':
-                  - $ex hass.states["sensor.bedroom_ld2410c_g0_still_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g1_still_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g2_still_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g3_still_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g4_still_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g5_still_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g6_still_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g7_still_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g8_still_energy"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g0_still_energy"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g1_still_energy"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g2_still_energy"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g3_still_energy"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g4_still_energy"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g5_still_energy"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g6_still_energy"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g7_still_energy"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g8_still_energy"].state
 raw_plotly_config: true
-icon: mdi:sofa
+icon: mdi:bed
 title: Living Room
 type: custom:default-view
-path: living-room
+path: living_room
 visible:
   - user: e19a51e0a67944d782371b93c2a2c2e7
   - user: 06072035e79742f3a21c5127612d5385

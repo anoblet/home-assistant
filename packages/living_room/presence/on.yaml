@@ -1,0 +1,14 @@
+living_room_presence_on:
+  automation:
+    action:
+      - service: climate.turn_on
+        target:
+          entity_id: climate.living_room_thermostat
+    alias: Bedroom - Presence - On
+    id: living_room_presence_on
+    mode: single
+    trigger:
+      - entity_id: binary_sensor.living_room_ld2410c_presence
+        from: "off"
+        platform: state
+        to: "on"

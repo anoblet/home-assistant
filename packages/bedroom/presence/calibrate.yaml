@@ -3,7 +3,7 @@ bedroom_ld2410c_calibrate:
     bedroom_ld2410c_calibrate:
       sequence:
         - variables:
-            round: 5
+            round: 10
         - service: number.set_value
           data:
             value: >
