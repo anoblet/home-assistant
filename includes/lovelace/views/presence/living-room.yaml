@@ -102,7 +102,7 @@ cards:
                   - $ex hass.states["sensor.living_room_ld2410c_g7_still_energy"].state
                   - $ex hass.states["sensor.living_room_ld2410c_g8_still_energy"].state
 raw_plotly_config: true
-icon: mdi:bed
+icon: mdi:sofa
 title: Living Room
 type: custom:default-view
 path: living_room
