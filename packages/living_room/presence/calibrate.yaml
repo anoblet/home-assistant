@@ -8,7 +8,7 @@ living_room_ld2410c_calibrate:
           target:
             entity_id: switch.living_room_ld2410c_radar_engineering_mode
         - delay:
-            minutes: 5
+            minutes: 15
         - service: number.set_value
           data:
             value: >
