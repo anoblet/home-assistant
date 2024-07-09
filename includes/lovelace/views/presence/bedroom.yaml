@@ -16,6 +16,9 @@ cards:
                 entity: binary_sensor.bedroom_ld2410c_presence
                 name: Bedroom LD2410C Presence
               - type: custom:mushroom-entity-card
+                entity: sensor.bedroom_ld2410c_radar_detection_distance
+                name: Bedroom LD2410C Radar Detection Distance
+              - type: custom:mushroom-entity-card
                 entity: sensor.bedroom_ld2410c_last_triggered_gate
                 name: Bedroom LD2410C Last Triggered Gate
               - type: custom:mushroom-entity-card
@@ -38,7 +41,7 @@ cards:
               showlegend: true
               legend:
                 x: 0.3
-                'y': -0.3
+                "y": -0.3
               xaxis:
                 dtick: 1
                 type: number
@@ -53,7 +56,7 @@ cards:
                   - 0
                   - 100
             entities:
-              - entity: ''
+              - entity: ""
                 name: Threshold
                 mode: lines
                 line:
@@ -70,7 +73,7 @@ cards:
                   - 6
                   - 7
                   - 8
-                'y':
+                "y":
                   - $ex hass.states["number.bedroom_ld2410c_g0_still_threshold"].state
                   - $ex hass.states["number.bedroom_ld2410c_g1_still_threshold"].state
                   - $ex hass.states["number.bedroom_ld2410c_g2_still_threshold"].state
@@ -80,7 +83,7 @@ cards:
                   - $ex hass.states["number.bedroom_ld2410c_g6_still_threshold"].state
                   - $ex hass.states["number.bedroom_ld2410c_g7_still_threshold"].state
                   - $ex hass.states["number.bedroom_ld2410c_g8_still_threshold"].state
-              - entity: ''
+              - entity: ""
                 name: Energy
                 mode: lines
                 line:
@@ -97,7 +100,7 @@ cards:
                   - 6
                   - 7
                   - 8
-                'y':
+                "y":
                   - $ex hass.states["sensor.bedroom_ld2410c_g0_still_energy"].state
                   - $ex hass.states["sensor.bedroom_ld2410c_g1_still_energy"].state
                   - $ex hass.states["sensor.bedroom_ld2410c_g2_still_energy"].state
