@@ -16,6 +16,12 @@ cards:
                 entity: binary_sensor.bedroom_ld2410c_presence
                 name: Bedroom LD2410C Presence
               - type: custom:mushroom-entity-card
+                entity: sensor.bedroom_ld2410c_last_triggered_gate
+                name: Bedroom LD2410C Last Triggered Gate
+              - type: custom:mushroom-entity-card
+                entity: switch.bedroom_ld2410c_radar_engineering_mode
+                name: Bedroom LD2410C Radar Engineering Mode
+              - type: custom:mushroom-entity-card
                 entity: script.bedroom_ld2410c_calibrate
                 name: Calibrate
           - type: custom:plotly-graph
