@@ -38,7 +38,7 @@ cards:
               showlegend: true
               legend:
                 x: 0.3
-                'y': -0.3
+                "y": -0.3
               xaxis:
                 dtick: 1
                 type: number
@@ -53,11 +53,10 @@ cards:
                   - 0
                   - 100
             entities:
-              - entity: ''
+              - entity: ""
                 name: Threshold
                 mode: lines
                 line:
-                  shape: spline
                   width: 2
                   color: FB239F
                 x:
@@ -70,7 +69,7 @@ cards:
                   - 6
                   - 7
                   - 8
-                'y':
+                "y":
                   - $ex hass.states["number.living_room_ld2410c_g0_still_threshold"].state
                   - $ex hass.states["number.living_room_ld2410c_g1_still_threshold"].state
                   - $ex hass.states["number.living_room_ld2410c_g2_still_threshold"].state
@@ -80,11 +79,10 @@ cards:
                   - $ex hass.states["number.living_room_ld2410c_g6_still_threshold"].state
                   - $ex hass.states["number.living_room_ld2410c_g7_still_threshold"].state
                   - $ex hass.states["number.living_room_ld2410c_g8_still_threshold"].state
-              - entity: ''
+              - entity: ""
                 name: Energy
                 mode: lines
                 line:
-                  shape: spline
                   width: 2
                   color: blue
                 x:
@@ -97,7 +95,7 @@ cards:
                   - 6
                   - 7
                   - 8
-                'y':
+                "y":
                   - $ex hass.states["sensor.living_room_ld2410c_g0_still_energy"].state
                   - $ex hass.states["sensor.living_room_ld2410c_g1_still_energy"].state
                   - $ex hass.states["sensor.living_room_ld2410c_g2_still_energy"].state
@@ -107,7 +105,66 @@ cards:
                   - $ex hass.states["sensor.living_room_ld2410c_g6_still_energy"].state
                   - $ex hass.states["sensor.living_room_ld2410c_g7_still_energy"].state
                   - $ex hass.states["sensor.living_room_ld2410c_g8_still_energy"].state
-raw_plotly_config: true
+            raw_plotly_config: true
+          - type: custom:grid-card
+            style:
+              "gap": "1rem"
+              "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
+            cards:
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g0_move_threshold
+                name: G0 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g0_still_threshold
+                name: G0 Still Threshold
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g1_move_threshold
+                name: G1 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g1_still_threshold
+                name: G1 Still Threshold
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g2_move_threshold
+                name: G2 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g2_still_threshold
+                name: G2 Still Threshold
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g3_move_threshold
+                name: G3 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g3_still_threshold
+                name: G3 Still Threshold
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g4_move_threshold
+                name: G4 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g4_still_threshold
+                name: G4 Still Threshold
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g5_move_threshold
+                name: G5 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g5_still_threshold
+                name: G5 Still Threshold
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g6_move_threshold
+                name: G6 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g6_still_threshold
+                name: G6 Still Threshold
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g7_move_threshold
+                name: G7 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g7_still_threshold
+                name: G7 Still Threshold
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g8_move_threshold
+                name: G8 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.living_room_ld2410c_g8_still_threshold
+                name: G8 Still Threshold
 icon: mdi:sofa
 title: Living Room
 type: custom:default-view
