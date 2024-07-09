@@ -1,10 +1,10 @@
-reload:
+homeassistant_reload:
   google_assistant:
     entity_config:
-      script.reload:
+      script.homeassistant_reload:
         expose: true
   script:
-    reload:
+    homeassistant_reload:
       alias: Reload
       mode: single
       sequence:
