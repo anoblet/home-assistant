@@ -1,0 +1,8 @@
+esp32:
+  board: esp32-c3-devkitm-1
+packages:
+  common: !include packages/common.yaml
+  ld2410c: !include packages/ld2410c.yaml
+substitutions:
+  esphome_name: kitchen-ld2410c
+  friendly_name: Kitchen LD2410C
