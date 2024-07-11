@@ -20,7 +20,7 @@ cards:
                 show_brightness_control: true
                 show_color_temp_control: true
               - type: custom:mushroom-humidifier-card
-                entity: humidifier.bedroom_humidifier_virtual
+                entity: humidifier.living_room_humidifier_virtual
                 name: Humidifier
                 show_target_humidity_control: true
               - type: custom:mushroom-cover-card
