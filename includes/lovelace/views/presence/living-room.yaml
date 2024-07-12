@@ -24,6 +24,11 @@ cards:
               - type: custom:mushroom-entity-card
                 entity: switch.living_room_ld2410c_radar_engineering_mode
                 name: Radar Engineering Mode
+                tap_action:
+                  action: call-service
+                  service: switch.toggle
+                  target:
+                    entity_id: switch.living_room_ld2410c_radar_engineering_mode
               - type: custom:mushroom-entity-card
                 entity: button.living_room_ld2410c_esp_reboot
                 name: ESP Reboot
