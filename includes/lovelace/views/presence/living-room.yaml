@@ -25,6 +25,9 @@ cards:
                 entity: switch.living_room_ld2410c_radar_engineering_mode
                 name: Radar Engineering Mode
               - type: custom:mushroom-entity-card
+                entity: button.living_room_ld2410c_esp_reboot
+                name: ESP Reboot
+              - type: custom:mushroom-entity-card
                 entity: script.living_room_ld2410c_calibrate
                 name: Calibrate
           - type: custom:plotly-graph
