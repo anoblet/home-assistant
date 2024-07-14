@@ -19,8 +19,8 @@ cards:
                 entity: sensor.bedroom_ld2410c_radar_detection_distance
                 name: Radar Detection Distance
               - type: custom:mushroom-entity-card
-                entity: sensor.bedroom_ld2410c_last_triggered_gate
-                name: Last Triggered Gate
+                entity: sensor.bedroom_ld2410c_current_gate
+                name: Current Gate
               - type: custom:mushroom-entity-card
                 entity: switch.bedroom_ld2410c_radar_engineering_mode
                 name: Radar Engineering Mode

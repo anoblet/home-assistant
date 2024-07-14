@@ -128,17 +128,17 @@ bedroom_presence_statistics:
       unique_id: bedroom_ld2410c_g8_still_energy_max
   template:
     - sensor:
-      - name: "Bedroom LD2410C Last Triggered Gate"
-        state: >
-          {% set distance = states('sensor.bedroom_ld2410c_radar_detection_distance') | int %}
-          {% if distance < 29.52756 %}0 
-          {% elif distance < 59.05512 %}1 
-          {% elif distance < 88.58268 %}2 
-          {% elif distance < 118.11024 %}3 
-          {% elif distance < 147.6378 %}4 
-          {% elif distance < 177.16536 %}5 
-          {% elif distance < 206.69292 %}6 
-          {% elif distance < 236.22048 %}7 
-          {% else %}8 
-          {% endif %}
-        unique_id: bedroom_ld2410c_last_triggered_gate
+        - name: "Bedroom LD2410C Current Gate"
+          state: >
+            {% set distance = states('sensor.bedroom_ld2410c_radar_detection_distance') | int %}
+            {% if distance < 29.52756 %}0 
+            {% elif distance < 59.05512 %}1 
+            {% elif distance < 88.58268 %}2 
+            {% elif distance < 118.11024 %}3 
+            {% elif distance < 147.6378 %}4 
+            {% elif distance < 177.16536 %}5 
+            {% elif distance < 206.69292 %}6 
+            {% elif distance < 236.22048 %}7 
+            {% else %}8 
+            {% endif %}
+          unique_id: bedroom_ld2410c_current_gate
