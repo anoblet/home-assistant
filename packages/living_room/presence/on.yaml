@@ -9,6 +9,8 @@ living_room_presence_on:
     mode: single
     trigger:
       - entity_id: binary_sensor.living_room_ld2410c_presence
+        for:
+          minutes: 1
         from: "off"
         platform: state
         to: "on"
