@@ -4,7 +4,7 @@ living_room_presence_on:
       - service: climate.turn_on
         target:
           entity_id: climate.living_room_thermostat
-    alias: Bedroom - Presence - On
+    alias: Living Room - Presence - On
     id: living_room_presence_on
     mode: single
     trigger:
