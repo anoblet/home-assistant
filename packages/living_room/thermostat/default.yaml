@@ -1,9 +1,0 @@
-living_room_thermostat_default:
-  input_number:
-    living_room_thermostat_default:
-      name: Living Room Thermostat Default
-      min: 0
-      max: 100
-      mode: box
-      step: 1
-      unit_of_measurement: "°F"

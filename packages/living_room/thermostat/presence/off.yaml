@@ -1,0 +1,9 @@
+living_room_thermostat_presence_off:
+  input_number:
+    living_room_thermostat_presence_off:
+      name: Living Room Thermostat Presence Off
+      min: 0
+      max: 100
+      mode: box
+      step: 1
+      unit_of_measurement: "°F"
