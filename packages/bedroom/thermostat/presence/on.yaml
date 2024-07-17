@@ -1,0 +1,9 @@
+bedroom_thermostat_presence_on:
+  input_number:
+    bedroom_thermostat_presence_on:
+      name: Bedroom Thermostat Presence On
+      min: 0
+      max: 100
+      mode: box
+      step: 1
+      unit_of_measurement: "°F"
