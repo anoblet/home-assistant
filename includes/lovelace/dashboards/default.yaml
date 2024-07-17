@@ -1,3 +1,4 @@
+show_in_sidebar: false
 title: Dashboard
 views:
   - !include ../views/areas.yaml
