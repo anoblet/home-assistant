@@ -91,6 +91,9 @@ cards:
               - type: custom:mushroom-entity-card
                 entity: binary_sensor.bedroom_ld2410c_presence
                 name: Presence
+                tap_action:
+                  action: navigate
+                  navigation_path: /dashboard-presence/bedroom
           - type: custom:grid-card
             style:
               "gap": "1rem"
