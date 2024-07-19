@@ -10,8 +10,6 @@ kitchen_presence_off:
     mode: single
     trigger:
       - entity_id: binary_sensor.kitchen_ld2410c_presence
-        for:
-          minutes: 5
         from: "on"
         platform: state
         to: "off"
