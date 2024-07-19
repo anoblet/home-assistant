@@ -1,0 +1,187 @@
+cards:
+  - type: custom:generic-card
+    style:
+      "background-color": "initial"
+    cards:
+      - type: custom:grid-card
+        style:
+          "gap": "1rem"
+        cards:
+          - type: custom:grid-card
+            style:
+              "gap": "1rem"
+              "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
+            cards:
+              - type: custom:mushroom-entity-card
+                entity: binary_sensor.kitchen_ld2410c_presence
+                name: Presence
+              - type: custom:mushroom-entity-card
+                entity: sensor.kitchen_ld2410c_radar_detection_distance
+                name: Radar Detection Distance
+              - type: custom:mushroom-entity-card
+                entity: sensor.kitchen_ld2410c_current_gate
+                name: Current Gate
+              - type: custom:mushroom-entity-card
+                entity: switch.kitchen_ld2410c_radar_engineering_mode
+                name: Radar Engineering Mode
+                tap_action:
+                  action: call-service
+                  service: switch.toggle
+                  target:
+                    entity_id: switch.kitchen_ld2410c_radar_engineering_mode
+              - type: custom:mushroom-entity-card
+                entity: script.kitchen_ld2410c_calibrate
+                name: Calibrate
+                tap_action:
+                  action: call-service
+                  service: script.turn_on
+                  target:
+                    entity_id: script.kitchen_ld2410c_calibrate
+          - type: custom:plotly-graph
+            title: Still Energy
+            refresh_interval: 1
+            hours_to_show: current_day
+            layout:
+              height: 350
+              margin:
+                l: 50
+                r: 50
+                t: 50
+                b: 50
+              showlegend: true
+              legend:
+                x: 0.3
+                "y": -0.3
+              xaxis:
+                dtick: 1
+                type: number
+                fixedrange: true
+                range:
+                  - 0
+                  - 8
+              yaxis:
+                dtick: 10
+                fixedrange: true
+                range:
+                  - 0
+                  - 100
+            entities:
+              - entity: ""
+                name: Threshold
+                mode: lines
+                line:
+                  width: 2
+                  color: FB239F
+                x:
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 8
+                "y":
+                  - $ex hass.states["number.kitchen_ld2410c_g0_still_threshold"].state
+                  - $ex hass.states["number.kitchen_ld2410c_g1_still_threshold"].state
+                  - $ex hass.states["number.kitchen_ld2410c_g2_still_threshold"].state
+                  - $ex hass.states["number.kitchen_ld2410c_g3_still_threshold"].state
+                  - $ex hass.states["number.kitchen_ld2410c_g4_still_threshold"].state
+                  - $ex hass.states["number.kitchen_ld2410c_g5_still_threshold"].state
+                  - $ex hass.states["number.kitchen_ld2410c_g6_still_threshold"].state
+                  - $ex hass.states["number.kitchen_ld2410c_g7_still_threshold"].state
+                  - $ex hass.states["number.kitchen_ld2410c_g8_still_threshold"].state
+              - entity: ""
+                name: Energy
+                mode: lines
+                line:
+                  width: 2
+                  color: blue
+                x:
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 8
+                "y":
+                  - $ex hass.states["sensor.kitchen_ld2410c_g0_still_energy"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g1_still_energy"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g2_still_energy"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g3_still_energy"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g4_still_energy"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g5_still_energy"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g6_still_energy"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g7_still_energy"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g8_still_energy"].state
+            raw_plotly_config: true
+          - type: custom:grid-card
+            style:
+              "gap": "1rem"
+              "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
+            cards:
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g0_move_threshold
+                name: G0 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g0_still_threshold
+                name: G0 Still Threshold
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g1_move_threshold
+                name: G1 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g1_still_threshold
+                name: G1 Still Threshold
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g2_move_threshold
+                name: G2 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g2_still_threshold
+                name: G2 Still Threshold
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g3_move_threshold
+                name: G3 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g3_still_threshold
+                name: G3 Still Threshold
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g4_move_threshold
+                name: G4 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g4_still_threshold
+                name: G4 Still Threshold
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g5_move_threshold
+                name: G5 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g5_still_threshold
+                name: G5 Still Threshold
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g6_move_threshold
+                name: G6 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g6_still_threshold
+                name: G6 Still Threshold
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g7_move_threshold
+                name: G7 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g7_still_threshold
+                name: G7 Still Threshold
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g8_move_threshold
+                name: G8 Move Threshold
+              - type: custom:mushroom-number-card
+                entity: number.kitchen_ld2410c_g8_still_threshold
+                name: G8 Still Threshold
+icon: mdi:countertop
+title: Kitchen
+type: custom:default-view
+path: kitchen
+visible:
+  - user: e19a51e0a67944d782371b93c2a2c2e7
+  - user: 06072035e79742f3a21c5127612d5385

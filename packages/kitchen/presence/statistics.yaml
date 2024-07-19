@@ -1,136 +1,136 @@
-bedroom_presence_statistics:
+kitchen_presence_statistics:
   sensor:
     - platform: statistics
-      name: "Bedroom LD2410C G0 Move Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g0_move_energy
+      name: "Kitchen G0 Move Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g0_move_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g0_move_energy_max
+      unique_id: kitchen_ld2410c_g0_move_energy_max
     - platform: statistics
-      name: "Bedroom LD2410C G0 Still Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g0_still_energy
+      name: "Kitchen G0 Still Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g0_still_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g0_still_energy_max
+      unique_id: kitchen_ld2410c_g0_still_energy_max
     - platform: statistics
-      name: "Bedroom LD2410C G1 Move Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g1_move_energy
+      name: "Kitchen G1 Move Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g1_move_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g1_move_energy_max
+      unique_id: kitchen_ld2410c_g1_move_energy_max
     - platform: statistics
-      name: "Bedroom LD2410C G1 Still Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g1_still_energy
+      name: "Kitchen G1 Still Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g1_still_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g1_still_energy_max
+      unique_id: kitchen_ld2410c_g1_still_energy_max
     - platform: statistics
-      name: "Bedroom LD2410C G2 Move Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g2_move_energy
+      name: "Kitchen G2 Move Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g2_move_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g2_move_energy_max
+      unique_id: kitchen_ld2410c_g2_move_energy_max
     - platform: statistics
-      name: "Bedroom LD2410C G2 Still Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g2_still_energy
+      name: "Kitchen G2 Still Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g2_still_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g2_still_energy_max
+      unique_id: kitchen_ld2410c_g2_still_energy_max
     - platform: statistics
-      name: "Bedroom LD2410C G3 Move Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g3_move_energy
+      name: "Kitchen G3 Move Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g3_move_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g3_move_energy_max
+      unique_id: kitchen_ld2410c_g3_move_energy_max
     - platform: statistics
-      name: "Bedroom LD2410C G3 Still Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g3_still_energy
+      name: "Kitchen G3 Still Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g3_still_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g3_still_energy_max
+      unique_id: kitchen_ld2410c_g3_still_energy_max
     - platform: statistics
-      name: "Bedroom LD2410C G4 Move Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g4_move_energy
+      name: "Kitchen G4 Move Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g4_move_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g4_move_energy_max
+      unique_id: kitchen_ld2410c_g4_move_energy_max
     - platform: statistics
-      name: "Bedroom LD2410C G4 Still Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g4_still_energy
+      name: "Kitchen G4 Still Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g4_still_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g4_still_energy_max
+      unique_id: kitchen_ld2410c_g4_still_energy_max
     - platform: statistics
-      name: "Bedroom LD2410C G5 Move Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g5_move_energy
+      name: "Kitchen G5 Move Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g5_move_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g5_move_energy_max
+      unique_id: kitchen_ld2410c_g5_move_energy_max
     - platform: statistics
-      name: "Bedroom LD2410C G5 Still Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g5_still_energy
+      name: "Kitchen G5 Still Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g5_still_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g5_still_energy_max
+      unique_id: kitchen_ld2410c_g5_still_energy_max
     - platform: statistics
-      name: "Bedroom LD2410C G6 Move Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g6_move_energy
+      name: "Kitchen G6 Move Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g6_move_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g6_move_energy_max
+      unique_id: kitchen_ld2410c_g6_move_energy_max
     - platform: statistics
-      name: "Bedroom LD2410C G6 Still Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g6_still_energy
+      name: "Kitchen G6 Still Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g6_still_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g6_still_energy_max
+      unique_id: kitchen_ld2410c_g6_still_energy_max
     - platform: statistics
-      name: "Bedroom LD2410C G7 Move Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g7_move_energy
+      name: "Kitchen G7 Move Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g7_move_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g7_move_energy_max
+      unique_id: kitchen_ld2410c_g7_move_energy_max
     - platform: statistics
-      name: "Bedroom LD2410C G7 Still Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g7_still_energy
+      name: "Kitchen G7 Still Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g7_still_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g7_still_energy_max
+      unique_id: kitchen_ld2410c_g7_still_energy_max
     - platform: statistics
-      name: "Bedroom LD2410C G8 Move Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g8_move_energy
+      name: "Kitchen G8 Move Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g8_move_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g8_move_energy_max
+      unique_id: kitchen_ld2410c_g8_move_energy_max
     - platform: statistics
-      name: "Bedroom LD2410C G8 Still Energy Max"
-      entity_id: sensor.bedroom_ld2410c_g8_still_energy
+      name: "Kitchen G8 Still Energy Max"
+      entity_id: sensor.kitchen_ld2410c_g8_still_energy
       state_characteristic: value_max
       max_age:
         minutes: 15
-      unique_id: bedroom_ld2410c_g8_still_energy_max
+      unique_id: kitchen_ld2410c_g8_still_energy_max
   template:
     - sensor:
-        - name: "Bedroom LD2410C Current Gate"
+        - name: "Kitchen Current Gate"
           state: >
-            {% set distance = states('sensor.bedroom_ld2410c_radar_detection_distance') | int %}
+            {% set distance = states('sensor.kitchen_ld2410c_radar_detection_distance') | int %}
             {% if distance == 0 %}0
             {% elif distance < 29.52756 %}1
             {% elif distance < 59.05512 %}2
@@ -141,4 +141,4 @@ bedroom_presence_statistics:
             {% elif distance < 206.69292 %}7
             {% else %}8
             {% endif %}
-          unique_id: bedroom_ld2410c_current_gate
+          unique_id: kitchen_ld2410c_current_gate
