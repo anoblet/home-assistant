@@ -22,7 +22,7 @@ bedroom_presence_off:
     trigger:
       - entity_id: binary_sensor.bedroom_ld2410c_presence
         for:
-          minutes: 5
+          minutes: 1
         from: "on"
         platform: state
         to: "off"
