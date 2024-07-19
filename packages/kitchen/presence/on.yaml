@@ -1,25 +1,25 @@
-bedroom_presence_on:
+kitchen_presence_on:
   automation:
     action:
       # - service: climate.turn_on
       #   target:
-      #     entity_id: climate.bedroom_thermostat
+      #     entity_id: climate.kitchen_thermostat
       - choose:
           - conditions:
               - condition: state
-                entity_id: input_boolean.bedroom_thermostat_manual
+                entity_id: input_boolean.kitchen_thermostat_manual
                 state: "off"
             sequence:
               - service: climate.set_temperature
                 data:
-                  temperature: "{{ states('input_number.bedroom_thermostat_presence_on') | float }}"
+                  temperature: "{{ states('input_number.kitchen_thermostat_presence_on') | float }}"
                 target:
-                  entity_id: climate.bedroom_thermostat
+                  entity_id: climate.kitchen_thermostat
     alias: Bedroom - Presence - On
-    id: bedroom_presence_on
+    id: kitchen_presence_on
     mode: single
     trigger:
-      - entity_id: binary_sensor.bedroom_ld2410c_presence
+      - entity_id: binary_sensor.kitchen_ld2410c_presence
         from: "off"
         platform: state
         to: "on"

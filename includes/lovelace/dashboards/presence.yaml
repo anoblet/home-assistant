@@ -1,4 +1,5 @@
 title: Presence
 views:
   - !include ../views/presence/bedroom.yaml
+  - !include ../views/presence/kitchen.yaml
   - !include ../views/presence/living-room.yaml
