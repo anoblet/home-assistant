@@ -1,9 +1,0 @@
-living_room_motion_occupancy_group:
-  binary_sensor:
-    - platform: group
-      name: "Living Room Motion Occupancy Group"
-      device_class: "motion"
-      entities:
-        - binary_sensor.living_room_motion_one_occupancy
-        - binary_sensor.living_room_motion_two_occupancy
-      unique_id: living_room_motion_occupancy_group
