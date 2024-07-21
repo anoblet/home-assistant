@@ -33,11 +33,6 @@ cards:
               - type: custom:mushroom-entity-card
                 entity: script.bedroom_ld2410c_calibrate
                 name: Calibrate
-                tap_action:
-                  action: call-service
-                  service: script.turn_on
-                  target:
-                    entity_id: script.bedroom_ld2410c_calibrate
           - type: custom:plotly-graph
             title: Still Energy
             refresh_interval: 1
