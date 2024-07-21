@@ -20,7 +20,7 @@ cards:
                 name: Radar Detection Distance
               - type: custom:mushroom-entity-card
                 entity: sensor.kitchen_ld2410c_current_gate
-                name: Current Gate
+                name: Gate
               - type: custom:mushroom-entity-card
                 entity: switch.kitchen_ld2410c_radar_engineering_mode
                 name: Radar Engineering Mode

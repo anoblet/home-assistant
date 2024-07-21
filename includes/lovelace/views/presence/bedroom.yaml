@@ -15,12 +15,13 @@ cards:
               - type: custom:mushroom-entity-card
                 entity: binary_sensor.bedroom_ld2410c_presence
                 name: Presence
+                secondary_info: last-changed
               - type: custom:mushroom-entity-card
                 entity: sensor.bedroom_ld2410c_radar_detection_distance
                 name: Radar Detection Distance
               - type: custom:mushroom-entity-card
                 entity: sensor.bedroom_ld2410c_current_gate
-                name: Current Gate
+                name: Gate
               - type: custom:mushroom-entity-card
                 entity: switch.bedroom_ld2410c_radar_engineering_mode
                 name: Radar Engineering Mode
