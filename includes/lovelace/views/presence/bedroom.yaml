@@ -38,88 +38,6 @@ cards:
                   target:
                     entity_id: script.bedroom_ld2410c_calibrate
           - type: custom:plotly-graph
-            title: Move Energy
-            refresh_interval: 1
-            hours_to_show: current_day
-            layout:
-              height: 350
-              margin:
-                l: 50
-                r: 50
-                t: 50
-                b: 50
-              showlegend: true
-              legend:
-                x: 0.3
-                "y": -0.3
-              xaxis:
-                dtick: 1
-                type: number
-                fixedrange: true
-                range:
-                  - 0
-                  - 8
-              yaxis:
-                dtick: 10
-                fixedrange: true
-                range:
-                  - 0
-                  - 100
-            entities:
-              - entity: ""
-                name: Threshold
-                mode: lines
-                line:
-                  width: 2
-                  color: FB239F
-                x:
-                  - 0
-                  - 1
-                  - 2
-                  - 3
-                  - 4
-                  - 5
-                  - 6
-                  - 7
-                  - 8
-                "y":
-                  - $ex hass.states["number.bedroom_ld2410c_g0_move_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g1_move_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g2_move_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g3_move_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g4_move_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g5_move_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g6_move_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g7_move_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g8_move_threshold"].state
-              - entity: ""
-                name: Energy
-                mode: lines
-                line:
-                  width: 2
-                  color: blue
-                x:
-                  - 0
-                  - 1
-                  - 2
-                  - 3
-                  - 4
-                  - 5
-                  - 6
-                  - 7
-                  - 8
-                "y":
-                  - $ex hass.states["sensor.bedroom_ld2410c_g0_move_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g1_move_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g2_move_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g3_move_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g4_move_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g5_move_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g6_move_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g7_move_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g8_move_energy"].state
-            raw_plotly_config: true
-          - type: custom:plotly-graph
             title: Still Energy
             refresh_interval: 1
             hours_to_show: current_day
@@ -200,6 +118,88 @@ cards:
                   - $ex hass.states["sensor.bedroom_ld2410c_g6_still_energy"].state
                   - $ex hass.states["sensor.bedroom_ld2410c_g7_still_energy"].state
                   - $ex hass.states["sensor.bedroom_ld2410c_g8_still_energy"].state
+            raw_plotly_config: true
+          - type: custom:plotly-graph
+            title: Move Energy
+            refresh_interval: 1
+            hours_to_show: current_day
+            layout:
+              height: 350
+              margin:
+                l: 50
+                r: 50
+                t: 50
+                b: 50
+              showlegend: true
+              legend:
+                x: 0.3
+                "y": -0.3
+              xaxis:
+                dtick: 1
+                type: number
+                fixedrange: true
+                range:
+                  - 0
+                  - 8
+              yaxis:
+                dtick: 10
+                fixedrange: true
+                range:
+                  - 0
+                  - 100
+            entities:
+              - entity: ""
+                name: Threshold
+                mode: lines
+                line:
+                  width: 2
+                  color: FB239F
+                x:
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 8
+                "y":
+                  - $ex hass.states["number.bedroom_ld2410c_g0_move_threshold"].state
+                  - $ex hass.states["number.bedroom_ld2410c_g1_move_threshold"].state
+                  - $ex hass.states["number.bedroom_ld2410c_g2_move_threshold"].state
+                  - $ex hass.states["number.bedroom_ld2410c_g3_move_threshold"].state
+                  - $ex hass.states["number.bedroom_ld2410c_g4_move_threshold"].state
+                  - $ex hass.states["number.bedroom_ld2410c_g5_move_threshold"].state
+                  - $ex hass.states["number.bedroom_ld2410c_g6_move_threshold"].state
+                  - $ex hass.states["number.bedroom_ld2410c_g7_move_threshold"].state
+                  - $ex hass.states["number.bedroom_ld2410c_g8_move_threshold"].state
+              - entity: ""
+                name: Energy
+                mode: lines
+                line:
+                  width: 2
+                  color: blue
+                x:
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 8
+                "y":
+                  - $ex hass.states["sensor.bedroom_ld2410c_g0_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_ld2410c_g1_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_ld2410c_g2_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_ld2410c_g3_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_ld2410c_g4_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_ld2410c_g5_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_ld2410c_g6_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_ld2410c_g7_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_ld2410c_g8_move_energy"].state
             raw_plotly_config: true
           - type: custom:grid-card
             style:
