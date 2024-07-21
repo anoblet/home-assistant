@@ -1,6 +1,18 @@
 living_room_presence_on:
   automation:
     action:
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: input_boolean.living_room_light_manual
+                state: "off"
+            sequence:
+              - data:
+                  entity_id:
+                    - light.living_room_ceiling_light_group_zigbee
+                    - light.living_room_floor_lamp
+                  transition: "{{ states('input_number.living_room_light_transition_on') | int }}"
+                service: light.turn_on
       # - service: climate.turn_on
       #   target:
       #     entity_id: climate.living_room_thermostat
