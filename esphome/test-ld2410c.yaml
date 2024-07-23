@@ -17,7 +17,6 @@ substitutions:
   esphome_name: test-ld2410c
   friendly_name: Test LD2410C
 uart:
-  debug:
   # Pins need to be swapped
   rx_pin: GPIO3
   tx_pin: GPIO4
