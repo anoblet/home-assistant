@@ -1,6 +1,20 @@
+esphome:
+  platformio_options:
+    board_build.f_flash: 40000000L
+    board_build.flash_mode: dio
+    board_build.flash_size: 4MB
+esp32:
+  board: esp32-c3-devkitm-1
+  variant: esp32c3
+  framework:
+    type: esp-idf
 packages:
   common: !include packages/common.yaml
   ld2410c: !include packages/ld2410c.yaml
 substitutions:
   esphome_name: bedroom-ld2410c
   friendly_name: Bedroom LD2410C
+uart:
+  # Pins need to be swapped
+  rx_pin: GPIO3
+  tx_pin: GPIO4
