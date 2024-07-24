@@ -22,11 +22,13 @@ bedroom_thermostat_manual:
       id: bedroom_thermostat_manual_reset
       mode: single
       trigger:
-        - entity_id: number.bedroom_ld2410c_presence
-          platform: state
-          to: off
-          for:
-            hours: 1
+        - platform: time_pattern
+          minutes: 0
+        # - entity_id: binary_sensor.bedroom_ld2410c_presence
+        #   platform: state
+        #   to: off
+        #   for:
+        #     hours: 1
   input_boolean:
     bedroom_thermostat_manual:
       name: Bedroom Thermostat Manual
