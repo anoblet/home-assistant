@@ -11,14 +11,14 @@ binary_sensor:
 button:
   - platform: restart
     icon: mdi:power-cycle
-    name: "ESP Reboot"
+    name: "${friendly_name} ESP Reboot"
   - platform: ld2410
     factory_reset:
       name: ${friendly_name} Factory Reset Radar
     restart:
       name: ${friendly_name} Restart Radar
     query_params:
-      name: Query Parameters
+      name: ${friendly_name} Query Parameters
 esp32:
   board: esp32dev
 ld2410:
@@ -151,7 +151,7 @@ switch:
 text_sensor:
   - platform: ld2410
     version:
-      name: "Radar Firmware Version"
+      name: "${friendly_name} Radar Firmware Version"
 uart:
   tx_pin: GPIO1
   rx_pin: GPIO3
