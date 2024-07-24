@@ -141,6 +141,9 @@ living_room_ld2410c_calibrate:
               {{ ((((states('sensor.living_room_ld2410c_g8_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
           target:
             entity_id: number.living_room_ld2410c_g8_still_threshold
+        - service: switch.turn_off
+          target:
+            entity_id: switch.bedroom_ld2410c_radar_engineering_mode
         - service: button.press
           target:
             entity_id: button.living_room_ld2410c_esp_reboot
