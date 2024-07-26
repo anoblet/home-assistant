@@ -39,6 +39,7 @@ cards:
               - type: custom:mushroom-entity-card
                 entity: binary_sensor.kitchen_ld2410c_presence
                 name: Presence
+                secondary_info: last-changed
           - type: custom:grid-card
             style:
               "gap": "1rem"
