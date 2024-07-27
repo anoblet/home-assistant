@@ -18,13 +18,13 @@ cards:
                 secondary_info: last-changed
               - type: custom:mushroom-entity-card
                 entity: sensor.living_room_ld2410c_radar_detection_distance
-                name: Radar Detection Distance
+                name: Distance
               - type: custom:mushroom-entity-card
                 entity: sensor.living_room_ld2410c_current_gate
                 name: Gate
               - type: custom:mushroom-entity-card
                 entity: switch.living_room_ld2410c_radar_engineering_mode
-                name: Radar Engineering Mode
+                name: Engineering Mode
                 tap_action:
                   action: call-service
                   service: switch.toggle
