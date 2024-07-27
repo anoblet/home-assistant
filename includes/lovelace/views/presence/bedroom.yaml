@@ -18,18 +18,26 @@ cards:
                 secondary_info: last-changed
               - type: custom:mushroom-entity-card
                 entity: sensor.bedroom_ld2410c_radar_detection_distance
-                name: Radar Detection Distance
+                name: Distance
               - type: custom:mushroom-entity-card
                 entity: sensor.bedroom_ld2410c_current_gate
                 name: Gate
               - type: custom:mushroom-entity-card
                 entity: switch.bedroom_ld2410c_radar_engineering_mode
-                name: Radar Engineering Mode
+                name: Engineering Mode
                 tap_action:
                   action: call-service
                   service: switch.toggle
                   target:
                     entity_id: switch.bedroom_ld2410c_radar_engineering_mode
+              - type: custom:mushroom-entity-card
+                entity: button.bedroom_ld2410c_restart_radar
+                name: Restart
+                tap_action:
+                  action: call-service
+                  service: button.press
+                  target:
+                    entity_id: button.bedroom_ld2410c_restart_radar
               - type: custom:mushroom-entity-card
                 entity: script.bedroom_ld2410c_calibrate
                 name: Calibrate
