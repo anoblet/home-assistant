@@ -78,5 +78,6 @@ cards:
       "background-color": "initial"
     type: custom:generic-card
 icon: mdi:sofa
+path: living-room
 title: Living Room
 type: custom:default-view
