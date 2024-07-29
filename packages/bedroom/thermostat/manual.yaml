@@ -29,6 +29,11 @@ bedroom_thermostat_manual:
         #   to: off
         #   for:
         #     hours: 1
+        - platform: state
+          entity_id: input_boolean.bedroom_thermostat_manual
+          to: "on"
+          for:
+            hours: 4
   input_boolean:
     bedroom_thermostat_manual:
       name: Bedroom Thermostat Manual
