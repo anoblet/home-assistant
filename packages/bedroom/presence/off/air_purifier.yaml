@@ -1,0 +1,17 @@
+bedroom_presence_off_air_purifier:
+  automation:
+    action:
+      - service: fan.set_percentage
+        data:
+          percentage: 100
+        target:
+          entity_id: fan.bedroom_air_purifier
+    alias: Bedroom - Presence - Off - Air Purifier
+    id: bedroom_presence_off_air_purifier
+    mode: single
+    trigger:
+      - entity_id: binary_sensor.bedroom_ld2410c_presence
+        for:
+          minutes: 5
+        platform: state
+        to: "off"
