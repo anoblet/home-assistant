@@ -11,7 +11,5 @@ bedroom_presence_off_air_purifier:
     mode: single
     trigger:
       - entity_id: binary_sensor.bedroom_ld2410c_presence
-        for:
-          minutes: 5
         platform: state
         to: "off"

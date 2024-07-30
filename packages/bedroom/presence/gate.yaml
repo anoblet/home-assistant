@@ -1,4 +1,13 @@
 bedroom_presence_gate:
+  input_number:
+    bedroom_ld2410c_last_off_gate:
+      max: 8
+      min: 0
+      name: Bedroom LD2410C Last Off Gate
+    bedroom_ld2410c_last_on_gate:
+      max: 8
+      min: 0
+      name: Bedroom LD2410C Last On Gate
   template:
     - sensor:
         - name: "Bedroom LD2410C Gate"

@@ -20,7 +20,7 @@ cards:
                 entity: sensor.bedroom_ld2410c_radar_detection_distance
                 name: Distance
               - type: custom:mushroom-entity-card
-                entity: sensor.bedroom_ld2410c_current_gate
+                entity: sensor.bedroom_ld2410c_gate
                 name: Gate
               - type: custom:mushroom-entity-card
                 entity: switch.bedroom_ld2410c_radar_engineering_mode
