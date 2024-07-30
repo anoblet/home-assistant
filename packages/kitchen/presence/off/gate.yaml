@@ -1,0 +1,15 @@
+kitchen_presence_off_gate:
+  automation:
+    action:
+      - service: input_number.set_value
+        data:
+          value: "{{ states('sensor.kitchen_ld2410c_gate') | int }}"
+        target:
+          entity_id: input_number.kitchen_ld2410c_last_off_gate
+    alias: Kitchen - Presence - Off - Gate
+    id: kitchen_presence_off_gate
+    mode: single
+    trigger:
+      - entity_id: binary_sensor.kitchen_ld2410c_presence
+        platform: state
+        to: "off"
