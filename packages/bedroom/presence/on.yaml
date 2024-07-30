@@ -15,11 +15,6 @@ bedroom_presence_on:
               #     temperature: "{{ states('input_number.bedroom_thermostat_presence_on') | float }}"
               #   target:
               #     entity_id: climate.bedroom_thermostat
-      - service: input_number.set_value
-        data:
-          value: "{{ states('sensor.bedroom_ld2410c_current_gate') | int }}"
-        target:
-          entity_id: input_number.bedroom_ld2410c_last_on_gate
     alias: Bedroom - Presence - On
     id: bedroom_presence_on
     mode: single
