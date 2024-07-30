@@ -20,8 +20,14 @@ cards:
                 entity: sensor.kitchen_ld2410c_radar_detection_distance
                 name: Distance
               - type: custom:mushroom-entity-card
-                entity: sensor.kitchen_ld2410c_current_gate
+                entity: input_number.kitchen_ld2410c_last_on_gate
+                name: On Gate
+              - type: custom:mushroom-entity-card
+                entity: sensor.kitchen_ld2410c_gate
                 name: Gate
+              - type: custom:mushroom-entity-card
+                entity: input_number.kitchen_ld2410c_last_off_gate
+                name: Off Gate
               - type: custom:mushroom-entity-card
                 entity: switch.kitchen_ld2410c_radar_engineering_mode
                 name: Engineering Mode
