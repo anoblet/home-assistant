@@ -68,19 +68,3 @@
   friendly_name: Living Room Climate
 '0x00158d0006f0d5a3':
   friendly_name: Living Room Motion One
-'0xa4c138d00531d9dd':
-  debounce: 5
-  debounce_ignore:
-    - distance
-    - illuminance_lux
-    - presence
-    - state
-  friendly_name: Bedroom Presence
-'0xa4c1382223b09836':
-  debounce: 5
-  debounce_ignore:
-    - distance
-    - illuminance_lux
-    - presence
-    - state
-  friendly_name: Living Room Presence
