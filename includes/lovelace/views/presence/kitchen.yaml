@@ -12,23 +12,23 @@ cards:
               "gap": "1rem"
               "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
             cards:
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: binary_sensor.kitchen_ld2410c_presence
                 name: Presence
-                secondary_info: last-changed
-              - type: custom:mushroom-entity-card
+                state_content: last-changed
+              - type: tile
                 entity: sensor.kitchen_ld2410c_radar_detection_distance
                 name: Distance
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: input_number.kitchen_ld2410c_last_on_gate
                 name: On Gate
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: sensor.kitchen_ld2410c_gate
                 name: Gate
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: input_number.kitchen_ld2410c_last_off_gate
                 name: Off Gate
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: switch.kitchen_ld2410c_radar_engineering_mode
                 name: Engineering Mode
                 tap_action:
@@ -36,7 +36,7 @@ cards:
                   service: switch.toggle
                   target:
                     entity_id: switch.kitchen_ld2410c_radar_engineering_mode
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: button.kitchen_ld2410c_restart_radar
                 name: Restart
                 tap_action:
@@ -44,7 +44,7 @@ cards:
                   service: button.press
                   target:
                     entity_id: button.kitchen_ld2410c_restart_radar
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: script.kitchen_ld2410c_calibrate
                 name: Calibrate
           - type: custom:plotly-graph
@@ -216,59 +216,113 @@ cards:
               "gap": "1rem"
               "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
             cards:
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g0_move_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G0 Move Threshold
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g0_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G0 Still Threshold
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g1_move_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G1 Move Threshold
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g1_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G1 Still Threshold
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g2_move_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G2 Move Threshold
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g2_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G2 Still Threshold
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g3_move_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G3 Move Threshold
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g3_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G3 Still Threshold
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g4_move_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G4 Move Threshold
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g4_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G4 Still Threshold
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g5_move_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G5 Move Threshold
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g5_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G5 Still Threshold
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g6_move_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G6 Move Threshold
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g6_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G6 Still Threshold
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g7_move_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G7 Move Threshold
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g7_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G7 Still Threshold
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g8_move_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G8 Move Threshold
-              - type: custom:mushroom-number-card
+              - type: tile
                 entity: number.kitchen_ld2410c_g8_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
                 name: G8 Still Threshold
 icon: mdi:countertop
 title: Kitchen
