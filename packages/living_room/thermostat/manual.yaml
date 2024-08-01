@@ -22,11 +22,11 @@ living_room_thermostat_manual:
       id: living_room_thermostat_manual_reset
       mode: single
       trigger:
-        # - entity_id: binary_sensor.living_room_ld2410c_presence
-        #   platform: state
-        #   to: off
-        #   for:
-        #     hours: 1
+        - entity_id: binary_sensor.living_room_ld2410c_presence
+          platform: state
+          to: off
+          for:
+            hours: 1
         - platform: state
           entity_id: input_boolean.living_room_thermostat_manual
           to: "on"
@@ -34,4 +34,5 @@ living_room_thermostat_manual:
             hours: 4
   input_boolean:
     living_room_thermostat_manual:
+      initial: false
       name: Living Room Thermostat Manual
