@@ -52,65 +52,65 @@ cards:
               "gap": "1rem"
               "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
             cards:
-              - type: custom:mushroom-entity-card
-                entity: sensor.bedroom_temperature
-                icon: mdi:thermometer
-                name: Temperature
-              - type: custom:mushroom-entity-card
-                entity: sensor.bedroom_humidity
-                icon: mdi:water-percent
-                name: Humidity
-              - type: custom:mushroom-entity-card
-                entity: sensor.bedroom_pressure
-                icon: mdi:gauge
-                name: Pressure
-              - type: custom:mushroom-entity-card
-                entity: sensor.bedroom_bme680_iaq
-                name: Air Quality
-              - type: custom:mushroom-entity-card
-                entity: sensor.bedroom_scd30_carbon_dioxide
-                name: Carbon Dioxide
-              - type: custom:mushroom-entity-card
-                entity: sensor.bedroom_sen55_nox
-                name: NOx
-              - type: custom:mushroom-entity-card
-                entity: sensor.bedroom_sen55_pm_1
-                name: PM 1
-              - type: custom:mushroom-entity-card
-                entity: sensor.bedroom_sen55_pm_2_5
-                name: PM 2.5
-              - type: custom:mushroom-entity-card
-                entity: sensor.bedroom_sen55_pm_4
-                name: PM 4
-              - type: custom:mushroom-entity-card
-                entity: sensor.bedroom_sen55_pm_10
-                name: PM 10
-              - type: custom:mushroom-entity-card
-                entity: sensor.bedroom_sen55_voc
-                name: VOC
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: binary_sensor.bedroom_ld2410c_presence
                 name: Presence
-                secondary_info: last-changed
+                state_content: last-changed
                 tap_action:
                   action: navigate
                   navigation_path: /dashboard-presence/bedroom
-          - type: custom:grid-card
-            style:
-              "gap": "1rem"
-              "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
-            cards:
-              - type: custom:auto-entities
-                card:
-                  square: false
-                  columns: 1
-                  type: grid
-                card_param: cards
-                filter:
-                  include:
-                    - domain: switch
-                      options:
-                        type: custom:mushroom-cover-card
+              - type: tile
+                entity: sensor.bedroom_temperature
+                icon: mdi:thermometer
+                name: Temperature
+              - type: tile
+                entity: sensor.bedroom_humidity
+                icon: mdi:water-percent
+                name: Humidity
+              - type: tile
+                entity: sensor.bedroom_pressure
+                icon: mdi:gauge
+                name: Pressure
+              - type: tile
+                entity: sensor.bedroom_bme680_iaq
+                name: Air Quality
+              - type: tile
+                entity: sensor.bedroom_scd30_carbon_dioxide
+                name: Carbon Dioxide
+              - type: tile
+                entity: sensor.bedroom_sen55_nox
+                name: NOx
+              - type: tile
+                entity: sensor.bedroom_sen55_pm_1
+                name: PM 1
+              - type: tile
+                entity: sensor.bedroom_sen55_pm_2_5
+                name: PM 2.5
+              - type: tile
+                entity: sensor.bedroom_sen55_pm_4
+                name: PM 4
+              - type: tile
+                entity: sensor.bedroom_sen55_pm_10
+                name: PM 10
+              - type: tile
+                entity: sensor.bedroom_sen55_voc
+                name: VOC
+          # - type: custom:grid-card
+          #   style:
+          #     "gap": "1rem"
+          #     "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
+          #   cards:
+          #     - type: custom:auto-entities
+          #       card:
+          #         square: false
+          #         columns: 1
+          #         type: grid
+          #       card_param: cards
+          #       filter:
+          #         include:
+          #           - area: Bedroom
+          #             options:
+          #               type: custom:mushroom-entity-card
 icon: mdi:bed
 title: Bedroom
 type: custom:default-view
