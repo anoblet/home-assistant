@@ -25,7 +25,7 @@ living_room_thermostat_manual:
         # This will reset the manual mode if the user is not present in the room for more than 1 hour
         - entity_id: binary_sensor.living_room_ld2410c_presence
           platform: state
-          to: off
+          to: "off"
           for:
             hours: 1
         # This will reset the manual mode if the manual mode is active for more than 4 hours

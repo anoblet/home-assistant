@@ -24,7 +24,7 @@ bedroom_thermostat_manual:
       trigger:
         - entity_id: binary_sensor.bedroom_ld2410c_presence
           platform: state
-          to: off
+          to: "off"
           for:
             hours: 1
         - platform: state
