@@ -22,6 +22,9 @@ living_room_thermostat_manual:
       id: living_room_thermostat_manual_reset
       mode: single
       trigger:
+        - entity_id: climate.bedroom_thermostat
+          platform: state
+          to: "off"
         # This will reset the manual mode if the user is not present in the room for more than 1 hour
         - entity_id: binary_sensor.living_room_ld2410c_presence
           platform: state
