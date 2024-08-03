@@ -4,4 +4,5 @@ lovelace_dashboards_default:
       dashboard-default:
         filename: includes/lovelace/dashboards/default.yaml
         mode: yaml
+        show_in_sidebar: false
         title: Dashboard
