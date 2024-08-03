@@ -51,6 +51,10 @@ cards:
               "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
             cards:
               - type: custom:mushroom-entity-card
+                entity: binary_sensor.living_room_ld2410c_presence
+                name: Presence
+                secondary_info: last-changed
+              - type: custom:mushroom-entity-card
                 entity: sensor.living_room_climate_temperature
                 name: Temperature
               - type: custom:mushroom-entity-card
@@ -59,10 +63,6 @@ cards:
               - type: custom:mushroom-entity-card
                 entity: sensor.living_room_climate_pressure
                 name: Air Pressure
-              - type: custom:mushroom-entity-card
-                entity: binary_sensor.living_room_ld2410c_presence
-                name: Presence
-                secondary_info: last-changed
               - type: custom:decluttering-card
                 template: vacuum_card
                 variables:
