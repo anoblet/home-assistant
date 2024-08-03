@@ -22,6 +22,9 @@ bedroom_thermostat_manual:
       id: bedroom_thermostat_manual_reset
       mode: single
       trigger:
+        - entity_id: climate.bedroom_thermostat
+          platform: state
+          to: "off"
         - entity_id: binary_sensor.bedroom_ld2410c_presence
           platform: state
           to: "off"
