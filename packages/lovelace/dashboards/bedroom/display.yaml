@@ -4,4 +4,5 @@ lovelace_dashboards_bedroom_display:
       bedroom-display:
         filename: includes/lovelace/dashboards/bedroom/display.yaml
         mode: yaml
+        show_in_sidebar: false
         title: Bedroom
