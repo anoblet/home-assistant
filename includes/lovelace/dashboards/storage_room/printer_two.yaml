@@ -1,5 +1,4 @@
 apexcharts_card_templates: !include_dir_named ../../apexcharts_card_templates
-show_in_sidebar: false
 title: Printer Two
 views:
   - !include ../../views/storage_room/printer_two.yaml

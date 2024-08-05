@@ -4,4 +4,5 @@ storage_room_printer_two_dashboard:
       storage-room-printer-two-dashboard:
         filename: includes/lovelace/dashboards/storage_room/printer_two.yaml
         mode: yaml
+        show_in_sidebar: false
         title: Printer Two
