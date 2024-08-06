@@ -1,0 +1,7 @@
+common_ld2410c_presence:
+  binary_sensor:
+    - platform: group
+      name: "Common LD2410C Presence"
+      entities:
+        - binary_sensor.kitchen_ld2410c_presence
+        - binary_sensor.living_room_ld2410c_presence
