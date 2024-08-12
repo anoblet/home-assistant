@@ -144,6 +144,8 @@ bedroom_ld2410c_calibrate:
         - service: switch.turn_off
           target:
             entity_id: switch.bedroom_ld2410c_radar_engineering_mode
+        - delay:
+            minutes: 1
         - service: button.press
           target:
             entity_id: button.bedroom_ld2410c_esp_reboot

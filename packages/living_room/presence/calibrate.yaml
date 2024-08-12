@@ -19,131 +19,155 @@ living_room_ld2410c_calibrate:
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g0_move_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g0_move_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g0_move_threshold
         - service: number.set_value
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g0_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g0_still_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g0_still_threshold
         - service: number.set_value
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g1_move_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g1_move_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g1_move_threshold
         - service: number.set_value
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g1_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g1_still_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g1_still_threshold
         - service: number.set_value
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g2_move_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g2_move_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g2_move_threshold
         - service: number.set_value
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g2_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g2_still_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g2_still_threshold
         - service: number.set_value
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g3_move_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g3_move_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g3_move_threshold
         - service: number.set_value
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g3_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g3_still_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g3_still_threshold
         - service: number.set_value
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g4_move_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g4_move_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g4_move_threshold
         - service: number.set_value
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g4_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g4_still_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g4_still_threshold
         - service: number.set_value
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g5_move_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g5_move_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g5_move_threshold
         - service: number.set_value
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g5_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g5_still_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g5_still_threshold
         - service: number.set_value
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g6_move_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g6_move_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g6_move_threshold
         - service: number.set_value
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g6_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g6_still_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g6_still_threshold
         - service: number.set_value
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g7_move_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g7_move_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g7_move_threshold
         - service: number.set_value
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g7_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g7_still_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g7_still_threshold
         - service: number.set_value
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g8_move_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g8_move_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g8_move_threshold
         - service: number.set_value
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.living_room_ld2410c_g8_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+              {% set threshold = ((((states('sensor.living_room_ld2410c_g8_still_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
+              {% if threshold > 100 %}
+              100
+              {% else %}
+              {{ threshold }}
+              {% endif %}
           target:
             entity_id: number.living_room_ld2410c_g8_still_threshold
         - service: switch.turn_off
           target:
-            entity_id: switch.bedroom_ld2410c_radar_engineering_mode
+            entity_id: switch.living_room_ld2410c_radar_engineering_mode
+        - delay:
+            minutes: 1
         - service: button.press
           target:
             entity_id: button.living_room_ld2410c_esp_reboot
