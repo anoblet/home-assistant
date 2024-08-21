@@ -4,7 +4,7 @@ living_room_ld2410c_calibrate:
       sequence:
         - variables:
             increase: 5
-            round: 10
+            round: 5
         - service: button.press
           target:
             entity_id: button.living_room_ld2410c_factory_reset_radar
@@ -156,11 +156,7 @@ living_room_ld2410c_calibrate:
           data:
             value: >
               {% set threshold = ((((states('sensor.living_room_ld2410c_g8_still_energy_max') | int(0) + increase) / round) | int) + 1) * round %}
-              {% if threshold > 100 %}
-              100
-              {% else %}
-              {{ threshold }}
-              {% endif %}
+              {{ iif(threshold <= 100, threshold, 100) | float }}
           target:
             entity_id: number.living_room_ld2410c_g8_still_threshold
         - service: switch.turn_off
