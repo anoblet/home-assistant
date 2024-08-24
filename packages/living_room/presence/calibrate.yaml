@@ -4,7 +4,7 @@ living_room_ld2410c_calibrate:
       sequence:
         - variables:
             increase: 5
-            round: 5
+            round: 10
         - service: button.press
           target:
             entity_id: button.living_room_ld2410c_factory_reset_radar

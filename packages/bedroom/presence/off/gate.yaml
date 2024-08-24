@@ -1,8 +1,6 @@
 bedroom_presence_off_gate:
   automation:
     action:
-      - delay:
-          seconds: 1
       - service: input_number.set_value
         data:
           value: "{{ states('sensor.bedroom_ld2410c_gate') | int }}"
