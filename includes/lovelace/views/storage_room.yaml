@@ -18,11 +18,6 @@ cards:
                 name: Lights
                 show_brightness_control: true
                 show_color_temp_control: true
-              - type: custom:mushroom-fan-card
-                entity: fan.storage_room_air_purifier
-                name: Air Purifier
-                show_percentage_control: true
-                collapsible_controls: true
           - type: custom:grid-card
             style:
               "gap": "1rem"
