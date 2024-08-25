@@ -14,7 +14,7 @@ bathroom_door_toggle_exhaust_fan:
                   state: "on"
               sequence:
                 - delay:
-                    seconds: 5
+                    seconds: 15
                 - service: switch.turn_off
                   entity_id: switch.bathroom_exhaust_fan
             - conditions:
@@ -23,7 +23,7 @@ bathroom_door_toggle_exhaust_fan:
                   state: "off"
               sequence:
                 - delay:
-                    seconds: 5
+                    seconds: 2
                 - service: switch.turn_on
                   entity_id: switch.bathroom_exhaust_fan
                 - delay:

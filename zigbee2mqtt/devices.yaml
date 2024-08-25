@@ -54,8 +54,6 @@
   friendly_name: Bedroom Door
 '0x54ef44100050bf85':
   friendly_name: Kitchen Motion Two
-'0x54ef4410005a893f':
-  friendly_name: Living Room Motion Two
 '0x54ef4410005ca578':
   friendly_name: Hallway Motion One
 '0x00124b00250c4f03':
@@ -66,7 +64,5 @@
   friendly_name: Storage Room Printer AMS
 '0x00158d000944cddf':
   friendly_name: Living Room Climate
-'0x00158d0006f0d5a3':
-  friendly_name: Living Room Motion One
 '0xa4c13830c35a2dc3':
   friendly_name: Bathroom Exhaust Fan
