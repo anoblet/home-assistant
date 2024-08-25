@@ -26,3 +26,5 @@ bathroom_door_toggle_exhaust_fan:
                     seconds: 5
                 - service: switch.turn_on
                   entity_id: switch.bathroom_exhaust_fan
+                - delay:
+                    seconds: 10

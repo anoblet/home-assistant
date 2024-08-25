@@ -23,8 +23,8 @@ cards:
                 entity: input_number.bedroom_ld2410c_last_on_gate
                 name: On Gate
               - type: tile
-                entity: sensor.bedroom_ld2410c_gate
-                name: Gate
+                entity: sensor.bedroom_ld2410c_still_gate
+                name: Still Gate
               - type: tile
                 entity: input_number.bedroom_ld2410c_last_off_gate
                 name: Off Gate

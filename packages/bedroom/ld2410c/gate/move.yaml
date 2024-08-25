@@ -1,0 +1,17 @@
+bedroom_presence_move_gate:
+  template:
+    - sensor:
+        - name: "Bedroom LD2410C Move Gate"
+          state: >
+            {% if states('sensor.bedroom_ld2410c_g0_move_energy') | int > states('number.bedroom_ld2410c_g0_move_threshold') | int %}0
+            {% elif states('sensor.bedroom_ld2410c_g1_move_energy') | int > states('number.bedroom_ld2410c_g1_move_threshold') | int %}2
+            {% elif states('sensor.bedroom_ld2410c_g2_move_energy') | int > states('number.bedroom_ld2410c_g2_move_threshold') | int %}3
+            {% elif states('sensor.bedroom_ld2410c_g3_move_energy') | int > states('number.bedroom_ld2410c_g3_move_threshold') | int %}3
+            {% elif states('sensor.bedroom_ld2410c_g4_move_energy') | int > states('number.bedroom_ld2410c_g4_move_threshold') | int %}4
+            {% elif states('sensor.bedroom_ld2410c_g5_move_energy') | int > states('number.bedroom_ld2410c_g5_move_threshold') | int %}5
+            {% elif states('sensor.bedroom_ld2410c_g6_move_energy') | int > states('number.bedroom_ld2410c_g6_move_threshold') | int %}6
+            {% elif states('sensor.bedroom_ld2410c_g7_move_energy') | int > states('number.bedroom_ld2410c_g7_move_threshold') | int %}7
+            {% elif states('sensor.bedroom_ld2410c_g8_move_energy') | int > states('number.bedroom_ld2410c_g8_move_threshold') | int %}8
+            {% else %}10
+            {% endif %}
+          unique_id: bedroom_ld2410c_move_gate
