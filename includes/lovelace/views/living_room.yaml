@@ -42,7 +42,7 @@ cards:
                 variables:
                   - entity: media_player.living_room_pair
                   - name: "Speakers"
-              # - type: custom:mushroom-entity-card
+              # - type: tile
               #   entity: switch.living_room_christmas_tree
               #   fill_container: true
           - type: custom:grid-card
@@ -50,17 +50,17 @@ cards:
               "gap": "1rem"
               "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
             cards:
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: binary_sensor.living_room_ld2410c_presence
                 name: Presence
-                secondary_info: last-changed
-              - type: custom:mushroom-entity-card
+                state_content: last-changed
+              - type: tile
                 entity: sensor.living_room_climate_temperature
                 name: Temperature
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: sensor.living_room_climate_humidity
                 name: Humidity
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: sensor.living_room_climate_pressure
                 name: Air Pressure
               - type: custom:decluttering-card
