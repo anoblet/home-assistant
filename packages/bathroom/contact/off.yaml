@@ -1,6 +1,6 @@
 bathroom_contact_off_exhaust_fan:
   automation:
-    - alias: "Bathroom Door On Exhaust Fan"
+    - alias: "Bathroom Door Off Exhaust Fan"
       id: bathroom_door_off_exhaust_fan
       mode: single
       trigger:
