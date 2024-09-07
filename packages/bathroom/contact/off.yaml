@@ -7,7 +7,7 @@ bathroom_contact_off_exhaust_fan:
         platform: state
         entity_id: binary_sensor.bathroom_contact_open
         for:
-          seconds: 2
+          seconds: 5
         to: "off"
       action:
         - service: switch.turn_on
