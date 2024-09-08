@@ -1,4 +1,25 @@
 bedroom_presence_move_gate:
+  automation:
+    - alias: "Bedroom LD2410C Move Gate"
+      mode: single
+      trigger:
+        - platform: state
+          entity_id: sensor.bedroom_ld2410c_move_gate
+      condition:
+        - condition: template
+          value_template: >
+            {{ states('sensor.bedroom_ld2410c_move_gate') != "" }}
+      action:
+        - service: input_number.set_value
+          data:
+            entity_id: input_number.bedroom_ld2410c_last_move_gate
+            value: "{{ states('sensor.bedroom_ld2410c_move_gate') | int }}"
+      id: bedroom_presence_move_gate
+  input_number:
+    bedroom_ld2410c_last_move_gate:
+      max: 8
+      min: 0
+      name: Bedroom LD2410C Last Move Gate
   template:
     - sensor:
         - name: "Bedroom LD2410C Move Gate"
@@ -12,6 +33,5 @@ bedroom_presence_move_gate:
             {% elif states('sensor.bedroom_ld2410c_g6_move_energy') | int > states('number.bedroom_ld2410c_g6_move_threshold') | int %}6
             {% elif states('sensor.bedroom_ld2410c_g7_move_energy') | int > states('number.bedroom_ld2410c_g7_move_threshold') | int %}7
             {% elif states('sensor.bedroom_ld2410c_g8_move_energy') | int > states('number.bedroom_ld2410c_g8_move_threshold') | int %}8
-            {% else %}10
             {% endif %}
           unique_id: bedroom_ld2410c_move_gate

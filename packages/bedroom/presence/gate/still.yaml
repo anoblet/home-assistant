@@ -1,15 +1,37 @@
 bedroom_presence_still_gate:
+  automation:
+    - alias: "Bedroom LD2410C Still Gate"
+      mode: single
+      trigger:
+        - platform: state
+          entity_id: sensor.bedroom_ld2410c_still_gate
+      condition:
+        - condition: template
+          value_template: >
+            {{ states('sensor.bedroom_ld2410c_still_gate') != "" }}
+      action:
+        - service: input_number.set_value
+          data:
+            entity_id: input_number.bedroom_ld2410c_last_still_gate
+            value: "{{ states('sensor.bedroom_ld2410c_still_gate') | int }}"
+      id: bedroom_presence_still_gate
+  input_number:
+    bedroom_ld2410c_last_still_gate:
+      max: 8
+      min: 0
+      name: Bedroom LD2410C Last Still Gate
   template:
     - sensor:
         - name: "Bedroom LD2410C Still Gate"
           state: >
-            {% if states('sensor.bedroom_ld2410c_g2_still_energy') | int > states('number.bedroom_ld2410c_g2_still_threshold') | int %}2
+            {% if states('sensor.bedroom_ld2410c_g0_still_energy') | int > states('number.bedroom_ld2410c_g0_still_threshold') | int %}0
+            {% elif states('sensor.bedroom_ld2410c_g1_still_energy') | int > states('number.bedroom_ld2410c_g1_still_threshold') | int %}2
+            {% elif states('sensor.bedroom_ld2410c_g2_still_energy') | int > states('number.bedroom_ld2410c_g2_still_threshold') | int %}3
             {% elif states('sensor.bedroom_ld2410c_g3_still_energy') | int > states('number.bedroom_ld2410c_g3_still_threshold') | int %}3
             {% elif states('sensor.bedroom_ld2410c_g4_still_energy') | int > states('number.bedroom_ld2410c_g4_still_threshold') | int %}4
             {% elif states('sensor.bedroom_ld2410c_g5_still_energy') | int > states('number.bedroom_ld2410c_g5_still_threshold') | int %}5
             {% elif states('sensor.bedroom_ld2410c_g6_still_energy') | int > states('number.bedroom_ld2410c_g6_still_threshold') | int %}6
             {% elif states('sensor.bedroom_ld2410c_g7_still_energy') | int > states('number.bedroom_ld2410c_g7_still_threshold') | int %}7
             {% elif states('sensor.bedroom_ld2410c_g8_still_energy') | int > states('number.bedroom_ld2410c_g8_still_threshold') | int %}8
-            {% else %}0
             {% endif %}
           unique_id: bedroom_ld2410c_still_gate
