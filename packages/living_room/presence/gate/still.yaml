@@ -1,0 +1,15 @@
+living_room_presence_still_gate:
+  template:
+    - sensor:
+        - name: "Living Room LD2410C Still Gate"
+          state: >
+            {% if states('sensor.living_room_ld2410c_g2_still_energy') | int > states('number.living_room_ld2410c_g2_still_threshold') | int %}2
+            {% elif states('sensor.living_room_ld2410c_g3_still_energy') | int > states('number.living_room_ld2410c_g3_still_threshold') | int %}3
+            {% elif states('sensor.living_room_ld2410c_g4_still_energy') | int > states('number.living_room_ld2410c_g4_still_threshold') | int %}4
+            {% elif states('sensor.living_room_ld2410c_g5_still_energy') | int > states('number.living_room_ld2410c_g5_still_threshold') | int %}5
+            {% elif states('sensor.living_room_ld2410c_g6_still_energy') | int > states('number.living_room_ld2410c_g6_still_threshold') | int %}6
+            {% elif states('sensor.living_room_ld2410c_g7_still_energy') | int > states('number.living_room_ld2410c_g7_still_threshold') | int %}7
+            {% elif states('sensor.living_room_ld2410c_g8_still_energy') | int > states('number.living_room_ld2410c_g8_still_threshold') | int %}8
+            {% else %}0
+            {% endif %}
+          unique_id: living_room_ld2410c_still_gate
