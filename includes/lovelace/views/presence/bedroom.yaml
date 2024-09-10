@@ -84,7 +84,7 @@ cards:
             entities:
               - entity: ""
                 name: Threshold
-                mode: lines
+                type: bar
                 line:
                   width: 2
                   color: FB239F
@@ -110,7 +110,7 @@ cards:
                   - $ex hass.states["number.bedroom_ld2410c_g8_still_threshold"].state
               - entity: ""
                 name: Energy
-                mode: lines
+                type: bar
                 line:
                   width: 2
                   color: blue
