@@ -35,7 +35,10 @@ cards:
               - type: tile
                 entity: binary_sensor.kitchen_ld2410c_presence
                 name: Presence
-                secondary_info: last-changed
+                state_content: last-changed
+                tap_action:
+                  action: navigate
+                  navigation_path: /dashboard-presence/kitchen
               - type: tile
                 entity: switch.kitchen_coffee_pot
                 name: Coffee Pot

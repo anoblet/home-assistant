@@ -54,6 +54,9 @@ cards:
                 entity: binary_sensor.living_room_ld2410c_presence
                 name: Presence
                 state_content: last-changed
+                tap_action:
+                  action: navigate
+                  navigation_path: /dashboard-presence/kitchen
               - type: tile
                 entity: sensor.living_room_climate_temperature
                 name: Temperature
