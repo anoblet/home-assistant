@@ -20,6 +20,9 @@ cards:
                 entity: sensor.living_room_ld2410c_radar_detection_distance
                 name: Distance
               - type: tile
+                entity: input_number.living_room_ld2410c_last_on_gate
+                name: On Gate
+              - type: tile
                 entity: input_number.living_room_ld2410c_last_move_gate
                 name: Last Move Gate
               - type: tile
@@ -218,6 +221,29 @@ cards:
                   - $ex hass.states["sensor.living_room_ld2410c_g6_move_energy"].state
                   - $ex hass.states["sensor.living_room_ld2410c_g7_move_energy"].state
                   - $ex hass.states["sensor.living_room_ld2410c_g8_move_energy"].state
+              - entity: ""
+                name: Energy Max
+                type: line
+                x:
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 8
+                "y":
+                  - $ex hass.states["sensor.living_room_ld2410c_g0_move_energy_max"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g1_move_energy_max"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g2_move_energy_max"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g3_move_energy_max"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g4_move_energy_max"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g5_move_energy_max"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g6_move_energy_max"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g7_move_energy_max"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g8_move_energy_max"].state
               - entity: ""
                 name: Difference
                 type: bar
