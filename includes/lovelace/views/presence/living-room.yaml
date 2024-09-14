@@ -84,10 +84,7 @@ cards:
             entities:
               - entity: ""
                 name: Threshold
-                mode: lines
-                line:
-                  width: 2
-                  color: FB239F
+                type: bar
                 x:
                   - 0
                   - 1
@@ -110,10 +107,7 @@ cards:
                   - $ex hass.states["number.living_room_ld2410c_g8_still_threshold"].state
               - entity: ""
                 name: Energy
-                mode: lines
-                line:
-                  width: 2
-                  color: blue
+                type: bar
                 x:
                   - 0
                   - 1
@@ -134,6 +128,29 @@ cards:
                   - $ex hass.states["sensor.living_room_ld2410c_g6_still_energy"].state
                   - $ex hass.states["sensor.living_room_ld2410c_g7_still_energy"].state
                   - $ex hass.states["sensor.living_room_ld2410c_g8_still_energy"].state
+              - entity: ""
+                name: Difference
+                type: bar
+                x:
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 8
+                "y":
+                  - $ex hass.states["sensor.living_room_ld2410c_g0_still_energy"].state - hass.states["number.living_room_ld2410c_g0_still_threshold"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g1_still_energy"].state - hass.states["number.living_room_ld2410c_g1_still_threshold"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g2_still_energy"].state - hass.states["number.living_room_ld2410c_g2_still_threshold"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g3_still_energy"].state - hass.states["number.living_room_ld2410c_g3_still_threshold"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g4_still_energy"].state - hass.states["number.living_room_ld2410c_g4_still_threshold"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g5_still_energy"].state - hass.states["number.living_room_ld2410c_g5_still_threshold"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g6_still_energy"].state - hass.states["number.living_room_ld2410c_g6_still_threshold"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g7_still_energy"].state - hass.states["number.living_room_ld2410c_g7_still_threshold"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g8_still_energy"].state - hass.states["number.living_room_ld2410c_g8_still_threshold"].state
             raw_plotly_config: true
           - type: custom:plotly-graph
             title: Move Energy
@@ -166,10 +183,7 @@ cards:
             entities:
               - entity: ""
                 name: Threshold
-                mode: lines
-                line:
-                  width: 2
-                  color: FB239F
+                type: bar
                 x:
                   - 0
                   - 1
@@ -192,10 +206,7 @@ cards:
                   - $ex hass.states["number.living_room_ld2410c_g8_move_threshold"].state
               - entity: ""
                 name: Energy
-                mode: lines
-                line:
-                  width: 2
-                  color: blue
+                type: bar
                 x:
                   - 0
                   - 1
@@ -216,6 +227,29 @@ cards:
                   - $ex hass.states["sensor.living_room_ld2410c_g6_move_energy"].state
                   - $ex hass.states["sensor.living_room_ld2410c_g7_move_energy"].state
                   - $ex hass.states["sensor.living_room_ld2410c_g8_move_energy"].state
+              - entity: ""
+                name: Difference
+                type: bar
+                x:
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 8
+                "y":
+                  - $ex hass.states["sensor.living_room_ld2410c_g0_move_energy"].state - hass.states["number.living_room_ld2410c_g0_move_threshold"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g1_move_energy"].state - hass.states["number.living_room_ld2410c_g1_move_threshold"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g2_move_energy"].state - hass.states["number.living_room_ld2410c_g2_move_threshold"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g3_move_energy"].state - hass.states["number.living_room_ld2410c_g3_move_threshold"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g4_move_energy"].state - hass.states["number.living_room_ld2410c_g4_move_threshold"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g5_move_energy"].state - hass.states["number.living_room_ld2410c_g5_move_threshold"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g6_move_energy"].state - hass.states["number.living_room_ld2410c_g6_move_threshold"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g7_move_energy"].state - hass.states["number.living_room_ld2410c_g7_move_threshold"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g8_move_energy"].state - hass.states["number.living_room_ld2410c_g8_move_threshold"].state
             raw_plotly_config: true
           - type: custom:grid-card
             style:
@@ -334,6 +368,3 @@ icon: mdi:sofa
 title: Living Room
 type: custom:default-view
 path: living_room
-visible:
-  - user: e19a51e0a67944d782371b93c2a2c2e7
-  - user: 06072035e79742f3a21c5127612d5385
