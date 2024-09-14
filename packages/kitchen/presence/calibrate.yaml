@@ -5,11 +5,11 @@ kitchen_ld2410c_calibrate:
         - variables:
             increase: 5
             round: 5
-        - service: button.press
-          target:
-            entity_id: button.kitchen_ld2410c_factory_reset_radar
-        - delay:
-            minutes: 1
+        # - service: button.press
+        #   target:
+        #     entity_id: button.kitchen_ld2410c_factory_reset_radar
+        # - delay:
+        #     minutes: 1
         - service: switch.turn_on
           target:
             entity_id: switch.kitchen_ld2410c_radar_engineering_mode
