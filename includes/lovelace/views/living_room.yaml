@@ -56,7 +56,7 @@ cards:
                 state_content: last-changed
                 tap_action:
                   action: navigate
-                  navigation_path: /dashboard-presence/kitchen
+                  navigation_path: /dashboard-presence/living_room
               - type: tile
                 entity: sensor.living_room_climate_temperature
                 name: Temperature
