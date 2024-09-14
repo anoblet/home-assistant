@@ -123,6 +123,29 @@ cards:
                   - $ex hass.states["sensor.living_room_ld2410c_g7_still_energy"].state
                   - $ex hass.states["sensor.living_room_ld2410c_g8_still_energy"].state
               - entity: ""
+                name: Energy Max
+                type: line
+                x:
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 8
+                "y":
+                  - $ex hass.states["sensor.living_room_ld2410c_g0_still_energy_max"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g1_still_energy_max"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g2_still_energy_max"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g3_still_energy_max"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g4_still_energy_max"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g5_still_energy_max"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g6_still_energy_max"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g7_still_energy_max"].state
+                  - $ex hass.states["sensor.living_room_ld2410c_g8_still_energy_max"].state
+              - entity: ""
                 name: Difference
                 type: bar
                 x:
