@@ -40,8 +40,6 @@
   friendly_name: Hallway Motion Two
 '0x00158d0006c3b033':
   friendly_name: Storage Room Motion
-'0x00158d0006c3b081':
-  friendly_name: Kitchen Motion One
 '0x00158d0007bc1015':
   friendly_name: Bathroom Contact
 '0x00158d0007efd38f':
@@ -52,8 +50,6 @@
   friendly_name: Bathroom Climate
 '0x00158d00083a6bb4':
   friendly_name: Bedroom Door
-'0x54ef44100050bf85':
-  friendly_name: Kitchen Motion Two
 '0x54ef4410005ca578':
   friendly_name: Hallway Motion One
 '0x00124b00250c4f03':

@@ -11,7 +11,7 @@ mqtt:
   password: aiShu9avaathoohoo9ecohQuee6ahquoupheigh2Cea5aeGhie8Thei7yieheicu
   server: mqtt://core-mosquitto:1883
 serial:
-  port: /dev/ttyUSB2
+  port: /dev/ttyUSB0
 advanced:
   log_level: debug
   pan_id: 6754

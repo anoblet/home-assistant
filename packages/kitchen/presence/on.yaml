@@ -4,7 +4,6 @@ kitchen_presence_on:
       - data:
           entity_id:
             - light.kitchen_light_group_zigbee
-            - light.kitchen_floor_lamp
           transition: "{{ states('input_number.kitchen_light_transition_on') | int }}"
         service: light.turn_on
     alias: Kitchen - Presence - On
@@ -12,6 +11,5 @@ kitchen_presence_on:
     mode: single
     trigger:
       - entity_id: binary_sensor.kitchen_ld2410c_presence
-        from: "off"
         platform: state
         to: "on"
