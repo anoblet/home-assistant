@@ -25,8 +25,8 @@ bedroom_presence_still_gate:
         - name: "Bedroom LD2410C Still Gate"
           state: >
             {% if states('sensor.bedroom_ld2410c_g0_still_energy') | int > states('number.bedroom_ld2410c_g0_still_threshold') | int %}0
-            {% elif states('sensor.bedroom_ld2410c_g1_still_energy') | int > states('number.bedroom_ld2410c_g1_still_threshold') | int %}2
-            {% elif states('sensor.bedroom_ld2410c_g2_still_energy') | int > states('number.bedroom_ld2410c_g2_still_threshold') | int %}3
+            {% elif states('sensor.bedroom_ld2410c_g1_still_energy') | int > states('number.bedroom_ld2410c_g1_still_threshold') | int %}1
+            {% elif states('sensor.bedroom_ld2410c_g2_still_energy') | int > states('number.bedroom_ld2410c_g2_still_threshold') | int %}2
             {% elif states('sensor.bedroom_ld2410c_g3_still_energy') | int > states('number.bedroom_ld2410c_g3_still_threshold') | int %}3
             {% elif states('sensor.bedroom_ld2410c_g4_still_energy') | int > states('number.bedroom_ld2410c_g4_still_threshold') | int %}4
             {% elif states('sensor.bedroom_ld2410c_g5_still_energy') | int > states('number.bedroom_ld2410c_g5_still_threshold') | int %}5
