@@ -20,6 +20,9 @@ cards:
                 entity: sensor.kitchen_ld2410c_radar_detection_distance
                 name: Distance
               - type: tile
+                entity: input_number.kitchen_ld2410c_last_on_gate
+                name: On Gate
+              - type: tile
                 entity: input_number.kitchen_ld2410c_last_move_gate
                 name: Last Move Gate
               - type: tile
@@ -45,105 +48,6 @@ cards:
                 entity: script.kitchen_ld2410c_calibrate
                 name: Calibrate
           - type: custom:plotly-graph
-            title: Still Energy
-            refresh_interval: 1
-            hours_to_show: current_day
-            layout:
-              height: 350
-              margin:
-                l: 50
-                r: 50
-                t: 50
-                b: 50
-              showlegend: true
-              legend:
-                x: 0.3
-                "y": -0.3
-              xaxis:
-                dtick: 1
-                type: number
-                fixedrange: true
-                range:
-                  - 0
-                  - 8
-              yaxis:
-                dtick: 10
-                fixedrange: true
-                range:
-                  - 0
-                  - 100
-            entities:
-              - entity: ""
-                name: Threshold
-                type: bar
-                x:
-                  - 0
-                  - 1
-                  - 2
-                  - 3
-                  - 4
-                  - 5
-                  - 6
-                  - 7
-                  - 8
-                "y":
-                  - $ex hass.states["number.kitchen_ld2410c_g0_still_threshold"].state
-                  - $ex hass.states["number.kitchen_ld2410c_g1_still_threshold"].state
-                  - $ex hass.states["number.kitchen_ld2410c_g2_still_threshold"].state
-                  - $ex hass.states["number.kitchen_ld2410c_g3_still_threshold"].state
-                  - $ex hass.states["number.kitchen_ld2410c_g4_still_threshold"].state
-                  - $ex hass.states["number.kitchen_ld2410c_g5_still_threshold"].state
-                  - $ex hass.states["number.kitchen_ld2410c_g6_still_threshold"].state
-                  - $ex hass.states["number.kitchen_ld2410c_g7_still_threshold"].state
-                  - $ex hass.states["number.kitchen_ld2410c_g8_still_threshold"].state
-              - entity: ""
-                name: Energy
-                type: bar
-                x:
-                  - 0
-                  - 1
-                  - 2
-                  - 3
-                  - 4
-                  - 5
-                  - 6
-                  - 7
-                  - 8
-                "y":
-                  - $ex hass.states["sensor.kitchen_ld2410c_g0_still_energy"].state
-                  - $ex hass.states["sensor.kitchen_ld2410c_g1_still_energy"].state
-                  - $ex hass.states["sensor.kitchen_ld2410c_g2_still_energy"].state
-                  - $ex hass.states["sensor.kitchen_ld2410c_g3_still_energy"].state
-                  - $ex hass.states["sensor.kitchen_ld2410c_g4_still_energy"].state
-                  - $ex hass.states["sensor.kitchen_ld2410c_g5_still_energy"].state
-                  - $ex hass.states["sensor.kitchen_ld2410c_g6_still_energy"].state
-                  - $ex hass.states["sensor.kitchen_ld2410c_g7_still_energy"].state
-                  - $ex hass.states["sensor.kitchen_ld2410c_g8_still_energy"].state
-              - entity: ""
-                name: Difference
-                type: bar
-                x:
-                  - 0
-                  - 1
-                  - 2
-                  - 3
-                  - 4
-                  - 5
-                  - 6
-                  - 7
-                  - 8
-                "y":
-                  - $ex hass.states["sensor.kitchen_ld2410c_g0_still_energy"].state - hass.states["number.kitchen_ld2410c_g0_still_threshold"].state
-                  - $ex hass.states["sensor.kitchen_ld2410c_g1_still_energy"].state - hass.states["number.kitchen_ld2410c_g1_still_threshold"].state
-                  - $ex hass.states["sensor.kitchen_ld2410c_g2_still_energy"].state - hass.states["number.kitchen_ld2410c_g2_still_threshold"].state
-                  - $ex hass.states["sensor.kitchen_ld2410c_g3_still_energy"].state - hass.states["number.kitchen_ld2410c_g3_still_threshold"].state
-                  - $ex hass.states["sensor.kitchen_ld2410c_g4_still_energy"].state - hass.states["number.kitchen_ld2410c_g4_still_threshold"].state
-                  - $ex hass.states["sensor.kitchen_ld2410c_g5_still_energy"].state - hass.states["number.kitchen_ld2410c_g5_still_threshold"].state
-                  - $ex hass.states["sensor.kitchen_ld2410c_g6_still_energy"].state - hass.states["number.kitchen_ld2410c_g6_still_threshold"].state
-                  - $ex hass.states["sensor.kitchen_ld2410c_g7_still_energy"].state - hass.states["number.kitchen_ld2410c_g7_still_threshold"].state
-                  - $ex hass.states["sensor.kitchen_ld2410c_g8_still_energy"].state - hass.states["number.kitchen_ld2410c_g8_still_threshold"].state
-            raw_plotly_config: true
-          - type: custom:plotly-graph
             title: Move Energy
             refresh_interval: 1
             hours_to_show: current_day
@@ -155,9 +59,6 @@ cards:
                 t: 50
                 b: 50
               showlegend: true
-              legend:
-                x: 0.3
-                "y": -0.3
               xaxis:
                 dtick: 1
                 type: number
@@ -219,6 +120,29 @@ cards:
                   - $ex hass.states["sensor.kitchen_ld2410c_g7_move_energy"].state
                   - $ex hass.states["sensor.kitchen_ld2410c_g8_move_energy"].state
               - entity: ""
+                name: Energy Max
+                type: line
+                x:
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 8
+                "y":
+                  - $ex hass.states["sensor.kitchen_ld2410c_g0_move_energy_max"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g1_move_energy_max"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g2_move_energy_max"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g3_move_energy_max"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g4_move_energy_max"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g5_move_energy_max"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g6_move_energy_max"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g7_move_energy_max"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g8_move_energy_max"].state
+              - entity: ""
                 name: Difference
                 type: bar
                 x:
@@ -254,23 +178,11 @@ cards:
                     style: "buttons"
                 name: G0 Move Threshold
               - type: tile
-                entity: number.kitchen_ld2410c_g0_still_threshold
-                features:
-                  - type: "numeric-input"
-                    style: "buttons"
-                name: G0 Still Threshold
-              - type: tile
                 entity: number.kitchen_ld2410c_g1_move_threshold
                 features:
                   - type: "numeric-input"
                     style: "buttons"
                 name: G1 Move Threshold
-              - type: tile
-                entity: number.kitchen_ld2410c_g1_still_threshold
-                features:
-                  - type: "numeric-input"
-                    style: "buttons"
-                name: G1 Still Threshold
               - type: tile
                 entity: number.kitchen_ld2410c_g2_move_threshold
                 features:
@@ -278,23 +190,11 @@ cards:
                     style: "buttons"
                 name: G2 Move Threshold
               - type: tile
-                entity: number.kitchen_ld2410c_g2_still_threshold
-                features:
-                  - type: "numeric-input"
-                    style: "buttons"
-                name: G2 Still Threshold
-              - type: tile
                 entity: number.kitchen_ld2410c_g3_move_threshold
                 features:
                   - type: "numeric-input"
                     style: "buttons"
                 name: G3 Move Threshold
-              - type: tile
-                entity: number.kitchen_ld2410c_g3_still_threshold
-                features:
-                  - type: "numeric-input"
-                    style: "buttons"
-                name: G3 Still Threshold
               - type: tile
                 entity: number.kitchen_ld2410c_g4_move_threshold
                 features:
@@ -302,23 +202,11 @@ cards:
                     style: "buttons"
                 name: G4 Move Threshold
               - type: tile
-                entity: number.kitchen_ld2410c_g4_still_threshold
-                features:
-                  - type: "numeric-input"
-                    style: "buttons"
-                name: G4 Still Threshold
-              - type: tile
                 entity: number.kitchen_ld2410c_g5_move_threshold
                 features:
                   - type: "numeric-input"
                     style: "buttons"
                 name: G5 Move Threshold
-              - type: tile
-                entity: number.kitchen_ld2410c_g5_still_threshold
-                features:
-                  - type: "numeric-input"
-                    style: "buttons"
-                name: G5 Still Threshold
               - type: tile
                 entity: number.kitchen_ld2410c_g6_move_threshold
                 features:
@@ -326,29 +214,189 @@ cards:
                     style: "buttons"
                 name: G6 Move Threshold
               - type: tile
-                entity: number.kitchen_ld2410c_g6_still_threshold
-                features:
-                  - type: "numeric-input"
-                    style: "buttons"
-                name: G6 Still Threshold
-              - type: tile
                 entity: number.kitchen_ld2410c_g7_move_threshold
                 features:
                   - type: "numeric-input"
                     style: "buttons"
                 name: G7 Move Threshold
               - type: tile
-                entity: number.kitchen_ld2410c_g7_still_threshold
-                features:
-                  - type: "numeric-input"
-                    style: "buttons"
-                name: G7 Still Threshold
-              - type: tile
                 entity: number.kitchen_ld2410c_g8_move_threshold
                 features:
                   - type: "numeric-input"
                     style: "buttons"
                 name: G8 Move Threshold
+          - type: custom:plotly-graph
+            title: Still Energy
+            refresh_interval: 1
+            hours_to_show: current_day
+            layout:
+              height: 350
+              margin:
+                l: 50
+                r: 50
+                t: 50
+                b: 50
+              showlegend: true
+              xaxis:
+                dtick: 1
+                type: number
+                fixedrange: true
+                range:
+                  - 0
+                  - 8
+              yaxis:
+                dtick: 10
+                fixedrange: true
+                range:
+                  - 0
+                  - 100
+            entities:
+              - entity: ""
+                name: Threshold
+                type: bar
+                x:
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 8
+                "y":
+                  - $ex hass.states["number.kitchen_ld2410c_g0_still_threshold"].state
+                  - $ex hass.states["number.kitchen_ld2410c_g1_still_threshold"].state
+                  - $ex hass.states["number.kitchen_ld2410c_g2_still_threshold"].state
+                  - $ex hass.states["number.kitchen_ld2410c_g3_still_threshold"].state
+                  - $ex hass.states["number.kitchen_ld2410c_g4_still_threshold"].state
+                  - $ex hass.states["number.kitchen_ld2410c_g5_still_threshold"].state
+                  - $ex hass.states["number.kitchen_ld2410c_g6_still_threshold"].state
+                  - $ex hass.states["number.kitchen_ld2410c_g7_still_threshold"].state
+                  - $ex hass.states["number.kitchen_ld2410c_g8_still_threshold"].state
+              - entity: ""
+                name: Energy
+                type: bar
+                x:
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 8
+                "y":
+                  - $ex hass.states["sensor.kitchen_ld2410c_g0_still_energy"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g1_still_energy"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g2_still_energy"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g3_still_energy"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g4_still_energy"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g5_still_energy"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g6_still_energy"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g7_still_energy"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g8_still_energy"].state
+              - entity: ""
+                name: Energy Max
+                type: line
+                x:
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 8
+                "y":
+                  - $ex hass.states["sensor.kitchen_ld2410c_g0_still_energy_max"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g1_still_energy_max"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g2_still_energy_max"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g3_still_energy_max"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g4_still_energy_max"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g5_still_energy_max"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g6_still_energy_max"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g7_still_energy_max"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g8_still_energy_max"].state
+              - entity: ""
+                name: Difference
+                type: bar
+                x:
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 8
+                "y":
+                  - $ex hass.states["sensor.kitchen_ld2410c_g0_still_energy"].state - hass.states["number.kitchen_ld2410c_g0_still_threshold"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g1_still_energy"].state - hass.states["number.kitchen_ld2410c_g1_still_threshold"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g2_still_energy"].state - hass.states["number.kitchen_ld2410c_g2_still_threshold"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g3_still_energy"].state - hass.states["number.kitchen_ld2410c_g3_still_threshold"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g4_still_energy"].state - hass.states["number.kitchen_ld2410c_g4_still_threshold"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g5_still_energy"].state - hass.states["number.kitchen_ld2410c_g5_still_threshold"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g6_still_energy"].state - hass.states["number.kitchen_ld2410c_g6_still_threshold"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g7_still_energy"].state - hass.states["number.kitchen_ld2410c_g7_still_threshold"].state
+                  - $ex hass.states["sensor.kitchen_ld2410c_g8_still_energy"].state - hass.states["number.kitchen_ld2410c_g8_still_threshold"].state
+            raw_plotly_config: true
+          - type: custom:grid-card
+            style:
+              "gap": "1rem"
+              "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
+            cards:
+              - type: tile
+                entity: number.kitchen_ld2410c_g0_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G0 Still Threshold
+              - type: tile
+                entity: number.kitchen_ld2410c_g1_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G1 Still Threshold
+              - type: tile
+                entity: number.kitchen_ld2410c_g2_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G2 Still Threshold
+              - type: tile
+                entity: number.kitchen_ld2410c_g3_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G3 Still Threshold
+              - type: tile
+                entity: number.kitchen_ld2410c_g4_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G4 Still Threshold
+              - type: tile
+                entity: number.kitchen_ld2410c_g5_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G5 Still Threshold
+              - type: tile
+                entity: number.kitchen_ld2410c_g6_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G6 Still Threshold
+              - type: tile
+                entity: number.kitchen_ld2410c_g7_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G7 Still Threshold
               - type: tile
                 entity: number.kitchen_ld2410c_g8_still_threshold
                 features:
