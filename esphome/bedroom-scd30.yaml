@@ -5,8 +5,6 @@ i2c:
   scl: 5
   sda: 4
 logger:
-ota:
-  password: !secret ota_password
 packages:
   common: !include packages/common.yaml
 sensor:

@@ -1,0 +1,13 @@
+bedroom_presence_off_fan_ceiling:
+  automation:
+    action:
+      - service: switch.turn_on
+        target:
+          entity_id: switch.bedroom_fan_ceiling
+    alias: Bedroom - Presence - Off - Ceiling Fan
+    id: bedroom_presence_off_fan_ceiling
+    mode: single
+    trigger:
+      - entity_id: binary_sensor.bedroom_ld2410c_presence
+        platform: state
+        to: "off"
