@@ -4,7 +4,6 @@ i2c:
   scan: false
   scl: 5
   sda: 4
-logger:
 packages:
   common: !include packages/common.yaml
 sensor:
@@ -17,6 +16,6 @@ sensor:
     platform: scd30
     temperature:
       name: "Bedroom SCD30 Temperature"
-    update_interval: 15s
+    update_interval: 60s
 substitutions:
   esphome_name: bedroom-scd30
