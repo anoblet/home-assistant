@@ -3,20 +3,14 @@ api:
     - service: bedroom_sen55_start_fan_autoclean
       then:
         sen5x.start_fan_autoclean: sen55
-captive_portal:
 esp8266:
   board: nodemcuv2
-esphome:
-  name: $esphome_name
 i2c:
   scan: false
   scl: 5
   sda: 4
-logger:
-ota:
-  password: !secret ota_password
 packages:
-  wifi: !include packages/wifi.yaml
+  wifi: !include packages/common.yaml
 sensor:
   - platform: sen5x
     id: sen55
