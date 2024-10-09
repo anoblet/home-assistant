@@ -1,0 +1,11 @@
+bedroom_pm_2_5:
+  automation:
+    alias: "Notify when PM2.5 is above 35"
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.bedroom_sen55_pm_2_5
+      above: 35
+    action:
+      action: notify.mobile_app_pixel_4_xl
+      data:
+        message: "The PM2.5 value is {{ states('sensor.bedroom_sen55_pm_2_5') }}"

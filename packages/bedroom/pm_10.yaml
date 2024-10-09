@@ -1,0 +1,11 @@
+bedroom_pm_10:
+  automation:
+    alias: "Notify when PM10 is above 150"
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.bedroom_sen55_pm_10
+      above: 35
+    action:
+      action: notify.mobile_app_pixel_4_xl
+      data:
+        message: "The PM10 value is {{ states('sensor.bedroom_sen55_pm_10') }}"
