@@ -1,22 +1,20 @@
-bedroom_thermostat:
+bedroom_thermostat_cool:
   climate:
     - ac_mode: true
-      # - cold_tolerance: 1
       cold_tolerance: 1
       heater: switch.bedroom_air_conditioner_virtual
-      # heater: switch.bedroom_heater
       hot_tolerance: 1
-      name: Bedroom Thermostat
+      name: Bedroom Thermostat Cool
       platform: generic_thermostat
       target_sensor: sensor.bedroom_temperature
-      unique_id: bedroom_thermostat
+      unique_id: bedroom_thermostat_cool
   google_assistant:
     entity_config:
-      climate.bedroom_thermostat:
+      climate.bedroom_thermostat_cool:
         expose: true
   input_number:
-    bedroom_thermostat_default:
-      name: Bedroom Thermostat Default
+    bedroom_thermostat_cool_default:
+      name: Bedroom Thermostat Cool Default
       min: 0
       max: 100
       mode: box

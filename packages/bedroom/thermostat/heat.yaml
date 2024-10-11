@@ -1,0 +1,21 @@
+bedroom_thermostat_heat:
+  climate:
+    - cold_tolerance: 1
+      heater: switch.bedroom_heater
+      hot_tolerance: 1
+      name: Bedroom Thermostat Heat
+      platform: generic_thermostat
+      target_sensor: sensor.bedroom_temperature
+      unique_id: bedroom_thermostat_heat
+  # google_assistant:
+  #   entity_config:
+  #     climate.bedroom_thermostat_heat:
+  #       expose: true
+  input_number:
+    bedroom_thermostat_heat_default:
+      name: Bedroom Thermostat Heat Default
+      min: 0
+      max: 100
+      mode: box
+      step: 1
+      unit_of_measurement: "°F"

@@ -4,7 +4,7 @@ bedroom_pm_10:
     trigger:
       platform: numeric_state
       entity_id: sensor.bedroom_sen55_pm_10
-      above: 35
+      above: 150
     action:
       action: notify.mobile_app_pixel_4_xl
       data:
