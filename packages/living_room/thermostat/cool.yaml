@@ -1,15 +1,14 @@
-living_room_thermostat:
+living_room_thermostat_cool:
   climate:
     - ac_mode: true
       cold_tolerance: 1
       heater: switch.kitchen_air_conditioner_virtual
-      # heater: switch.living_room_heater
       hot_tolerance: 1
-      name: Living Room Thermostat
+      name: Living Room Thermostat Cool
       platform: generic_thermostat
       target_sensor: sensor.living_room_climate_temperature
-      unique_id: living_room_thermostat
+      unique_id: living_room_thermostat_cool
   google_assistant:
     entity_config:
-      climate.living_room_thermostat:
+      climate.living_room_thermostat_cool:
         expose: true
