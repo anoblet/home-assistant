@@ -5,7 +5,7 @@ bedroom_presence_on_thermostat:
           - conditions:
               - condition: state
                 entity_id: input_boolean.bedroom_thermostat_manual
-                state: "on"
+                state: "off"
             sequence:
               - service: climate.turn_on
                 target:
