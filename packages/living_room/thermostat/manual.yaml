@@ -36,7 +36,7 @@ living_room_thermostat_manual:
           entity_id: input_boolean.living_room_thermostat_manual
           to: "on"
           for:
-            hours: 1
+            hours: 4
   input_boolean:
     living_room_thermostat_manual:
       initial: false
