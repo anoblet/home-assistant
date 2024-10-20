@@ -23,6 +23,9 @@ cards:
                 entity: input_number.living_room_ld2410c_last_on_gate
                 name: On Gate
               - type: tile
+                entity: input_number.living_room_ld2410c_last_off_gate
+                name: Off Gate
+              - type: tile
                 entity: input_number.living_room_ld2410c_last_move_gate
                 name: Last Move Gate
               - type: tile
