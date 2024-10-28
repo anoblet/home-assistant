@@ -8,7 +8,7 @@ living_room_thermostat_cool:
       platform: generic_thermostat
       target_sensor: sensor.living_room_climate_temperature
       unique_id: living_room_thermostat_cool
-  google_assistant:
-    entity_config:
-      climate.living_room_thermostat_cool:
-        expose: true
+  # google_assistant:
+  #   entity_config:
+  #     climate.living_room_thermostat_cool:
+  #       expose: true

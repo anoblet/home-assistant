@@ -1,0 +1,13 @@
+bedroom_thermostat:
+  climate:
+    - platform: climate_group
+      name: Bedroom Thermostat
+      temperature_unit: F
+      unique_id: bedroom_thermostat
+      entities:
+        - climate.bedroom_thermostat_cool
+        - climate.bedroom_thermostat_heat
+  google_assistant:
+    entity_config:
+      climate.bedroom_thermostat:
+        expose: true

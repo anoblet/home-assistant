@@ -1,0 +1,13 @@
+living_room_thermostat:
+  climate:
+    - platform: climate_group
+      name: Living Room Thermostat
+      temperature_unit: F
+      unique_id: living_room_thermostat
+      entities:
+        - climate.living_room_thermostat_cool
+        - climate.living_room_thermostat_heat
+  google_assistant:
+    entity_config:
+      climate.living_room_thermostat:
+        expose: true

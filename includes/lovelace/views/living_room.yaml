@@ -11,11 +11,7 @@ cards:
               "gap": "1rem"
             cards:
               - type: custom:mushroom-climate-card
-                entity: climate.living_room_thermostat_cool
-                name: Thermostat
-                show_temperature_control: true
-              - type: custom:mushroom-climate-card
-                entity: climate.living_room_thermostat_heat
+                entity: climate.living_room_thermostat
                 name: Thermostat
                 show_temperature_control: true
               - type: custom:mushroom-light-card
