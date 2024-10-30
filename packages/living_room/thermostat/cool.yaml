@@ -3,7 +3,7 @@ living_room_thermostat_cool:
     - ac_mode: true
       cold_tolerance: 0
       heater: switch.kitchen_air_conditioner_virtual
-      hot_tolerance: 3
+      hot_tolerance: 1
       name: Living Room Thermostat Cool
       platform: generic_thermostat
       target_sensor: sensor.living_room_climate_temperature
