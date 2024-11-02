@@ -10,14 +10,14 @@ living_room_presence_off_thermostat:
               - service: climate.turn_off
                 target:
                   entity_id:
-                  - climate.living_room_thermostat_cool
-                  - climate.living_room_thermostat_heat
+                    - climate.living_room_thermostat_cool
+                    - climate.living_room_thermostat_heat
     alias: Living Room - Presence - Off - Thermostat
     id: living_room_presence_off_thermostat
     mode: single
     trigger:
       - entity_id: binary_sensor.living_room_ld2410c_presence
         for:
-          minutes: 5
+          minutes: 1
         platform: state
         to: "off"
