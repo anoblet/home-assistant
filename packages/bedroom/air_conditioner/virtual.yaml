@@ -13,5 +13,4 @@ bedroom_air_conditioner_virtual:
             - service: script.bedroom_air_conditioner_off
           turn_on:
             - service: script.bedroom_air_conditioner_on
-            - service: script.bedroom_air_conditioner_temperature_down
           unique_id: bedroom_air_conditioner_virtual
