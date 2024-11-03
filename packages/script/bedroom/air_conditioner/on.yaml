@@ -12,12 +12,12 @@ script_bedroom_air_conditioner_on:
             data:
               device: "74936935"
               command: PowerToggle
-        - service: remote.send_command
-          target:
-            entity_id: remote.harmony_hub
-          data:
-            delay_secs: 1
-            device: "74936935"
-            command: TempCooler
-            num_repeats: 12
+          - service: remote.send_command
+            target:
+              entity_id: remote.harmony_hub
+            data:
+              delay_secs: 1
+              device: "74936935"
+              command: TempCooler
+              num_repeats: 12
         mode: single

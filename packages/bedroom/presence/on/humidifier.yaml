@@ -1,18 +1,18 @@
-bedroom_presence_on_thermostat:
+bedroom_presence_on_humidifier:
   automation:
     action:
       - choose:
           - conditions:
               - condition: state
-                entity_id: input_boolean.bedroom_thermostat_manual
+                entity_id: input_boolean.bedroom_humidifier_manual
                 state: "off"
             sequence:
-              - service: climate.turn_on
+              - service: humidifier.turn_on
                 target:
                   entity_id:
-                    - climate.bedroom_thermostat
-    alias: Bedroom - Presence - On - Thermostat
-    id: bedroom_presence_on_thermostat
+                    - humidifier.bedroom_humidifier
+    alias: Bedroom - Presence - On - Humidifier
+    id: bedroom_presence_on_humidifier
     mode: single
     trigger:
       - entity_id: binary_sensor.bedroom_ld2410c_presence
