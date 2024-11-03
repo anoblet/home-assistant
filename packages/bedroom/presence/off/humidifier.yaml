@@ -3,18 +3,20 @@ bedroom_presence_off_humidifier:
     action:
       - choose:
           - conditions:
-              - condition: state
-                entity_id: input_boolean.bedroom_humidifier_manual
-                state: "off"
+            # - condition: state
+            #   entity_id: input_boolean.bedroom_humidifier_manual
+            #   state: "off"
             sequence:
               - service: humidifier.turn_off
                 target:
                   entity_id:
-                  - humidifier.bedroom_humidifier
-    alias: Bedroom - Humidifier - Off - Thermostat
+                    - humidifier.bedroom_humidifier_virtual
+    alias: Bedroom - Presence - Off - Humidifier
     id: bedroom_presence_off_humidifier
     mode: single
     trigger:
       - entity_id: binary_sensor.bedroom_ld2410c_presence
+        for:
+          minutes: 1
         platform: state
         to: "off"

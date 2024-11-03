@@ -10,7 +10,7 @@ living_room_presence_on_humidifier:
               - service: humidifier.turn_on
                 target:
                   entity_id:
-                    - humidifier.living_room_humidifier
+                    - humidifier.living_room_humidifier_virtual
     alias: Living Room - Presence - On - Humidifier
     id: living_room_presence_on_humidifier
     mode: single
