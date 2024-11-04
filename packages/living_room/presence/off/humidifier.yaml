@@ -1,22 +1,14 @@
 living_room_presence_off_humidifier:
   automation:
     action:
-      - choose:
-          - conditions:
-              - condition: state
-                entity_id: input_boolean.living_room_humidifier_manual
-                state: "off"
-            sequence:
-              - service: humidifier.turn_off
-                target:
-                  entity_id:
-                    - humidifier.living_room_humidifier_virtual
+      - service: humidifier.turn_off
+        target:
+          entity_id:
+            - humidifier.living_room_humidifier_virtual
     alias: Living Room - Presence - Off - Humidifier
     id: living_room_presence_off_humidifier
     mode: single
     trigger:
       - entity_id: binary_sensor.living_room_ld2410c_presence
-        for:
-          minutes: 1
         platform: state
         to: "off"

@@ -1,16 +1,10 @@
 bedroom_presence_on_humidifier:
   automation:
     action:
-      - choose:
-          - conditions:
-              # - condition: state
-              #   entity_id: input_boolean.bedroom_humidifier_manual
-              #   state: "off"
-            sequence:
-              - service: humidifier.turn_on
-                target:
-                  entity_id:
-                    - humidifier.bedroom_humidifier_virtual
+      - service: humidifier.turn_on
+        target:
+          entity_id:
+            - humidifier.bedroom_humidifier_virtual
     alias: Bedroom - Presence - On - Humidifier
     id: bedroom_presence_on_humidifier
     mode: single
