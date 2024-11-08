@@ -17,8 +17,6 @@ substitutions:
   esphome_name: kitchen-ld2410c
   friendly_name: Kitchen LD2410C
 uart:
-  rx_pin: GPIO4
-  tx_pin: GPIO3
-web_server:
-  port: 80
-  local: true
+  # Pins need to be swapped
+  rx_pin: GPIO3
+  tx_pin: GPIO4
