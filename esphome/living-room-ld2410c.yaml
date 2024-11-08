@@ -8,8 +8,6 @@ esp32:
   variant: esp32c3
   framework:
     type: esp-idf
-logger:
-  level: DEBUG
 packages:
   common: !include packages/common.yaml
   ld2410c: !include packages/ld2410c.yaml
