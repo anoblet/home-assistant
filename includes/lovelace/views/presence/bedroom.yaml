@@ -40,6 +40,14 @@ cards:
                   target:
                     entity_id: switch.bedroom_ld2410c_radar_engineering_mode
               - type: tile
+                entity: button.bedroom_ld2410c_esp_reboot
+                name: Restart
+                tap_action:
+                  action: call-service
+                  service: button.press
+                  target:
+                    entity_id: button.bedroom_ld2410c_esp_reboot
+              - type: tile
                 entity: button.bedroom_ld2410c_restart_radar
                 name: Restart
                 tap_action:
