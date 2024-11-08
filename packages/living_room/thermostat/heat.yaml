@@ -1,6 +1,6 @@
 living_room_thermostat_heat:
   climate:
-    - cold_tolerance: 3
+    - cold_tolerance: 2
       heater: switch.living_room_heater
       hot_tolerance: 0
       name: Living Room Thermostat Heat
