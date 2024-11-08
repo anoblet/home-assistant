@@ -41,7 +41,7 @@ cards:
                     entity_id: switch.living_room_ld2410c_radar_engineering_mode
               - type: tile
                 entity: button.living_room_ld2410c_esp_reboot
-                name: Restart
+                name: Reboot
                 tap_action:
                   action: call-service
                   service: button.press
