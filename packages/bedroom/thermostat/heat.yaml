@@ -7,10 +7,10 @@ bedroom_thermostat_heat:
       platform: generic_thermostat
       target_sensor: sensor.bedroom_temperature
       unique_id: bedroom_thermostat_heat
-  # google_assistant:
-  #   entity_config:
-  #     climate.bedroom_thermostat_heat:
-  #       expose: true
+  google_assistant:
+    entity_config:
+      climate.bedroom_thermostat_heat:
+        expose: true
   input_number:
     bedroom_thermostat_heat_default:
       name: Bedroom Thermostat Heat Default
