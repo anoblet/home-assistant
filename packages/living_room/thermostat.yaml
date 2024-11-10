@@ -7,7 +7,7 @@ living_room_thermostat:
       entities:
         - climate.living_room_thermostat_cool
         - climate.living_room_thermostat_heat
-  google_assistant:
-    entity_config:
-      climate.living_room_thermostat:
-        expose: true
+  # google_assistant:
+  #   entity_config:
+  #     climate.living_room_thermostat:
+  #       expose: true
