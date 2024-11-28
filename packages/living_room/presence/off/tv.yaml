@@ -3,7 +3,7 @@ living_room_presence_off_thermostat:
     action:
       - action: media_player.media_pause
         target:
-          entity_id: media_player.living_room_tv_2
+          entity_id: media_player.living_room_tv
     alias: Living Room - Presence - Off - Thermostat
     id: living_room_presence_off_thermostat
     mode: single

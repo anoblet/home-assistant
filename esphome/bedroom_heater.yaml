@@ -4,8 +4,3 @@ packages:
 substitutions:
   esphome_name: bedroom-heater
   friendly_name: "Bedroom Heater"
-wifi:
-  manual_ip:
-    static_ip: 192.168.0.225
-    gateway: 192.168.0.1
-    subnet: 255.255.255.0

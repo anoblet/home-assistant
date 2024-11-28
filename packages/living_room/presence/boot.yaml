@@ -1,0 +1,14 @@
+living_room_presence_boot:
+  automation:
+    action:
+      - service: switch.turn_off
+        target:
+          entity_id: switch.living_room_ld2410c_radar_control_bluetooth
+    alias: Living Room - Presence - Boot
+    id: living_room_presence_boot
+    mode: single
+    trigger:
+      - entity_id: binary_sensor.living_room_ld2410c_presence
+        platform: state
+        from: "unavailable"
+        to: "on"

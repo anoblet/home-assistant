@@ -1,6 +1,6 @@
 substitutions:
-  friendly_name: "Bedroom Two Air Conditioner"
-  esphome_name: bedroom-two-air-conditioner
+  friendly_name: "Bedroom Two"
+  esphome_name: bedroom-two
 packages:
   athom.smart-plug-v2: github://athom-tech/athom-configs/athom-smart-plug-v2.yaml
   common: !include packages/common.yaml
