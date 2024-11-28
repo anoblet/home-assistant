@@ -5,5 +5,4 @@ apartment_motion_group_common:
       entities:
         - input_boolean.hallway_motion
         - input_boolean.kitchen_motion
-        - input_boolean.living_room_motion
       name: Motion Common

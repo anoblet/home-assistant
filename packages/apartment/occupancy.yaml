@@ -9,9 +9,7 @@ apartment_occupancy:
             {% elif is_state("binary_sensor.bathroom_motion_occupancy", "on") %}
               true
             {% elif is_state("binary_sensor.storage_room_motion_occupancy", "on") %}
-              true            
-            {% elif is_state("binary_sensor.living_room_motion_occupancy_group", "on") %}
-              true            
+              true                  
             {% elif is_state("binary_sensor.kitchen_motion_occupancy_group", "on") %}
               true
             {% else %}
