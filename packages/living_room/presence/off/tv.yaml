@@ -1,11 +1,11 @@
-living_room_presence_off_thermostat:
+living_room_presence_off_tv:
   automation:
     action:
       - action: media_player.media_pause
         target:
           entity_id: media_player.living_room_tv
-    alias: Living Room - Presence - Off - Thermostat
-    id: living_room_presence_off_thermostat
+    alias: Living Room - Presence - Off - TV
+    id: living_room_presence_off_tv
     mode: single
     trigger:
       - entity_id: binary_sensor.living_room_ld2410c_presence
