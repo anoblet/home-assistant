@@ -1,14 +1,13 @@
-automation_remote_up_press:
+living_room_remote_on_press:
   automation:
     - action:
         - data:
-            brightness_step_pct: 10
             entity_id:
               - light.living_room_light_group_zigbee
-          service: light.turn_on
-      alias: Living Room - Remote - Up - Press
-      id: living_room_remote_up_press
+          service: light.toggle
+      alias: Living Room - Remote - On - Press
+      id: living_room_remote_on_press
       trigger:
         - entity_id: sensor.living_room_remote_action
           platform: state
-          to: up_press
+          to: on_press
