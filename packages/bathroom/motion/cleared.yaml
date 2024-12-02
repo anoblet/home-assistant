@@ -16,6 +16,5 @@ bathroom_motion_cleared:
     trigger:
       - entity_id: binary_sensor.bathroom_motion_occupancy
         for: 00:{{ states('input_number.bathroom_motion_cooldown') | int }}:00
-        from: "on"
         platform: state
         to: "off"
