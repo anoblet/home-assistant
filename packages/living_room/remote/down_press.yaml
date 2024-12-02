@@ -1,4 +1,4 @@
-automation_remote_down_press:
+living_room_remote_down_press:
   automation:
     - action:
         - data:

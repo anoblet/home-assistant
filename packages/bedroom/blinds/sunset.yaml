@@ -6,6 +6,8 @@ bedroom_blinds_sunset:
             position: 75
           target:
             entity_id: cover.bedroom_blinds
+      alias: Bedroom - Blinds - Sunset
+      id: bedroom_blinds_sunset
       trigger:
         - event: sunset
           platform: sun
