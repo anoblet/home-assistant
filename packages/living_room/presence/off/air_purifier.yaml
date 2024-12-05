@@ -1,11 +1,6 @@
 living_room_presence_off_air_purifier:
   automation:
     action:
-      # - service: fan.set_percentage
-      #   data:
-      #     percentage: 100
-      #   target:
-      #     entity_id: fan.living_room_air_purifier
       - service: fan.set_percentage
         data:
           percentage: 33
