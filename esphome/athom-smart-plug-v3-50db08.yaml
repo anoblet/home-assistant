@@ -1,0 +1,8 @@
+substitutions:
+  name: athom-smart-plug-v3-50db08
+  friendly_name: Athom Plug V3 50db08
+packages:
+  Athom_Technology.Smart_Plug_V3: github://athom-tech/esp32-configs/athom-smart-plug.yaml
+  common: !include packages/common.yaml
+esphome:
+  friendly_name: ${friendly_name}
