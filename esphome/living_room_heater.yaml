@@ -1,6 +1,0 @@
-substitutions:
-  esphome_name: living-room-heater
-  friendly_name: "Living Room Heater"
-packages:
-  athom.smart-plug-v2: github://athom-tech/athom-configs/athom-smart-plug-v2.yaml
-  common: !include packages/common.yaml

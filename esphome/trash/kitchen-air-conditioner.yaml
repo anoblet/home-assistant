@@ -1,0 +1,11 @@
+packages:
+  athom.smart-plug-v2: github://athom-tech/athom-configs/athom-smart-plug-v2.yaml
+  common: !include packages/common.yaml
+substitutions:
+  esphome_name: kitchen-air-conditioner
+  friendly_name: "Kitchen Air Conditioner"
+wifi:
+  manual_ip:
+    static_ip: 192.168.1.181
+    gateway: 192.168.1.1
+    subnet: 255.255.255.0

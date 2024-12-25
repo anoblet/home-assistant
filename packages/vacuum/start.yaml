@@ -19,6 +19,7 @@ automation_vacuum_start:
         - at: "12:00:00"
           platform: time
     - action:
+        - service: script.vacuum_start
         - service: cast.show_lovelace_view
           data:
             entity_id: media_player.bedroom_display
