@@ -2,8 +2,7 @@ devices:
   - devices.yaml
 groups:
   - groups.yaml
-homeassistant:
-  enabled: true
+homeassistant: true
 mqtt:
   base_topic: zigbee2mqtt
   user: addons
@@ -39,6 +38,5 @@ queue: {}
 frontend:
   enabled: true
   port: 8099
-availability:
-  enabled: false
-version: 4
+availability: false
+version: 2

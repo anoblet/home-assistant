@@ -1,6 +1,6 @@
-bedroom_fan_ceiling_google_assistant:
+bedroom_ceiling_fan_google_assistant:
   google_assistant:
     entity_config:
-      switch.bedroom_fan_ceiling:
+      switch.bedroom_ceiling_fan:
         expose: true
         name: Bedroom Ceiling Fan

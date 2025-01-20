@@ -41,4 +41,4 @@ frontend:
   port: 8099
 availability:
   enabled: false
-version: 4
+version: 3

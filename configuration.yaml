@@ -58,3 +58,5 @@ influxdb:
   default_measurement: state
 
 script: !include scripts.yaml
+
+stream:
