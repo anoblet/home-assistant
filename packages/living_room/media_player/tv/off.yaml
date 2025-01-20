@@ -1,4 +1,4 @@
-automation_living_room_media_player_tv_off:
+automation_living_room_remote_tv_off:
   automation:
     - action:
         - choose:
@@ -9,9 +9,9 @@ automation_living_room_media_player_tv_off:
                 - data:
                     entity_id: input_boolean.living_room_blinds_automatic
                   service: input_boolean.turn_on
-      alias: Living Room - Media Player - TV - Off
-      id: living_room_media_player_tv_off
+      alias: Living Room - Remote - TV - Off
+      id: living_room_remote_tv_off
       trigger:
-        - entity_id: media_player.living_room_tv
+        - entity_id: remote.living_room_tv
           platform: state
           to: "off"

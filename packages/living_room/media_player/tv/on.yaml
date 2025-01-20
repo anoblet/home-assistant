@@ -1,4 +1,4 @@
-automation_living_room_media_player_tv_on:
+automation_living_room_remote_tv_on:
   automation:
     - action:
         # Turn off the ceiling light
@@ -15,9 +15,9 @@ automation_living_room_media_player_tv_on:
             position: 75
           target:
             entity_id: cover.living_room_blinds
-      alias: Living Room - Media Player - TV - On
-      id: living_room_media_player_tv_on
+      alias: Living Room - Remote - TV - On
+      id: living_room_remote_tv_on
       trigger:
-        - entity_id: media_player.living_room_tv
+        - entity_id: remote.living_room_tv
           platform: state
-          from: "off"
+          from: "on"
