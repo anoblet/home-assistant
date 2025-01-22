@@ -12,7 +12,7 @@ automation_living_room_remote_tv_on:
         # Set blinds to 75%
         - service: cover.set_cover_position
           data:
-            position: 75
+            position: 90
           target:
             entity_id: cover.living_room_blinds
       alias: Living Room - Remote - TV - On
@@ -20,4 +20,4 @@ automation_living_room_remote_tv_on:
       trigger:
         - entity_id: remote.living_room_tv
           platform: state
-          from: "on"
+          to: "on"

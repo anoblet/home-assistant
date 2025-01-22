@@ -3,8 +3,8 @@ automation_living_room_remote_tv_off:
     - action:
         - choose:
             - conditions:
-                - condition: template
-                  value_template: "{{ states('sensor.season') != 'winter' }}"
+                # - condition: template
+                #   value_template: "{{ states('sensor.season') != 'winter' }}"
               sequence:
                 - data:
                     entity_id: input_boolean.living_room_blinds_automatic
