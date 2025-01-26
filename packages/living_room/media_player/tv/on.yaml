@@ -5,14 +5,17 @@ automation_living_room_remote_tv_on:
         - service: light.turn_off
           target:
             entity_id: light.living_room_ceiling_light_group_zigbee
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.living_room_light_manual
         # Turn off the automatic blinds
         - service: input_boolean.turn_off
           target:
             entity_id: input_boolean.living_room_blinds_automatic
-        # Set blinds to 75%
+        # Set blinds to 80%
         - service: cover.set_cover_position
           data:
-            position: 90
+            position: 80
           target:
             entity_id: cover.living_room_blinds
       alias: Living Room - Remote - TV - On
