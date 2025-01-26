@@ -3,7 +3,7 @@ bedroom_presence_off_gate:
     action:
       - service: input_number.set_value
         data:
-          value: "{{ states('sensor.bedroom_ld2410c_gate') | int }}"
+          value: "{{ states('input_number.bedroom_ld2410c_last_still_gate') | int }}"
         target:
           entity_id: input_number.bedroom_ld2410c_last_off_gate
     alias: Bedroom - Presence - Off - Gate

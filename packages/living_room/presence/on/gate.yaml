@@ -3,7 +3,7 @@ living_room_presence_on_gate:
     action:
       - service: input_number.set_value
         data:
-          value: "{{ states('sensor.living_room_ld2410c_gate') | int }}"
+          value: "{{ states('input_number.living_room_ld2410c_last_move_gate') | int }}"
         target:
           entity_id: input_number.living_room_ld2410c_last_on_gate
     alias: Living Room - Presence - On - Gate
