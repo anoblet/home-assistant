@@ -2,6 +2,4 @@ recorder:
   recorder:
     commit_interval: 60
     db_url: !secret recorder_db_url
-    exclude:
-      entities: []
     purge_keep_days: 7
