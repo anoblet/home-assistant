@@ -11,3 +11,5 @@ bathroom_google_assistant_entity_config:
         expose: true
       sensor.bathroom_climate_temperature:
         expose: true
+      switch.bathroom_exhaust_fan:
+        expose: true
