@@ -25,5 +25,10 @@ bedroom_blinds_manual:
       id: Bedroom_blinds_manual_reset
       mode: single
       trigger:
+        - platform: state
+          entity_id: binary_sensor.bedroom_ld2410c_presence
+          for:
+            hours: 1
+          to: "off"
         - platform: time
           at: "00:00:00"
