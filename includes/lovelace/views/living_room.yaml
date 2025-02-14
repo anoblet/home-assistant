@@ -23,6 +23,16 @@ cards:
                 name: Lights
                 show_brightness_control: true
                 show_color_temp_control: true
+              - type: custom:mushroom-light-card
+                entity: light.living_room_ceiling_light_group_zigbee
+                name: Lights
+                show_brightness_control: true
+                show_color_temp_control: true
+              - type: custom:mushroom-light-card
+                entity: light.living_room_floor_lamp
+                name: Lights
+                show_brightness_control: true
+                show_color_temp_control: true
               - type: custom:mushroom-humidifier-card
                 entity: humidifier.living_room_humidifier_virtual
                 name: Humidifier
