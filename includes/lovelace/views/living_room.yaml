@@ -25,12 +25,12 @@ cards:
                 show_color_temp_control: true
               - type: custom:mushroom-light-card
                 entity: light.living_room_ceiling_light_group_zigbee
-                name: Lights
+                name: Ceiling
                 show_brightness_control: true
                 show_color_temp_control: true
               - type: custom:mushroom-light-card
                 entity: light.living_room_floor_lamp
-                name: Lights
+                name: Floor Lamp
                 show_brightness_control: true
                 show_color_temp_control: true
               - type: custom:mushroom-humidifier-card
