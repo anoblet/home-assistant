@@ -14,7 +14,7 @@ bedroom_ld2410c_calibrate:
           target:
             entity_id: switch.bedroom_ld2410c_radar_engineering_mode
         - delay:
-            minutes: 15
+            minutes: 5
         - service: number.set_value
           continue_on_error: true
           data:
