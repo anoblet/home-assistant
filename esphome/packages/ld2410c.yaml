@@ -22,6 +22,7 @@ button:
 esp32:
   board: esp32dev
 ld2410:
+  throttle: 100ms
 logger:
   baud_rate: 0
 number:
