@@ -3,6 +3,7 @@ api:
     key: !secret api_encryption_key
 captive_portal:
 esphome:
+  friendly_name: ${esphome_friendly_name}
   name: ${esphome_name}
   name_add_mac_suffix: false
 logger:

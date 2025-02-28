@@ -7,7 +7,9 @@ external_components:
 
 LD2412:
   id: ld2412
-  throttle: 3s
+  throttle: 1s
+logger:
+  baud_rate: 0
 binary_sensor:
   - platform: LD2412
     has_target:
@@ -29,165 +31,165 @@ sensor:
     detection_distance:
       name: Detection Distance
     light:
-      name: light
+      name: Light
     g0:
       move_energy:
-        name: g00 move energy
+        name: G0 Move Energy
       still_energy:
-        name: g00 still energy
+        name: G0 Still Energy
     g1:
       move_energy:
-        name: g01 move energy
+        name: G1 Move Energy
       still_energy:
-        name: g01 still energy
+        name: G1 Still Energy
     g2:
       move_energy:
-        name: g02 move energy
+        name: G2 Move Energy
       still_energy:
-        name: g02 still energy
+        name: G2 Still Energy
     g3:
       move_energy:
-        name: g03 move energy
+        name: G3 Move Energy
       still_energy:
-        name: g03 still energy
+        name: G3 Still Energy
     g4:
       move_energy:
-        name: g04 move energy
+        name: G4 Move Energy
       still_energy:
-        name: g04 still energy
+        name: G4 Still Energy
     g5:
       move_energy:
-        name: g05 move energy
+        name: G5 Move Energy
       still_energy:
-        name: g05 still energy
+        name: G5 Still Energy
     g6:
       move_energy:
-        name: g06 move energy
+        name: G6 Move Energy
       still_energy:
-        name: g06 still energy
+        name: G6 Still Energy
     g7:
       move_energy:
-        name: g07 move energy
+        name: G7 Move Energy
       still_energy:
-        name: g07 still energy
+        name: G7 Still Energy
     g8:
       move_energy:
-        name: g08 move energy
+        name: G8 Move Energy
       still_energy:
-        name: g08 still energy
+        name: G8 Still Energy
     g9:
       move_energy:
-        name: g09 move energy
+        name: G9 Move Energy
       still_energy:
-        name: g09 still energy
+        name: G9 Still Energy
     g10:
       move_energy:
-        name: g10 move energy
+        name: G10 Move Energy
       still_energy:
-        name: g10 still energy
+        name: G10 Still Energy
     g11:
       move_energy:
-        name: g11 move energy
+        name: G11 Move Energy
       still_energy:
-        name: g11 still energy
+        name: G11 Still Energy
     g12:
       move_energy:
-        name: g12 move energy
+        name: G12 Move Energy
       still_energy:
-        name: g12 still energy
+        name: G12 Still Energy
     g13:
       move_energy:
-        name: g13 move energy
+        name: G13 Move Energy
       still_energy:
-        name: g13 still energy
+        name: G13 Still Energy
 
 number:
   - platform: LD2412
     timeout:
-      name: "presence holding"
+      name: "Timeout"
     min_distance_gate:
-      name: "min distance gate"
+      name: "Minimum Distance Gate"
     max_distance_gate:
-      name: "max distance gate"
+      name: "Maximum Distance Gate"
     g0:
       move_threshold:
-        name: g00 move threshold
+        name: G0 Move Threshold
       still_threshold:
-        name: g00 still threshold
+        name: G0 Still Threshold
     g1:
       move_threshold:
-        name: g01 move threshold
+        name: G1 Move Threshold
       still_threshold:
-        name: g01 still threshold
+        name: G1 Still Threshold
     g2:
       move_threshold:
-        name: g02 move threshold
+        name: G2 Move Threshold
       still_threshold:
-        name: g02 still threshold
+        name: G2 Still Threshold
     g3:
       move_threshold:
-        name: g03 move threshold
+        name: G3 Move Threshold
       still_threshold:
-        name: g03 still threshold
+        name: G3 Still Threshold
     g4:
       move_threshold:
-        name: g04 move threshold
+        name: G4 Move Threshold
       still_threshold:
-        name: g04 still threshold
+        name: G4 Still Threshold
     g5:
       move_threshold:
-        name: g05 move threshold
+        name: G5 Move Threshold
       still_threshold:
-        name: g05 still threshold
+        name: G5 Still Threshold
     g6:
       move_threshold:
-        name: g06 move threshold
+        name: G6 Move Threshold
       still_threshold:
-        name: g06 still threshold
+        name: G6 Still Threshold
     g7:
       move_threshold:
-        name: g07 move threshold
+        name: G7 Move Threshold
       still_threshold:
-        name: g07 still threshold
+        name: G7 Still Threshold
     g8:
       move_threshold:
-        name: g08 move threshold
+        name: G8 Move Threshold
       still_threshold:
-        name: g08 still threshold
+        name: G8 Still Threshold
     g9:
       move_threshold:
-        name: g09 move threshold
+        name: G9 Move Threshold
       still_threshold:
-        name: g09 still threshold
+        name: G9 Still Threshold
     g10:
       move_threshold:
-        name: g10 move threshold
+        name: G10 Move Threshold
       still_threshold:
-        name: g10 still threshold
+        name: G10 Still Threshold
     g11:
       move_threshold:
-        name: g11 move threshold
+        name: G11 Move Threshold
       still_threshold:
-        name: g11 still threshold
+        name: G11 Still Threshold
     g12:
       move_threshold:
-        name: g12 move threshold
+        name: G12 Move Threshold
       still_threshold:
-        name: g12 still threshold
+        name: G12 Still Threshold
     g13:
       move_threshold:
-        name: g13 move threshold
+        name: G13 Move Threshold
       still_threshold:
-        name: g13 still threshold
+        name: G13 Still Threshold
 
 select:
   - platform: LD2412
     out_pin_level:
-      name: "Hardware output pin level"
+      name: "Output Pin Level"
     distance_resolution:
-      name: "Distance resolution"
+      name: "Distance Resolution"
     baud_rate:
-      name: "baud rate"
+      name: "Baud Rate"
       on_value:
         - delay: 3s
         - lambda: |-
@@ -203,18 +205,18 @@ select:
 button:
   - platform: LD2412
     factory_reset:
-      name: "factory reset"
+      name: "Factory Reset"
     restart:
-      name: "restart"
+      name: "Restart"
     query_params:
-      name: query params
+      name: Query Parameters
 
 text_sensor:
   - platform: LD2412
     version:
-      name: "firmware version"
+      name: "Firmware Version"
     mac_address:
-      name: "mac address"
+      name: "MAC Address"
 switch:
   - platform: LD2412
     bluetooth:
