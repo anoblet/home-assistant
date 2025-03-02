@@ -1,0 +1,10 @@
+bedroom_presence_two_gate:
+  input_number:
+    bedroom_presence_two_last_off_gate:
+      max: 8
+      min: 0
+      name: Bedroom Presence Two Last Off Gate
+    bedroom_presence_two_last_on_gate:
+      max: 8
+      min: 0
+      name: Bedroom Presence Two Last On Gate

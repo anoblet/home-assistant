@@ -1,0 +1,22 @@
+bedroom_presence_two_off_thermostat:
+  automation:
+    action:
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: input_boolean.bedroom_thermostat_manual
+                state: "off"
+            sequence:
+              - service: climate.turn_off
+                target:
+                  entity_id:
+                    - climate.bedroom_thermostat
+    alias: Bedroom - Presence - Off - Thermostat
+    id: bedroom_presence_two_off_thermostat
+    mode: single
+    trigger:
+      - entity_id: binary_sensor.bedroom_presence_two_presence
+        for:
+          minutes: 1
+        platform: state
+        to: "off"
