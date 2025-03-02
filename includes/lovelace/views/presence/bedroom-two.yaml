@@ -29,16 +29,8 @@ cards:
                 entity: input_number.bedroom_presence_two_last_still_gate
                 name: Last Still Gate
               - type: tile
-                entity: switch.bedroom_presence_two_radar_mode
+                entity: select.bedroom_presence_two_mode
                 name: Mode
-              - type: tile
-                entity: button.bedroom_presence_two_esp_reboot
-                name: Reboot
-                tap_action:
-                  action: call-service
-                  service: button.press
-                  target:
-                    entity_id: button.bedroom_presence_two_esp_reboot
               - type: tile
                 entity: button.bedroom_presence_two_restart
                 name: Restart
@@ -258,6 +250,36 @@ cards:
                   - type: "numeric-input"
                     style: "buttons"
                 name: G8 Move Threshold
+              - type: tile
+                entity: number.bedroom_presence_two_g9_move_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G9 Move Threshold
+              - type: tile
+                entity: number.bedroom_presence_two_g10_move_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G10 Move Threshold
+              - type: tile
+                entity: number.bedroom_presence_two_g11_move_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G11 Move Threshold
+              - type: tile
+                entity: number.bedroom_presence_two_g12_move_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G12 Move Threshold
+              - type: tile
+                entity: number.bedroom_presence_two_g13_move_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G13 Move Threshold
           - type: custom:plotly-graph
             title: Still Energy
             refresh_interval: 1
@@ -276,7 +298,7 @@ cards:
                 fixedrange: true
                 range:
                   - 0
-                  - 8
+                  - 13
               yaxis:
                 dtick: 10
                 fixedrange: true
@@ -297,6 +319,11 @@ cards:
                   - 6
                   - 7
                   - 8
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
                 "y":
                   - $ex hass.states["number.bedroom_presence_two_g0_still_threshold"].state
                   - $ex hass.states["number.bedroom_presence_two_g1_still_threshold"].state
@@ -307,6 +334,11 @@ cards:
                   - $ex hass.states["number.bedroom_presence_two_g6_still_threshold"].state
                   - $ex hass.states["number.bedroom_presence_two_g7_still_threshold"].state
                   - $ex hass.states["number.bedroom_presence_two_g8_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_two_g9_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_two_g10_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_two_g11_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_two_g12_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_two_g13_still_threshold"].state
               - entity: ""
                 name: Energy
                 type: bar
@@ -320,6 +352,11 @@ cards:
                   - 6
                   - 7
                   - 8
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
                 "y":
                   - $ex hass.states["sensor.bedroom_presence_two_g0_still_energy"].state
                   - $ex hass.states["sensor.bedroom_presence_two_g1_still_energy"].state
@@ -330,6 +367,11 @@ cards:
                   - $ex hass.states["sensor.bedroom_presence_two_g6_still_energy"].state
                   - $ex hass.states["sensor.bedroom_presence_two_g7_still_energy"].state
                   - $ex hass.states["sensor.bedroom_presence_two_g8_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g9_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g10_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g11_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g12_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g13_still_energy"].state
               - entity: ""
                 name: Energy Max
                 type: line
@@ -343,6 +385,11 @@ cards:
                   - 6
                   - 7
                   - 8
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
                 "y":
                   - $ex hass.states["sensor.bedroom_presence_two_g0_still_energy_max"].state
                   - $ex hass.states["sensor.bedroom_presence_two_g1_still_energy_max"].state
@@ -353,6 +400,11 @@ cards:
                   - $ex hass.states["sensor.bedroom_presence_two_g6_still_energy_max"].state
                   - $ex hass.states["sensor.bedroom_presence_two_g7_still_energy_max"].state
                   - $ex hass.states["sensor.bedroom_presence_two_g8_still_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g9_still_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g10_still_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g11_still_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g12_still_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g13_still_energy_max"].state
               - entity: ""
                 name: Difference
                 type: bar
@@ -366,6 +418,11 @@ cards:
                   - 6
                   - 7
                   - 8
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
                 "y":
                   - $ex hass.states["sensor.bedroom_presence_two_g0_still_energy"].state - hass.states["number.bedroom_presence_two_g0_still_threshold"].state
                   - $ex hass.states["sensor.bedroom_presence_two_g1_still_energy"].state - hass.states["number.bedroom_presence_two_g1_still_threshold"].state
@@ -376,6 +433,11 @@ cards:
                   - $ex hass.states["sensor.bedroom_presence_two_g6_still_energy"].state - hass.states["number.bedroom_presence_two_g6_still_threshold"].state
                   - $ex hass.states["sensor.bedroom_presence_two_g7_still_energy"].state - hass.states["number.bedroom_presence_two_g7_still_threshold"].state
                   - $ex hass.states["sensor.bedroom_presence_two_g8_still_energy"].state - hass.states["number.bedroom_presence_two_g8_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g9_still_energy"].state - hass.states["number.bedroom_presence_two_g9_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g10_still_energy"].state - hass.states["number.bedroom_presence_two_g10_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g11_still_energy"].state - hass.states["number.bedroom_presence_two_g11_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g12_still_energy"].state - hass.states["number.bedroom_presence_two_g12_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g13_still_energy"].state - hass.states["number.bedroom_presence_two_g13_still_threshold"].state
             raw_plotly_config: true
           - type: custom:grid-card
             style:
@@ -436,6 +498,36 @@ cards:
                   - type: "numeric-input"
                     style: "buttons"
                 name: G8 Still Threshold
+              - type: tile
+                entity: number.bedroom_presence_two_g9_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G9 Still Threshold
+              - type: tile
+                entity: number.bedroom_presence_two_g10_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G10 Still Threshold
+              - type: tile
+                entity: number.bedroom_presence_two_g11_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G11 Still Threshold
+              - type: tile
+                entity: number.bedroom_presence_two_g12_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G12 Still Threshold
+              - type: tile
+                entity: number.bedroom_presence_two_g13_still_threshold
+                features:
+                  - type: "numeric-input"
+                    style: "buttons"
+                name: G13 Still Threshold
 icon: mdi:bed
 title: Bedroom Two
 type: custom:default-view

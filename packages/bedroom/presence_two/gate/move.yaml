@@ -33,5 +33,10 @@ bedroom_presence_two_move_gate:
             {% elif states('sensor.bedroom_presence_two_g6_move_energy') | int > states('number.bedroom_presence_two_g6_move_threshold') | int %}6
             {% elif states('sensor.bedroom_presence_two_g7_move_energy') | int > states('number.bedroom_presence_two_g7_move_threshold') | int %}7
             {% elif states('sensor.bedroom_presence_two_g8_move_energy') | int > states('number.bedroom_presence_two_g8_move_threshold') | int %}8
+            {% elif states('sensor.bedroom_presence_two_g9_move_energy') | int > states('number.bedroom_presence_two_g9_move_threshold') | int %}9
+            {% elif states('sensor.bedroom_presence_two_g10_move_energy') | int > states('number.bedroom_presence_two_g10_move_threshold') | int %}10
+            {% elif states('sensor.bedroom_presence_two_g11_move_energy') | int > states('number.bedroom_presence_two_g11_move_threshold') | int %}11
+            {% elif states('sensor.bedroom_presence_two_g12_move_energy') | int > states('number.bedroom_presence_two_g12_move_threshold') | int %}12
+            {% elif states('sensor.bedroom_presence_two_g13_move_energy') | int > states('number.bedroom_presence_two_g13_move_threshold') | int %}13
             {% endif %}
           unique_id: bedroom_presence_two_move_gate
