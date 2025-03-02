@@ -127,35 +127,70 @@ bedroom_presence_two_statistics:
         minutes: 5
       unique_id: bedroom_presence_two_g8_still_energy_max
     - platform: statistics
-      name: "Bedroom Presence Two G8 Still Energy Max"
+      name: "Bedroom Presence Two G9 Move Energy Max"
+      entity_id: sensor.bedroom_presence_two_g9_move_energy
+      state_characteristic: value_max
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g9_move_energy_max
+    - platform: statistics
+      name: "Bedroom Presence Two G9 Still Energy Max"
       entity_id: sensor.bedroom_presence_two_g9_still_energy
       state_characteristic: value_max
       max_age:
         minutes: 5
       unique_id: bedroom_presence_two_g9_still_energy_max
     - platform: statistics
-      name: "Bedroom Presence Two G8 Still Energy Max"
+      name: "Bedroom Presence Two G10 Move Energy Max"
+      entity_id: sensor.bedroom_presence_two_g10_move_energy
+      state_characteristic: value_max
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g10_move_energy_max
+    - platform: statistics
+      name: "Bedroom Presence Two G10 Still Energy Max"
       entity_id: sensor.bedroom_presence_two_g10_still_energy
       state_characteristic: value_max
       max_age:
         minutes: 5
       unique_id: bedroom_presence_two_g10_still_energy_max
     - platform: statistics
-      name: "Bedroom Presence Two G8 Still Energy Max"
+      name: "Bedroom Presence Two G11 Move Energy Max"
+      entity_id: sensor.bedroom_presence_two_g11_move_energy
+      state_characteristic: value_max
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g11_move_energy_max
+    - platform: statistics
+      name: "Bedroom Presence Two G11 Still Energy Max"
       entity_id: sensor.bedroom_presence_two_g11_still_energy
       state_characteristic: value_max
       max_age:
         minutes: 5
       unique_id: bedroom_presence_two_g11_still_energy_max
     - platform: statistics
-      name: "Bedroom Presence Two G8 Still Energy Max"
+      name: "Bedroom Presence Two G12 Move Energy Max"
+      entity_id: sensor.bedroom_presence_two_g12_move_energy
+      state_characteristic: value_max
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g12_move_energy_max
+    - platform: statistics
+      name: "Bedroom Presence Two G12 Still Energy Max"
       entity_id: sensor.bedroom_presence_two_g12_still_energy
       state_characteristic: value_max
       max_age:
         minutes: 5
       unique_id: bedroom_presence_two_g12_still_energy_max
     - platform: statistics
-      name: "Bedroom Presence Two G8 Still Energy Max"
+      name: "Bedroom Presence Two G13 Move Energy Max"
+      entity_id: sensor.bedroom_presence_two_g13_move_energy
+      state_characteristic: value_max
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g13_move_energy_max
+    - platform: statistics
+      name: "Bedroom Presence Two G13 Still Energy Max"
       entity_id: sensor.bedroom_presence_two_g13_still_energy
       state_characteristic: value_max
       max_age:
