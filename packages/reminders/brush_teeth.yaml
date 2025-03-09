@@ -1,0 +1,61 @@
+brush_teeth_reminder:
+  # Brush Teeth Reminder Switch
+  input_boolean:
+    brush_teeth_reminder:
+      name: Brush Teeth Reminder
+      icon: mdi:tooth-outline
+      initial: on
+
+  # Automations for morning and evening reminders
+  automation:
+    - id: morning_brush_teeth_reminder
+      alias: Morning Brush Teeth Reminder
+      description: Reminds to brush teeth in the morning
+      trigger:
+        platform: time
+        at: "07:00:00" # Adjust time as needed
+      condition:
+        condition: state
+        entity_id: input_boolean.brush_teeth_reminder
+        state: "on"
+      action:
+        - service: persistent_notification.create
+          data:
+            title: "Morning Reminder"
+            message: "Time to brush your teeth!"
+            notification_id: "morning_brush_teeth_reminder"
+        # Replace with your preferred notification method if needed
+        - service: notify.mobile_app_pixel_4_xl
+          data:
+            title: "Morning Routine"
+            message: "Don't forget to brush your teeth!"
+            data:
+              actions:
+                - action: "MARK_COMPLETE"
+                  title: "Mark as Complete"
+
+    - id: evening_brush_teeth_reminder
+      alias: Evening Brush Teeth Reminder
+      description: Reminds to brush teeth in the evening
+      trigger:
+        platform: time
+        at: "21:00:00" # Adjust time as needed
+      condition:
+        condition: state
+        entity_id: input_boolean.brush_teeth_reminder
+        state: "on"
+      action:
+        - service: persistent_notification.create
+          data:
+            title: "Evening Reminder"
+            message: "Time to brush your teeth!"
+            notification_id: "evening_brush_teeth_reminder"
+        # Replace with your preferred notification method if needed
+        - service: notify.mobile_app_pixel_4_xl
+          data:
+            title: "Evening Routine"
+            message: "Don't forget to brush your teeth!"
+            data:
+              actions:
+                - action: "MARK_COMPLETE"
+                  title: "Mark as Complete"
