@@ -6,7 +6,7 @@ bedroom_presence_two_on_gate:
           value: "{{ states('input_number.bedroom_presence_two_last_move_gate') | int }}"
         target:
           entity_id: input_number.bedroom_presence_two_last_on_gate
-    alias: Bedroom - Presence - On - Gate
+    alias: Bedroom - Presence Two - On - Gate
     id: bedroom_presence_two_on_gate
     mode: single
     trigger:

@@ -5,7 +5,7 @@ bedroom_presence_two_off_humidifier:
         target:
           entity_id:
             - humidifier.bedroom_humidifier_virtual
-    alias: Bedroom - Presence - Off - Humidifier
+    alias: Bedroom - Presence Two - Off - Humidifier
     id: bedroom_presence_two_off_humidifier
     mode: single
     trigger:

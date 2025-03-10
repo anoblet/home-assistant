@@ -11,7 +11,7 @@ bedroom_presence_two_on_thermostat:
                 target:
                   entity_id:
                     - climate.bedroom_thermostat
-    alias: Bedroom - Presence - On - Thermostat
+    alias: Bedroom - Presence Two - On - Thermostat
     id: bedroom_presence_two_on_thermostat
     mode: single
     trigger:

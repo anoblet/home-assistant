@@ -4,7 +4,7 @@ bedroom_presence_two_off_fan_ceiling:
       - service: switch.turn_on
         target:
           entity_id: switch.bedroom_ceiling_fan
-    alias: Bedroom - Presence - Off - Ceiling Fan
+    alias: Bedroom - Presence Two - Off - Ceiling Fan
     id: bedroom_presence_two_off_fan_ceiling
     mode: single
     trigger:
