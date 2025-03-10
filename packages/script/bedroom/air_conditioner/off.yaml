@@ -6,6 +6,8 @@ script_bedroom_air_conditioner_off:
         - condition: state
           entity_id: switch.bedroom_air_conditioner_virtual
           state: "on"
+        - wait_template: >-
+            {{ (as_timestamp(now()) - as_timestamp(states.switch.bedroom_air_conditioner_virtual.last_changed)) > 300 }}
         - service: remote.send_command
           target:
             entity_id: remote.harmony_hub
