@@ -57,12 +57,12 @@ cards:
               "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
             cards:
               - type: tile
-                entity: binary_sensor.bedroom_ld2410c_presence
+                entity: binary_sensor.bedroom_presence_two_presence
                 name: Presence
                 state_content: last-changed
                 tap_action:
                   action: navigate
-                  navigation_path: /dashboard-presence/bedroom
+                  navigation_path: /dashboard-presence/bedroom-two
               - type: tile
                 entity: sensor.bedroom_temperature
                 icon: mdi:thermometer
