@@ -504,39 +504,39 @@ voice_assistant:
           - micro_wake_word.start 
         else:
           - lambda: id(va).set_use_wake_word(true);
-          - voice_assistant.start_continuous:      
+          - voice_assistant.start_continuous:       
 
 image:
   - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/images/error.png"
     id: error_img
     resize: 320x240
-    type: RGB24
-    use_transparency: true
+    type: RGB
+    
   - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/images/idle.png"
     id: idle_img
     resize: 320x240
-    type: RGB24
-    use_transparency: true
+    type: RGB
+    
   - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/images/listening.png"
     id: listening_img
     resize: 320x240
-    type: RGB24
-    use_transparency: true
+    type: RGB
+    
   - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/images/thinking.png"
     id: thinking_img
     resize: 320x240
-    type: RGB24
-    use_transparency: true
+    type: RGB
+    
   - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/images/replying.png"
     id: replying_img
     resize: 320x240
-    type: RGB24
-    use_transparency: true
+    type: RGB
+    
   - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/images/loading.png"
     id: loading_img
     resize: 320x240
-    type: RGB24
-    use_transparency: true
+    type: RGB
+    
  
 font:
   - file: "https://github.com/BigBobbas/ESP32-S3-Box3-Custom-ESPHome/raw/main/fonts/consola.ttf"
