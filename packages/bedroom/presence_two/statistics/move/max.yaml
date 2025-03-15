@@ -1,4 +1,4 @@
-bedroom_presence_two_statistics:
+bedroom_presence_two_statistics_move_max:
   sensor:
     - platform: statistics
       name: "Bedroom Presence Two G0 Move Energy Max"

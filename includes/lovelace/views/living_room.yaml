@@ -84,13 +84,14 @@ cards:
                 template: vacuum_card
                 variables:
                   - service: script.vacuum_living_room
-          # - type: custom:collapse-card
-          #   cards:
-          #     - type: custom:decluttering-card
-          #       template: entities
-          #       variables:
-          #         - area: living_room
-          #   summary: "Entities"
+          - type: custom:collapse-card
+            cards:
+              - type: custom:decluttering-card
+                template: entities
+                variables:
+                  - area: living_room
+                  - domain: input_number
+            summary: "Entities"
     style:
       "background-color": "initial"
     type: custom:generic-card

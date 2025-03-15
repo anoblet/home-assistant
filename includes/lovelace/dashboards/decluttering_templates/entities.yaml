@@ -3,10 +3,9 @@ card:
   card:
     type: entities
   filter:
-    exclude:
-      - name: "Espressif*"
-      - name: "* update available"
     include:
-      - area: "[[area]]"
+      # - area: "[[area]]"
+      #   domain: "[[domain]]"
+      - entity_id: "input_number.living_room*"
   sort:
     method: name

@@ -1,6 +1,6 @@
-bedroom_presence_two_calibrate:
+bedroom_presence_two_calibrate_move_max:
   script:
-    bedroom_presence_two_calibrate:
+    bedroom_presence_two_calibrate_move_max:
       sequence:
         - variables:
             increase: 0
@@ -21,13 +21,6 @@ bedroom_presence_two_calibrate:
               {{ ((((states('sensor.bedroom_presence_two_g0_move_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
           target:
             entity_id: number.bedroom_presence_two_g0_move_threshold
-        - service: number.set_value
-          continue_on_error: true
-          data:
-            value: >
-              {{ ((((states('sensor.bedroom_presence_two_g0_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
-          target:
-            entity_id: number.bedroom_presence_two_g0_still_threshold
         - service: number.set_value
           continue_on_error: true
           data:
@@ -137,6 +130,13 @@ bedroom_presence_two_calibrate:
           continue_on_error: true
           data:
             value: >
+              {{ ((((states('sensor.bedroom_presence_two_g8_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.bedroom_presence_two_g8_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
               {{ ((((states('sensor.bedroom_presence_two_g9_move_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
           target:
             entity_id: number.bedroom_presence_two_g9_move_threshold
@@ -168,13 +168,6 @@ bedroom_presence_two_calibrate:
               {{ ((((states('sensor.bedroom_presence_two_g13_move_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
           target:
             entity_id: number.bedroom_presence_two_g13_move_threshold
-        - service: number.set_value
-          continue_on_error: true
-          data:
-            value: >
-              {{ ((((states('sensor.bedroom_presence_two_g8_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
-          target:
-            entity_id: number.bedroom_presence_two_g8_still_threshold
         - action: select.select_option
           data:
             option: "Normal"

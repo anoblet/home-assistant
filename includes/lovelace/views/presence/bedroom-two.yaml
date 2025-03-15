@@ -40,8 +40,11 @@ cards:
                   target:
                     entity_id: button.bedroom_presence_two_restart
               - type: tile
-                entity: script.bedroom_presence_two_calibrate
-                name: Calibrate
+                entity: script.bedroom_presence_two_calibrate_move_max
+                name: Calibrate Move
+              - type: tile
+                entity: script.bedroom_presence_two_calibrate_still_median
+                name: Calibrate Still
           - type: custom:plotly-graph
             title: Move Energy
             refresh_interval: 1
