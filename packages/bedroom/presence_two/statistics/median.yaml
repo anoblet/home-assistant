@@ -1,0 +1,100 @@
+bedroom_presence_two_statistics_median:
+  sensor:
+    - platform: statistics
+      name: "Bedroom Presence Two G0 Still Energy Median"
+      entity_id: sensor.bedroom_presence_two_g0_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g0_still_energy_median
+    - platform: statistics
+      name: "Bedroom Presence Two G1 Still Energy Median"
+      entity_id: sensor.bedroom_presence_two_g1_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g1_still_energy_median
+    - platform: statistics
+      name: "Bedroom Presence Two G2 Still Energy Median"
+      entity_id: sensor.bedroom_presence_two_g2_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g2_still_energy_median
+    - platform: statistics
+      name: "Bedroom Presence Two G3 Still Energy Median"
+      entity_id: sensor.bedroom_presence_two_g3_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g3_still_energy_median
+    - platform: statistics
+      name: "Bedroom Presence Two G4 Still Energy Median"
+      entity_id: sensor.bedroom_presence_two_g4_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g4_still_energy_median
+    - platform: statistics
+      name: "Bedroom Presence Two G5 Still Energy Median"
+      entity_id: sensor.bedroom_presence_two_g5_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g5_still_energy_median
+    - platform: statistics
+      name: "Bedroom Presence Two G6 Still Energy Median"
+      entity_id: sensor.bedroom_presence_two_g6_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g6_still_energy_median
+    - platform: statistics
+      name: "Bedroom Presence Two G7 Still Energy Median"
+      entity_id: sensor.bedroom_presence_two_g7_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g7_still_energy_median
+    - platform: statistics
+      name: "Bedroom Presence Two G8 Still Energy Median"
+      entity_id: sensor.bedroom_presence_two_g8_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g8_still_energy_median
+    - platform: statistics
+      name: "Bedroom Presence Two G9 Still Energy Median"
+      entity_id: sensor.bedroom_presence_two_g9_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g9_still_energy_median
+    - platform: statistics
+      name: "Bedroom Presence Two G10 Still Energy Median"
+      entity_id: sensor.bedroom_presence_two_g10_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g10_still_energy_median
+    - platform: statistics
+      name: "Bedroom Presence Two G11 Still Energy Median"
+      entity_id: sensor.bedroom_presence_two_g11_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g11_still_energy_median
+    - platform: statistics
+      name: "Bedroom Presence Two G12 Still Energy Median"
+      entity_id: sensor.bedroom_presence_two_g12_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g12_still_energy_median
+    - platform: statistics
+      name: "Bedroom Presence Two G13 Still Energy Median"
+      entity_id: sensor.bedroom_presence_two_g13_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_two_g13_still_energy_median
