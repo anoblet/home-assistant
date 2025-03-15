@@ -1,0 +1,25 @@
+living_room_thermostat_cool_default:
+  input_number:
+    living_room_thermostat_cool_default:
+      name: Living Room Thermostat Cool Default
+      min: 0
+      max: 100
+      mode: box
+      step: 1
+      unit_of_measurement: "°F"
+      icon: mdi:thermostat
+  automation:
+    - alias: "Living Room - Thermostat - Cool - Default Reset"
+      id: living_room_thermostat_cool_default_reset
+      mode: single
+      trigger:
+        - platform: time_pattern
+          hours: "*"
+          minutes: "0"
+          seconds: "0"
+      action:
+        - service: climate.set_temperature
+          target:
+            entity_id: climate.living_room_thermostat_cool
+          data:
+            temperature: "{{ states('input_number.living_room_thermostat_cool_default') | float }}"
