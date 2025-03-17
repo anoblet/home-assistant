@@ -386,7 +386,7 @@ cards:
                   - $ex hass.states["sensor.bedroom_presence_two_g12_still_energy"].state
                   - $ex hass.states["sensor.bedroom_presence_two_g13_still_energy"].state
               - entity: ""
-                name: Energy Mean
+                name: Energy Median
                 type: line
                 x:
                   - 0
@@ -404,20 +404,20 @@ cards:
                   - 12
                   - 13
                 "y":
-                  - $ex hass.states["sensor.bedroom_presence_two_g0_still_energy_mean"].state
-                  - $ex hass.states["sensor.bedroom_presence_two_g1_still_energy_mean"].state
-                  - $ex hass.states["sensor.bedroom_presence_two_g2_still_energy_mean"].state
-                  - $ex hass.states["sensor.bedroom_presence_two_g3_still_energy_mean"].state
-                  - $ex hass.states["sensor.bedroom_presence_two_g4_still_energy_mean"].state
-                  - $ex hass.states["sensor.bedroom_presence_two_g5_still_energy_mean"].state
-                  - $ex hass.states["sensor.bedroom_presence_two_g6_still_energy_mean"].state
-                  - $ex hass.states["sensor.bedroom_presence_two_g7_still_energy_mean"].state
-                  - $ex hass.states["sensor.bedroom_presence_two_g8_still_energy_mean"].state
-                  - $ex hass.states["sensor.bedroom_presence_two_g9_still_energy_mean"].state
-                  - $ex hass.states["sensor.bedroom_presence_two_g10_still_energy_mean"].state
-                  - $ex hass.states["sensor.bedroom_presence_two_g11_still_energy_mean"].state
-                  - $ex hass.states["sensor.bedroom_presence_two_g12_still_energy_mean"].state
-                  - $ex hass.states["sensor.bedroom_presence_two_g13_still_energy_mean"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g0_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g1_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g2_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g3_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g4_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g5_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g6_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g7_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g8_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g9_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g10_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g11_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g12_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_two_g13_still_energy_median"].state
               - entity: ""
                 name: Difference
                 type: bar

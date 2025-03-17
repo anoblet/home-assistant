@@ -1,80 +1,62 @@
-# Water Plants Reminder Package
-plants_water_reminder:
-  # Switch to control reminder state
-  switch:
-    - platform: template
-      switches:
-        water_plants_reminder:
-          friendly_name: "Water Plants Reminder"
-          icon_template: "mdi:flower"
-          value_template: "{{ is_state('input_boolean.water_plants_reminder_state', 'on') }}"
-          turn_on:
-            service: input_boolean.turn_on
-            target:
-              entity_id: input_boolean.water_plants_reminder_state
-          turn_off:
-            service: input_boolean.turn_off
-            target:
-              entity_id: input_boolean.water_plants_reminder_state
-
-  # Helper entities
+# Daily plant watering reminder automation until completed
+reminders_water_plants:
+  # Input boolean to track watering status
   input_boolean:
-    water_plants_reminder_state:
-      name: Water Plants Reminder State
-      initial: false
+    water_plants_reminder:
+      name: Water Plants Reminder
+      icon: mdi:flower
 
-  # Automations
+  # Automation to send the reminder
   automation:
-    # Create reminder for 1st and 15th of month
-    - alias: "Set Water Plants Reminder on 1st and 15th"
+    - id: water_plants_daily_reminder
+      alias: Water Plants Daily Reminder
+      description: Sends a reminder to water plants every morning until completed
       trigger:
-        - platform: time_pattern
-          hours: "8"
-          minutes: "0"
+        - platform: time
+          at: "09:00:00"
       condition:
-        - condition: template
-          value_template: "{{ now().day == 1 or now().day == 15 }}"
         - condition: state
-          entity_id: input_boolean.water_plants_reminder_state
-          state: "off"
+          entity_id: input_boolean.water_plants_reminder
+          state: "on"
       action:
-        - service: input_boolean.turn_on
-          target:
-            entity_id: input_boolean.water_plants_reminder_state
-        - service: notify.mobile_app
+        - service: notify.mobile_app_pixel_4 # Replace with your actual phone notify service
           data:
-            title: "Time to Water Plants"
-            message: "It's time to water your plants!"
+            title: "Plant Watering Reminder"
+            message: "Don't forget to water your plants!"
             data:
               actions:
-                - action: "WATER_PLANTS_DONE"
-                  title: "Mark as Complete"
-                - action: "WATER_PLANTS_SNOOZE"
-                  title: "Snooze"
+                - action: WATER_PLANTS_DONE
+                  title: "Mark as Completed"
+                  icon: "mdi:check"
 
-    # Daily reminder if not completed
-    - alias: "Daily Water Plants Reminder"
+    # Weekly trigger to start the reminder cycle
+    - id: water_plants_weekly_start
+      alias: Water Plants Weekly Start
+      description: Starts the weekly plant watering reminder cycle
       trigger:
         - platform: time
           at: "08:00:00"
       condition:
-        - condition: state
-          entity_id: input_boolean.water_plants_reminder_state
-          state: "on"
+        - condition: time
+          weekday: mon
       action:
-        - service: notify.mobile_app
+        - service: input_boolean.turn_on
+          target:
+            entity_id: input_boolean.water_plants_reminder
+        - service: notify.mobile_app_pixel_4 # Replace with your actual phone notify service
           data:
-            title: "Reminder: Water Plants"
-            message: "Please remember to water your plants today!"
+            title: "Plant Watering Reminder"
+            message: "It's time to water your plants this week!"
             data:
               actions:
-                - action: "WATER_PLANTS_DONE"
-                  title: "Mark as Complete"
-                - action: "WATER_PLANTS_SNOOZE"
-                  title: "Snooze"
+                - action: WATER_PLANTS_DONE
+                  title: "Mark as Completed"
+                  icon: "mdi:check"
 
-    # Handle "Complete" action
-    - alias: "Water Plants Marked as Complete"
+    # Handle notification actions
+    - id: water_plants_notification_action
+      alias: Water Plants Notification Action
+      description: Handles actions from the plant watering notification
       trigger:
         - platform: event
           event_type: mobile_app_notification_action
@@ -83,21 +65,23 @@ plants_water_reminder:
       action:
         - service: input_boolean.turn_off
           target:
-            entity_id: input_boolean.water_plants_reminder_state
-        - service: notify.mobile_app
+            entity_id: input_boolean.water_plants_reminder
+        - service: notify.mobile_app_pixel_4 # Replace with your actual phone notify service
           data:
             title: "Plants Watered"
-            message: "Great job! Your plants thank you."
+            message: "Great job! Plants marked as watered."
 
-    # Handle "Snooze" action
-    - alias: "Water Plants Reminder Snoozed"
+    # Auto-reset weekly for next reminder cycle
+    - id: water_plants_weekly_reset
+      alias: Water Plants Weekly Reset
+      description: Resets the watering status at the end of the week
       trigger:
-        - platform: event
-          event_type: mobile_app_notification_action
-          event_data:
-            action: WATER_PLANTS_SNOOZE
+        - platform: time
+          at: "23:55:00"
+      condition:
+        - condition: time
+          weekday: sun
       action:
-        - service: notify.mobile_app
-          data:
-            title: "Reminder Snoozed"
-            message: "You'll be reminded again tomorrow."
+        - service: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.water_plants_reminder

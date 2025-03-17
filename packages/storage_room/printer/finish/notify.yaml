@@ -9,4 +9,4 @@ storage_room_printer_finish_notify:
       - to: "finish"
         entity_id: sensor.x1c_00m00a2c0619044_print_status
         platform: state
-    unique_id: storage_room_printer_finish_notify
+    id: storage_room_printer_finish_notify
