@@ -4,10 +4,9 @@ external_components:
       url: https://github.com/Rihan9/LD2412
       ref: main
     components: [LD2412]
-
 LD2412:
   id: ld2412
-  throttle: 1s
+  throttle: 100ms
 logger:
   baud_rate: 0
 binary_sensor:
