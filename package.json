@@ -40,7 +40,7 @@
       ]
     },
     "git:commit": {
-      "command": "git add . && git commit --allow-empty-message -m \"\"",
+      "command": "npm run genaiscript run ./genaisrc/gcm.genai.mjs -- --vars gitmoji=false",
       "dependencies": [
         "sort-package-json"
       ]
