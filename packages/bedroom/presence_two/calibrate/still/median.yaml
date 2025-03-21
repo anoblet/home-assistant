@@ -5,6 +5,9 @@ bedroom_presence_two_calibrate_still_median:
         - variables:
             increase: 0
             round: 1
+        - action: button.press
+          target:
+            entity_id: button.bedroom_presence_two_restart
         - delay:
             minutes: 1
         - action: select.select_option
@@ -13,7 +16,7 @@ bedroom_presence_two_calibrate_still_median:
           target:
             entity_id: select.bedroom_presence_two_mode
         - delay:
-            minutes: 5
+            minutes: 10
         - service: number.set_value
           continue_on_error: true
           data:
@@ -112,12 +115,6 @@ bedroom_presence_two_calibrate_still_median:
               {{ ((((states('sensor.bedroom_presence_two_g13_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
           target:
             entity_id: number.bedroom_presence_two_g13_still_threshold
-        - action: select.select_option
-          data:
-            option: "Normal"
-          target:
-            entity_id: select.bedroom_presence_two_mode
         - action: button.press
-          data: {}
           target:
             entity_id: button.bedroom_presence_two_restart
