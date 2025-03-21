@@ -5,7 +5,7 @@
 # Include
 !**/*.yaml
 !.gitignore
-!genaisrc/**/*
+!bin/genaisrc/**/*
 !package.json
 !www/custom/**/*
 !www/custom-elements/**/*
