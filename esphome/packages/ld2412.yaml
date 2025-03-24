@@ -6,7 +6,7 @@ external_components:
     components: [LD2412]
 LD2412:
   id: ld2412
-  throttle: 100ms
+  throttle: 1s
 logger:
   baud_rate: 0
 binary_sensor:
