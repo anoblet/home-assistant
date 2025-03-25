@@ -4,7 +4,7 @@ bedroom_presence_two_calibrate_move_max:
       sequence:
         - variables:
             increase: 0
-            round: 5
+            round: 1
         - delay:
             minutes: 1
         - action: select.select_option
@@ -32,23 +32,9 @@ bedroom_presence_two_calibrate_move_max:
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.bedroom_presence_two_g1_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
-          target:
-            entity_id: number.bedroom_presence_two_g1_still_threshold
-        - service: number.set_value
-          continue_on_error: true
-          data:
-            value: >
               {{ ((((states('sensor.bedroom_presence_two_g2_move_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
           target:
             entity_id: number.bedroom_presence_two_g2_move_threshold
-        - service: number.set_value
-          continue_on_error: true
-          data:
-            value: >
-              {{ ((((states('sensor.bedroom_presence_two_g2_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
-          target:
-            entity_id: number.bedroom_presence_two_g2_still_threshold
         - service: number.set_value
           continue_on_error: true
           data:
@@ -60,23 +46,9 @@ bedroom_presence_two_calibrate_move_max:
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.bedroom_presence_two_g3_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
-          target:
-            entity_id: number.bedroom_presence_two_g3_still_threshold
-        - service: number.set_value
-          continue_on_error: true
-          data:
-            value: >
               {{ ((((states('sensor.bedroom_presence_two_g4_move_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
           target:
             entity_id: number.bedroom_presence_two_g4_move_threshold
-        - service: number.set_value
-          continue_on_error: true
-          data:
-            value: >
-              {{ ((((states('sensor.bedroom_presence_two_g4_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
-          target:
-            entity_id: number.bedroom_presence_two_g4_still_threshold
         - service: number.set_value
           continue_on_error: true
           data:
@@ -88,23 +60,9 @@ bedroom_presence_two_calibrate_move_max:
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.bedroom_presence_two_g5_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
-          target:
-            entity_id: number.bedroom_presence_two_g5_still_threshold
-        - service: number.set_value
-          continue_on_error: true
-          data:
-            value: >
               {{ ((((states('sensor.bedroom_presence_two_g6_move_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
           target:
             entity_id: number.bedroom_presence_two_g6_move_threshold
-        - service: number.set_value
-          continue_on_error: true
-          data:
-            value: >
-              {{ ((((states('sensor.bedroom_presence_two_g6_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
-          target:
-            entity_id: number.bedroom_presence_two_g6_still_threshold
         - service: number.set_value
           continue_on_error: true
           data:
@@ -116,23 +74,9 @@ bedroom_presence_two_calibrate_move_max:
           continue_on_error: true
           data:
             value: >
-              {{ ((((states('sensor.bedroom_presence_two_g7_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
-          target:
-            entity_id: number.bedroom_presence_two_g7_still_threshold
-        - service: number.set_value
-          continue_on_error: true
-          data:
-            value: >
               {{ ((((states('sensor.bedroom_presence_two_g8_move_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
           target:
             entity_id: number.bedroom_presence_two_g8_move_threshold
-        - service: number.set_value
-          continue_on_error: true
-          data:
-            value: >
-              {{ ((((states('sensor.bedroom_presence_two_g8_still_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
-          target:
-            entity_id: number.bedroom_presence_two_g8_still_threshold
         - service: number.set_value
           continue_on_error: true
           data:
