@@ -19,14 +19,14 @@ script({
       description:
         "Safeguard against huge commits. Askes confirmation to the user before running more than maxChunks chunks",
     },
-    GENAISCRIPT_GCM_GITMOJI: {
+    gitmoji: {
       type: "boolean",
       default: true,
       description: "Use gitmoji in the commit message",
     },
   },
 })
-const { chunkSize, maxChunks, GENAISCRIPT_GCM_GITMOJI } = env.vars
+const { chunkSize, maxChunks, gitmoji } = env.vars
 
 // Check for staged changes and stage all changes if none are staged
 const diff = await git.diff({
@@ -63,7 +63,7 @@ const addInstructions = (ctx) => {
 <type>: <description>
 <body>
 
-${GENAISCRIPT_GCM_GITMOJI ? `- <type> is a gitmoji` : `- <type> can be one of the following: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert`}
+${gitmoji ? `- <type> is a gitmoji` : `- <type> can be one of the following: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert`}
 - <description> is a short, imperative present-tense description of the change
 - <body> is a short description of the changes
 - Pretend you're writing an important newsworthy article. Give the headline in <description> that will sum up what happened and what is important. Then, provide further details in the <body> in an organized fashion.

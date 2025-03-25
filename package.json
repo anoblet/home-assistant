@@ -25,7 +25,7 @@
     "sort-package-json": "wireit"
   },
   "devDependencies": {
-    "genaiscript": "^1.117.1",
+    "genaiscript": "^1.120.0",
     "sort-package-json": "^2.1.0",
     "wireit": "^0.9.2"
   },
@@ -40,7 +40,7 @@
       ]
     },
     "git:commit": {
-      "command": "genaiscript run gcm",
+      "command": "genaiscript run gcm --vars gitmoji=false",
       "dependencies": [
         "sort-package-json"
       ]
