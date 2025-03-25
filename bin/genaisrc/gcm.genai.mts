@@ -5,6 +5,12 @@
 
 const isDefined = (value) => value !== undefined && value !== null
 
+const parseBoolean = (value) => {
+  if (value === "true") return true
+  if (value === "false") return false
+  throw new Error(`Invalid value: ${value}`)
+}
+
 script({
   title: "git commit message",
   description: "Generate a commit message for all staged changes",
@@ -32,12 +38,8 @@ script({
 const { chunkSize, maxChunks } = env.vars
 
 const gitmoji = isDefined(process.env.GENAISCRIPT_GCM_GITMOJI)
-  ? process.env.GENAISCRIPT_GCM_GITMOJI
+  ? parseBoolean(process.env.GENAISCRIPT_GCM_GITMOJI)
   : env.vars.gitmoji
-
-console.log(process.env.GENAISCRIPT_GCM_GITMOJI);
-console.log(isDefined(process.env.GENAISCRIPT_GCM_GITMOJI));
-console.log("gitmoji", gitmoji);
 
 // Check for staged changes and stage all changes if none are staged
 const diff = await git.diff({
