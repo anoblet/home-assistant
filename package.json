@@ -40,7 +40,7 @@
       ]
     },
     "git:commit": {
-      "command": "genaiscript run gcm --vars gitmoji=false",
+      "command": "genaiscript run gcm",
       "dependencies": [
         "sort-package-json"
       ]

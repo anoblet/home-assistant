@@ -3,6 +3,8 @@
  * It checks for staged changes, generates a commit message, and prompts the user to review or edit the message before committing.
  */
 
+const isDefined = (value) => value !== undefined && value !== null
+
 script({
   title: "git commit message",
   description: "Generate a commit message for all staged changes",
@@ -26,7 +28,16 @@ script({
     },
   },
 })
-const { chunkSize, maxChunks, gitmoji } = env.vars
+
+const { chunkSize, maxChunks } = env.vars
+
+const gitmoji = isDefined(process.env.GENAISCRIPT_GCM_GITMOJI)
+  ? process.env.GENAISCRIPT_GCM_GITMOJI
+  : env.vars.gitmoji
+
+console.log(process.env.GENAISCRIPT_GCM_GITMOJI);
+console.log(isDefined(process.env.GENAISCRIPT_GCM_GITMOJI));
+console.log("gitmoji", gitmoji);
 
 // Check for staged changes and stage all changes if none are staged
 const diff = await git.diff({
