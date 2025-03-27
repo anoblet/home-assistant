@@ -43,8 +43,11 @@ cards:
                 entity: script.bedroom_presence_two_calibrate_move_max
                 name: Calibrate Move
               - type: tile
+                entity: script.bedroom_presence_two_calibrate_still_mean
+                name: Calibrate Still Mean
+              - type: tile
                 entity: script.bedroom_presence_two_calibrate_still_median
-                name: Calibrate Still
+                name: Calibrate Still Median
           - type: custom:plotly-graph
             title: Move Energy
             refresh_interval: 1

@@ -1,6 +1,6 @@
-bedroom_presence_two_calibrate_still:
+bedroom_presence_two_calibrate_still_mean:
   script:
-    bedroom_presence_two_calibrate_still:
+    bedroom_presence_two_calibrate_still_mean:
       sequence:
         - variables:
             increase: 0
@@ -115,11 +115,6 @@ bedroom_presence_two_calibrate_still:
               {{ ((((states('sensor.bedroom_presence_two_g13_still_energy_mean') | int(0) + increase) / round) | int) + 1) * round }}
           target:
             entity_id: number.bedroom_presence_two_g13_still_threshold
-        - action: select.select_option
-          data:
-            option: "Normal"
-          target:
-            entity_id: select.bedroom_presence_two_mode
         - action: button.press
           target:
             entity_id: button.bedroom_presence_two_restart

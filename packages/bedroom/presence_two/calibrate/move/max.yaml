@@ -112,12 +112,6 @@ bedroom_presence_two_calibrate_move_max:
               {{ ((((states('sensor.bedroom_presence_two_g13_move_energy_max') | int(0) + increase) / round) | int) + 1) * round }}
           target:
             entity_id: number.bedroom_presence_two_g13_move_threshold
-        - action: select.select_option
-          data:
-            option: "Normal"
-          target:
-            entity_id: select.bedroom_presence_two_mode
         - action: button.press
-          data: {}
           target:
             entity_id: button.bedroom_presence_two_restart
