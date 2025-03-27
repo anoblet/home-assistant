@@ -16,7 +16,7 @@ bedroom_presence_two_calibrate_still_median:
           target:
             entity_id: select.bedroom_presence_two_mode
         - delay:
-            minutes: 10
+            minutes: 5
         - service: number.set_value
           continue_on_error: true
           data:

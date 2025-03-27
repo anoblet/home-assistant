@@ -5,6 +5,9 @@ bedroom_presence_two_calibrate_still:
         - variables:
             increase: 0
             round: 1
+        - action: button.press
+          target:
+            entity_id: button.bedroom_presence_two_restart
         - delay:
             minutes: 1
         - action: select.select_option
@@ -118,6 +121,5 @@ bedroom_presence_two_calibrate_still:
           target:
             entity_id: select.bedroom_presence_two_mode
         - action: button.press
-          data: {}
           target:
             entity_id: button.bedroom_presence_two_restart
