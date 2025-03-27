@@ -20,3 +20,4 @@ node_modules
 secrets.yaml
 www/custom-elements/build
 zigbee2mqtt/coordinator_backup.json
+zigbee2mqtt/secrets.yaml
