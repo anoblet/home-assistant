@@ -7,7 +7,7 @@ homeassistant:
 mqtt:
   base_topic: zigbee2mqtt
   user: addons
-  password: !secrets.yaml password
+  password: '!secrets.yaml password'
   server: mqtt://core-mosquitto:1883
 serial:
   port: /dev/ttyUSB0
