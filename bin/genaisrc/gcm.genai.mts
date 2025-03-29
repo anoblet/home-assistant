@@ -32,6 +32,11 @@ script({
       default: true,
       description: "Use gitmoji in the commit message",
     },
+    auto: {
+      type: "boolean",
+      default: false,
+      description: "Automatically stage all files, commit with generated message, and push changes",
+    },
   },
 })
 
@@ -41,10 +46,20 @@ const gitmoji = isDefined(process.env.GENAISCRIPT_GCM_GITMOJI)
   ? parseBoolean(process.env.GENAISCRIPT_GCM_GITMOJI)
   : env.vars.gitmoji
 
-// Check for staged changes and stage all changes if none are staged
+const auto = isDefined(process.env.GENAISCRIPT_GCM_AUTO)
+  ? parseBoolean(process.env.GENAISCRIPT_GCM_AUTO)
+  : env.vars.auto || false
+
+// Stage all files first if in auto mode
+if (auto) {
+  console.log("Auto mode: staging all files")
+  await git.exec(["add", "-A"])
+}
+
+// Check for staged changes
 const diff = await git.diff({
   staged: true,
-  askStageOnEmpty: true,
+  askStageOnEmpty: !auto, // Don't ask if in auto mode
 })
 
 // If no staged changes are found, cancel the script with a message
@@ -57,7 +72,7 @@ console.debug(diff)
 const chunks = await tokenizers.chunk(diff, { chunkSize })
 if (chunks.length > 1) {
   console.log(`staged changes chunked into ${chunks.length} parts`)
-  if (chunks.length > maxChunks) {
+  if (chunks.length > maxChunks && !auto) {
     const res = await host.confirm(
       `This is a big diff with ${chunks.length} chunks, do you want to proceed?`
     )
@@ -66,7 +81,7 @@ if (chunks.length > 1) {
 }
 
 const gitPush = async () => {
-  if (await host.confirm("Push changes?", { default: true }))
+  if (auto || await host.confirm("Push changes?", { default: true }))
     console.log(await git.exec("push"))
 }
 
@@ -143,6 +158,14 @@ do {
     console.log(
       "No commit message generated, did you configure the LLM model?"
     )
+    break
+  }
+
+  // If auto mode is enabled, commit and push immediately
+  if (auto) {
+    console.log("Auto mode: using generated commit message")
+    console.log(await git.exec(["commit", "-m", message]))
+    await gitPush()
     break
   }
 
