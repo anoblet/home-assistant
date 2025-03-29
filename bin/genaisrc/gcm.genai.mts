@@ -87,7 +87,8 @@ if (chunks.length > 1) {
 }
 
 const gitPush = async () => {
-  if (auto || await host.confirm("Push changes?", { default: true }))
+  // Don't push automatically in auto mode, but also don't ask
+  if (!auto && await host.confirm("Push changes?", { default: true }))
     console.log(await git.exec("push"))
 }
 
@@ -167,11 +168,11 @@ do {
     break
   }
 
-  // If auto mode is enabled, commit and push immediately
+  // If auto mode is enabled, commit immediately but don't push
   if (auto) {
     console.log("Auto mode: using generated commit message")
     console.log(await git.exec(["commit", "-m", message]))
-    await gitPush()
+    // No push in auto mode
     break
   }
 
