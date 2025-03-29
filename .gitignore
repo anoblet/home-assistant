@@ -4,6 +4,7 @@
 
 # Include
 !**/*.yaml
+!.github/**/*
 !.gitignore
 !bin/genaisrc/**/*
 !package.json
