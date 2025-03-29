@@ -50,10 +50,16 @@ const auto = isDefined(process.env.GENAISCRIPT_GCM_AUTO)
   ? parseBoolean(process.env.GENAISCRIPT_GCM_AUTO)
   : env.vars.auto || false
 
-// Stage all files first if in auto mode
-if (auto) {
-  console.log("Auto mode: staging all files")
+// Check if there are any staged changes
+const stagedChanges = await git.exec(["diff", "--cached", "--name-only"])
+const hasStaged = stagedChanges && stagedChanges.trim().length > 0
+
+// Stage all files first if in auto mode and no files are staged
+if (auto && !hasStaged) {
+  console.log("Auto mode: No files staged. Staging all files")
   await git.exec(["add", "-A"])
+} else if (auto && hasStaged) {
+  console.log("Auto mode: Files already staged, proceeding with existing staged files")
 }
 
 // Check for staged changes
