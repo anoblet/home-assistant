@@ -53,7 +53,7 @@
 '0x54ef4410005ca578':
   friendly_name: Hallway Motion One
 '0x00124b00250c4f03':
-  friendly_name: Storage Room Filament Dryer
+  friendly_name: Living Room Heater
 '0xb0ce18140301c28d':
   friendly_name: Kitchen Floor Lamp
 '0x00158d00095118dd':
@@ -64,5 +64,3 @@
   friendly_name: Bathroom Exhaust Fan
 '0xa4c1389ac4f045ca':
   friendly_name: Bedroom Ceiling Fan
-'0x00158d0006c3b081':
-  friendly_name: '0x00158d0006c3b081'
