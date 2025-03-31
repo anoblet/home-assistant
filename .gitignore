@@ -13,7 +13,6 @@
 !www/custom-elements/**/*
 
 #Exclude
-.*/
 custom_components
 esphome/secrets.yaml
 go2rtc.yaml
