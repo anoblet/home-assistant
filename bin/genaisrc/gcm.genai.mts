@@ -12,6 +12,7 @@ const parseBoolean = (value) => {
 }
 
 script({
+  model: "github_copilot_chat:gpt-4o",
   title: "git commit message",
   description: "Generate a commit message for all staged changes",
   unlisted: true,
