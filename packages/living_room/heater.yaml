@@ -1,5 +1,0 @@
-living_room_heater:
-  google_assistant:
-    entity_config:
-      switch.living_room_heater:
-        expose: true

@@ -132,5 +132,3 @@ homeassistant_customize:
       switch.bedroom_humidifier:
         assumed_state: false
         icon: mdi:air-humidifier
-      switch.living_room_heater:
-        friendly_name: Living Room Heater
