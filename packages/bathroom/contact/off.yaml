@@ -1,14 +1,14 @@
 bathroom_contact_off_exhaust_fan:
   automation:
-    - alias: "Bathroom Door Off Exhaust Fan"
+    - action:
+        - entity_id: switch.bathroom_exhaust_fan
+          service: switch.turn_on
+      alias: "Bathroom Door Off Exhaust Fan"
       id: bathroom_door_off_exhaust_fan
       mode: single
       trigger:
-        platform: state
         entity_id: binary_sensor.bathroom_contact_open
         for:
           seconds: 5
+        platform: state
         to: "off"
-      action:
-        - service: switch.turn_on
-          entity_id: switch.bathroom_exhaust_fan
