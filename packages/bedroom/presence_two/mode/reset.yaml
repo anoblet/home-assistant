@@ -1,0 +1,17 @@
+bedroom_presence_two_mode_reset:
+  automation:
+    - action:
+        action: select.select_option
+        target:
+          entity_id: select.bedroom_presence_two_mode
+        data:
+          option: Normal
+      alias: Bedroom - Presence Two - Engineering Mode - Reset
+      description: Turn off engineering mode after it has been on for an hour
+      id: bedroom_presence_two_mode_reset
+      mode: single
+      trigger:
+        - entity_id: switch.bedroom_presence_two_mode
+          for: "01:00:00"
+          platform: state
+          to: "on"
