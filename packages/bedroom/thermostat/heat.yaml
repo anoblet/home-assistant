@@ -1,6 +1,6 @@
 bedroom_thermostat_heat:
   climate:
-    - cold_tolerance: 2
+    - cold_tolerance: 0
       heater: switch.bedroom_heater_switch
       hot_tolerance: 0
       name: Bedroom Thermostat Heat

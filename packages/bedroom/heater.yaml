@@ -1,5 +1,0 @@
-bedroom_heater:
-  google_assistant:
-    entity_config:
-      switch.bedroom_heater:
-        expose: true
