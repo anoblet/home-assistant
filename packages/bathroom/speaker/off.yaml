@@ -8,6 +8,6 @@ bathroom_speaker_off:
     id: bathroom_speaker_off
     mode: single
     trigger:
-      - platform: state
-        entity_id: media_player.bathroom_speaker
+      - entity_id: media_player.bathroom_speaker
+        platform: state
         to: "playing"

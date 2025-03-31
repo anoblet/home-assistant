@@ -1,8 +1,8 @@
 bathroom_contact_on_exhaust_fan:
   automation:
     - action:
-        - entity_id: switch.bathroom_exhaust_fan
-          service: switch.turn_off
+        - service: switch.turn_off
+          entity_id: switch.bathroom_exhaust_fan
       alias: "Bathroom Door On Exhaust Fan"
       id: bathroom_door_on_exhaust_fan
       mode: single
