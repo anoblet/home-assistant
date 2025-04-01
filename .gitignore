@@ -7,6 +7,7 @@
 !.github/**/*
 !.gitignore
 !bin/genaisrc/**/*
+!genaisrc/**/*
 !package.json
 !package-lock.json
 !www/custom/**/*
