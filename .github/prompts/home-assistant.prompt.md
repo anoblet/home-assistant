@@ -13,3 +13,5 @@ packages/[area]/[device_class]/[device_name]
 - When creating or modifying `*.yaml` files alphabetize keys wherever possible
 
 - When understanding prompts that involve a person entering or leaving a location, use this URL for reference when defining automations: https://www.home-assistant.io/integrations/zone/
+
+ - When we are speaking about notifications chose `notify.mobile_app_pixel_4` as your target.

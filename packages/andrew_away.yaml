@@ -3,7 +3,7 @@ andrew_away:
     action:
       - data:
           message: Bedroom door has been opened.
-        service: notify.mobile_app_pixel_4
+        service: notify.mobile_app_pixel_4 # This is the primary target
     alias: Andrew - Away
     condition:
       - condition: template
