@@ -1,0 +1,9 @@
+living_room_tv_on_blinds_position:
+  input_number:
+    living_room_tv_on_blinds_position:
+      icon: mdi:blinds
+      max: 100
+      min: 0
+      name: Living Room TV On Blinds Position
+      step: 1
+      unit_of_measurement: '%'
