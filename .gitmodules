@@ -1,0 +1,3 @@
+[submodule "genaisrc"]
+	path = genaisrc
+	url = git@github.com:anoblet/genaisrc.git
