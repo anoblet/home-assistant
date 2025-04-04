@@ -1,5 +1,5 @@
 icon: mdi:checkbox-marked-outline
-path: tasks
+path: my-tasks
 title: My Tasks
 type: custom:default-view
 cards:

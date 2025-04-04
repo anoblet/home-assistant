@@ -1,3 +1,4 @@
 title: Tasks
 views:
-  - !include ../views/tasks/index.yaml
+  - !include ../views/tasks/my_tasks.yaml
+  - !include ../views/tasks/routine.yaml

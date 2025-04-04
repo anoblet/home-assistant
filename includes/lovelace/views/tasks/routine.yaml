@@ -1,0 +1,9 @@
+icon: mdi:checkbox-marked-outline
+path: routine
+title: Routine
+type: custom:default-view
+cards:
+  - entity: todo.routine
+    show_checked: true
+    title: Routine
+    type: todo-list
