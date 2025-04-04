@@ -1,0 +1,7 @@
+lovelace_dashboards_tasks:
+  lovelace:
+    dashboards:
+      dashboard-tasks:
+        filename: includes/lovelace/dashboards/tasks.yaml
+        mode: yaml
+        title: Tasks

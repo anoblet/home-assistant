@@ -1,0 +1,9 @@
+icon: mdi:checkbox-marked-outline
+path: tasks
+title: My Tasks
+type: custom:default-view
+cards:
+  - entity: todo.my_tasks
+    show_checked: true
+    title: My Tasks
+    type: todo-list

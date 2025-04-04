@@ -1,0 +1,3 @@
+title: Tasks
+views:
+  - !include ../views/tasks/index.yaml
