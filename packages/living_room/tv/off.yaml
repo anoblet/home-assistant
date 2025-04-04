@@ -1,4 +1,4 @@
-automation_living_room_remote_tv_off:
+automation_living_room_tv_off:
   automation:
     - action:
         # Set floor lamp brightness to 100%
@@ -19,8 +19,8 @@ automation_living_room_remote_tv_off:
                 - data:
                     entity_id: input_boolean.living_room_blinds_automatic
                   service: input_boolean.turn_on
-      alias: Living Room - Remote - TV - Off
-      id: living_room_remote_tv_off
+      alias: Living Room - TV - Off
+      id: living_room_tv_off
       trigger:
         - entity_id: remote.living_room_tv
           platform: state

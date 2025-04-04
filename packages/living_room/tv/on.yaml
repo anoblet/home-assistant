@@ -1,4 +1,4 @@
-automation_living_room_remote_tv_on:
+automation_living_room_tv_on:
   automation:
     - action:
         # Set the ceiling light to 25%
@@ -26,8 +26,8 @@ automation_living_room_remote_tv_on:
             position: 75
           target:
             entity_id: cover.living_room_blinds
-      alias: Living Room - Remote - TV - On
-      id: living_room_remote_tv_on
+      alias: Living Room - TV - On
+      id: living_room_tv_on
       trigger:
         - entity_id: remote.living_room_tv
           platform: state
