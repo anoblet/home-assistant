@@ -25,7 +25,7 @@
     "sort-package-json": "wireit"
   },
   "devDependencies": {
-    "genaiscript": "^1.120.0",
+    "genaiscript": "^1.125.0",
     "sort-package-json": "^2.1.0",
     "wireit": "^0.9.2"
   },
