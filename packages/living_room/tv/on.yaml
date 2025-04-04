@@ -20,7 +20,7 @@ automation_living_room_tv_on:
         - service: input_boolean.turn_off
           target:
             entity_id: input_boolean.living_room_blinds_automatic
-        # Close the living room blinds to the specified position
+        # Set the blinds position based on the input number (if defined)
         - service: cover.set_cover_position
           data:
             position: "{{ states('input_number.blinds_position') | int }}"
