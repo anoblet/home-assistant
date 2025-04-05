@@ -23,7 +23,7 @@ automation_living_room_tv_on:
         # Set the blinds position based on the input number (if defined)
         - service: cover.set_cover_position
           data:
-            position: "{{ states('input_number.blinds_position') | int }}"
+            position: "{{ states('input_number.living_room_tv_on_blinds_position') | int }}"
           target:
             entity_id: cover.living_room_blinds
       alias: Living Room - TV - On
@@ -31,4 +31,4 @@ automation_living_room_tv_on:
       trigger:
         - entity_id: remote.living_room_tv
           platform: state
-          to: "on"
+          to: 'on'
