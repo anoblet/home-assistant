@@ -6,6 +6,9 @@
 !**/*.yaml
 !.github/**/*
 !.gitignore
+!.husky/**/*
+!.prettierignore
+!.prettierrc
 !genaisrc
 !genaisrc/**/*
 !package.json

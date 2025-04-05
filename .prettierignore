@@ -1,0 +1,26 @@
+# Build artifacts
+dist/
+node_modules/
+
+# Database files
+*.db
+
+# Log files
+*.log*
+
+# Home Assistant auto-generated files
+home-assistant_v2.db*
+.storage/
+.cloud/
+.google.token
+
+# Secrets file
+secrets.yaml
+
+# Dependency directory
+deps/
+
+# Config directories that include many yaml files that don't need formatting
+zigbee2mqtt/
+tts/
+themes/
