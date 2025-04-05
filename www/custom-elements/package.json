@@ -20,7 +20,7 @@
     "@material/mwc-button": "^0.25.3",
     "@material/mwc-select": "^0.25.3",
     "@material/mwc-textfield": "^0.25.3",
-    "lit": "^2.1.1",
+    "lit": "^2.8.0",
     "lodash-es": "^4.17.21",
     "muuri": "^0.9.5"
   },
