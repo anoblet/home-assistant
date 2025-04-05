@@ -10,9 +10,9 @@ kitchen_presence_gate:
       name: Kitchen LD2410C Last On Gate
   template:
     - sensor:
-        - name: "Kitchen LD2410C Gate"
+        - name: 'Kitchen LD2410C Gate'
           state: >
-            {% set distance = states('sensor.kitchen_ld2410c_radar_detection_distance') | int %}
+            {% set distance = states('sensor.kitchen_ld2410c_radar_detection_distance') | int(0) %}
             {% if distance == 0 %}0
             {% elif distance < 29.52756 %}1
             {% elif distance < 59.05512 %}2

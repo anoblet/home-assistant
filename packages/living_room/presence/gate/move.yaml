@@ -1,6 +1,6 @@
 living_room_presence_move_gate:
   automation:
-    - alias: "Living Room LD2410C Move Gate"
+    - alias: 'Living Room LD2410C Move Gate'
       mode: single
       trigger:
         - platform: state
@@ -22,16 +22,17 @@ living_room_presence_move_gate:
       name: Living Room LD2410C Last Move Gate
   template:
     - sensor:
-        - name: "Living Room LD2410C Move Gate"
+        - name: 'Living Room LD2410C Move Gate'
           state: >
-            {% if states('sensor.living_room_ld2410c_g0_move_energy') | int > states('number.living_room_ld2410c_g0_move_threshold') | int %}0
-            {% elif states('sensor.living_room_ld2410c_g1_move_energy') | int > states('number.living_room_ld2410c_g1_move_threshold') | int %}1
-            {% elif states('sensor.living_room_ld2410c_g2_move_energy') | int > states('number.living_room_ld2410c_g2_move_threshold') | int %}2
-            {% elif states('sensor.living_room_ld2410c_g3_move_energy') | int > states('number.living_room_ld2410c_g3_move_threshold') | int %}3
-            {% elif states('sensor.living_room_ld2410c_g4_move_energy') | int > states('number.living_room_ld2410c_g4_move_threshold') | int %}4
-            {% elif states('sensor.living_room_ld2410c_g5_move_energy') | int > states('number.living_room_ld2410c_g5_move_threshold') | int %}5
-            {% elif states('sensor.living_room_ld2410c_g6_move_energy') | int > states('number.living_room_ld2410c_g6_move_threshold') | int %}6
-            {% elif states('sensor.living_room_ld2410c_g7_move_energy') | int > states('number.living_room_ld2410c_g7_move_threshold') | int %}7
-            {% elif states('sensor.living_room_ld2410c_g8_move_energy') | int > states('number.living_room_ld2410c_g8_move_threshold') | int %}8
+            {% if states('sensor.living_room_ld2410c_g0_move_energy') | int(0) > states('number.living_room_ld2410c_g0_move_threshold') | int(0) %}0
+            {% elif states('sensor.living_room_ld2410c_g1_move_energy') | int(0) > states('number.living_room_ld2410c_g1_move_threshold') | int(0) %}1
+            {% elif states('sensor.living_room_ld2410c_g2_move_energy') | int(0) > states('number.living_room_ld2410c_g2_move_threshold') | int(0) %}2
+            {% elif states('sensor.living_room_ld2410c_g3_move_energy') | int(0) > states('number.living_room_ld2410c_g3_move_threshold') | int(0) %}3
+            {% elif states('sensor.living_room_ld2410c_g4_move_energy') | int(0) > states('number.living_room_ld2410c_g4_move_threshold') | int(0) %}4
+            {% elif states('sensor.living_room_ld2410c_g5_move_energy') | int(0) > states('number.living_room_ld2410c_g5_move_threshold') | int(0) %}5
+            {% elif states('sensor.living_room_ld2410c_g6_move_energy') | int(0) > states('number.living_room_ld2410c_g6_move_threshold') | int(0) %}6
+            {% elif states('sensor.living_room_ld2410c_g7_move_energy') | int(0) > states('number.living_room_ld2410c_g7_move_threshold') | int(0) %}7
+            {% elif states('sensor.living_room_ld2410c_g8_move_energy') | int(0) > states('number.living_room_ld2410c_g8_move_threshold') | int(0) %}8
+            {% else %}unknown
             {% endif %}
           unique_id: living_room_ld2410c_move_gate
