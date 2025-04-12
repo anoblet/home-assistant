@@ -1,0 +1,20 @@
+bedroom_presence_on_air_purifier:
+  automation:
+    action:
+      - service: fan.set_preset_mode
+        target:
+          entity_id: fan.bedroom_air_purifier
+        data:
+          preset_mode: auto
+      # - service: fan.set_percentage
+      #   data:
+      #     percentage: 66
+      #   target:
+      #     entity_id: fan.bedroom_air_purifier
+    alias: Bedroom - Presence - On - Air Purifier
+    id: bedroom_presence_on_air_purifier
+    mode: single
+    trigger:
+      - entity_id: binary_sensor.bedroom_presence_presence
+        platform: state
+        to: 'on'

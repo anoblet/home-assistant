@@ -1,0 +1,120 @@
+bedroom_presence_calibrate_still_median:
+  script:
+    bedroom_presence_calibrate_still_median:
+      sequence:
+        - variables:
+            increase: 0
+            round: 1
+        - action: button.press
+          target:
+            entity_id: button.bedroom_presence_restart
+        - delay:
+            minutes: 1
+        - action: select.select_option
+          data:
+            option: Engineering
+          target:
+            entity_id: select.bedroom_presence_mode
+        - delay:
+            minutes: 5
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.bedroom_presence_g0_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.bedroom_presence_g0_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.bedroom_presence_g1_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.bedroom_presence_g1_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.bedroom_presence_g2_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.bedroom_presence_g2_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.bedroom_presence_g3_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.bedroom_presence_g3_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.bedroom_presence_g4_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.bedroom_presence_g4_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.bedroom_presence_g5_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.bedroom_presence_g5_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.bedroom_presence_g6_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.bedroom_presence_g6_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.bedroom_presence_g7_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.bedroom_presence_g7_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.bedroom_presence_g8_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.bedroom_presence_g8_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.bedroom_presence_g9_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.bedroom_presence_g9_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.bedroom_presence_g10_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.bedroom_presence_g10_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.bedroom_presence_g11_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.bedroom_presence_g11_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.bedroom_presence_g12_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.bedroom_presence_g12_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.bedroom_presence_g13_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.bedroom_presence_g13_still_threshold
+        - action: button.press
+          target:
+            entity_id: button.bedroom_presence_restart

@@ -1,0 +1,42 @@
+bedroom_presence_still_gate:
+  automation:
+    - alias: 'Bedroom Presence Still Gate'
+      mode: single
+      trigger:
+        - platform: state
+          entity_id: sensor.bedroom_presence_still_gate
+      condition:
+        - condition: template
+          value_template: >
+            {{ states('sensor.bedroom_presence_still_gate') != "" }}
+      action:
+        - service: input_number.set_value
+          data:
+            entity_id: input_number.bedroom_presence_last_still_gate
+            value: "{{ states('sensor.bedroom_presence_still_gate') | int }}"
+      id: bedroom_presence_still_gate
+  input_number:
+    bedroom_presence_last_still_gate:
+      max: 13
+      min: 0
+      name: Bedroom Presence Last Still Gate
+  template:
+    - sensor:
+        - name: 'Bedroom Presence Still Gate'
+          state: >
+            {% if states('sensor.bedroom_presence_g0_still_energy') | int > states('number.bedroom_presence_g0_still_threshold') | int %}0
+            {% elif states('sensor.bedroom_presence_g1_still_energy') | int > states('number.bedroom_presence_g1_still_threshold') | int %}1
+            {% elif states('sensor.bedroom_presence_g2_still_energy') | int > states('number.bedroom_presence_g2_still_threshold') | int %}2
+            {% elif states('sensor.bedroom_presence_g3_still_energy') | int > states('number.bedroom_presence_g3_still_threshold') | int %}3
+            {% elif states('sensor.bedroom_presence_g4_still_energy') | int > states('number.bedroom_presence_g4_still_threshold') | int %}4
+            {% elif states('sensor.bedroom_presence_g5_still_energy') | int > states('number.bedroom_presence_g5_still_threshold') | int %}5
+            {% elif states('sensor.bedroom_presence_g6_still_energy') | int > states('number.bedroom_presence_g6_still_threshold') | int %}6
+            {% elif states('sensor.bedroom_presence_g7_still_energy') | int > states('number.bedroom_presence_g7_still_threshold') | int %}7
+            {% elif states('sensor.bedroom_presence_g8_still_energy') | int > states('number.bedroom_presence_g8_still_threshold') | int %}8
+            {% elif states('sensor.bedroom_presence_g9_still_energy') | int > states('number.bedroom_presence_g9_still_threshold') | int %}9
+            {% elif states('sensor.bedroom_presence_g10_still_energy') | int > states('number.bedroom_presence_g10_still_threshold') | int %}10
+            {% elif states('sensor.bedroom_presence_g11_still_energy') | int > states('number.bedroom_presence_g11_still_threshold') | int %}11
+            {% elif states('sensor.bedroom_presence_g12_still_energy') | int > states('number.bedroom_presence_g12_still_threshold') | int %}12
+            {% elif states('sensor.bedroom_presence_g13_still_energy') | int > states('number.bedroom_presence_g13_still_threshold') | int %}13
+            {% endif %}
+          unique_id: bedroom_presence_still_gate

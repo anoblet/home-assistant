@@ -1,18 +1,18 @@
 cards:
   - type: custom:generic-card
     style:
-      "background-color": "initial"
+      'background-color': 'initial'
     cards:
       - type: custom:muuri-card
       - type: custom:grid-card
         style:
-          "gap": "1rem"
+          'gap': '1rem'
         cards:
           - type: custom:flex-card
             style:
-              "--flex-card-min-width": "320px"
-              "--flex-card-max-width": "100vw"
-              "gap": "1rem"
+              '--flex-card-min-width': '320px'
+              '--flex-card-max-width': '100vw'
+              'gap': '1rem'
             cards:
               - type: custom:mushroom-climate-card
                 entity: climate.bedroom_thermostat_heat
@@ -45,19 +45,19 @@ cards:
                 template: media_player_card
                 variables:
                   - entity: media_player.bedroom_tv
-                  - name: "Television"
+                  - name: 'Television'
               - type: custom:decluttering-card
                 template: media_player_card
                 variables:
                   - entity: media_player.bedroom_display
-                  - name: "Display"
+                  - name: 'Display'
           - type: custom:grid-card
             style:
-              "gap": "1rem"
-              "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
+              'gap': '1rem'
+              'grid-template-columns': 'repeat(auto-fit, minmax(192px, auto))'
             cards:
               - type: tile
-                entity: binary_sensor.bedroom_presence_two_presence
+                entity: binary_sensor.bedroom_presence_presence
                 name: Presence
                 state_content: last-changed
                 tap_action:

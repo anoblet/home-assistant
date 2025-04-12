@@ -1,0 +1,14 @@
+bedroom_presence_off_humidifier:
+  automation:
+    action:
+      - service: humidifier.turn_off
+        target:
+          entity_id:
+            - humidifier.bedroom_humidifier_virtual
+    alias: Bedroom - Presence - Off - Humidifier
+    id: bedroom_presence_off_humidifier
+    mode: single
+    trigger:
+      - entity_id: binary_sensor.bedroom_presence_presence
+        platform: state
+        to: 'off'

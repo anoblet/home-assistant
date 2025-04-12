@@ -1,0 +1,14 @@
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+  variant: esp32c3
+packages:
+  common: !include packages/common.yaml
+  ld2412: !include packages/ld2412.yaml
+substitutions:
+  esphome_friendly_name: Bedroom Presence
+  esphome_name: bedroom-presence
+uart:
+  rx_pin: GPIO3
+  tx_pin: GPIO4

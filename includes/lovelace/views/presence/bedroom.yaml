@@ -1,63 +1,53 @@
 cards:
   - type: custom:generic-card
     style:
-      "background-color": "initial"
+      'background-color': 'initial'
     cards:
       - type: custom:grid-card
         style:
-          "gap": "1rem"
+          'gap': '1rem'
         cards:
           - type: custom:grid-card
             style:
-              "gap": "1rem"
-              "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
+              'gap': '1rem'
+              'grid-template-columns': 'repeat(auto-fit, minmax(192px, auto))'
             cards:
               - type: tile
-                entity: binary_sensor.bedroom_ld2410c_presence
+                entity: binary_sensor.bedroom_presence_presence
                 name: Presence
                 state_content: last-changed
               - type: tile
-                entity: sensor.bedroom_ld2410c_radar_detection_distance
-                name: Distance
-              - type: tile
-                entity: input_number.bedroom_ld2410c_last_on_gate
+                entity: input_number.bedroom_presence_last_on_gate
                 name: On Gate
               - type: tile
-                entity: input_number.bedroom_ld2410c_last_off_gate
+                entity: input_number.bedroom_presence_last_off_gate
                 name: Off Gate
               - type: tile
-                entity: input_number.bedroom_ld2410c_last_move_gate
+                entity: input_number.bedroom_presence_last_move_gate
                 name: Last Move Gate
               - type: tile
-                entity: input_number.bedroom_ld2410c_last_still_gate
+                entity: input_number.bedroom_presence_last_still_gate
                 name: Last Still Gate
               - type: tile
-                entity: switch.bedroom_ld2410c_radar_engineering_mode
-                name: Engineering Mode
-                tap_action:
-                  action: call-service
-                  service: switch.toggle
-                  target:
-                    entity_id: switch.bedroom_ld2410c_radar_engineering_mode
+                entity: select.bedroom_presence_mode
+                name: Mode
               - type: tile
-                entity: button.bedroom_ld2410c_esp_reboot
-                name: Reboot
-                tap_action:
-                  action: call-service
-                  service: button.press
-                  target:
-                    entity_id: button.bedroom_ld2410c_esp_reboot
-              - type: tile
-                entity: button.bedroom_ld2410c_restart_radar
+                entity: button.bedroom_presence_restart
                 name: Restart
                 tap_action:
                   action: call-service
                   service: button.press
                   target:
-                    entity_id: button.bedroom_ld2410c_restart_radar
+                    entity_id: button.bedroom_presence_restart
               - type: tile
-                entity: script.bedroom_ld2410c_calibrate
-                name: Calibrate
+                entity: script.bedroom_presence_calibrate_move_max
+                name: Calibrate Move
+              - type: tile
+                entity: script.bedroom_presence_calibrate_still_mean
+                name: Calibrate Still Mean
+              - type: tile
+                entity: script.bedroom_presence_calibrate_still_median
+                name: Calibrate Still Median
           - type: custom:plotly-graph
             title: Move Energy
             refresh_interval: 1
@@ -76,7 +66,7 @@ cards:
                 fixedrange: true
                 range:
                   - 0
-                  - 8
+                  - 13
               yaxis:
                 dtick: 10
                 fixedrange: true
@@ -84,7 +74,7 @@ cards:
                   - 0
                   - 100
             entities:
-              - entity: ""
+              - entity: ''
                 name: Threshold
                 type: bar
                 x:
@@ -97,17 +87,27 @@ cards:
                   - 6
                   - 7
                   - 8
-                "y":
-                  - $ex hass.states["number.bedroom_ld2410c_g0_move_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g1_move_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g2_move_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g3_move_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g4_move_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g5_move_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g6_move_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g7_move_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g8_move_threshold"].state
-              - entity: ""
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
+                'y':
+                  - $ex hass.states["number.bedroom_presence_g0_move_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g1_move_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g2_move_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g3_move_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g4_move_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g5_move_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g6_move_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g7_move_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g8_move_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g9_move_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g10_move_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g11_move_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g12_move_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g13_move_threshold"].state
+              - entity: ''
                 name: Energy
                 type: bar
                 x:
@@ -120,17 +120,27 @@ cards:
                   - 6
                   - 7
                   - 8
-                "y":
-                  - $ex hass.states["sensor.bedroom_ld2410c_g0_move_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g1_move_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g2_move_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g3_move_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g4_move_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g5_move_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g6_move_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g7_move_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g8_move_energy"].state
-              - entity: ""
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
+                'y':
+                  - $ex hass.states["sensor.bedroom_presence_g0_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g1_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g2_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g3_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g4_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g5_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g6_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g7_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g8_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g9_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g10_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g11_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g12_move_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g13_move_energy"].state
+              - entity: ''
                 name: Energy Max
                 type: line
                 x:
@@ -143,17 +153,27 @@ cards:
                   - 6
                   - 7
                   - 8
-                "y":
-                  - $ex hass.states["sensor.bedroom_ld2410c_g0_move_energy_max"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g1_move_energy_max"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g2_move_energy_max"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g3_move_energy_max"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g4_move_energy_max"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g5_move_energy_max"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g6_move_energy_max"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g7_move_energy_max"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g8_move_energy_max"].state
-              - entity: ""
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
+                'y':
+                  - $ex hass.states["sensor.bedroom_presence_g0_move_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_g1_move_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_g2_move_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_g3_move_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_g4_move_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_g5_move_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_g6_move_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_g7_move_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_g8_move_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_g9_move_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_g10_move_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_g11_move_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_g12_move_energy_max"].state
+                  - $ex hass.states["sensor.bedroom_presence_g13_move_energy_max"].state
+              - entity: ''
                 name: Difference
                 type: bar
                 x:
@@ -166,76 +186,116 @@ cards:
                   - 6
                   - 7
                   - 8
-                "y":
-                  - $ex hass.states["sensor.bedroom_ld2410c_g0_move_energy"].state - hass.states["number.bedroom_ld2410c_g0_move_threshold"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g1_move_energy"].state - hass.states["number.bedroom_ld2410c_g1_move_threshold"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g2_move_energy"].state - hass.states["number.bedroom_ld2410c_g2_move_threshold"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g3_move_energy"].state - hass.states["number.bedroom_ld2410c_g3_move_threshold"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g4_move_energy"].state - hass.states["number.bedroom_ld2410c_g4_move_threshold"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g5_move_energy"].state - hass.states["number.bedroom_ld2410c_g5_move_threshold"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g6_move_energy"].state - hass.states["number.bedroom_ld2410c_g6_move_threshold"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g7_move_energy"].state - hass.states["number.bedroom_ld2410c_g7_move_threshold"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g8_move_energy"].state - hass.states["number.bedroom_ld2410c_g8_move_threshold"].state
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
+                'y':
+                  - $ex hass.states["sensor.bedroom_presence_g0_move_energy"].state - hass.states["number.bedroom_presence_g0_move_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g1_move_energy"].state - hass.states["number.bedroom_presence_g1_move_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g2_move_energy"].state - hass.states["number.bedroom_presence_g2_move_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g3_move_energy"].state - hass.states["number.bedroom_presence_g3_move_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g4_move_energy"].state - hass.states["number.bedroom_presence_g4_move_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g5_move_energy"].state - hass.states["number.bedroom_presence_g5_move_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g6_move_energy"].state - hass.states["number.bedroom_presence_g6_move_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g7_move_energy"].state - hass.states["number.bedroom_presence_g7_move_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g8_move_energy"].state - hass.states["number.bedroom_presence_g8_move_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g9_move_energy"].state - hass.states["number.bedroom_presence_g9_move_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g10_move_energy"].state - hass.states["number.bedroom_presence_g10_move_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g11_move_energy"].state - hass.states["number.bedroom_presence_g11_move_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g12_move_energy"].state - hass.states["number.bedroom_presence_g12_move_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g13_move_energy"].state - hass.states["number.bedroom_presence_g13_move_threshold"].state
             raw_plotly_config: true
           - type: custom:grid-card
             style:
-              "gap": "1rem"
-              "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
+              'gap': '1rem'
+              'grid-template-columns': 'repeat(auto-fit, minmax(192px, auto))'
             cards:
               - type: tile
-                entity: number.bedroom_ld2410c_g0_move_threshold
+                entity: number.bedroom_presence_g0_move_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G0 Move Threshold
               - type: tile
-                entity: number.bedroom_ld2410c_g1_move_threshold
+                entity: number.bedroom_presence_g1_move_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G1 Move Threshold
               - type: tile
-                entity: number.bedroom_ld2410c_g2_move_threshold
+                entity: number.bedroom_presence_g2_move_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G2 Move Threshold
               - type: tile
-                entity: number.bedroom_ld2410c_g3_move_threshold
+                entity: number.bedroom_presence_g3_move_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G3 Move Threshold
               - type: tile
-                entity: number.bedroom_ld2410c_g4_move_threshold
+                entity: number.bedroom_presence_g4_move_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G4 Move Threshold
               - type: tile
-                entity: number.bedroom_ld2410c_g5_move_threshold
+                entity: number.bedroom_presence_g5_move_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G5 Move Threshold
               - type: tile
-                entity: number.bedroom_ld2410c_g6_move_threshold
+                entity: number.bedroom_presence_g6_move_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G6 Move Threshold
               - type: tile
-                entity: number.bedroom_ld2410c_g7_move_threshold
+                entity: number.bedroom_presence_g7_move_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G7 Move Threshold
               - type: tile
-                entity: number.bedroom_ld2410c_g8_move_threshold
+                entity: number.bedroom_presence_g8_move_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G8 Move Threshold
+              - type: tile
+                entity: number.bedroom_presence_g9_move_threshold
+                features:
+                  - type: 'numeric-input'
+                    style: 'buttons'
+                name: G9 Move Threshold
+              - type: tile
+                entity: number.bedroom_presence_g10_move_threshold
+                features:
+                  - type: 'numeric-input'
+                    style: 'buttons'
+                name: G10 Move Threshold
+              - type: tile
+                entity: number.bedroom_presence_g11_move_threshold
+                features:
+                  - type: 'numeric-input'
+                    style: 'buttons'
+                name: G11 Move Threshold
+              - type: tile
+                entity: number.bedroom_presence_g12_move_threshold
+                features:
+                  - type: 'numeric-input'
+                    style: 'buttons'
+                name: G12 Move Threshold
+              - type: tile
+                entity: number.bedroom_presence_g13_move_threshold
+                features:
+                  - type: 'numeric-input'
+                    style: 'buttons'
+                name: G13 Move Threshold
           - type: custom:plotly-graph
             title: Still Energy
             refresh_interval: 1
@@ -254,7 +314,7 @@ cards:
                 fixedrange: true
                 range:
                   - 0
-                  - 8
+                  - 13
               yaxis:
                 dtick: 10
                 fixedrange: true
@@ -262,7 +322,7 @@ cards:
                   - 0
                   - 100
             entities:
-              - entity: ""
+              - entity: ''
                 name: Threshold
                 type: bar
                 x:
@@ -275,17 +335,27 @@ cards:
                   - 6
                   - 7
                   - 8
-                "y":
-                  - $ex hass.states["number.bedroom_ld2410c_g0_still_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g1_still_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g2_still_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g3_still_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g4_still_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g5_still_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g6_still_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g7_still_threshold"].state
-                  - $ex hass.states["number.bedroom_ld2410c_g8_still_threshold"].state
-              - entity: ""
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
+                'y':
+                  - $ex hass.states["number.bedroom_presence_g0_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g1_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g2_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g3_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g4_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g5_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g6_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g7_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g8_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g9_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g10_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g11_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g12_still_threshold"].state
+                  - $ex hass.states["number.bedroom_presence_g13_still_threshold"].state
+              - entity: ''
                 name: Energy
                 type: bar
                 x:
@@ -298,18 +368,28 @@ cards:
                   - 6
                   - 7
                   - 8
-                "y":
-                  - $ex hass.states["sensor.bedroom_ld2410c_g0_still_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g1_still_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g2_still_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g3_still_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g4_still_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g5_still_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g6_still_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g7_still_energy"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g8_still_energy"].state
-              - entity: ""
-                name: Energy Max
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
+                'y':
+                  - $ex hass.states["sensor.bedroom_presence_g0_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g1_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g2_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g3_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g4_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g5_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g6_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g7_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g8_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g9_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g10_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g11_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g12_still_energy"].state
+                  - $ex hass.states["sensor.bedroom_presence_g13_still_energy"].state
+              - entity: ''
+                name: Energy Mean
                 type: line
                 x:
                   - 0
@@ -321,17 +401,60 @@ cards:
                   - 6
                   - 7
                   - 8
-                "y":
-                  - $ex hass.states["sensor.bedroom_ld2410c_g0_still_energy_max"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g1_still_energy_max"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g2_still_energy_max"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g3_still_energy_max"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g4_still_energy_max"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g5_still_energy_max"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g6_still_energy_max"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g7_still_energy_max"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g8_still_energy_max"].state
-              - entity: ""
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
+                'y':
+                  - $ex hass.states["sensor.bedroom_presence_g0_still_energy_mean"].state
+                  - $ex hass.states["sensor.bedroom_presence_g1_still_energy_mean"].state
+                  - $ex hass.states["sensor.bedroom_presence_g2_still_energy_mean"].state
+                  - $ex hass.states["sensor.bedroom_presence_g3_still_energy_mean"].state
+                  - $ex hass.states["sensor.bedroom_presence_g4_still_energy_mean"].state
+                  - $ex hass.states["sensor.bedroom_presence_g5_still_energy_mean"].state
+                  - $ex hass.states["sensor.bedroom_presence_g6_still_energy_mean"].state
+                  - $ex hass.states["sensor.bedroom_presence_g7_still_energy_mean"].state
+                  - $ex hass.states["sensor.bedroom_presence_g8_still_energy_mean"].state
+                  - $ex hass.states["sensor.bedroom_presence_g9_still_energy_mean"].state
+                  - $ex hass.states["sensor.bedroom_presence_g10_still_energy_mean"].state
+                  - $ex hass.states["sensor.bedroom_presence_g11_still_energy_mean"].state
+                  - $ex hass.states["sensor.bedroom_presence_g12_still_energy_mean"].state
+                  - $ex hass.states["sensor.bedroom_presence_g13_still_energy_mean"].state
+              - entity: ''
+                name: Energy Median
+                type: line
+                x:
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 7
+                  - 8
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
+                'y':
+                  - $ex hass.states["sensor.bedroom_presence_g0_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_g1_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_g2_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_g3_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_g4_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_g5_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_g6_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_g7_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_g8_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_g9_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_g10_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_g11_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_g12_still_energy_median"].state
+                  - $ex hass.states["sensor.bedroom_presence_g13_still_energy_median"].state
+              - entity: ''
                 name: Difference
                 type: bar
                 x:
@@ -344,76 +467,116 @@ cards:
                   - 6
                   - 7
                   - 8
-                "y":
-                  - $ex hass.states["sensor.bedroom_ld2410c_g0_still_energy"].state - hass.states["number.bedroom_ld2410c_g0_still_threshold"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g1_still_energy"].state - hass.states["number.bedroom_ld2410c_g1_still_threshold"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g2_still_energy"].state - hass.states["number.bedroom_ld2410c_g2_still_threshold"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g3_still_energy"].state - hass.states["number.bedroom_ld2410c_g3_still_threshold"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g4_still_energy"].state - hass.states["number.bedroom_ld2410c_g4_still_threshold"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g5_still_energy"].state - hass.states["number.bedroom_ld2410c_g5_still_threshold"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g6_still_energy"].state - hass.states["number.bedroom_ld2410c_g6_still_threshold"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g7_still_energy"].state - hass.states["number.bedroom_ld2410c_g7_still_threshold"].state
-                  - $ex hass.states["sensor.bedroom_ld2410c_g8_still_energy"].state - hass.states["number.bedroom_ld2410c_g8_still_threshold"].state
+                  - 9
+                  - 10
+                  - 11
+                  - 12
+                  - 13
+                'y':
+                  - $ex hass.states["sensor.bedroom_presence_g0_still_energy"].state - hass.states["number.bedroom_presence_g0_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g1_still_energy"].state - hass.states["number.bedroom_presence_g1_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g2_still_energy"].state - hass.states["number.bedroom_presence_g2_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g3_still_energy"].state - hass.states["number.bedroom_presence_g3_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g4_still_energy"].state - hass.states["number.bedroom_presence_g4_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g5_still_energy"].state - hass.states["number.bedroom_presence_g5_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g6_still_energy"].state - hass.states["number.bedroom_presence_g6_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g7_still_energy"].state - hass.states["number.bedroom_presence_g7_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g8_still_energy"].state - hass.states["number.bedroom_presence_g8_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g9_still_energy"].state - hass.states["number.bedroom_presence_g9_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g10_still_energy"].state - hass.states["number.bedroom_presence_g10_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g11_still_energy"].state - hass.states["number.bedroom_presence_g11_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g12_still_energy"].state - hass.states["number.bedroom_presence_g12_still_threshold"].state
+                  - $ex hass.states["sensor.bedroom_presence_g13_still_energy"].state - hass.states["number.bedroom_presence_g13_still_threshold"].state
             raw_plotly_config: true
           - type: custom:grid-card
             style:
-              "gap": "1rem"
-              "grid-template-columns": "repeat(auto-fit, minmax(192px, auto))"
+              'gap': '1rem'
+              'grid-template-columns': 'repeat(auto-fit, minmax(192px, auto))'
             cards:
               - type: tile
-                entity: number.bedroom_ld2410c_g0_still_threshold
+                entity: number.bedroom_presence_g0_still_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G0 Still Threshold
               - type: tile
-                entity: number.bedroom_ld2410c_g1_still_threshold
+                entity: number.bedroom_presence_g1_still_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G1 Still Threshold
               - type: tile
-                entity: number.bedroom_ld2410c_g2_still_threshold
+                entity: number.bedroom_presence_g2_still_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G2 Still Threshold
               - type: tile
-                entity: number.bedroom_ld2410c_g3_still_threshold
+                entity: number.bedroom_presence_g3_still_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G3 Still Threshold
               - type: tile
-                entity: number.bedroom_ld2410c_g4_still_threshold
+                entity: number.bedroom_presence_g4_still_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G4 Still Threshold
               - type: tile
-                entity: number.bedroom_ld2410c_g5_still_threshold
+                entity: number.bedroom_presence_g5_still_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G5 Still Threshold
               - type: tile
-                entity: number.bedroom_ld2410c_g6_still_threshold
+                entity: number.bedroom_presence_g6_still_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G6 Still Threshold
               - type: tile
-                entity: number.bedroom_ld2410c_g7_still_threshold
+                entity: number.bedroom_presence_g7_still_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G7 Still Threshold
               - type: tile
-                entity: number.bedroom_ld2410c_g8_still_threshold
+                entity: number.bedroom_presence_g8_still_threshold
                 features:
-                  - type: "numeric-input"
-                    style: "buttons"
+                  - type: 'numeric-input'
+                    style: 'buttons'
                 name: G8 Still Threshold
+              - type: tile
+                entity: number.bedroom_presence_g9_still_threshold
+                features:
+                  - type: 'numeric-input'
+                    style: 'buttons'
+                name: G9 Still Threshold
+              - type: tile
+                entity: number.bedroom_presence_g10_still_threshold
+                features:
+                  - type: 'numeric-input'
+                    style: 'buttons'
+                name: G10 Still Threshold
+              - type: tile
+                entity: number.bedroom_presence_g11_still_threshold
+                features:
+                  - type: 'numeric-input'
+                    style: 'buttons'
+                name: G11 Still Threshold
+              - type: tile
+                entity: number.bedroom_presence_g12_still_threshold
+                features:
+                  - type: 'numeric-input'
+                    style: 'buttons'
+                name: G12 Still Threshold
+              - type: tile
+                entity: number.bedroom_presence_g13_still_threshold
+                features:
+                  - type: 'numeric-input'
+                    style: 'buttons'
+                name: G13 Still Threshold
 icon: mdi:bed
 title: Bedroom
 type: custom:default-view

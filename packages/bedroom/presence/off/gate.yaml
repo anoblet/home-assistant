@@ -1,0 +1,15 @@
+bedroom_presence_off_gate:
+  automation:
+    action:
+      - service: input_number.set_value
+        data:
+          value: "{{ states('input_number.bedroom_presence_last_still_gate') | int }}"
+        target:
+          entity_id: input_number.bedroom_presence_last_off_gate
+    alias: Bedroom - Presence - Off - Gate
+    id: bedroom_presence_off_gate
+    mode: single
+    trigger:
+      - entity_id: binary_sensor.bedroom_presence_presence
+        platform: state
+        to: 'off'
