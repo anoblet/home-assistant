@@ -43,3 +43,9 @@ You are an expert in writing YAML for Home Assistant. Use the [official document
 
 - When using custom components from HACS, include configuration references
 - Document specific custom component versions if required
+
+## Additional Information
+
+- Package names should be the file path relative to the packages folder
+- Ids and unique ids should be the same as the package name
+- When asked to use a specific integration always download the documentation from (https://www.home-assistant.io/integrations/), you may have to click a link to get it.
