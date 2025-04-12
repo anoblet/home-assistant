@@ -1,0 +1,31 @@
+bedroom_display_morning:
+  automation:
+    - action:
+        - service: media_player.turn_on
+          target:
+            entity_id: media_player.bedroom_display
+        - data:
+            volume_level: 0.4
+          service: media_player.volume_set
+          target:
+            entity_id: media_player.bedroom_display
+        # Play WFUV radio using Music Assistant
+        - data:
+            device_id: 9b35e71fcd4e0669bff66365c819bcd1
+            media_id: library://radio/2
+          service: music_assistant.play_media
+      alias: 'Bedroom Display - Play WFUV Radio Weekday Mornings'
+      condition:
+        - condition: time
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+      description: 'Plays WFUV radio station on bedroom display at 8 AM on weekdays'
+      id: bedroom_display_morning
+      mode: single
+      trigger:
+        - at: '08:00:00'
+          platform: time
