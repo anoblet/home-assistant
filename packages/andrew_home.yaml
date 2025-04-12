@@ -11,11 +11,11 @@ andrew_home:
     condition:
       - condition: state
         entity_id: sun.sun
-        state: "above_horizon"
+        state: 'above_horizon'
     id: andrew_home
     mode: single
     trigger:
-      - entity_id: device_tracker.pixel_4
-        event: "leave"
+      - entity_id: device_tracker.pixel_4_xl
+        event: 'leave'
         platform: zone
         zone: zone.home

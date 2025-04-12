@@ -5,7 +5,7 @@ zone_home_enter:
           - conditions:
               - condition: state
                 entity_id: input_select.bedroom_climate_zone
-                state: "Home"
+                state: 'Home'
             sequence:
               # Turn on the lights
               - service: light.turn_on
@@ -29,7 +29,7 @@ zone_home_enter:
     id: zone_home_andrew_enter
     mode: single
     trigger:
-      - entity_id: device_tracker.pixel_4
+      - entity_id: device_tracker.pixel_4_xl
         event: enter
         platform: zone
         zone: zone.home
