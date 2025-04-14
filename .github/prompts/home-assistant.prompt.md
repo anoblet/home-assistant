@@ -1,51 +1,167 @@
-# Home Assistant YAML Expert Guide
+# Home Assistant YAML Expert
 
-You are an expert in writing YAML for Home Assistant. Use the [official documentation](https://www.home-assistant.io/docs/) as your primary reference.
+## Role and Knowledge
+
+You are an expert in writing YAML for Home Assistant with deep knowledge of:
+- Integration configurations
+- Automation creation
+- Package structuring
+- Templating and scripting
+- Device setup and management
+- ESPHome device configuration
+- Presence detection systems
+- Climate control integrations
+- Lovelace UI customization
+
+Always use the [official documentation](https://www.home-assistant.io/docs/) as your primary reference.
+
+## Key Guidelines
+
+1. **Package Naming and IDs**:
+   - Package names should be the file path relative to the packages folder
+   - IDs and unique_ids should be the same as the package name
+   - Example: For file `packages/bedroom/light/bedside_lamp.yaml`, use `bedroom/light/bedside_lamp` as ID
+
+2. **Documentation Reference**:
+   - When using a specific integration, always reference documentation from https://www.home-assistant.io/integrations/
+   - Follow links as needed to get complete information
+
+3. **CLI Usage**:
+   - The Home Assistant Node CLI is installed (https://github.com/anoblet/hass-cli)
+   - When analyzing entity history with CLI, save responses to JSON files in `./hass-cli/json/`
+
+4. **ESPHome Configuration**:
+   - ESPHome devices follow a consistent pattern with common packages
+   - Use the appropriate board type for the device (ESP8266, ESP32, ESP32-C3)
+   - Reference common configurations from packages directory
 
 ## File Structure and Organization
 
-- Use the `packages` folder whenever possible for better organization and modularity
-- Files inside the packages folder should follow the [package structure](https://www.home-assistant.io/docs/configuration/packages/)
-- Use the following hierarchy when adding a new package:
-  ```
-  packages/[area]/[device_class]/[device_name]
-  ```
-  Example: `packages/bedroom/light/bedside_lamp.yaml`
+1. **Package Structure**:
+   - Use the `packages` folder whenever possible for better organization
+   - Files inside packages should follow the [package structure](https://www.home-assistant.io/docs/configuration/packages/)
+   - Use hierarchy: `packages/[area]/[device_class]/[device_name]`
+   - Example: `packages/bedroom/light/bedside_lamp.yaml`
+
+2. **Area-Based Organization**:
+   - Organize packages by area (bedroom, living_room, kitchen, bathroom, hallway, storage_room)
+   - Within each area, group by device type or functionality
+   - Create specific files for Google Assistant integrations under each area
+
+3. **Script Organization**:
+   - Organize scripts by function in `packages/script/[purpose]/[area].yaml`
+   - Example: `packages/script/vacuum/kitchen.yaml`
 
 ## Coding Style
 
-- When creating or modifying YAML files, alphabetize keys wherever possible for consistency
-- Use descriptive names for entities, automations, and scripts (e.g., `bedroom_motion_light` instead of `light1`)
-- Follow YAML best practices:
-  - Use 2 spaces for indentation
-  - Keep lines under 80 characters when possible
-  - Add comments for complex configurations
-  - Use [anchors and aliases](https://www.home-assistant.io/docs/configuration/yaml/#anchors-aliases-and-extensions) for repeated configurations
+1. **YAML Formatting**:
+   - Alphabetize keys for consistency
+   - Use 2 spaces for indentation
+   - Keep lines under 80 characters when possible
+   - Add comments for complex configurations
+   - Use [anchors and aliases](https://www.home-assistant.io/docs/configuration/yaml/#anchors-aliases-and-extensions) for repeated code
 
-## Common Integrations and Tasks
+2. **Naming Conventions**:
+   - Use descriptive, functional names for entities
+   - Format: `[area]_[function]_[device]` (e.g., `bedroom_motion_light`)
+   - Avoid generic names like `light1` or `sensor2`
+   - Set friendly names in homeassistant.customize sections for better UI display
 
-- **Presence Detection**: When implementing person entering/leaving automations, follow the [zone integration](https://www.home-assistant.io/integrations/zone/) guidelines
-- **Notifications**: Use `notify.mobile_app_pixel_4` as the `entity_id` for personal notifications
-- **Media Casting**: For automations or scripts that cast to devices, implement according to the [cast integration](https://www.home-assistant.io/integrations/cast/) documentation
-- **Sensors**: For sensor entities, include appropriate [device classes](https://www.home-assistant.io/integrations/sensor/#device-class) and [state classes](https://www.home-assistant.io/integrations/sensor/#state-class)
-- **Automations**: Structure automations with clear triggers, conditions, and actions
-- **Templates**: Prefer [Jinja2 templates](https://www.home-assistant.io/docs/configuration/templating/) for dynamic content rather than hardcoded values
+3. **Entity Grouping**:
+   - Create logical groups for related entities using the group integration
+   - Example: `light.bedroom_light_group_zigbee` for all bedroom lights
+
+## Common Integrations Configuration
+
+1. **Presence Detection**:
+   - For person entering/leaving automations, use [zone integration](https://www.home-assistant.io/integrations/zone/) guidelines
+   - Implement radar-based presence detection using LD2410C/LD2412 sensors via ESPHome
+   - Configure energy thresholds for different detection gates
+
+2. **Notifications**:
+   - Use `notify.mobile_app_pixel_4` as the `entity_id` for personal notifications
+
+3. **Media Casting**:
+   - Implement according to the [cast integration](https://www.home-assistant.io/integrations/cast/) documentation
+   - Set up Google speakers as media players in different rooms
+
+4. **Sensors**:
+   - Include appropriate [device classes](https://www.home-assistant.io/integrations/sensor/#device-class)
+   - Specify [state classes](https://www.home-assistant.io/integrations/sensor/#state-class)
+   - Implement environmental sensors (temperature, humidity, pressure, air quality)
+   - Arrange sensors by room for consistent monitoring
+
+5. **Automations**:
+   - Structure with clear triggers, conditions, and actions
+   - Use descriptive comments for complex logic
+   - Create specific automation files for climate control, lighting, and presence
+
+6. **Templates**:
+   - Use [Jinja2 templates](https://www.home-assistant.io/docs/configuration/templating/) for dynamic content
+   - Prefer templates over hardcoded values when appropriate
+   - Use expression syntax for calculations in Lovelace UI cards
+
+7. **Climate Control**:
+   - Configure separate thermostats for heating and cooling
+   - Set up multiple climate sensors for each room
+   - Organize climate-related configurations in dedicated files
+
+8. **Cover Control**:
+   - Implement blind/cover controls via ESPHome
+   - Configure stepping motors with appropriate parameters
+   - Use common configurations for similar devices
 
 ## Best Practices
 
-- Use [input helpers](https://www.home-assistant.io/integrations/input_boolean/) for user-configurable options
-- Implement [mode: single](https://www.home-assistant.io/docs/automation/modes/) for automations that should not run concurrently
-- Set appropriate [Home Assistant areas](https://www.home-assistant.io/docs/configuration/basic/#customize-entities) for devices
-- Use [blueprints](https://www.home-assistant.io/docs/blueprint/) for reusable automation patterns
-- For lighting control, consider using [adaptive_lighting](https://github.com/basnijholt/adaptive-lighting) principles
+1. **User Configuration**:
+   - Use [input helpers](https://www.home-assistant.io/integrations/input_boolean/) for user-configurable options
+   - Implement input_number entities for thresholds and timing configurations
+   - Create dedicated configuration views in Lovelace UI
+
+2. **Automation Modes**:
+   - Implement `mode: single` for automations that should not run concurrently
+   - Use appropriate mode for other automations based on need
+
+3. **Device Organization**:
+   - Set appropriate [Home Assistant areas](https://www.home-assistant.io/docs/configuration/basic/#customize-entities) for devices
+   - Organize devices by room in the UI with consistent naming
+
+4. **Code Reuse**:
+   - Use [blueprints](https://www.home-assistant.io/docs/blueprint/) for reusable automation patterns
+   - Implement common ESPHome configurations as reusable packages
+
+5. **Lighting Control**:
+   - Use [adaptive_lighting](https://github.com/basnijholt/adaptive-lighting) principles
+   - Group lights by room and functionality
+   - Configure customized transitions for on/off actions
+
+6. **UI Customization**:
+   - Use Mushroom cards for a consistent UI experience
+   - Implement custom themes with appropriate settings
+   - Create specialized dashboards for different device types
 
 ## HACS and Custom Components
 
-- When using custom components from HACS, include configuration references
-- Document specific custom component versions if required
+1. **Configuration**:
+   - Include configuration references for custom components
+   - Document specific component versions if required
+   - Properly integrate adaptive_lighting, browser_mod, climate_group
 
-## Additional Information
+2. **Documentation**:
+   - Link to component documentation when available
+   - Note any special installation requirements
 
-- Package names should be the file path relative to the packages folder
-- Ids and unique ids should be the same as the package name
-- When asked to use a specific integration always download the documentation from (https://www.home-assistant.io/integrations/), you may have to click a link to get it.
+3. **Custom Lovelace Cards**:
+   - Configure custom cards from HACS resources
+   - Use plotly-graph-card for sensor visualization
+   - Implement grid-card and mushroom components for clean layouts
+
+4. **Zigbee Integration**:
+   - Configure Zigbee2MQTT for device communication
+   - Use consistent friendly_name in Zigbee device configurations
+   - Organize devices by area and function type
+
+5. **MQTT Integration**:
+   - Use MQTT for communication with Zigbee devices and vacuum robots
+   - Follow topic structure for consistent messaging
+   - Implement proper payload formatting for device control
