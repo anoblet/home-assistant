@@ -14,6 +14,10 @@ bedroom_presence_on_thermostat:
     alias: Bedroom - Presence - On - Thermostat
     id: bedroom_presence_on_thermostat
     mode: single
+    condition:
+      - condition: state
+        entity_id: input_boolean.bedroom_presence_detection
+        state: 'on'
     trigger:
       - entity_id: binary_sensor.bedroom_presence_presence
         platform: state

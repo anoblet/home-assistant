@@ -8,6 +8,10 @@ bedroom_presence_off_humidifier:
     alias: Bedroom - Presence - Off - Humidifier
     id: bedroom_presence_off_humidifier
     mode: single
+    condition:
+      - condition: state
+        entity_id: input_boolean.bedroom_presence_detection
+        state: 'on'
     trigger:
       - entity_id: binary_sensor.bedroom_presence_presence
         platform: state

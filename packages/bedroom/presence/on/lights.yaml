@@ -11,6 +11,10 @@ bedroom_presence_on_lights:
     description: Turn on bedroom lights when presence is detected
     id: bedroom_presence_on_lights
     mode: single
+    condition:
+      - condition: state
+        entity_id: input_boolean.bedroom_presence_detection
+        state: 'on'
     trigger:
       - entity_id: binary_sensor.bedroom_presence_presence
         platform: state

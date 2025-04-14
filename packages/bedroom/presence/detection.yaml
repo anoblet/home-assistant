@@ -1,0 +1,12 @@
+# filepath: /homeassistant/packages/bedroom/presence/detection.yaml
+bedroom_presence_detection:
+  google_assistant:
+    entity_config:
+      input_boolean.bedroom_presence_detection:
+        expose: true
+        name: Bedroom Presence Detection
+  input_boolean:
+    bedroom_presence_detection:
+      name: Bedroom Presence Detection
+      initial: on
+      icon: mdi:motion-sensor
