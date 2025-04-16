@@ -15,4 +15,5 @@ bedroom_presence_on_humidifier:
     trigger:
       - entity_id: binary_sensor.bedroom_presence_presence
         platform: state
+        from: 'off'
         to: 'on'

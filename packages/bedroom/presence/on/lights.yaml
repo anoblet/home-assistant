@@ -18,4 +18,5 @@ bedroom_presence_on_lights:
     trigger:
       - entity_id: binary_sensor.bedroom_presence_presence
         platform: state
+        from: 'off'
         to: 'on'

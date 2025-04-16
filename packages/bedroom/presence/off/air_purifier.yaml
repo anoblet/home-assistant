@@ -16,4 +16,5 @@ bedroom_presence_off_air_purifier:
     trigger:
       - entity_id: binary_sensor.bedroom_presence_presence
         platform: state
+        from: 'on'
         to: 'off'
