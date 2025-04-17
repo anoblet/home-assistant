@@ -1,0 +1,12 @@
+bedroom_temperature_prediction:
+  sensor:
+    - platform: template
+      sensors:
+        bedroom_temperature_prediction:
+          friendly_name: 'Bedroom Temperature Prediction'
+          unit_of_measurement: '°F'
+          device_class: temperature
+          value_template: >
+            {% set current = states('sensor.bedroom_temperature') | float %}
+            {% set rate = states('sensor.bedroom_temperature_rate') | float %}
+            {{ (current + rate) | round(1) }}

@@ -1,0 +1,8 @@
+bedroom_temperature_rate:
+  sensor:
+    - platform: derivative
+      source: sensor.bedroom_temperature
+      name: Bedroom Temperature Rate
+      round: 2
+      unit_time: h
+      time_window: '00:30:00'
