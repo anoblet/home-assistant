@@ -25,5 +25,6 @@ known_devices.yaml
 node_modules
 secrets.yaml
 www/custom-elements/build
+zigbee2mqtt/configuration_*
 zigbee2mqtt/coordinator_backup.json
 zigbee2mqtt/secrets.yaml
