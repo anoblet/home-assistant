@@ -1,11 +1,11 @@
 # Block by default
-*
-!*/
+/*
 
 # Include
 !**/*.yaml
 !.github/**/*
 !.gitignore
+!.gitmodules
 !.husky/**/*
 !.prettierignore
 !.prettierrc
@@ -13,6 +13,7 @@
 !genaisrc/**/*
 !package.json
 !package-lock.json
+!packages/
 !www/custom/**/*
 !www/custom-elements/**/*
 
