@@ -1,0 +1,17 @@
+bedroom_blinds_night:
+  automation:
+    - alias: Bedroom - Blinds - Night
+      id: bedroom_blinds_night
+      mode: single
+      description: 'Close bedroom blinds at 10 PM'
+      trigger:
+        - platform: time
+          at: '22:00:00'
+      condition:
+        - condition: state
+          entity_id: input_boolean.bedroom_blinds_automatic
+          state: 'on'
+      action:
+        - service: cover.close_cover
+          target:
+            entity_id: cover.bedroom_blinds
