@@ -3,4 +3,4 @@ packages:
   common: !include packages/common.yaml
 substitutions:
   esphome_name: storage-room-printer
-  friendly_name: "Storage Room Printer"
+  esphome_friendly_name: "Storage Room Printer"

@@ -13,7 +13,7 @@ packages:
   ld2410c: !include packages/ld2410c.yaml
 substitutions:
   esphome_name: living-room-ld2410c
-  friendly_name: Living Room LD2410C
+  esphome_friendly_name: Living Room LD2410C
 uart:
   # Pins need to be swapped
   rx_pin: GPIO3

@@ -5,7 +5,7 @@
 
 substitutions:
   name: esp32-s3box-3
-  friendly_name: ESP32-S3-Box-3
+  esphome_friendly_name: ESP32-S3-Box-3
 ####################################################################
 #### change the micro wake word to be used on the line below   #####
 ####      options are okay_nabu, hey_jarvis, alexa             #####
@@ -37,7 +37,7 @@ substitutions:
   
 esphome:
   name: ${name}
-  friendly_name: ${friendly_name}
+  esphome_friendly_name: ${friendly_name}
   min_version: 2024.7.0
   platformio_options:
     board_build.flash_mode: dio

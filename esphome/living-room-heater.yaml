@@ -1,11 +1,11 @@
 esphome:
-  friendly_name: ${friendly_name}
+  esphome_friendly_name: ${friendly_name}
 packages:
   Athom_Technology.Smart_Plug_V3: github://athom-tech/esp32-configs/athom-smart-plug.yaml
   common: !include packages/common.yaml
 substitutions:
   esphome_name: living-room-heater
-  friendly_name: Living Room Heater
+  esphome_friendly_name: Living Room Heater
 wifi:
   manual_ip:
     static_ip: 192.168.1.189

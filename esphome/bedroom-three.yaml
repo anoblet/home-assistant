@@ -1,5 +1,5 @@
 substitutions:
-  friendly_name: "Bedroom Three"
+  esphome_friendly_name: "Bedroom Three"
   esphome_name: bedroom-three
 packages:
   athom.smart-plug-v2: github://athom-tech/athom-configs/athom-smart-plug-v2.yaml
