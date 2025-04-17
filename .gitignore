@@ -21,6 +21,7 @@
 custom_components
 esphome/secrets.yaml
 go2rtc.yaml
+known_devices.yaml
 node_modules
 secrets.yaml
 www/custom-elements/build
