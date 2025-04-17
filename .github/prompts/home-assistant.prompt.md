@@ -60,6 +60,7 @@ Always use the [official documentation](https://www.home-assistant.io/docs/) as 
    - Keep lines under 80 characters when possible
    - Add comments for complex configurations
    - Use [anchors and aliases](https://www.home-assistant.io/docs/configuration/yaml/#anchors-aliases-and-extensions) for repeated code
+   - Always add an empty line to the end of a file
 
 2. **Naming Conventions**:
    - Use descriptive, functional names for entities
