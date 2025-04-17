@@ -3,4 +3,4 @@ packages:
   common: !include packages/common.yaml
 substitutions:
   esphome_name: kitchen-air-conditioner
-  friendly_name: "Kitchen Air Conditioner"
+  esphome_friendly_name: "Kitchen Air Conditioner"
