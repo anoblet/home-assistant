@@ -178,3 +178,45 @@ Always use the [official documentation](https://www.home-assistant.io/docs/) as 
 ## Configuration Reloading
 
 When I ask you to reload the configuration, execute the following command in the terminal: `npx hass-cli call homeassistant reload_all`
+
+## Conversation Logging
+
+When the user requests to log the conversation:
+
+1. **Log Structure**:
+   - Append to the `/root/config/CHAT.md` file
+   - Include the current date as a section header (## Month Day, Year)
+   - Give each conversation a descriptive title (### Conversation: [Title])
+   - Use the current date for timestamps
+
+2. **Content to Include**:
+   - **User Request**: Original user prompt in blockquote format
+   - **Assistant Action**: Brief description of changes made
+   - **User Correction**: Any corrections requested (if applicable)
+   - **Files Modified**: List of files edited
+   - **Summary**: Brief overview of what was accomplished
+   - **Configuration Reloaded**: Whether configuration was reloaded
+
+3. **Shortcut Command**:
+   - When user writes "Log this conversation", automatically append the current conversation to CHAT.md
+   - When user mentions "Add to log" or similar, treat as a request to update the conversation log
+
+4. **Format Example**:
+   ```markdown
+   ### Conversation: [Descriptive Title]
+   
+   **User Request:**
+   > [Original user request]
+   
+   **Assistant Action:**
+   [Description of changes made]
+   
+   **File Modified:**
+   `/root/config/[file path]`
+   
+   **Summary:**
+   [Brief overview of what was accomplished]
+   
+   **Configuration Reloaded:**
+   Yes/No, [command used if yes]
+   ```
