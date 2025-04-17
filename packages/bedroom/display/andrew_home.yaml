@@ -1,0 +1,36 @@
+bedroom_display_andrew_home:
+  automation:
+    - alias: 'Bedroom Display - Play Music When Andrew Returns Home'
+      description: 'Plays TuneIn radio station when Andrew enters the home zone'
+      id: bedroom_display_andrew_home
+      mode: single
+      trigger:
+        - platform: zone
+          entity_id: device_tracker.pixel_4_xl
+          zone: zone.home
+          event: enter
+      condition:
+        - condition: or
+          conditions:
+            - condition: state
+              entity_id: media_player.bedroom_display
+              state: 'idle'
+            - condition: state
+              entity_id: media_player.bedroom_display
+              state: 'off'
+      action:
+        # Turn on the display
+        - service: media_player.turn_on
+          target:
+            entity_id: media_player.bedroom_display
+        # Set the volume level
+        - data:
+            volume_level: 0.4
+          service: media_player.volume_set
+          target:
+            entity_id: media_player.bedroom_display
+        # Play the TuneIn radio station using Music Assistant
+        - service: music_assistant.play_media
+          data:
+            entity_id: media_player.bedroom_display
+            media_id: 'library://radio/2'
