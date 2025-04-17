@@ -3,7 +3,7 @@
 
 # Include
 !**/*.yaml
-!.github/**/*
+!.github/
 !.gitignore
 !.gitmodules
 !.husky/**/*
