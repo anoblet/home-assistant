@@ -1,6 +1,0 @@
-substitutions:
-  cover_name: "Kitchen Blind One"
-  device_id: "kitchen_blind_one"
-  esphome_name: "kitchen-blind-one"
-packages:
-  blinds: !include packages/blinds_reversed.yaml
