@@ -165,3 +165,7 @@ Always use the [official documentation](https://www.home-assistant.io/docs/) as 
    - Use MQTT for communication with Zigbee devices and vacuum robots
    - Follow topic structure for consistent messaging
    - Implement proper payload formatting for device control
+
+## Configuration Reloading
+
+When I ask you to reload the configuration, execute the following command in the terminal: `npx hass-cli call homeassistant reload_all`
