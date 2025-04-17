@@ -16,8 +16,9 @@
 !www/custom/**/*
 !www/custom-elements/**/*
 
-#Exclude
+# Exclude
 custom_components
+esphome/archive
 esphome/secrets.yaml
 go2rtc.yaml
 node_modules
