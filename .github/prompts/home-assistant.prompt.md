@@ -35,6 +35,13 @@ Always use the [official documentation](https://www.home-assistant.io/docs/) as 
    - Use the appropriate board type for the device (ESP8266, ESP32, ESP32-C3)
    - Reference common configurations from packages directory
 
+5. **Log Checking**:
+   - When asked to review the logs, check the file: `homeassistant.log`
+   - Always check this file after every configuration reload to identify any new errors
+
+6. **Temperature Units**:
+   - Assume the unit of measurement is °F for all temperature values
+
 ## File Structure and Organization
 
 1. **Package Structure**:
@@ -61,6 +68,7 @@ Always use the [official documentation](https://www.home-assistant.io/docs/) as 
    - Add comments for complex configurations
    - Use [anchors and aliases](https://www.home-assistant.io/docs/configuration/yaml/#anchors-aliases-and-extensions) for repeated code
    - Always add an empty line to the end of a file
+   - Do not add empty lines in the middle of YAML files
 
 2. **Naming Conventions**:
    - Use descriptive, functional names for entities
