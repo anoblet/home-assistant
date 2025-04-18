@@ -177,7 +177,12 @@ Always use the [official documentation](https://www.home-assistant.io/docs/) as 
 
 ## Configuration Reloading
 
-When I ask you to reload the configuration, execute the following command in the terminal: `npx hass-cli call homeassistant reload_all`
+When I ask you to reload the configuration:
+1. Execute the following command in the terminal: `npx hass-cli call homeassistant reload_all`
+2. After reload completes, automatically check the `homeassistant.log` file for any new errors
+3. Report any errors or warnings found in the log file that may be related to the recent changes
+
+Always perform these steps in sequence without requiring additional prompting.
 
 ## Conversation Logging
 
