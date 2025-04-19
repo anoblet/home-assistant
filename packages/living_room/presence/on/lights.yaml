@@ -1,12 +1,15 @@
-living_room_ld2410c_on_humidifier:
+living_room_ld2410c_on_lights:
   automation:
     action:
-      - service: humidifier.turn_on
+      - service: light.turn_on
         target:
           entity_id:
-            - humidifier.living_room_humidifier_virtual
-    alias: Living Room - Presence - On - Humidifier
-    id: living_room_ld2410c_on_humidifier
+            - light.living_room_light_group_zigbee
+        data:
+          transition: 1
+    alias: Living Room - Presence - On - Lights
+    description: Turn on living room lights when presence is detected
+    id: living_room_ld2410c_on_lights
     mode: single
     condition:
       - condition: state

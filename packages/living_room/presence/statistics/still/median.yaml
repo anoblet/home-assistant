@@ -1,0 +1,65 @@
+living_room_ld2410c_statistics_median:
+  sensor:
+    - platform: statistics
+      name: 'Living Room LD2410C G0 Still Energy Median'
+      entity_id: sensor.living_room_ld2410c_g0_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: living_room_ld2410c_g0_still_energy_median
+    - platform: statistics
+      name: 'Living Room LD2410C G1 Still Energy Median'
+      entity_id: sensor.living_room_ld2410c_g1_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: living_room_ld2410c_g1_still_energy_median
+    - platform: statistics
+      name: 'Living Room LD2410C G2 Still Energy Median'
+      entity_id: sensor.living_room_ld2410c_g2_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: living_room_ld2410c_g2_still_energy_median
+    - platform: statistics
+      name: 'Living Room LD2410C G3 Still Energy Median'
+      entity_id: sensor.living_room_ld2410c_g3_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: living_room_ld2410c_g3_still_energy_median
+    - platform: statistics
+      name: 'Living Room LD2410C G4 Still Energy Median'
+      entity_id: sensor.living_room_ld2410c_g4_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: living_room_ld2410c_g4_still_energy_median
+    - platform: statistics
+      name: 'Living Room LD2410C G5 Still Energy Median'
+      entity_id: sensor.living_room_ld2410c_g5_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: living_room_ld2410c_g5_still_energy_median
+    - platform: statistics
+      name: 'Living Room LD2410C G6 Still Energy Median'
+      entity_id: sensor.living_room_ld2410c_g6_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: living_room_ld2410c_g6_still_energy_median
+    - platform: statistics
+      name: 'Living Room LD2410C G7 Still Energy Median'
+      entity_id: sensor.living_room_ld2410c_g7_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: living_room_ld2410c_g7_still_energy_median
+    - platform: statistics
+      name: 'Living Room LD2410C G8 Still Energy Median'
+      entity_id: sensor.living_room_ld2410c_g8_still_energy
+      state_characteristic: median
+      max_age:
+        minutes: 5
+      unique_id: living_room_ld2410c_g8_still_energy_median
