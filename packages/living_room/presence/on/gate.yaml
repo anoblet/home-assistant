@@ -1,4 +1,4 @@
-living_room_presence_on_gate:
+living_room_ld2410c_on_gate:
   automation:
     action:
       - service: input_number.set_value
@@ -7,9 +7,14 @@ living_room_presence_on_gate:
         target:
           entity_id: input_number.living_room_ld2410c_last_on_gate
     alias: Living Room - Presence - On - Gate
-    id: living_room_presence_on_gate
+    id: living_room_ld2410c_on_gate
     mode: single
+    condition:
+      - condition: state
+        entity_id: input_boolean.living_room_ld2410c
+        state: 'on'
     trigger:
       - entity_id: binary_sensor.living_room_ld2410c_presence
         platform: state
-        to: "on"
+        from: 'off'
+        to: 'on'

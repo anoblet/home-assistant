@@ -1,0 +1,6 @@
+living_room_ld2410c_gate_on:
+  input_number:
+    living_room_ld2410c_last_on_gate:
+      max: 8
+      min: 0
+      name: Living Room Presence Last On Gate
