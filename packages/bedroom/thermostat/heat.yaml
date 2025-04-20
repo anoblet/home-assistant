@@ -7,6 +7,12 @@ bedroom_thermostat_heat:
       platform: generic_thermostat
       target_sensor: sensor.bedroom_temperature
       unique_id: bedroom_thermostat_heat
+      initial_hvac_mode: 'off'
+      # Explicitly define the supported modes
+      hvac_mode: 'heat'
+      hvac_modes:
+        - 'off'
+        - 'heat'
   google_assistant:
     entity_config:
       climate.bedroom_thermostat_heat:
@@ -18,4 +24,4 @@ bedroom_thermostat_heat:
       max: 100
       mode: box
       step: 1
-      unit_of_measurement: "°F"
+      unit_of_measurement: '°F'

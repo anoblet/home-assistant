@@ -1,5 +1,5 @@
 climate_temperature_comforatble:
-  automation: 
+  automation:
     - action:
         - data:
             message: The temperature outside is comfortable.
@@ -8,6 +8,6 @@ climate_temperature_comforatble:
       id: climate_temperature_comfortable
       mode: single
       trigger:
-        - for: "00:01:00"
+        - for: '00:01:00'
           platform: template
-          value_template: "{{ states('sensor.openweathermap_temperature') | int < 70 }}"
+          value_template: "{{ states('sensor.openweathermap_temperature') | int(0) < 70 }}"

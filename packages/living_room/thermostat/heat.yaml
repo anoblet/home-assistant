@@ -7,6 +7,12 @@ living_room_thermostat_heat:
       platform: generic_thermostat
       target_sensor: sensor.living_room_climate_temperature
       unique_id: living_room_thermostat_heat
+      initial_hvac_mode: 'off'
+      # Explicitly define the supported modes
+      hvac_mode: 'heat'
+      hvac_modes:
+        - 'off'
+        - 'heat'
   google_assistant:
     entity_config:
       climate.living_room_thermostat_heat:
