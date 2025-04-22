@@ -15,6 +15,9 @@ living_room_ld2410c_off_lights:
       - condition: state
         entity_id: input_boolean.living_room_ld2410c
         state: 'on'
+      - condition: state
+        entity_id: input_boolean.living_room_light_manual
+        state: 'off'
     trigger:
       - entity_id: binary_sensor.living_room_ld2410c_presence
         platform: state
