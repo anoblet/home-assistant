@@ -1,25 +1,21 @@
 bedroom_presence_on_thermostat:
   automation:
     action:
-      - choose:
-          - conditions:
-              - condition: state
-                entity_id: input_boolean.bedroom_thermostat_manual
-                state: 'off'
-            sequence:
-              - service: climate.turn_on
-                target:
-                  entity_id:
-                    - climate.bedroom_thermostat
+      - service: climate.turn_on
+        target:
+          entity_id: climate.bedroom_thermostat
     alias: Bedroom - Presence - On - Thermostat
-    id: bedroom_presence_on_thermostat
-    mode: single
     condition:
       - condition: state
         entity_id: input_boolean.bedroom_presence_detection
         state: 'on'
+      - condition: state
+        entity_id: input_boolean.bedroom_thermostat_manual
+        state: 'off'
+    id: bedroom_presence_on_thermostat
+    mode: single
     trigger:
       - entity_id: binary_sensor.bedroom_presence_presence
-        platform: state
         from: 'off'
+        platform: state
         to: 'on'
