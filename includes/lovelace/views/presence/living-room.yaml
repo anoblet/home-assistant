@@ -93,6 +93,7 @@ cards:
               - entity: ""
                 name: Threshold
                 type: bar
+                visible: 'legendonly'
                 x:
                   - 0
                   - 1
@@ -116,6 +117,7 @@ cards:
               - entity: ""
                 name: Energy
                 type: bar
+                visible: 'legendonly'
                 x:
                   - 0
                   - 1
@@ -271,6 +273,7 @@ cards:
               - entity: ""
                 name: Threshold
                 type: bar
+                visible: 'legendonly'
                 x:
                   - 0
                   - 1
@@ -294,6 +297,7 @@ cards:
               - entity: ""
                 name: Energy
                 type: bar
+                visible: 'legendonly'
                 x:
                   - 0
                   - 1
