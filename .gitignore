@@ -11,9 +11,10 @@
 !.prettierrc
 !genaisrc
 !genaisrc/**/*
+!includes
 !package.json
 !package-lock.json
-!packages/
+!packages
 !www/custom/**/*
 !www/custom-elements/**/*
 
