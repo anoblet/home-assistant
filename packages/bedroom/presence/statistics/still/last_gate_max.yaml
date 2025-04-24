@@ -1,0 +1,9 @@
+bedroom_presence_last_still_gate_max:
+  sensor:
+    - platform: statistics
+      name: 'Bedroom Presence Last Still Gate Max'
+      entity_id: input_number.bedroom_presence_last_still_gate
+      state_characteristic: value_max
+      max_age:
+        minutes: 5
+      unique_id: bedroom_presence_last_still_gate_max

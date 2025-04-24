@@ -29,6 +29,9 @@ cards:
                 entity: input_number.bedroom_presence_last_still_gate
                 name: Last Still Gate
               - type: tile
+                entity: sensor.bedroom_presence_last_still_gate_max
+                name: Last Still Gate Max
+              - type: tile
                 entity: select.bedroom_presence_mode
                 name: Mode
               - type: tile
