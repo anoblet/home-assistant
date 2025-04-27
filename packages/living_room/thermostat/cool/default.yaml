@@ -14,9 +14,7 @@ living_room_thermostat_cool_default:
       mode: single
       trigger:
         - platform: time_pattern
-          hours: "*"
-          minutes: "0"
-          seconds: "0"
+          hours: "/4"
       action:
         - service: climate.set_temperature
           target:
