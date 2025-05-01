@@ -3,7 +3,8 @@
 
 # Include
 !**/*.yaml
-!.github/
+!.github
+!.github/**/*
 !.gitignore
 !.gitmodules
 !.husky/**/*
@@ -15,6 +16,7 @@
 !package.json
 !package-lock.json
 !packages
+!packages/**/*
 !www/custom/**/*
 !www/custom-elements/**/*
 
