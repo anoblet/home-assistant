@@ -1,7 +1,7 @@
 # Home Assistant YAML Automation Code Style
 
 - Use clear, descriptive aliases and IDs for automations and scripts.
-- Add a concise description for each automation explaining its purpose and any constraints.
+- Add a concise description for each automation explaining its purpose, constraints, and user-facing effects.
 - Document dependencies on other scripts, entities, or integrations in the description or comments.
 - Use comments to clarify intent, especially for triggers, conditions, and actions.
 - Place comments above the relevant section or line, not inline, for clarity.
@@ -47,7 +47,6 @@
 - Use comments to document file inclusion/exclusion patterns and their rationale in .gitignore or similar files.
 - Regularly audit included and excluded files to ensure only relevant content is tracked and deployed.
 - Keep file and directory naming consistent and descriptive to aid navigation and automation discovery.
-- Use the automation’s description to clarify any user-facing effects, edge cases, or known limitations.
 - For device_tracker and zone triggers, clarify in comments whose device and which zone are referenced.
 - When using notification services, prefer mobile_app or persistent_notification for reliability and clarity.
 - For optional actions, clearly comment their optionality and intended user experience.
@@ -61,3 +60,27 @@
 - When referencing mobile devices, use the canonical entity_id and document the owner for clarity.
 - For automations that may run concurrently, specify mode and document the rationale for the chosen mode.
 - For any automation that could have side effects (e.g., starting cleaning), document safety checks and user notification steps.
+- Use input_text helpers for user-editable string values and document their purpose.
+- Prefer using choose actions for branching logic to improve clarity and reduce duplication.
+- For automations with external dependencies (e.g., cloud integrations), document required setup and potential failure modes.
+- When using templates, prefer referencing variables and helpers over hardcoded values.
+- For automations that interact with multiple areas or rooms, document the scope and any area-specific logic.
+- Use tags or labels in comments for quick searching and categorization of automations.
+- For automations with user-facing toggles, document the UI location or dashboard card for discoverability.
+- When using delays or waits, document the rationale and any edge cases.
+- For automations that may be paused or disabled, document the conditions and user controls.
+- Regularly review Home Assistant release notes for deprecations or new features that may affect automations.
+- For automations with critical functions (e.g., security, safety), document test procedures and fallback plans.
+- Use consistent terminology for states, actions, and entities across all automations and scripts.
+- For automations that interact with third-party APIs, document rate limits, authentication, and error handling.
+- When using blueprints, document any customizations or overrides applied.
+- For automations with complex triggers, provide a summary diagram or flow in comments if helpful.
+- Use input_datetime helpers for date/time configuration and document their use.
+- For automations with user notifications, document escalation paths or follow-up actions if needed.
+- When referencing scenes, document their contents or link to their definition for traceability.
+- For automations that rely on historical state, document any recorder or history requirements.
+- For automations that use MQTT, document topics, payloads, and broker configuration.
+- For automations with scheduled maintenance or updates, document the schedule and responsible party.
+- For automations with localization or multi-language support, document translation keys and process.
+- For automations that interact with energy management, document measurement units and calculation logic.
+- For automations with privacy implications, document data handling and user consent requirements.
