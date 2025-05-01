@@ -1,0 +1,63 @@
+# Home Assistant YAML Automation Code Style
+
+- Use clear, descriptive aliases and IDs for automations and scripts.
+- Add a concise description for each automation explaining its purpose and any constraints.
+- Document dependencies on other scripts, entities, or integrations in the description or comments.
+- Use comments to clarify intent, especially for triggers, conditions, and actions.
+- Place comments above the relevant section or line, not inline, for clarity.
+- Group related conditions using logical operators (e.g., and/or) for readability.
+- Use explicit time formats (HH:MM:SS) for time conditions.
+- For time-based automations, specify both after and before to define clear windows.
+- Prefer entity_id references over hardcoded values where possible.
+- When referencing devices or zones, use their canonical Home Assistant entity names.
+- Use single quotes for all string values.
+- Indent consistently with two spaces per level.
+- Order keys as: alias, id, mode, description, trigger, condition, action.
+- Use service calls with clear, descriptive names.
+- When sending notifications, include both a title and a message.
+- Keep automations focused on a single responsibility.
+- Use optional actions (like notifications) to enhance user awareness, but comment them as optional.
+- Avoid unnecessary repetition; use scripts for reusable action sequences.
+- When using scripts, ensure their names and purposes are clear and documented.
+- Avoid magic values; use Home Assistant helpers or input_* entities for configurable parameters where appropriate.
+- Use lowercase and underscores for automation and script IDs.
+- For triggers and conditions, prefer explicit entity_id and state references to avoid ambiguity.
+- Use Home Assistant documentation as a reference for supported keys and values.
+- Test automations after changes to ensure correct behavior and valid YAML.
+- Ensure all YAML is valid and properly structured for Home Assistant.
+- Use YAML anchors and aliases for repeated structures, but only when it improves clarity and maintainability.
+- Prefer explicit over implicit configuration for clarity and future maintenance.
+- Use input_boolean, input_number, or input_select helpers for user-configurable options.
+- When referencing scripts or scenes, use their full entity_id for clarity.
+- Use consistent naming conventions for entities, scripts, and automations to aid discoverability.
+- Include versioning or last-updated comments for complex automations to track changes.
+- For complex automations, break down actions into smaller scripts and reference them for modularity.
+- Review and refactor automations periodically to remove obsolete or redundant logic.
+- Use descriptive and consistent naming for input_* helpers and ensure their purpose is documented.
+- For templates, prefer multiline YAML blocks for readability and comment complex logic.
+- Use Home Assistant secrets.yaml for sensitive values and document their usage.
+- When using conditions, prefer explicit state or numeric_state checks over template conditions unless necessary.
+- For lists (e.g., multiple triggers or actions), use a dash and indent each item for clarity.
+- Validate automations using Home Assistant’s built-in YAML checker before deployment.
+- Reference the Home Assistant community forums or GitHub for best practices and troubleshooting tips.
+- When deprecating automations or scripts, add a comment with the reason and planned removal date.
+- Use .gitignore and similar files to exclude sensitive or environment-specific files from version control.
+- Prefer including only necessary files and directories in version control; explicitly exclude secrets, backups, and build artifacts.
+- Organize custom components, scripts, and configuration files in dedicated directories for clarity and maintainability.
+- Use comments to document file inclusion/exclusion patterns and their rationale in .gitignore or similar files.
+- Regularly audit included and excluded files to ensure only relevant content is tracked and deployed.
+- Keep file and directory naming consistent and descriptive to aid navigation and automation discovery.
+- Use the automation’s description to clarify any user-facing effects, edge cases, or known limitations.
+- For device_tracker and zone triggers, clarify in comments whose device and which zone are referenced.
+- When using notification services, prefer mobile_app or persistent_notification for reliability and clarity.
+- For optional actions, clearly comment their optionality and intended user experience.
+- Use the latest Home Assistant YAML schema and syntax; update automations as new features become available.
+- Prefer referencing helpers or input_* entities for time windows or thresholds to allow easy adjustment without code changes.
+- For automations that depend on presence detection, document the reliability and any fallback logic.
+- When using scripts for actions, ensure they are idempotent and safe to call multiple times if needed.
+- For automations that interact with hardware (e.g., vacuums, lights), document any required integration setup or calibration steps.
+- Use consistent and descriptive naming for all entities, including device_tracker, vacuum, and notify services, to avoid confusion.
+- For automations with multiple triggers or actions, group and comment each logical section for maintainability.
+- When referencing mobile devices, use the canonical entity_id and document the owner for clarity.
+- For automations that may run concurrently, specify mode and document the rationale for the chosen mode.
+- For any automation that could have side effects (e.g., starting cleaning), document safety checks and user notification steps.

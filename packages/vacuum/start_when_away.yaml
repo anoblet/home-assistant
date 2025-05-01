@@ -1,0 +1,31 @@
+# Automation to start the vacuum when Andrew leaves home, but only during specific hours
+vacuum_start_when_away:
+  automation:
+    - alias: Vacuum - Start When Andrew Leaves Home
+      id: vacuum_start_when_away
+      mode: single
+      description: Start the vacuum when Andrew leaves home, but only between 10 AM and 6 PM
+      trigger:
+        - platform: zone
+          entity_id: device_tracker.pixel_4_xl
+          zone: zone.home
+          event: leave # Triggers when Andrew's device leaves the home zone
+      condition:
+        - condition: and
+          conditions:
+            # Only run between 10 AM and 6 PM to avoid cleaning at inconvenient times
+            - condition: time
+              after: '10:00:00'
+              before: '18:00:00'
+            # Ensure the vacuum is docked (not already running) before starting a new cleaning cycle
+            - condition: state
+              entity_id: vacuum.valetudo_vacuum
+              state: 'docked'
+              # Prevents starting a new cleaning cycle if the vacuum is already running or away from dock
+      action:
+        - service: script.vacuum_start # Initiates the vacuum cleaning script
+        # Optional: Send notification to Andrew's phone to inform him that cleaning has started
+        - service: notify.mobile_app_pixel_4
+          data:
+            message: 'Vacuum started cleaning after your departure'
+            title: 'Vacuum Cleaning'
