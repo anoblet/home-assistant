@@ -1,0 +1,16 @@
+bedroom_presence_restart_daily:
+  automation:
+    - alias: 'Bedroom - Presence - Restart Daily'
+      description: 'Restarts the bedroom presence sensor daily at 12 PM to maintain optimal performance'
+      id: bedroom_presence_restart_daily
+      mode: single
+      # Trigger the automation at exactly 12:00 PM every day
+      trigger:
+        - platform: time
+          at: '12:00:00'
+      # Action to restart the bedroom presence sensor by simulating a button press
+      action:
+        - service: button.press
+          target:
+            # Specifies the entity ID of the button responsible for restarting the sensor
+            entity_id: button.bedroom_presence_restart
