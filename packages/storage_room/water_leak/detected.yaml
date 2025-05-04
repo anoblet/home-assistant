@@ -5,11 +5,11 @@ storage_room_water_leak_detected:
         - data:
             cache: false
             entity_id: media_player.speaker_group
-            message: "Water leak detected in the storage room!"
+            message: 'Water leak detected in the storage room!'
           service: tts.google_translate_say
         - data:
-            message: "Water leak detected in the storage room!"
-          service: notify.mobile_app_pixel_4
+            message: 'Water leak detected in the storage room!'
+          service: notify.mobile_app_pixel_4_xl
       alias: Storage Room - Water Leak - Detected
       id: storage_room_water_leak_detected
       mode: single
@@ -17,4 +17,4 @@ storage_room_water_leak_detected:
         - entity_id:
             - binary_sensor.storage_room_water_leak
           platform: state
-          to: "on"
+          to: 'on'

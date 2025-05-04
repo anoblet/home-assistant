@@ -3,11 +3,11 @@ storage_room_printer_paused:
     action:
       - data:
           message: Printing has paused
-        service: notify.mobile_app_pixel_4
+        service: notify.mobile_app_pixel_4_xl
     alias: Storage Room - Printer - Paused
     id: storage_room_printer_paused
     mode: single
     trigger:
       - entity_id: sensor.octoprint_current_state
         platform: state
-        to: "Paused"
+        to: 'Paused'
