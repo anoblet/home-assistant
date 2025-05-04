@@ -1,16 +1,28 @@
-bedroom_presence_restart_daily:
+# YAML file defining an automation to restart a bedroom presence sensor
+
+bedroom_presence_restart:
   automation:
-    - alias: 'Bedroom - Presence - Restart Daily'
-      description: 'Restarts the bedroom presence sensor daily at 12 PM to maintain optimal performance'
-      id: bedroom_presence_restart_daily
+    - alias: 'Bedroom - Presence - Restart'
+      # Descriptive name for the automation to identify its purpose
+      description: 'Restarts the bedroom presence sensor if it has been off for one minute to potentially resolve issues'
+      # Unique identifier for this automation
+      id: bedroom_presence_restart
+      # Ensures that only one instance of the automation runs at a time
       mode: single
-      # Trigger the automation at exactly 12:00 PM every day
       trigger:
-        - platform: time
-          at: '12:00:00'
-      # Action to restart the bedroom presence sensor by simulating a button press
+        # Trigger the automation when the state of the bedroom presence sensor changes
+        - platform: state
+          # The entity ID of the bedroom presence sensor
+          entity_id: binary_sensor.bedroom_presence_presence
+          # Trigger only when the sensor state changes to 'off'
+          to: 'off'
+          # Wait for the sensor to remain in the 'off' state for one minute before triggering
+          for:
+            minutes: 1
       action:
+        # Action to perform when the trigger conditions are met
         - service: button.press
+          # Target the restart button for the bedroom presence sensor
           target:
-            # Specifies the entity ID of the button responsible for restarting the sensor
             entity_id: button.bedroom_presence_restart
+            # Sends a press command to the restart button to attempt resolving sensor issues
