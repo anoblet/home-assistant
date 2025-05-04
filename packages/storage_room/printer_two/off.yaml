@@ -1,23 +1,23 @@
 storage_room_printer_off:
   automation:
     action:
-      - alias: "Wait for the bed temperature to go below 40"
+      - alias: 'Wait for the bed temperature to go below 40'
         wait_template: "{{ states('sensor.octoprint_actual_bed_temp') | int < 40 }}"
       - data:
           entity_id: input_boolean.storage_room_light_manual
         service: input_boolean.turn_off
       - data:
           message: Printing has finished
-        service: notify.mobile_app_pixel_4
+        service: notify.mobile_app_pixel_4_xl
     alias: Storage Room - Printer - Off
     condition:
       - condition: state
         entity_id: binary_sensor.storage_room_motion_occupancy
-        state: "off"
+        state: 'off'
     id: storage_room_printer_off
     mode: single
     trigger:
       - entity_id: binary_sensor.octoprint_printing
-        from: "on"
+        from: 'on'
         platform: state
-        to: "off"
+        to: 'off'

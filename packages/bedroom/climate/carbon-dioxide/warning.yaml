@@ -3,7 +3,7 @@ bedroom_carbon_dioxide_warning:
     - action:
         - data:
             message: Bedroom CO2 is > 1000ppm.
-          service: notify.mobile_app_pixel_4
+          service: notify.mobile_app_pixel_4_xl
       alias: Bedroom - Carbon Dioxide - Warning
       id: bedroom_carbon_dioxide_warning
       mode: single

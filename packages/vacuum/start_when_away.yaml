@@ -25,7 +25,7 @@ vacuum_start_when_away:
       action:
         - service: script.vacuum_start # Initiates the vacuum cleaning script
         # Optional: Send notification to Andrew's phone to inform him that cleaning has started
-        - service: notify.mobile_app_pixel_4
+        - service: notify.mobile_app_pixel_4_xl
           data:
             message: 'Vacuum started cleaning after your departure'
             title: 'Vacuum Cleaning'

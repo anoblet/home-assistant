@@ -12,7 +12,7 @@ automation:
     action:
       - service: esphome.living_room_ld2410c_restart
         # Calls the ESPHome service to restart the living room presence sensor.
-      - service: notify.mobile_app_pixel_4
+      - service: notify.mobile_app_pixel_4_xl
         data:
           title: 'Sensor Maintenance'
           message: 'Living room presence sensor has been restarted as part of daily maintenance.'
