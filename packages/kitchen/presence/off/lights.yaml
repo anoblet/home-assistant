@@ -1,0 +1,26 @@
+kitchen_ld2410c_off_lights:
+  automation:
+    action:
+      - service: light.turn_off
+        target:
+          entity_id:
+            - light.kitchen_light_group_zigbee
+        data:
+          transition: 60
+    alias: Kitchen - Presence - Off - Lights
+    description: Turn off kitchen lights when presence is no longer detected
+    id: kitchen_ld2410c_off_lights
+    mode: single
+    condition:
+      - condition: state
+        entity_id: input_boolean.kitchen_ld2410c
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.kitchen_light_manual
+        state: 'off'
+    trigger:
+      - entity_id: binary_sensor.kitchen_ld2410c_presence
+        platform: state
+        to: 'off'
+        for:
+          minutes: 5

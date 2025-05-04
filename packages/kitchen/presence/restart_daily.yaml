@@ -1,0 +1,19 @@
+automation:
+  - alias: 'Kitchen Presence Sensor - Daily Restart'
+    id: kitchen/presence/restart_daily
+    description: >
+      # This automation ensures the kitchen presence sensor (LD2410C) is restarted daily at 12 PM.
+      # Regular restarts help maintain reliable operation by preventing memory issues or detection inaccuracies.
+    mode: single
+    trigger:
+      - platform: time
+        at: '12:00:00'
+        # Trigger the automation precisely at 12:00 PM daily.
+    action:
+      - service: esphome.kitchen_ld2410c_restart
+        # Calls the ESPHome service to restart the kitchen presence sensor.
+      - service: notify.mobile_app_pixel_4
+        data:
+          title: 'Sensor Maintenance'
+          message: 'Kitchen presence sensor has been restarted as part of daily maintenance.'
+          # Sends a notification to the mobile app to inform the user that the sensor has been restarted.

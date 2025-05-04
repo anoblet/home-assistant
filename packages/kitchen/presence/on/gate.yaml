@@ -1,4 +1,4 @@
-kitchen_presence_on_gate:
+kitchen_ld2410c_on_gate:
   automation:
     action:
       - service: input_number.set_value
@@ -7,9 +7,14 @@ kitchen_presence_on_gate:
         target:
           entity_id: input_number.kitchen_ld2410c_last_on_gate
     alias: Kitchen - Presence - On - Gate
-    id: kitchen_presence_on_gate
+    id: kitchen_ld2410c_on_gate
     mode: single
+    condition:
+      - condition: state
+        entity_id: input_boolean.kitchen_ld2410c
+        state: 'on'
     trigger:
       - entity_id: binary_sensor.kitchen_ld2410c_presence
         platform: state
-        to: "on"
+        from: 'off'
+        to: 'on'
