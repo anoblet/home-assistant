@@ -1,0 +1,6 @@
+kitchen_ld2410c_gate_off:
+  input_number:
+    kitchen_ld2410c_last_off_gate:
+      max: 8
+      min: 0
+      name: Kitchen Presence Last Off Gate

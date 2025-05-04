@@ -1,0 +1,85 @@
+kitchen_ld2410c_calibrate_still_median:
+  script:
+    kitchen_ld2410c_calibrate_still_median:
+      sequence:
+        - variables:
+            increase: 0
+            round: 1
+        - action: button.press
+          target:
+            entity_id: button.kitchen_ld2410c_restart
+        - delay:
+            minutes: 1
+        - action: select.select_option
+          data:
+            option: Engineering
+          target:
+            entity_id: select.kitchen_ld2410c_mode
+        - delay:
+            minutes: 5
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.kitchen_ld2410c_g0_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.kitchen_ld2410c_g0_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.kitchen_ld2410c_g1_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.kitchen_ld2410c_g1_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.kitchen_ld2410c_g2_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.kitchen_ld2410c_g2_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.kitchen_ld2410c_g3_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.kitchen_ld2410c_g3_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.kitchen_ld2410c_g4_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.kitchen_ld2410c_g4_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.kitchen_ld2410c_g5_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.kitchen_ld2410c_g5_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.kitchen_ld2410c_g6_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.kitchen_ld2410c_g6_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.kitchen_ld2410c_g7_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.kitchen_ld2410c_g7_still_threshold
+        - service: number.set_value
+          continue_on_error: true
+          data:
+            value: >
+              {{ ((((states('sensor.kitchen_ld2410c_g8_still_energy_median') | int(0) + increase) / round) | int) + 1) * round }}
+          target:
+            entity_id: number.kitchen_ld2410c_g8_still_threshold
+        - action: button.press
+          target:
+            entity_id: button.kitchen_ld2410c_restart

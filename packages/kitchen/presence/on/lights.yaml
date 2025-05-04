@@ -1,0 +1,22 @@
+kitchen_ld2410c_on_lights:
+  automation:
+    action:
+      - service: light.turn_on
+        target:
+          entity_id:
+            - light.kitchen_light_group_zigbee
+        data:
+          transition: 1
+    alias: Kitchen - Presence - On - Lights
+    description: Turn on kitchen lights when presence is detected
+    id: kitchen_ld2410c_on_lights
+    mode: single
+    condition:
+      - condition: state
+        entity_id: input_boolean.kitchen_ld2410c
+        state: 'on'
+    trigger:
+      - entity_id: binary_sensor.kitchen_ld2410c_presence
+        platform: state
+        from: 'off'
+        to: 'on'

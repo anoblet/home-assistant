@@ -1,0 +1,17 @@
+kitchen_ld2410c_mode_reset:
+  automation:
+    - action:
+        action: select.select_option
+        target:
+          entity_id: select.kitchen_ld2410c_mode
+        data:
+          option: Normal
+      alias: Kitchen - Presence - Engineering Mode - Reset
+      description: Turn off engineering mode after it has been on for an hour
+      id: kitchen_ld2410c_mode_reset
+      mode: single
+      trigger:
+        - entity_id: switch.kitchen_ld2410c_mode
+          for: '01:00:00'
+          platform: state
+          to: 'on'

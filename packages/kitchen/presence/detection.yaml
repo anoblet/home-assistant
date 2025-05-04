@@ -1,0 +1,12 @@
+# filepath: /homeassistant/packages/kitchen/presence/detection.yaml
+kitchen_ld2410c:
+  google_assistant:
+    entity_config:
+      input_boolean.kitchen_ld2410c:
+        expose: true
+        name: Kitchen Presence Detection
+  input_boolean:
+    kitchen_ld2410c:
+      name: Kitchen Presence Detection
+      initial: on
+      icon: mdi:motion-sensor
