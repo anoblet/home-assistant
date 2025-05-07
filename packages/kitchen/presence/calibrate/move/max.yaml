@@ -3,8 +3,8 @@ kitchen_ld2410c_calibrate_move_max:
     kitchen_ld2410c_calibrate_move_max:
       sequence:
         - variables:
-            increase: 0
-            round: 1
+            increase: 2
+            round: 5
         - delay:
             minutes: 1
         - action: select.select_option
