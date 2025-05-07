@@ -8,6 +8,7 @@ background_music:
         aliases:
           - 'Play Background Music' # Alternate voice commands for triggering the script
           - 'Start Background Music'
+          - "It's too quiet" # Allows for more natural language commands
   script:
     background_music:
       alias: Background Music # User-friendly name for the script
