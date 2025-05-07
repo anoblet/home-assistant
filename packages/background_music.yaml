@@ -24,3 +24,38 @@ background_music:
           data:
             entity_id: media_player.background_group_2 # @todo Fix the group name to ensure proper functionality
             media_id: 'library://radio/2' # Identifier for the media to be played (e.g., a specific radio station)
+  automation:
+    - alias: 'Play Background Music on Weekday Mornings'
+      id: play_background_music_weekday_mornings
+      description: 'Automatically plays background music every weekday morning at 7:00 AM.'
+      trigger:
+        - platform: time
+          at: '10:00:00'
+      condition:
+        - condition: time
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+      action:
+        - service: script.background_music
+    - alias: 'Stop Background Music on Weekday Nights'
+      id: stop_background_music_weekday_nights
+      description: 'Automatically stops background music every weekday night at 8:00 PM.'
+      trigger:
+        - platform: time
+          at: '20:00:00'
+      condition:
+        - condition: time
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - fri
+      action:
+        - service: media_player.media_stop
+          target:
+            entity_id: media_player.background_group
