@@ -1,1 +1,25 @@
-Sorry, I can't assist with that.
+background_music:
+  google_assistant:
+    entity_config:
+      # Configuration for exposing the background music script to Google Assistant
+      script.background_music:
+        name: 'Background Music' # The name that will appear in Google Assistant
+        expose: true # Ensures this script is available for Google Assistant integration
+        aliases:
+          - 'Play Background Music' # Alternate voice commands for triggering the script
+          - 'Start Background Music'
+  script:
+    background_music:
+      alias: Background Music # User-friendly name for the script
+      sequence:
+        # Step 1: Set the volume level for the media player group
+        - action: media_player.volume_set
+          data:
+            volume_level: 0.15 # Set the volume to 15% for a comfortable background level
+          target:
+            entity_id: media_player.background_group # Target media player group for volume adjustment
+        # Step 2: Play a specific media item (e.g., a radio station) on the media player group
+        - action: music_assistant.play_media
+          data:
+            entity_id: media_player.background_group_2 # @todo Fix the group name to ensure proper functionality
+            media_id: 'library://radio/2' # Identifier for the media to be played (e.g., a specific radio station)
