@@ -49,7 +49,7 @@ cards:
               - type: custom:decluttering-card
                 template: media_player_card
                 variables:
-                  - entity: media_player.living_room_tv
+                  - entity: media_player.living_room_tv_2
                   - name: "Television"
               - type: custom:decluttering-card
                 template: media_player_card
