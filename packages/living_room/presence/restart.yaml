@@ -1,9 +1,8 @@
 automation:
   - alias: 'Living Room Presence Sensor - Daily Restart'
-    id: living_room/presence/restart_daily
+    id: living_room_presence_restart
     description: >
-      # This automation ensures the living room presence sensor (LD2410C) is restarted daily at 12 PM.
-      # Regular restarts help maintain reliable operation by preventing memory issues or detection inaccuracies.
+      This automation ensures the living room presence sensor (LD2410C) is restarted daily at 12 PM.
     mode: single
     trigger:
       - platform: time
@@ -16,4 +15,3 @@ automation:
         data:
           title: 'Sensor Maintenance'
           message: 'Living room presence sensor has been restarted as part of daily maintenance.'
-          # Sends a notification to the mobile app to inform the user that the sensor has been restarted.

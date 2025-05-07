@@ -40,7 +40,7 @@ background_music:
             - thu
             - fri
       action:
-        - service: script.background_music
+        - action: script.background_music
     - alias: 'Stop Background Music on Weekday Nights'
       id: stop_background_music_weekday_nights
       description: 'Automatically stops background music every weekday night at 8:00 PM.'
@@ -56,6 +56,6 @@ background_music:
             - thu
             - fri
       action:
-        - service: media_player.media_stop
+        - action: media_player.media_stop
           target:
             entity_id: media_player.background_group
