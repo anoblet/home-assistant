@@ -16,7 +16,7 @@ living_room_ld2410c_on_air_purifier:
     mode: single
     condition:
       - condition: state
-        entity_id: input_boolean.living_room_ld2410c
+        entity_id: input_boolean.living_room_presence_detection
         state: 'on'
     trigger:
       - entity_id: binary_sensor.living_room_ld2410c_presence
