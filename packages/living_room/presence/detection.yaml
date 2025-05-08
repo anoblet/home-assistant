@@ -1,12 +1,11 @@
-# filepath: /homeassistant/packages/living_room/presence/detection.yaml
-living_room_ld2410c:
+living_room_presence_detection:
   google_assistant:
     entity_config:
-      input_boolean.living_room_ld2410c:
+      input_boolean.living_room_presence_detection:
         expose: true
         name: Living Room Presence Detection
   input_boolean:
-    living_room_ld2410c:
+    living_room_presence_detection:
       name: Living Room Presence Detection
       initial: on
       icon: mdi:motion-sensor
