@@ -19,6 +19,11 @@ bedroom_presence_restart:
           # Wait for the sensor to remain in the 'off' state for one minute before triggering
           for:
             minutes: 1
+      condition:
+        # Condition to ensure the restart button has not been pressed in the last minute
+        - condition: template
+          value_template: >
+            {{ (now() - states.button.bedroom_presence_restart.last_changed).total_seconds() > 60 }}
       action:
         # Action to perform when the trigger conditions are met
         - service: button.press
