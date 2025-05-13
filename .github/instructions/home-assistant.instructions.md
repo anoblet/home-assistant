@@ -225,3 +225,10 @@ When the user requests to log the conversation:
    **Configuration Reloaded:**
    Yes/No, [command used if yes]
    ```
+- Files in the `packages` folder should have this structure should be:
+
+```
+[paackage_name]:
+   [domain]
+     ...
+```
