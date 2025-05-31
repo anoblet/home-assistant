@@ -1,17 +1,18 @@
-automation:
-  - alias: 'Living Room Presence Sensor - Daily Restart'
-    id: living_room_presence_restart
-    description: >
-      This automation ensures the living room presence sensor (LD2410C) is restarted daily at 12 PM.
-    mode: single
-    trigger:
-      - platform: time
-        at: '12:00:00'
-        # Trigger the automation precisely at 12:00 PM daily.
-    action:
-      - service: esphome.living_room_ld2410c_restart
-        # Calls the ESPHome service to restart the living room presence sensor.
-      - service: notify.mobile_app_pixel_4_xl
-        data:
-          title: 'Sensor Maintenance'
-          message: 'Living room presence sensor has been restarted as part of daily maintenance.'
+living_room_presence_restart:
+  automation:
+    - alias: 'Living Room Presence Sensor - Daily Restart'
+      id: living_room_presence_restart
+      description: >
+        This automation ensures the living room presence sensor (LD2410C) is restarted daily at 12 PM.
+      mode: single
+      trigger:
+        - platform: time
+          at: '12:00:00'
+          # Trigger the automation precisely at 12:00 PM daily.
+      action:
+        - service: esphome.living_room_ld2410c_restart
+          # Calls the ESPHome service to restart the living room presence sensor.
+        - service: notify.mobile_app_pixel_4_xl
+          data:
+            title: 'Sensor Maintenance'
+            message: 'Living room presence sensor has been restarted as part of daily maintenance.'
