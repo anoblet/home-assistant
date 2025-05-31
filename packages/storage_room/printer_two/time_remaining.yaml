@@ -3,7 +3,7 @@ storage_room_printer_time_remaining:
     entity_config:
       script.storage_room_printer_time_remaining:
         expose: true
-        name: "Storage Room Printer Time Remaining"
+        name: 'Storage Room Printer Time Remaining'
   script:
     storage_room_printer_time_remaining:
       sequence:
@@ -14,7 +14,7 @@ storage_room_printer_time_remaining:
             message: "{{ states('sensor.storage_room_printer_time_remaining') }}"
   template:
     - sensor:
-        - name: "Storage Room Printer Time Remaining"
+        - name: 'Storage Room Printer Time Remaining'
           state: >
-            {{ ( as_timestamp(states.sensor.octoprint_estimated_finish_time.state) - as_timestamp(now()) ) | int (0)| timestamp_custom('%H:%M:%S', false) }}
+            {{ ( as_timestamp(states.sensor.octoprint_estimated_finish_time.state, 0) - as_timestamp(now()) ) | int(0) | timestamp_custom('%H:%M:%S', false) }}
           unique_id: storage_room_printer_time_remaining
