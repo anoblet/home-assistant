@@ -3,7 +3,9 @@ bedroom_presence_on_thermostat:
     action:
       - service: climate.turn_on
         target:
-          entity_id: climate.bedroom_thermostat
+          entity_id:
+            - climate.bedroom_thermostat_cool
+            - climate.bedroom_thermostat_heat
     alias: Bedroom - Presence - On - Thermostat
     condition:
       - condition: state
