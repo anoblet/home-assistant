@@ -11,6 +11,11 @@ living_room_ld2410c_on_thermostat:
                 target:
                   entity_id:
                     - climate.living_room_thermostat
+              - action: climate.set_preset_mode
+                data:
+                  preset_mode: Boost
+                target:
+                  entity_id: climate.midea_ac_141837000017808
     alias: Living Room - Presence - On - Thermostat
     id: living_room_ld2410c_on_thermostat
     mode: single

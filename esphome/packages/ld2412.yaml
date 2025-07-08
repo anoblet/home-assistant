@@ -206,10 +206,12 @@ button:
     factory_reset:
       name: "Factory Reset"
     restart:
-      name: "Restart"
+      name: "Restart Sensor"
     query_params:
       name: Query Parameters
-
+  - platform: restart
+    id: restart_esp
+    name: "Restart ESP"
 text_sensor:
   - platform: LD2412
     version:
