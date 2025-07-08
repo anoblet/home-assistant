@@ -35,13 +35,21 @@ cards:
                 entity: select.bedroom_presence_mode
                 name: Mode
               - type: tile
-                entity: button.bedroom_presence_restart
-                name: Restart
+                entity: button.bedroom_presence_restart_sensor
+                name: Restart Sensor
                 tap_action:
                   action: call-service
                   service: button.press
                   target:
-                    entity_id: button.bedroom_presence_restart
+                    entity_id: button.bedroom_presence_restart_sensor
+              - type: tile
+                entity: button.bedroom_presence_restart_esp
+                name: Restart ESP
+                tap_action:
+                  action: call-service
+                  service: button.press
+                  target:
+                    entity_id: button.bedroom_presence_restart_esp
               - type: tile
                 entity: script.bedroom_presence_calibrate_move_max
                 name: Calibrate Move
