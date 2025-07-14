@@ -10,6 +10,8 @@
 !.husky/**/*
 !.prettierignore
 !.prettierrc
+!awesome-copilot
+!awesome-copilot/**/*
 !genaisrc
 !genaisrc/**/*
 !includes

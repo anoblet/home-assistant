@@ -1,3 +1,6 @@
 [submodule "genaisrc"]
 	path = genaisrc
 	url = git@github.com:anoblet/genaisrc.git
+[submodule "awesome-copilot"]
+	path = awesome-copilot
+	url = git@github.com:github/awesome-copilot.git
