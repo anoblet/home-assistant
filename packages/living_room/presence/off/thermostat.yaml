@@ -16,6 +16,6 @@ living_room_ld2410c_off_thermostat:
     trigger:
       - entity_id: binary_sensor.living_room_ld2410c_presence
         for:
-          minutes: 1
+          minutes: 5
         platform: state
         to: 'off'
