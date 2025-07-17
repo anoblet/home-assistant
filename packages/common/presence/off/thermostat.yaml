@@ -1,7 +1,7 @@
 common_presence_off_thermostat:
   automation:
     action:
-      - service: climate.turn_off
+      - action: climate.turn_off
         target:
           entity_id:
             - climate.living_room_thermostat_cool
