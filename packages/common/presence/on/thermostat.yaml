@@ -1,0 +1,22 @@
+common_presence_on_thermostat:
+  automation:
+    action:
+      - action: climate.turn_on
+        target:
+          entity_id:
+            - climate.living_room_thermostat_cool
+            - climate.living_room_thermostat_heat
+    alias: Common - Presence - On - Thermostat
+    id: common_presence_on_thermostat
+    mode: single
+    condition:
+      - condition: state
+        entity_id: input_boolean.common_presence_detection
+        state: 'on'
+    trigger:
+      - entity_id: binary_sensor.common_presence
+        platform: state
+        from: 'off'
+        to: 'on'
+        for:
+          minutes: 1

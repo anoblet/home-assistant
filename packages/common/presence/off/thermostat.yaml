@@ -1,4 +1,4 @@
-living_room_ld2410c_off_thermostat:
+common_presence_off_thermostat:
   automation:
     action:
       - service: climate.turn_off
@@ -6,15 +6,15 @@ living_room_ld2410c_off_thermostat:
           entity_id:
             - climate.living_room_thermostat_cool
             - climate.living_room_thermostat_heat
-    alias: Living Room - Presence - Off - Thermostat
-    id: living_room_ld2410c_off_thermostat
+    alias: Common - Presence - Off - Thermostat
+    id: common_presence_off_thermostat
     mode: single
     condition:
       - condition: state
         entity_id: input_boolean.living_room_presence_detection
         state: 'on'
     trigger:
-      - entity_id: binary_sensor.living_room_ld2410c_presence
+      - entity_id: binary_sensor.common_presence
         for:
           minutes: 5
         platform: state
