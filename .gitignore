@@ -11,6 +11,7 @@
 !.prettierignore
 !.prettierrc
 !.vscode
+!.vscode/**/*
 !awesome-copilot
 !awesome-copilot/**/*
 !genaisrc
