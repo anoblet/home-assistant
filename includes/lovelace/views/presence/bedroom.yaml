@@ -59,6 +59,9 @@ cards:
               - type: tile
                 entity: script.bedroom_presence_calibrate_still_median
                 name: Calibrate Still Median
+              - type: tile
+                entity: number.bedroom_presence_timeout
+                name: Timeout
           - type: custom:plotly-graph
             title: Move Energy
             refresh_interval: 1
