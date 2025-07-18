@@ -1,20 +1,22 @@
 living_room_ld2410c_off_air_purifier:
   automation:
     action:
-      - service: fan.set_percentage
-        data:
+      - data:
           percentage: 66
+        service: fan.set_percentage
         target:
           entity_id: fan.living_room_air_purifier
     alias: Living Room - Presence - Off - Air Purifier
-    id: living_room_ld2410c_off_air_purifier
-    mode: single
     condition:
       - condition: state
         entity_id: input_boolean.living_room_presence_detection
         state: 'on'
+    id: living_room_ld2410c_off_air_purifier
+    mode: single
     trigger:
       - entity_id: binary_sensor.living_room_ld2410c_presence
-        platform: state
+        for:
+          minutes: 1
         from: 'on'
+        platform: state
         to: 'off'

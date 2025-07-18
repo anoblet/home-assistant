@@ -6,13 +6,16 @@ living_room_ld2410c_off_humidifier:
           entity_id:
             - humidifier.living_room_humidifier_virtual
     alias: Living Room - Presence - Off - Humidifier
-    id: living_room_ld2410c_off_humidifier
-    mode: single
     condition:
       - condition: state
         entity_id: input_boolean.living_room_presence_detection
         state: 'on'
+    id: living_room_ld2410c_off_humidifier
+    mode: single
     trigger:
       - entity_id: binary_sensor.living_room_ld2410c_presence
+        for:
+          minutes: 1
+        from: 'on'
         platform: state
         to: 'off'
