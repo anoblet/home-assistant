@@ -14,7 +14,7 @@ kitchen_air_conditioner_virtual:
                 entity_id: climate.midea_ac_141837000017808
             - action: climate.set_preset_mode
               data:
-                preset_mode: Boost
+                preset_mode: boost
               target:
                 entity_id: climate.midea_ac_141837000017808
           unique_id: kitchen_air_conditioner_virtual
