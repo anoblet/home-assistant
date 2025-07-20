@@ -8,7 +8,7 @@
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-memory"],
       "env": {
-        "MEMORY_FILE_PATH": "/homeassistant/memory.jsonl"
+        "MEMORY_FILE_PATH": "${workspaceFolder}/memory.jsonl"
       }
     },
     "playwright": {
