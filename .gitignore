@@ -3,6 +3,8 @@
 
 # Include
 !**/*.yaml
+!.copilot
+!.copilot/**/*
 !.github
 !.github/**/*
 !.gitignore
