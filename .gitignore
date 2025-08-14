@@ -19,7 +19,8 @@
 !genaisrc
 !genaisrc/**/*
 !includes
-!memory.jsonl
+!memory
+!memory/**
 !package.json
 !package-lock.json
 !packages
