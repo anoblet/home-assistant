@@ -9,6 +9,6 @@
   },
   "chat.tools.autoApprove": true,
   "chat.tools.terminal.autoApprove": {
-    "*": true
+    "/.*/": true
   }
 }

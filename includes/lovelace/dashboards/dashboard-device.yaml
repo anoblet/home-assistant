@@ -11,4 +11,4 @@ views:
   - !include ../views/view-remotes.yaml
   - !include ../views/view-climate.yaml
   - !include ../views/view-battery.yaml
-  - !include ../views/vacuum.yaml
+  # - !include ../views/vacuum.yaml

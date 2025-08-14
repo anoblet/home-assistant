@@ -1,0 +1,8 @@
+lovelace_dashboards_vacuum:
+  lovelace:
+    dashboards:
+      dashboard-vacuum:
+        filename: includes/lovelace/dashboards/dashboard-vacuum.yaml
+        mode: yaml
+        show_in_sidebar: true
+        title: Vacuum
