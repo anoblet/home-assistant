@@ -6,7 +6,10 @@
     },
     "github": {
       "type": "http",
-      "url": "https://api.githubcopilot.com/mcp/"
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "X-MCP-Toolsets": "pull_requests"
+      }
     },
     "playwright": {
       "command": "npx",
@@ -17,6 +20,13 @@
       "args": ["-y", "@modelcontextprotocol/server-memory"],
       "env": {
         "MEMORY_FILE_PATH": "${workspaceFolder}/memory/project.jsonl"
+      }
+    },
+    "prompt-memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "env": {
+        "MEMORY_FILE_PATH": "${workspaceFolder}/memory/prompt.jsonl"
       }
     },
     "sequential-thinking": {

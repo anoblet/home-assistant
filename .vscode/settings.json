@@ -6,6 +6,5 @@
   "chat.modeFilesLocations": {
     ".copilot/awesome-copilot/chatmodes": true,
     ".copilot/chatmodes": true
-  },
-  "chat.tools.autoApprove": true
+  }
 }

@@ -24,6 +24,8 @@
 !package-lock.json
 !packages
 !packages/**/*
+!reports
+!reports/**
 !www/custom/**/*
 !www/custom-elements/**/*
 
