@@ -3,6 +3,8 @@
 
 # Include
 !**/*.yaml
+!.copilot
+!.copilot/**/*
 !.github
 !.github/**/*
 !.gitignore
@@ -10,13 +12,20 @@
 !.husky/**/*
 !.prettierignore
 !.prettierrc
+!.vscode
+!.vscode/**/*
+!awesome-copilot
+!awesome-copilot/**/*
 !genaisrc
 !genaisrc/**/*
 !includes
+!memory.jsonl
 !package.json
 !package-lock.json
 !packages
 !packages/**/*
+!reports
+!reports/**
 !www/custom/**/*
 !www/custom-elements/**/*
 
