@@ -3,8 +3,6 @@
 
 # Include
 !**/*.yaml
-!.copilot
-!.copilot/**/*
 !.github
 !.github/**/*
 !.gitignore
@@ -16,6 +14,8 @@
 !.vscode/**/*
 !awesome-copilot
 !awesome-copilot/**/*
+!copilot
+!copilot/**
 !genaisrc
 !genaisrc/**/*
 !includes

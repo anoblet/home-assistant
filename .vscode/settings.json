@@ -1,14 +1,14 @@
 {
   "chat.agent.maxRequests": 10000,
   "chat.instructionsFilesLocations": {
-    ".copilot/instructions": true
+    "copilot/instructions": true
   },
   "chat.modeFilesLocations": {
-    ".copilot/awesome-copilot/chatmodes": true,
-    ".copilot/chatmodes": true
+    "copilot/awesome-copilot/chatmodes": true,
+    "copilot/chatmodes": true
   },
-  "chat.tools.autoApprove": true,
   "chat.tools.terminal.autoApprove": {
     "/.*/": true
-  }
+  },
+  "genaiscript.cli.packageManager": "pnpm"
 }
