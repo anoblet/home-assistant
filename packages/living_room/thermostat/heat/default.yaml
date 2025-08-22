@@ -1,17 +1,19 @@
 living_room_thermostat_heat_default:
   automation:
-    - alias: "Living Room - Thermostat - Heat - Default Reset"
+    - alias: 'Living Room - Thermostat - Heat - Default Reset'
       id: living_room_thermostat_heat_default_reset
       mode: single
       trigger:
         - platform: time_pattern
-          hours: "*"
-          minutes: "0"
-          seconds: "0"
+          hours: '*'
+          minutes: '0'
+          seconds: '0'
       action:
         - service: climate.set_temperature
           target:
-            entity_id: climate.l
+            entity_id: climate.living_room_thermostat
+          data:
+            temperature: "{{ states('input_number.living_room_thermostat_heat_default') | float(70) }}"
   input_number:
     living_room_thermostat_heat_default:
       name: Living Room Thermostat Heat Default
@@ -19,4 +21,4 @@ living_room_thermostat_heat_default:
       max: 100
       mode: box
       step: 1
-      unit_of_measurement: "°F"
+      unit_of_measurement: '°F'

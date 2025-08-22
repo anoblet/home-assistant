@@ -16,5 +16,9 @@ storage_room_printer_time_remaining:
     - sensor:
         - name: 'Storage Room Printer Time Remaining'
           state: >
-            {{ ( as_timestamp(states.sensor.octoprint_estimated_finish_time.state, 0) - as_timestamp(now()) ) | int(0) | timestamp_custom('%H:%M:%S', false) }}
+            {% if states('sensor.octoprint_estimated_finish_time') not in ['unknown', 'unavailable', ''] %}
+              {{ ( as_timestamp(states('sensor.octoprint_estimated_finish_time'), 0) - as_timestamp(now()) ) | int(0) | timestamp_custom('%H:%M:%S', false) }}
+            {% else %}
+              unknown
+            {% endif %}
           unique_id: storage_room_printer_time_remaining

@@ -1,6 +1,8 @@
 device_tracker:
   device_tracker:
-    - platform: luci
-      host: !secret luci_host
-      username: !secret luci_username
-      password: !secret luci_password
+    # Luci device tracker disabled due to missing luci-mod-rpc package on router
+    # To re-enable, install luci-mod-rpc on OpenWrt router at 192.168.1.1
+    # - platform: luci
+    #   host: !secret luci_host
+    #   username: !secret luci_username
+    #   password: !secret luci_password
