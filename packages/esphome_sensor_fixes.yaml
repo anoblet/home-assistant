@@ -1,0 +1,24 @@
+# ESPHome sensor customizations to fix unit of measurement warnings
+esphome_sensor_fixes:
+  homeassistant:
+    customize:
+      # Fix AQI sensors - remove device class to allow µg/m³ unit
+      sensor.bedroom_sen55_voc:
+        device_class: null
+        unit_of_measurement: 'µg/m³'
+        icon: mdi:air-filter
+
+      sensor.bedroom_sen55_nox:
+        device_class: null
+        unit_of_measurement: 'µg/m³'
+        icon: mdi:air-filter
+
+      # Fix reactive power sensor - change unit to match device class expectation
+      sensor.bedroom_two_reactive_power:
+        unit_of_measurement: 'var'
+        device_class: reactive_power
+
+      # Fix WiFi signal strength - change unit to match device class expectation
+      sensor.storage_room_printer_wifi_strength:
+        unit_of_measurement: 'dBm'
+        device_class: signal_strength
