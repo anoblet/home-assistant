@@ -5,3 +5,6 @@ hallway_adaptive_lighting:
       min_brightness: 75
       min_color_temp: 3000
       name: Hallway
+      sleep_brightness: 75
+      sleep_color_temp: 2700
+      sleep_transition: 3600
