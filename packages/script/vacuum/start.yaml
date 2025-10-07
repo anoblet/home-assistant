@@ -7,7 +7,18 @@ script_vacuum_start:
     vacuum_start:
       alias: Vacuum - Start
       sequence:
-        - data:
-            payload: '{"segment_ids": ["1","2","3","4","5"], "iterations": 2}'
+        - action: mqtt.publish
+          data:
             topic: valetudo/Vacuum/MapSegmentationCapability/clean/set
-          service: mqtt.publish
+            payload: |-
+              {
+                "action": "start_segment_action",
+                "segment_ids": [
+                  "1",
+                  "2",
+                  "3",
+                  "5"
+                ],
+                "iterations": 2,
+                "customOrder": true
+              }
