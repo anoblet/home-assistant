@@ -11,6 +11,13 @@ script_bedroom_tired:
         - action: cover.close_cover
           target:
             entity_id: cover.bedroom_blinds
+        - action: light.turn_on
+          data:
+            color_temp_kelvin: 2000
+            brightness_pct: 10
+            transition: 10
+          target:
+            entity_id: light.bedroom_light_group_zigbee
         - service: light.turn_off
           target:
             entity_id: light.bedroom_ceiling
