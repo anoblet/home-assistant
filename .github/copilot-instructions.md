@@ -8,8 +8,8 @@ Use Github tools to reference the following repositories for every request:
 
 # Dependencies
 
-#file:../copilot/instructions/principles.instructions.md
-#file:../copilot/instructions/record.instructions.md
-#file:../copilot/instructions/time-limit.instructions.md
-#file:../copilot/instructions/tools/sequential-thinking.instructions.md
+[principles](../copilot/instructions/principles.instructions.md)
+[record](../copilot/instructions/record.instructions.md)
+[time-limit](../copilot/instructions/time-limit.instructions.md)
+[sequential-thinking](../copilot/instructions/tools/sequential-thinking.instructions.md)
 
