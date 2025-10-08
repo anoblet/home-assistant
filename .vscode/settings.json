@@ -1,14 +1,12 @@
 {
   "chat.agent.maxRequests": 10000,
-  "chat.instructionsFilesLocations": {
-    "copilot/instructions": true
+  "chat.agent.todoList": {
+    "v2": true
   },
   "chat.modeFilesLocations": {
     "copilot/awesome-copilot/chatmodes": true,
     "copilot/chatmodes": true
   },
-  "chat.tools.terminal.autoApprove": {
-    "/.*/": true
-  },
-  "genaiscript.cli.packageManager": "pnpm"
+  "github.copilot.chat.alternateGptPrompt.enabled": true,
+  "github.copilot.chat.gpt5AlternatePrompt": "v2"
 }

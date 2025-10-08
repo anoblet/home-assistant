@@ -1,44 +1,52 @@
 {
   "servers": {
+    "chroma": {
+      "command": "uvx",
+      "args": [
+        "chroma-mcp",
+        "--client-type",
+        "persistent",
+        "--data-dir",
+        "${workspaceFolder}/.chroma"
+      ]
+    },
     "context7": {
       "type": "http",
-      "url": "https://mcp.context7.com/mcp"
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "ctx7sk-2c4e7dc4-219c-482f-92c8-547c4969907b"
+      }
     },
     "github": {
       "type": "http",
       "url": "https://api.githubcopilot.com/mcp/",
       "headers": {
-        "X-MCP-Toolsets": "pull_requests"
+        "X-MCP-Toolsets": "repos, pull_requests"
       }
     },
     "playwright": {
       "command": "npx",
       "args": ["@playwright/mcp@latest"]
     },
-    "project-memory": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-memory"],
-      "env": {
-        "MEMORY_FILE_PATH": "${workspaceFolder}/memory/project.jsonl"
-      }
-    },
-    "prompt-memory": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-memory"],
-      "env": {
-        "MEMORY_FILE_PATH": "${workspaceFolder}/memory/prompt.jsonl"
-      }
-    },
     "sequential-thinking": {
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
     },
-    "user-memory": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-memory"],
-      "env": {
-        "MEMORY_FILE_PATH": "${workspaceFolder}/copilot/memory/user.jsonl"
-      }
+    "serena": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server",
+        "--context",
+        "ide-assistant"
+      ]
+    },
+    "time": {
+      "command": "uvx",
+      "args": ["mcp-server-time"]
     }
   }
 }
