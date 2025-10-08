@@ -1,0 +1,26 @@
+cards:
+  - type: custom:generic-card
+    cards:
+      - type: entities
+        entities:
+          - input_number.bathroom_light_transition_off
+          - input_number.bathroom_light_transition_on
+          - input_number.bathroom_motion_cooldown
+    title: Bathroom
+  - type: custom:generic-card
+    cards:
+      - type: entities
+        entities:
+          - input_number.kitchen_light_transition_off
+          - input_number.kitchen_light_transition_on
+          - input_number.kitchen_motion_cooldown
+    title: Kitchen
+  - type: custom:generic-card
+    cards:
+      - type: custom:custom-theme-card
+    title: Theme
+icon: mdi:cog
+title: Configuration
+type: custom:default-view
+visible:
+  - user: e19a51e0a67944d782371b93c2a2c2e7

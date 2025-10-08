@@ -1,0 +1,18 @@
+bedroom/automation/pm_10:
+  # Alerts when particulate matter exceeds the safe bedroom threshold.
+  automation:
+    - alias: 'Bedroom - PM10 Alert'
+      id: 'bedroom/automation/pm_10'
+      mode: single
+      description: 'Notify when bedroom SEN55 PM10 exceeds 150 µg/m³.'
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.bedroom_sen55_pm_10
+          above: 150
+      action:
+        - service: notify.mobile_app_pixel_4_xl
+          data:
+            title: 'Bedroom Air Quality'
+            message: >-
+              PM10 is {{ states('sensor.bedroom_sen55_pm_10') }} µg/m³.
+              Consider running the air purifier.

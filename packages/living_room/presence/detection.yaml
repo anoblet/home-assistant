@@ -1,3 +1,4 @@
+# Relies on packages/common/presence/detection.yaml for the shared toggle.
 living_room_presence_detection:
   google_assistant:
     entity_config:

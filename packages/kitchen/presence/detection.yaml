@@ -1,4 +1,4 @@
-# filepath: /homeassistant/packages/kitchen/presence/detection.yaml
+# Relies on packages/common/presence/detection.yaml for the shared toggle.
 kitchen_ld2410c:
   google_assistant:
     entity_config:

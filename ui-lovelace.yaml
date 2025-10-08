@@ -1,4 +1,14 @@
 title: Lovelace
 views:
-  - strategy:
-      type: original-states
+  - cards:
+      - type: markdown
+        content: >-
+          # Dashboard Configuration Moved
+
+          All active dashboards now live under `packages/lovelace/dashboards/`.
+          Update your profile shortcuts to use the dedicated dashboard
+          entries (Overview, Devices, Rooms, Presence, Tasks, Vacuum, etc.).
+    icon: mdi:information-outline
+    path: dashboards-migrated
+    title: Dashboards
+    type: custom:default-view

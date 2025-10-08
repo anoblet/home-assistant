@@ -1,14 +1,14 @@
 apexcharts_card_templates: !include_dir_named ../apexcharts_card_templates
 title: Devices
 views:
-  - !include ../views/blinds.yaml
-  - !include ../views/presence.yaml
-  - !include ../views/view-fans.yaml
-  - !include ../views/view-lights.yaml
-  - !include ../views/view-locks.yaml
-  - !include ../views/view-media.yaml
-  - !include ../views/view-motion.yaml
-  - !include ../views/view-remotes.yaml
-  - !include ../views/view-climate.yaml
-  - !include ../views/view-battery.yaml
-  # - !include ../views/vacuum.yaml
+  - !include ../views/blinds/index.yaml
+  - !include ../views/presence/index.yaml
+  - !include ../views/fans/index.yaml
+  - !include ../views/lights/index.yaml
+  - !include ../views/locks/index.yaml
+  - !include ../views/media/index.yaml
+  - !include ../views/motion/index.yaml
+  - !include ../views/remotes/index.yaml
+  - !include ../views/climate/index.yaml
+  - !include ../views/battery/index.yaml
+  # - !include ../views/vacuum/index.yaml

@@ -1,0 +1,4 @@
+icon: mdi:account
+strategy:
+  type: original-states
+title: Admin

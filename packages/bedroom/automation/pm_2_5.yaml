@@ -1,0 +1,18 @@
+bedroom/automation/pm_2_5:
+  # Alerts when fine particulate matter exceeds the safe bedroom threshold.
+  automation:
+    - alias: 'Bedroom - PM2.5 Alert'
+      id: 'bedroom/automation/pm_2_5'
+      mode: single
+      description: 'Notify when bedroom SEN55 PM2.5 exceeds 35 µg/m³.'
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.bedroom_sen55_pm_2_5
+          above: 35
+      action:
+        - service: notify.mobile_app_pixel_4_xl
+          data:
+            title: 'Bedroom Air Quality'
+            message: >-
+              PM2.5 is {{ states('sensor.bedroom_sen55_pm_2_5') }} µg/m³.
+              Consider running the air purifier.

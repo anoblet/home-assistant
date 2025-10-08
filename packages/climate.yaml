@@ -1,7 +1,11 @@
-# climate:
+# Deprecated Midea AC configuration retained for documentation only.
+# The integration was disabled after the hardware was decommissioned.
+# To restore it, migrate the block below into packages/climate/midea.yaml
+# and verify the required secrets are still valid.
+# climate/midea:
 #   climate:
-#     - platform: midea_ac
-#       host: !secret midea_host
+#     - host: !secret midea_host
 #       id: !secret midea_id
-#       token: !secret midea_token
 #       k1: !secret midea_k1
+#       platform: midea_ac
+#       token: !secret midea_token
