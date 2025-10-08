@@ -1,15 +1,5 @@
 {
   "servers": {
-    "chroma": {
-      "command": "uvx",
-      "args": [
-        "chroma-mcp",
-        "--client-type",
-        "persistent",
-        "--data-dir",
-        "${workspaceFolder}/.chroma"
-      ]
-    },
     "context7": {
       "type": "http",
       "url": "https://mcp.context7.com/mcp",
