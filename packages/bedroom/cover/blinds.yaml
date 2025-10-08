@@ -1,4 +1,5 @@
-bedroom/cover/blinds:
+# Package path: bedroom/cover/blinds
+bedroom_cover_blinds:
   cover:
     - entities:
         - cover.bedroom_blind_one
@@ -6,7 +7,7 @@ bedroom/cover/blinds:
         - cover.bedroom_blind_two
       name: Bedroom Blinds
       platform: group
-      unique_id: 'bedroom/cover/blinds'
+      unique_id: bedroom_blinds
   google_assistant:
     entity_config:
       cover.bedroom_blinds:

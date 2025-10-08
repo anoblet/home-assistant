@@ -1,4 +1,5 @@
-kitchen/climate/air_conditioner:
+# Package path: kitchen/climate/air_conditioner
+kitchen_climate_air_conditioner:
   google_assistant:
     entity_config:
       climate.kitchen_air_conditioner:
