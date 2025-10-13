@@ -7,7 +7,7 @@ living_room_blinds_manual:
       alias: Living Room - Blinds - Manual
       condition:
         - condition: template
-          value_template: "{{ trigger.to_state.context.user_id != None }}"
+          value_template: '{{ trigger.to_state.context.user_id != None }}'
       id: living_room_blinds_manual
       mode: single
       trigger:
@@ -22,8 +22,11 @@ living_room_blinds_manual:
             entity_id: input_boolean.living_room_blinds_automatic
           service: input_boolean.turn_on
       alias: Living Room - Blinds - Manual - Reset
+      condition:
+        - condition: template
+          value_template: "{{ is_state('sensor.season', 'summer') }}"
       id: living_room_blinds_manual_reset
       mode: single
       trigger:
         - platform: time
-          at: "00:00:00"
+          at: '12:00:00'
