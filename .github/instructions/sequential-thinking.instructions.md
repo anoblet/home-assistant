@@ -1,0 +1,1 @@
+../../copilot/instructions/tools/sequential-thinking.instructions.md

@@ -1,9 +1,1 @@
-kitchen_air_conditioner:
-  google_assistant:
-    entity_config:
-      climate.kitchen_air_conditioner:
-        expose: true
-  homeassistant:
-    customize:
-      climate.kitchen_air_conditioner:
-        friendly_name: Kitchen Air Conditioner
+# Moved to packages/kitchen/climate/air_conditioner.yaml

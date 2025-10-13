@@ -1,0 +1,16 @@
+# Legacy climate group configuration retained for reference.
+# To re-enable, restore the block below and verify the climate_group
+# integration still behaves as expected.
+# living_room/climate/thermostat:
+#   climate:
+#     - entities:
+#         - climate.living_room_thermostat_cool
+#         - climate.living_room_thermostat_heat
+#       name: Living Room Thermostat
+#       platform: climate_group
+#       temperature_unit: F
+#       unique_id: 'living_room/climate/thermostat'
+#   google_assistant:
+#     entity_config:
+#       climate.living_room_thermostat:
+#         expose: true

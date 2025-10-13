@@ -1,0 +1,9 @@
+cards:
+  - type: custom:generic-card
+    cards:
+      - type: 'custom:valetudo-map-card'
+        vacuum: 'valetudo_vacuum'
+icon: mdi:vacuum
+title: Vacuum
+path: vacuum
+type: custom:default-view

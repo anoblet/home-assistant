@@ -1,3 +1,6 @@
+# Shared helper toggled by area packages such as
+# packages/bedroom/presence/detection.yaml and
+# packages/living_room/presence/detection.yaml.
 common_presence_detection:
   google_assistant:
     entity_config:

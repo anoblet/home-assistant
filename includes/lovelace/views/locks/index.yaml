@@ -1,0 +1,10 @@
+cards:
+  - type: entities
+    entities:
+      - entity: lock.back_door
+        name: Back Door
+        secondary_info: 'last-changed'
+icon: mdi:lock
+path: locks
+title: Locks
+type: custom:default-view

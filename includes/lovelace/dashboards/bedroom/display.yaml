@@ -1,4 +1,4 @@
 decluttering_templates: !include_dir_named ../decluttering_templates/
 title: Display
 views:
-  - !include ../../views/bedroom/display.yaml
+  - !include ../../views/bedroom/display/index.yaml

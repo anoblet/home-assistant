@@ -1,4 +1,4 @@
-# filepath: /homeassistant/packages/bedroom/presence/detection.yaml
+# Relies on packages/common/presence/detection.yaml for the shared helper.
 bedroom_presence_detection:
   google_assistant:
     entity_config:

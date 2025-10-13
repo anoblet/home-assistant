@@ -1,0 +1,26 @@
+cards:
+  - cards:
+      - cards:
+          - entity: media_player.bathroom_speaker
+            type: media-control
+          - entity: media_player.bedroom_display
+            type: media-control
+          - entity: media_player.bedroom_tv
+            type: media-control
+          - entity: media_player.kitchen_speaker
+            type: media-control
+          - entity: media_player.living_room_speaker
+            type: media-control
+          - entity: media_player.living_room_tv
+            type: media-control
+        style:
+          gap: 1rem
+          grid-template-columns: 1fr
+        type: custom:grid-card
+    style:
+      padding: 1rem
+    type: custom:generic-card
+icon: mdi:cast
+path: media
+title: media
+type: custom:default-view
