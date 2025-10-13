@@ -14,9 +14,6 @@
   "license": "ISC",
   "author": "",
   "main": "index.js",
-  "workspaces": [
-    "packages\\custom-theme"
-  ],
   "scripts": {
     "bootstrap": "tsx copilot/bootstrap/index.ts",
     "commit": "wireit",
@@ -29,7 +26,6 @@
     "format": "prettier --write \"**/*.{js,json,yaml,yml}\""
   },
   "devDependencies": {
-    "genaiscript": "^1.125.2",
     "hass-cli": "github:anoblet/hass-cli",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
