@@ -2,6 +2,8 @@ homeassistant_reload:
   google_assistant:
     entity_config:
       script.homeassistant_reload:
+        aliases:
+          - 'Reload Home Assistant'
         expose: true
   script:
     homeassistant_reload:
