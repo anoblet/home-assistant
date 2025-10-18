@@ -4,17 +4,14 @@ living_room_light_manual:
         - delay: 5
         - condition: state
           entity_id: light.living_room_light_group_zigbee
-          state: "on"
-        - service: switch.turn_off
-          target:
-            entity_id: switch.adaptive_lighting_adapt_brightness_living_room
+          state: 'on'
         - data:
             entity_id: input_boolean.living_room_light_manual
           service: input_boolean.turn_on
       alias: Living Room Light Manual
       condition:
         - condition: template
-          value_template: "{{ trigger.to_state.context.user_id != None }}"
+          value_template: '{{ trigger.to_state.context.user_id != None }}'
       id: living_room_light_manual
       mode: single
       trigger:
