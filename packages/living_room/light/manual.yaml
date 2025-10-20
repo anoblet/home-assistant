@@ -16,7 +16,6 @@ living_room_light_manual:
       mode: single
       trigger:
         - entity_id:
-            - light.living_room_light_group_zigbee
             - light.living_room_ceiling_light_group_zigbee
             - light.living_room_floor_lamp
           platform: state
