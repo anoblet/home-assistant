@@ -20,7 +20,7 @@ background_music:
           target:
             entity_id: media_player.background_group_2 # Target media player group for volume adjustment
         - delay:
-            seconds: 10 # Short delay to ensure volume is set before playing media
+            seconds: 5 # Short delay to ensure volume is set before playing media
         # Step 2: Play a specific media item (e.g., a radio station) on the media player group
         - action: music_assistant.play_media
           data:
