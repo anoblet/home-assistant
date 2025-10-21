@@ -18,6 +18,8 @@ script_bedroom_tired:
             transition: 5
           target:
             entity_id: light.bedroom_light_group_zigbee
+        - delay:
+            seconds: 10
         - service: light.turn_off
           target:
             entity_id: light.bedroom_ceiling
