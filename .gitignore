@@ -33,6 +33,7 @@
 
 # Exclude
 custom_components
+docs/**/*
 esphome/secrets.yaml
 go2rtc.yaml
 known_devices.yaml

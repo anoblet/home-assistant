@@ -8,12 +8,12 @@ bedroom_presence_move_gate:
       condition:
         - condition: template
           value_template: >
-            {{ states('sensor.bedroom_ld2410c_move_gate') != "" }}
+            {{ states('sensor.bedroom_ld2410c_move_gate') not in ['unknown', 'unavailable', ''] }}
       action:
         - service: input_number.set_value
           data:
             entity_id: input_number.bedroom_ld2410c_last_move_gate
-            value: "{{ states('sensor.bedroom_ld2410c_move_gate') | int }}"
+            value: "{{ states('sensor.bedroom_ld2410c_move_gate') | int(0) }}"
       id: bedroom_presence_move_gate
   input_number:
     bedroom_ld2410c_last_move_gate:
