@@ -20,7 +20,7 @@ Always use the [official documentation](https://www.home-assistant.io/docs/) as 
 1. **Package Naming and IDs**:
    - Package names should be the file path relative to the packages folder
    - IDs and unique_ids should be the same as the package name
-   - Example: For file `packages/bedroom/light/bedside_lamp.yaml`, use `bedroom/light/bedside_lamp` as ID
+   - Example: For file `packages/bedroom/light/bedside_lamp.yaml`, use `bedroom_light_bedside_lamp` as ID
 
 2. **Documentation Reference**:
    - When using a specific integration, always reference documentation from https://www.home-assistant.io/integrations/
@@ -88,7 +88,7 @@ Always use the [official documentation](https://www.home-assistant.io/docs/) as 
    - Configure energy thresholds for different detection gates
 
 2. **Notifications**:
-   - Use `notify.mobile_app_pixel_4` as the `entity_id` for personal notifications
+   - Use `notify.mobile_app_pixel_4_xl` as the `entity_id` for personal notifications
 
 3. **Media Casting**:
    - Implement according to the [cast integration](https://www.home-assistant.io/integrations/cast/) documentation
@@ -136,99 +136,21 @@ Always use the [official documentation](https://www.home-assistant.io/docs/) as 
    - Organize devices by room in the UI with consistent naming
 
 4. **Code Reuse**:
-   - Use [blueprints](https://www.home-assistant.io/docs/blueprint/) for reusable automation patterns
    - Implement common ESPHome configurations as reusable packages
 
-5. **Lighting Control**:
-   - Use [adaptive_lighting](https://github.com/basnijholt/adaptive-lighting) principles
-   - Group lights by room and functionality
-   - Configure customized transitions for on/off actions
-
 6. **UI Customization**:
-   - Use Mushroom cards for a consistent UI experience
-   - Implement custom themes with appropriate settings
    - Create specialized dashboards for different device types
 
-## HACS and Custom Components
-
-1. **Configuration**:
-   - Include configuration references for custom components
-   - Document specific component versions if required
-   - Properly integrate adaptive_lighting, browser_mod, climate_group
-
-2. **Documentation**:
-   - Link to component documentation when available
-   - Note any special installation requirements
-
 3. **Custom Lovelace Cards**:
-   - Configure custom cards from HACS resources
+   - Use the custom `flex-card` and `graph-card` for advanced layouts
    - Use plotly-graph-card for sensor visualization
-   - Implement grid-card and mushroom components for clean layouts
-
-4. **Zigbee Integration**:
-   - Configure Zigbee2MQTT for device communication
-   - Use consistent friendly_name in Zigbee device configurations
-   - Organize devices by area and function type
 
 5. **MQTT Integration**:
-   - Use MQTT for communication with Zigbee devices and vacuum robots
+   - Use MQTT for communication with the vacuum.
    - Follow topic structure for consistent messaging
    - Implement proper payload formatting for device control
 
-## Configuration Reloading
-
-When I ask you to reload the configuration:
-1. Execute the following command in the terminal: `npx hass-cli call homeassistant reload_all`
-2. After reload completes, automatically check the `homeassistant.log` file for any new errors
-3. Report any errors or warnings found in the log file that may be related to the recent changes
-
-Always perform these steps in sequence without requiring additional prompting.
-
-## Conversation Logging
-
-When the user requests to log the conversation:
-
-1. **Log Structure**:
-   - Append to the `/root/config/CHAT.md` file
-   - Include the current date as a section header (## Month Day, Year)
-   - Give each conversation a descriptive title (### Conversation: [Title])
-   - Use the current date for timestamps
-
-2. **Content to Include**:
-   - **User Request**: Original user prompt in blockquote format
-   - **Assistant Action**: Brief description of changes made
-   - **User Correction**: Any corrections requested (if applicable)
-   - **Files Modified**: List of files edited
-   - **Summary**: Brief overview of what was accomplished
-   - **Configuration Reloaded**: Whether configuration was reloaded
-
-3. **Shortcut Command**:
-   - When user writes "Log this conversation", automatically append the current conversation to CHAT.md
-   - When user mentions "Add to log" or similar, treat as a request to update the conversation log
-
-4. **Format Example**:
-   ```markdown
-   ### Conversation: [Descriptive Title]
-   
-   **User Request:**
-   > [Original user request]
-   
-   **Assistant Action:**
-   [Description of changes made]
-   
-   **File Modified:**
-   `/root/config/[file path]`
-   
-   **Summary:**
-   [Brief overview of what was accomplished]
-   
-   **Configuration Reloaded:**
-   Yes/No, [command used if yes]
-   ```
-- Files in the `packages` folder should have this structure should be:
-
-```
-[paackage_name]:
-   [domain]
-     ...
-```
+- After every change, execute the following command in the terminal: `npx hass-cli call homeassistant reload_all`. Wait for the command to finish. An empty response is the sign of a successful reload. Check the `homeassistant.log` file for any new errors or warnings.
+- Do not use `mode: single` in automations since it is the default
+- Do not use empty conditions
+- Comments should be at the beginning of a code block, and not at the end.
