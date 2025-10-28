@@ -1,5 +1,7 @@
 # Instructions
 
+Reference: https://github.com/home-assistant/docs
+
 Use Github tools to reference the following repositories for every request:
 
 - https://github.com/home-assistant/core
