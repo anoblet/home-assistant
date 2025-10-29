@@ -1,4 +1,4 @@
-intent_script_printer_ender_time_left:
+intent_script_ender_time_left:
   intent_script:
     EnderTimeLeft:
       speech:

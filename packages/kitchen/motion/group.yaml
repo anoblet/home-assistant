@@ -1,4 +1,4 @@
-kitchen_motion_occupancy_group:
+kitchen_motion_group:
   binary_sensor:
     - platform: group
       name: "Kitchen Motion Occupancy Group"

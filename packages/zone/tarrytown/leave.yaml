@@ -14,7 +14,7 @@ zone_tarrytown_leave:
                 target:
                   entity_id: humidifier.bedroom_humidifier_virtual
     alias: Tarrytown - Andrew - Leave
-    id: zone_tarrytown_andrew_leave
+    id: zone_tarrytown_leave
     mode: single
     trigger:
       - entity_id: device_tracker.pixel_4_xl

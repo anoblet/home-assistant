@@ -1,4 +1,4 @@
-script_bedroom_tired:
+bedroom_script_tired:
   google_assistant:
     entity_config:
       script.bedroom_tired:

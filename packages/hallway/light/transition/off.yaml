@@ -1,4 +1,4 @@
-input_number_hallway_light_transition_off:
+hallway_light_transition_off:
   input_number:
     hallway_light_transition_off:
       max: 1000

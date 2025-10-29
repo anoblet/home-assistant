@@ -1,4 +1,4 @@
-hallway_motion_occupancy_group:
+hallway_motion_group:
   binary_sensor:
     - platform: group
       name: "Hallway Motion Occupancy Group"

@@ -1,4 +1,4 @@
-storage_room_printer_off:
+storage_room_printer_two_off:
   automation:
     action:
       - alias: 'Wait for the bed temperature to go below 40'
@@ -14,7 +14,7 @@ storage_room_printer_off:
       - condition: state
         entity_id: binary_sensor.storage_room_motion_occupancy
         state: 'off'
-    id: storage_room_printer_off
+    id: storage_room_printer_two_off
     mode: single
     trigger:
       - entity_id: binary_sensor.octoprint_printing

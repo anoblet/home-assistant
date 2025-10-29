@@ -1,4 +1,4 @@
-living_room_ld2410c_calibrate_still_mean:
+living_room_presence_calibrate_still_mean:
   script:
     living_room_ld2410c_calibrate_still_mean:
       sequence:

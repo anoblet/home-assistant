@@ -7,7 +7,7 @@ storage_room_motion_detected:
             - light.storage_room_lights
             - light.storage_room_printer
     alias: Storage Room - Motion - Detected
-    id: "storage_room_motion_detected"
+    id: storage_room_motion_detected
     mode: single
     trigger:
       - entity_id: binary_sensor.storage_room_motion_occupancy

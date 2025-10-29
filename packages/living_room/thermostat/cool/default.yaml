@@ -10,7 +10,7 @@ living_room_thermostat_cool_default:
       icon: mdi:thermostat
   automation:
     - alias: "Living Room - Thermostat - Cool - Default Reset"
-      id: living_room_thermostat_cool_default_reset
+      id: living_room_thermostat_cool_default
       mode: single
       trigger:
         - platform: time_pattern

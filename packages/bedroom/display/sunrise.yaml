@@ -8,7 +8,7 @@ bedroom_display_sunrise:
         entity_id: media_player.bedroom_display
     alias: Bedroom - Display - Volume - Sunrise
     description: ''
-    id: bedroom_display_volume_sunrise
+    id: bedroom_display_sunrise
     mode: single
     trigger:
       - event: sunrise

@@ -5,7 +5,7 @@ apartment_motion_night:
         target:
           entity_id: group.motion_common
     alias: Motion Common - Night
-    id: motion_common_night
+    id: apartment_motion_night
     mode: single
     trigger:
       - at: "22:00:00"

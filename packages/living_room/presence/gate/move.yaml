@@ -1,4 +1,4 @@
-living_room_ld2410c_move_gate:
+living_room_presence_gate_move:
   automation:
     - alias: 'Living Room Presence Move Gate'
       mode: single
@@ -14,7 +14,7 @@ living_room_ld2410c_move_gate:
           data:
             entity_id: input_number.living_room_ld2410c_last_move_gate
             value: "{{ states('sensor.living_room_ld2410c_move_gate') | int }}"
-      id: living_room_ld2410c_move_gate
+      id: living_room_presence_gate_move
   input_number:
     living_room_ld2410c_last_move_gate:
       max: 8

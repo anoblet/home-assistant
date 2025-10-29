@@ -1,11 +1,11 @@
-common_group_night:
+media_player_common_group_night:
   automation:
     action:
       - service: media_player.turn_off
         target:
           entity_id: media_player.common_group
     alias: Common Group - Night
-    id: common_group_night
+    id: media_player_common_group_night
     mode: single
     trigger:
       - at: "22:00:00"

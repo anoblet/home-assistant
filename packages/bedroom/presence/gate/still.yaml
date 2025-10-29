@@ -1,4 +1,4 @@
-bedroom_presence_still_gate:
+bedroom_presence_gate_still:
   automation:
     - alias: 'Bedroom Presence Still Gate'
       mode: single
@@ -14,7 +14,7 @@ bedroom_presence_still_gate:
           data:
             entity_id: input_number.bedroom_presence_last_still_gate
             value: "{{ states('sensor.bedroom_presence_still_gate') | int }}"
-      id: bedroom_presence_still_gate
+      id: bedroom_presence_gate_still
   input_number:
     bedroom_presence_last_still_gate:
       max: 13

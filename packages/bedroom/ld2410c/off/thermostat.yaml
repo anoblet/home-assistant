@@ -1,4 +1,4 @@
-bedroom_presence_off_thermostat:
+bedroom_ld2410c_off_thermostat:
   automation:
     action:
       - choose:
@@ -12,7 +12,7 @@ bedroom_presence_off_thermostat:
                   entity_id:
                   - climate.bedroom_thermostat
     alias: Bedroom - Presence - Off - Thermostat
-    id: bedroom_presence_off_thermostat
+    id: bedroom_ld2410c_off_thermostat
     mode: single
     trigger:
       - entity_id: binary_sensor.bedroom_ld2410c_presence

@@ -1,4 +1,4 @@
-automation_light_living_room_manual_reset:
+living_room_light_manual_reset:
   automation:
     - action:
         - service: switch.turn_on
@@ -8,7 +8,7 @@ automation_light_living_room_manual_reset:
             entity_id: input_boolean.living_room_light_manual
           service: input_boolean.turn_off
       alias: Light - Living Room - Manual - Reset
-      id: light_living_room_manual_reset
+      id: living_room_light_manual_reset
       mode: single
       trigger:
         - entity_id: light.living_room_light_group_zigbee

@@ -8,7 +8,7 @@ bathroom_light_reset:
     condition:
       - condition: template
         value_template: "{{ trigger.to_state.context.user_id != None }}"
-    id: bathroom_light_manual_reset
+    id: bathroom_light_reset
     mode: single
     trigger:
       - entity_id: light.bathroom_light_group_zigbee

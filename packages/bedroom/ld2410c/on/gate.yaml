@@ -1,4 +1,4 @@
-bedroom_presence_on_gate:
+bedroom_ld2410c_on_gate:
   automation:
     action:
       - service: input_number.set_value
@@ -7,7 +7,7 @@ bedroom_presence_on_gate:
         target:
           entity_id: input_number.bedroom_ld2410c_last_on_gate
     alias: Bedroom - Presence - On - Gate
-    id: bedroom_presence_on_gate
+    id: bedroom_ld2410c_on_gate
     mode: single
     trigger:
       - entity_id: binary_sensor.bedroom_ld2410c_presence

@@ -1,11 +1,11 @@
-bedroom_carbon_dioxide_maximum:
+bedroom_climate_carbon-dioxide_maximum:
   automation:
     - action:
         - data:
             message: Bedroom CO2 is > 2000ppm.
           service: notify.mobile_app_pixel_4_xl
       alias: Bedroom - Carbon Dioxide - Maximum
-      id: bedroom_carbon_dioxide_maximum
+      id: bedroom_climate_carbon-dioxide_maximum
       mode: single
       trigger:
         - platform: template

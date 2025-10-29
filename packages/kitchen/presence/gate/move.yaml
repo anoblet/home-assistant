@@ -1,4 +1,4 @@
-kitchen_ld2410c_move_gate:
+kitchen_presence_gate_move:
   automation:
     - alias: 'Kitchen Presence Move Gate'
       mode: single
@@ -14,7 +14,7 @@ kitchen_ld2410c_move_gate:
           data:
             entity_id: input_number.kitchen_ld2410c_last_move_gate
             value: "{{ states('sensor.kitchen_ld2410c_move_gate') | int(0) }}"
-      id: kitchen_ld2410c_move_gate
+      id: kitchen_presence_gate_move
   input_number:
     kitchen_ld2410c_last_move_gate:
       max: 8

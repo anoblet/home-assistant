@@ -1,4 +1,4 @@
-bedroom_presence_gate:
+bedroom_ld2410c_gate:
   input_number:
     bedroom_ld2410c_last_off_gate:
       max: 8

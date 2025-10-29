@@ -1,4 +1,4 @@
-living_room_ld2410c_still_gate:
+living_room_presence_gate_still:
   automation:
     - alias: 'Living Room Presence Still Gate'
       mode: single
@@ -14,7 +14,7 @@ living_room_ld2410c_still_gate:
           data:
             entity_id: input_number.living_room_ld2410c_last_still_gate
             value: "{{ states('sensor.living_room_ld2410c_still_gate') | int }}"
-      id: living_room_ld2410c_still_gate
+      id: living_room_presence_gate_still
   input_number:
     living_room_ld2410c_last_still_gate:
       max: 8

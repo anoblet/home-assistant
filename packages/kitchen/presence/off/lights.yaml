@@ -1,4 +1,4 @@
-kitchen_ld2410c_off_lights:
+kitchen_presence_off_lights:
   automation:
     action:
       - service: light.turn_off
@@ -9,7 +9,7 @@ kitchen_ld2410c_off_lights:
           transition: 60
     alias: Kitchen - Presence - Off - Lights
     description: Turn off kitchen lights when presence is no longer detected
-    id: kitchen_ld2410c_off_lights
+    id: kitchen_presence_off_lights
     mode: single
     condition:
       - condition: state

@@ -1,4 +1,4 @@
-bedroom_presence_on_air_purifier:
+bedroom_ld2410c_on_air_purifier:
   automation:
     action:
       - service: fan.set_preset_mode
@@ -12,7 +12,7 @@ bedroom_presence_on_air_purifier:
       #   target:
       #     entity_id: fan.bedroom_air_purifier
     alias: Bedroom - Presence - On - Air Purifier
-    id: bedroom_presence_on_air_purifier
+    id: bedroom_ld2410c_on_air_purifier
     mode: single
     trigger:
       - entity_id: binary_sensor.bedroom_ld2410c_presence

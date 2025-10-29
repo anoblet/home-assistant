@@ -1,4 +1,4 @@
-kitchen_ld2410c_still_gate:
+kitchen_presence_gate_still:
   automation:
     - alias: 'Kitchen Presence Still Gate'
       mode: single
@@ -14,7 +14,7 @@ kitchen_ld2410c_still_gate:
           data:
             entity_id: input_number.kitchen_ld2410c_last_still_gate
             value: "{{ states('sensor.kitchen_ld2410c_still_gate') | int(0) }}"
-      id: kitchen_ld2410c_still_gate
+      id: kitchen_presence_gate_still
   input_number:
     kitchen_ld2410c_last_still_gate:
       max: 8

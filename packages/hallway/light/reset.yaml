@@ -8,7 +8,7 @@ hallway_light_reset:
     condition:
       - condition: template
         value_template: "{{ trigger.to_state.context.user_id != None }}"
-    id: hallway_light_manual_reset
+    id: hallway_light_reset
     mode: single
     trigger:
       - entity_id: light.hallway_light_group_zigbee

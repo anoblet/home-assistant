@@ -8,7 +8,7 @@ bedroom_display_sunset:
         entity_id: media_player.bedroom_display
     alias: Bedroom - Display - Volume - Sunset
     description: ''
-    id: bedroom_display_volume_sunset
+    id: bedroom_display_sunset
     mode: single
     trigger:
       - event: sunset

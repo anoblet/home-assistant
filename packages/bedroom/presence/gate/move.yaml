@@ -1,4 +1,4 @@
-bedroom_presence_move_gate:
+bedroom_presence_gate_move:
   automation:
     - alias: 'Bedroom Presence Move Gate'
       mode: single
@@ -14,7 +14,7 @@ bedroom_presence_move_gate:
           data:
             entity_id: input_number.bedroom_presence_last_move_gate
             value: "{{ states('sensor.bedroom_presence_move_gate') | int }}"
-      id: bedroom_presence_move_gate
+      id: bedroom_presence_gate_move
   input_number:
     bedroom_presence_last_move_gate:
       max: 13

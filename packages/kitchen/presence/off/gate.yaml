@@ -1,4 +1,4 @@
-kitchen_ld2410c_off_gate:
+kitchen_presence_off_gate:
   automation:
     action:
       - service: input_number.set_value
@@ -7,7 +7,7 @@ kitchen_ld2410c_off_gate:
         target:
           entity_id: input_number.kitchen_ld2410c_last_off_gate
     alias: Kitchen - Presence - Off - Gate
-    id: kitchen_ld2410c_off_gate
+    id: kitchen_presence_off_gate
     mode: single
     condition:
       - condition: state
