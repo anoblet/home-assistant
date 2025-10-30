@@ -23,7 +23,8 @@
     "sort-package-json": "wireit",
     "prepare": "husky",
     "lint-staged": "lint-staged",
-    "format": "prettier --write \"**/*.{js,json,yaml,yml}\""
+    "format": "prettier --write \"**/*.{js,json,yaml,yml}\"",
+    "reload": "npx hass-cli call homeassistant reload_all"
   },
   "devDependencies": {
     "hass-cli": "github:anoblet/hass-cli",
