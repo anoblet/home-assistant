@@ -1,0 +1,72 @@
+frontend_themes_unicorn_vampire:
+  frontend:
+    themes:
+      'Unicorn Vampire':
+        # Main palette
+        primary-color: '#d4b5d4'
+        accent-color: '#a0d9ae'
+        dark-primary-color: '#d4b5d4'
+        light-primary-color: '#d4b5d4'
+        mdc-theme-primary: '#d4b5d4'
+        mdc-theme-on-primary: '#2e2d38'
+        mdc-theme-secondary: '#a0d9ae'
+        mdc-theme-on-secondary: '#2e2d38'
+        mdc-theme-surface: '#2e2d38'
+        mdc-theme-background: '#292831'
+
+        # Text colors
+        primary-text-color: '#cccccc'
+        text-primary-color: 'var(--primary-text-color)'
+        secondary-text-color: '#d4b5d4'
+        disabled-text-color: '#5c6773'
+        label-badge-text-color: '#d4b5d4'
+        label-badge-background-color: '#2e2d38'
+        label-badge-border-color: '#d4b5d4'
+
+        # Backgrounds
+        primary-background-color: '#292831'
+        secondary-background-color: '#2e2d38'
+        card-background-color: '#2e2d38'
+        paper-card-background-color: '#2e2d38'
+        paper-dialog-background-color: '#2e2d38'
+        paper-listbox-background-color: '#2e2d38'
+        divider-color: 'rgba(212, 181, 212, 0.24)'
+
+        # Headers and navigation
+        app-header-background-color: '#2e2d38'
+        app-header-text-color: '#d4b5d4'
+        sidebar-background-color: '#2e2d38'
+        sidebar-icon-color: '#d4b5d4'
+        sidebar-text-color: '#d4b5d4'
+
+        # Cards and badges
+        paper-card-header-color: '#eaeab1'
+        ha-card-border-color: 'rgba(212, 181, 212, 0.12)'
+
+        # Controls
+        paper-item-icon-color: '#d4b5d4'
+        paper-item-icon-active-color: '#a0d9ae'
+        paper-toggle-button-checked-button-color: '#a0d9ae'
+        paper-toggle-button-checked-bar-color: '#a0d9ae'
+        paper-toggle-button-checked-ink-color: '#a0d9ae'
+        paper-toggle-button-unchecked-button-color: '#5c6773'
+        paper-toggle-button-unchecked-bar-color: '#5c6773'
+        paper-toggle-button-unchecked-ink-color: '#5c6773'
+        paper-slider-knob-color: '#d4b5d4'
+        paper-slider-knob-start-color: '#d4b5d4'
+        paper-slider-active-color: '#d4b5d4'
+        paper-slider-container-color: 'linear-gradient(#292831, #2e2d38) no-repeat'
+        paper-slider-secondary-color: '#2e2d38'
+        paper-slider-disabled-active-color: '#5c6773'
+        paper-slider-disabled-secondary-color: '#5c6773'
+
+        # State colors
+        state-active-color: '#d4b5d4'
+        state-inactive-color: '#5c6773'
+        state-alarm_control_panel-armed_away-color: '#a0d9ae'
+
+        # Status accents
+        success-color: '#a0d9ae'
+        warning-color: '#cca700'
+        error-color: '#f44747'
+        info-color: '#3794ff'
