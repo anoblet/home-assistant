@@ -13,7 +13,7 @@ kitchen_freezer:
         - alias: 'Send recurring freezer door alerts until closed'
           repeat:
             sequence:
-              - service: notify.mobile_app_pixel_4
+              - service: notify.mobile_app_pixel_4_xl
                 data:
                   title: 'Kitchen Freezer Open'
                   message: 'The kitchen freezer door has been open for over one minute. Please close it.'
