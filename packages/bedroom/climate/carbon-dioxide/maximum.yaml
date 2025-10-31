@@ -1,4 +1,4 @@
-bedroom_carbon_dioxide_maximum:
+bedroom_climate_carbon-dioxide_maximum:
   automation:
     - action:
         - data:

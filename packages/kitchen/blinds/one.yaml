@@ -1,4 +1,4 @@
-kitchen_blind_one:
+kitchen_blinds_one:
   google_assistant:
     entity_config:
       cover.kitchen_blind_one:

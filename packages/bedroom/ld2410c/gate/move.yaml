@@ -1,4 +1,4 @@
-bedroom_presence_move_gate:
+bedroom_ld2410c_gate_move:
   automation:
     - alias: 'Bedroom LD2410C Move Gate'
       mode: single

@@ -1,4 +1,4 @@
-apartment_motion_night:
+apartment_motion_reset:
   automation:
     action:
       - service: input_boolean.turn_on

@@ -1,4 +1,4 @@
-living_room_ld2410c_off_air_purifier:
+living_room_presence_off_air_purifier:
   automation:
     action:
       - data:

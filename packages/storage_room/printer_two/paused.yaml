@@ -1,4 +1,4 @@
-storage_room_printer_paused:
+storage_room_printer_two_paused:
   automation:
     action:
       - data:

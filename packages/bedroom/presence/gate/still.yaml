@@ -1,4 +1,4 @@
-bedroom_presence_still_gate:
+bedroom_presence_gate_still:
   automation:
     - alias: 'Bedroom Presence Still Gate'
       mode: single

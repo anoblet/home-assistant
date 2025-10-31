@@ -1,4 +1,4 @@
-bedroom_presence_still_gate:
+bedroom_ld2410c_gate_still:
   automation:
     - alias: 'Bedroom LD2410C Still Gate'
       mode: single

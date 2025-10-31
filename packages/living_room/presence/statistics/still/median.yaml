@@ -1,4 +1,4 @@
-living_room_ld2410c_statistics_median:
+living_room_presence_statistics_still_median:
   sensor:
     - platform: statistics
       name: 'Living Room LD2410C G0 Still Energy Median'

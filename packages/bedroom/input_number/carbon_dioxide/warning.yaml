@@ -1,4 +1,4 @@
-input_number_bedroom_carbon_dioxide_warning:
+bedroom_input_number_carbon_dioxide_warning:
   input_number:
     bedroom_carbon_dioxide_warning:
       max: 10000

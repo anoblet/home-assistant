@@ -1,4 +1,4 @@
-bedroom_presence_off_fan_ceiling:
+bedroom_ld2410c_off_ceiling_fan:
   automation:
     action:
       - service: switch.turn_on

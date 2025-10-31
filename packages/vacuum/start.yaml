@@ -1,4 +1,4 @@
-automation_vacuum_start:
+vacuum_start:
   automation:
     - action:
         - service: script.vacuum_start

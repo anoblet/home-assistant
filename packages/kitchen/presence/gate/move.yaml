@@ -1,4 +1,4 @@
-kitchen_ld2410c_move_gate:
+kitchen_presence_gate_move:
   automation:
     - alias: 'Kitchen Presence Move Gate'
       mode: single

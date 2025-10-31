@@ -1,4 +1,4 @@
-script_bedroom_cast_display:
+bedroom_script_cast_bedroom_display:
   script:
     bedroom_cast_display:
       alias: Bedroom - Cast - Display

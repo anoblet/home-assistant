@@ -1,4 +1,4 @@
-bedroom_presence_last_still_gate_max:
+bedroom_presence_statistics_still_last_gate_max:
   sensor:
     - platform: statistics
       name: 'Bedroom Presence Last Still Gate Max'

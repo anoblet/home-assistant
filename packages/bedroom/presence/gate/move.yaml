@@ -1,4 +1,4 @@
-bedroom_presence_move_gate:
+bedroom_presence_gate_move:
   automation:
     - alias: 'Bedroom Presence Move Gate'
       mode: single
