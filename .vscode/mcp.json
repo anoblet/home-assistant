@@ -1,7 +1,7 @@
 {
   "servers": {
     "chroma": {
-      "command": "uvx",
+      "command": "/root/.local/bin/uvx",
       "args": [
         "chroma-mcp",
         "--client-type",
@@ -31,7 +31,7 @@
     },
     "serena": {
       "type": "stdio",
-      "command": "uvx",
+      "command": "/root/.local/bin/uvx",
       "args": [
         "--from",
         "git+https://github.com/oraios/serena",
@@ -42,7 +42,7 @@
       ]
     },
     "time": {
-      "command": "uvx",
+      "command": "/root/.local/bin/uvx",
       "args": ["mcp-server-time"]
     }
   }

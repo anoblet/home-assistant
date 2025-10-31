@@ -3,8 +3,7 @@ reminders_todo:
     # Reminds about every pending to-do item while the helper is enabled
     - alias: 'To-do Task Reminder'
       id: 'reminders_todo_task_reminder'
-      mode: single
-      description: 'Sends repeating reminders for all pending tasks across every to-do list while the reminder helper is enabled.'
+      description: 'Sends repeating reminders for pending tasks from the My Tasks list while the reminder helper is enabled.'
       trigger:
         - platform: time_pattern
           minutes: '/30'
@@ -16,81 +15,92 @@ reminders_todo:
           entity_id: input_boolean.homeassistant_todo_reminder
           state: 'on'
       variables:
-        todo_entities: >-
-          {{ states.todo | map(attribute='entity_id') | list }}
+        todo_entity: 'todo.my_tasks'
+        list_name: >-
+          {{ state_attr(todo_entity, 'friendly_name') or todo_entity | replace('todo.', '') | replace('_', ' ') | title }}
+        notification_tag: >-
+          {{ 'todo-reminder-' ~ (todo_entity | replace('todo.', '') | replace('_', '-')) }}
+        todo_url: >-
+          {{ 'https://31w3e.andrewnoblet.com/todo?entity_id=' ~ todo_entity }}
       action:
         - choose:
             - conditions:
                 - condition: template
                   value_template: >-
-                    {{ todo_entities | length > 0 }}
+                    {{ states(todo_entity) not in ['unknown', 'unavailable'] }}
               sequence:
-                - repeat:
-                    for_each: '{{ todo_entities }}'
-                    sequence:
-                      - service: todo.get_items
-                        data:
-                          entity_id: '{{ repeat.item }}'
-                          status:
-                            - 'needs_action'
-                        response_variable: pending_list
-                      - variables:
-                          pending_items: >-
-                            {{ pending_list.get(repeat.item, {}).get('items', []) }}
-                          list_name: >-
-                            {{ state_attr(repeat.item, 'friendly_name') or repeat.item | replace('todo.', '') | replace('_', ' ') | title }}
-                          notification_tag: >-
-                            {{ 'todo-reminder-' ~ (repeat.item | replace('todo.', '') | replace('_', '-')) }}
-                          notification_message: >-
-                            {{ list_name }} pending tasks:
-                            {% for item in pending_items %}
-                            - {{ item.summary }}
-                            {% endfor %}
-                      - choose:
-                          - conditions:
-                              - condition: template
-                                value_template: >-
-                                  {{ pending_items | length > 0 }}
-                            sequence:
-                              - service: persistent_notification.create
-                                data:
-                                  title: 'To-do Reminder'
-                                  message: >-
-                                    {{ notification_message }}
-                                  notification_id: '{{ notification_tag }}'
-                              - choose:
-                                  - conditions:
-                                      - condition: template
-                                        value_template: >-
-                                          {{ 'mobile_app_pixel_4' in services.get('notify', {}) }}
-                                    sequence:
-                                      - service: notify.mobile_app_pixel_4_xl
-                                        data:
-                                          title: 'To-do Reminder'
-                                          message: >-
-                                            {{ notification_message }}
-                                          data:
-                                            tag: '{{ notification_tag }}'
-                                  - conditions:
-                                      - condition: template
-                                        value_template: >-
-                                          {{ 'mobile_app_pixel_4_xl' in services.get('notify', {}) }}
-                                    sequence:
-                                      - service: notify.mobile_app_pixel_4_xl
-                                        data:
-                                          title: 'To-do Reminder'
-                                          message: >-
-                                            {{ notification_message }}
-                                          data:
-                                            tag: '{{ notification_tag }}'
-                                default:
-                                  - service: notify.notify
+                - service: todo.get_items
+                  data:
+                    entity_id: '{{ todo_entity }}'
+                    status:
+                      - 'needs_action'
+                  response_variable: pending_list
+                - variables:
+                    pending_items: >-
+                      {{ pending_list.get(todo_entity, {}).get('items', []) }}
+                    notification_message: >-
+                      {% set lines = [list_name ~ ' — Pending Tasks'] %}
+                      {% if pending_items %}
+                        {% set _ = lines.append('') %}
+                        {% for item in pending_items %}
+                          {% set _ = lines.append('• ' ~ item.summary) %}
+                        {% endfor %}
+                      {% else %}
+                        {% set _ = lines.append('') %}
+                        {% set _ = lines.append('No pending tasks 🎉') %}
+                      {% endif %}
+                      {{ lines | join('\n') }}
+                - choose:
+                    - conditions:
+                        - condition: template
+                          value_template: >-
+                            {{ pending_items | length > 0 }}
+                      sequence:
+                        - service: persistent_notification.create
+                          data:
+                            title: 'To-do Reminder'
+                            message: >-
+                              {{ notification_message }}
+                            notification_id: '{{ notification_tag }}'
+                        - choose:
+                            - conditions:
+                                - condition: template
+                                  value_template: >-
+                                    {{ 'mobile_app_pixel_4' in services.get('notify', {}) }}
+                              sequence:
+                                - service: notify.mobile_app_pixel_4_xl
+                                  data:
+                                    title: 'To-do Reminder'
+                                    message: >-
+                                      {{ notification_message }}
                                     data:
-                                      title: 'To-do Reminder'
-                                      message: >-
-                                        {{ notification_message }}
-                                      data:
-                                        tag: '{{ notification_tag }}'
+                                      tag: '{{ notification_tag }}'
+                                      url: '{{ todo_url }}'
+                                      clickAction: '{{ todo_url }}'
+                            - conditions:
+                                - condition: template
+                                  value_template: >-
+                                    {{ 'mobile_app_pixel_4_xl' in services.get('notify', {}) }}
+                              sequence:
+                                - service: notify.mobile_app_pixel_4_xl
+                                  data:
+                                    title: 'To-do Reminder'
+                                    message: >-
+                                      {{ notification_message }}
+                                    data:
+                                      tag: '{{ notification_tag }}'
+                                      url: '{{ todo_url }}'
+                                      clickAction: '{{ todo_url }}'
+                          default:
+                            - service: notify.notify
+                              data:
+                                title: 'To-do Reminder'
+                                message: >-
+                                  {{ notification_message }}
+                                data:
+                                  tag: '{{ notification_tag }}'
+                                  url: '{{ todo_url }}'
+                                  clickAction: '{{ todo_url }}'
   input_boolean:
     homeassistant_todo_reminder:
       name: 'To-do Reminders'
