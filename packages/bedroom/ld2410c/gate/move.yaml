@@ -1,7 +1,6 @@
 bedroom_ld2410c_gate_move:
   automation:
     - alias: 'Bedroom LD2410C Move Gate'
-      mode: single
       trigger:
         - platform: state
           entity_id: sensor.bedroom_ld2410c_move_gate
@@ -14,7 +13,7 @@ bedroom_ld2410c_gate_move:
           data:
             entity_id: input_number.bedroom_ld2410c_last_move_gate
             value: "{{ states('sensor.bedroom_ld2410c_move_gate') | int(0) }}"
-      id: bedroom_presence_move_gate
+      id: bedroom_ld2410c_move_gate
   input_number:
     bedroom_ld2410c_last_move_gate:
       max: 8

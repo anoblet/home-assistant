@@ -5,16 +5,15 @@ bedroom_ld2410c_on_thermostat:
           - conditions:
               - condition: state
                 entity_id: input_boolean.bedroom_thermostat_manual
-                state: "off"
+                state: 'off'
             sequence:
               - service: climate.turn_on
                 target:
                   entity_id:
                     - climate.bedroom_thermostat
     alias: Bedroom - Presence - On - Thermostat
-    id: bedroom_presence_on_thermostat
-    mode: single
+    id: bedroom_ld2410c_on_thermostat
     trigger:
       - entity_id: binary_sensor.bedroom_ld2410c_presence
         platform: state
-        to: "on"
+        to: 'on'
