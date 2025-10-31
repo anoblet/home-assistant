@@ -6,9 +6,8 @@ bedroom_ld2410c_off_humidifier:
           entity_id:
             - humidifier.bedroom_humidifier_virtual
     alias: Bedroom - Presence - Off - Humidifier
-    id: bedroom_presence_off_humidifier
-    mode: single
+    id: bedroom_ld2410c_off_humidifier
     trigger:
       - entity_id: binary_sensor.bedroom_ld2410c_presence
         platform: state
-        to: "off"
+        to: 'off'

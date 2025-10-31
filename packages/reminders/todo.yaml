@@ -62,7 +62,7 @@ reminders_todo:
                                   - conditions:
                                       - condition: template
                                         value_template: >-
-                                          {{ has_service('notify', 'mobile_app_pixel_4') }}
+                                          {{ 'mobile_app_pixel_4' in services.get('notify', {}) }}
                                     sequence:
                                       - service: notify.mobile_app_pixel_4
                                         data:
@@ -74,7 +74,7 @@ reminders_todo:
                                   - conditions:
                                       - condition: template
                                         value_template: >-
-                                          {{ has_service('notify', 'mobile_app_pixel_4_xl') }}
+                                          {{ 'mobile_app_pixel_4_xl' in services.get('notify', {}) }}
                                     sequence:
                                       - service: notify.mobile_app_pixel_4_xl
                                         data:

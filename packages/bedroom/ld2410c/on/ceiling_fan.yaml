@@ -5,9 +5,8 @@ bedroom_ld2410c_on_ceiling_fan:
         target:
           entity_id: switch.bedroom_ceiling_fan
     alias: Bedroom - Presence - On - Ceiling Fan
-    id: bedroom_presence_on_fan_ceiling
-    mode: single
+    id: bedroom_ld2410c_on_fan_ceiling
     trigger:
       - entity_id: binary_sensor.bedroom_ld2410c_presence
         platform: state
-        to: "on"
+        to: 'on'
