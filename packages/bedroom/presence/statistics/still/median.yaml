@@ -1,4 +1,4 @@
-bedroom_presence_statistics_median:
+bedroom_presence_statistics_still_median:
   sensor:
     - platform: statistics
       name: 'Bedroom Presence G0 Still Energy Median'

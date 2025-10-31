@@ -1,4 +1,4 @@
-bathroom_contact_on_exhaust_fan:
+bathroom_contact_on:
   automation:
     - action:
         - service: switch.turn_off

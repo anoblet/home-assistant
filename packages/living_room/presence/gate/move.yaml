@@ -1,4 +1,4 @@
-living_room_ld2410c_move_gate:
+living_room_presence_gate_move:
   automation:
     - alias: 'Living Room Presence Move Gate'
       mode: single

@@ -1,4 +1,4 @@
-kitchen_ld2410c_gate_off:
+kitchen_presence_gate_off:
   input_number:
     kitchen_ld2410c_last_off_gate:
       max: 8

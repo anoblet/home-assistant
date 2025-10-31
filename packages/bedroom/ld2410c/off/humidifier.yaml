@@ -1,4 +1,4 @@
-bedroom_presence_off_humidifier:
+bedroom_ld2410c_off_humidifier:
   automation:
     action:
       - service: humidifier.turn_off

@@ -1,4 +1,4 @@
-bedroom_presence_on_thermostat:
+bedroom_ld2410c_on_thermostat:
   automation:
     action:
       - choose:

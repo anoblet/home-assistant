@@ -1,4 +1,4 @@
-bedroom_presence_off_air_purifier:
+bedroom_ld2410c_off_air_purifier:
   automation:
     action:
       - service: fan.set_percentage

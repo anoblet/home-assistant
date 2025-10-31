@@ -1,4 +1,4 @@
-living_room_ld2410c_still_gate:
+living_room_presence_gate_still:
   automation:
     - alias: 'Living Room Presence Still Gate'
       mode: single

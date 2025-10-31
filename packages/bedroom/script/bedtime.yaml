@@ -1,4 +1,4 @@
-script_bedroom_bedtime:
+bedroom_script_bedtime:
   script:
     bedroom_bedtime:
       alias: Bedroom - Bedtime

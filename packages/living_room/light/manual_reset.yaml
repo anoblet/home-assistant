@@ -1,4 +1,4 @@
-automation_light_living_room_manual_reset:
+living_room_light_manual_reset:
   automation:
     - action:
         - service: switch.turn_on

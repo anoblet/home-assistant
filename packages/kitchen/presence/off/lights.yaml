@@ -1,4 +1,4 @@
-kitchen_ld2410c_off_lights:
+kitchen_presence_off_lights:
   automation:
     action:
       - service: light.turn_off

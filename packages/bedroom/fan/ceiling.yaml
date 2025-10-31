@@ -1,4 +1,4 @@
-bedroom_ceiling_fan_google_assistant:
+bedroom_fan_ceiling:
   google_assistant:
     entity_config:
       switch.bedroom_ceiling_fan:

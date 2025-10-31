@@ -1,4 +1,4 @@
-bedroom_presence_off_gate:
+bedroom_ld2410c_off_gate:
   automation:
     action:
       - service: input_number.set_value

@@ -1,4 +1,4 @@
-intent_script_occupancy_bathroom:
+bathroom_intent_script_occupancy:
   intent_script:
     OccupancyBathroom:
       speech:

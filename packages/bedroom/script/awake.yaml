@@ -1,4 +1,4 @@
-script_bedroom_awake:
+bedroom_script_awake:
   google_assistant:
     entity_config:
       script.bedroom_awake:

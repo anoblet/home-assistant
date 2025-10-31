@@ -1,4 +1,4 @@
-climate_temperature_comforatble:
+climate_temperature_comfortable:
   automation:
     - action:
         - data:

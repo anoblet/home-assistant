@@ -1,4 +1,4 @@
-living_room_ld2410c_mode_reset:
+living_room_presence_mode_reset:
   automation:
     - action:
         action: select.select_option

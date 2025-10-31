@@ -1,4 +1,4 @@
-bedroom_presence_statistics:
+bedroom_ld2410c_statistics:
   sensor:
     - platform: statistics
       name: "Bedroom LD2410C G0 Move Energy Max"

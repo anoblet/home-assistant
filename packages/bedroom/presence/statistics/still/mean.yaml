@@ -1,4 +1,4 @@
-bedroom_presence_statistics_mean:
+bedroom_presence_statistics_still_mean:
   sensor:
     - platform: statistics
       name: 'Bedroom Presence G0 Move Energy Mean'

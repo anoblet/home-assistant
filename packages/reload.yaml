@@ -1,4 +1,4 @@
-homeassistant_reload:
+reload:
   google_assistant:
     entity_config:
       script.homeassistant_reload:

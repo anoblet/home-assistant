@@ -1,4 +1,4 @@
-living_room_ld2410c_on_lights:
+living_room_presence_on_lights:
   automation:
     action:
       - service: light.turn_on

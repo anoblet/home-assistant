@@ -1,4 +1,4 @@
-common_group_volume_sunset:
+media_player_common_group_volume_reset:
   automation:
     action:
       - data:
