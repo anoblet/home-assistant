@@ -1,5 +1,5 @@
 # Separate battery sensor for Valetudo vacuum to address deprecation warning
-mqtt_vacuum_battery_fix:
+vacuum_battery_fix:
   mqtt:
     sensor:
       - device_class: battery

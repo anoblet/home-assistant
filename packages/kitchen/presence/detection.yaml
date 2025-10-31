@@ -1,5 +1,5 @@
 # Relies on packages/common/presence/detection.yaml for the shared toggle.
-kitchen_ld2410c:
+kitchen_presence_detection:
   google_assistant:
     entity_config:
       input_boolean.kitchen_ld2410c:
