@@ -37,7 +37,7 @@ frontend_themes_unicorn_vampire:
         app-header-text-color: '#d4b5d4'
         sidebar-background-color: '#2e2d38'
         sidebar-icon-color: '#d4b5d4'
-        sidebar-text-color: '#d4b5d4'
+        sidebar-text-color: '#cccccc'
 
         # Cards and badges
         paper-card-header-color: '#eaeab1'
