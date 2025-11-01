@@ -1,12 +1,15 @@
 {
   "chat.agent.maxRequests": 10000,
-  "chat.agent.todoList": {
-    "v2": true
-  },
   "chat.modeFilesLocations": {
     "copilot/awesome-copilot/chatmodes": true,
     "copilot/chatmodes": true
   },
-  "github.copilot.chat.alternateGptPrompt.enabled": true,
-  "github.copilot.chat.gpt5AlternatePrompt": "codex"
+  "chat.promptFilesLocations": {
+    "copilot/prompts": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
+  },
+  "editor.formatOnSave": true,
+  "github.copilot.chat.responsesApiReasoningEffort": "high"
 }
