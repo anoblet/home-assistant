@@ -40,20 +40,17 @@ reminders_todo:
                       {{ pending_list.get(todo_entity, {}).get('items', []) }}
                     notification_message: >-
                       {% set header = list_name ~ ' — Pending Tasks' %}
-                      {% set lines = [header] %}
-                      {% if pending_items %}
-                        {% set pending_count = pending_items | length %}
-                        {% set _ = lines.append('') %}
-                        {% set _ = lines.append('Pending Items (' ~ pending_count ~ '):') %}
-                        {% set _ = lines.append('') %}
-                        {% for item in pending_items %}
-                          {% set _ = lines.append('- ' ~ item.summary) %}
+                      {% set pending_items_list = pending_items | list %}
+                      {% set ns = namespace(message=header) %}
+                      {% if pending_items_list %}
+                        {% set ns.message = ns.message ~ '\n\nPending Items (' ~ (pending_items_list | length) ~ '):' %}
+                        {% for item in pending_items_list %}
+                          {% set ns.message = ns.message ~ '\n- ' ~ item.summary %}
                         {% endfor %}
                       {% else %}
-                        {% set _ = lines.append('') %}
-                        {% set _ = lines.append('No pending tasks 🎉') %}
+                        {% set ns.message = ns.message ~ '\n\nNo pending tasks 🎉' %}
                       {% endif %}
-                      {{ lines | join('\n') }}
+                      {{ ns.message }}
                 - choose:
                     - conditions:
                         - condition: template
@@ -66,45 +63,15 @@ reminders_todo:
                             message: >-
                               {{ notification_message }}
                             notification_id: '{{ notification_tag }}'
-                        - choose:
-                            - conditions:
-                                - condition: template
-                                  value_template: >-
-                                    {{ 'mobile_app_pixel_4' in services.get('notify', {}) }}
-                              sequence:
-                                - service: notify.mobile_app_pixel_4_xl
-                                  data:
-                                    title: 'To-do Reminder'
-                                    message: >-
-                                      {{ notification_message }}
-                                    data:
-                                      tag: '{{ notification_tag }}'
-                                      url: '{{ todo_url }}'
-                                      clickAction: '{{ todo_url }}'
-                            - conditions:
-                                - condition: template
-                                  value_template: >-
-                                    {{ 'mobile_app_pixel_4_xl' in services.get('notify', {}) }}
-                              sequence:
-                                - service: notify.mobile_app_pixel_4_xl
-                                  data:
-                                    title: 'To-do Reminder'
-                                    message: >-
-                                      {{ notification_message }}
-                                    data:
-                                      tag: '{{ notification_tag }}'
-                                      url: '{{ todo_url }}'
-                                      clickAction: '{{ todo_url }}'
-                          default:
-                            - service: notify.notify
-                              data:
-                                title: 'To-do Reminder'
-                                message: >-
-                                  {{ notification_message }}
-                                data:
-                                  tag: '{{ notification_tag }}'
-                                  url: '{{ todo_url }}'
-                                  clickAction: '{{ todo_url }}'
+                        - service: notify.notify
+                          data:
+                            title: 'To-do Reminder'
+                            message: >-
+                              {{ notification_message }}
+                            data:
+                              tag: '{{ notification_tag }}'
+                              url: '{{ todo_url }}'
+                              clickAction: '{{ todo_url }}'
   input_boolean:
     homeassistant_todo_reminder:
       name: 'To-do Reminders'
