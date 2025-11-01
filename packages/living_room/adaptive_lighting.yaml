@@ -5,5 +5,5 @@ living_room_adaptive_lighting:
         - light.living_room_floor_lamp
       max_color_temp: 3500
       min_brightness: 80
-      min_color_temp: 3000
+      min_color_temp: 2750
       name: Living Room
