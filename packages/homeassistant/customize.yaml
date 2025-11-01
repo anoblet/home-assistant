@@ -1,7 +1,7 @@
 homeassistant_customize:
   homeassistant:
     customize:
-      binary_sensor.bathroom_contact_open:
+      binary_sensor.bathroom_door_contact:
         friendly_name: Bathroom Door
       binary_sensor.bathroom_motion_occupancy:
         friendly_name: Bathroom Motion Occupancy

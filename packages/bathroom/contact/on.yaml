@@ -7,7 +7,7 @@ bathroom_contact_on:
       id: bathroom_door_on_exhaust_fan
       mode: single
       trigger:
-        entity_id: binary_sensor.bathroom_contact_open
+        entity_id: binary_sensor.bathroom_door_contact
         for:
           minutes: 5
         platform: state

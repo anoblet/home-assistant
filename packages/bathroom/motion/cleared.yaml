@@ -9,12 +9,12 @@ bathroom_motion_cleared:
     alias: Bathroom - Motion - Cleared
     condition:
       - condition: state
-        entity_id: binary_sensor.bathroom_contact_open
-        state: "on"
+        entity_id: binary_sensor.bathroom_door_contact
+        state: 'on'
     id: bathroom_motion_cleared
     mode: single
     trigger:
       - entity_id: binary_sensor.bathroom_motion_occupancy
         for: 00:{{ states('input_number.bathroom_motion_cooldown') | int }}:00
         platform: state
-        to: "off"
+        to: 'off'

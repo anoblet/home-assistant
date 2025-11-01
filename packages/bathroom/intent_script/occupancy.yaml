@@ -3,7 +3,7 @@ bathroom_intent_script_occupancy:
     OccupancyBathroom:
       speech:
         text: >
-          {% if states('binary_sensor.bathroom_contact_open') %}
+          {% if states('binary_sensor.bathroom_door_contact') %}
             No
           {% else %}
             Yes

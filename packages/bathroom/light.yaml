@@ -2,11 +2,11 @@ bathroom_light:
   automation:
     - action:
         - condition: state
-          entity_id: binary_sensor.bathroom_contact_open
-          state: "on"
+          entity_id: binary_sensor.bathroom_door_contact
+          state: 'on'
         - condition: state
           entity_id: binary_sensor.bathroom_motion_occupancy
-          state: "off"
+          state: 'off'
         - delay:
             seconds: 60
         - service: light.turn_off
