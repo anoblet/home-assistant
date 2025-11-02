@@ -1,6 +1,6 @@
 {
   ".github": {
-    "agents": ["copilot/agents/implement.md", "copilot/agents/plan.md"],
+    "agents": ["copilot/agents/implement.agent.md", "copilot/agents/plan.agent.md"],
     "instructions": [
       "copilot/instructions/principles.instructions.md",
       "copilot/instructions/tools/sequential-thinking.instructions.md",
