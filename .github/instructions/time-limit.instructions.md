@@ -1,1 +1,0 @@
-../../copilot/.github/instructions/test.instructions.md

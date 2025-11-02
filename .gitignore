@@ -14,6 +14,7 @@
 !.vscode/**/*
 !awesome-copilot
 !awesome-copilot/**/*
+!bootstrap.json
 !copilot
 !copilot/**
 !genaisrc

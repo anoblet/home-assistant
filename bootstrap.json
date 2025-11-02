@@ -1,0 +1,12 @@
+{
+  ".github": {
+    "agents": ["copilot/agents/implement.md", "copilot/agents/plan.md"],
+    "instructions": [
+      "copilot/instructions/principles.instructions.md",
+      "copilot/instructions/tools/sequential-thinking.instructions.md",
+      "copilot/instructions/tools/subagent.instructions.md",
+      "copilot/.github/instructions/time-limit.instructions.md"
+    ]
+  },
+  ".vscode": ["copilot/.vscode/mcp.json", "copilot/.vscode/settings.json"]
+}
