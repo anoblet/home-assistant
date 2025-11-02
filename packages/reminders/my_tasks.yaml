@@ -1,25 +1,26 @@
-reminders_todo:
+my_tasks_reminder:
   automation:
     # Reminds about every pending to-do item while the helper is enabled
-    - alias: 'To-do Task Reminder'
-      id: 'reminders_todo_task_reminder'
+    - alias: 'My Tasks Reminder'
+      id: 'my_tasks_reminder'
       description: 'Sends repeating reminders for pending tasks from the My Tasks list while the reminder helper is enabled.'
       trigger:
         - platform: time_pattern
-          minutes: '/30'
+          minutes: '0'
         - platform: state
-          entity_id: input_boolean.homeassistant_todo_reminder
+          entity_id: input_boolean.my_tasks_reminder
           to: 'on'
       condition:
         - condition: state
-          entity_id: input_boolean.homeassistant_todo_reminder
+          entity_id: input_boolean.my_tasks_reminder
+          state: 'on'
+        - condition: state
+          entity_id: schedule.day
           state: 'on'
       variables:
         todo_entity: 'todo.my_tasks'
-        list_name: >-
-          {{ state_attr(todo_entity, 'friendly_name') or todo_entity | replace('todo.', '') | replace('_', ' ') | title }}
         notification_tag: >-
-          {{ 'todo-reminder-' ~ (todo_entity | replace('todo.', '') | replace('_', '-')) }}
+          {{ 'my-tasks-reminder' }}
         todo_url: >-
           {{ 'https://31w3e.andrewnoblet.com/todo?entity_id=' ~ todo_entity }}
       action:
@@ -39,18 +40,13 @@ reminders_todo:
                     pending_items: >-
                       {{ pending_list.get(todo_entity, {}).get('items', []) }}
                     notification_message: >-
-                      {% set header = list_name ~ ' — Pending Tasks' %}
                       {% set pending_items_list = pending_items | list %}
-                      {% set ns = namespace(message=header) %}
-                      {% if pending_items_list %}
-                        {% set ns.message = ns.message ~ '\n\nPending Items (' ~ (pending_items_list | length) ~ '):' %}
-                        {% for item in pending_items_list %}
-                          {% set ns.message = ns.message ~ '\n- ' ~ item.summary %}
-                        {% endfor %}
-                      {% else %}
-                        {% set ns.message = ns.message ~ '\n\nNo pending tasks 🎉' %}
-                      {% endif %}
-                      {{ ns.message }}
+                      {% set ns = namespace(lines=[]) %}
+                      {% for item in pending_items_list %}
+                        {% set summary = item.summary | default('', true) %}
+                        {% set ns.lines = ns.lines + ['• ' ~ summary] %}
+                      {% endfor %}
+                      {{ ns.lines | join('\n') }}
                 - choose:
                     - conditions:
                         - condition: template
@@ -59,13 +55,13 @@ reminders_todo:
                       sequence:
                         - service: persistent_notification.create
                           data:
-                            title: 'To-do Reminder'
+                            title: 'My Tasks'
                             message: >-
                               {{ notification_message }}
                             notification_id: '{{ notification_tag }}'
                         - service: notify.notify
                           data:
-                            title: 'To-do Reminder'
+                            title: 'My Tasks'
                             message: >-
                               {{ notification_message }}
                             data:
@@ -73,7 +69,7 @@ reminders_todo:
                               url: '{{ todo_url }}'
                               clickAction: '{{ todo_url }}'
   input_boolean:
-    homeassistant_todo_reminder:
-      name: 'To-do Reminders'
+    my_tasks_reminder:
+      name: 'My Tasks Reminder'
       icon: 'mdi:clipboard-check-outline'
       initial: 'on'

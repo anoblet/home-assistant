@@ -11,5 +11,7 @@
     "source.organizeImports": "always"
   },
   "editor.formatOnSave": true,
+  "github.copilot.chat.alternateGptPrompt.enabled": true,
+  "github.copilot.chat.gpt5AlternatePrompt": "v2",
   "github.copilot.chat.responsesApiReasoningEffort": "high"
 }
