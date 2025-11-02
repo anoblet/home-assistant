@@ -14,15 +14,13 @@ bedroom_script_tired:
         - action: light.turn_on
           data:
             color_temp_kelvin: 2000
-            brightness_pct: 5
-            transition: 5
+            brightness_pct: 10
+            transition: 10
           target:
             entity_id: light.bedroom_light_group_zigbee
-        - delay:
-            seconds: 5
         - service: light.turn_off
           data:
-            transition: 5
+            transition: 10
           target:
             entity_id: light.bedroom_ceiling
         - service: light.turn_off
