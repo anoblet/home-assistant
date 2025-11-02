@@ -1,0 +1,1 @@
+../../copilot/.github/instructions/time-limit.instructions.md
