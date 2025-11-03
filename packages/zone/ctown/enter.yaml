@@ -18,3 +18,4 @@ zone_ctown_enter:
                 - action: URI
                   title: 'Open Shopping List'
                   uri: 'https://31w3e.andrewnoblet.com/todo?entity_id=todo.google_keep_shopping'
+              channel: Location
