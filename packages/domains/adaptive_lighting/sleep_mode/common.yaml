@@ -1,0 +1,12 @@
+domains_adaptive_lighting_sleep_mode_common:
+  switch:
+    - platform: group
+      all: true
+      entities:
+        - switch.adaptive_lighting_sleep_mode_bathroom
+        - switch.adaptive_lighting_sleep_mode_hallway
+        - switch.adaptive_lighting_sleep_mode_kitchen
+        - switch.adaptive_lighting_sleep_mode_living_room
+        - switch.adaptive_lighting_sleep_mode_storage_room
+      name: Adaptive Lighting - Sleep Mode - Common
+      unique_id: adaptive_lighting_sleep_mode_common

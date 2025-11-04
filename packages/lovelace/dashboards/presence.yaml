@@ -1,7 +1,0 @@
-lovelace_dashboards_presence:
-  lovelace:
-    dashboards:
-      dashboard-presence:
-        filename: includes/lovelace/dashboards/presence.yaml
-        mode: yaml
-        title: Presence

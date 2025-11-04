@@ -1,0 +1,21 @@
+# switch_living_room_occupancy:
+#   switch:
+#     - platform: template
+#       switches:
+#         living_room_occupancy:
+#           value_template: >
+#             {%
+#               if
+#                 is_state('media_player.living_room_tv', 'playing')
+#               or
+#                 is_state('media_player.living_room_tv', 'idle')
+#             %}
+#               true
+#             {% else %}
+#               false
+#             {% endif %}
+#           turn_on:
+#           turn_off:
+#           friendly_name: Living Room Occupancy
+#           unique_id: living_room_occupancy
+#           icon_template: mdi:account-multiple
