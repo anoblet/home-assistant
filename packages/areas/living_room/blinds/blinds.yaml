@@ -1,0 +1,13 @@
+areas_living_room_blinds_blinds:
+  cover:
+    - entities:
+        - cover.living_room_blind_one
+        - cover.living_room_blind_three
+        - cover.living_room_blind_two
+      name: Living Room Blinds
+      platform: group
+      unique_id: living_room_blinds
+  google_assistant:
+    entity_config:
+      cover.living_room_blinds:
+        expose: true

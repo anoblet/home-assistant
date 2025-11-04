@@ -1,5 +1,0 @@
-kitchen_google_assistant_entity_config:
-  google_assistant:
-    entity_config:
-      light.kitchen_light_group_zigbee:
-        expose: true

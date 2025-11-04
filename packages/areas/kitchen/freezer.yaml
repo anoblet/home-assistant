@@ -1,0 +1,30 @@
+areas_kitchen_freezer:
+  automation:
+    - alias: 'Kitchen Freezer Door Reminder'
+      id: 'kitchen/freezer'
+      description: 'Sends a reminder every five minutes while the kitchen freezer door stays open longer than one minute, stopping once it closes.'
+      trigger:
+        # Freezer door has been open for one minute
+        - platform: state
+          entity_id: binary_sensor.kitchen_freezer_contact
+          to: 'on'
+          for: '00:01:00'
+      action:
+        - alias: 'Send recurring freezer door alerts until closed'
+          repeat:
+            sequence:
+              - service: notify.mobile_app_pixel_4_xl
+                data:
+                  title: 'Kitchen Freezer Open'
+                  message: 'The kitchen freezer door has been open for over one minute. Please close it.'
+              - wait_for_trigger:
+                  # Freezer door has been closed
+                  - platform: state
+                    entity_id: binary_sensor.kitchen_freezer_contact
+                    to: 'off'
+                timeout: '00:05:00'
+                continue_on_timeout: true
+            while:
+              - condition: state
+                entity_id: binary_sensor.kitchen_freezer_contact
+                state: 'on'

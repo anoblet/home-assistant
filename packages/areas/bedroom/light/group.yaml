@@ -1,0 +1,11 @@
+areas_bedroom_light_group:
+  homeassistant:
+    customize:
+      light.bedroom_light_group_zigbee:
+        friendly_name: Bedroom Lights
+  light:
+    - platform: group
+      name: 'Bedroom Light Group'
+      entities:
+        - light.bedroom_ceiling
+        - light.bedroom_lamp_group_zigbee

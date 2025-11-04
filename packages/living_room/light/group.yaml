@@ -1,5 +1,0 @@
-living_room_light_group:
-  homeassistant:
-    customize:
-      light.living_room_light_group_zigbee:
-        friendly_name: Living Room Lights

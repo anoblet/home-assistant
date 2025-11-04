@@ -1,0 +1,12 @@
+# Relies on packages/common/presence/detection.yaml for the shared toggle.
+areas_kitchen_presence_detection:
+  google_assistant:
+    entity_config:
+      input_boolean.kitchen_ld2410c:
+        expose: true
+        name: Kitchen Presence Detection
+  input_boolean:
+    kitchen_ld2410c:
+      name: Kitchen Presence Detection
+      initial: on
+      icon: mdi:motion-sensor
