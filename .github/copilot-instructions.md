@@ -1,6 +1,7 @@
 # Instructions
 
 [Home Assistant](./instructions/home-assistant.instructions.md)
+[Memory](./instructions/memory.instructions.md)
 
 [principles](../copilot/instructions/principles.instructions.md)
 [sequential-thinking](../copilot/instructions/tools/sequential-thinking.instructions.md)
