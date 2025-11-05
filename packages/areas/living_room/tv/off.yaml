@@ -9,7 +9,7 @@ areas_living_room_tv_off:
         # If it is summer, turn on automatic blinds, otherwise open the blinds
         - if:
             - condition: template
-              value_template: "{{ states('sensor.season') = 'summer' }}"
+              value_template: "{{ states('sensor.season') == 'summer' }}"
           then:
             - action: input_boolean.turn_on
               target:
