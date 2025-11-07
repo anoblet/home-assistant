@@ -13,7 +13,7 @@ areas_bedroom_display_morning:
         - data:
             device_id: 9b35e71fcd4e0669bff66365c819bcd1
             media_id: library://radio/2
-          service: music_assistant.play_media
+          action: music_assistant.play_media
       alias: 'Bedroom Display - Play WFUV Radio Weekday Mornings'
       condition:
         - condition: time
