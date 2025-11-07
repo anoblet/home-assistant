@@ -17,6 +17,8 @@
 !bootstrap.json
 !copilot
 !copilot/**
+!docs
+!docs/**
 !genaisrc
 !genaisrc/**/*
 !includes
