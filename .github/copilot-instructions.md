@@ -4,7 +4,7 @@
 
 Documentation: [Home Assistant](https://github.com/home-assistant/docs)
 
-[memory](../copilot/instructions/memory.instructions.md)
+[memory](../copilot/instructions/tools/memory.instructions.md)
 [principles](../copilot/instructions/principles.instructions.md)
 [sequential-thinking](../copilot/instructions/tools/sequential-thinking.instructions.md)
 [subagent](../copilot/instructions/tools/subagent.instructions.md)
