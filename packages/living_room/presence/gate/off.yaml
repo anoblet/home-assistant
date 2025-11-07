@@ -1,6 +1,0 @@
-living_room_presence_gate_off:
-  input_number:
-    living_room_ld2410c_last_off_gate:
-      max: 8
-      min: 0
-      name: Living Room Presence Last Off Gate

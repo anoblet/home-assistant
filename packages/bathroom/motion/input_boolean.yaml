@@ -1,4 +1,0 @@
-bathroom_motion_input_boolean:
-  input_boolean:
-    bathroom_motion:
-      name: Bathroom Motion

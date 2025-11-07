@@ -1,5 +1,0 @@
-bedroom_light_lamp_group:
-  homeassistant:
-    customize:
-      light.bedroom_lamp_group_zigbee:
-        friendly_name: Bedroom Lamps

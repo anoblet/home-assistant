@@ -1,0 +1,26 @@
+areas_living_room_light_manual_reset:
+  automation:
+    - action:
+        - service: switch.turn_on
+          target:
+            entity_id: switch.adaptive_lighting_adapt_brightness_living_room
+        - data:
+            entity_id: input_boolean.living_room_light_manual
+          service: input_boolean.turn_off
+      alias: Light - Living Room - Manual - Reset
+      id: light_living_room_manual_reset
+      mode: single
+      trigger:
+        - entity_id: light.living_room_light_group_zigbee
+          platform: state
+          to: 'off'
+        - entity_id: binary_sensor.living_room_motion_occupancy_group
+          for: 01:00:00
+          # from: "on"
+          platform: state
+          to: 'off'
+        - entity_id: binary_sensor.living_room_ld2410c_presence
+          for:
+            minutes: 5
+          platform: state
+          to: 'off'

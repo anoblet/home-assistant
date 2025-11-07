@@ -1,0 +1,24 @@
+areas_storage_room_printer_two_time_remaining:
+  google_assistant:
+    entity_config:
+      script.storage_room_printer_time_remaining:
+        expose: true
+        name: 'Storage Room Printer Time Remaining'
+  script:
+    storage_room_printer_time_remaining:
+      sequence:
+        - service: tts.google_translate_say
+          data:
+            cache: false
+            entity_id: media_player.speaker_group
+            message: "{{ states('sensor.storage_room_printer_time_remaining') }}"
+  template:
+    - sensor:
+        - name: 'Storage Room Printer Time Remaining'
+          state: >
+            {% if states('sensor.octoprint_estimated_finish_time') not in ['unknown', 'unavailable', ''] %}
+              {{ ( as_timestamp(states('sensor.octoprint_estimated_finish_time'), 0) - as_timestamp(now()) ) | int(0) | timestamp_custom('%H:%M:%S', false) }}
+            {% else %}
+              unknown
+            {% endif %}
+          unique_id: storage_room_printer_time_remaining

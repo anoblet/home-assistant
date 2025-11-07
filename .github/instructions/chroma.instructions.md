@@ -1,1 +1,0 @@
-../../copilot/instructions/tools/chroma.instructions.md

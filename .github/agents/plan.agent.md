@@ -1,0 +1,1 @@
+../../copilot/agents/plan.agent.md

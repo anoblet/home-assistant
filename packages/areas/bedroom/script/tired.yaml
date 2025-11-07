@@ -1,0 +1,32 @@
+areas_bedroom_script_tired:
+  google_assistant:
+    entity_config:
+      script.bedroom_tired:
+        expose: true
+  script:
+    bedroom_tired:
+      alias: Bedroom - Tired
+      mode: single
+      sequence:
+        - action: cover.close_cover
+          target:
+            entity_id: cover.bedroom_blinds
+        - action: light.turn_on
+          data:
+            color_temp_kelvin: 2000
+            brightness_pct: 5
+            transition: 10
+          target:
+            entity_id: light.bedroom_light_group_zigbee
+        - delay:
+            seconds: 10
+        - service: light.turn_off
+          data:
+            transition: 10
+          target:
+            entity_id: light.bedroom_ceiling
+        - service: light.turn_off
+          data:
+            transition: 60
+          target:
+            entity_id: light.bedroom_lamp_group_zigbee

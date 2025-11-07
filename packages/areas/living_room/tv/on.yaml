@@ -1,0 +1,33 @@
+areas_living_room_tv_on:
+  automation:
+    - action:
+        # Set the ceiling light to 25%
+        - action: light.turn_on
+          data:
+            brightness_pct: 25
+            transition: 5
+          target:
+            entity_id: light.living_room_ceiling_light_group_zigbee
+        # Set floor lamp brightness to 75%
+        - action: light.turn_on
+          data:
+            brightness_pct: 75
+            transition: 5
+          target:
+            entity_id: light.living_room_floor_lamp
+        # Turn off the automatic blinds
+        - action: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.living_room_blinds_automatic
+        # Set the blinds position based on the input number (if defined)
+        - action: cover.set_cover_position
+          data:
+            position: "{{ states('input_number.living_room_tv_on_blinds_position') | int }}"
+          target:
+            entity_id: cover.living_room_blinds
+      alias: Living Room - TV - On
+      id: living_room_tv_on
+      trigger:
+        - entity_id: remote.living_room_tv
+          platform: state
+          to: 'on'

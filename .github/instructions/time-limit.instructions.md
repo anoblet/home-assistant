@@ -1,1 +1,1 @@
-../../copilot/.github/instructions/test.instructions.md
+../../copilot/.github/instructions/time-limit.instructions.md

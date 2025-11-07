@@ -1,0 +1,34 @@
+areas_bedroom_blinds_manual:
+  automation:
+    - action:
+        - data:
+            entity_id: input_boolean.bedroom_blinds_automatic
+          service: input_boolean.turn_off
+      alias: Bedroom - Blinds - Manual
+      condition:
+        - condition: template
+          value_template: '{{ trigger.to_state.context.user_id != None }}'
+      id: bedroom_blinds_manual
+      mode: single
+      trigger:
+        - entity_id:
+            - cover.bedroom_blinds
+            - cover.bedroom_blind_one
+            - cover.bedroom_blind_two
+            - cover.bedroom_blind_three
+          platform: state
+    - action:
+        - data:
+            entity_id: input_boolean.bedroom_blinds_automatic
+          service: input_boolean.turn_on
+      alias: Bedroom - Blinds - Manual - Reset
+      id: Bedroom_blinds_manual_reset
+      mode: single
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.bedroom_ld2410c_presence
+          for:
+            hours: 1
+          to: 'off'
+        - platform: time
+          at: '00:00:00'

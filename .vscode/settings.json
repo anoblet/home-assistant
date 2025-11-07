@@ -1,12 +1,1 @@
-{
-  "chat.agent.maxRequests": 10000,
-  "chat.agent.todoList": {
-    "v2": true
-  },
-  "chat.modeFilesLocations": {
-    "copilot/awesome-copilot/chatmodes": true,
-    "copilot/chatmodes": true
-  },
-  "github.copilot.chat.alternateGptPrompt.enabled": true,
-  "github.copilot.chat.gpt5AlternatePrompt": "v2"
-}
+../copilot/.vscode/settings.json

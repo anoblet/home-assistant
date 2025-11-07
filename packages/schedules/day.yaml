@@ -1,0 +1,13 @@
+schedules_day:
+  schedule:
+    day:
+      name: 'Day'
+      monday: &day_schedule
+        - from: '08:00:00'
+          to: '20:00:00'
+      tuesday: *day_schedule
+      wednesday: *day_schedule
+      thursday: *day_schedule
+      friday: *day_schedule
+      saturday: *day_schedule
+      sunday: *day_schedule

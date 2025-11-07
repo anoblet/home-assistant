@@ -1,0 +1,19 @@
+areas_bedroom_display_off:
+  automation:
+    - action:
+        - service: camera.play_stream
+          data:
+            media_player: media_player.bedroom_display
+          target:
+            entity_id: camera.x1c_00m00a2c0619044_camera
+      alias: Bedroom - Display - Off
+      condition:
+        - condition: state
+          entity_id: sensor.x1c_00m00a2c0619044_print_status
+          state: 'running'
+      id: bedroom_display_off
+      trigger:
+        - entity_id: media_player.bedroom_display
+          for: '00:01:00'
+          platform: state
+          to: 'off'

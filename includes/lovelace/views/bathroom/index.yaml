@@ -41,7 +41,7 @@ cards:
                 icon: mdi:gauge
                 name: Pressure
               - type: custom:mushroom-entity-card
-                entity: binary_sensor.bathroom_contact_open
+                entity: binary_sensor.bathroom_door_contact
                 icon: mdi:gauge
                 name: Door
               - type: custom:mushroom-entity-card

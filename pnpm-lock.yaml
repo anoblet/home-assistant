@@ -9,7 +9,7 @@ importers:
     devDependencies:
       hass-cli:
         specifier: github:anoblet/hass-cli
-        version: https://codeload.github.com/anoblet/hass-cli/tar.gz/c4c0b3753565c23fde2fd45a150fd8345ab87390
+        version: https://codeload.github.com/anoblet/hass-cli/tar.gz/ba8d4352b99689a6697a983854c4445f82542296
       husky:
         specifier: ^9.0.11
         version: 9.1.7
@@ -663,12 +663,12 @@ packages:
       }
     engines: { node: '>= 0.4' }
 
-  hass-cli@https://codeload.github.com/anoblet/hass-cli/tar.gz/c4c0b3753565c23fde2fd45a150fd8345ab87390:
+  hass-cli@https://codeload.github.com/anoblet/hass-cli/tar.gz/ba8d4352b99689a6697a983854c4445f82542296:
     resolution:
       {
-        tarball: https://codeload.github.com/anoblet/hass-cli/tar.gz/c4c0b3753565c23fde2fd45a150fd8345ab87390,
+        tarball: https://codeload.github.com/anoblet/hass-cli/tar.gz/ba8d4352b99689a6697a983854c4445f82542296,
       }
-    version: 1.0.0
+    version: 1.0.1
     hasBin: true
 
   human-signals@5.0.0:
@@ -1448,7 +1448,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  hass-cli@https://codeload.github.com/anoblet/hass-cli/tar.gz/c4c0b3753565c23fde2fd45a150fd8345ab87390:
+  hass-cli@https://codeload.github.com/anoblet/hass-cli/tar.gz/ba8d4352b99689a6697a983854c4445f82542296:
     dependencies:
       axios: 1.12.2
       commander: 13.1.0

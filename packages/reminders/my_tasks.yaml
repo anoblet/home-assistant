@@ -1,0 +1,75 @@
+my_tasks_reminder:
+  automation:
+    # Reminds about every pending to-do item while the helper is enabled
+    - alias: 'My Tasks Reminder'
+      id: 'my_tasks_reminder'
+      description: 'Sends repeating reminders for pending tasks from the My Tasks list while the reminder helper is enabled.'
+      trigger:
+        - platform: time_pattern
+          minutes: '0'
+        - platform: state
+          entity_id: input_boolean.my_tasks_reminder
+          to: 'on'
+      condition:
+        - condition: state
+          entity_id: input_boolean.my_tasks_reminder
+          state: 'on'
+        - condition: state
+          entity_id: schedule.day
+          state: 'on'
+      variables:
+        todo_entity: 'todo.my_tasks'
+        notification_tag: >-
+          {{ 'my-tasks-reminder' }}
+        todo_url: >-
+          {{ 'https://31w3e.andrewnoblet.com/todo?entity_id=' ~ todo_entity }}
+      action:
+        - choose:
+            - conditions:
+                - condition: template
+                  value_template: >-
+                    {{ states(todo_entity) not in ['unknown', 'unavailable'] }}
+              sequence:
+                - service: todo.get_items
+                  data:
+                    entity_id: '{{ todo_entity }}'
+                    status:
+                      - 'needs_action'
+                  response_variable: pending_list
+                - variables:
+                    pending_items: >-
+                      {{ pending_list.get(todo_entity, {}).get('items', []) }}
+                    notification_message: >-
+                      {% set pending_items_list = pending_items | list %}
+                      {% set ns = namespace(lines=[]) %}
+                      {% for item in pending_items_list %}
+                        {% set summary = item.summary | default('', true) %}
+                        {% set ns.lines = ns.lines + ['• ' ~ summary] %}
+                      {% endfor %}
+                      {{ ns.lines | join('\n') }}
+                - choose:
+                    - conditions:
+                        - condition: template
+                          value_template: >-
+                            {{ pending_items | length > 0 }}
+                      sequence:
+                        - service: persistent_notification.create
+                          data:
+                            title: 'My Tasks'
+                            message: >-
+                              {{ notification_message }}
+                            notification_id: '{{ notification_tag }}'
+                        - service: notify.notify
+                          data:
+                            title: 'My Tasks'
+                            message: >-
+                              {{ notification_message }}
+                            data:
+                              tag: '{{ notification_tag }}'
+                              url: '{{ todo_url }}'
+                              clickAction: '{{ todo_url }}'
+  input_boolean:
+    my_tasks_reminder:
+      name: 'My Tasks Reminder'
+      icon: 'mdi:clipboard-check-outline'
+      initial: 'on'

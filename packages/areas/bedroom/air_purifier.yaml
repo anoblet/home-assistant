@@ -1,0 +1,5 @@
+areas_bedroom_air_purifier:
+  google_assistant:
+    entity_config:
+      fan.bedroom_air_purifier:
+        expose: true

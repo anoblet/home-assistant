@@ -1,0 +1,22 @@
+areas_bedroom_presence_off_lights:
+  automation:
+    action:
+      - action: light.turn_off
+        data:
+          transition: 60
+        target:
+          entity_id:
+            - light.bedroom_light_group_zigbee
+    alias: Bedroom - Presence - Off - Lights
+    condition:
+      - condition: state
+        entity_id: input_boolean.bedroom_presence_detection
+        state: 'on'
+    description: Turn off bedroom lights when presence is no longer detected
+    id: bedroom_presence_off_lights
+    mode: single
+    trigger:
+      - entity_id: binary_sensor.bedroom_presence_presence
+        from: 'on'
+        platform: state
+        to: 'off'
