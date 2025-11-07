@@ -1,16 +1,19 @@
 # Instructions
 
 [Home Assistant](./instructions/home-assistant.instructions.md)
-[Memory](./instructions/memory.instructions.md)
 
+Documentation: [Home Assistant](https://github.com/home-assistant/docs)
+
+[memory](../copilot/instructions/memory.instructions.md)
 [principles](../copilot/instructions/principles.instructions.md)
 [sequential-thinking](../copilot/instructions/tools/sequential-thinking.instructions.md)
+[subagent](../copilot/instructions/tools/subagent.instructions.md)
 [time-limit](../copilot/instructions/time-limit.instructions.md)
 
-Reference: https://github.com/home-assistant/docs
+---
 
 Use Github tools to reference the following repositories for every request:
 
-- https://github.com/home-assistant/core
-- https://github.com/home-assistant/frontend
-- https://github.com/home-assistant/operating-system
+- [core](https://github.com/home-assistant/core)
+- [frontend](https://github.com/home-assistant/frontend)
+- [operating-system](https://github.com/home-assistant/operating-system)
