@@ -2,7 +2,7 @@ domains_media_player_common_group_volume_reset:
   automation:
     action:
       - data:
-          volume_level: 0.4
+          volume_level: 0.25
         service: media_player.volume_set
         target:
           entity_id: media_player.common_group_volume
