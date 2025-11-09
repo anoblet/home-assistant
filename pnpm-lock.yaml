@@ -41,6 +41,8 @@ importers:
         specifier: ^0.9.2
         version: 0.9.5
 
+  bin/html: {}
+
 packages:
   '@antfu/install-pkg@1.1.0':
     resolution:
