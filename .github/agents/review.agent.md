@@ -1,1 +1,1 @@
-../copilot/agents/review.agent.md
+../../copilot/agents/review.agent.md
