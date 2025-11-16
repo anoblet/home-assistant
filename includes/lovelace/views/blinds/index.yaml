@@ -1,6 +1,6 @@
 cards:
   - cards:
-      - type: custom:mushroom-entity-card
+      - type: tile
         entity: script.cover_calibrate
         name: Calibrate
         tap_action:

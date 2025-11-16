@@ -25,11 +25,11 @@ areas_bedroom_thermostat_manual:
         - entity_id: climate.bedroom_thermostat
           platform: state
           to: 'off'
-        - entity_id: binary_sensor.bedroom_ld2410c_presence
+        - entity_id: binary_sensor.bedroom_presence_presence
           platform: state
           to: 'off'
           for:
-            hours: 1
+            minutes: 15
         - platform: state
           entity_id: input_boolean.bedroom_thermostat_manual
           to: 'on'

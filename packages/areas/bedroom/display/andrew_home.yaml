@@ -25,7 +25,7 @@ areas_bedroom_display_andrew_home:
             entity_id: media_player.bedroom_display
         # Set the volume level
         - data:
-            volume_level: 0.4
+            volume_level: 0.25
           service: media_player.volume_set
           target:
             entity_id: media_player.bedroom_display

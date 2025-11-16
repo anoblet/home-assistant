@@ -5,3 +5,4 @@ domains_lovelace_dashboards_presence:
         filename: includes/lovelace/dashboards/presence.yaml
         mode: yaml
         title: Presence
+        icon: mdi:account-group

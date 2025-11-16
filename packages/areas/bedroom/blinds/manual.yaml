@@ -26,7 +26,7 @@ areas_bedroom_blinds_manual:
       mode: single
       trigger:
         - platform: state
-          entity_id: binary_sensor.bedroom_ld2410c_presence
+          entity_id: binary_sensor.bedroom_presence_presence
           for:
             hours: 1
           to: 'off'

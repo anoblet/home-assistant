@@ -24,7 +24,7 @@ cards:
               'gap': '1rem'
               'grid-template-columns': 'repeat(auto-fit, minmax(192px, auto))'
             cards:
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: sensor.octoprint_current_state
                 name: Printer
               - type: custom:timer-bar-card
@@ -37,19 +37,19 @@ cards:
                 name: Print Progress
                 start_time:
                   entity: sensor.octoprint_start_time
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: sensor.octoprint_actual_bed_temp
                 name: Bed Temperature
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: sensor.octoprint_actual_tool0_temp
                 name: Tool Temperature
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: sensor.storage_room_printer_climate_temperature
                 name: Enclosure Temperature
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: sensor.storage_room_printer_climate_humidity
                 name: Enclosure Humidity
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: sensor.storage_room_printer_climate_pressure
                 name: Enclosure Pressure
 icon: mdi:printer-3d-nozzle

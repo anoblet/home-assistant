@@ -23,7 +23,7 @@ cards:
               'gap': '1rem'
               'grid-template-columns': 'repeat(auto-fit, minmax(192px, auto))'
             cards:
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: binary_sensor.storage_room_motion_occupancy
                 name: Motion
                 secondary_info: last-changed

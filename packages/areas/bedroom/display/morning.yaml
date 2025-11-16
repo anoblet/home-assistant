@@ -5,7 +5,7 @@ areas_bedroom_display_morning:
           target:
             entity_id: media_player.bedroom_display
         - data:
-            volume_level: 0.4
+            volume_level: 0.25
           service: media_player.volume_set
           target:
             entity_id: media_player.bedroom_display

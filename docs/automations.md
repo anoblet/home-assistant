@@ -1,1524 +1,1185 @@
-# Home Assistant Automation System Documentation
+# Home Assistant Packages Automation Documentation
 
-> **Comprehensive guide to the automation workflows that orchestrate intelligent behavior across 146+ automation files.**
+## Overview
+
+This document provides comprehensive documentation for the Home Assistant packages automation system. The packages directory structure provides a modular, organized approach to managing automations, configurations, and entities across the entire Home Assistant installation.
 
 ## Table of Contents
 
-1. [System Overview](#system-overview)
-2. [Architecture](#architecture)
-3. [Understanding the System](#understanding-the-system)
-4. [Core Automation Systems](#core-automation-systems)
-   - [Presence Detection](#1-presence-detection-system)
-   - [Zone Transitions](#2-zone-transition-system)
-   - [Time-Based Routines](#3-time-based-routines)
-   - [Manual Override](#4-manual-override-system)
-5. [Device-Specific Automations](#device-specific-automations)
-6. [Environmental Monitoring](#environmental-monitoring-and-safety)
-7. [System Integration](#system-integration-and-dependencies)
-8. [Statistics & Metrics](#statistics-and-metrics)
-9. [Design Patterns](#automation-design-patterns)
-10. [Reference](#reference)
-
----
-
-## System Overview
-
-This Home Assistant installation implements a **sophisticated, multi-layered automation system** designed to provide seamless smart home experiences while maintaining user control and system reliability. The system is built on three foundational principles:
-
-1. **Intelligent Automation**: Presence-aware, context-sensitive behaviors that adapt to occupancy and time of day
-2. **User Sovereignty**: Manual override mechanisms that respect user preferences and disable conflicting automations
-3. **Reliability & Safety**: Environmental monitoring, fail-safes, and graceful degradation
-
-### Package Organization
-
-The automation system is hierarchically organized across **146+ automation files**:
-
-| Category | Count | Description |
-|----------|-------|-------------|
-| **Area-Specific** | ~115 | Bedroom, Living Room, Kitchen, Bathroom, Hallway, Storage Room, Apartment |
-| **Domain-Level** | ~20 | Cross-cutting concerns (zones, adaptive lighting, vacuum, updates, climate) |
-| **Common/Shared** | ~5 | Shared presence and climate logic |
-| **Reminders** | ~3 | Time-based personal reminders (brush teeth, water plants, tasks) |
-| **User-Specific** | ~2 | Person-specific triggers (andrew_home, andrew_away) |
+1. [Architecture](#architecture)
+2. [Package Organization](#package-organization)
+3. [Naming Conventions](#naming-conventions)
+4. [Automation Lifecycle](#automation-lifecycle)
+5. [Trigger Types and Flow](#trigger-types-and-flow)
+6. [Best Practices](#best-practices)
+7. [Examples](#examples)
+8. [Troubleshooting](#troubleshooting)
 
 ---
 
 ## Architecture
 
-### System Architecture Overview
+The Home Assistant packages system uses a hierarchical structure where `configuration.yaml` loads all package files, which are then merged by domain name to create a cohesive configuration.
 
-The automation system follows a layered architecture with clear separation of concerns:
-
-```mermaid
-graph TB
-    subgraph "Input Layer"
-        Sensors[Physical Sensors]
-        DeviceTracker[Device Tracker]
-        TimeSchedule[Time Schedules]
-        UserInput[User Actions]
-    end
-    
-    subgraph "Logic Layer"
-        subgraph "Core Systems"
-            Presence[Presence Detection]
-            Zones[Zone Management]
-            TimeRoutines[Time-Based Routines]
-            Manual[Manual Override]
-        end
-        
-        subgraph "Area Controllers"
-            Bedroom[Bedroom Controller]
-            Living[Living Room Controller]
-            Kitchen[Kitchen Controller]
-            Other[Other Areas]
-        end
-    end
-    
-    subgraph "Output Layer"
-        Lights[Lighting Systems]
-        Climate[Climate Control]
-        Covers[Blinds & Covers]
-        Devices[Smart Devices]
-        Notifications[Notifications]
-    end
-    
-    subgraph "State Management"
-        InputBooleans[Input Booleans]
-        InputNumbers[Input Numbers]
-        InputDateTimes[Input DateTimes]
-        InputSelects[Input Selects]
-    end
-    
-    Sensors --> Presence
-    Sensors --> TimeRoutines
-    DeviceTracker --> Zones
-    TimeSchedule --> TimeRoutines
-    UserInput --> Manual
-    
-    Presence --> Bedroom
-    Presence --> Living
-    Presence --> Kitchen
-    Zones --> Bedroom
-    TimeRoutines --> Bedroom
-    Manual --> Bedroom
-    
-    Presence --> Living
-    Zones --> Living
-    TimeRoutines --> Living
-    Manual --> Living
-    
-    Bedroom --> Lights
-    Bedroom --> Climate
-    Bedroom --> Covers
-    Living --> Lights
-    Living --> Climate
-    Kitchen --> Lights
-    
-    Bedroom -.-> InputBooleans
-    Living -.-> InputBooleans
-    Manual -.-> InputBooleans
-    Presence -.-> InputNumbers
-    
-    classDef inputClass fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
-    classDef logicClass fill:#F39C12,stroke:#C87F0A,stroke-width:2px,color:#fff
-    classDef outputClass fill:#50C878,stroke:#2E7D4E,stroke-width:2px,color:#fff
-    classDef stateClass fill:#9B59B6,stroke:#6C3483,stroke-width:2px,color:#fff
-    
-    class Sensors,DeviceTracker,TimeSchedule,UserInput inputClass
-    class Presence,Zones,TimeRoutines,Manual,Bedroom,Living,Kitchen,Other logicClass
-    class Lights,Climate,Covers,Devices,Notifications outputClass
-    class InputBooleans,InputNumbers,InputDateTimes,InputSelects stateClass
-```
-
-### Package Structure
+### System Architecture Diagram
 
 ```mermaid
-graph LR
-    subgraph "Root: /packages"
-        Areas[areas/]
-        Domains[domains/]
-        Common[common/]
-        Reminders[reminders/]
-        TopLevel[Top-Level Packages]
-    end
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#161b22", "primaryTextColor": "#e6edf3", "primaryBorderColor": "#30363d", "lineColor": "#7d8590", "secondaryColor": "#0d1117", "tertiaryColor": "#010409", "background": "#0d1117", "mainBkg": "#161b22", "secondBkg": "#0d1117", "tertiaryBkg": "#010409", "textColor": "#e6edf3", "border1": "#30363d", "border2": "#21262d", "arrowheadColor": "#7d8590", "fontFamily": "ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace", "fontSize": "14px", "nodeBorder": "#30363d", "clusterBkg": "#161b22", "clusterBorder": "#30363d", "defaultLinkColor": "#7d8590", "titleColor": "#e6edf3", "edgeLabelBackground": "#161b22", "nodeTextColor": "#e6edf3"}}}%%
+flowchart TB
+    config[configuration.yaml]
+    packages[packages/]
     
-    subgraph "Areas"
-        Bedroom[bedroom/]
-        LivingRoom[living_room/]
-        Kitchen[kitchen/]
-        Bathroom[bathroom/]
-        Hallway[hallway/]
-        StorageRoom[storage_room/]
-        Apartment[apartment/]
-    end
+    config -->|"!include_dir_merge_named"| packages
     
-    subgraph "Area Contents"
-        PresenceAuto[presence_*.yaml]
-        LightAuto[light_*.yaml]
-        ClimateAuto[climate_*.yaml]
-        GateAuto[gate_*.yaml]
-        DeviceAuto[device_*.yaml]
-    end
+    packages --> toplevel[Top-Level Packages]
+    packages --> areas[areas/]
+    packages --> domains[domains/]
+    packages --> common[common/]
+    packages --> reminders[reminders/]
+    packages --> schedules[schedules/]
     
-    subgraph "Domains"
-        ZoneDomain[zones/]
-        AdaptiveLighting[adaptive_lighting/]
-        VacuumDomain[vacuum/]
-        UpdatesDomain[updates/]
-        ClimateDomain[climate/]
-    end
+    toplevel --> morning[morning.yaml]
+    toplevel --> evening[evening.yaml]
+    toplevel --> night[night.yaml]
+    toplevel --> climate[climate.yaml]
+    toplevel --> occupancy[occupancy.yaml]
+    toplevel --> vacuum[vacuum.yaml]
+    toplevel --> recorder[recorder.yaml]
+    toplevel --> logger[logger.yaml]
+    toplevel --> others["+10 more files"]
     
-    Areas --> Bedroom
-    Areas --> LivingRoom
-    Areas --> Kitchen
-    Bedroom --> PresenceAuto
-    Bedroom --> LightAuto
-    Bedroom --> ClimateAuto
-    Bedroom --> GateAuto
+    areas --> bedroom[bedroom/]
+    areas --> living_room[living_room/]
+    areas --> kitchen[kitchen/]
+    areas --> bathroom[bathroom/]
+    areas --> hallway[hallway/]
+    areas --> storage_room[storage_room/]
+    areas --> apartment[apartment/]
     
-    Domains --> ZoneDomain
-    Domains --> AdaptiveLighting
-    Domains --> VacuumDomain
+    bedroom --> bed_configs[Direct Configs]
+    bedroom --> bed_domains[Domain Subdirs]
     
-    classDef categoryClass fill:#3498DB,stroke:#2874A6,stroke-width:2px,color:#fff
-    classDef areaClass fill:#E67E22,stroke:#CA6F1E,stroke-width:2px,color:#fff
-    classDef fileClass fill:#1ABC9C,stroke:#17A589,stroke-width:2px,color:#fff
+    bed_configs --> bed_adaptive[adaptive_lighting.yaml]
+    bed_configs --> bed_bedtime[bedtime.yaml]
+    bed_configs --> bed_morning[morning.yaml]
+    bed_configs --> bed_thermostat[thermostat.yaml]
+    bed_configs --> bed_others["+10 more files"]
     
-    class Areas,Domains,Common,Reminders,TopLevel categoryClass
-    class Bedroom,LivingRoom,Kitchen,Bathroom,Hallway,StorageRoom,Apartment areaClass
-    class PresenceAuto,LightAuto,ClimateAuto,GateAuto,DeviceAuto,ZoneDomain,AdaptiveLighting fileClass
+    bed_domains --> bed_automation[automation/]
+    bed_domains --> bed_light[light/]
+    bed_domains --> bed_climate[climate/]
+    bed_domains --> bed_cover[cover/]
+    bed_domains --> bed_blinds[blinds/]
+    bed_domains --> bed_media[media_player/]
+    bed_domains --> bed_more["+10 more domains"]
+    
+    domains --> dom_adaptive[adaptive_lighting/]
+    domains --> dom_climate[climate/]
+    domains --> dom_cover[cover/]
+    domains --> dom_light[light/]
+    domains --> dom_media[media_player/]
+    domains --> dom_vacuum[vacuum/]
+    domains --> dom_script[script/]
+    domains --> dom_zone[zone/]
+    domains --> dom_more["+10 more domains"]
+    
+    common --> presence_yaml[presence.yaml]
+    common --> presence_dir[presence/]
+    
+    reminders --> brush[brush_teeth.yaml]
+    reminders --> tasks[my_tasks.yaml]
+    reminders --> water[water_plants.yaml]
+    
+    schedules --> day[day.yaml]
+    
+    style config fill:#161b22,stroke:#30363d,color:#e6edf3
+    style packages fill:#161b22,stroke:#30363d,color:#e6edf3
+    style toplevel fill:#161b22,stroke:#30363d,color:#e6edf3
+    style areas fill:#161b22,stroke:#30363d,color:#e6edf3
+    style domains fill:#161b22,stroke:#30363d,color:#e6edf3
+    style common fill:#161b22,stroke:#30363d,color:#e6edf3
+    style reminders fill:#161b22,stroke:#30363d,color:#e6edf3
+    style schedules fill:#161b22,stroke:#30363d,color:#e6edf3
+    style morning fill:#161b22,stroke:#30363d,color:#e6edf3
+    style evening fill:#161b22,stroke:#30363d,color:#e6edf3
+    style night fill:#161b22,stroke:#30363d,color:#e6edf3
+    style climate fill:#161b22,stroke:#30363d,color:#e6edf3
+    style occupancy fill:#161b22,stroke:#30363d,color:#e6edf3
+    style vacuum fill:#161b22,stroke:#30363d,color:#e6edf3
+    style recorder fill:#161b22,stroke:#30363d,color:#e6edf3
+    style logger fill:#161b22,stroke:#30363d,color:#e6edf3
+    style others fill:#161b22,stroke:#30363d,color:#e6edf3
+    style bedroom fill:#161b22,stroke:#30363d,color:#e6edf3
+    style living_room fill:#161b22,stroke:#30363d,color:#e6edf3
+    style kitchen fill:#161b22,stroke:#30363d,color:#e6edf3
+    style bathroom fill:#161b22,stroke:#30363d,color:#e6edf3
+    style hallway fill:#161b22,stroke:#30363d,color:#e6edf3
+    style storage_room fill:#161b22,stroke:#30363d,color:#e6edf3
+    style apartment fill:#161b22,stroke:#30363d,color:#e6edf3
+    style bed_configs fill:#161b22,stroke:#30363d,color:#e6edf3
+    style bed_domains fill:#161b22,stroke:#30363d,color:#e6edf3
+    style bed_adaptive fill:#161b22,stroke:#30363d,color:#e6edf3
+    style bed_bedtime fill:#161b22,stroke:#30363d,color:#e6edf3
+    style bed_morning fill:#161b22,stroke:#30363d,color:#e6edf3
+    style bed_thermostat fill:#161b22,stroke:#30363d,color:#e6edf3
+    style bed_others fill:#161b22,stroke:#30363d,color:#e6edf3
+    style bed_automation fill:#161b22,stroke:#30363d,color:#e6edf3
+    style bed_light fill:#161b22,stroke:#30363d,color:#e6edf3
+    style bed_climate fill:#161b22,stroke:#30363d,color:#e6edf3
+    style bed_cover fill:#161b22,stroke:#30363d,color:#e6edf3
+    style bed_blinds fill:#161b22,stroke:#30363d,color:#e6edf3
+    style bed_media fill:#161b22,stroke:#30363d,color:#e6edf3
+    style bed_more fill:#161b22,stroke:#30363d,color:#e6edf3
+    style dom_adaptive fill:#161b22,stroke:#30363d,color:#e6edf3
+    style dom_climate fill:#161b22,stroke:#30363d,color:#e6edf3
+    style dom_cover fill:#161b22,stroke:#30363d,color:#e6edf3
+    style dom_light fill:#161b22,stroke:#30363d,color:#e6edf3
+    style dom_media fill:#161b22,stroke:#30363d,color:#e6edf3
+    style dom_vacuum fill:#161b22,stroke:#30363d,color:#e6edf3
+    style dom_script fill:#161b22,stroke:#30363d,color:#e6edf3
+    style dom_zone fill:#161b22,stroke:#30363d,color:#e6edf3
+    style dom_more fill:#161b22,stroke:#30363d,color:#e6edf3
+    style presence_yaml fill:#161b22,stroke:#30363d,color:#e6edf3
+    style presence_dir fill:#161b22,stroke:#30363d,color:#e6edf3
+    style brush fill:#161b22,stroke:#30363d,color:#e6edf3
+    style tasks fill:#161b22,stroke:#30363d,color:#e6edf3
+    style water fill:#161b22,stroke:#30363d,color:#e6edf3
+    style day fill:#161b22,stroke:#30363d,color:#e6edf3
 ```
 
----
+### Configuration Loading
 
-## Understanding the System
-
-### How It Works: A High-Level View
-
-The automation system operates on a **trigger → condition → action** paradigm with sophisticated state management:
-
-1. **Sensors Detect Events**: Physical sensors (motion, temperature, door contacts) and virtual sensors (time, zone changes) detect state changes
-2. **Conditions Evaluate Context**: Automations check if actions should proceed based on helper states, time conditions, or other sensors
-3. **Actions Execute**: Lights turn on/off, climate adjusts, notifications send, devices control
-4. **State Updates**: Helper entities (input_boolean, input_number) track system state for future automation decisions
-
-### Key Concepts
-
-#### Presence Detection
-The system uses **sensor fusion** to determine room occupancy:
-- **Radar sensors (LD2410C)**: Millimeter-wave radar detects movement and stillness across 9 distance zones (gates)
-- **PIR motion sensors**: Traditional infrared motion detection for quick responses
-- **Gate logic**: Tracks which distance zone last had movement for fine-grained presence awareness
-
-#### Manual Mode
-When you manually control a device (e.g., turn on a light), the system:
-1. Detects the manual change
-2. Waits 5 seconds
-3. Checks if the device state persists
-4. If yes, sets a "manual mode" flag for that area
-5. Disables automatic control until reset
-
-This prevents the automation from fighting user preferences.
-
-#### Time-Based Routines
-Daily routines trigger at specific times:
-- **Morning**: Sunrise triggers, blinds open, displays update
-- **Evening**: Sunset triggers, blinds close, evening lighting
-- **Night**: Sleep mode activates, adaptive lighting shifts to warm tones
-- **Bedtime**: Air quality devices switch modes
-
----
-
-## Core Automation Systems
-
-### 1. Presence Detection System
-
-The presence detection system is the cornerstone of the automation architecture, enabling context-aware behaviors based on room occupancy.
-
-#### Presence Detection Flow
-
-```mermaid
-stateDiagram-v2
-    [*] --> Unoccupied
-    
-    Unoccupied --> Detecting: Presence Detection Enabled
-    Detecting --> Occupied: Motion Detected OR Radar Movement
-    Occupied --> Detecting: Movement Stops
-    Detecting --> Unoccupied: Timeout (No Movement)
-    
-    Occupied --> ManualMode: User Manual Action
-    ManualMode --> Occupied: Manual Mode Reset
-    
-    Unoccupied --> [*]: Presence Detection Disabled
-    
-    note right of Occupied
-        Actions:
-        - Lights ON
-        - Thermostat ON
-        - Humidifier ON
-        - Air Purifier ON
-        - Ceiling Fan ON (if configured)
-    end note
-    
-    note right of Unoccupied
-        Actions:
-        - Lights OFF (60s transition)
-        - Thermostat OFF
-        - Humidifier OFF
-        - Air Purifier OFF
-        - Ceiling Fan OFF
-    end note
-    
-    note right of ManualMode
-        Manual mode disables
-        automatic control
-        until reset
-    end note
-```
-
-#### Radar Sensor Gate Logic
-
-LD2410C radar sensors provide advanced presence detection by monitoring 9 distance zones (gates 0-8):
-
-```mermaid
-sequenceDiagram
-    participant Radar as LD2410C Sensor
-    participant Template as Template Sensor
-    participant Helper as input_number.last_move_gate
-    participant Automation as Presence Automation
-    
-    Radar->>Template: Gate 0 Energy: 50
-    Radar->>Template: Gate 1 Energy: 75
-    Radar->>Template: Gate 2 Energy: 120
-    Radar->>Template: Gate 3 Energy: 45
-    Template->>Template: Calculate Max Energy Gate
-    Template->>Helper: Store Gate = 2
-    Template->>Automation: Movement in Gate 2
-    Automation->>Automation: Check: Presence Detection Enabled?
-    Automation->>Automation: Set Presence ON
-    Automation->>Automation: Trigger: Lights, Climate, etc.
-    
-    Note over Radar,Automation: Movement stops...
-    
-    Radar->>Template: All Gates Energy < Threshold
-    Template->>Automation: Stillness Detected
-    Automation->>Automation: Wait for Timeout
-    Automation->>Automation: Set Presence OFF
-    Automation->>Automation: Turn Off Devices (60s transition)
-```
-
-#### Implementation Per Area
-
-Each area implements presence detection with area-specific configurations:
-
-| Area | Sensors | Devices Controlled |
-|------|---------|-------------------|
-| **Bedroom** | LD2410C Radar, PIR Motion | Lights, Thermostat, Humidifier, Air Purifier, Ceiling Fan, Blinds |
-| **Living Room** | LD2410C Radar, PIR Motion | Lights, Air Purifier, Humidifier, Thermostat (via common) |
-| **Kitchen** | LD2410C Radar | Lights, Gate Control |
-| **Bathroom** | Door Contact, PIR Motion | Lights, Exhaust Fan |
-| **Hallway** | PIR Motion | Lights |
-| **Storage Room** | PIR Motion | Lights |
-
-**Configuration Example:**
-```yaml
-# Bedroom Presence Detection Enable/Disable
-input_boolean.bedroom_presence_detection: 
-  - ON: Automatic presence-based control active
-  - OFF: Manual control only
-
-# Gate Tracking
-input_number.bedroom_ld2410c_last_move_gate:
-  - Stores: Last gate (0-8) where movement detected
-  - Used for: Advanced presence logic
-```
-
----
-
-### 2. Zone Transition System
-
-Zone transitions handle behaviors when entering or leaving the home, providing seamless handoffs between away and home modes.
-
-#### Zone Transition Flow
-
-```mermaid
-sequenceDiagram
-    participant DT as Device Tracker
-    participant Zone as zone.home
-    participant Auto as Automations
-    participant Lights as Lighting
-    participant Climate as Climate Control
-    participant Presence as Presence Detection
-    
-    Note over DT,Presence: Entering Home
-    
-    DT->>Zone: Enter zone.home
-    Zone->>Auto: Trigger: Zone Enter
-    Auto->>Presence: Enable bedroom_presence_detection
-    Auto->>Lights: Turn ON bedroom lights
-    Auto->>Climate: Turn ON thermostat
-    Auto->>Climate: Turn ON humidifier
-    Auto->>Auto: Restore comfort settings
-    
-    Note over DT,Presence: Leaving Home
-    
-    DT->>Zone: Leave zone.home
-    Zone->>Auto: Trigger: Zone Leave
-    Auto->>Lights: Keep ON briefly
-    Auto->>Climate: Turn OFF thermostat
-    Auto->>Climate: Turn OFF humidifier
-    Auto->>Climate: Air Purifier → High Efficiency
-    Auto->>Presence: Energy saving mode active
-    
-    Note over DT,Presence: Away from Home
-    
-    Auto->>Auto: Enable security monitoring
-    Auto->>Auto: Bedroom door sensor active
-    Auto->>Auto: Mobile notifications enabled
-```
-
-#### Zone States and Actions
-
-```mermaid
-stateDiagram-v2
-    [*] --> Away
-    Away --> Arriving: Enter zone.home
-    Arriving --> Home: 30 second delay
-    Home --> Departing: Leave zone.home
-    Departing --> Away: 5 minute delay
-    
-    note right of Home
-        Actions:
-        - Enable presence detection
-        - Restore climate settings
-        - Enable automatic lighting
-        - Resume normal automations
-    end note
-    
-    note right of Away
-        Actions:
-        - Security monitoring active
-        - Energy saving mode
-        - Minimal automation activity
-        - Door sensor alerts enabled
-    end note
-    
-    note right of Arriving
-        Transition period:
-        - Lights turn on immediately
-        - Climate systems activate
-        - Presence detection enables
-    end note
-    
-    note right of Departing
-        Grace period:
-        - Lights remain on briefly
-        - Climate continues
-        - Allow for quick returns
-    end note
-```
-
-#### Supported Zones
-
-- **zone.home**: Primary residence (all automations active)
-- **zone.tarrytown**: Secondary location (enter/leave tracking)
-- **zone.ctown**: Tertiary location (enter tracking)
-
----
-
-### 3. Time-Based Routines
-
-Time-based automations create daily rhythms and optimize comfort throughout the day.
-
-#### Daily Routine Timeline
-
-```mermaid
-gantt
-    title Daily Automation Schedule
-    dateFormat HH:mm
-    axisFormat %H:%M
-    
-    section Morning
-    Sunrise Simulation     :active, 06:00, 30m
-    Blinds Open           :crit, 06:30, 15m
-    Display: Sunrise View :06:30, 2h
-    Brush Teeth Reminder  :milestone, 07:00, 0m
-    Morning TV Cast       :07:30, 1h
-    
-    section Day
-    Normal Operations     :08:30, 9h
-    Vacuum Schedule       :crit, 12:00, 1h
-    
-    section Evening
-    Sunset Triggers       :active, 17:30, 30m
-    Blinds Close          :crit, 18:00, 15m
-    Display: Sunset View  :18:00, 2h
-    Evening Lighting      :19:00, 2h
-    
-    section Night
-    Brush Teeth Reminder  :milestone, 21:00, 0m
-    Sleep Mode Activate   :active, 21:30, 30m
-    Adaptive Lighting Shift :22:00, 30m
-    Bedtime Routine       :crit, 22:30, 30m
-    Night Mode Active     :23:00, 7h
-    
-    section Maintenance
-    System Updates        :milestone, 00:00, 0m
-```
-
-#### Morning Routine Details
-
-```mermaid
-flowchart LR
-    subgraph "Sunrise Triggers"
-        SR[Sunrise Event]
-        SR --> SunOffset{Calculate Offset}
-        SunOffset --> BlindsOpen[Open Bedroom Blinds]
-        SunOffset --> LightSim[Bedroom Light Sunrise Simulation]
-        SunOffset --> DisplaySunrise[Display: Sunrise View]
-    end
-    
-    subgraph "Scheduled Actions"
-        Time0700[07:00] --> BrushTeeth[Reminder: Brush Teeth]
-        BrushTeeth --> Notify1[Mobile Notification]
-        BrushTeeth --> Notify2[Persistent Notification]
-        
-        TVIdle{TV Idle?} --> MorningCast[Cast Morning Content]
-    end
-    
-    subgraph "Outcomes"
-        BlindsOpen --> NaturalLight[Natural Light Entry]
-        LightSim --> GentleWake[Gentle Wake-Up]
-        DisplaySunrise --> AmbientView[Ambient Sunrise Display]
-        MorningCast --> NewsWeather[News & Weather]
-    end
-    
-    classDef triggerClass fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
-    classDef actionClass fill:#50C878,stroke:#2E7D4E,stroke-width:2px,color:#fff
-    classDef outcomeClass fill:#9B59B6,stroke:#6C3483,stroke-width:2px,color:#fff
-    
-    class SR,SunOffset,Time0700,TVIdle triggerClass
-    class BlindsOpen,LightSim,DisplaySunrise,BrushTeeth,Notify1,MorningCast actionClass
-    class NaturalLight,GentleWake,AmbientView,NewsWeather outcomeClass
-```
-
-#### Evening & Night Routine Details
-
-```mermaid
-flowchart LR
-    subgraph "Sunset Triggers"
-        SS[Sunset Event]
-        SS --> SunsetOffset{Calculate Offset}
-        SunsetOffset --> BlindsClose[Close Bedroom Blinds]
-        SunsetOffset --> DisplaySunset[Display: Sunset View]
-        SunsetOffset --> LivingBlinds[Close Living Room Blinds]
-    end
-    
-    subgraph "Night Schedule"
-        Time2100[21:00] --> BrushTeethEvening[Reminder: Brush Teeth]
-        Time2130[21:30+] --> SleepMode{Weekday or Weekend?}
-        SleepMode -->|Mon-Thu,Sun| WeekdaySchedule[Weekday Sleep Mode]
-        SleepMode -->|Fri-Sat| WeekendSchedule[Weekend Sleep Mode]
-        
-        WeekdaySchedule --> AdaptiveLighting[Adaptive Lighting: Sleep]
-        WeekendSchedule --> AdaptiveLighting
-        
-        Bedtime[Bedtime Input] --> AirPurifierAuto[Air Purifier: Auto Mode]
-    end
-    
-    subgraph "Lighting Changes"
-        AdaptiveLighting --> WarmTones[Shift to Warm Tones]
-        AdaptiveLighting --> LowBrightness[Reduce Brightness]
-        AdaptiveLighting --> SleepReady[Sleep-Ready Environment]
-    end
-    
-    classDef triggerClass fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
-    classDef actionClass fill:#50C878,stroke:#2E7D4E,stroke-width:2px,color:#fff
-    classDef outcomeClass fill:#9B59B6,stroke:#6C3483,stroke-width:2px,color:#fff
-    
-    class SS,SunsetOffset,Time2100,Time2130,SleepMode,Bedtime triggerClass
-    class BlindsClose,DisplaySunset,BrushTeethEvening,WeekdaySchedule,AdaptiveLighting,AirPurifierAuto actionClass
-    class WarmTones,LowBrightness,SleepReady outcomeClass
-```
-
-#### Time-Based Configuration
+In `configuration.yaml`, packages are loaded with a single directive:
 
 ```yaml
-# Configuration via Input DateTimes
-input_datetime.morning: 07:00
-input_datetime.evening: 18:00  
-input_datetime.night: 21:00
-input_datetime.bedroom_bedtime: 22:30
-input_datetime.adaptive_lighting_sleep_mode_on_weekday: 21:30
-input_datetime.adaptive_lighting_sleep_mode_on_weekend: 22:30
+homeassistant:
+  packages: !include_dir_merge_named packages/
 ```
+
+This directive:
+- Scans the entire `packages/` directory recursively
+- Loads all `.yaml` files
+- Merges configurations by their package name (root key in each YAML file)
+- Allows multiple files to contribute to the same domain
 
 ---
 
-### 4. Manual Override System
+## Package Organization
 
-The manual override system detects user-initiated device control and temporarily disables conflicting automations, ensuring the system respects user preferences.
+The packages directory is organized into several top-level categories:
 
-#### Manual Override State Machine
+### 1. Top-Level Packages
 
-```mermaid
-stateDiagram-v2
-    [*] --> AutomaticMode
-    
-    AutomaticMode --> DetectingManual: User Changes Device State
-    DetectingManual --> WaitingConfirmation: Start 5s Timer
-    WaitingConfirmation --> AutomaticMode: Device State Changed Back
-    WaitingConfirmation --> ManualMode: Timer Expires & State Persists
-    
-    ManualMode --> AutomaticMode: Time-Based Reset
-    ManualMode --> AutomaticMode: Explicit Reset Action
-    ManualMode --> AutomaticMode: Presence Detection Disabled
-    
-    note right of AutomaticMode
-        Automatic control active:
-        - Presence triggers lights
-        - Time routines active
-        - Full automation enabled
-    end note
-    
-    note right of ManualMode
-        Manual control active:
-        - Automatic control disabled
-        - User preference preserved
-        - Manual flag set
-    end note
-    
-    note right of WaitingConfirmation
-        5-second grace period:
-        - Prevents false positives
-        - Allows quick corrections
-        - Validates user intent
-    end note
+Located directly in `packages/`, these files define global or cross-cutting concerns:
+
+- **Time-based**: `morning.yaml`, `evening.yaml`, `night.yaml`
+  - Define `input_datetime` entities for scheduling
+  - Used by automations as time triggers
+
+- **System**: `logger.yaml`, `recorder.yaml`, `reload.yaml`
+  - System configuration and debugging
+  - Database recording settings
+  - Quick reload utilities
+
+- **Global Features**: `climate.yaml`, `occupancy.yaml`, `vacuum.yaml`
+  - Cross-area functionality
+  - Centralized settings
+
+### 2. Areas (`areas/`)
+
+Physical locations in your home, organized by room:
+
+```
+areas/
+├── bedroom/
+├── living_room/
+├── kitchen/
+├── bathroom/
+├── hallway/
+├── storage_room/
+└── apartment/
 ```
 
-#### Manual Override Flow
+Each area contains:
+- **Direct configuration files**: Settings specific to that area
+  - `adaptive_lighting.yaml` - Lighting automation for the area
+  - `bedtime.yaml` - Bedtime routines
+  - `morning.yaml` - Morning routines
+  - `thermostat.yaml` - Climate control
+
+- **Domain subdirectories**: Organized by entity domain
+  - `automation/` - Automations specific to this area
+  - `light/` - Light entities and groups
+  - `climate/` - Climate control entities
+  - `cover/` - Window covers and blinds
+  - `script/` - Scripts for this area
+
+### 3. Domains (`domains/`)
+
+Organized by Home Assistant domain/platform, containing cross-area functionality:
+
+```
+domains/
+├── adaptive_lighting/
+├── climate/
+├── cover/
+├── light/
+├── media_player/
+├── vacuum/
+├── script/
+├── zone/
+└── update/
+```
+
+Use cases:
+- Cross-area automations
+- Domain-specific utilities
+- Platform configurations
+- Zone enter/exit automations
+
+### 4. Common (`common/`)
+
+Shared functionality and templates:
+
+- `presence/` - Presence detection logic
+- Reusable automation patterns
+- Helper entities
+
+### 5. Reminders (`reminders/`)
+
+Personal reminders and recurring tasks:
+
+- `brush_teeth.yaml` - Daily hygiene reminders
+- `my_tasks.yaml` - Task management
+- `water_plants.yaml` - Plant care reminders
+
+### 6. Schedules (`schedules/`)
+
+Time-based scheduling configurations:
+
+- `day.yaml` - Daily schedules
+- Time-of-day automations
+
+---
+
+## Naming Conventions
+
+Package names follow a strict hierarchical pattern that maps directly to their file path.
+
+### Naming Pattern Diagram
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#161b22", "primaryTextColor": "#e6edf3", "primaryBorderColor": "#30363d", "lineColor": "#7d8590", "secondaryColor": "#0d1117", "tertiaryColor": "#010409", "background": "#0d1117", "mainBkg": "#161b22", "secondBkg": "#0d1117", "tertiaryBkg": "#010409", "textColor": "#e6edf3", "border1": "#30363d", "border2": "#21262d", "arrowheadColor": "#7d8590", "fontFamily": "ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace", "fontSize": "14px", "nodeBorder": "#30363d", "clusterBkg": "#161b22", "clusterBorder": "#30363d", "defaultLinkColor": "#7d8590", "titleColor": "#e6edf3", "edgeLabelBackground": "#161b22", "nodeTextColor": "#e6edf3"}}}%%
+flowchart TD
+    Start([Package File Path]) --> Root{Root Level?}
+    
+    Root -->|Yes| RootPattern[Simple Name Pattern]
+    RootPattern --> RootExample["packages/morning.yaml<br/>→ morning:"]
+    
+    Root -->|No| Category{Category Type?}
+    
+    Category -->|areas| AreaPath[areas/{area}/...]
+    Category -->|domains| DomainPath[domains/{domain}/...]
+    Category -->|reminders| ReminderPath[reminders/{name}]
+    Category -->|schedules| SchedulePath[schedules/{name}]
+    Category -->|common| CommonPath[common/{feature}/...]
+    
+    AreaPath --> AreaDepth{Depth Level?}
+    AreaDepth -->|2 levels| AreaSimple["areas_{area}_{feature}"]
+    AreaSimple --> AreaEx1["areas/bedroom/bedtime.yaml<br/>→ areas_bedroom_bedtime:"]
+    
+    AreaDepth -->|3+ levels| AreaNested["areas_{area}_{sub1}_{sub2}..."]
+    AreaNested --> AreaEx2["areas/living_room/tv/on.yaml<br/>→ areas_living_room_tv_on:"]
+    
+    AreaDepth -->|automation subdir| AreaAuto["areas_{area}_automation_{type}"]
+    AreaAuto --> AreaEx3["areas/bedroom/automation/pm_10.yaml<br/>→ areas_bedroom_automation_pm_10:"]
+    
+    DomainPath --> DomainDepth{Depth Level?}
+    DomainDepth -->|2 levels| DomainSimple["domains_{domain}_{feature}"]
+    DomainSimple --> DomainEx1["domains/zone/home.yaml<br/>→ domains_zone_home:"]
+    
+    DomainDepth -->|3 levels| DomainNested["domains_{domain}_{sub1}_{sub2}"]
+    DomainNested --> DomainEx2["domains/zone/home/enter.yaml<br/>→ domains_zone_home_enter:"]
+    
+    DomainDepth -->|4+ levels| DomainDeep["domains_{domain}_{sub1}_{sub2}_{sub3}..."]
+    DomainDeep --> DomainEx3["domains/adaptive_lighting/sleep_mode/on/weekday.yaml<br/>→ domains_adaptive_lighting_sleep_mode_on_weekday:"]
+    
+    ReminderPath --> ReminderPattern["reminders_{name}"]
+    ReminderPattern --> ReminderEx["reminders/brush_teeth.yaml<br/>→ reminders_brush_teeth:"]
+    
+    SchedulePath --> SchedulePattern["schedules_{name}"]
+    SchedulePattern --> ScheduleEx["schedules/day.yaml<br/>→ schedules_day:"]
+    
+    CommonPath --> CommonPattern["common_{feature}_{sub}..."]
+    CommonPattern --> CommonEx["common/presence/off/thermostat.yaml<br/>→ common_presence_off_thermostat:"]
+    
+    RootExample --> Rule[Naming Rules]
+    AreaEx1 --> Rule
+    AreaEx2 --> Rule
+    AreaEx3 --> Rule
+    DomainEx1 --> Rule
+    DomainEx2 --> Rule
+    DomainEx3 --> Rule
+    ReminderEx --> Rule
+    ScheduleEx --> Rule
+    CommonEx --> Rule
+    
+    Rule --> R1["1. Replace '/' with '_'"]
+    R1 --> R2["2. Remove file extension"]
+    R2 --> R3["3. Join path segments with '_'"]
+    R3 --> R4["4. Prefix with category for subdirs"]
+    R4 --> End([Package Name])
+    
+    style Start fill:#161b22,stroke:#30363d,color:#e6edf3
+    style End fill:#161b22,stroke:#30363d,color:#e6edf3
+    style Root fill:#161b22,stroke:#30363d,color:#e6edf3
+    style Category fill:#161b22,stroke:#30363d,color:#e6edf3
+    style AreaDepth fill:#161b22,stroke:#30363d,color:#e6edf3
+    style DomainDepth fill:#161b22,stroke:#30363d,color:#e6edf3
+    style Rule fill:#0d1117,stroke:#30363d,color:#e6edf3
+    style R1 fill:#0d1117,stroke:#30363d,color:#e6edf3
+    style R2 fill:#0d1117,stroke:#30363d,color:#e6edf3
+    style R3 fill:#0d1117,stroke:#30363d,color:#e6edf3
+    style R4 fill:#0d1117,stroke:#30363d,color:#e6edf3
+```
+
+### Naming Rules
+
+1. **Root-level packages**: Use the filename without extension
+   - `packages/morning.yaml` → `morning:`
+
+2. **Nested packages**: Join path segments with underscores
+   - `packages/areas/bedroom/bedtime.yaml` → `areas_bedroom_bedtime:`
+
+3. **Use snake_case**: All package names, IDs, and entity IDs use snake_case
+   - Consistent with Home Assistant conventions
+   - Easy to read and maintain
+
+4. **Descriptive hierarchy**: Names reflect the organizational structure
+   - Area-based: `areas_bedroom_automation_pm_10`
+   - Domain-based: `domains_adaptive_lighting_sleep_mode_on_weekday`
+   - Reminder-based: `reminders_brush_teeth`
+
+### Naming Examples
+
+| File Path | Package Name |
+|-----------|--------------|
+| `packages/morning.yaml` | `morning:` |
+| `packages/areas/bedroom/bedtime.yaml` | `areas_bedroom_bedtime:` |
+| `packages/areas/bedroom/automation/pm_10.yaml` | `areas_bedroom_automation_pm_10:` |
+| `packages/domains/zone/home/enter.yaml` | `domains_zone_home_enter:` |
+| `packages/domains/adaptive_lighting/sleep_mode/on/weekday.yaml` | `domains_adaptive_lighting_sleep_mode_on_weekday:` |
+| `packages/reminders/brush_teeth.yaml` | `reminders_brush_teeth:` |
+
+---
+
+## Automation Lifecycle
+
+Understanding how automations flow from configuration to execution is crucial for effective debugging and development.
+
+### Lifecycle Sequence Diagram
+
+```mermaid
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#161b22", "primaryTextColor": "#e6edf3", "primaryBorderColor": "#30363d", "lineColor": "#7d8590", "secondaryColor": "#0d1117", "tertiaryColor": "#010409", "background": "#0d1117", "mainBkg": "#161b22", "secondBkg": "#0d1117", "tertiaryBkg": "#010409", "textColor": "#e6edf3", "border1": "#30363d", "border2": "#21262d", "arrowheadColor": "#7d8590", "fontFamily": "ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace", "fontSize": "14px", "nodeBorder": "#30363d", "clusterBkg": "#161b22", "clusterBorder": "#30363d", "defaultLinkColor": "#7d8590", "titleColor": "#e6edf3", "edgeLabelBackground": "#161b22", "nodeTextColor": "#e6edf3", "actorBkg": "#161b22", "actorBorder": "#30363d", "actorTextColor": "#e6edf3", "actorLineColor": "#7d8590", "signalColor": "#e6edf3", "signalTextColor": "#e6edf3", "labelBoxBkgColor": "#161b22", "labelBoxBorderColor": "#30363d", "labelTextColor": "#e6edf3", "loopTextColor": "#e6edf3", "noteBorderColor": "#30363d", "noteBkgColor": "#161b22", "noteTextColor": "#e6edf3", "activationBorderColor": "#30363d", "activationBkgColor": "#0d1117", "sequenceNumberColor": "#e6edf3"}}}%%
 sequenceDiagram
-    participant User
-    participant Light as Light Device
-    participant Auto as Automation System
-    participant Helper as input_boolean.manual
-    participant Presence as Presence Automation
+    participant HA as Home Assistant Core
+    participant Config as configuration.yaml
+    participant Packages as packages/
+    participant Merger as Config Merger
+    participant AutoEngine as Automation Engine
+    participant Monitor as Trigger Monitor
+    participant Eval as Condition Evaluator
+    participant Executor as Action Executor
+    participant Services as Service Registry
+    participant Device as Devices/Entities
+
+    Note over HA: Startup Phase
+    HA->>Config: Load main configuration
+    Config->>HA: Returns config with packages directive
+    HA->>Packages: Scan packages directory
+    Packages->>Merger: Load all YAML files
+    Note over Merger: Merge configs by domain<br/>(multiple files can contribute<br/>to same automation domain)
+    Merger->>AutoEngine: Register automation:<br/>alias: "Example"<br/>id: unique_id<br/>mode: single
+    AutoEngine->>Monitor: Setup trigger monitoring
+    Note over Monitor: Monitor trigger:<br/>platform: time<br/>at: input_datetime.time
+
+    Note over HA,Device: Runtime Phase
+    loop Continuous Monitoring
+        Monitor->>Monitor: Check trigger conditions
+    end
     
-    User->>Light: Manually turn ON
-    Light->>Auto: State Change Event (context: user)
-    Auto->>Auto: Detect manual change
-    Auto->>Auto: Start 5s delay timer
+    Monitor->>AutoEngine: Trigger fired!<br/>(time matched)
+    AutoEngine->>Eval: Evaluate conditions
+    Eval->>Device: Check state of<br/>input_boolean.switch
+    Device->>Eval: state: "on"
+    Eval->>AutoEngine: Conditions passed ✓
     
-    Note over Auto: Waiting 5 seconds...
-    
-    Auto->>Light: Check current state
-    Light->>Auto: State: ON (unchanged)
-    Auto->>Helper: Set manual flag = ON
-    Helper->>Presence: Manual mode active
-    
-    Note over Presence: Automatic control disabled
-    
-    User->>Light: Manually turn OFF later
-    Light->>Auto: State Change Event
-    Auto->>Helper: Manual flag still ON
-    
-    Note over Auto,Helper: Time passes or reset triggered...
-    
-    Auto->>Helper: Reset manual flag = OFF
-    Helper->>Presence: Manual mode cleared
-    Presence->>Auto: Resume automatic control
-    
-    Note over Presence: Automatic control restored
+    AutoEngine->>Executor: Execute action sequence
+    Executor->>Services: Call service:<br/>light.turn_on
+    Services->>Device: Control entity:<br/>light.bedroom
+    Device->>Services: Execution complete
+    Services->>Executor: Service call complete
+    Executor->>AutoEngine: Action sequence finished
+    AutoEngine->>AutoEngine: Automation complete<br/>(mode: single)
 ```
 
-#### Implementation Details
+### Lifecycle Phases
 
-**Areas with Manual Override:**
-- Bedroom
-- Living Room
-- Kitchen
-- Bathroom
-- Hallway
-- Storage Room
+#### 1. Startup Phase
 
-**Detection Mechanism:**
+**Configuration Loading:**
+- Home Assistant loads `configuration.yaml`
+- Encounters `packages: !include_dir_merge_named packages/`
+- Recursively scans all YAML files in `packages/`
+
+**Package Merging:**
+- Groups configurations by package name (root key)
+- Merges multiple files that share the same package name
+- Example: Multiple files can all contribute to the `automation:` domain
+
+**Registration:**
+- Each automation is registered with the Automation Engine
+- Assigned a unique ID for tracking
+- Mode is validated (single, restart, queued, parallel)
+- Trigger monitors are set up
+
+#### 2. Runtime Phase
+
+**Trigger Monitoring:**
+- Monitors continuously watch for trigger events
+- Different platforms monitor different event types:
+  - Time platform: Watches the clock
+  - State platform: Monitors entity state changes
+  - Zone platform: Tracks device location
+  - Numeric state platform: Monitors sensor values
+
+**Condition Evaluation:**
+- When a trigger fires, all conditions are evaluated
+- Must ALL pass for automation to proceed
+- Common conditions:
+  - State checks
+  - Time windows
+  - Numeric comparisons
+  - Template evaluations
+
+**Action Execution:**
+- Services are called sequentially (unless parallel execution)
+- Each action can:
+  - Control devices
+  - Change entity states
+  - Send notifications
+  - Call other scripts
+  - Execute choose/if-then logic
+
+**Completion:**
+- Automation mode determines behavior after completion
+- Logging and tracing are updated
+- Ready for next trigger (based on mode)
+
+---
+
+## Trigger Types and Flow
+
+Different trigger types have different behaviors and use cases. Understanding these helps design reliable automations.
+
+### Trigger Flow Diagram
+
+```mermaid
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#161b22", "primaryTextColor": "#e6edf3", "primaryBorderColor": "#30363d", "lineColor": "#7d8590", "secondaryColor": "#0d1117", "tertiaryColor": "#010409", "background": "#0d1117", "mainBkg": "#161b22", "secondBkg": "#0d1117", "tertiaryBkg": "#010409", "textColor": "#e6edf3", "border1": "#30363d", "border2": "#21262d", "arrowheadColor": "#7d8590", "fontFamily": "ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace", "fontSize": "14px", "nodeBorder": "#30363d", "clusterBkg": "#161b22", "clusterBorder": "#30363d", "defaultLinkColor": "#7d8590", "titleColor": "#e6edf3", "edgeLabelBackground": "#161b22", "nodeTextColor": "#e6edf3"}}}%%
+flowchart TD
+    Start([Event Occurs in HA]) --> TriggerType{Determine<br/>Trigger Type}
+    
+    TriggerType -->|Time| TimeEx[Time Trigger<br/>at: input_datetime.morning]
+    TriggerType -->|State| StateEx[State Trigger<br/>entity: sensor changes]
+    TriggerType -->|Zone| ZoneEx[Zone Trigger<br/>zone: home, event: enter]
+    TriggerType -->|Numeric State| NumericEx[Numeric State Trigger<br/>entity: sensor.pm_10<br/>above: 150]
+    
+    TimeEx --> Example1[Morning Automation<br/>Adaptive Lighting Sleep Off]
+    StateEx --> Example2[State Change<br/>Adaptive Lighting Manual Reset]
+    ZoneEx --> Example3[Home Enter<br/>Turn on lights & climate]
+    NumericEx --> Example4[PM10 Alert<br/>Notify when > 150]
+    
+    Example1 --> CheckMode{Check<br/>Automation Mode}
+    Example2 --> CheckMode
+    Example3 --> CheckMode
+    Example4 --> CheckMode
+    
+    CheckMode -->|single| Single[Only one instance<br/>Skip if running]
+    CheckMode -->|restart| Restart[Stop current<br/>Restart automation]
+    CheckMode -->|queued| Queued[Add to queue<br/>Run after current]
+    CheckMode -->|parallel| Parallel[Run multiple<br/>instances]
+    
+    Single --> CanRun{Already<br/>Running?}
+    CanRun -->|Yes| Skip[Skip Execution]
+    CanRun -->|No| EvalCond
+    
+    Restart --> RestartCurrent[Stop Current] --> EvalCond
+    Queued --> AddQueue[Add to Queue] --> EvalCond
+    Parallel --> EvalCond[Evaluate Conditions]
+    
+    EvalCond --> CondCheck{All Conditions<br/>Met?}
+    CondCheck -->|No| Skip
+    CondCheck -->|Yes| Execute[Execute Actions]
+    
+    Execute --> Action1[Service Calls]
+    Execute --> Action2[State Changes]
+    Execute --> Action3[Notifications]
+    
+    Action1 --> Complete([Automation Complete])
+    Action2 --> Complete
+    Action3 --> Complete
+    Skip --> Complete
+    
+    style Start fill:#0d1117,stroke:#30363d,color:#e6edf3
+    style Complete fill:#0d1117,stroke:#30363d,color:#e6edf3
+    style TriggerType fill:#161b22,stroke:#30363d,color:#e6edf3
+    style CheckMode fill:#161b22,stroke:#30363d,color:#e6edf3
+    style CondCheck fill:#161b22,stroke:#30363d,color:#e6edf3
+    style CanRun fill:#161b22,stroke:#30363d,color:#e6edf3
+    style TimeEx fill:#161b22,stroke:#58a6ff,color:#e6edf3
+    style StateEx fill:#161b22,stroke:#58a6ff,color:#e6edf3
+    style ZoneEx fill:#161b22,stroke:#58a6ff,color:#e6edf3
+    style NumericEx fill:#161b22,stroke:#58a6ff,color:#e6edf3
+    style Example1 fill:#161b22,stroke:#3fb950,color:#e6edf3
+    style Example2 fill:#161b22,stroke:#3fb950,color:#e6edf3
+    style Example3 fill:#161b22,stroke:#3fb950,color:#e6edf3
+    style Example4 fill:#161b22,stroke:#3fb950,color:#e6edf3
+    style Single fill:#161b22,stroke:#f778ba,color:#e6edf3
+    style Restart fill:#161b22,stroke:#f778ba,color:#e6edf3
+    style Queued fill:#161b22,stroke:#f778ba,color:#e6edf3
+    style Parallel fill:#161b22,stroke:#f778ba,color:#e6edf3
+    style Execute fill:#161b22,stroke:#3fb950,color:#e6edf3
+    style Skip fill:#161b22,stroke:#f85149,color:#e6edf3
+```
+
+### Trigger Types
+
+#### 1. Time Trigger
+
+Executes at a specific time.
+
+```yaml
+trigger:
+  - platform: time
+    at: input_datetime.morning
+```
+
+**Use cases:**
+- Morning routines
+- Evening lighting changes
+- Scheduled tasks
+
+**Example:** `areas_bedroom_bedtime`
+- Triggers at bedtime
+- Turns on air purifier in auto mode
+
+#### 2. State Trigger
+
+Executes when an entity changes state.
+
 ```yaml
 trigger:
   - platform: state
-    entity_id: light.bedroom_light
-    context:
-      user_id: !secret user_id  # Only user changes, not automations
-
-action:
-  - delay: 5  # Grace period
-  - condition: state
-    entity_id: light.bedroom_light
-    state: "{{ trigger.to_state.state }}"  # State unchanged
-  - service: input_boolean.turn_on
-    target:
-      entity_id: input_boolean.bedroom_light_manual
+    entity_id: light.bedroom
+    from: "off"
+    to: "on"
 ```
 
-**Reset Conditions:**
-- Time-based (e.g., daily reset at midnight)
-- Zone transitions (leaving/entering home)
-- Explicit reset automation
-- Presence detection disabled
+**Use cases:**
+- Response to manual control
+- Cascading automations
+- Reset logic
 
----
+#### 3. Zone Trigger
 
-## Device-Specific Automations
+Executes when a device enters or leaves a zone.
 
-### 3D Printer (Bambu Lab) - Storage Room
-
-The 3D printer automation handles print completion with a multi-step sequence:
-
-```mermaid
-sequenceDiagram
-    participant Printer as 3D Printer
-    participant Sensor as sensor.printer_status
-    participant Auto as Automation
-    participant AirPurifier as Air Purifier
-    participant Fan as Chamber Fan
-    participant Power as Smart Plug
-    participant Notify as Mobile Notification
-    
-    Printer->>Sensor: Status: Printing
-    Note over Printer,Sensor: Print in progress...
-    
-    Printer->>Sensor: Status: Finish
-    Sensor->>Auto: Trigger: Print Complete
-    
-    Auto->>AirPurifier: Set to Auto Mode
-    Auto->>Fan: Turn ON for 1 minute
-    
-    Note over Fan: Cooling chamber...
-    
-    Auto->>Fan: Turn OFF after 60s
-    Auto->>Power: Turn OFF printer
-    Auto->>Auto: Wait 10 seconds
-    Auto->>Power: Turn ON printer
-    
-    Note over Power: Power cycle complete
-    
-    Auto->>Auto: Wait 5 minutes
-    Auto->>Notify: Send "Print Finished" notification
-    Notify->>Notify: Display on mobile device
-```
-
-**Key Features:**
-- Chamber cooling with fan cycle
-- Automatic power cycle to reset printer
-- Delayed notification (avoids spam)
-- Air quality management
-- Night mode behavior adjustments
-
----
-
-### Vacuum Cleaner (Living Room)
-
-The vacuum automation includes scheduling, status monitoring, and display integration:
-
-```mermaid
-flowchart TD
-    Schedule[Sunday 12:00 PM] --> CheckConditions{Check Conditions}
-    CheckConditions -->|Docked?| CheckRunning{Already Running?}
-    CheckConditions -->|Not Docked| Skip[Skip Cleaning]
-    CheckRunning -->|No| StartVacuum[Start Vacuum]
-    CheckRunning -->|Yes| Skip
-    
-    StartVacuum --> Cleaning[Vacuum Cleaning]
-    
-    Cleaning --> TVCheck{Living Room TV State?}
-    TVCheck -->|TV OFF| WaitOne[Wait 1 minute]
-    TVCheck -->|TV ON| Cleaning
-    
-    WaitOne --> CastView[Cast Vacuum View to Bedroom Display]
-    
-    Cleaning --> Complete[Cleaning Complete]
-    Complete --> ReturnDock[Return to Dock]
-    
-    classDef triggerClass fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
-    classDef actionClass fill:#50C878,stroke:#2E7D4E,stroke-width:2px,color:#fff
-    classDef conditionClass fill:#F39C12,stroke:#C87F0A,stroke-width:2px,color:#fff
-    
-    class Schedule triggerClass
-    class StartVacuum,WaitOne,CastView,ReturnDock actionClass
-    class CheckConditions,CheckRunning,TVCheck conditionClass
-```
-
-**Configuration:**
-- **Schedule**: Sunday 12:00 PM
-- **Conditions**: Must be docked, not already running
-- **Display Integration**: Shows vacuum status on bedroom display when living room TV is off
-
----
-
-### Coffee Pot (Kitchen)
-
-Simple timer-based safety automation:
-
-```mermaid
-stateDiagram-v2
-    [*] --> Off
-    Off --> On: Coffee Pot Turned ON
-    On --> Timer: Start 15-minute timer
-    Timer --> AutoOff: Timer Expires
-    AutoOff --> Off: Turn OFF Coffee Pot
-    Off --> [*]
-    
-    note right of Timer
-        Safety feature:
-        Prevents leaving
-        coffee pot on
-        indefinitely
-    end note
-```
-
----
-
-### Blinds & Covers
-
-Automated blind control across bedroom, living room, and kitchen:
-
-```mermaid
-flowchart TD
-    subgraph "Automatic Control"
-        Sunrise[Sunrise] --> OpenBlinds[Open All Blinds]
-        Sunset[Sunset] --> CloseBlinds[Close All Blinds]
-        Bedtime[Bedtime] --> NightPosition[Night Position]
-    end
-    
-    subgraph "Manual Detection"
-        UserAction[User Opens/Closes Blind] --> DetectManual[Detect Manual Operation]
-        DetectManual --> SetManualFlag[Set Manual Mode Flag]
-        SetManualFlag --> DisableAuto[Disable Automatic Control]
-    end
-    
-    subgraph "Calibration"
-        CalibrationTrigger[Calibration Needed] --> CloseCompletely[Close to 0%]
-        CloseCompletely --> OpenCompletely[Open to 100%]
-        OpenCompletely --> MidPosition[Set to 50%]
-        MidPosition --> CalibrationComplete[Calibration Complete]
-    end
-    
-    subgraph "Coordination"
-        MultiBlind[Multiple Blinds per Area] --> Sync[Synchronized Movement]
-        Sync --> GroupOne[Blind One]
-        Sync --> GroupTwo[Blind Two]
-        Sync --> GroupThree[Blind Three]
-    end
-    
-    classDef triggerClass fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
-    classDef actionClass fill:#50C878,stroke:#2E7D4E,stroke-width:2px,color:#fff
-    
-    class Sunrise,Sunset,Bedtime,UserAction,CalibrationTrigger triggerClass
-    class OpenBlinds,CloseBlinds,NightPosition,SetManualFlag,DisableAuto,CloseCompletely,MidPosition,Sync actionClass
-```
-
-**Features:**
-- Sunrise/sunset automation
-- Manual mode detection
-- Calibration routines
-- Multi-blind coordination (bedroom has 3 blinds, living room has 3, kitchen has 1)
-
----
-
-### TV Automations
-
-Smart TV integration with state-based triggers:
-
-- **TV ON**: Enable presence-aware behaviors
-- **TV OFF**: Trigger vacuum display cast (if cleaning)
-- **TV Idle**: Cast morning content or default views
-- **Integration**: Works with presence detection and time routines
-
----
-
-## Environmental Monitoring and Safety
-
-### Air Quality Monitoring
-
-The system monitors multiple air quality parameters and sends alerts when thresholds are exceeded:
-
-```mermaid
-flowchart TD
-    subgraph "Sensors"
-        SCD30[SCD30 CO₂ Sensor]
-        Sen55[Sen55 Air Quality Sensor]
-        BME680[BME680 Gas Sensor]
-    end
-    
-    subgraph "Monitoring"
-        SCD30 --> CO2Monitor[CO₂ Monitoring]
-        Sen55 --> PM25Monitor[PM 2.5 Monitoring]
-        Sen55 --> PM10Monitor[PM 10 Monitoring]
-        BME680 --> VOCMonitor[VOC Monitoring]
-    end
-    
-    subgraph "Thresholds"
-        CO2Monitor --> CO2Threshold{> 2000 ppm?}
-        PM25Monitor --> PM25Threshold{> Threshold?}
-        PM10Monitor --> PM10Threshold{> Threshold?}
-        VOCMonitor --> VOCThreshold{> Threshold?}
-    end
-    
-    subgraph "Actions"
-        CO2Threshold -->|Yes| CO2Alert[CO₂ Alert]
-        PM25Threshold -->|Yes| AQAlert[Air Quality Alert]
-        PM10Threshold -->|Yes| AQAlert
-        VOCThreshold -->|Yes| VOCAlert[VOC Alert]
-        
-        CO2Alert --> MobileNotify[Mobile Notification]
-        AQAlert --> MobileNotify
-        VOCAlert --> MobileNotify
-        
-        CO2Alert --> AutoResponse[Air Purifier Response]
-        AQAlert --> AutoResponse
-    end
-    
-    classDef sensorClass fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
-    classDef monitorClass fill:#F39C12,stroke:#C87F0A,stroke-width:2px,color:#fff
-    classDef alertClass fill:#E74C3C,stroke:#C0392B,stroke-width:2px,color:#fff
-    
-    class SCD30,Sen55,BME680 sensorClass
-    class CO2Monitor,PM25Monitor,PM10Monitor,VOCMonitor monitorClass
-    class CO2Alert,AQAlert,VOCAlert,MobileNotify,AutoResponse alertClass
-```
-
-**Monitored Parameters:**
-
-| Parameter | Sensor | Threshold | Action |
-|-----------|--------|-----------|--------|
-| **CO₂** | SCD30 | 2000 ppm | Mobile alert + air purifier activation |
-| **PM 2.5** | Sen55 | Configurable | Mobile alert + air purifier auto mode |
-| **PM 10** | Sen55 | Configurable | Mobile alert + air purifier response |
-| **VOC** | BME680 | Configurable | Mobile alert |
-| **Temperature** | Multiple | N/A | Climate control input |
-| **Humidity** | Multiple | N/A | Humidifier control input |
-
-**Configuration:**
-```yaml
-input_number.bedroom_carbon_dioxide_maximum: 2000  # ppm
-input_number.bedroom_pm25_threshold: 35  # μg/m³
-input_number.bedroom_pm10_threshold: 50  # μg/m³
-```
-
----
-
-### Water Leak Detection
-
-Storage room water leak monitoring with immediate notification:
-
-```mermaid
-stateDiagram-v2
-    [*] --> Monitoring
-    Monitoring --> LeakDetected: Water Detected
-    LeakDetected --> Alert: Send Notification
-    Alert --> WaitResolution: Wait for User Action
-    WaitResolution --> Monitoring: Leak Cleared
-    Monitoring --> [*]
-    
-    note right of LeakDetected
-        Immediate alert:
-        - Mobile notification
-        - High priority
-        - Actionable
-    end note
-```
-
----
-
-### Security Monitoring (Away Mode)
-
-When away from home, security monitoring activates:
-
-```mermaid
-flowchart LR
-    subgraph "Away Mode Active"
-        AwayState[Not Home] --> SecurityOn[Security Monitoring ON]
-    end
-    
-    subgraph "Monitored Events"
-        DoorSensor[Bedroom Door Contact] --> DoorOpen{Door Opened?}
-        DoorOpen -->|Yes + Away| SecurityAlert[Security Alert]
-    end
-    
-    subgraph "Alert Actions"
-        SecurityAlert --> MobileNotify[Mobile Notification]
-        SecurityAlert --> LogEvent[Log Security Event]
-    end
-    
-    classDef securityClass fill:#E74C3C,stroke:#C0392B,stroke-width:2px,color:#fff
-    class SecurityOn,SecurityAlert,MobileNotify,LogEvent securityClass
-```
-
----
-
-## System Integration and Dependencies
-
-### Helper Entity Architecture
-
-The system relies heavily on helper entities for state management and configuration:
-
-```mermaid
-graph TB
-    subgraph "Input Booleans - Flags & Toggles"
-        PD[presence_detection_*]
-        Manual[*_manual]
-        Reminders[reminder_toggles]
-        Common[common_presence_detection]
-    end
-    
-    subgraph "Input Numbers - Thresholds & Values"
-        Gates[*_last_move_gate]
-        Thresholds[*_threshold_*]
-        Timings[*_transition_*]
-        Defaults[*_default_*]
-    end
-    
-    subgraph "Input DateTimes - Schedules"
-        Daily[morning/evening/night]
-        Sleep[adaptive_lighting_sleep_*]
-        Bedtime[*_bedtime]
-    end
-    
-    subgraph "Input Selects - Modes"
-        ClimateZone[climate_zone]
-        Modes[device_modes]
-    end
-    
-    subgraph "Automations"
-        AreaAuto[Area Automations]
-        DomainAuto[Domain Automations]
-        CommonAuto[Common Automations]
-    end
-    
-    PD --> AreaAuto
-    Manual --> AreaAuto
-    Gates --> AreaAuto
-    Thresholds --> AreaAuto
-    Timings --> AreaAuto
-    Daily --> DomainAuto
-    Sleep --> DomainAuto
-    ClimateZone --> CommonAuto
-    Reminders --> DomainAuto
-    Common --> CommonAuto
-    
-    classDef booleanClass fill:#3498DB,stroke:#2874A6,stroke-width:2px,color:#fff
-    classDef numberClass fill:#E67E22,stroke:#CA6F1E,stroke-width:2px,color:#fff
-    classDef dateClass fill:#9B59B6,stroke:#6C3483,stroke-width:2px,color:#fff
-    classDef selectClass fill:#1ABC9C,stroke:#17A589,stroke-width:2px,color:#fff
-    classDef autoClass fill:#95A5A6,stroke:#7F8C8D,stroke-width:2px,color:#fff
-    
-    class PD,Manual,Reminders,Common booleanClass
-    class Gates,Thresholds,Timings,Defaults numberClass
-    class Daily,Sleep,Bedtime dateClass
-    class ClimateZone,Modes selectClass
-    class AreaAuto,DomainAuto,CommonAuto autoClass
-```
-
-### Integration Dependencies
-
-```mermaid
-flowchart LR
-    subgraph "Hardware Integrations"
-        ESPHome[ESPHome]
-        Zigbee[Zigbee2MQTT]
-        DeviceTracker[Device Tracker]
-    end
-    
-    subgraph "Cloud Integrations"
-        Google[Google Assistant]
-        MobileApp[Mobile App]
-        Cast[Cast/Display]
-    end
-    
-    subgraph "Custom Integrations"
-        BambuLab[Bambu Lab 3D Printer]
-        VeSync[Custom VeSync]
-        AdaptiveLighting[Adaptive Lighting]
-        Spook[Spook/Inverse]
-    end
-    
-    subgraph "Automation System"
-        Automations[Automations]
-    end
-    
-    ESPHome --> Automations
-    Zigbee --> Automations
-    DeviceTracker --> Automations
-    Google --> Automations
-    MobileApp --> Automations
-    Cast --> Automations
-    BambuLab --> Automations
-    VeSync --> Automations
-    AdaptiveLighting --> Automations
-    
-    classDef hwClass fill:#E67E22,stroke:#CA6F1E,stroke-width:2px,color:#fff
-    classDef cloudClass fill:#3498DB,stroke:#2874A6,stroke-width:2px,color:#fff
-    classDef customClass fill:#9B59B6,stroke:#6C3483,stroke-width:2px,color:#fff
-    classDef coreClass fill:#1ABC9C,stroke:#17A589,stroke-width:2px,color:#fff
-    
-    class ESPHome,Zigbee,DeviceTracker hwClass
-    class Google,MobileApp,Cast cloudClass
-    class BambuLab,VeSync,AdaptiveLighting,Spook customClass
-    class Automations coreClass
-```
-
-### Cross-Package Entity References
-
-**Shared Presence Entities:**
-```yaml
-# Used across multiple area automations
-binary_sensor.common_presence  # Kitchen + Hallway aggregation
-binary_sensor.occupancy_all    # All areas combined
-binary_sensor.bedroom_presence_presence
-binary_sensor.living_room_presence_presence
-binary_sensor.kitchen_presence_presence
-```
-
-**Gate Tracking Entities (Per Area):**
-```yaml
-input_number.bedroom_ld2410c_last_move_gate
-input_number.living_room_ld2410c_last_move_gate
-input_number.kitchen_ld2410c_last_move_gate
-```
-
-**Climate Zone Management:**
-```yaml
-input_select.bedroom_climate_zone  # Values: Home, Away, Sleep
-input_number.bedroom_thermostat_default  # Default temperature
-```
-
-**Manual Mode Flags (Per Area):**
-```yaml
-input_boolean.bedroom_light_manual
-input_boolean.living_room_light_manual
-input_boolean.kitchen_light_manual
-input_boolean.bathroom_light_manual
-input_boolean.hallway_light_manual
-input_boolean.storage_room_light_manual
-```
-
----
-
-## Statistics and Metrics
-
-### Automation Distribution
-
-```mermaid
-pie title Automation Files by Category
-    "Presence-Based (40%)" : 60
-    "Time-Based (17%)" : 25
-    "Device-Specific (14%)" : 20
-    "Motion/Contact (10%)" : 15
-    "Manual Override (7%)" : 10
-    "Environmental (5%)" : 8
-    "System Maintenance (3%)" : 5
-    "Reminders (2%)" : 3
-```
-
-### Area Distribution
-
-```mermaid
-bar title Automation Files per Area
-    x-axis [Bedroom, Living Room, Kitchen, Bathroom, Hallway, Storage, Apartment]
-    y-axis "Number of Automations" 0 --> 40
-    bar [35, 30, 20, 12, 10, 8, 5]
-```
-
-### Automation Statistics Summary
-
-- **Total Automation Files**: 146+
-- **Total Unique Automations**: 200+ (some files contain multiple automations)
-- **Average Automations per Area**: ~16
-- **Helper Entities**: 50+ input_boolean, 30+ input_number, 10+ input_datetime
-- **Monitored Sensors**: 80+ sensors (presence, environmental, contact, etc.)
-- **Controlled Devices**: 60+ devices (lights, climate, covers, appliances)
-
-### System Performance Metrics
-
-| Metric | Value | Notes |
-|--------|-------|-------|
-| **Average Automation Response Time** | < 1 second | Presence to light on |
-| **Radar Detection Latency** | ~100ms | LD2410C sensor response |
-| **PIR Detection Latency** | ~200ms | Traditional motion sensors |
-| **Manual Mode Detection** | 5 seconds | Grace period |
-| **Notification Delivery** | < 3 seconds | Mobile app |
-| **Climate Response Time** | ~30 seconds | Thermostat adjustment |
-| **Blind Operation Time** | 15-30 seconds | Full open/close |
-
----
-
-## Automation Design Patterns
-
-### Pattern 1: Sensor Fusion
-
-**Use Case**: Combining multiple sensor types for reliable presence detection
-
-**Implementation**:
-```mermaid
-flowchart LR
-    Radar[LD2410C Radar] --> Fusion[Sensor Fusion Logic]
-    PIR[PIR Motion] --> Fusion
-    Contact[Door Contact] --> Fusion
-    Time[Time of Day] --> Fusion
-    Fusion --> Decision{Presence State}
-    Decision -->|High Confidence| Occupied[Occupied]
-    Decision -->|Low Confidence| Detecting[Detecting]
-    Decision -->|No Signal| Unoccupied[Unoccupied]
-```
-
-**Benefits**:
-- Reduces false positives/negatives
-- More accurate presence detection
-- Graceful degradation if sensor fails
-
----
-
-### Pattern 2: State Machine with Timeouts
-
-**Use Case**: Presence detection with delayed off transitions
-
-**Implementation**:
 ```yaml
 trigger:
-  - platform: state
-    entity_id: binary_sensor.bedroom_radar_presence
-    to: "off"
-    for:
-      minutes: 5  # Timeout prevents flickering
-
-action:
-  - service: light.turn_off
-    entity_id: light.bedroom_light
-    data:
-      transition: 60  # Gentle fade-out
+  - platform: zone
+    entity_id: device_tracker.pixel_4_xl
+    zone: zone.home
+    event: enter
 ```
 
-**Benefits**:
-- Prevents flickering lights
-- Smooth transitions
-- User-friendly behavior
+**Use cases:**
+- Arrival automations
+- Departure routines
+- Location-based triggers
 
----
+**Example:** `domains_zone_home_enter`
+- Turns on lights
+- Enables climate control
+- Activates humidifier
 
-### Pattern 3: Manual Override with Grace Period
+#### 4. Numeric State Trigger
 
-**Use Case**: Detect user intent vs. automation oscillation
+Executes when a sensor crosses a threshold.
 
-**Implementation**:
 ```yaml
 trigger:
-  - platform: state
-    entity_id: light.bedroom_light
-    context:
-      user_id: !secret user_id
-
-action:
-  - delay: 5  # Grace period
-  - condition: state
-    entity_id: light.bedroom_light
-    state: "{{ trigger.to_state.state }}"
-  - service: input_boolean.turn_on
-    entity_id: input_boolean.bedroom_light_manual
+  - platform: numeric_state
+    entity_id: sensor.bedroom_sen55_pm_10
+    above: 150
 ```
 
-**Benefits**:
-- Distinguishes user action from automation
-- Prevents false manual mode activations
-- Validates user intent
+**Use cases:**
+- Environmental alerts
+- Safety notifications
+- Threshold-based actions
+
+**Example:** `areas_bedroom_automation_pm_10`
+- Alerts when PM10 exceeds 150 µg/m³
+- Suggests running air purifier
+
+### Automation Modes
+
+#### single (Default)
+- Only one instance runs at a time
+- New triggers are ignored while running
+- Best for: Non-overlapping automations
+
+```yaml
+mode: single
+```
+
+#### restart
+- Stops current execution
+- Restarts from beginning
+- Best for: Presence detection, motion lighting
+
+```yaml
+mode: restart
+```
+
+#### queued
+- Queues new triggers
+- Runs them sequentially
+- Best for: Sequential tasks
+
+```yaml
+mode: queued
+max: 5  # Maximum queue size
+```
+
+#### parallel
+- Runs multiple instances simultaneously
+- Best for: Independent actions per trigger
+
+```yaml
+mode: parallel
+max: 10  # Maximum parallel instances
+```
 
 ---
 
-### Pattern 4: Conditional Branching by Time
+## Best Practices
 
-**Use Case**: Different behaviors based on time of day
+### 1. File Organization
 
-**Implementation**:
+**Do:**
+- Group related automations by area or domain
+- Use descriptive filenames that match content
+- Keep files small and focused (single responsibility)
+- Use subdirectories for complex areas
+
+**Don't:**
+- Mix unrelated automations in one file
+- Create deeply nested directory structures
+- Use generic names like `automation1.yaml`
+
+### 2. Naming Conventions
+
+**Do:**
+- Use snake_case for all names
+- Include context in names (area, domain, feature)
+- Keep automation aliases descriptive
+- Use unique, meaningful IDs
+
+**Don't:**
+- Use spaces or special characters
+- Create ambiguous names
+- Reuse IDs across automations
+
+### 3. Automation Structure
+
+**Do:**
+- Add comments explaining complex logic
+- Use descriptive aliases
+- Include package path in comments
+- Set appropriate mode for use case
+
+**Don't:**
+- Use `mode: single` explicitly (it's default)
+- Create empty conditions
+- Put comments at the end of blocks
+
+**Example:**
+
 ```yaml
-action:
-  - choose:
-      - conditions:
-          - condition: time
-            after: "06:00:00"
-            before: "22:00:00"
-        sequence:
-          - service: light.turn_on
+# Package path: bedroom/automation/pm_10
+areas_bedroom_automation_pm_10:
+  # Alerts when particulate matter exceeds the safe bedroom threshold.
+  automation:
+    - alias: 'Bedroom - PM10 Alert'
+      id: bedroom_automation_pm_10
+      description: 'Notify when bedroom SEN55 PM10 exceeds 150 ug/m3.'
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.bedroom_sen55_pm_10
+          above: 150
+      action:
+        - service: notify.mobile_app_pixel_4_xl
+          data:
+            title: 'Bedroom Air Quality'
+            message: >-
+              PM10 is {{ states('sensor.bedroom_sen55_pm_10') }} ug/m3.
+              Consider running the air purifier.
+```
+
+### 4. Testing and Debugging
+
+**Do:**
+- Test automations after creation
+- Use Developer Tools > States to check entity states
+- Review `home-assistant.log` for errors
+- Use `pnpm reload` to reload configurations
+
+**Don't:**
+- Deploy untested automations
+- Ignore warnings in logs
+- Skip validation before committing
+
+### 5. Maintenance
+
+**Do:**
+- Document complex logic
+- Keep related automations together
+- Regularly review and clean up unused automations
+- Version control your configuration
+
+**Don't:**
+- Leave commented-out code indefinitely
+- Create duplicate automations
+- Ignore deprecation warnings
+
+---
+
+## Examples
+
+### Example 1: Time-Based Automation
+
+**File:** `packages/areas/bedroom/bedtime.yaml`
+
+**Package Name:** `areas_bedroom_bedtime`
+
+```yaml
+areas_bedroom_bedtime:
+  automation:
+    - trigger:
+        platform: time
+        at: input_datetime.bedroom_bedtime
+      action:
+        - service: fan.turn_on
+          data:
+            preset_mode: auto
+          target:
+            entity_id: fan.bedroom_air_purifier
+      alias: 'Bedroom - Bedtime'
+      id: bedroom_bedtime
+```
+
+**Purpose:** Turns on the bedroom air purifier in auto mode at bedtime.
+
+**Key Points:**
+- Uses `input_datetime` for configurable timing
+- Simple single action
+- No conditions needed
+- Default mode: single
+
+---
+
+### Example 2: Numeric State Alert
+
+**File:** `packages/areas/bedroom/automation/pm_10.yaml`
+
+**Package Name:** `areas_bedroom_automation_pm_10`
+
+```yaml
+areas_bedroom_automation_pm_10:
+  # Alerts when particulate matter exceeds the safe bedroom threshold.
+  automation:
+    - alias: 'Bedroom - PM10 Alert'
+      id: bedroom_automation_pm_10
+      mode: single
+      description: 'Notify when bedroom SEN55 PM10 exceeds 150 ug/m3.'
+      trigger:
+        - platform: numeric_state
+          entity_id: sensor.bedroom_sen55_pm_10
+          above: 150
+      action:
+        - service: notify.mobile_app_pixel_4_xl
+          data:
+            title: 'Bedroom Air Quality'
+            message: >-
+              PM10 is {{ states('sensor.bedroom_sen55_pm_10') }} ug/m3.
+              Consider running the air purifier.
+```
+
+**Purpose:** Sends a mobile notification when PM10 levels exceed safe thresholds.
+
+**Key Points:**
+- Monitors air quality sensor
+- Uses template in message for current value
+- Single mode prevents notification spam
+- Clear, actionable message
+
+---
+
+### Example 3: Zone-Based Automation
+
+**File:** `packages/domains/zone/home/enter.yaml`
+
+**Package Name:** `domains_zone_home_enter`
+
+```yaml
+domains_zone_home_enter:
+  automation:
+    action:
+      - choose:
+          - conditions:
+              - condition: state
+                entity_id: input_select.bedroom_climate_zone
+                state: 'Home'
+            sequence:
+              # Turn on the lights
+              - service: light.turn_on
+                target:
+                  entity_id: light.bedroom_light_group_zigbee
+              # Turn on the thermostat
+              - service: climate.turn_on
+                target:
+                  entity_id: climate.bedroom_thermostat
+              # Turn on the humidifier
+              - service: humidifier.turn_on
+                target:
+                  entity_id: humidifier.bedroom_humidifier_virtual
+    alias: Home - Andrew - Enter
+    id: zone_home_andrew_enter
+    mode: single
+    trigger:
+      - entity_id: device_tracker.pixel_4_xl
+        event: enter
+        platform: zone
+        zone: zone.home
+```
+
+**Purpose:** When arriving home, activates bedroom climate and lighting.
+
+**Key Points:**
+- Zone trigger for location awareness
+- Conditional logic with choose
+- Multiple coordinated actions
+- Respects climate zone preference
+
+---
+
+### Example 4: Conditional Time Automation
+
+**File:** `packages/domains/adaptive_lighting/sleep_mode/on/weekday.yaml`
+
+**Package Name:** `domains_adaptive_lighting_sleep_mode_on_weekday`
+
+```yaml
+domains_adaptive_lighting_sleep_mode_on_weekday:
+  automation:
+    - action:
+        - service: switch.turn_on
+          target:
+            entity_id: switch.adaptive_lighting_sleep_mode_common
+      alias: Adaptive Lighting - Sleep Mode - On - Weekday
+      condition:
+        - condition: time
+          weekday:
+            - mon
+            - tue
+            - wed
+            - thu
+            - sun
+      id: adaptive_lighting_sleep_mode_on_weekday
+      mode: single
+      trigger:
+        - at: input_datetime.adaptive_lighting_sleep_mode_on_weekday
+          platform: time
+  input_datetime:
+    adaptive_lighting_sleep_mode_on_weekday:
+      has_date: false
+      has_time: true
+      name: Adaptive Lighting - Sleep Mode - On - Weekday
+```
+
+**Purpose:** Enables adaptive lighting sleep mode on weekday evenings.
+
+**Key Points:**
+- Time-based trigger with weekday condition
+- Includes helper entity definition
+- Only runs on specified days
+- Demonstrates package merging (includes both automation and input_datetime)
+
+---
+
+### Example 5: Reminder Automation
+
+**File:** `packages/reminders/brush_teeth.yaml`
+
+**Package Name:** `reminders_brush_teeth`
+
+```yaml
+reminders_brush_teeth:
+  # Brush Teeth Reminder Switch
+  input_boolean:
+    brush_teeth_reminder:
+      name: Brush Teeth Reminder
+      icon: mdi:tooth-outline
+      initial: on
+
+  # Automations for morning and evening reminders
+  automation:
+    - id: morning_brush_teeth_reminder
+      alias: Morning Brush Teeth Reminder
+      description: Reminds to brush teeth in the morning
+      trigger:
+        platform: time
+        at: "07:00:00"
+      condition:
+        condition: state
+        entity_id: input_boolean.brush_teeth_reminder
+        state: "on"
+      action:
+        - service: persistent_notification.create
+          data:
+            title: "Morning Reminder"
+            message: "Time to brush your teeth!"
+            notification_id: "morning_brush_teeth_reminder"
+        - service: notify.mobile_app_pixel_4_xl
+          data:
+            title: "Morning Routine"
+            message: "Don't forget to brush your teeth!"
             data:
-              brightness: 255
-      - conditions:
-          - condition: time
-            after: "22:00:00"
-            before: "06:00:00"
-        sequence:
-          - service: light.turn_on
+              actions:
+                - action: "MARK_COMPLETE"
+                  title: "Mark as Complete"
+
+    - id: evening_brush_teeth_reminder
+      alias: Evening Brush Teeth Reminder
+      description: Reminds to brush teeth in the evening
+      trigger:
+        platform: time
+        at: "21:00:00"
+      condition:
+        condition: state
+        entity_id: input_boolean.brush_teeth_reminder
+        state: "on"
+      action:
+        - service: persistent_notification.create
+          data:
+            title: "Evening Reminder"
+            message: "Time to brush your teeth!"
+            notification_id: "evening_brush_teeth_reminder"
+        - service: notify.mobile_app_pixel_4_xl
+          data:
+            title: "Evening Routine"
+            message: "Don't forget to brush your teeth!"
             data:
-              brightness: 50
+              actions:
+                - action: "MARK_COMPLETE"
+                  title: "Mark as Complete"
 ```
 
-**Benefits**:
-- Context-aware behaviors
-- Respects circadian rhythms
-- Reduces nighttime disturbance
+**Purpose:** Daily reminders for brushing teeth, morning and evening.
+
+**Key Points:**
+- Multiple automations in one package
+- Toggle switch to enable/disable
+- Both persistent notifications and mobile notifications
+- Actionable notifications
+- Demonstrates full package composition (input_boolean + automations)
 
 ---
 
-### Pattern 5: Cascading Automation with Dependencies
+## Troubleshooting
 
-**Use Case**: Multi-step sequences with checkpoints
+### Common Issues
 
-**Implementation**:
-```mermaid
-sequenceDiagram
-    participant A as Automation 1
-    participant H as Helper Flag
-    participant B as Automation 2
-    participant C as Automation 3
-    
-    A->>A: Execute Step 1
-    A->>H: Set checkpoint_1 = true
-    H->>B: Trigger Automation 2
-    B->>B: Check checkpoint_1
-    B->>B: Execute Step 2
-    B->>H: Set checkpoint_2 = true
-    H->>C: Trigger Automation 3
-    C->>C: Check checkpoint_1 & 2
-    C->>C: Execute Step 3
+#### 1. Automation Not Firing
+
+**Symptoms:**
+- Trigger event occurs but automation doesn't run
+- No errors in logs
+
+**Diagnosis:**
+1. Check automation is enabled in UI
+2. Verify trigger entity exists and is correct
+3. Test conditions manually in Developer Tools
+4. Check automation mode isn't preventing execution
+5. Review trace in Developer Tools > Automation
+
+**Solutions:**
+- Enable automation in UI
+- Fix entity_id references
+- Adjust conditions
+- Change mode if needed
+
+#### 2. Configuration Not Loading
+
+**Symptoms:**
+- Changes don't appear after reload
+- Errors on startup
+
+**Diagnosis:**
+1. Check YAML syntax with online validator
+2. Review `home-assistant.log` for errors
+3. Verify package name is unique
+4. Check for duplicate IDs
+
+**Solutions:**
+- Fix YAML syntax errors
+- Rename conflicting packages
+- Use unique IDs for all automations
+- Run `pnpm reload` to see errors
+
+#### 3. Automation Firing Too Often
+
+**Symptoms:**
+- Actions repeat unexpectedly
+- Multiple notifications
+
+**Diagnosis:**
+1. Check automation mode
+2. Review trigger conditions
+3. Look for trigger loops (automation triggering itself)
+4. Check for multiple automations with same trigger
+
+**Solutions:**
+- Use `mode: single` to prevent overlapping
+- Add cooldown with `for:` in trigger
+- Add conditions to prevent loops
+- Consolidate duplicate automations
+
+#### 4. Package Merge Conflicts
+
+**Symptoms:**
+- Some automations missing
+- Unexpected behavior
+
+**Diagnosis:**
+1. Check for duplicate package names
+2. Verify domain names are correct
+3. Look for conflicting IDs
+
+**Solutions:**
+- Use unique package names
+- Ensure package names follow conventions
+- Use unique automation IDs
+
+### Debugging Tools
+
+#### Developer Tools
+
+1. **States Tab:**
+   - View current state of all entities
+   - Check if sensors/switches are working
+
+2. **Services Tab:**
+   - Test service calls manually
+   - Verify syntax before using in automation
+
+3. **Automations Tab:**
+   - View all automations
+   - Enable/disable individual automations
+   - Trigger manually for testing
+   - View execution traces
+
+#### Logs
+
+Check `home-assistant.log` for:
+- Syntax errors
+- Runtime errors
+- Automation triggers
+- Service call failures
+
+Enable debug logging in `packages/logger.yaml`:
+
+```yaml
+logger:
+  logs:
+    homeassistant.components.automation: debug
 ```
 
-**Benefits**:
-- Complex workflows broken into manageable steps
-- Fault isolation
-- Easier debugging
+#### Reload Commands
+
+Use `pnpm reload` to run:
+
+```bash
+npx hass-cli call homeassistant reload_all
+```
+
+This reloads:
+- Automations
+- Scripts
+- Groups
+- Input helpers
+- And more
+
+### Best Practices for Debugging
+
+1. **Make small changes:** Test one thing at a time
+2. **Use aliases:** Descriptive names help identify issues
+3. **Add descriptions:** Document complex logic
+4. **Test incrementally:** Verify each step works
+5. **Review traces:** Use automation traces to see execution flow
+6. **Check logs regularly:** Catch errors early
+7. **Use version control:** Easy rollback if something breaks
 
 ---
 
-### Pattern 6: Template-Based Dynamic Configuration
+## Additional Resources
 
-**Use Case**: Configurable thresholds and timings without editing YAML
+### Home Assistant Documentation
 
-**Implementation**:
-```yaml
-condition:
-  - condition: template
-    value_template: >
-      {{ states('sensor.bedroom_co2') | float > 
-         states('input_number.bedroom_carbon_dioxide_maximum') | float }}
-```
+- [Automations](https://www.home-assistant.io/docs/automation/)
+- [Packages](https://www.home-assistant.io/docs/configuration/packages/)
+- [Triggers](https://www.home-assistant.io/docs/automation/trigger/)
+- [Conditions](https://www.home-assistant.io/docs/automation/condition/)
+- [Actions](https://www.home-assistant.io/docs/automation/action/)
 
-**Benefits**:
-- Runtime configuration changes
-- No automation reloads
-- User-friendly adjustments
+### Community Resources
 
----
+- [Home Assistant Community Forum](https://community.home-assistant.io/)
+- [Home Assistant Reddit](https://www.reddit.com/r/homeassistant/)
+- [Home Assistant Discord](https://discord.gg/home-assistant)
 
-## Reference
+### Tools
 
-### Key Files and Locations
+- **YAML Validators:**
+  - [YAML Lint](http://www.yamllint.com/)
+  - VS Code with Home Assistant extension
 
-```
-/packages/
-├── areas/                          # Area-specific automations
-│   ├── bedroom/                    # 35+ automations
-│   ├── living_room/               # 30+ automations
-│   ├── kitchen/                   # 20+ automations
-│   ├── bathroom/                  # 12+ automations
-│   ├── hallway/                   # 10+ automations
-│   ├── storage_room/              # 8+ automations
-│   └── apartment/                 # 5+ automations
-├── domains/                       # Cross-cutting concerns
-│   ├── zones/                     # Zone transition automations
-│   ├── adaptive_lighting/         # Lighting schedules
-│   ├── vacuum/                    # Vacuum automations
-│   └── updates/                   # System maintenance
-├── common/                        # Shared logic
-│   ├── presence.yaml              # Common presence detection
-│   └── climate.yaml               # Shared climate control
-├── reminders/                     # Personal reminders
-│   ├── brush_teeth/
-│   ├── water_plants/
-│   └── my_tasks/
-└── schedules/                     # Time-based schedules
-    ├── morning.yaml
-    ├── evening.yaml
-    └── night.yaml
-```
-
-### Naming Conventions
-
-**Automation IDs:**
-```yaml
-# Pattern: {area}_{system}_{action}_{condition}
-bedroom_presence_light_on            # Area: bedroom, System: presence, Action: light on
-living_room_gate_update_last_move    # Area: living room, System: gate, Action: update
-kitchen_light_manual_detect          # Area: kitchen, System: light, Action: manual detect
-```
-
-**Helper Entities:**
-```yaml
-# Input Booleans: {area}_{function}_{type}
-input_boolean.bedroom_presence_detection
-input_boolean.living_room_light_manual
-
-# Input Numbers: {area}_{device}_{parameter}
-input_number.bedroom_ld2410c_last_move_gate
-input_number.bedroom_carbon_dioxide_maximum
-
-# Input DateTimes: {context}_{time_of_day}
-input_datetime.morning
-input_datetime.bedroom_bedtime
-```
-
-### Common Entity IDs
-
-**Binary Sensors (Presence):**
-```yaml
-binary_sensor.bedroom_presence_presence
-binary_sensor.living_room_presence_presence
-binary_sensor.kitchen_presence_presence
-binary_sensor.common_presence
-binary_sensor.occupancy_all
-```
-
-**Lights:**
-```yaml
-light.bedroom_light
-light.living_room_light
-light.kitchen_light
-light.bathroom_light
-light.hallway_light
-```
-
-**Climate:**
-```yaml
-climate.bedroom_thermostat
-switch.bedroom_humidifier
-fan.bedroom_air_purifier
-fan.bedroom_ceiling_fan
-```
-
-**Covers:**
-```yaml
-cover.bedroom_blind_one
-cover.bedroom_blind_two
-cover.bedroom_blind_three
-cover.living_room_blind_one
-cover.kitchen_blind_one
-```
-
-### Notification Services
-
-**Mobile Notifications:**
-```yaml
-service: notify.mobile_app_pixel_4_xl
-data:
-  title: "Alert Title"
-  message: "Alert message"
-  data:
-    priority: high
-    ttl: 0
-    actions:
-      - action: "MARK_COMPLETE"
-        title: "Mark as Complete"
-```
-
-**Persistent Notifications:**
-```yaml
-service: persistent_notification.create
-data:
-  title: "Notification Title"
-  message: "Notification message"
-  notification_id: unique_id
-```
-
-### Configuration Examples
-
-**Enable Presence Detection:**
-```yaml
-service: input_boolean.turn_on
-entity_id: input_boolean.bedroom_presence_detection
-```
-
-**Set Manual Mode:**
-```yaml
-service: input_boolean.turn_on
-entity_id: input_boolean.bedroom_light_manual
-```
-
-**Update Gate Tracking:**
-```yaml
-service: input_number.set_value
-entity_id: input_number.bedroom_ld2410c_last_move_gate
-data:
-  value: 3  # Gate 3
-```
-
-**Set Climate Zone:**
-```yaml
-service: input_select.select_option
-entity_id: input_select.bedroom_climate_zone
-data:
-  option: "Home"  # or "Away" or "Sleep"
-```
+- **CLI Tools:**
+  - `hass-cli` - Command-line interface for Home Assistant
+  - `yamllint` - YAML linter
 
 ---
 
 ## Conclusion
 
-This automation system represents a **mature, production-ready smart home implementation** that balances automation convenience with user control. Key achievements include:
+The packages automation system provides a powerful, modular approach to Home Assistant configuration. By following the organizational patterns and naming conventions documented here, you can create a maintainable, scalable smart home setup.
 
-### Strengths
+Key takeaways:
+- **Organize by purpose:** Use areas for location-based, domains for cross-cutting concerns
+- **Follow naming conventions:** Consistent names make navigation easier
+- **Keep it modular:** Small, focused files are easier to maintain
+- **Document your work:** Comments and descriptions save time later
+- **Test thoroughly:** Verify automations before deploying
 
-1. **Comprehensive Coverage**: 146+ automations covering all aspects of daily life
-2. **Intelligent Presence Detection**: Multi-sensor fusion with radar and PIR sensors
-3. **User Respect**: Sophisticated manual override system prevents automation conflicts
-4. **Maintainability**: Hierarchical package structure with clear separation of concerns
-5. **Reliability**: Fail-safes, timeouts, and graceful degradation
-6. **Safety**: Environmental monitoring with proactive alerts
-7. **Flexibility**: Runtime configuration via helper entities
-
-### Design Philosophy
-
-The system embodies several core principles:
-
-- **Progressive Enhancement**: Basic functionality works with simple sensors; advanced features activate with better hardware
-- **Graceful Degradation**: If a sensor fails, automations fall back to alternative triggers
-- **User Sovereignty**: Manual control always takes precedence over automation
-- **Explicit State Management**: Helper entities make system state visible and debuggable
-- **Separation of Concerns**: Clear boundaries between areas, domains, and functions
-
-### Future Enhancements
-
-Potential areas for expansion:
-
-1. **Machine Learning**: Adaptive schedules based on usage patterns
-2. **Energy Monitoring**: Smart energy management and optimization
-3. **Advanced Security**: Camera integration and AI-based threat detection
-4. **Voice Control**: Enhanced Google Assistant/Alexa integration
-5. **Guest Mode**: Temporary automation adjustments for visitors
-6. **Seasonal Modes**: Weather-aware automation behaviors
-
-### Maintenance Notes
-
-- **Regular Review**: Audit automations quarterly for obsolete or redundant rules
-- **Backup Strategy**: System updates include automatic backup creation
-- **Testing**: Use `test.yaml` package for experimental automations
-- **Logging**: Comprehensive logging via `logger.yaml` for troubleshooting
-- **Documentation**: Keep this document synchronized with automation changes
-
----
-
-**Document Version**: 2.0  
-**Last Updated**: 2025-11-07  
-**Total Automations**: 146+  
-**System Status**: Production  
-**Home Assistant Version**: 2025.11.x
-
----
-
-*This documentation provides a comprehensive overview of the automation system. For specific automation details, refer to the individual YAML files in `/packages/`.*
+Remember: Good organization at the start pays dividends as your system grows. Take time to structure your packages properly, and you'll thank yourself later.

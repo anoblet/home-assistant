@@ -28,23 +28,11 @@ cards:
               'gap': '1rem'
               'grid-template-columns': 'repeat(auto-fit, minmax(192px, auto))'
             cards:
-              - type: custom:mushroom-entity-card
-                entity: sensor.bathroom_climate_temperature
-                icon: mdi:thermometer
-                name: Temperature
-              - type: custom:mushroom-entity-card
-                entity: sensor.bathroom_climate_humidity
-                icon: mdi:water-percent
-                name: Humidity
-              - type: custom:mushroom-entity-card
-                entity: sensor.bathroom_climate_pressure
-                icon: mdi:gauge
-                name: Pressure
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: binary_sensor.bathroom_door_contact
                 icon: mdi:gauge
                 name: Door
-              - type: custom:mushroom-entity-card
+              - type: tile
                 entity: binary_sensor.bathroom_motion_occupancy
                 name: Motion
                 secondary_info: last-changed
