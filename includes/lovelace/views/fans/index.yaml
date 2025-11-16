@@ -6,7 +6,7 @@ cards:
     cards:
       - type: custom:fan-card
         cards:
-          - !include fans/bedroom.yaml
+          - !include bedroom.yaml
         entity: fan.bedroom_air_purifier
   # Living Room Air Purifier
   - title: Living Room Air Purifier
@@ -14,7 +14,7 @@ cards:
     cards:
       - type: custom:fan-card
         cards:
-          - !include fans/living_room.yaml
+          - !include living_room.yaml
         entity: fan.living_room_air_purifier
 icon: mdi:fan
 type: custom:default-view
