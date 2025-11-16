@@ -226,11 +226,3 @@ domains_frontend_themes_github_dark:
         codemirror-variable: '#ffa657'
         codemirror-variable-2: '#79c0ff'
         codemirror-variable-3: '#ffa657'
-
-        # Modes
-        modes:
-          light:
-            # Override for light mode if needed
-            primary-background-color: '#ffffff'
-          dark:
-            # Default dark mode values (already set above)
