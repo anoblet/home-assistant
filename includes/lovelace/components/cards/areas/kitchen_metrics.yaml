@@ -1,0 +1,15 @@
+type: custom:grid-card
+style:
+  'gap': '1rem'
+  'grid-template-columns': 'repeat(auto-fit, minmax(192px, auto))'
+cards:
+  - type: tile
+    entity: binary_sensor.kitchen_ld2410c_presence
+    name: Presence
+    state_content: last-changed
+    tap_action:
+      action: navigate
+      navigation_path: /dashboard-presence/kitchen
+  - type: tile
+    entity: switch.kitchen_coffee_pot
+    name: Coffee Pot

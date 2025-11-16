@@ -1,0 +1,89 @@
+type: custom:grid-card
+style:
+  'gap': '1rem'
+  'grid-template-columns': 'repeat(auto-fit, minmax(192px, auto))'
+cards:
+  - type: tile
+    entity: number.bedroom_presence_g0_move_threshold
+    features:
+      - type: numeric-input
+        style: buttons
+    name: G0 Move Threshold
+  - type: tile
+    entity: number.bedroom_presence_g1_move_threshold
+    features:
+      - type: numeric-input
+        style: buttons
+    name: G1 Move Threshold
+  - type: tile
+    entity: number.bedroom_presence_g2_move_threshold
+    features:
+      - type: numeric-input
+        style: buttons
+    name: G2 Move Threshold
+  - type: tile
+    entity: number.bedroom_presence_g3_move_threshold
+    features:
+      - type: numeric-input
+        style: buttons
+    name: G3 Move Threshold
+  - type: tile
+    entity: number.bedroom_presence_g4_move_threshold
+    features:
+      - type: numeric-input
+        style: buttons
+    name: G4 Move Threshold
+  - type: tile
+    entity: number.bedroom_presence_g5_move_threshold
+    features:
+      - type: numeric-input
+        style: buttons
+    name: G5 Move Threshold
+  - type: tile
+    entity: number.bedroom_presence_g6_move_threshold
+    features:
+      - type: numeric-input
+        style: buttons
+    name: G6 Move Threshold
+  - type: tile
+    entity: number.bedroom_presence_g7_move_threshold
+    features:
+      - type: numeric-input
+        style: buttons
+    name: G7 Move Threshold
+  - type: tile
+    entity: number.bedroom_presence_g8_move_threshold
+    features:
+      - type: numeric-input
+        style: buttons
+    name: G8 Move Threshold
+  - type: tile
+    entity: number.bedroom_presence_g9_move_threshold
+    features:
+      - type: numeric-input
+        style: buttons
+    name: G9 Move Threshold
+  - type: tile
+    entity: number.bedroom_presence_g10_move_threshold
+    features:
+      - type: numeric-input
+        style: buttons
+    name: G10 Move Threshold
+  - type: tile
+    entity: number.bedroom_presence_g11_move_threshold
+    features:
+      - type: numeric-input
+        style: buttons
+    name: G11 Move Threshold
+  - type: tile
+    entity: number.bedroom_presence_g12_move_threshold
+    features:
+      - type: numeric-input
+        style: buttons
+    name: G12 Move Threshold
+  - type: tile
+    entity: number.bedroom_presence_g13_move_threshold
+    features:
+      - type: numeric-input
+        style: buttons
+    name: G13 Move Threshold

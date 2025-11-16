@@ -1,0 +1,55 @@
+type: custom:grid-card
+style:
+  'gap': '1rem'
+  'grid-template-columns': 'repeat(auto-fit, minmax(192px, auto))'
+cards:
+  - type: tile
+    entity: binary_sensor.bedroom_presence_presence
+    name: Presence
+    state_content: last-changed
+  - type: tile
+    entity: input_number.bedroom_presence_last_on_gate
+    name: On Gate
+  - type: tile
+    entity: input_number.bedroom_presence_last_off_gate
+    name: Off Gate
+  - type: tile
+    entity: input_number.bedroom_presence_last_move_gate
+    name: Last Move Gate
+  - type: tile
+    entity: input_number.bedroom_presence_last_still_gate
+    name: Last Still Gate
+  - type: tile
+    entity: sensor.bedroom_presence_last_still_gate_max
+    name: Last Still Gate Max
+  - type: tile
+    entity: select.bedroom_presence_mode
+    name: Mode
+  - type: tile
+    entity: button.bedroom_presence_restart_sensor
+    name: Restart Sensor
+    tap_action:
+      action: call-service
+      service: button.press
+      target:
+        entity_id: button.bedroom_presence_restart_sensor
+  - type: tile
+    entity: button.bedroom_presence_restart_esp
+    name: Restart ESP
+    tap_action:
+      action: call-service
+      service: button.press
+      target:
+        entity_id: button.bedroom_presence_restart_esp
+  - type: tile
+    entity: script.bedroom_presence_calibrate_move_max
+    name: Calibrate Move
+  - type: tile
+    entity: script.bedroom_presence_calibrate_still_mean
+    name: Calibrate Still Mean
+  - type: tile
+    entity: script.bedroom_presence_calibrate_still_median
+    name: Calibrate Still Median
+  - type: tile
+    entity: number.bedroom_presence_timeout
+    name: Timeout

@@ -1,0 +1,9 @@
+type: custom:grid-card
+style:
+  'gap': '1rem'
+  'grid-template-columns': 'repeat(auto-fit, minmax(192px, auto))'
+cards:
+  - type: tile
+    entity: binary_sensor.storage_room_motion_occupancy
+    name: Motion
+    secondary_info: last-changed

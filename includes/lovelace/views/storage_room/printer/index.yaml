@@ -1,41 +1,5 @@
 cards:
-  - type: custom:flex-card
-    style:
-      'background-color': 'initial'
-    cards:
-      - type: custom:grid-card
-        style:
-          'gap': '1rem'
-          'grid-template-rows': 'auto max-content'
-        cards:
-          - type: custom:flex-card
-            cards:
-              - type: picture-entity
-                entity: camera.x1c_00m00a2c0619044_camera
-                camera_image: camera.x1c_00m00a2c0619044_camera
-                camera_view: live
-            style:
-              'align-items': 'center'
-              'margin': '0 auto'
-              'max-width': '50%'
-          - type: custom:grid-card
-            style:
-              'align-items': 'end'
-              'gap': '1rem'
-              'grid-template-columns': 'repeat(auto-fit, minmax(192px, auto))'
-            cards:
-              - type: tile
-                entity: sensor.x1c_00m00a2c0619044_print_status
-                name: Status
-              - type: tile
-                entity: sensor.x1c_00m00a2c0619044_print_progress
-                name: Progress
-              - type: tile
-                entity: sensor.x1c_00m00a2c0619044_remaining_time
-                name: Remaining Time
-              - type: tile
-                entity: sensor.storage_room_printer_ams_humidity
-                name: AMS Humidity
+  - !include ../../../components/cards/printers/x1c_panel.yaml
 icon: mdi:printer-3d-nozzle
 title: Storage Room - Printer
 type: custom:default-view

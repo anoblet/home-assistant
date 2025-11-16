@@ -1,0 +1,42 @@
+type: custom:flex-card
+style:
+  '--flex-card-min-width': '320px'
+  '--flex-card-max-width': '100vw'
+  'gap': '1rem'
+cards:
+  - type: custom:mushroom-climate-card
+    entity: climate.bedroom_thermostat_heat
+    name: Thermostat
+    show_temperature_control: true
+  - type: custom:mushroom-climate-card
+    entity: climate.bedroom_thermostat_cool
+    name: Thermostat
+    show_temperature_control: true
+  - type: custom:mushroom-light-card
+    entity: light.bedroom_light_group
+    name: Lights
+    show_brightness_control: true
+    show_color_temp_control: true
+  - type: custom:mushroom-cover-card
+    entity: cover.bedroom_blinds
+    name: Blinds
+    show_position_control: true
+  - type: custom:mushroom-fan-card
+    entity: fan.bedroom_air_purifier
+    name: Air Purifier
+    show_percentage_control: true
+    collapsible_controls: true
+  - type: custom:mushroom-humidifier-card
+    entity: humidifier.bedroom_humidifier_virtual
+    name: Humidifier
+    show_target_humidity_control: true
+  - type: custom:decluttering-card
+    template: media_player_card
+    variables:
+      - entity: media_player.bedroom_tv_2
+      - name: 'Television'
+  - type: custom:decluttering-card
+    template: media_player_card
+    variables:
+      - entity: media_player.bedroom_display
+      - name: 'Display'
