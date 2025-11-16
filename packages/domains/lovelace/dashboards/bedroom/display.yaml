@@ -6,3 +6,4 @@ domains_lovelace_dashboards_bedroom_display:
         mode: yaml
         show_in_sidebar: false
         title: Bedroom
+        icon: mdi:bed

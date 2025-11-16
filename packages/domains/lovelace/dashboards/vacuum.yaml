@@ -6,3 +6,4 @@ domains_lovelace_dashboards_vacuum:
         mode: yaml
         show_in_sidebar: true
         title: Vacuum
+        icon: mdi:robot-vacuum

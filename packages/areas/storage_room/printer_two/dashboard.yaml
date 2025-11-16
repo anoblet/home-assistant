@@ -6,3 +6,4 @@ areas_storage_room_printer_two_dashboard:
         mode: yaml
         show_in_sidebar: false
         title: Printer Two
+        icon: mdi:printer
