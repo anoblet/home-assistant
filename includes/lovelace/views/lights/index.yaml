@@ -1,71 +1,81 @@
 title: Lights
 cards:
-  # Bedroom
-  - type: entities
-    entities:
-      - type: custom:slider-entity-row
-        entity: light.bedroom_table
-      - type: custom:slider-entity-row
-        entity: light.bedroom_ceiling
-      - type: custom:slider-entity-row
-        entity: light.bedroom_bureau
-    show_header_toggle: true
-    title: Bedroom
-  # Hallway
-  - type: entities
-    entities:
-      - type: custom:slider-entity-row
-        entity: light.hallway_one
-      - type: custom:slider-entity-row
-        entity: light.hallway_two
-    show_header_toggle: true
-    title: Hallway
-  # Bathroom
-  - type: entities
-    entities:
-      - type: custom:slider-entity-row
-        entity: light.bathroom_one
-      - type: custom:slider-entity-row
-        entity: light.bathroom_two
-      - type: custom:slider-entity-row
-        entity: light.bathroom_three
-      - type: custom:slider-entity-row
-        entity: light.bathroom_four
-    show_header_toggle: true
-    title: Bathroom
-  # Living Room
-  - type: entities
-    entities:
-      - type: custom:slider-entity-row
-        entity: light.living_room_ceiling_one
-      - type: custom:slider-entity-row
-        entity: light.living_room_ceiling_two
-      - type: custom:slider-entity-row
-        entity: light.living_room_floor_lamp
-    show_header_toggle: true
-    title: Living Room
-  # Kitchen
-  - type: entities
-    entities:
-      - type: custom:slider-entity-row
-        entity: light.kitchen_one
-      - type: custom:slider-entity-row
-        entity: light.kitchen_two
-      - type: custom:slider-entity-row
-        entity: light.kitchen_three
-      - type: custom:slider-entity-row
-        entity: light.kitchen_four
-      - type: custom:slider-entity-row
-        entity: light.kitchen_five
-    show_header_toggle: true
-    title: Kitchen
-  # Storage Room
-  - type: entities
-    entities:
-      - type: custom:slider-entity-row
-        entity: light.storage_room_ceiling
-    show_header_toggle: true
-    title: Storage Room
+  - type: custom:generic-card
+    style:
+      'background-color': 'initial'
+    cards:
+      - type: custom:flex-card
+        style:
+          '--flex-card-min-width': '320px'
+          '--flex-card-max-width': '100vw'
+          'gap': '1rem'
+        cards:
+          # Bedroom
+          - type: entities
+            title: Bedroom
+            show_header_toggle: true
+            entities:
+              - type: custom:slider-entity-row
+                entity: light.bedroom_table
+              - type: custom:slider-entity-row
+                entity: light.bedroom_ceiling
+              - type: custom:slider-entity-row
+                entity: light.bedroom_bureau
+          # Hallway
+          - type: entities
+            title: Hallway
+            show_header_toggle: true
+            entities:
+              - type: custom:slider-entity-row
+                entity: light.hallway_one
+              - type: custom:slider-entity-row
+                entity: light.hallway_two
+          # Bathroom
+          - type: entities
+            title: Bathroom
+            show_header_toggle: true
+            entities:
+              - type: custom:slider-entity-row
+                entity: light.bathroom_one
+              - type: custom:slider-entity-row
+                entity: light.bathroom_two
+              - type: custom:slider-entity-row
+                entity: light.bathroom_three
+              - type: custom:slider-entity-row
+                entity: light.bathroom_four
+          # Living Room
+          - type: entities
+            title: Living Room
+            show_header_toggle: true
+            entities:
+              - type: custom:slider-entity-row
+                entity: light.living_room_ceiling_one
+              - type: custom:slider-entity-row
+                entity: light.living_room_ceiling_two
+              - type: custom:slider-entity-row
+                entity: light.living_room_floor_lamp
+          # Kitchen
+          - type: entities
+            title: Kitchen
+            show_header_toggle: true
+            entities:
+              - type: custom:slider-entity-row
+                entity: light.kitchen_one
+              - type: custom:slider-entity-row
+                entity: light.kitchen_two
+              - type: custom:slider-entity-row
+                entity: light.kitchen_three
+              - type: custom:slider-entity-row
+                entity: light.kitchen_four
+              - type: custom:slider-entity-row
+                entity: light.kitchen_five
+          # Storage Room
+          - type: entities
+            title: Storage Room
+            show_header_toggle: true
+            entities:
+              - type: custom:slider-entity-row
+                entity: light.storage_room_ceiling
 icon: mdi:lightbulb
 path: lights
 type: custom:default-view

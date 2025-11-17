@@ -1,29 +1,43 @@
 cards:
-  - entities:
-      - entity: binary_sensor.hallway_motion_occupancy_group
-        name: Hallway
-        secondary_info: last-changed
-    type: entities
-  - entities:
-      - entity: binary_sensor.bathroom_motion_occupancy
-        name: Bathroom
-        secondary_info: last-changed
-    type: entities
-  - entities:
-      - entity: binary_sensor.storage_room_motion_occupancy
-        name: Storage Room
-        secondary_info: last-changed
-    type: entities
-  - entities:
-      - entity: binary_sensor.living_room_motion_occupancy_group
-        name: Living Room
-        secondary_info: last-changed
-    type: entities
-  - entities:
-      - entity: binary_sensor.kitchen_motion_occupancy_group
-        name: Kitchen
-        secondary_info: last-changed
-    type: entities
+  - type: custom:generic-card
+    style:
+      'background-color': 'initial'
+    cards:
+      - type: custom:grid-card
+        style:
+          'gap': '1rem'
+          'grid-template-columns': 'repeat(auto-fit, minmax(250px, 1fr))'
+        cards:
+          - type: entities
+            title: Hallway
+            entities:
+              - entity: binary_sensor.hallway_motion_occupancy_group
+                name: Hallway
+                secondary_info: last-changed
+          - type: entities
+            title: Bathroom
+            entities:
+              - entity: binary_sensor.bathroom_motion_occupancy
+                name: Bathroom
+                secondary_info: last-changed
+          - type: entities
+            title: Storage Room
+            entities:
+              - entity: binary_sensor.storage_room_motion_occupancy
+                name: Storage Room
+                secondary_info: last-changed
+          - type: entities
+            title: Living Room
+            entities:
+              - entity: binary_sensor.living_room_motion_occupancy_group
+                name: Living Room
+                secondary_info: last-changed
+          - type: entities
+            title: Kitchen
+            entities:
+              - entity: binary_sensor.kitchen_motion_occupancy_group
+                name: Kitchen
+                secondary_info: last-changed
 icon: mdi:motion-sensor
 path: motion
 title: Motion

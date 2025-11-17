@@ -1,20 +1,26 @@
 title: Fans
 cards:
-  # Bedroom Air Purifier
-  - title: Bedroom Air Purifier
-    type: custom:generic-card
+  - type: custom:flex-card
+    style:
+      '--flex-card-min-width': '320px'
+      '--flex-card-max-width': '100vw'
+      'gap': '1rem'
     cards:
-      - type: custom:fan-card
+      # Bedroom Air Purifier
+      - title: Bedroom Air Purifier
+        type: custom:generic-card
         cards:
-          - !include bedroom.yaml
-        entity: fan.bedroom_air_purifier
-  # Living Room Air Purifier
-  - title: Living Room Air Purifier
-    type: custom:generic-card
-    cards:
-      - type: custom:fan-card
+          - type: custom:fan-card
+            cards:
+              - !include bedroom.yaml
+            entity: fan.bedroom_air_purifier
+      # Living Room Air Purifier
+      - title: Living Room Air Purifier
+        type: custom:generic-card
         cards:
-          - !include living_room.yaml
-        entity: fan.living_room_air_purifier
+          - type: custom:fan-card
+            cards:
+              - !include living_room.yaml
+            entity: fan.living_room_air_purifier
 icon: mdi:fan
 type: custom:default-view

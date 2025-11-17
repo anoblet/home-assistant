@@ -10,3 +10,5 @@
 - Use the `notify.mobile_app_pixel_4_xl` service for all mobile notifications.
 
 Use the `flex-card` and `grid-card` to create a responsive layout.
+
+Avoid using `grep` in the root directory. Instead, use it within specific subdirectories to limit the scope of the search and improve performance.

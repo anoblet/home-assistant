@@ -1,14 +1,19 @@
 cards:
-  - type: 'custom:battery-state-card'
-    title: Filters
-    sort_by_level: 'desc'
-    bulk_rename:
-      - from: 'battery' # simple string replace (note: "to" is not required if you want to remove string)
-        to: 'Battery'
-    filter:
-      include:
-        - name: entity_id
-          value: '*_battery'
+  - type: custom:generic-card
+    style:
+      'background-color': 'initial'
+    cards:
+      - type: 'custom:battery-state-card'
+        title: Battery Levels
+        sort_by_level: 'desc'
+        bulk_rename:
+          # Simple string replace (note: "to" is not required if you want to remove string)
+          - from: 'battery'
+            to: 'Battery'
+        filter:
+          include:
+            - name: entity_id
+              value: '*_battery'
 icon: mdi:battery
 title: Battery
 type: custom:default-view

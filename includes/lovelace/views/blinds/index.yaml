@@ -1,24 +1,34 @@
 cards:
-  - cards:
-      - type: tile
-        entity: script.cover_calibrate
-        name: Calibrate
-        tap_action:
-          action: call-service
-          service: script.cover_calibrate
-      - entities:
-          - cover.bedroom_blinds
-          - cover.bedroom_blind_one
-          - cover.bedroom_blind_two
-          - cover.bedroom_blind_three
-        type: entities
-      - entities:
-          - cover.living_room_blinds
-          - cover.living_room_blind_one
-          - cover.living_room_blind_two
-          - cover.living_room_blind_three
-        type: entities
-    type: custom:generic-card
+  - type: custom:generic-card
+    style:
+      'background-color': 'initial'
+    cards:
+      - type: custom:flex-card
+        style:
+          '--flex-card-min-width': '320px'
+          '--flex-card-max-width': '100vw'
+          'gap': '1rem'
+        cards:
+          - type: tile
+            entity: script.cover_calibrate
+            name: Calibrate
+            tap_action:
+              action: call-service
+              service: script.cover_calibrate
+          - type: entities
+            title: Bedroom Blinds
+            entities:
+              - cover.bedroom_blinds
+              - cover.bedroom_blind_one
+              - cover.bedroom_blind_two
+              - cover.bedroom_blind_three
+          - type: entities
+            title: Living Room Blinds
+            entities:
+              - cover.living_room_blinds
+              - cover.living_room_blind_one
+              - cover.living_room_blind_two
+              - cover.living_room_blind_three
 path: blinds
 title: Blinds
 type: custom:default-view
