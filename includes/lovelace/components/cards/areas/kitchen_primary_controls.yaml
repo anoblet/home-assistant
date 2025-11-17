@@ -7,12 +7,15 @@ cards:
   - type: tile
     entity: light.kitchen_light_group_zigbee
     name: Lights
-    show_brightness_control: true
-    show_color_temp_control: true
+    features:
+      - type: light-brightness
+      - type: light-color-temp
   - type: tile
     entity: cover.kitchen_blind_one
     name: Blinds
-    show_position_control: true
+    features:
+      - type: cover-open-close
+      - type: cover-position
   - type: custom:decluttering-card
     template: media_player_card
     variables:

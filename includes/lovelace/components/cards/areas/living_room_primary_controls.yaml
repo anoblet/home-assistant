@@ -7,38 +7,47 @@ cards:
   - type: tile
     entity: climate.living_room_thermostat_heat
     name: Thermostat
-    show_temperature_control: true
+    features:
+      - type: target-temperature
   - type: tile
     entity: climate.living_room_thermostat_cool
     name: Thermostat
-    show_temperature_control: true
+    features:
+      - type: target-temperature
   - type: tile
     entity: light.living_room_light_group_zigbee
     name: Lights
-    show_brightness_control: true
-    show_color_temp_control: true
+    features:
+      - type: light-brightness
+      - type: light-color-temp
   - type: tile
     entity: light.living_room_ceiling_light_group_zigbee
     name: Ceiling
-    show_brightness_control: true
-    show_color_temp_control: true
+    features:
+      - type: light-brightness
+      - type: light-color-temp
   - type: tile
     entity: light.living_room_floor_lamp
     name: Floor Lamp
-    show_brightness_control: true
-    show_color_temp_control: true
+    features:
+      - type: light-brightness
+      - type: light-color-temp
   - type: tile
     entity: humidifier.living_room_humidifier_virtual
     name: Humidifier
-    show_target_humidity_control: true
+    features:
+      - type: target-humidity
   - type: tile
     entity: cover.living_room_blinds
     name: Blinds
-    show_position_control: true
+    features:
+      - type: cover-open-close
+      - type: cover-position
   - type: tile
     entity: fan.living_room_air_purifier
     name: Air Purifier
-    show_percentage_control: true
+    features:
+      - type: fan-speed
   - type: custom:decluttering-card
     template: media_player_card
     variables:

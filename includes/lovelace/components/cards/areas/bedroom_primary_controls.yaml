@@ -7,29 +7,36 @@ cards:
   - type: tile
     entity: climate.bedroom_thermostat_heat
     name: Thermostat
-    show_temperature_control: true
+    features:
+      - type: target-temperature
   - type: tile
     entity: climate.bedroom_thermostat_cool
     name: Thermostat
-    show_temperature_control: true
+    features:
+      - type: target-temperature
   - type: tile
     entity: light.bedroom_light_group
     name: Lights
-    show_brightness_control: true
-    show_color_temp_control: true
+    features:
+      - type: light-brightness
+      - type: light-color-temp
   - type: tile
     entity: cover.bedroom_blinds
     name: Blinds
-    show_position_control: true
+    features:
+      - type: cover-open-close
+      - type: cover-position
   - type: tile
     entity: fan.bedroom_air_purifier
     name: Air Purifier
-    show_percentage_control: true
+    features:
+      - type: fan-speed
     collapsible_controls: true
   - type: tile
     entity: humidifier.bedroom_humidifier_virtual
     name: Humidifier
-    show_target_humidity_control: true
+    features:
+      - type: target-humidity
   - type: custom:decluttering-card
     template: media_player_card
     variables:

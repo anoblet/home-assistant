@@ -22,15 +22,27 @@ cards:
               - type: tile
                 entity: input_number.kitchen_ld2410c_last_on_gate
                 name: On Gate
+                features:
+                  - type: numeric-input
+                    style: buttons
               - type: tile
                 entity: input_number.kitchen_ld2410c_last_off_gate
                 name: Off Gate
+                features:
+                  - type: numeric-input
+                    style: buttons
               - type: tile
                 entity: input_number.kitchen_ld2410c_last_move_gate
                 name: Last Move Gate
+                features:
+                  - type: numeric-input
+                    style: buttons
               - type: tile
                 entity: input_number.kitchen_ld2410c_last_still_gate
                 name: Last Still Gate
+                features:
+                  - type: numeric-input
+                    style: buttons
               - type: tile
                 entity: switch.kitchen_ld2410c_radar_engineering_mode
                 name: Engineering Mode

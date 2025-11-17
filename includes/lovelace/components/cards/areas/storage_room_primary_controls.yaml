@@ -7,5 +7,6 @@ cards:
   - type: tile
     entity: light.storage_room_lights
     name: Lights
-    show_brightness_control: true
-    show_color_temp_control: true
+    features:
+      - type: light-brightness
+      - type: light-color-temp

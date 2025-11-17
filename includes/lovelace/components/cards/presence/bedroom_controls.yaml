@@ -10,21 +10,36 @@ cards:
   - type: tile
     entity: input_number.bedroom_presence_last_on_gate
     name: On Gate
+    features:
+      - type: numeric-input
+        style: buttons
   - type: tile
     entity: input_number.bedroom_presence_last_off_gate
     name: Off Gate
+    features:
+      - type: numeric-input
+        style: buttons
   - type: tile
     entity: input_number.bedroom_presence_last_move_gate
     name: Last Move Gate
+    features:
+      - type: numeric-input
+        style: buttons
   - type: tile
     entity: input_number.bedroom_presence_last_still_gate
     name: Last Still Gate
+    features:
+      - type: numeric-input
+        style: buttons
   - type: tile
     entity: sensor.bedroom_presence_last_still_gate_max
     name: Last Still Gate Max
   - type: tile
     entity: select.bedroom_presence_mode
     name: Mode
+    features:
+      - type: select
+        options: dropdown
   - type: tile
     entity: button.bedroom_presence_restart_sensor
     name: Restart Sensor
@@ -53,3 +68,6 @@ cards:
   - type: tile
     entity: number.bedroom_presence_timeout
     name: Timeout
+    features:
+      - type: numeric-input
+        style: buttons

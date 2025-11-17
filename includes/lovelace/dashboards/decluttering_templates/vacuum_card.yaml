@@ -2,6 +2,11 @@ card:
   type: tile
   entity: vacuum.valetudo_vacuum
   name: Vacuum
+  features:
+    - type: vacuum-commands
+      commands:
+        - start_pause
+        - return_home
   tap_action:
     action: call-service
     service: [[service]]

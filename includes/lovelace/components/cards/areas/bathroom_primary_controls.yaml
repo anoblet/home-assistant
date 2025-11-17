@@ -7,8 +7,9 @@ cards:
   - type: tile
     entity: light.bathroom_light_group_zigbee
     name: Lights
-    show_brightness_control: true
-    show_color_temp_control: true
+    features:
+      - type: light-brightness
+      - type: light-color-temp
   - type: custom:decluttering-card
     template: media_player_card
     variables:
