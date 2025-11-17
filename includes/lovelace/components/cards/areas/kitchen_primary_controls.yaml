@@ -4,12 +4,12 @@ style:
   '--flex-card-max-width': '100vw'
   'gap': '1rem'
 cards:
-  - type: custom:mushroom-light-card
+  - type: tile
     entity: light.kitchen_light_group_zigbee
     name: Lights
     show_brightness_control: true
     show_color_temp_control: true
-  - type: custom:mushroom-cover-card
+  - type: tile
     entity: cover.kitchen_blind_one
     name: Blinds
     show_position_control: true

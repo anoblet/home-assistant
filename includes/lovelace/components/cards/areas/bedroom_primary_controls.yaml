@@ -4,29 +4,29 @@ style:
   '--flex-card-max-width': '100vw'
   'gap': '1rem'
 cards:
-  - type: custom:mushroom-climate-card
+  - type: tile
     entity: climate.bedroom_thermostat_heat
     name: Thermostat
     show_temperature_control: true
-  - type: custom:mushroom-climate-card
+  - type: tile
     entity: climate.bedroom_thermostat_cool
     name: Thermostat
     show_temperature_control: true
-  - type: custom:mushroom-light-card
+  - type: tile
     entity: light.bedroom_light_group
     name: Lights
     show_brightness_control: true
     show_color_temp_control: true
-  - type: custom:mushroom-cover-card
+  - type: tile
     entity: cover.bedroom_blinds
     name: Blinds
     show_position_control: true
-  - type: custom:mushroom-fan-card
+  - type: tile
     entity: fan.bedroom_air_purifier
     name: Air Purifier
     show_percentage_control: true
     collapsible_controls: true
-  - type: custom:mushroom-humidifier-card
+  - type: tile
     entity: humidifier.bedroom_humidifier_virtual
     name: Humidifier
     show_target_humidity_control: true

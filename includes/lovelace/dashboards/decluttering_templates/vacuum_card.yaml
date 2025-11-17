@@ -1,5 +1,5 @@
 card:
-  type: custom:mushroom-vacuum-card
+  type: tile
   entity: vacuum.valetudo_vacuum
   name: Vacuum
   tap_action:
