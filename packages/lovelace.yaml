@@ -6,7 +6,7 @@ lovelace:
         mode: yaml
         title: Rooms
         icon: mdi:floor-plan
-      dashboard-device:
+      dashboard-devices:
         filename: includes/lovelace/dashboards/dashboard-device.yaml
         mode: yaml
         title: Devices

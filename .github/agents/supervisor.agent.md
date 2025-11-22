@@ -1,0 +1,1 @@
+../../copilot/agents/supervisor.agent.md

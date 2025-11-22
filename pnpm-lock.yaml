@@ -4,8 +4,15 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  test_link.json: link:../root/.local/share/pnpm/global/5/node_modules/test_link.json
+
 importers:
   .:
+    dependencies:
+      test_link.json:
+        specifier: link:../root/.local/share/pnpm/global/5/node_modules/test_link.json
+        version: link:../root/.local/share/pnpm/global/5/node_modules/test_link.json
     devDependencies:
       glob:
         specifier: ^11.0.3
@@ -40,6 +47,25 @@ importers:
       wireit:
         specifier: ^0.9.2
         version: 0.9.5
+
+  bin/cli:
+    dependencies:
+      commander:
+        specifier: ^11.0.0
+        version: 11.1.0
+      dotenv:
+        specifier: ^16.6.1
+        version: 16.6.1
+    devDependencies:
+      '@types/node':
+        specifier: ^20.0.0
+        version: 20.19.25
+      tsx:
+        specifier: ^4.15.7
+        version: 4.20.6
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
 
   bin/html: {}
 
@@ -578,6 +604,12 @@ packages:
         integrity: sha512-6C8nqWur3j98U6+lXDfTUWIfgvZU+EumvpHKcYjujKH7woYyLj2sUmff0tRhrqM7BohUw7Pz3ZB1jj2gW9Fvmg==,
       }
 
+  '@types/node@20.19.25':
+    resolution:
+      {
+        integrity: sha512-ZsJzA5thDQMSQO788d7IocwwQbI8B5OPzmqNvpf3NY/+MHDAS759Wo0gd2WQeXYt5AAAQjzcrTVC6SKCuYgoCQ==,
+      }
+
   '@types/trusted-types@2.0.7':
     resolution:
       {
@@ -890,6 +922,13 @@ packages:
         integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==,
       }
     engines: { node: '>= 0.8' }
+
+  commander@11.1.0:
+    resolution:
+      {
+        integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==,
+      }
+    engines: { node: '>=16' }
 
   commander@13.1.0:
     resolution:
@@ -3117,10 +3156,24 @@ packages:
     engines: { node: '>=18.0.0' }
     hasBin: true
 
+  typescript@5.9.3:
+    resolution:
+      {
+        integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==,
+      }
+    engines: { node: '>=14.17' }
+    hasBin: true
+
   ufo@1.6.1:
     resolution:
       {
         integrity: sha512-9a4/uxlTWJ4+a5i0ooc1rU7C7YOw3wT+UGqdeNNHWnOF9qcMBgLRS+4IYUqbczewFx4mLEig6gawh7X6mFlEkA==,
+      }
+
+  undici-types@6.21.0:
+    resolution:
+      {
+        integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==,
       }
 
   union-value@1.0.1:
@@ -3573,6 +3626,10 @@ snapshots:
 
   '@types/geojson@7946.0.16': {}
 
+  '@types/node@20.19.25':
+    dependencies:
+      undici-types: 6.21.0
+
   '@types/trusted-types@2.0.7':
     optional: true
 
@@ -3782,6 +3839,8 @@ snapshots:
   combined-stream@1.0.8:
     dependencies:
       delayed-stream: 1.0.0
+
+  commander@11.1.0: {}
 
   commander@13.1.0: {}
 
@@ -5125,7 +5184,11 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
+  typescript@5.9.3: {}
+
   ufo@1.6.1: {}
+
+  undici-types@6.21.0: {}
 
   union-value@1.0.1:
     dependencies:

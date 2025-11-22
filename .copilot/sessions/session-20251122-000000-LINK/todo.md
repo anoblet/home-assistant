@@ -1,0 +1,5 @@
+- [ ] Research existing project structure and dependencies <!-- id: 0 -->
+- [ ] Plan the `link` package structure and logic <!-- id: 1 -->
+- [ ] Implement the `link` package <!-- id: 2 -->
+- [ ] Add `pnpm link` script to root `package.json` <!-- id: 3 -->
+- [ ] Verify the implementation <!-- id: 4 -->

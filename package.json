@@ -15,6 +15,7 @@
   "author": "",
   "main": "index.js",
   "scripts": {
+    "home-assistant": "pnpm --filter cli home-assistant",
     "bootstrap": "tsx copilot/bootstrap/index.ts",
     "commit": "wireit",
     "docs:html": "tsx bin/html/index.ts docs",
@@ -26,6 +27,7 @@
     "prepare": "husky",
     "lint-staged": "lint-staged",
     "format": "prettier --write \"**/*.{js,json,yaml,yml}\"",
+    "link": "tsx copilot/packages/link/src/index.ts",
     "reload": "npx hass-cli call homeassistant reload_all"
   },
   "devDependencies": {
@@ -77,5 +79,8 @@
     "*.{yaml,yml}": [
       "prettier --write"
     ]
+  },
+  "dependencies": {
+    "test_link.json": "link:../root/.local/share/pnpm/global/5/node_modules/test_link.json"
   }
 }

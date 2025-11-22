@@ -1,3 +1,9 @@
+Use all of the color variables defined in Home Assistant's global color definitions to ensure compatibility and consistency across the platform.
+
+<global-color-definition>
+https://raw.githubusercontent.com/home-assistant/frontend/refs/heads/master/src/resources/theme/color/color.globals.ts
+</global-color-definition>
+
 Create a theme based on ${theme}. Reference other themes in the `packages/domains/frontend/themes` directory for structure.
 
 Focus on reducing eye strain with a color palette that is easy on the eyes. Use soft, muted colors for backgrounds and highlights, and ensure sufficient contrast for text readability. Incorporate elements that promote a calming user experience, such as smooth transitions and minimalistic design elements.

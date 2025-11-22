@@ -1,0 +1,1 @@
+Create the package described in [README.md](copilot/packages/link/README.md). This package should be placed in the `copilot/packages/link` folder. The root package should have a script defined, `pnpm link` that is described in the readme above.

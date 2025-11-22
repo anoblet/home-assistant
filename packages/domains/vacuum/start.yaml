@@ -23,7 +23,7 @@ domains_vacuum_start:
         - service: cast.show_lovelace_view
           data:
             entity_id: media_player.bedroom_display
-            dashboard_path: dashboard-device
+            dashboard_path: dashboard-devices
             view_path: vacuum
       alias: Vacuum - Start - Cast
       condition:
