@@ -1,9 +1,9 @@
 apexcharts_card_templates: !include_dir_named ../apexcharts_card_templates
 title: Devices
 views:
-  - title: Summary
-    path: devices_summary
-    icon: mdi:view-dashboard
+  - title: Overview
+    path: devices_overview
+    icon: mdi:view-dashboard-variant
     type: custom:default-view
     cards:
       - type: custom:generic-card
@@ -19,45 +19,65 @@ views:
               - type: custom:grid-card
                 style:
                   'gap': '1rem'
-                  'grid-template-columns': 'repeat(auto-fit, minmax(192px, auto))'
+                  'grid-template-columns': 'repeat(auto-fit, minmax(300px, auto))'
                 cards:
-                  - type: tile
-                    entity: light.bedroom_light_group
-                    name: Bedroom Lights
-                  - type: tile
-                    entity: light.living_room_light_group_zigbee
-                    name: Living Room Lights
-                  - type: tile
-                    entity: light.kitchen_light_group_zigbee
-                    name: Kitchen Lights
-                  - type: tile
-                    entity: climate.bedroom_thermostat_heat
-                    name: Bedroom Heat
-                  - type: tile
-                    entity: climate.bedroom_thermostat_cool
-                    name: Bedroom Cool
-                  - type: tile
-                    entity: fan.bedroom_air_purifier
-                    name: Bedroom Air Purifier
-                  - type: tile
-                    entity: fan.living_room_air_purifier
-                    name: Living Room Air Purifier
-                  - type: tile
-                    entity: lock.back_door
-                    name: Back Door
-                  - type: tile
-                    entity: binary_sensor.bedroom_ld2410c_presence
-                    name: Bedroom Presence
-                  - type: tile
-                    entity: binary_sensor.living_room_ld2410c_presence
-                    name: Living Room Presence
-                  - type: tile
-                    entity: binary_sensor.kitchen_presence_presence
-                    name: Kitchen Presence
+                  # Updates Section
+                  - type: custom:auto-entities
+                    card:
+                      type: entities
+                      title: Updates Available
+                      show_header_toggle: false
+                      state_color: true
+                    filter:
+                      include:
+                        - domain: update
+                          state: 'on'
+                      exclude: []
+                    show_empty: false
+                    sort:
+                      method: name
+
+                  # Problematic Devices
+                  - type: custom:auto-entities
+                    card:
+                      type: entities
+                      title: Attention Required
+                      show_header_toggle: false
+                      state_color: true
+                    filter:
+                      include:
+                        - state: 'unavailable'
+                        - state: 'unknown'
+                    exclude:
+                      - domain: group
+                      - domain: scene
+                      - domain: automation
+                      - domain: script
+                      - entity_id: '*_browser'
+                      - entity_id: 'sensor.date*'
+                      - entity_id: 'sensor.time*'
+                    show_empty: false
+                    sort:
+                      method: name
+
+                  # Low Battery Summary
+                  - type: custom:auto-entities
+                    card:
+                      type: entities
+                      title: Critical Batteries
+                      show_header_toggle: false
+                      state_color: true
+                    filter:
+                      include:
+                        - entity_id: '*_battery'
+                          state: '<= 20'
+                    show_empty: false
+                    sort:
+                      method: state
 
   - title: Lights
     path: devices_lights
-    icon: mdi:lightbulb
+    icon: mdi:lightbulb-group
     type: custom:default-view
     cards:
       - type: custom:generic-card
@@ -99,9 +119,9 @@ views:
                     sort:
                       method: name
 
-  - title: Climate & Air
+  - title: Climate
     path: devices_climate
-    icon: mdi:weather-cloudy
+    icon: mdi:thermostat
     type: custom:default-view
     cards:
       - type: custom:generic-card
@@ -122,7 +142,7 @@ views:
                   - type: custom:auto-entities
                     card:
                       type: entities
-                      title: Thermostats
+                      title: Climate Devices
                       show_header_toggle: false
                       state_color: true
                     filter:
@@ -133,88 +153,20 @@ views:
                   - type: custom:auto-entities
                     card:
                       type: entities
-                      title: Temperature & Humidity
+                      title: Environmental Sensors
                       show_header_toggle: false
-                      state_color: true
                     filter:
                       include:
-                        - entity_id: 'sensor.*temperature*'
-                        - entity_id: 'sensor.*humidity*'
+                        - entity_id: 'sensor.*_temperature'
+                        - entity_id: 'sensor.*_humidity'
+                        - entity_id: 'sensor.*_co2'
+                        - entity_id: 'sensor.*_pm25'
                     sort:
                       method: name
-                  - type: custom:auto-entities
-                    card:
-                      type: entities
-                      title: Air Quality
-                      show_header_toggle: false
-                      state_color: true
-                    filter:
-                      include:
-                        - entity_id: 'sensor.*pm_*'
-                        - entity_id: 'sensor.*co2*'
-                    sort:
-                      method: name
-              - type: custom:grid-card
-                style:
-                  'gap': '1rem'
-                  'grid-template-columns': 'repeat(auto-fit, minmax(256px, auto))'
-                cards:
-                  - type: custom:apexcharts-card
-                    config_templates: climate
-                    header:
-                      show: true
-                      title: Bedroom Climate History
-                    series:
-                      - entity: sensor.bedroom_climate_temperature
-                        name: Temperature
-                      - entity: sensor.bedroom_climate_humidity
-                        name: Humidity
-                      - entity: sensor.bedroom_climate_pressure
-                        name: Pressure
 
-  - title: Fans
-    path: devices_fans
-    icon: mdi:fan
-    type: custom:default-view
-    cards:
-      - type: custom:generic-card
-        style:
-          'background-color': 'initial'
-        cards:
-          - type: custom:flex-card
-            style:
-              '--flex-card-min-width': '320px'
-              '--flex-card-max-width': '100vw'
-              'gap': '1rem'
-            cards:
-              - type: custom:grid-card
-                style:
-                  'gap': '1rem'
-                  'grid-template-columns': 'repeat(auto-fit, minmax(256px, auto))'
-                cards:
-                  - type: custom:auto-entities
-                    card:
-                      type: entities
-                      title: All Fans
-                      show_header_toggle: false
-                      state_color: true
-                    filter:
-                      include:
-                        - domain: fan
-                    sort:
-                      method: name
-                  - type: entities
-                    title: Key Fans
-                    show_header_toggle: false
-                    entities:
-                      - entity: fan.bedroom_air_purifier
-                        name: Bedroom Air Purifier
-                      - entity: fan.living_room_air_purifier
-                        name: Living Room Air Purifier
-
-  - title: Security & Presence
+  - title: Security
     path: devices_security
-    icon: mdi:shield-home
+    icon: mdi:shield-check
     type: custom:default-view
     cards:
       - type: custom:generic-card
@@ -235,62 +187,43 @@ views:
                   - type: custom:auto-entities
                     card:
                       type: entities
-                      title: Active Security Alerts
+                      title: Active Alerts
                       show_header_toggle: false
                       state_color: true
                     filter:
                       include:
-                        - entity_id: 'binary_sensor.*_presence'
-                          state: 'on'
-                        - entity_id: 'binary_sensor.*presence_presence'
-                          state: 'on'
-                        - entity_id: 'binary_sensor.*_motion*'
-                          state: 'on'
-                        - entity_id: 'binary_sensor.*door*'
-                          state: 'on'
                         - domain: lock
                           state: 'unlocked'
-                    sort:
-                      method: name
+                        - domain: binary_sensor
+                          attributes:
+                            device_class: door
+                          state: 'on'
+                        - domain: binary_sensor
+                          attributes:
+                            device_class: window
+                          state: 'on'
+                        - domain: binary_sensor
+                          attributes:
+                            device_class: smoke
+                          state: 'on'
+                    show_empty: false
                   - type: custom:auto-entities
                     card:
                       type: entities
-                      title: Locks
+                      title: Locks & Doors
                       show_header_toggle: false
-                      state_color: true
                     filter:
                       include:
                         - domain: lock
-                    sort:
-                      method: name
-                  - type: custom:auto-entities
-                    card:
-                      type: entities
-                      title: Motion & Presence Sensors
-                      show_header_toggle: false
-                      state_color: true
-                    filter:
-                      include:
-                        - entity_id: 'binary_sensor.*_presence'
-                        - entity_id: 'binary_sensor.*presence_presence'
-                        - entity_id: 'binary_sensor.*_motion*'
-                    sort:
-                      method: name
-                  - type: custom:auto-entities
-                    card:
-                      type: entities
-                      title: Doors & Contacts
-                      show_header_toggle: false
-                      state_color: true
-                    filter:
-                      include:
-                        - entity_id: 'binary_sensor.*door*'
+                        - domain: binary_sensor
+                          attributes:
+                            device_class: door
                     sort:
                       method: name
 
-  - title: Batteries & Network
-    path: devices_batteries
-    icon: mdi:battery
+  - title: Power & Network
+    path: devices_power
+    icon: mdi:battery-charging
     type: custom:default-view
     cards:
       - type: custom:generic-card
@@ -311,30 +244,27 @@ views:
                   - type: custom:auto-entities
                     card:
                       type: entities
-                      title: Low Batteries (≤ 30%)
+                      title: Battery Levels
                       show_header_toggle: false
                       state_color: true
                     filter:
                       include:
                         - entity_id: '*_battery'
-                          state: '<= 30'
+                      exclude:
+                        - state: 'unavailable'
+                        - state: 'unknown'
                     sort:
                       method: state
+                      numeric: true
                   - type: custom:auto-entities
                     card:
                       type: entities
-                      title: All Batteries
+                      title: Signal Strength (LQI)
                       show_header_toggle: false
-                      state_color: true
                     filter:
                       include:
-                        - entity_id: '*_battery'
+                        - entity_id: 'sensor.*_linkquality'
                     sort:
                       method: state
+                      numeric: true
                       reverse: true
-                  - type: entities
-                    title: Network
-                    show_header_toggle: false
-                    entities:
-                      - entity: sensor.speedtest_download
-                        name: Download Speed
