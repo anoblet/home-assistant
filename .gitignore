@@ -53,3 +53,4 @@ zigbee2mqtt/secrets.yaml
 
 # Always block
 .env
+secrets.yaml
