@@ -29,7 +29,7 @@
     "reload": "npx hass-cli call homeassistant reload_all"
   },
   "devDependencies": {
-    "glob": "^11.0.3",
+    "glob": "^11.1.0",
     "hass-cli": "github:anoblet/hass-cli",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
