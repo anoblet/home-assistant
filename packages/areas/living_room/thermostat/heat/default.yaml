@@ -8,6 +8,12 @@ areas_living_room_thermostat_heat_default:
           hours: '*'
           minutes: '0'
           seconds: '0'
+        # Trigger when bedroom presence is off for 15 minutes
+        - platform: state
+          entity_id: binary_sensor.bedroom_presence_presence
+          to: 'off'
+          for:
+            minutes: 15
       action:
         - service: climate.set_temperature
           target:
