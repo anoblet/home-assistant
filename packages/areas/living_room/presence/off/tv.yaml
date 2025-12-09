@@ -1,11 +1,15 @@
 areas_living_room_presence_off_tv:
   automation:
     action:
-      - service: media_player.pause
+      - service: media_player.media_pause
         target:
           entity_id:
             - media_player.living_room_tv_2
     alias: Living Room - Presence - Off - TV
+    condition:
+      - condition: state
+        entity_id: media_player.living_room_tv_2
+        state: 'playing'
     description: Pause living room TV when presence is no longer detected
     id: living_room_ld2410c_off_tv
     mode: single
