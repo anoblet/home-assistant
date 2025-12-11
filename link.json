@@ -1,10 +1,13 @@
 {
   ".github": {
     "agents": [
+      "../../copilot/agents/documentation.agent.md",
+      "../../copilot/agents/feedback.agent.md",
       "../../copilot/agents/implement.agent.md",
       "../../copilot/agents/plan.agent.md",
       "../../copilot/agents/research.agent.md",
-      "../../copilot/agents/review.agent.md"
+      "../../copilot/agents/review.agent.md",
+      "../../copilot/agents/supervisor.agent.md"
     ]
   },
   ".vscode": ["../copilot/.vscode/mcp.json", "../copilot/.vscode/settings.json"]

@@ -1,0 +1,1 @@
+../../copilot/agents/documentation.agent.md
