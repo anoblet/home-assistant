@@ -40,7 +40,6 @@
 !www/custom-elements/**/*
 
 # Exclude
-custom_components
 esphome/secrets.yaml
 go2rtc.yaml
 known_devices.yaml
@@ -50,6 +49,11 @@ www/custom-elements/build
 zigbee2mqtt/configuration_*
 zigbee2mqtt/coordinator_backup.json
 zigbee2mqtt/secrets.yaml
+
+# VeSync
+!custom_components
+!custom_components/vesync
+!custom_components/vesync/**
 
 # Always block
 .env

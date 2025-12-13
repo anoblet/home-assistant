@@ -1,0 +1,12 @@
+{
+  "domain": "vesync",
+  "name": "VeSync (Custom)",
+  "codeowners": [],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/webdjoe/pyvesync",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/webdjoe/pyvesync/issues",
+  "requirements": ["pyvesync==3.3.3"],
+  "version": "1.0.0"
+}
