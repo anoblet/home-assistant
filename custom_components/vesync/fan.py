@@ -132,17 +132,20 @@ class VeSyncFanHA(VeSyncBaseEntity, FanEntity):
         return len(self.device.fan_levels)
 
     @property
-    def preset_modes(self) -> list[str]:
-        """Get the list of available preset modes."""
-        if hasattr(self.device, "modes"):
-            return sorted(
-                [
-                    mode.value
-                    for mode in self.device.modes
-                    if mode in VS_FAN_MODE_PRESET_LIST_HA
-                ]
-            )
-        return []
+    def preset_modes(self) -> list[str] | None:
+        """Return the list of available preset modes."""
+        if not self.supported_features & FanEntityFeature.PRESET_MODE:
+            return None
+
+        # pyvesync documents `modes` as a list[str], but some older versions
+        # may return enum-like values. Normalize to plain strings.
+        preset_modes: list[str] = []
+        for mode in getattr(self.device, "modes", []) or []:
+            mode_value = getattr(mode, "value", mode)
+            if mode_value in VS_FAN_MODE_PRESET_LIST_HA:
+                preset_modes.append(mode_value)
+
+        return preset_modes
 
     @property
     def preset_mode(self) -> str | None:
@@ -198,7 +201,7 @@ class VeSyncFanHA(VeSyncBaseEntity, FanEntity):
                     "An error occurred while turning off: "
                     + self.device.last_response.message
                 )
-            self.schedule_update_ha_state()
+            await self.coordinator.async_request_refresh()
             return
 
         # If the fan is off, turn it on first
@@ -226,7 +229,7 @@ class VeSyncFanHA(VeSyncBaseEntity, FanEntity):
                 + self.device.last_response.message
             )
 
-        self.schedule_update_ha_state()
+        await self.coordinator.async_request_refresh()
 
     async def async_set_preset_mode(self, preset_mode: str) -> None:
         """Set the preset mode of device."""
@@ -254,7 +257,7 @@ class VeSyncFanHA(VeSyncBaseEntity, FanEntity):
         if not success:
             raise HomeAssistantError(self.device.last_response.message)
 
-        self.schedule_update_ha_state()
+        await self.coordinator.async_request_refresh()
 
     async def async_turn_on(
         self,
@@ -270,7 +273,7 @@ class VeSyncFanHA(VeSyncBaseEntity, FanEntity):
             success = await self.device.turn_on()
             if not success:
                 raise HomeAssistantError(self.device.last_response.message)
-            self.schedule_update_ha_state()
+            await self.coordinator.async_request_refresh()
         else:
             await self.async_set_percentage(percentage)
 
@@ -279,11 +282,11 @@ class VeSyncFanHA(VeSyncBaseEntity, FanEntity):
         success = await self.device.turn_off()
         if not success:
             raise HomeAssistantError(self.device.last_response.message)
-        self.schedule_update_ha_state()
+        await self.coordinator.async_request_refresh()
 
     async def async_oscillate(self, oscillating: bool) -> None:
         """Set oscillation."""
         success = await self.device.toggle_oscillation(oscillating)
         if not success:
             raise HomeAssistantError(self.device.last_response.message)
-        self.schedule_update_ha_state()
+        await self.coordinator.async_request_refresh()

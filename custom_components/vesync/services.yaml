@@ -1,1 +1,4 @@
 update_devices:
+  name: Update devices
+  description: Discover newly added VeSync devices and add them to Home Assistant.
+  fields: {}

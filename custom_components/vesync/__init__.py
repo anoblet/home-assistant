@@ -14,7 +14,14 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.device_registry import DeviceEntry
 from homeassistant.helpers.dispatcher import async_dispatcher_send
 
-from .const import DOMAIN, SERVICE_UPDATE_DEVS, VS_COORDINATOR, VS_MANAGER
+from .const import (
+    DOMAIN,
+    SERVICE_UPDATE_DEVS,
+    VS_COORDINATOR,
+    VS_DEVICES,
+    VS_DISCOVERY,
+    VS_MANAGER,
+)
 from .coordinator import VeSyncDataCoordinator
 
 PLATFORMS = [
@@ -61,6 +68,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
     await manager.update()
     await manager.check_firmware()
 
+    await coordinator.async_config_entry_first_refresh()
+
     await hass.config_entries.async_forward_entry_setups(config_entry, PLATFORMS)
 
     async def async_new_device_discovery(service: ServiceCall) -> None:
@@ -73,7 +82,12 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
         ]
 
         if new_devices:
-            async_dispatcher_send(hass, "vesync_new_devices", new_devices)
+            _LOGGER.debug("Discovered %s new VeSync devices", len(new_devices))
+            async_dispatcher_send(
+                hass,
+                VS_DISCOVERY.format(VS_DEVICES),
+                new_devices,
+            )
 
     hass.services.async_register(
         DOMAIN, SERVICE_UPDATE_DEVS, async_new_device_discovery

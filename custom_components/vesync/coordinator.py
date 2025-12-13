@@ -47,10 +47,12 @@ class VeSyncDataCoordinator(DataUpdateCoordinator[None]):
 
     async def _async_update_data(self) -> None:
         """Fetch data from API endpoint."""
-
+        _LOGGER.debug("Refreshing VeSync device state")
         await self._manager.update_all_devices()
 
         if self.should_update_energy():
             self.update_time = datetime.now()
             for outlet in self._manager.devices.outlets:
                 await outlet.update_energy()
+
+        _LOGGER.debug("VeSync refresh complete")

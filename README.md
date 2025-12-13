@@ -31,6 +31,7 @@ This repository captures the full Home Assistant setup that powers Andrew Noblet
 
 ## Custom and Third-Party Integrations
 - The repository bundles several custom components under `custom_components/`, covering device-specific APIs (Bambu Lab printers, VeSync switches, Wyze sensors) and utility layers (`browser_mod`, `climate_group`, `spook_inverse`).
+- Notes for the in-repo VeSync integration (services, logging, feature coverage) live in [`docs/custom-components/vesync.md`](./docs/custom-components/vesync.md).
 - HACS-managed resources live under `www/` and are referenced from Lovelace packages to extend the frontend with custom cards.
 - MQTT, InfluxDB, Google Assistant, and other platform integrations are configured through dedicated package files and secret references.
 
@@ -59,4 +60,4 @@ This repository captures the full Home Assistant setup that powers Andrew Noblet
 For inspiration, troubleshooting tips, and official platform guidance, consult the [Home Assistant documentation](https://www.home-assistant.io/docs/). Keeping configuration as code in this repository ensures every change is reviewable, testable, and reproducible across the smart home estate.
 
 ## Todo
-- [] Custom VeSync component
+- [ ] Custom VeSync component: validate latest fan/humidifier fixes via `ha core restart` + `ha core logs`

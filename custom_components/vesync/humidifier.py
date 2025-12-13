@@ -20,6 +20,7 @@ from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
+from .common import is_humidifier
 from .const import (
     DOMAIN,
     VS_COORDINATOR,
@@ -77,7 +78,11 @@ def _setup_entities(
     coordinator: VeSyncDataCoordinator,
 ) -> None:
     """Add humidifier entities."""
-    async_add_entities(VeSyncHumidifierHA(dev, coordinator) for dev in devices)
+    async_add_entities(
+        VeSyncHumidifierHA(dev, coordinator)
+        for dev in devices
+        if is_humidifier(dev)
+    )
 
 
 def _get_ha_mode(vs_mode: str) -> str | None:
@@ -154,7 +159,11 @@ class VeSyncHumidifierHA(VeSyncBaseEntity, HumidifierEntity):
     @property
     def target_humidity(self) -> int:
         """Return the humidity we try to reach."""
-        return self.device.state.auto_humidity
+        target_humidity = getattr(self.device.state, "target_humidity", None)
+        if target_humidity is None:
+            target_humidity = getattr(self.device.state, "auto_humidity", None)
+        # pyvesync should always provide at least one of these; fall back to min.
+        return self._attr_min_humidity if target_humidity is None else target_humidity
 
     @property
     def mode(self) -> str | None:
@@ -170,6 +179,8 @@ class VeSyncHumidifierHA(VeSyncBaseEntity, HumidifierEntity):
         if not await self.device.set_humidity(humidity):
             raise HomeAssistantError(self.device.last_response.message)
 
+        await self.coordinator.async_request_refresh()
+
     async def async_set_mode(self, mode: str) -> None:
         """Set the mode of the device."""
         if mode not in self.available_modes:
@@ -183,11 +194,9 @@ class VeSyncHumidifierHA(VeSyncBaseEntity, HumidifierEntity):
             # We successfully changed the mode. Consider it a success even if display operation fails.
             await self.device.toggle_display(False)
 
-        # Changing mode while humidifier is off actually turns it on, as per the app. But
-        # the library does not seem to update the device_status. It is also possible that
-        # other attributes get updated. Scheduling a forced refresh to get device status.
-        # updated.
-        self.schedule_update_ha_state(force_refresh=True)
+        # Changing mode while humidifier is off can implicitly turn it on; refresh to
+        # ensure device status and related attributes are up to date.
+        await self.coordinator.async_request_refresh()
 
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Turn the device on."""
@@ -195,7 +204,7 @@ class VeSyncHumidifierHA(VeSyncBaseEntity, HumidifierEntity):
         if not success:
             raise HomeAssistantError(self.device.last_response.message)
 
-        self.schedule_update_ha_state()
+        await self.coordinator.async_request_refresh()
 
     async def async_turn_off(self, **kwargs: Any) -> None:
         """Turn the device off."""
@@ -203,7 +212,7 @@ class VeSyncHumidifierHA(VeSyncBaseEntity, HumidifierEntity):
         if not success:
             raise HomeAssistantError(self.device.last_response.message)
 
-        self.schedule_update_ha_state()
+        await self.coordinator.async_request_refresh()
 
     @property
     def is_on(self) -> bool:
