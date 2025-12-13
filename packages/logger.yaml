@@ -1,9 +1,9 @@
 logger:
-  logger:
-    default: warning
-    logs:
-      custom_components.vesync: debug
-      pyvesync: debug
+  default: warning
+  logs:
+    custom_components.vesync: debug
+    pyvesync:
+      debug
       # async_upnp_client: debug
       # async_upnp_client.traffic: debug
       # bellows.ezsp: debug
