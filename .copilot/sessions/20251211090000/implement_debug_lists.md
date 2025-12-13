@@ -14,16 +14,17 @@
 ## Analysis
 
 1.  **Object Structure**: The `VeSync` manager object structure in the installed `pyvesync` library (v3.3.3) differs from the initial assumption. The device lists are located under `manager.devices` (a `DeviceContainer` object), not directly under `manager`.
-    *   Correct access: `manager.devices.fans`, `manager.devices.bulbs`, etc.
-    *   `DeviceContainer` attributes found: `fans`, `bulbs`, `outlets`, `switches`, `air_purifiers`, `humidifiers`, `thermostats`, `air_fryers`.
+    - Correct access: `manager.devices.fans`, `manager.devices.bulbs`, etc.
+    - `DeviceContainer` attributes found: `fans`, `bulbs`, `outlets`, `switches`, `air_purifiers`, `humidifiers`, `thermostats`, `air_fryers`.
 
 2.  **Missing Devices**:
-    *   `fans`, `bulbs`, `outlets`, and `switches` lists are **empty**.
-    *   `air_purifiers` contains 2 devices: "Living Room Air Purifier" and "Bedroom Air Purifier".
-    *   `humidifiers` contains 2 devices: "Bedroom Humidifier" and "Living Room Humidifier".
+    - `fans`, `bulbs`, `outlets`, and `switches` lists are **empty**.
+    - `air_purifiers` contains 2 devices: "Living Room Air Purifier" and "Bedroom Air Purifier".
+    - `humidifiers` contains 2 devices: "Bedroom Humidifier" and "Living Room Humidifier".
 
-3.  **Conclusion**: The integration is successfully logging in and retrieving *some* devices (purifiers and humidifiers). If the user expects to see fans, bulbs, outlets, or switches, they are not being returned by the VeSync API into the expected categories, or they are not associated with the account in the way `pyvesync` expects.
+3.  **Conclusion**: The integration is successfully logging in and retrieving _some_ devices (purifiers and humidifiers). If the user expects to see fans, bulbs, outlets, or switches, they are not being returned by the VeSync API into the expected categories, or they are not associated with the account in the way `pyvesync` expects.
 
 ## Implementation Details
-*   Modified `custom_components/vesync/coordinator.py` instead of `__init__.py` to ensure logging occurs during the periodic update cycle and to capture the initialized state correctly.
-*   Added logging for `air_purifiers` and `humidifiers` to confirm successful retrieval of *some* devices.
+
+- Modified `custom_components/vesync/coordinator.py` instead of `__init__.py` to ensure logging occurs during the periodic update cycle and to capture the initialized state correctly.
+- Added logging for `air_purifiers` and `humidifiers` to confirm successful retrieval of _some_ devices.

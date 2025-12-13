@@ -1,8 +1,9 @@
 # Research Report: VeSync Custom Component Investigation
 
 ## Findings
+
 - **Issue**: The `vesync` custom component fails to populate entities because it attempts to `await` synchronous methods from the `pyvesync` library.
-- **Root Cause**: 
+- **Root Cause**:
   - The `pyvesync` library (version 3.3.3) is synchronous.
   - `custom_components/vesync/__init__.py` calls `await manager.login()`.
   - `custom_components/vesync/coordinator.py` calls `await self.manager.update()`.
@@ -18,16 +19,19 @@
   - Debug logging was enabled in `packages/custom_vesync.yaml` but didn't yield output, likely because the crash happens before any debug statements in the library are reached or the library logger isn't propagating correctly before the crash.
 
 ## Evidence
+
 - **Code Analysis**:
-  - [custom_components/vesync/__init__.py](custom_components/vesync/__init__.py): `login = await manager.login()` (Line 38).
+  - [custom_components/vesync/**init**.py](custom_components/vesync/__init__.py): `login = await manager.login()` (Line 38).
   - [custom_components/vesync/coordinator.py](custom_components/vesync/coordinator.py): `await self.manager.update()` (Line 29).
   - [custom_components/vesync/manifest.json](custom_components/vesync/manifest.json): Requirements `pyvesync==3.3.3`.
 - **Library Behavior**: `pyvesync` 3.3.3 is a synchronous library.
 
 ## Gaps / Questions
+
 - **Credentials**: Is `MyPass123` the real password? Even with the code fix, incorrect credentials will prevent login.
 
 ## Planning Notes
+
 - **Fix Required**:
   - Update `__init__.py` to use `await hass.async_add_executor_job(manager.login)`.
   - Update `coordinator.py` to use `await self.hass.async_add_executor_job(self.manager.update)`.
