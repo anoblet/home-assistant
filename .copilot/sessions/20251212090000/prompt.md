@@ -1,1 +1,0 @@
-Please analyze the previous sessions in (.copilot/sessions). Incorporate these understandings in (insight.md). Use markdown format. Be serious yet jovial. (Human) I'm tired. (Robot) Funny.
