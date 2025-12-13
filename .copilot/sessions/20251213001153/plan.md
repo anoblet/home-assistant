@@ -1,7 +1,9 @@
 # Plan
 
 ## Overview
+
 Close feature and best-practice gaps in `custom_components/vesync` for Fan (air purifier) and Humidifier entities by:
+
 - Correctly mapping humidifier target humidity.
 - Fixing warm mist control API compatibility with the pinned `pyvesync` version.
 - Ensuring device rediscovery signaling works.
@@ -9,20 +11,25 @@ Close feature and best-practice gaps in `custom_components/vesync` for Fan (air 
 - Adding missing setup/metadata to reduce stale-state issues and improve observability.
 
 ## Strategy
+
 ### Tree of Thoughts (3 options)
+
 1. **Minimal bugfix-only**: Fix humidifier `target_humidity`, warm mist API call, and discovery signal mismatch. Leave coordinator usage unchanged.
 2. **Bugfix + coordinator best-practice**: Do (1) plus add first refresh and switch all post-command updates to `coordinator.async_request_refresh()`.
 3. **Capability-driven refactor**: Introduce a capability layer per device model (feature flags), then map HA features from capabilities; larger change, more code churn.
 
 ### Evaluation
+
 - **Option 1**: Feasible fast; risk low; impact medium (fixes correctness but may keep stale states).
 - **Option 2**: Feasible; risk medium (more touch points); impact high (correctness + state freshness + more reliable UX).
 - **Option 3**: Feasible but high risk/time; impact high but over-scoped for this issue.
 
 ### Selection
+
 Proceed with **Option 2**. It addresses the concrete correctness bugs found in research and reduces the “stale UI state” issues caused by inconsistent refresh behavior.
 
 ## Steps
+
 1. **Inventory current entity features**
    - Action: Enumerate supported features/attributes in `fan.py` and `humidifier.py` and compare to HA entity docs.
    - Expected outcome: A short checklist of what’s implemented vs missing; confirm no additional HA-required props are absent.
@@ -77,24 +84,28 @@ Proceed with **Option 2**. It addresses the concrete correctness bugs found in r
    - Validation: Enable debug; restart; verify logs show coordinator refresh cycles and command handling.
 
 10. **Complete service metadata**
-   - Action: Fill in `services.yaml` descriptions and fields for the update service.
-   - Expected outcome: Service UI shows a clear description; aligns with HA conventions.
-   - Validation: HA service UI shows the service with description/fields; no schema warnings.
+
+- Action: Fill in `services.yaml` descriptions and fields for the update service.
+- Expected outcome: Service UI shows a clear description; aligns with HA conventions.
+- Validation: HA service UI shows the service with description/fields; no schema warnings.
 
 11. **Run end-to-end verification loop**
-   - Action: Restart HA and validate logs and behavior.
-   - Expected outcome: No errors; fixed features behave correctly.
-   - Validation commands:
-     - `ha core restart`
-     - `ha core log`
+
+- Action: Restart HA and validate logs and behavior.
+- Expected outcome: No errors; fixed features behave correctly.
+- Validation commands:
+  - `ha core restart`
+  - `ha core log`
 
 ## Risks / Dependencies
+
 - **Pinned library differences**: `pyvesync==3.3.3` may differ from online docs; mitigate by confirming API in Step 2 and coding defensively.
 - **Coordinator refresh cost**: Refreshing after every command may add load or slow UI; mitigate by refreshing only after successful calls and relying on existing polling interval otherwise.
 - **Discovery side effects**: Aligning dispatcher signals could cause duplicate discovery if other code paths also dispatch; mitigate by ensuring idempotent discovery callbacks and logging when they fire.
 - **State attribute ambiguity**: Different humidifier models may expose different state fields; mitigate with `getattr` fallbacks and clear logging when a field is missing.
 
 ## Expectations for Implement / Review
+
 - **Success criteria**
   - Humidifier `target_humidity` reflects the device’s target humidity (not auto humidity).
   - Warm mist entity works without attribute errors on the pinned library.

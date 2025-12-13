@@ -5,7 +5,7 @@
 - HA Humidifier entity feature coverage vs integration: PARTIAL (code looks aligned, but overall integration is unstable due to number-platform exception)
 - `pyvesync==3.3.3` capability alignment: PARTIAL (setter updated to `set_warm_level`, but warm mist value read path is still incompatible)
 - Coordinator best practices (`async_config_entry_first_refresh`, post-command refresh): PASS (present in code)
-- Device rediscovery signaling (`update_devices` service dispatches platform signal): PASS (uses `VS_DISCOVERY.format(VS_DEVICES)`) 
+- Device rediscovery signaling (`update_devices` service dispatches platform signal): PASS (uses `VS_DISCOVERY.format(VS_DEVICES)`)
 - Runtime validation evidence (restart + logs): FAIL
 
 - **Issues & Fixes**

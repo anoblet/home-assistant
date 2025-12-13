@@ -1,4 +1,5 @@
 ## Findings
+
 - **HA Fan model vs `custom_components/vesync`**
   - Implements core Fan model features used by HA: `TURN_ON`, `TURN_OFF`, `SET_SPEED` (percentage), `PRESET_MODE`; conditionally `OSCILLATE`.
   - Does **not** implement `DIRECTION` (no evidence of reverse-direction support in `pyvesync` fan docs).
@@ -27,6 +28,7 @@
   - `custom_components/vesync/services.yaml` contains only the service key `update_devices:` with no schema/description.
 
 ## Evidence
+
 - HA Fan entity model docs (supported features and property expectations): https://developers.home-assistant.io/docs/core/entity/fan/
 - HA Humidifier entity model docs (supported features and property expectations): https://developers.home-assistant.io/docs/core/entity/humidifier/
 - Integration Fan implementation: `custom_components/vesync/fan.py`
@@ -46,6 +48,7 @@
   - Device capability mapping (modes/features by model): https://webdjoe.github.io/pyvesync/latest/development/device_map/
 
 ## Gaps / Questions
+
 - Confirm in installed `pyvesync==3.3.3` (pinned in `custom_components/vesync/manifest.json`) whether the humidifier object exposes:
   - `device.state.target_humidity` vs `device.state.auto_target_humidity` vs `device.state.auto_humidity`, and which one is updated by `device.set_humidity()`.
 - Confirm warm mist API in `pyvesync==3.3.3` for humidifiers:
@@ -53,6 +56,7 @@
 - Determine whether the coordinator ever starts periodic refresh without an explicit `async_config_entry_first_refresh()` call (best practice says it should be called).
 
 ## Planning Notes
+
 - Confidence (high): `target_humidity` mapping is wrong for at least some models; it contradicts `pyvesync` docs and is central to HA’s humidifier model.
 - Confidence (high): dispatcher signal mismatch prevents `update_devices` from triggering platform discovery.
 - Confidence (medium): warm mist number entity likely broken or missing for devices that support warm mist (depends on `pyvesync==3.3.3` API surface).
