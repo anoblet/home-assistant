@@ -1,6 +1,7 @@
 **Status**: PARTIAL — `_none` entity IDs are eliminated and migrations look safe, but a few new/updated entities appear to have incorrect state mappings vs `pyvesync==3.3.3`, and one notable purifier feature (`set_auto_preference`) is still not exposed.
 
 **Checklist Results**
+
 - No entities named `switch.living_room_humidifier_none`: PASS
   - Verified by searching `.storage/core.entity_registry` for `switch.living_room_humidifier_none` and `_none` (no matches).
 - Every entity has a descriptive unique name: PASS (with a minor caveat)
@@ -16,6 +17,7 @@
   - Config flow bumps `MINOR_VERSION = 6`, and `async_migrate_entry` handles `_none`, `_none_<n>` and collision cases with safe fallbacks (remove-then-recreate).
 
 **Issues & Fixes**
+
 - Severity: MAJOR — Incorrect switch state fields for `mute`, `auto_stop`, and `drying_mode`
   - Evidence (pyvesync 3.3.3 source):
     - Fan mute state is `state.mute_status` (not `state.mute`).
@@ -45,6 +47,7 @@
   - Targeted fix: prefer gating on `supports_*` OR the presence of the relevant method(s), not necessarily both.
 
 **Notes for Implement / Supervisor**
+
 - Naming/migration work is solid: the `_none` cleanup is robust and `MINOR_VERSION` alignment looks correct.
 - Validation note: Supervisor `ha` CLI here doesn’t expose entity listing; verifying via `.storage/core.entity_registry` is the right approach. Consider adding a lightweight script/runbook command set that checks for `_none` in both entity registry and restore state so audits don’t get tripped up by historical entries.
 - Recommended runtime spot-check after the state-field fixes:

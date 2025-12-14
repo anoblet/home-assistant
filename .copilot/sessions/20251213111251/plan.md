@@ -1,14 +1,16 @@
 # Plan: VeSync entity naming + full capability exposure (pyvesync 3.3.3)
 
 ## Overview
-- **Goal**: (1) eliminate/avoid any entities ending with `_none` (specifically `switch.living_room_humidifier_none`) by fixing entity description naming/translation keys and handling existing entity-registry entries, and (2) expose all *reasonable* fan/air-purifier + humidifier capabilities from `pyvesync==3.3.3` as Home Assistant entities following HA platform best practices.
+
+- **Goal**: (1) eliminate/avoid any entities ending with `_none` (specifically `switch.living_room_humidifier_none`) by fixing entity description naming/translation keys and handling existing entity-registry entries, and (2) expose all _reasonable_ fan/air-purifier + humidifier capabilities from `pyvesync==3.3.3` as Home Assistant entities following HA platform best practices.
 - **Chosen strategy (from 3 options)**: implement a targeted naming/translation fix + entity-registry migration for the `_none` switch, then perform a structured capability audit and add missing entities (sensor/switch/number/select/button) gated by explicit capability checks.
   - Alternatives considered: (a) minimal naming fix + manual registry cleanup only, (b) expose gaps via a single “attributes” sensor (lower UX quality), (c) services-only approach (doesn’t meet the “entities” requirement).
 
 ### Files likely to change (checklist)
+
 - [ ] custom_components/vesync/switch.py
 - [ ] custom_components/vesync/strings.json
-- [ ] custom_components/vesync/__init__.py
+- [ ] custom_components/vesync/**init**.py
 - [ ] custom_components/vesync/sensor.py
 - [ ] custom_components/vesync/binary_sensor.py
 - [ ] custom_components/vesync/number.py (optional)
@@ -50,7 +52,7 @@
    - **Validation**:
      - `ha core log` includes a “Migrating …” line and the rename/remove operation.
      - Entity registry shows no `*_none` entries after restart.
-   - **Files**: custom_components/vesync/__init__.py
+   - **Files**: custom_components/vesync/**init**.py
 
 4. [ ] **Audit pyvesync 3.3.3 purifier telemetry and add missing sensors** → expose reasonable air quality / environment metrics
    - **Expected outcome**: new sensors exist (only when supported by a given purifier model).
@@ -101,7 +103,7 @@
    - **Validation**:
      - `ha entity list --domain button | grep vesync` shows the entity.
      - Running `ha service call button.press --target entity_id=button.<...>` succeeds; logs show no exceptions.
-   - **Files**: custom_components/vesync/button.py (new), custom_components/vesync/__init__.py, custom_components/vesync/strings.json
+   - **Files**: custom_components/vesync/button.py (new), custom_components/vesync/**init**.py, custom_components/vesync/strings.json
 
 8. [ ] **Fill fan-base oscillation gaps from pyvesync 3.3.3** → expose horizontal oscillation and (optionally) oscillation angle configuration
    - **Expected outcome**: additional fan oscillation controls appear only on devices that support them.
@@ -125,45 +127,50 @@
    - **Files**: custom_components/vesync/strings.json
 
 10. [ ] **Add/update logging to support per-entity verification** → make it easy to see which entities were created and why
-   - **Expected outcome**: debug logs clearly show entity creation decisions for each platform and any capability gating.
-   - **Implementation notes**:
-     - Add concise debug statements in each platform setup loop only when needed (e.g., when skipping an entity because a capability is missing).
-     - Avoid excessive logging each coordinator refresh.
-   - **Validation**:
-     - `ha core log` clearly indicates entity creation and does not spam repeatedly.
-   - **Files**: custom_components/vesync/*.py (targeted)
+
+- **Expected outcome**: debug logs clearly show entity creation decisions for each platform and any capability gating.
+- **Implementation notes**:
+  - Add concise debug statements in each platform setup loop only when needed (e.g., when skipping an entity because a capability is missing).
+  - Avoid excessive logging each coordinator refresh.
+- **Validation**:
+  - `ha core log` clearly indicates entity creation and does not spam repeatedly.
+- **Files**: custom_components/vesync/\*.py (targeted)
 
 11. [ ] **Verification runbook: verify each entity after restart with HA CLI and logs**
-   - **Prereq**: enable integration debug logging (either via UI or config):
-     - Set logger for the integration to debug (e.g., `custom_components.vesync: debug`).
-   - **Restart + log tail**:
-     - `ha core restart`
-     - `ha core log -f` (keep running) and watch for `vesync` messages/exceptions.
-   - **Registry checks (must be clean)**:
-     - `ha entity list | grep _none` → should return nothing.
-     - Optional deep check (if you have shell access): inspect `.storage/core.entity_registry` for `_none`.
-   - **Per-entity checks (repeat for each entity on the device)**:
-     - **State read**: `ha state get <entity_id>`
-     - **Basic actuation** (where applicable):
-       - switch: `ha service call switch.turn_on --target entity_id=<switch_id>` then `switch.turn_off`
-       - fan: `ha service call fan.turn_on --target entity_id=<fan_id>` and `fan.set_percentage`
-       - humidifier: `ha service call humidifier.set_humidity --target entity_id=<humidifier_id> --data humidity:<n>`
-       - select: `ha service call select.select_option --target entity_id=<select_id> --data option:"<value>"`
-       - number: `ha service call number.set_value --target entity_id=<number_id> --data value:<n>`
-       - button: `ha service call button.press --target entity_id=<button_id>`
-     - After each actuation: confirm `ha core log` shows no stack traces and `ha state get` reflects expected changes.
-   - **Expected outcome**: every entity can be read; every controllable entity can be actuated; no `_none` entity ids exist.
+
+- **Prereq**: enable integration debug logging (either via UI or config):
+  - Set logger for the integration to debug (e.g., `custom_components.vesync: debug`).
+- **Restart + log tail**:
+  - `ha core restart`
+  - `ha core log -f` (keep running) and watch for `vesync` messages/exceptions.
+- **Registry checks (must be clean)**:
+  - `ha entity list | grep _none` → should return nothing.
+  - Optional deep check (if you have shell access): inspect `.storage/core.entity_registry` for `_none`.
+- **Per-entity checks (repeat for each entity on the device)**:
+  - **State read**: `ha state get <entity_id>`
+  - **Basic actuation** (where applicable):
+    - switch: `ha service call switch.turn_on --target entity_id=<switch_id>` then `switch.turn_off`
+    - fan: `ha service call fan.turn_on --target entity_id=<fan_id>` and `fan.set_percentage`
+    - humidifier: `ha service call humidifier.set_humidity --target entity_id=<humidifier_id> --data humidity:<n>`
+    - select: `ha service call select.select_option --target entity_id=<select_id> --data option:"<value>"`
+    - number: `ha service call number.set_value --target entity_id=<number_id> --data value:<n>`
+    - button: `ha service call button.press --target entity_id=<button_id>`
+  - After each actuation: confirm `ha core log` shows no stack traces and `ha state get` reflects expected changes.
+- **Expected outcome**: every entity can be read; every controllable entity can be actuated; no `_none` entity ids exist.
 
 ## Risks / Dependencies
+
 - **Entity registry inertia**: fixing translations won’t automatically rename existing entity_ids; migration logic (Step 3) is required to actually remove `*_none` from the registry without manual cleanup.
 - **Capability ambiguity**: some pyvesync methods may not be supported consistently across all models; every new entity must be gated by `hasattr(...)` and/or state-field presence to prevent broken entities.
 - **Units / device classes**: additional telemetry (VOC/CO2) must use correct HA device classes/units; validate against current HA constants.
 - **API quota**: adding many new entities increases refresh surface area but should not increase API calls if all are fed from the same coordinator update.
 
 ### Additional capability to evaluate (purifiers)
+
 - `set_auto_preference`: if pyvesync exposes a finite set of preference values, model this as `select`; if it’s numeric, model it as `number`. Gate entity creation on both setter presence and a readable state field.
 
 ## Expectations for Implement / Review
+
 - **No `_none` entities**: `ha entity list | grep _none` returns empty after restart.
 - **Coverage**: purifier + fan + humidifier devices expose (when supported) the documented pyvesync 3.3.3 telemetry and controls as separate HA entities, not hidden only in attributes.
 - **HA alignment**:
@@ -175,6 +182,7 @@
 ## Iteration 2: Correct state mappings + purifier auto preference select
 
 ### Overview
+
 - **Goal**: fix incorrect entity state reporting for `mute`, `auto_stop`, and `drying_mode` switches (pyvesync 3.3.3 field names), and expose purifier auto preference as a `select` backed by pyvesync `state.auto_preference_type` and `device.auto_preferences`.
 - **Optional**: align switch post-command behavior with the coordinator-driven platforms by requesting a coordinator refresh after toggles.
 
@@ -211,6 +219,7 @@
    - **Validation**: toggling a switch updates its state within one refresh cycle.
 
 ### Minimal file changes
+
 - custom_components/vesync/switch.py
   - Update `is_on` lambdas for `mute`, `auto_stop`, `drying_mode` to use the correct `device.state.*` fields.
   - (Optional) replace `schedule_update_ha_state()` in `async_turn_on/off` with `await self.coordinator.async_request_refresh()`.
@@ -222,6 +231,7 @@
   - Add `entity.select.auto_preference.state` mappings for known options (`default`, `efficient`, `quiet`).
 
 ### Verification commands
+
 - Syntax / import sanity:
   - `python -m compileall custom_components/vesync`
 - Runtime validation (after deploy into HA):

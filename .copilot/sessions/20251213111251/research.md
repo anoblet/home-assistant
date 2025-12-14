@@ -1,4 +1,3 @@
-
 - **Findings**
   - VeSync integration pins `pyvesync==3.3.3`.
   - All VeSync entities inherit `_attr_has_entity_name = True` via the base class; aux entities rely on `entity_description` (name/translation/device_class) to produce a non-`None` entity name.
