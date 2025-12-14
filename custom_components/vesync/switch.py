@@ -36,18 +36,69 @@ class VeSyncSwitchEntityDescription(SwitchEntityDescription):
     off_fn: Callable[[VeSyncBaseDevice], Awaitable[bool]]
 
 
+async def _async_set_mute(device: VeSyncBaseDevice, value: bool) -> bool:
+    """Set mute state."""
+    if hasattr(device, "set_mute"):
+        return await device.set_mute(value)
+    if hasattr(device, "toggle_mute"):
+        return await device.toggle_mute(value)
+    return False
+
+
+async def _async_set_auto_stop(device: VeSyncBaseDevice, value: bool) -> bool:
+    """Set auto stop state."""
+    if hasattr(device, "turn_on_auto_stop") and value:
+        result = await device.turn_on_auto_stop()
+        if not result and "request success" in str(device.last_response.message).lower():
+            _LOGGER.debug(
+                "VeSync reported request success for auto_stop turn_on despite false return"
+            )
+            return True
+        return result
+    if hasattr(device, "turn_off_auto_stop") and not value:
+        result = await device.turn_off_auto_stop()
+        if not result and "request success" in str(device.last_response.message).lower():
+            _LOGGER.debug(
+                "VeSync reported request success for auto_stop turn_off despite false return"
+            )
+            return True
+        return result
+    if hasattr(device, "toggle_automatic_stop"):
+        result = await device.toggle_automatic_stop(value)
+        if not result and "request success" in str(device.last_response.message).lower():
+            _LOGGER.debug(
+                "VeSync reported request success for auto_stop toggle despite false return"
+            )
+            return True
+        return result
+    return False
+
+
+async def _async_set_light_detection(device: VeSyncBaseDevice, value: bool) -> bool:
+    """Set light detection state (purifiers)."""
+    if value and hasattr(device, "turn_on_light_detection"):
+        return await device.turn_on_light_detection()
+    if not value and hasattr(device, "turn_off_light_detection"):
+        return await device.turn_off_light_detection()
+    if hasattr(device, "toggle_light_detection"):
+        return await device.toggle_light_detection(value)
+    return False
+
+
 SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     VeSyncSwitchEntityDescription(
         key="device_status",
+        name="Power",
         is_on=lambda device: device.state.device_status == "on",
         # Other types of wall switches support dimming.  Those use light.py platform.
         exists_fn=lambda device: is_wall_switch(device) or is_outlet(device),
-        name=None,
+        translation_key="power",
         on_fn=lambda device: device.turn_on(),
         off_fn=lambda device: device.turn_off(),
     ),
     VeSyncSwitchEntityDescription(
         key="display",
+        name="Display",
         is_on=lambda device: device.state.display_set_status == "on",
         exists_fn=(
             lambda device: rgetattr(device, "state.display_set_status") is not None
@@ -58,6 +109,7 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     ),
     VeSyncSwitchEntityDescription(
         key="child_lock",
+        name="Child lock",
         is_on=lambda device: device.state.child_lock,
         exists_fn=(lambda device: rgetattr(device, "state.child_lock") is not None),
         translation_key="child_lock",
@@ -65,12 +117,69 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
         off_fn=lambda device: device.toggle_child_lock(False),
     ),
     VeSyncSwitchEntityDescription(
+        key="light_detection",
+        name="Light detection",
+        is_on=lambda device: rgetattr(device, "state.light_detection_switch") == "on",
+        exists_fn=lambda device: bool(getattr(device, "supports_light_detection", False)),
+        translation_key="light_detection",
+        on_fn=lambda device: _async_set_light_detection(device, True),
+        off_fn=lambda device: _async_set_light_detection(device, False),
+    ),
+    VeSyncSwitchEntityDescription(
         key="cooking_status",
+        name="Cooking status",
         is_on=lambda device: device.details.get("kitchen_mode") in ["cooking", "heating", "preheat"] if hasattr(device, "details") else False,
         exists_fn=lambda device: "airfryer" in device.device_type.lower(),
         translation_key="cooking_status",
         on_fn=lambda device: device.turn_on(), # Note: Might require parameters in reality
         off_fn=lambda device: device.end_cooking() if hasattr(device, "end_cooking") else device.turn_off(),
+    ),
+    VeSyncSwitchEntityDescription(
+        key="vertical_oscillation",
+        name="Vertical oscillation",
+        is_on=lambda device: rgetattr(device, "state.vertical_oscillation_status") == "on",
+        exists_fn=lambda device: bool(getattr(device, "supports_vertical_oscillation", False)) and hasattr(device, "turn_on_vertical_oscillation"),
+        translation_key="vertical_oscillation",
+        on_fn=lambda device: device.turn_on_vertical_oscillation(),
+        off_fn=lambda device: device.turn_off_vertical_oscillation(),
+    ),
+    VeSyncSwitchEntityDescription(
+        key="horizontal_oscillation",
+        name="Horizontal oscillation",
+        is_on=lambda device: rgetattr(device, "state.horizontal_oscillation_status") == "on",
+        exists_fn=lambda device: bool(getattr(device, "supports_horizontal_oscillation", False)) and hasattr(device, "turn_on_horizontal_oscillation"),
+        translation_key="horizontal_oscillation",
+        on_fn=lambda device: device.turn_on_horizontal_oscillation(),
+        off_fn=lambda device: device.turn_off_horizontal_oscillation(),
+    ),
+    VeSyncSwitchEntityDescription(
+        key="drying_mode",
+        name="Drying mode",
+        is_on=lambda device: bool(rgetattr(device, "state.drying_mode_enabled")),
+        exists_fn=lambda device: hasattr(device, "turn_on_drying_mode"),
+        translation_key="drying_mode",
+        on_fn=lambda device: device.turn_on_drying_mode(),
+        off_fn=lambda device: device.turn_off_drying_mode(),
+    ),
+    VeSyncSwitchEntityDescription(
+        key="mute",
+        name="Mute",
+        is_on=lambda device: rgetattr(device, "state.mute_status") == "on",
+        exists_fn=lambda device: hasattr(device, "set_mute")
+        or hasattr(device, "toggle_mute"),
+        translation_key="mute",
+        on_fn=lambda device: _async_set_mute(device, True),
+        off_fn=lambda device: _async_set_mute(device, False),
+    ),
+    VeSyncSwitchEntityDescription(
+        key="auto_stop",
+        name="Auto stop",
+        is_on=lambda device: bool(rgetattr(device, "state.automatic_stop")),
+        exists_fn=lambda device: hasattr(device, "turn_on_auto_stop")
+        or hasattr(device, "toggle_automatic_stop"),
+        translation_key="auto_stop",
+        on_fn=lambda device: _async_set_auto_stop(device, True),
+        off_fn=lambda device: _async_set_auto_stop(device, False),
     ),
 )
 
@@ -148,11 +257,11 @@ class VeSyncSwitchEntity(SwitchEntity, VeSyncBaseEntity):
         if not await self.entity_description.off_fn(self.device):
             raise HomeAssistantError(self.device.last_response.message)
 
-        self.schedule_update_ha_state()
+        await self.coordinator.async_request_refresh()
 
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Turn the entity on."""
         if not await self.entity_description.on_fn(self.device):
             raise HomeAssistantError(self.device.last_response.message)
 
-        self.schedule_update_ha_state()
+        await self.coordinator.async_request_refresh()

@@ -1,0 +1,5 @@
+User request (2025-12-13):
+
+Research the most recent session in (.copilot/sessions). Verify that the 'vesync' custom component (custom_components/vesync) supports all of the features available for the fan (air purifier) and humidifier device classes. Research the 'pyvesync' library and the 'Home Assistant' documentation on how best to implement this task. Use the Home Assistant logger to help you diagnose any issues. Use `ha core restart`, and `ha core log` to iterate and implement this task. There is no log file. You must use `ha core log` to check the log.
+
+Verify that the current implementation is working, and that all entities have been created. Verify that there are not broken entities, and that every entity is labeled correctly. Check each entity individually. There should be no entities named 'switch.living_room_humidifier_none'. Each entity must have a descriptive unique name such as 'switch.living_room_humidifier_display' or 'input_number.living_room_humidifier_mist'.

@@ -27,6 +27,9 @@
   },
   "entity": {
     "binary_sensor": {
+      "filter_open_state": {
+        "name": "Filter door open"
+      },
       "water_lacks": {
         "name": "Low water"
       },
@@ -34,12 +37,17 @@
         "name": "Water tank lifted"
       }
     },
+    "button": {
+      "reset_filter": {
+        "name": "Reset filter"
+      }
+    },
     "fan": {
       "vesync": {
         "state_attributes": {
           "preset_mode": {
             "state": {
-              "advanced_sleep": "Advanced sleep",
+              "advancedSleep": "Advanced sleep",
               "auto": "[%key:common::state::auto%]",
               "pet": "Pet",
               "sleep": "Sleep",
@@ -63,9 +71,23 @@
     "number": {
       "mist_level": {
         "name": "Mist level"
+      },
+      "warm_mist_level": {
+        "name": "Warm mist level"
+      },
+      "timer": {
+        "name": "Timer"
       }
     },
     "select": {
+      "auto_preference": {
+        "name": "Auto preference",
+        "state": {
+          "default": "Default",
+          "efficient": "Efficient",
+          "quiet": "Quiet"
+        }
+      },
       "night_light_level": {
         "name": "Night light level",
         "state": {
@@ -80,8 +102,20 @@
       "air_quality": {
         "name": "Air quality"
       },
+      "air_quality_percent": {
+        "name": "Air quality (%)"
+      },
+      "co2": {
+        "name": "CO₂"
+      },
+      "cook_time_remaining": {
+        "name": "Cook time remaining"
+      },
       "current_power": {
         "name": "Current power"
+      },
+      "current_temperature": {
+        "name": "Current temperature"
       },
       "current_voltage": {
         "name": "Current voltage"
@@ -98,16 +132,64 @@
       "energy_year": {
         "name": "Energy use yearly"
       },
+      "fan_rotate_angle": {
+        "name": "Fan rotate angle"
+      },
       "filter_life": {
         "name": "Filter lifetime"
+      },
+      "humidity": {
+        "name": "Humidity"
+      },
+      "kitchen_mode": {
+        "name": "Kitchen mode"
+      },
+      "pm1": {
+        "name": "PM1"
+      },
+      "pm10": {
+        "name": "PM10"
+      },
+      "pm25": {
+        "name": "PM2.5"
+      },
+      "temperature": {
+        "name": "Temperature"
+      },
+      "voc": {
+        "name": "VOC"
       }
     },
     "switch": {
+      "auto_stop": {
+        "name": "Auto stop"
+      },
       "child_lock": {
         "name": "Child lock"
       },
+      "cooking_status": {
+        "name": "Cooking status"
+      },
       "display": {
         "name": "Display"
+      },
+      "drying_mode": {
+        "name": "Drying mode"
+      },
+      "horizontal_oscillation": {
+        "name": "Horizontal oscillation"
+      },
+      "light_detection": {
+        "name": "Light detection"
+      },
+      "mute": {
+        "name": "Mute"
+      },
+      "power": {
+        "name": "Power"
+      },
+      "vertical_oscillation": {
+        "name": "Vertical oscillation"
       }
     }
   },

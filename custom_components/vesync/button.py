@@ -1,0 +1,108 @@
+"""Support for VeSync buttons."""
+
+from __future__ import annotations
+
+from collections.abc import Awaitable, Callable
+from dataclasses import dataclass
+import logging
+
+from pyvesync.base_devices.vesyncbasedevice import VeSyncBaseDevice
+
+from homeassistant.components.button import ButtonEntity, ButtonEntityDescription
+from homeassistant.config_entries import ConfigEntry
+from homeassistant.core import HomeAssistant, callback
+from homeassistant.exceptions import HomeAssistantError
+from homeassistant.helpers.dispatcher import async_dispatcher_connect
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
+
+from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
+from .coordinator import VeSyncDataCoordinator
+from .entity import VeSyncBaseEntity
+
+_LOGGER = logging.getLogger(__name__)
+
+
+@dataclass(frozen=True, kw_only=True)
+class VeSyncButtonEntityDescription(ButtonEntityDescription):
+    """Describe a VeSync button entity."""
+
+    press_fn: Callable[[VeSyncBaseDevice], Awaitable[bool]]
+    exists_fn: Callable[[VeSyncBaseDevice], bool] = lambda _: True
+
+
+BUTTON_DESCRIPTIONS: tuple[VeSyncButtonEntityDescription, ...] = (
+    VeSyncButtonEntityDescription(
+        key="reset_filter",
+        name="Reset filter",
+        translation_key="reset_filter",
+        entity_category=None,
+        press_fn=lambda device: device.reset_filter(),
+        exists_fn=lambda device: hasattr(device, "reset_filter"),
+    ),
+)
+
+
+async def async_setup_entry(
+    hass: HomeAssistant,
+    config_entry: ConfigEntry,
+    async_add_entities: AddConfigEntryEntitiesCallback,
+) -> None:
+    """Set up the VeSync button platform."""
+
+    coordinator = hass.data[DOMAIN][VS_COORDINATOR]
+
+    @callback
+    def discover(devices: list[VeSyncBaseDevice]) -> None:
+        """Add new devices to platform."""
+        _setup_entities(devices, async_add_entities, coordinator)
+
+    config_entry.async_on_unload(
+        async_dispatcher_connect(hass, VS_DISCOVERY.format(VS_DEVICES), discover)
+    )
+
+    manager = hass.data[DOMAIN][VS_MANAGER]
+    devices = list(manager.devices)
+    if hasattr(manager, "kitchen"):
+        devices.extend([d for d in manager.kitchen if d not in devices])
+
+    _setup_entities(devices, async_add_entities, coordinator)
+
+
+@callback
+def _setup_entities(
+    devices: list[VeSyncBaseDevice],
+    async_add_entities: AddConfigEntryEntitiesCallback,
+    coordinator: VeSyncDataCoordinator,
+) -> None:
+    """Add button entities."""
+
+    async_add_entities(
+        VeSyncButtonEntity(dev, description, coordinator)
+        for dev in devices
+        for description in BUTTON_DESCRIPTIONS
+        if description.exists_fn(dev)
+    )
+
+
+class VeSyncButtonEntity(VeSyncBaseEntity, ButtonEntity):
+    """Representation of a VeSync button entity."""
+
+    entity_description: VeSyncButtonEntityDescription
+
+    def __init__(
+        self,
+        device: VeSyncBaseDevice,
+        description: VeSyncButtonEntityDescription,
+        coordinator: VeSyncDataCoordinator,
+    ) -> None:
+        """Initialize the VeSync button entity."""
+        super().__init__(device, coordinator)
+        self.entity_description = description
+        self._attr_unique_id = f"{super().unique_id}-{description.key}"
+
+    async def async_press(self) -> None:
+        """Handle the button press."""
+        if not await self.entity_description.press_fn(self.device):
+            raise HomeAssistantError(self.device.last_response.message)
+
+        await self.coordinator.async_request_refresh()

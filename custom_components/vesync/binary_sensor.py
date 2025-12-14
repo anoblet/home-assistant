@@ -15,10 +15,12 @@ from homeassistant.components.binary_sensor import (
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
+from homeassistant.const import EntityCategory
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .common import rgetattr
+from .common import is_purifier
 from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
 from .coordinator import VeSyncDataCoordinator
 from .entity import VeSyncBaseEntity
@@ -50,6 +52,14 @@ SENSOR_DESCRIPTIONS: tuple[VeSyncBinarySensorEntityDescription, ...] = (
         exists_fn=(
             lambda device: rgetattr(device, "state.water_tank_lifted") is not None
         ),
+    ),
+    VeSyncBinarySensorEntityDescription(
+        key="filter_open_state",
+        translation_key="filter_open_state",
+        is_on=lambda device: bool(rgetattr(device, "state.filter_open_state")),
+        device_class=BinarySensorDeviceClass.PROBLEM,
+        entity_category=EntityCategory.DIAGNOSTIC,
+        exists_fn=lambda device: is_purifier(device) and rgetattr(device, "state.filter_open_state") is not None,
     ),
 )
 

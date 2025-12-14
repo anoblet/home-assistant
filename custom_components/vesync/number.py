@@ -65,6 +65,31 @@ async def _async_set_warm_mist_level(device: VeSyncBaseDevice, value: float) -> 
     return False
 
 
+def _get_timer_duration(device: VeSyncBaseDevice) -> float:
+    """Get timer duration."""
+    timer = getattr(device, "timer", None)
+    if timer is None:
+        return 0.0
+    if isinstance(timer, dict):
+        return float(timer.get("duration", 0))
+    return float(getattr(timer, "duration", 0))
+
+
+async def _set_timer_duration(device: VeSyncBaseDevice, value: float) -> bool:
+    """Set timer duration."""
+    minutes = int(value)
+    if minutes == 0:
+        if hasattr(device, "clear_timer"):
+            return await device.clear_timer()
+        return False
+
+    hours = minutes // 60
+    mins = minutes % 60
+    if hasattr(device, "set_timer"):
+        return await device.set_timer(hours, mins)
+    return False
+
+
 @dataclass(frozen=True, kw_only=True)
 class VeSyncNumberEntityDescription(NumberEntityDescription):
     """Class to describe a Vesync number entity."""
@@ -79,6 +104,7 @@ class VeSyncNumberEntityDescription(NumberEntityDescription):
 NUMBER_DESCRIPTIONS: list[VeSyncNumberEntityDescription] = [
     VeSyncNumberEntityDescription(
         key="mist_level",
+        name="Mist level",
         translation_key="mist_level",
         native_min_value_fn=lambda device: min(device.mist_levels),
         native_max_value_fn=lambda device: max(device.mist_levels),
@@ -90,6 +116,7 @@ NUMBER_DESCRIPTIONS: list[VeSyncNumberEntityDescription] = [
     ),
     VeSyncNumberEntityDescription(
         key="warm_mist_level",
+        name="Warm mist level",
         translation_key="warm_mist_level",
         native_min_value_fn=lambda device: 0,
         native_max_value_fn=lambda device: 3,
@@ -98,6 +125,19 @@ NUMBER_DESCRIPTIONS: list[VeSyncNumberEntityDescription] = [
         exists_fn=_supports_warm_mist,
         set_value_fn=_async_set_warm_mist_level,
         value_fn=_get_warm_mist_level,
+    ),
+    VeSyncNumberEntityDescription(
+        key="timer",
+        name="Timer",
+        translation_key="timer",
+        native_min_value_fn=lambda device: 0,
+        native_max_value_fn=lambda device: 1440,
+        native_step=1,
+        mode=NumberMode.BOX,
+        exists_fn=lambda device: hasattr(device, "set_timer")
+        and hasattr(device, "clear_timer"),
+        set_value_fn=_set_timer_duration,
+        value_fn=_get_timer_duration,
     ),
 ]
 

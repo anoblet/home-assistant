@@ -29,7 +29,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType
 
-from .common import is_humidifier, is_outlet, rgetattr
+from .common import is_humidifier, is_outlet, is_purifier, rgetattr
 from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
 from .coordinator import VeSyncDataCoordinator
 from .entity import VeSyncBaseEntity
@@ -66,11 +66,63 @@ SENSORS: tuple[VeSyncSensorEntityDescription, ...] = (
     ),
     VeSyncSensorEntityDescription(
         key="pm25",
+        translation_key="pm25",
         device_class=SensorDeviceClass.PM25,
         native_unit_of_measurement=CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
         state_class=SensorStateClass.MEASUREMENT,
         value_fn=lambda device: device.state.pm25,
         exists_fn=lambda device: rgetattr(device, "state.pm25") is not None,
+    ),
+    VeSyncSensorEntityDescription(
+        key="pm1",
+        translation_key="pm1",
+        device_class=getattr(SensorDeviceClass, "PM1", None),
+        native_unit_of_measurement=CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
+        state_class=SensorStateClass.MEASUREMENT,
+        value_fn=lambda device: rgetattr(device, "state.pm1"),
+        exists_fn=lambda device: rgetattr(device, "state.pm1") is not None,
+    ),
+    VeSyncSensorEntityDescription(
+        key="pm10",
+        translation_key="pm10",
+        device_class=getattr(SensorDeviceClass, "PM10", None),
+        native_unit_of_measurement=CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
+        state_class=SensorStateClass.MEASUREMENT,
+        value_fn=lambda device: rgetattr(device, "state.pm10"),
+        exists_fn=lambda device: rgetattr(device, "state.pm10") is not None,
+    ),
+    VeSyncSensorEntityDescription(
+        key="aq_percent",
+        translation_key="air_quality_percent",
+        native_unit_of_measurement=PERCENTAGE,
+        state_class=SensorStateClass.MEASUREMENT,
+        value_fn=lambda device: rgetattr(device, "state.aq_percent"),
+        exists_fn=lambda device: rgetattr(device, "state.aq_percent") is not None,
+    ),
+    VeSyncSensorEntityDescription(
+        key="voc",
+        translation_key="voc",
+        native_unit_of_measurement="ppb",
+        state_class=SensorStateClass.MEASUREMENT,
+        value_fn=lambda device: rgetattr(device, "state.voc"),
+        exists_fn=lambda device: rgetattr(device, "state.voc") is not None,
+    ),
+    VeSyncSensorEntityDescription(
+        key="co2",
+        translation_key="co2",
+        device_class=getattr(SensorDeviceClass, "CO2", None),
+        native_unit_of_measurement="ppm",
+        state_class=SensorStateClass.MEASUREMENT,
+        value_fn=lambda device: rgetattr(device, "state.co2"),
+        exists_fn=lambda device: rgetattr(device, "state.co2") is not None,
+    ),
+    VeSyncSensorEntityDescription(
+        key="fan_rotate_angle",
+        translation_key="fan_rotate_angle",
+        native_unit_of_measurement="°",
+        state_class=SensorStateClass.MEASUREMENT,
+        value_fn=lambda device: rgetattr(device, "state.fan_rotate_angle"),
+        exists_fn=lambda device: rgetattr(device, "state.fan_rotate_angle") is not None,
     ),
     VeSyncSensorEntityDescription(
         key="power",
@@ -134,6 +186,7 @@ SENSORS: tuple[VeSyncSensorEntityDescription, ...] = (
     ),
     VeSyncSensorEntityDescription(
         key="humidity",
+        translation_key="humidity",
         device_class=SensorDeviceClass.HUMIDITY,
         native_unit_of_measurement=PERCENTAGE,
         state_class=SensorStateClass.MEASUREMENT,
@@ -141,13 +194,32 @@ SENSORS: tuple[VeSyncSensorEntityDescription, ...] = (
         exists_fn=is_humidifier,
     ),
     VeSyncSensorEntityDescription(
+        key="purifier_humidity",
+        translation_key="humidity",
+        device_class=SensorDeviceClass.HUMIDITY,
+        native_unit_of_measurement=PERCENTAGE,
+        state_class=SensorStateClass.MEASUREMENT,
+        value_fn=lambda device: rgetattr(device, "state.humidity"),
+        exists_fn=lambda device: is_purifier(device) and rgetattr(device, "state.humidity") is not None,
+    ),
+    VeSyncSensorEntityDescription(
         key="temperature",
+        translation_key="temperature",
         device_class=SensorDeviceClass.TEMPERATURE,
         native_unit_of_measurement=UnitOfTemperature.FAHRENHEIT,
         state_class=SensorStateClass.MEASUREMENT,
         value_fn=lambda device: device.state.temperature,
         exists_fn=lambda device: is_humidifier(device)
         and device.state.temperature is not None,
+    ),
+    VeSyncSensorEntityDescription(
+        key="purifier_temperature",
+        translation_key="temperature",
+        device_class=SensorDeviceClass.TEMPERATURE,
+        native_unit_of_measurement=UnitOfTemperature.FAHRENHEIT,
+        state_class=SensorStateClass.MEASUREMENT,
+        value_fn=lambda device: rgetattr(device, "state.temperature"),
+        exists_fn=lambda device: is_purifier(device) and rgetattr(device, "state.temperature") is not None,
     ),
     VeSyncSensorEntityDescription(
         key="current_temperature",

@@ -13,7 +13,7 @@ from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
-from .common import is_humidifier, is_outlet, is_purifier
+from .common import is_humidifier, is_outlet, is_purifier, rgetattr
 from .const import (
     DOMAIN,
     HUMIDIFIER_NIGHT_LIGHT_LEVEL_BRIGHT,
@@ -51,8 +51,25 @@ class VeSyncSelectEntityDescription(SelectEntityDescription):
     """Class to describe a Vesync select entity."""
 
     exists_fn: Callable[[VeSyncBaseDevice], bool]
-    current_option_fn: Callable[[VeSyncBaseDevice], str]
+    current_option_fn: Callable[[VeSyncBaseDevice], str | None]
     select_option_fn: Callable[[VeSyncBaseDevice, str], Awaitable[bool]]
+    options_fn: Callable[[VeSyncBaseDevice], list[str]] | None = None
+
+
+def _purifier_auto_preference_options(device: VeSyncBaseDevice) -> list[str]:
+    preferences = getattr(device, "auto_preferences", None) or []
+    return list(preferences)
+
+
+def _purifier_auto_preference_current_option(device: VeSyncBaseDevice) -> str | None:
+    current = rgetattr(device, "state.auto_preference_type")
+    if not current:
+        return None
+
+    preferences = getattr(device, "auto_preferences", None) or []
+    if current not in preferences:
+        return None
+    return current
 
 
 SELECT_DESCRIPTIONS: list[VeSyncSelectEntityDescription] = [
@@ -101,6 +118,18 @@ SELECT_DESCRIPTIONS: list[VeSyncSelectEntityDescription] = [
         exists_fn=lambda device: is_outlet(device) and device.supports_nightlight,
         select_option_fn=lambda device, value: device.set_nightlight_state(value),
         current_option_fn=lambda device: device.state.nightlight_status,
+    ),
+    # auto preference for air purifiers
+    VeSyncSelectEntityDescription(
+        key="auto_preference",
+        translation_key="auto_preference",
+        icon="mdi:tune-variant",
+        exists_fn=lambda device: is_purifier(device)
+        and hasattr(device, "set_auto_preference")
+        and bool(getattr(device, "auto_preferences", None)),
+        options_fn=_purifier_auto_preference_options,
+        select_option_fn=lambda device, value: device.set_auto_preference(value),
+        current_option_fn=_purifier_auto_preference_current_option,
     ),
 ]
 
@@ -159,6 +188,13 @@ class VeSyncSelectEntity(VeSyncBaseEntity, SelectEntity):
         super().__init__(device, coordinator)
         self.entity_description = description
         self._attr_unique_id = f"{super().unique_id}-{description.key}"
+
+    @property
+    def options(self) -> list[str]:
+        """Return the available options."""
+        if self.entity_description.options_fn is not None:
+            return self.entity_description.options_fn(self.device)
+        return list(self.entity_description.options or [])
 
     @property
     def current_option(self) -> str | None:
