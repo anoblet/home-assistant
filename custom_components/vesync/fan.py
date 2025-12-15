@@ -18,7 +18,7 @@ from homeassistant.util.percentage import (
     percentage_to_ordered_list_item,
 )
 
-from .common import is_fan, is_purifier, rgetattr
+from .common import is_fan, is_purifier, iter_manager_devices, rgetattr
 from .const import (
     DOMAIN,
     VS_COORDINATOR,
@@ -59,7 +59,7 @@ async def async_setup_entry(
     )
 
     manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
-    _setup_entities(manager.devices, async_add_entities, coordinator)
+    _setup_entities(iter_manager_devices(manager), async_add_entities, coordinator)
 
 
 @callback

@@ -1,25 +1,26 @@
 {
+  "title": "VeSync",
   "config": {
     "abort": {
-      "reauth_successful": "[%key:common::config_flow::abort::reauth_successful%]",
-      "single_instance_allowed": "[%key:common::config_flow::abort::single_instance_allowed%]"
+      "reauth_successful": "Re-authentication was successful",
+      "single_instance_allowed": "Only a single instance is allowed"
     },
     "error": {
-      "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]"
+      "invalid_auth": "Invalid authentication"
     },
     "step": {
       "reauth_confirm": {
         "data": {
-          "password": "[%key:common::config_flow::data::password%]",
-          "username": "[%key:common::config_flow::data::email%]"
+          "password": "Password",
+          "username": "Email"
         },
         "description": "The VeSync integration needs to re-authenticate your account",
-        "title": "[%key:common::config_flow::title::reauth%]"
+        "title": "Re-authenticate"
       },
       "user": {
         "data": {
-          "password": "[%key:common::config_flow::data::password%]",
-          "username": "[%key:common::config_flow::data::email%]"
+          "password": "Password",
+          "username": "Email"
         },
         "title": "Enter username and password"
       }
@@ -58,7 +59,7 @@
           "preset_mode": {
             "state": {
               "advancedSleep": "Advanced sleep",
-              "auto": "[%key:common::state::auto%]",
+              "auto": "Auto",
               "pet": "Pet",
               "sleep": "Sleep",
               "turbo": "Turbo"
@@ -124,11 +125,11 @@
       "night_light_level": {
         "name": "Night light level",
         "state": {
-          "auto": "[%key:common::state::auto%]",
           "bright": "Bright",
           "dim": "Dim",
-          "off": "[%key:common::state::off%]",
-          "on": "[%key:common::state::on%]"
+          "off": "Off",
+          "on": "On",
+          "auto": "Auto"
         }
       }
     },

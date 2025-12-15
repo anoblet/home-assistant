@@ -131,6 +131,16 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
         off_fn=lambda device: device.toggle_display(False),
     ),
     VeSyncSwitchEntityDescription(
+        key="displaying_type",
+        name="Display type",
+        is_on=lambda device: _status_is_on(rgetattr(device, "state.displaying_type")),
+        exists_fn=lambda device: rgetattr(device, "state.displaying_type") is not None
+        and callable(getattr(device, "toggle_displaying_type", None)),
+        translation_key="displaying_type",
+        on_fn=lambda device: device.toggle_displaying_type(True),
+        off_fn=lambda device: device.toggle_displaying_type(False),
+    ),
+    VeSyncSwitchEntityDescription(
         key="indicator_light",
         name="Indicator light",
         is_on=lambda device: _status_is_on(rgetattr(device, "state.indicator_status")),

@@ -70,4 +70,4 @@ For inspiration, troubleshooting tips, and official platform guidance, consult t
 
 ## Todo
 
-- [ ] Custom VeSync component: validate latest fan/humidifier fixes via `ha core restart` + `ha core logs`
+- [ ] Custom VeSync component: validate latest fan/humidifier fixes via `pnpm home-assistant services call homeassistant restart -d '{}'` + `pnpm home-assistant raw request GET /api/hassio/core/logs --text`

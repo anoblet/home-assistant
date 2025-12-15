@@ -15,10 +15,11 @@ The integration exposes capabilities as standard Home Assistant entity platforms
 - **`humidifier`**: humidifiers (power, mode, target humidity).
 - **`climate`**: thermostats (HVAC mode, target temperature, fan mode).
 - **`light`**: bulbs/dimmers and dimmer wall switches.
-- **`switch`**: outlet/wall-switch power, plus capability-gated toggles (e.g., display, child lock, mute, light detection, oscillation, drying mode, auto stop, indicator light, backlight). Air fryers may also expose a `cooking_status` switch as a pause/resume convenience (not a true power switch).
+- **`light`**: supported wall switches may also expose an RGB **backlight color** light entity.
+- **`switch`**: outlet/wall-switch power, plus capability-gated toggles (e.g., display, display type, child lock, mute, light detection, oscillation, drying mode, auto stop, indicator light, backlight). Air fryers may also expose a `cooking_status` switch as a pause/resume convenience (not a true power switch).
 - **`sensor`**: air quality metrics (AQ/PM/VOC/CO₂/temp/humidity), filter life, outlet power/voltage/energy histories, plus air fryer cook status/current temperature/time remaining.
 - **`binary_sensor`**: humidifier water/tank problem flags and purifier filter door open (when reported by the device).
-- **`number`**: humidifier mist level, warm mist level (capability-gated), and timer minutes (capability-gated).
+- **`number`**: humidifier mist level, warm mist level (capability-gated), timer minutes (capability-gated), and fan oscillation range coordinates (capability-gated).
 - **`select`**: night light level (humidifier/purifier/outlet models that support it) and purifier auto preference (capability-gated).
 - **`button`**: filter reset (capability-gated) and air fryer pause/resume/end controls (capability-gated).
 - **`update`**: firmware versions (reporting only).
@@ -32,7 +33,7 @@ For a device-by-device capability mapping against the pinned library version, se
 - Entities request a coordinator refresh after commands so UI state updates promptly.
 - Config entry setup performs an initial coordinator refresh to avoid "unknown" states on startup.
 - Runtime data is scoped by config entry id to keep unload/reload idempotent.
-- Config entry minor version `7` includes a small entity registry migration to prevent `unique_id` collisions (firmware update entities are normalized to the `*-firmware` scheme) and to normalize a legacy humidifier binary sensor suffix.
+- Config entry minor version `8` includes entity registry migrations to prevent `unique_id` collisions (firmware update entities are normalized to the `*-firmware` scheme) and to clean up legacy entity_ids created before runtime translations existed (e.g. duplicate `*_problem` / `*_problem_2` binary sensors are renamed to deterministic suffixes).
 
 ## Services
 
@@ -91,8 +92,10 @@ data:
 
 - Enable debug logging for the integration and `pyvesync` in [packages/logger.yaml](../../packages/logger.yaml).
 - Typical validation loop:
-  - `ha core restart`
-  - `ha core logs --lines 500 | grep -i -E "vesync|pyvesync|custom_components\.vesync"`
+  - `pnpm home-assistant services call homeassistant restart -d '{}'`
+  - Wait for API to come back: `pnpm home-assistant api info`
+  - Reload entities/config: `pnpm reload`
+  - Logs (Supervisor): `pnpm home-assistant raw request GET /api/hassio/core/logs --text | grep -i -E "vesync|pyvesync|custom_components\.vesync"`
 
 ### Common `pyvesync`-side errors
 

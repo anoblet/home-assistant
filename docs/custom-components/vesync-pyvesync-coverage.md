@@ -59,8 +59,8 @@ Implemented on concrete fan devices in `pyvesync/devices/vesyncfan.py` (e.g., `V
 **Home Assistant exposure**
 
 - `fan` platform: on/off (`toggle_switch`), percentage (`set_fan_speed`), preset modes (`set_mode`), oscillation (when supported).
-- `switch` platform: mute/display/oscillation toggles (capability-gated by `device.state.*` and `device.supports_*`).
-- `number` platform: timer minutes (where `set_timer`/`clear_timer` exist).
+- `switch` platform: mute/display/display type + oscillation toggles (capability-gated by `device.state.*` and `device.supports_*`).
+- `number` platform: timer minutes (where `set_timer`/`clear_timer` exist) and oscillation range coordinates (when `supports_set_oscillation_range`).
 
 ### `VeSyncPurifier` (air purifiers)
 
@@ -217,6 +217,7 @@ From `pyvesync/devices/vesyncswitch.py`:
 
 - `switch` platform: main power and supported toggles (indicator/backlight, etc.).
 - `light` platform: dimmer switch brightness (where the integration models the device as a light).
+- `light` platform: backlight RGB color control (when `supports_backlight_color`).
 - `number` platform: timer minutes (where `set_timer`/`clear_timer` exist).
 
 ### `VeSyncBulb` (bulbs / dimmable lighting)

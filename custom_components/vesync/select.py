@@ -13,7 +13,7 @@ from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
-from .common import is_humidifier, is_outlet, is_purifier, rgetattr
+from .common import is_humidifier, is_outlet, is_purifier, iter_manager_devices, rgetattr
 from .const import (
     DOMAIN,
     HUMIDIFIER_NIGHT_LIGHT_LEVEL_BRIGHT,
@@ -153,7 +153,7 @@ async def async_setup_entry(
     )
 
     manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
-    _setup_entities(manager.devices, async_add_entities, coordinator)
+    _setup_entities(iter_manager_devices(manager), async_add_entities, coordinator)
 
 
 @callback

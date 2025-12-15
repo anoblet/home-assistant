@@ -24,5 +24,5 @@ This repo treats Home Assistant configuration as code. These guidelines exist to
 
 ## Validation workflow
 
-- After meaningful changes, run `pnpm reload`, then check runtime logs via `ha core logs`.
+- After meaningful changes, run `pnpm reload`, then check runtime logs via `pnpm home-assistant raw request GET /api/hassio/core/logs --text`.
 - Follow the additional repo-specific instructions in [.github/instructions/home-assistant.instructions.md](../.github/instructions/home-assistant.instructions.md).

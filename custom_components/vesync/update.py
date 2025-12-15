@@ -8,6 +8,7 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
+from .common import iter_manager_devices
 from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
 from .coordinator import VeSyncDataCoordinator
 from .entity import VeSyncBaseEntity
@@ -31,7 +32,7 @@ async def async_setup_entry(
     )
 
     manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
-    _setup_entities(manager.devices, async_add_entities, coordinator)
+    _setup_entities(iter_manager_devices(manager), async_add_entities, coordinator)
 
 
 @callback

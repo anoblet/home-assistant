@@ -435,6 +435,78 @@ async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry) ->
         hass.config_entries.async_update_entry(config_entry, minor_version=7)
         minor_version = 7
 
+    if minor_version < 8:
+        # Fix legacy entity_id collisions for binary sensors with device_class=problem.
+        # When translations were missing, multiple binary sensors could fall back to the
+        # same name ("Problem"), creating *_problem and *_problem_2 entity_ids.
+        # Now that translations exist, rename these to deterministic suffixes.
+        _LOGGER.debug("Migrating VeSync config entry from version 7 to version 8")
+        entity_registry = er.async_get(hass)
+        registry_entries = er.async_entries_for_config_entry(
+            entity_registry, config_entry.entry_id
+        )
+
+        problem_suffix_re = re.compile(r"_problem(?:_\d+)?$")
+        valid_keys = {"water_lacks", "water_tank_lifted", "filter_open_state"}
+
+        for reg_entry in registry_entries:
+            if reg_entry.domain != Platform.BINARY_SENSOR:
+                continue
+
+            try:
+                domain, object_id = reg_entry.entity_id.split(".", 1)
+            except ValueError:
+                continue
+
+            if not problem_suffix_re.search(object_id):
+                continue
+
+            unique_suffix = None
+            if reg_entry.unique_id and "-" in reg_entry.unique_id:
+                unique_suffix = reg_entry.unique_id.rsplit("-", 1)[-1]
+
+            if unique_suffix not in valid_keys:
+                continue
+
+            prefix = problem_suffix_re.sub("", object_id)
+            new_entity_id = f"{domain}.{prefix}_{slugify(unique_suffix)}"
+
+            # If the target already exists, remove the legacy entry so HA can recreate it.
+            if getattr(entity_registry, "async_get", None) and entity_registry.async_get(
+                new_entity_id
+            ):
+                _LOGGER.debug(
+                    "Target entity_id %s already exists; removing legacy %s",
+                    new_entity_id,
+                    reg_entry.entity_id,
+                )
+                entity_registry.async_remove(reg_entry.entity_id)
+                continue
+
+            try:
+                entity_registry.async_update_entity(
+                    reg_entry.entity_id,
+                    new_entity_id=new_entity_id,
+                )
+            except TypeError:
+                _LOGGER.debug(
+                    "Entity registry does not support renaming entity_id; removing legacy %s",
+                    reg_entry.entity_id,
+                )
+                entity_registry.async_remove(reg_entry.entity_id)
+                continue
+
+            # Verify rename applied; otherwise remove so it gets recreated correctly.
+            if getattr(entity_registry, "async_get", None) and entity_registry.async_get(
+                new_entity_id
+            ):
+                continue
+
+            entity_registry.async_remove(reg_entry.entity_id)
+
+        hass.config_entries.async_update_entry(config_entry, minor_version=8)
+        minor_version = 8
+
     return True
 
 

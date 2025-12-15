@@ -17,7 +17,7 @@ from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
-from .common import is_humidifier, iter_manager_devices
+from .common import is_fan, is_humidifier, iter_manager_devices
 from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
 from .coordinator import VeSyncDataCoordinator
 from .entity import VeSyncBaseEntity
@@ -66,13 +66,37 @@ async def _async_set_warm_mist_level(device: VeSyncBaseDevice, value: float) -> 
 
 
 def _get_timer_duration(device: VeSyncBaseDevice) -> float:
-    """Get timer duration."""
-    timer = getattr(device, "timer", None)
+    """Get timer value in minutes.
+
+    pyvesync==3.3.3 stores timers on `device.state.timer` and the Timer object
+    exposes `time_remaining` and `timer_duration` (older variants may use
+    `duration` or dict-like structures).
+
+    Prefer remaining time when available.
+    """
+
+    timer = getattr(getattr(device, "state", None), "timer", None)
+    if timer is None:
+        timer = getattr(device, "timer", None)
+
     if timer is None:
         return 0.0
+
     if isinstance(timer, dict):
-        return float(timer.get("duration", 0))
-    return float(getattr(timer, "duration", 0))
+        if "time_remaining" in timer:
+            return float(timer.get("time_remaining", 0) or 0)
+        if "remaining" in timer:
+            return float(timer.get("remaining", 0) or 0)
+        if "timer_duration" in timer:
+            return float(timer.get("timer_duration", 0) or 0)
+        return float(timer.get("duration", 0) or 0)
+
+    for attr in ("time_remaining", "remaining", "timer_duration", "duration"):
+        value = getattr(timer, attr, None)
+        if value is not None:
+            return float(value)
+
+    return 0.0
 
 
 async def _set_timer_duration(device: VeSyncBaseDevice, value: float) -> bool:
@@ -137,6 +161,82 @@ NUMBER_DESCRIPTIONS: list[VeSyncNumberEntityDescription] = [
         and hasattr(device, "clear_timer"),
         set_value_fn=_set_timer_duration,
         value_fn=_get_timer_duration,
+    ),
+    VeSyncNumberEntityDescription(
+        key="horizontal_oscillation_left",
+        name="Horizontal oscillation left",
+        translation_key="horizontal_oscillation_left",
+        native_min_value_fn=lambda device: 0,
+        native_max_value_fn=lambda device: 360,
+        native_step=1,
+        mode=NumberMode.BOX,
+        exists_fn=lambda device: is_fan(device)
+        and bool(getattr(device, "supports_set_oscillation_range", False))
+        and hasattr(device, "set_horizontal_oscillation_range"),
+        set_value_fn=lambda device, value: device.set_horizontal_oscillation_range(
+            left=int(value),
+            right=int(getattr(getattr(device.state, "oscillation_range", None), "right", 0) or 0),
+        ),
+        value_fn=lambda device: float(
+            getattr(getattr(device.state, "oscillation_range", None), "left", 0) or 0
+        ),
+    ),
+    VeSyncNumberEntityDescription(
+        key="horizontal_oscillation_right",
+        name="Horizontal oscillation right",
+        translation_key="horizontal_oscillation_right",
+        native_min_value_fn=lambda device: 0,
+        native_max_value_fn=lambda device: 360,
+        native_step=1,
+        mode=NumberMode.BOX,
+        exists_fn=lambda device: is_fan(device)
+        and bool(getattr(device, "supports_set_oscillation_range", False))
+        and hasattr(device, "set_horizontal_oscillation_range"),
+        set_value_fn=lambda device, value: device.set_horizontal_oscillation_range(
+            left=int(getattr(getattr(device.state, "oscillation_range", None), "left", 0) or 0),
+            right=int(value),
+        ),
+        value_fn=lambda device: float(
+            getattr(getattr(device.state, "oscillation_range", None), "right", 0) or 0
+        ),
+    ),
+    VeSyncNumberEntityDescription(
+        key="vertical_oscillation_top",
+        name="Vertical oscillation top",
+        translation_key="vertical_oscillation_top",
+        native_min_value_fn=lambda device: 0,
+        native_max_value_fn=lambda device: 360,
+        native_step=1,
+        mode=NumberMode.BOX,
+        exists_fn=lambda device: is_fan(device)
+        and bool(getattr(device, "supports_set_oscillation_range", False))
+        and hasattr(device, "set_vertical_oscillation_range"),
+        set_value_fn=lambda device, value: device.set_vertical_oscillation_range(
+            top=int(value),
+            bottom=int(getattr(getattr(device.state, "oscillation_range", None), "bottom", 0) or 0),
+        ),
+        value_fn=lambda device: float(
+            getattr(getattr(device.state, "oscillation_range", None), "top", 0) or 0
+        ),
+    ),
+    VeSyncNumberEntityDescription(
+        key="vertical_oscillation_bottom",
+        name="Vertical oscillation bottom",
+        translation_key="vertical_oscillation_bottom",
+        native_min_value_fn=lambda device: 0,
+        native_max_value_fn=lambda device: 360,
+        native_step=1,
+        mode=NumberMode.BOX,
+        exists_fn=lambda device: is_fan(device)
+        and bool(getattr(device, "supports_set_oscillation_range", False))
+        and hasattr(device, "set_vertical_oscillation_range"),
+        set_value_fn=lambda device, value: device.set_vertical_oscillation_range(
+            top=int(getattr(getattr(device.state, "oscillation_range", None), "top", 0) or 0),
+            bottom=int(value),
+        ),
+        value_fn=lambda device: float(
+            getattr(getattr(device.state, "oscillation_range", None), "bottom", 0) or 0
+        ),
     ),
 ]
 

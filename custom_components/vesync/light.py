@@ -11,6 +11,7 @@ from homeassistant.components.light import (
     ATTR_BRIGHTNESS,
     ATTR_COLOR_TEMP_KELVIN,
     ATTR_HS_COLOR,
+    ATTR_RGB_COLOR,
     ColorMode,
     LightEntity,
 )
@@ -20,6 +21,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.util import color as color_util
 
+from .common import iter_manager_devices
 from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
 from .coordinator import VeSyncDataCoordinator
 from .entity import VeSyncBaseEntity
@@ -48,7 +50,7 @@ async def async_setup_entry(
     )
 
     manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
-    _setup_entities(manager.devices, async_add_entities, coordinator)
+    _setup_entities(iter_manager_devices(manager), async_add_entities, coordinator)
 
 
 @callback
@@ -58,19 +60,34 @@ def _setup_entities(
     coordinator: VeSyncDataCoordinator,
 ) -> None:
     """Check if device is a light and add entity."""
-    entities: list[VeSyncBaseLightHA] = []
+    entities: list[VeSyncBaseEntity] = []
     for dev in devices:
         if isinstance(dev, VeSyncBulb):
-            if getattr(dev, "rgb_supported", False) or hasattr(dev, "set_color"):
+            if getattr(dev, "rgb_supported", False) or hasattr(dev, "set_hsv") or hasattr(
+                dev, "set_rgb"
+            ):
                 entities.append(VeSyncColorLightHA(dev, coordinator))
             elif dev.supports_color_temp:
                 entities.append(VeSyncTunableWhiteLightHA(dev, coordinator))
             elif dev.supports_brightness:
                 entities.append(VeSyncDimmableLightHA(dev, coordinator))
-        elif isinstance(dev, VeSyncSwitch) and dev.supports_dimmable:
-            entities.append(VeSyncDimmableLightHA(dev, coordinator))
+        elif isinstance(dev, VeSyncSwitch):
+            # Wall switches and dimmer switches may expose multiple light-like controls.
+            if dev.supports_dimmable:
+                entities.append(VeSyncDimmableLightHA(dev, coordinator))
+            if getattr(dev, "supports_backlight_color", False):
+                entities.append(VeSyncBacklightLightHA(dev, coordinator))
 
     async_add_entities(entities, update_before_add=True)
+
+
+def _status_is_on(value: Any) -> bool:
+    """Normalize VeSync status values to a boolean."""
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        return value.lower() == "on"
+    return bool(value)
 
 
 class VeSyncBaseLightHA(VeSyncBaseEntity, LightEntity):
@@ -244,8 +261,81 @@ class VeSyncColorLightHA(VeSyncTunableWhiteLightHA):
             brightness_pct = round((brightness / 255) * 100)
             brightness_pct = max(1, min(brightness_pct, 100))
 
-            await self.device.set_color(hue, saturation, brightness_pct)
+            # pyvesync==3.3.3 exposes set_hsv / set_rgb (no set_color).
+            if hasattr(self.device, "set_hsv"):
+                await self.device.set_hsv(float(hue), float(saturation), float(brightness_pct))
+            else:
+                red, green, blue = color_util.color_hs_to_RGB(hue, saturation)
+                if hasattr(self.device, "set_rgb"):
+                    await self.device.set_rgb(float(red), float(green), float(blue))
+                    if ATTR_BRIGHTNESS in kwargs and hasattr(self.device, "set_brightness"):
+                        await self.device.set_brightness(int(brightness_pct))
             await self.coordinator.async_request_refresh()
             return
 
         await super().async_turn_on(**kwargs)
+
+
+class VeSyncBacklightLightHA(VeSyncBaseEntity, LightEntity):
+    """RGB backlight control for VeSync wall switches that support backlight color."""
+
+    _attr_translation_key = "backlight_color"
+    _attr_supported_color_modes = {ColorMode.RGB}
+    _attr_color_mode = ColorMode.RGB
+
+    def __init__(
+        self,
+        device: VeSyncBaseDevice,
+        coordinator: VeSyncDataCoordinator,
+    ) -> None:
+        super().__init__(device, coordinator)
+        self._attr_unique_id = f"{self.base_unique_id}-backlight_color"
+
+    @property
+    def is_on(self) -> bool:
+        return _status_is_on(getattr(getattr(self.device, "state", None), "backlight_status", None))
+
+    @property
+    def rgb_color(self) -> tuple[int, int, int] | None:
+        state = getattr(self.device, "state", None)
+        if state is None:
+            return None
+
+        rgb = getattr(state, "backlight_rgb", None)
+        if rgb is not None:
+            red = getattr(rgb, "red", None)
+            green = getattr(rgb, "green", None)
+            blue = getattr(rgb, "blue", None)
+            if red is not None and green is not None and blue is not None:
+                return (int(red), int(green), int(blue))
+
+        color_obj = getattr(state, "backlight_color", None)
+        rgb_obj = getattr(color_obj, "rgb", None) if color_obj is not None else None
+        if rgb_obj is not None:
+            red = getattr(rgb_obj, "red", None)
+            green = getattr(rgb_obj, "green", None)
+            blue = getattr(rgb_obj, "blue", None)
+            if red is not None and green is not None and blue is not None:
+                return (int(red), int(green), int(blue))
+
+        return None
+
+    async def async_turn_on(self, **kwargs: Any) -> None:
+        rgb = kwargs.get(ATTR_RGB_COLOR)
+        if rgb is not None:
+            red, green, blue = rgb
+            if hasattr(self.device, "set_backlight_color"):
+                await self.device.set_backlight_color(int(red), int(green), int(blue))
+            elif hasattr(self.device, "set_backlight_status"):
+                await self.device.set_backlight_status(True, int(red), int(green), int(blue))
+            await self.coordinator.async_request_refresh()
+            return
+
+        if hasattr(self.device, "set_backlight_status"):
+            await self.device.set_backlight_status(True)
+            await self.coordinator.async_request_refresh()
+
+    async def async_turn_off(self, **kwargs: Any) -> None:
+        if hasattr(self.device, "set_backlight_status"):
+            await self.device.set_backlight_status(False)
+            await self.coordinator.async_request_refresh()
