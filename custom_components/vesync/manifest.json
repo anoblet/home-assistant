@@ -10,9 +10,9 @@
     "@sapuseven"
   ],
   "config_flow": true,
-  "documentation": "https://www.home-assistant.io/integrations/vesync",
+  "documentation": "https://github.com/anoblet/home-assistant/tree/main/custom_components/vesync",
   "iot_class": "cloud_polling",
   "loggers": ["pyvesync"],
   "requirements": ["pyvesync==3.3.3"],
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

@@ -111,7 +111,6 @@ async def _async_fryer_resume(device: VeSyncBaseDevice) -> bool:
 SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     VeSyncSwitchEntityDescription(
         key="device_status",
-        name="Power",
         is_on=lambda device: device.state.device_status == "on",
         # Other types of wall switches support dimming.  Those use light.py platform.
         exists_fn=lambda device: is_wall_switch(device) or is_outlet(device),
@@ -121,7 +120,6 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     ),
     VeSyncSwitchEntityDescription(
         key="display",
-        name="Display",
         is_on=lambda device: device.state.display_set_status == "on",
         exists_fn=(
             lambda device: rgetattr(device, "state.display_set_status") is not None
@@ -132,7 +130,6 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     ),
     VeSyncSwitchEntityDescription(
         key="displaying_type",
-        name="Display type",
         is_on=lambda device: _status_is_on(rgetattr(device, "state.displaying_type")),
         exists_fn=lambda device: rgetattr(device, "state.displaying_type") is not None
         and callable(getattr(device, "toggle_displaying_type", None)),
@@ -142,7 +139,6 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     ),
     VeSyncSwitchEntityDescription(
         key="indicator_light",
-        name="Indicator light",
         is_on=lambda device: _status_is_on(rgetattr(device, "state.indicator_status")),
         exists_fn=lambda device: bool(getattr(device, "supports_indicator_light", False))
         and callable(getattr(device, "toggle_indicator_light", None)),
@@ -152,7 +148,6 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     ),
     VeSyncSwitchEntityDescription(
         key="backlight",
-        name="Backlight",
         is_on=lambda device: _status_is_on(rgetattr(device, "state.backlight_status")),
         exists_fn=lambda device: bool(getattr(device, "supports_backlight", False))
         and callable(getattr(device, "set_backlight_status", None)),
@@ -162,7 +157,6 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     ),
     VeSyncSwitchEntityDescription(
         key="child_lock",
-        name="Child lock",
         is_on=lambda device: device.state.child_lock,
         exists_fn=lambda device: rgetattr(device, "state.child_lock") is not None
         and callable(getattr(device, "toggle_child_lock", None)),
@@ -172,7 +166,6 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     ),
     VeSyncSwitchEntityDescription(
         key="light_detection",
-        name="Light detection",
         is_on=lambda device: rgetattr(device, "state.light_detection_switch") == "on",
         exists_fn=lambda device: bool(getattr(device, "supports_light_detection", False)),
         translation_key="light_detection",
@@ -181,7 +174,6 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     ),
     VeSyncSwitchEntityDescription(
         key="cooking_status",
-        name="Cooking status",
         is_on=lambda device: bool(rgetattr(device, "state.is_running")),
         exists_fn=lambda device: is_fryer(device)
         and hasattr(device, "pause")
@@ -192,7 +184,6 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     ),
     VeSyncSwitchEntityDescription(
         key="vertical_oscillation",
-        name="Vertical oscillation",
         is_on=lambda device: rgetattr(device, "state.vertical_oscillation_status") == "on",
         exists_fn=lambda device: bool(getattr(device, "supports_vertical_oscillation", False)) and hasattr(device, "turn_on_vertical_oscillation"),
         translation_key="vertical_oscillation",
@@ -201,7 +192,6 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     ),
     VeSyncSwitchEntityDescription(
         key="horizontal_oscillation",
-        name="Horizontal oscillation",
         is_on=lambda device: rgetattr(device, "state.horizontal_oscillation_status") == "on",
         exists_fn=lambda device: bool(getattr(device, "supports_horizontal_oscillation", False)) and hasattr(device, "turn_on_horizontal_oscillation"),
         translation_key="horizontal_oscillation",
@@ -210,7 +200,6 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     ),
     VeSyncSwitchEntityDescription(
         key="drying_mode",
-        name="Drying mode",
         is_on=lambda device: bool(rgetattr(device, "state.drying_mode_enabled")),
         exists_fn=lambda device: hasattr(device, "turn_on_drying_mode"),
         translation_key="drying_mode",
@@ -220,7 +209,6 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     VeSyncSwitchEntityDescription(
         key="mute",
         name="Mute",
-        is_on=lambda device: rgetattr(device, "state.mute_status") == "on",
         exists_fn=lambda device: hasattr(device, "set_mute")
         or hasattr(device, "toggle_mute"),
         translation_key="mute",
@@ -229,7 +217,6 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     ),
     VeSyncSwitchEntityDescription(
         key="auto_stop",
-        name="Auto stop",
         is_on=lambda device: bool(rgetattr(device, "state.automatic_stop")),
         exists_fn=lambda device: hasattr(device, "turn_on_auto_stop")
         or hasattr(device, "toggle_automatic_stop"),
@@ -291,7 +278,7 @@ class VeSyncSwitchEntity(SwitchEntity, VeSyncBaseEntity):
         """Initialize the sensor."""
         super().__init__(device, coordinator)
         self.entity_description = description
-        self._attr_unique_id = f"{super().unique_id}-{description.key}"
+        self._attr_unique_id = f"{self.base_unique_id}-{description.key}"
         if is_outlet(self.device):
             self._attr_device_class = SwitchDeviceClass.OUTLET
         elif is_wall_switch(self.device):

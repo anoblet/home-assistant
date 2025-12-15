@@ -34,7 +34,6 @@ class VeSyncButtonEntityDescription(ButtonEntityDescription):
 BUTTON_DESCRIPTIONS: tuple[VeSyncButtonEntityDescription, ...] = (
     VeSyncButtonEntityDescription(
         key="reset_filter",
-        name="Reset filter",
         translation_key="reset_filter",
         entity_category=None,
         press_fn=lambda device: device.reset_filter(),
@@ -42,21 +41,18 @@ BUTTON_DESCRIPTIONS: tuple[VeSyncButtonEntityDescription, ...] = (
     ),
     VeSyncButtonEntityDescription(
         key="pause_cooking",
-        name="Pause cooking",
         translation_key="pause_cooking",
         press_fn=lambda device: device.pause(),
         exists_fn=lambda device: is_fryer(device) and hasattr(device, "pause"),
     ),
     VeSyncButtonEntityDescription(
         key="resume_cooking",
-        name="Resume cooking",
         translation_key="resume_cooking",
         press_fn=lambda device: device.resume(),
         exists_fn=lambda device: is_fryer(device) and hasattr(device, "resume"),
     ),
     VeSyncButtonEntityDescription(
         key="end_cooking",
-        name="End cooking",
         translation_key="end_cooking",
         press_fn=lambda device: device.end(),
         exists_fn=lambda device: is_fryer(device) and hasattr(device, "end"),
@@ -116,7 +112,7 @@ class VeSyncButtonEntity(VeSyncBaseEntity, ButtonEntity):
         """Initialize the VeSync button entity."""
         super().__init__(device, coordinator)
         self.entity_description = description
-        self._attr_unique_id = f"{super().unique_id}-{description.key}"
+        self._attr_unique_id = f"{self.base_unique_id}-{description.key}"
 
     async def async_press(self) -> None:
         """Handle the button press."""

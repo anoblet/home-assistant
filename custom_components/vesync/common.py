@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import functools
 import logging
 from typing import Any
 
@@ -68,26 +69,19 @@ def iter_manager_devices(manager: Any) -> list[Any]:
     return devices
 
 
-def rgetattr(obj: object, attr: str):
-    """Return a string in the form word.1.2.3 and return the item as 3. Note that this last value could be in a dict as well."""
-    _this_func = rgetattr
-    sp = attr.split(".", 1)
-    if len(sp) == 1:
-        left, right = sp[0], ""
-    else:
-        left, right = sp
+def rgetattr(obj: Any, attr: str, *args: Any) -> Any:
+    """Get a nested attribute from an object.
 
-    if isinstance(obj, dict):
-        obj = obj.get(left)
-    elif hasattr(obj, left):
-        obj = getattr(obj, left)
-    else:
-        return None
+    Example: rgetattr(obj, 'a.b.c') is equivalent to obj.a.b.c
+    """
+    def _getattr(obj: Any, attr: str) -> Any:
+        if obj is None:
+            return None
+        if isinstance(obj, dict):
+            return obj.get(attr)
+        return getattr(obj, attr, None)
 
-    if right:
-        obj = _this_func(obj, right)
-
-    return obj
+    return functools.reduce(_getattr, [obj] + attr.split("."))
 
 
 def is_humidifier(device: VeSyncBaseDevice) -> bool:

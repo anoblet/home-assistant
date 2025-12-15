@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 from datetime import datetime, timedelta
 import logging
 
@@ -52,7 +53,8 @@ class VeSyncDataCoordinator(DataUpdateCoordinator[None]):
 
         if self.should_update_energy():
             self.update_time = datetime.now()
-            for outlet in self._manager.devices.outlets:
-                await outlet.update_energy()
+            await asyncio.gather(
+                *(outlet.update_energy() for outlet in self._manager.devices.outlets)
+            )
 
         _LOGGER.debug("VeSync refresh complete")

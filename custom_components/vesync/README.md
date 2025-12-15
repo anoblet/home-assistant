@@ -1,38 +1,78 @@
 # VeSync Custom Component
 
-This is a custom component for Home Assistant to integrate with VeSync devices.
+This is a custom component for Home Assistant to integrate with VeSync devices. It replaces the built-in VeSync integration with additional features, bug fixes, and support for a wider range of devices.
+
+## Features
+
+- **Extended Device Support**: Supports newer VeSync devices including humidifiers, air fryers, and air purifiers that may not be fully supported by the official integration.
+- **Enhanced Entities**: Provides detailed sensors and configuration options such as night light, auto preference, and more.
+- **Dynamic Fan Modes**: Fan modes are dynamically retrieved from device capabilities.
+- **Parallel Updates**: Improved performance with parallel energy monitoring updates.
+- **Localization**: Full support for Home Assistant translation keys.
+- **Platforms**:
+  - Binary Sensor
+  - Button
+  - Climate
+  - Fan
+  - Humidifier
+  - Light
+  - Number
+  - Select
+  - Sensor
+  - Switch
+  - Update
 
 ## Installation
 
 1. Copy the `custom_components/vesync` folder to your Home Assistant `custom_components` directory.
 2. Restart Home Assistant.
-3. Add the integration via the UI.
+3. Go to **Settings** -> **Devices & Services**.
+4. Click **Add Integration** and search for "VeSync".
+5. Enter your VeSync credentials.
 
 ## Configuration
 
-Configuration is done via the UI.
+Configuration is handled entirely via the User Interface.
 
-## Recent Changes
+## Services
 
-### Dynamic Fan Modes Support
+The integration provides the following custom services:
 
-Fan modes are now dynamically retrieved from the device capabilities rather than being hardcoded. This ensures that only the modes supported by your specific device model are available in Home Assistant.
+### `vesync.update_devices`
 
-### Fix for Duplicate Entities (Unique ID Stability)
+Discover newly added VeSync devices and add them to Home Assistant without restarting.
 
-We have improved the generation of Unique IDs for entities to ensure stability across restarts and configuration changes. This fixes issues where entities might be duplicated or lose their history.
+### `vesync.fryer_cook`
+
+Start cooking on a supported VeSync air fryer.
+
+- **temperature**: Cooking temperature.
+- **time**: Cooking time in minutes.
+
+### `vesync.fryer_set_preheat`
+
+Set preheat on a supported VeSync air fryer.
+
+- **temperature**: Preheat temperature.
+- **cook_time**: Cook time in minutes (after preheat).
+
+## Migration of Legacy Entities
+
+This component includes automatic migration logic to fix issues with legacy entities:
+
+- **Unique ID Stability**: Older versions of the integration may have generated unstable unique IDs. The component automatically migrates these to stable IDs.
+- **Entity Naming**: Entities that were previously created with generic names (ending in `_none`) are automatically renamed to more descriptive names (e.g., `_power`, `_humidity`).
+- **Cleanup**: If a legacy entity cannot be renamed (e.g., because the target name is already taken), the legacy entity is removed so it can be recreated correctly.
 
 ## Troubleshooting
 
 ### Duplicate Entities
 
-If you notice duplicate entities after updating to this version, it is likely due to the change in how Unique IDs are generated. The old entities with the unstable IDs may still be present.
+If you notice duplicate entities after updating, it may be due to the migration of Unique IDs.
 
 **Resolution:**
 
 1. Navigate to **Settings** -> **Devices & Services** -> **Entities**.
-2. Search for the duplicate entities (they might be marked as "Restored" or unavailable if the new ones have taken over, or you might see two active ones).
-3. Select the old entities and delete them.
-4. Restart Home Assistant to ensure everything is clean.
-
-The new entities should persist correctly going forward.
+2. Search for the duplicate entities.
+3. Delete the old/unavailable entities.
+4. Restart Home Assistant.

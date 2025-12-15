@@ -116,7 +116,7 @@ class VeSyncBinarySensor(BinarySensorEntity, VeSyncBaseEntity):
         """Initialize the sensor."""
         super().__init__(device, coordinator)
         self.entity_description = description
-        self._attr_unique_id = f"{super().unique_id}-{description.key}"
+        self._attr_unique_id = f"{self.base_unique_id}-{description.key}"
 
     @property
     def is_on(self) -> bool:

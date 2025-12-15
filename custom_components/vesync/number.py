@@ -127,7 +127,6 @@ class VeSyncNumberEntityDescription(NumberEntityDescription):
 NUMBER_DESCRIPTIONS: list[VeSyncNumberEntityDescription] = [
     VeSyncNumberEntityDescription(
         key="mist_level",
-        name="Mist level",
         translation_key="mist_level",
         native_min_value_fn=lambda device: min(device.mist_levels),
         native_max_value_fn=lambda device: max(device.mist_levels),
@@ -139,7 +138,6 @@ NUMBER_DESCRIPTIONS: list[VeSyncNumberEntityDescription] = [
     ),
     VeSyncNumberEntityDescription(
         key="warm_mist_level",
-        name="Warm mist level",
         translation_key="warm_mist_level",
         native_min_value_fn=lambda device: 0,
         native_max_value_fn=lambda device: 3,
@@ -151,7 +149,6 @@ NUMBER_DESCRIPTIONS: list[VeSyncNumberEntityDescription] = [
     ),
     VeSyncNumberEntityDescription(
         key="timer",
-        name="Timer",
         translation_key="timer",
         native_min_value_fn=lambda device: 0,
         native_max_value_fn=lambda device: 1440,
@@ -164,7 +161,6 @@ NUMBER_DESCRIPTIONS: list[VeSyncNumberEntityDescription] = [
     ),
     VeSyncNumberEntityDescription(
         key="horizontal_oscillation_left",
-        name="Horizontal oscillation left",
         translation_key="horizontal_oscillation_left",
         native_min_value_fn=lambda device: 0,
         native_max_value_fn=lambda device: 360,
@@ -183,7 +179,6 @@ NUMBER_DESCRIPTIONS: list[VeSyncNumberEntityDescription] = [
     ),
     VeSyncNumberEntityDescription(
         key="horizontal_oscillation_right",
-        name="Horizontal oscillation right",
         translation_key="horizontal_oscillation_right",
         native_min_value_fn=lambda device: 0,
         native_max_value_fn=lambda device: 360,
@@ -202,7 +197,6 @@ NUMBER_DESCRIPTIONS: list[VeSyncNumberEntityDescription] = [
     ),
     VeSyncNumberEntityDescription(
         key="vertical_oscillation_top",
-        name="Vertical oscillation top",
         translation_key="vertical_oscillation_top",
         native_min_value_fn=lambda device: 0,
         native_max_value_fn=lambda device: 360,
@@ -221,7 +215,6 @@ NUMBER_DESCRIPTIONS: list[VeSyncNumberEntityDescription] = [
     ),
     VeSyncNumberEntityDescription(
         key="vertical_oscillation_bottom",
-        name="Vertical oscillation bottom",
         translation_key="vertical_oscillation_bottom",
         native_min_value_fn=lambda device: 0,
         native_max_value_fn=lambda device: 360,
@@ -293,7 +286,7 @@ class VeSyncNumberEntity(VeSyncBaseEntity, NumberEntity):
         """Initialize the VeSync number device."""
         super().__init__(device, coordinator)
         self.entity_description = description
-        self._attr_unique_id = f"{super().unique_id}-{description.key}"
+        self._attr_unique_id = f"{self.base_unique_id}-{description.key}"
 
     @property
     def native_value(self) -> float:

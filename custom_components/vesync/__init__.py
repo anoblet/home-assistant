@@ -507,6 +507,20 @@ async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry) ->
         hass.config_entries.async_update_entry(config_entry, minor_version=8)
         minor_version = 8
 
+    # Post-migration check for any lingering problem entities
+    entity_registry = er.async_get(hass)
+    registry_entries = er.async_entries_for_config_entry(
+        entity_registry, config_entry.entry_id
+    )
+    for reg_entry in registry_entries:
+        if reg_entry.entity_id.endswith("_problem") or reg_entry.entity_id.endswith(
+            "_problem_2"
+        ):
+            _LOGGER.warning(
+                "Legacy entity %s still exists after migration. Please remove it manually if it is not working",
+                reg_entry.entity_id,
+            )
+
     return True
 
 

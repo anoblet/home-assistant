@@ -305,7 +305,7 @@ class VeSyncSensorEntity(VeSyncBaseEntity, SensorEntity):
         """Initialize the VeSync outlet device."""
         super().__init__(device, coordinator)
         self.entity_description = description
-        self._attr_unique_id = f"{super().unique_id}-{description.key}"
+        self._attr_unique_id = f"{self.base_unique_id}-{description.key}"
 
     @property
     def native_value(self) -> StateType:
