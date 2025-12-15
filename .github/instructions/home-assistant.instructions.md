@@ -1,6 +1,7 @@
 # Home Assistant
 
 ## Instructions
+
 - After each meaningful change to the configuration, run `pnpm reload`, then check runtime logs via `pnpm home-assistant raw request GET /api/hassio/core/logs --text` (Supervisor) to confirm there are no warnings or errors related to the changes.
 - Do not use `mode: single` in automations since it is the default
 - Do not use empty conditions
