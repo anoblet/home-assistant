@@ -32,6 +32,7 @@ For a device-by-device capability mapping against the pinned library version, se
 
 - Entities request a coordinator refresh after commands so UI state updates promptly.
 - Config entry setup performs an initial coordinator refresh to avoid "unknown" states on startup.
+- Energy readings (when supported) are refreshed by a separate coordinator on a slower schedule; the first energy refresh is started in the background during setup.
 - Runtime data is scoped by config entry id to keep unload/reload idempotent.
 - Config entry minor version `8` includes entity registry migrations to prevent `unique_id` collisions (firmware update entities are normalized to the `*-firmware` scheme) and to clean up legacy entity_ids created before runtime translations existed (e.g. duplicate `*_problem` / `*_problem_2` binary sensors are renamed to deterministic suffixes).
 
@@ -96,6 +97,38 @@ data:
   - Wait for API to come back: `pnpm home-assistant api info`
   - Reload entities/config: `pnpm reload`
   - Logs (Supervisor): `pnpm home-assistant raw request GET /api/hassio/core/logs --text | grep -i -E "vesync|pyvesync|custom_components\.vesync"`
+
+### Diagnostics
+
+Home Assistant diagnostics for this integration are intended to be safe to share when filing issues:
+
+- Config entry `data` (credentials) is redacted.
+- Device diagnostics include a curated snapshot of the pyvesync device and its `state` (JSON-serializable), with common sensitive keys (tokens, uuids, MACs, etc.) redacted.
+
+### Verification (surface audit)
+
+This repo includes an offline audit script that reads Home Assistant registry data from `.storage/` and generates a normalized inventory and an optional deterministic parity (PASS/FAIL) report.
+
+- Script: [scripts/vesync_audit.py](../../scripts/vesync_audit.py)
+- Runtime inventory (from this workspace): [docs/custom-components/vesync-surface.md](vesync-surface.md)
+- Parity report (from this workspace): [docs/custom-components/vesync-parity.md](vesync-parity.md)
+
+Generate the inventory from the repo root:
+
+```bash
+python scripts/vesync_audit.py \
+  --out-json /tmp/vesync_runtime_inventory.json \
+  --out-md docs/custom-components/vesync-surface.md
+```
+
+Generate the parity report (compares code/services against the machine-readable manifest in [vesync-pyvesync-coverage.md](vesync-pyvesync-coverage.md)):
+
+```bash
+python scripts/vesync_audit.py \
+  --compare \
+  --out-compare-json docs/custom-components/vesync-parity.json \
+  --out-compare-md docs/custom-components/vesync-parity.md
+```
 
 ### Common `pyvesync`-side errors
 

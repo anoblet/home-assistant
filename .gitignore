@@ -34,6 +34,8 @@
 !README.md
 !reports
 !reports/**
+!scripts
+!scripts/**
 !www/custom/**/*
 !www/custom-elements/**/*
 
@@ -56,6 +58,9 @@ zigbee2mqtt/secrets.yaml
 # Never commit Python bytecode/cache (allowlist repo needs explicit blocks).
 custom_components/vesync/**/__pycache__/
 custom_components/vesync/**/*.pyc
+
+scripts/**/__pycache__/
+scripts/**/*.pyc
 
 # Always block
 .env

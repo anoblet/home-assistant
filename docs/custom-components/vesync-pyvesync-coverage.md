@@ -9,6 +9,81 @@ Notes:
 - Mapping is intentionally conservative and tied to the pinned `pyvesync==3.3.3` requirement.
 - Some `pyvesync` capabilities exist but do not map cleanly to Home Assistant entity models; those are explicitly called out as “not exposed”.
 
+## Verification (runtime surface audit)
+
+To make “no missing/erroneous entities” reviewable against a real instance, this repo includes a small audit script that generates a runtime inventory from Home Assistant’s registry files under `.storage`.
+
+- Script: [scripts/vesync_audit.py](../../scripts/vesync_audit.py)
+- Generated report (from this workspace): [docs/custom-components/vesync-surface.md](vesync-surface.md)
+
+Run it from the repo root:
+
+```bash
+python scripts/vesync_audit.py \
+  --out-json /tmp/vesync_runtime_inventory.json \
+  --out-md docs/custom-components/vesync-surface.md
+```
+
+The output is intended to be safe to store in-repo: it does not include the VeSync config entry `data` payload (credentials/tokens).
+
+To mechanically verify that the integration surface matches this document, the audit script also supports a deterministic comparator mode.
+
+- Parity report (from this workspace): [docs/custom-components/vesync-parity.md](vesync-parity.md)
+- Parity report (machine-readable): [docs/custom-components/vesync-parity.json](vesync-parity.json)
+
+Regenerate the parity artifacts from the repo root:
+
+```bash
+python scripts/vesync_audit.py \
+  --compare \
+  --out-compare-json docs/custom-components/vesync-parity.json \
+  --out-compare-md docs/custom-components/vesync-parity.md
+```
+
+## Expected surface manifest (machine-readable)
+
+This block is the canonical, parseable “expected surface” used by audit tooling. Keep it aligned with the “Home Assistant exposure” sections below; do not add new claims here without also updating the narrative mapping.
+
+```json
+{
+  "vesync_expected_surface": {
+    "platforms": [
+      "binary_sensor",
+      "button",
+      "climate",
+      "fan",
+      "humidifier",
+      "light",
+      "number",
+      "select",
+      "sensor",
+      "switch",
+      "update"
+    ],
+    "services": [
+      "fryer_cook",
+      "fryer_cook_from_preheat",
+      "fryer_set_preheat",
+      "thermostat_cancel_hold",
+      "thermostat_set_eco_type",
+      "thermostat_set_lock",
+      "update_devices"
+    ],
+    "device_classes": {
+      "VeSyncFanBase": { "platforms": ["fan", "number", "switch"] },
+      "VeSyncPurifier": { "platforms": ["binary_sensor", "button", "fan", "number", "select", "sensor", "switch"] },
+      "VeSyncHumidifier": { "platforms": ["binary_sensor", "humidifier", "number", "select", "sensor", "switch"] },
+      "VeSyncOutlet": { "platforms": ["number", "select", "sensor", "switch"] },
+      "VeSyncWallSwitch": { "platforms": ["light", "number", "switch"] },
+      "VeSyncBulb": { "platforms": ["light", "number"] },
+      "VeSyncThermostat": { "platforms": ["climate"] },
+      "VeSyncFryer": { "platforms": ["button", "sensor"] }
+    },
+    "firmware": { "platforms": ["update"] }
+  }
+}
+```
+
 ## Identity / entity keys
 
 - Base unique id is derived from `device.cid` (or `cid + sub_device_no` when present).

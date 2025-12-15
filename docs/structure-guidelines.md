@@ -26,3 +26,9 @@ This repo treats Home Assistant configuration as code. These guidelines exist to
 
 - After meaningful changes, run `pnpm reload`, then check runtime logs via `pnpm home-assistant raw request GET /api/hassio/core/logs --text`.
 - Follow the additional repo-specific instructions in [.github/instructions/home-assistant.instructions.md](../.github/instructions/home-assistant.instructions.md).
+
+## Scripts
+
+- Utility/verification scripts live under `scripts/` (for example, offline audits that read `.storage/`).
+- Script output intended for in-repo storage must be safe/redacted (no tokens, passwords, or unredacted email-like identifiers).
+- This repo uses an allowlist-style `.gitignore`; when adding new top-level folders, ensure they are explicitly included.

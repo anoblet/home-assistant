@@ -82,7 +82,9 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
     await state_coordinator.async_config_entry_first_refresh()
     # Start energy coordinator in background
     config_entry.async_create_background_task(
-        hass, energy_coordinator.async_refresh(), "vesync_energy_refresh"
+        hass,
+        energy_coordinator.async_config_entry_first_refresh(),
+        "vesync_energy_first_refresh",
     )
 
     await hass.config_entries.async_forward_entry_setups(config_entry, PLATFORMS)

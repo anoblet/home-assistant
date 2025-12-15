@@ -40,4 +40,11 @@ class VeSyncBaseEntity(CoordinatorEntity[DataUpdateCoordinator[None]]):
     @property
     def available(self) -> bool:
         """Return True if device is available."""
-        return self.device.state.connection_status == "online"
+        if not super().available:
+            return False
+
+        state = getattr(self.device, "state", None)
+        connection_status = getattr(state, "connection_status", None)
+        if connection_status is None:
+            return True
+        return connection_status == "online"

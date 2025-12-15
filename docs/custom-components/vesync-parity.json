@@ -1,0 +1,101 @@
+{
+  "diffs": {
+    "platforms": {
+      "extra": [],
+      "missing": []
+    },
+    "runtime_domains": {
+      "extra": [],
+      "missing": ["climate", "light", "select"]
+    },
+    "services": {
+      "extra": [],
+      "missing": []
+    }
+  },
+  "expected": {
+    "platforms": [
+      "binary_sensor",
+      "button",
+      "climate",
+      "fan",
+      "humidifier",
+      "light",
+      "number",
+      "select",
+      "sensor",
+      "switch",
+      "update"
+    ],
+    "runtime_domains_supported": [
+      "binary_sensor",
+      "button",
+      "climate",
+      "fan",
+      "humidifier",
+      "light",
+      "number",
+      "select",
+      "sensor",
+      "switch",
+      "update"
+    ],
+    "services": [
+      "fryer_cook",
+      "fryer_cook_from_preheat",
+      "fryer_set_preheat",
+      "thermostat_cancel_hold",
+      "thermostat_set_eco_type",
+      "thermostat_set_lock",
+      "update_devices"
+    ]
+  },
+  "observed": {
+    "platforms": [
+      "binary_sensor",
+      "button",
+      "climate",
+      "fan",
+      "humidifier",
+      "light",
+      "number",
+      "select",
+      "sensor",
+      "switch",
+      "update"
+    ],
+    "runtime_domains": [
+      "binary_sensor",
+      "button",
+      "fan",
+      "humidifier",
+      "number",
+      "sensor",
+      "switch",
+      "update"
+    ],
+    "services": [
+      "fryer_cook",
+      "fryer_cook_from_preheat",
+      "fryer_set_preheat",
+      "thermostat_cancel_hold",
+      "thermostat_set_eco_type",
+      "thermostat_set_lock",
+      "update_devices"
+    ]
+  },
+  "result": {
+    "ok": true,
+    "runtime_domains": [
+      "binary_sensor",
+      "button",
+      "fan",
+      "humidifier",
+      "number",
+      "sensor",
+      "switch",
+      "update"
+    ],
+    "runtime_entries": 1
+  }
+}

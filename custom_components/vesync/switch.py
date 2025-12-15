@@ -209,6 +209,10 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     VeSyncSwitchEntityDescription(
         key="mute",
         name="Mute",
+        is_on=lambda device: _status_is_on(
+            rgetattr(device, "state.mute_set_status")
+            or rgetattr(device, "state.mute_status")
+        ),
         exists_fn=lambda device: hasattr(device, "set_mute")
         or hasattr(device, "toggle_mute"),
         translation_key="mute",
