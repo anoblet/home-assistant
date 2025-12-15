@@ -5,6 +5,7 @@ This repo includes a forked/maintained VeSync integration under `custom_componen
 The goal of this document is to make “feature coverage” auditable: for each `pyvesync` device class, list the primary state fields and control methods exposed by the library, and where (or whether) the Home Assistant integration exposes them.
 
 Notes:
+
 - Mapping is intentionally conservative and tied to the pinned `pyvesync==3.3.3` requirement.
 - Some `pyvesync` capabilities exist but do not map cleanly to Home Assistant entity models; those are explicitly called out as “not exposed”.
 
@@ -17,6 +18,7 @@ Notes:
 ## Device class coverage
 
 For service action field definitions (targets, selectors, valid ranges), see:
+
 - [custom_components/vesync/services.yaml](../../custom_components/vesync/services.yaml)
 
 ### `VeSyncFanBase` (fans)
@@ -26,6 +28,7 @@ For service action field definitions (targets, selectors, valid ranges), see:
 From `pyvesync/base_devices/fan_base.py` (`FanState`):
 
 State attributes (from `FanState.__slots__`):
+
 - `child_lock`
 - `display_set_status`, `display_status`, `displaying_type`
 - `fan_level`, `fan_set_level`
@@ -39,6 +42,7 @@ State attributes (from `FanState.__slots__`):
 **Library controls (public methods)**
 
 From `pyvesync/base_devices/fan_base.py` (`VeSyncFanBase`):
+
 - `set_mode(mode: str) -> bool`
 - `set_fan_speed(speed: int | None = None) -> bool`
 - Mode helpers: `set_auto_mode()`, `set_advanced_sleep_mode()`, `set_sleep_mode()`, `set_manual_mode()`, `set_normal_mode()`, `set_turbo_mode()`
@@ -47,11 +51,13 @@ From `pyvesync/base_devices/fan_base.py` (`VeSyncFanBase`):
 - Sound/display helpers: `toggle_mute(toggle: bool)`, `toggle_display(toggle: bool)`, `toggle_displaying_type(toggle: bool)`
 
 Implemented on concrete fan devices in `pyvesync/devices/vesyncfan.py` (e.g., `VeSyncTowerFan`, `VeSyncPedestalFan`):
+
 - `get_details() -> None`
 - `toggle_switch(toggle: bool | None = None) -> bool`
 - Timer helpers (models that support them): `get_timer() -> None`, `set_timer(duration: int, action: str | None = None) -> bool`, `clear_timer() -> bool`
 
 **Home Assistant exposure**
+
 - `fan` platform: on/off (`toggle_switch`), percentage (`set_fan_speed`), preset modes (`set_mode`), oscillation (when supported).
 - `switch` platform: mute/display/oscillation toggles (capability-gated by `device.state.*` and `device.supports_*`).
 - `number` platform: timer minutes (where `set_timer`/`clear_timer` exist).
@@ -63,6 +69,7 @@ Implemented on concrete fan devices in `pyvesync/devices/vesyncfan.py` (e.g., `V
 From `pyvesync/base_devices/purifier_base.py` (`PurifierState`):
 
 State attributes (from `PurifierState.__slots__`):
+
 - `mode`
 - `fan_level`, `fan_set_level`
 - `filter_life`, `filter_open_state`
@@ -74,6 +81,7 @@ State attributes (from `PurifierState.__slots__`):
 **Library controls (public methods)**
 
 From `pyvesync/base_devices/purifier_base.py` (`VeSyncPurifier`):
+
 - `set_mode(mode: str) -> bool`
 - `set_fan_speed(speed: int | None = None) -> bool`
 - Mode helpers: `set_auto_mode()`, `set_sleep_mode()`, `set_manual_mode()`, `set_turbo_mode()`, `set_pet_mode()`
@@ -85,11 +93,13 @@ From `pyvesync/base_devices/purifier_base.py` (`VeSyncPurifier`):
 - Filter reset (when supported): `reset_filter() -> bool`
 
 Common concrete implementations in `pyvesync/devices/vesyncpurifier.py` also include:
+
 - `get_details() -> None`
 - `toggle_switch(toggle: bool | None = None) -> bool`
 - Timer helpers (models that support them): `get_timer() -> Timer | None`, `set_timer(duration: int, action: str | None = None) -> bool`, `clear_timer() -> bool`
 
 **Home Assistant exposure**
+
 - `fan` platform: purifier power + speed + preset modes (mode/speed methods).
 - `sensor` platform: AQ/PM/VOC/CO₂/temp/humidity (capability-gated).
 - `button` platform: filter reset (`reset_filter`).
@@ -105,6 +115,7 @@ Common concrete implementations in `pyvesync/devices/vesyncpurifier.py` also inc
 From `pyvesync/base_devices/humidifier_base.py` (`HumidifierState`):
 
 State attributes (from `HumidifierState.__slots__`):
+
 - `mode`
 - `humidity`, `temperature`
 - `auto_target_humidity`
@@ -119,6 +130,7 @@ State attributes (from `HumidifierState.__slots__`):
 **Library controls (public methods)**
 
 From `pyvesync/base_devices/humidifier_base.py` (`VeSyncHumidifier`):
+
 - `set_mode(mode: str) -> bool`
 - `set_mist_level(level: int) -> bool`
 - `set_humidity(humidity: int) -> bool`
@@ -130,11 +142,13 @@ From `pyvesync/base_devices/humidifier_base.py` (`VeSyncHumidifier`):
 - Mode helpers: `set_auto_mode()`, `set_manual_mode()`, `set_sleep_mode()`
 
 Common concrete implementations in `pyvesync/devices/vesynchumidifier.py` also include:
+
 - `get_details() -> None`
 - `toggle_switch(toggle: bool | None = None) -> bool`
 - Timer helpers (models that support them): `get_timer() -> Timer | None`, `set_timer(duration: int, action: str | None = None) -> bool`, `clear_timer() -> bool`
 
 **Home Assistant exposure**
+
 - `humidifier` platform: on/off (`toggle_switch`), modes (`set_mode`), target humidity (`set_humidity`).
 - `number` platform: mist level (`set_mist_level`), warm mist level (`set_warm_level`), timer minutes (`set_timer`/`clear_timer`).
 - `sensor` platform: humidity/temperature.
@@ -149,6 +163,7 @@ Common concrete implementations in `pyvesync/devices/vesynchumidifier.py` also i
 From `pyvesync/base_devices/outlet_base.py` (`OutletState`):
 
 State attributes (from `OutletState.__slots__`):
+
 - Energy monitoring/history: `power`, `energy`, `voltage`, `current`, `weekly_history`, `monthly_history`, `yearly_history`
 - Nightlight (capability-gated): `nightlight_status`, `nightlight_brightness`, `nightlight_automode`
 - Device-specific protection fields: `protectionStatus`, `voltageUpperThreshold`, `currentUpperThreshold`
@@ -156,15 +171,18 @@ State attributes (from `OutletState.__slots__`):
 **Library controls (public methods)**
 
 From `pyvesync/devices/vesyncoutlet.py` (common across outlet models):
+
 - `get_details() -> None`
 - `toggle_switch(toggle: bool | None = None) -> bool`
 - Timer helpers (models that support them): `get_timer() -> Timer | None`, `set_timer(duration: int, action: str | None = None) -> bool`, `clear_timer() -> bool`
 
 From `pyvesync/base_devices/outlet_base.py` (`VeSyncOutlet`):
+
 - Energy history: `get_weekly_energy()`, `get_monthly_energy()`, `get_yearly_energy()`, `update_energy()`
 - Nightlight (capability-gated): `set_nightlight_state(mode: str) -> bool`, `set_nightlight_auto() -> bool`, `turn_on_nightlight() -> bool`, `turn_off_nightlight() -> bool`
 
 **Home Assistant exposure**
+
 - `switch` platform: outlet power (`toggle_switch`).
 - `sensor` platform: power/voltage/current/energy + history-derived totals (capability-gated).
 - `select` platform: nightlight mode (when supported).
@@ -177,6 +195,7 @@ From `pyvesync/base_devices/outlet_base.py` (`VeSyncOutlet`):
 From `pyvesync/base_devices/switch_base.py` (`SwitchState`):
 
 State attributes (from `SwitchState.__slots__`):
+
 - `brightness`
 - `backlight_status`, `backlight_color`
 - `indicator_status`
@@ -184,15 +203,18 @@ State attributes (from `SwitchState.__slots__`):
 **Library controls (public methods)**
 
 From `pyvesync/base_devices/switch_base.py` (`VeSyncSwitch`):
+
 - Indicator: `toggle_indicator_light(toggle: bool | None = None) -> bool`
 - Backlight: `set_backlight_status(status: bool, red: int | None = None, green: int | None = None, blue: int | None = None) -> bool` and `set_backlight_color(red: int, green: int, blue: int) -> bool`
 - Dimmer brightness (dimmer models): `set_brightness(brightness: int) -> bool`
 
 From `pyvesync/devices/vesyncswitch.py`:
+
 - Wall switch (`VeSyncWallSwitch`): `get_details()`, `toggle_switch(toggle: bool | None = None)`, timer helpers `get_timer()`, `set_timer(duration: int, action: str | None = None)`, `clear_timer()`
 - Dimmer switch (`VeSyncDimmerSwitch`): `get_details()`, `toggle_switch(toggle: bool | None = None)`, `toggle_indicator_light(toggle: bool | None = None)`, `set_backlight_status(...)`, `set_brightness(brightness: int)`, timer helpers `get_timer()`, `set_timer(...)`, `clear_timer()`
 
 **Home Assistant exposure**
+
 - `switch` platform: main power and supported toggles (indicator/backlight, etc.).
 - `light` platform: dimmer switch brightness (where the integration models the device as a light).
 - `number` platform: timer minutes (where `set_timer`/`clear_timer` exist).
@@ -204,6 +226,7 @@ From `pyvesync/devices/vesyncswitch.py`:
 From `pyvesync/base_devices/bulb_base.py` (`BulbState`):
 
 State attributes (from `BulbState.__slots__`):
+
 - `color_mode`, `color_modes`
 - `_brightness` (exposed via `state.brightness`)
 - `_color_temp` (exposed via `state.color_temp` / `state.color_temp_kelvin`)
@@ -212,6 +235,7 @@ State attributes (from `BulbState.__slots__`):
 **Library controls (public methods)**
 
 From `pyvesync/base_devices/bulb_base.py` (`VeSyncBulb`):
+
 - `set_brightness(brightness: int) -> bool`
 - `set_color_temp(color_temp: int) -> bool`
 - `set_rgb(red: float, green: float, blue: float) -> bool`
@@ -220,18 +244,21 @@ From `pyvesync/base_devices/bulb_base.py` (`VeSyncBulb`):
 - `set_color_mode(color_mode: str) -> bool`
 
 Common concrete implementations in `pyvesync/devices/vesyncbulb.py` also include:
+
 - `get_details() -> None`
 - `toggle_switch(toggle: bool | None = None) -> bool`
 - Some models implement timer helpers: `get_timer()`, `set_timer(duration: int, action: str | None = None)`, `clear_timer()`
 - Some models implement granular setters: `set_color_hue(...)`, `set_color_saturation(...)`, `set_color_value(...)`, and/or `set_status(...)`
 
 **Home Assistant exposure**
+
 - `light` platform: on/off + brightness + color temp + HS color (capability-gated).
 - `number` platform: timer minutes (where `set_timer`/`clear_timer` exist).
 
 ### `VeSyncThermostat` (thermostats)
 
 **Library state (examples)**
+
 - `device.state.temperature`
 - `device.state.work_mode` (enum)
 - `device.state.fan_mode` (enum)
@@ -239,37 +266,43 @@ Common concrete implementations in `pyvesync/devices/vesyncbulb.py` also include
 - Running flags such as `is_heating` / `is_cooling` / `is_running`
 
 **Library controls (examples)**
+
 - `set_mode(ThermostatWorkModes)`
 - `set_fan_mode(ThermostatFanModes)`
 - Temperature setters (pyvesync 3.3.3 `VeSyncAuraThermostat`):
-	- `set_heat_to_temp(temperature: float)`
-	- `set_cool_to_temp(temperature: float)`
-	- `set_temp_point(temperature: float)`
+  - `set_heat_to_temp(temperature: float)`
+  - `set_cool_to_temp(temperature: float)`
+  - `set_temp_point(temperature: float)`
 - Hold/lock/eco controls (pyvesync 3.3.3 `VeSyncAuraThermostat`):
-	- `cancel_hold()`
-	- `toggle_lock(toggle: bool, pin: int | str | None = None)`
-	- `set_eco_type(eco_type: ThermostatEcoTypes)`
+  - `cancel_hold()`
+  - `toggle_lock(toggle: bool, pin: int | str | None = None)`
+  - `set_eco_type(eco_type: ThermostatEcoTypes)`
 
 **Home Assistant exposure**
+
 - `climate` platform: hvac modes (from `supported_work_modes`), hvac action (heat/cool/fan/idle), fan modes, current temperature, and target temperature.
 
 **Additional control exposure (services)**
+
 - `vesync.thermostat_cancel_hold`
 - `vesync.thermostat_set_lock`
 - `vesync.thermostat_set_eco_type`
 
 **Not exposed (by design / not cleanly representable)**
-- `pyvesync==3.3.3` reports schedule/routine *state* (e.g. `state.schedule_or_hold`, `state.routines`) but does not expose public schedule/routine programming methods (verified by inspecting the `pyvesync==3.3.3` source in `pyvesync/devices/vesyncthermostat.py`); this repo therefore does not expose schedule/routine programming.
+
+- `pyvesync==3.3.3` reports schedule/routine _state_ (e.g. `state.schedule_or_hold`, `state.routines`) but does not expose public schedule/routine programming methods (verified by inspecting the `pyvesync==3.3.3` source in `pyvesync/devices/vesyncthermostat.py`); this repo therefore does not expose schedule/routine programming.
 
 ### `VeSyncFryer` (air fryer / kitchen device)
 
 **Library state (examples)**
+
 - `device.state.cook_status`
 - `device.state.current_temp`
 - `device.state.cook_time_remaining`
 - Other model-provided cook program fields
 
 **Library controls (examples)**
+
 - `pause()`
 - `resume()`
 - `end()`
@@ -278,10 +311,12 @@ Common concrete implementations in `pyvesync/devices/vesyncbulb.py` also include
 - `cook_from_preheat()`
 
 **Home Assistant exposure**
+
 - `sensor` platform: core fryer state values (derived from `device.state`).
 - `button` platform: pause/resume/end.
 
 **Additional control exposure (services)**
+
 - `vesync.fryer_cook` (temp + time)
 - `vesync.fryer_set_preheat` (temp + cook_time)
 - `vesync.fryer_cook_from_preheat`
@@ -289,8 +324,10 @@ Common concrete implementations in `pyvesync/devices/vesyncbulb.py` also include
 ## Firmware update coverage
 
 All device classes expose firmware metadata via:
+
 - `device.current_firm_version`
 - `device.latest_firm_version`
 
 Home Assistant exposure:
+
 - `update` platform provides a firmware update entity per device with unique id `*-firmware`.

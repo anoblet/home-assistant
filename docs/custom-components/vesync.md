@@ -24,6 +24,7 @@ The integration exposes capabilities as standard Home Assistant entity platforms
 - **`update`**: firmware versions (reporting only).
 
 For a device-by-device capability mapping against the pinned library version, see:
+
 - [vesync-pyvesync-coverage.md](vesync-pyvesync-coverage.md)
 
 ## Key behavior
@@ -117,4 +118,3 @@ This integration surfaces the error messages where possible, but cannot always r
 
 - The integration reads warm mist level from `device.state.warm_mist_level` (as exposed by `pyvesync`).
 - Warm mist setters vary by `pyvesync` version; this repo supports `set_warm_level` (and falls back to `set_warm_mist` if present).
-
