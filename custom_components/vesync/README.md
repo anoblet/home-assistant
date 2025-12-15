@@ -4,23 +4,40 @@ This is a custom component for Home Assistant to integrate with VeSync devices. 
 
 ## Features
 
+### 🚀 New Architecture: Split Coordinators
+
+To ensure optimal performance and responsiveness while respecting API rate limits, this component now uses a split coordinator architecture:
+
+- **State Coordinator**: Updates device states (power, mode, fan speed, etc.) frequently (every 60 seconds). This ensures that your dashboard reflects the actual state of your devices with minimal delay.
+- **Energy Coordinator**: Updates energy monitoring data (voltage, power usage, etc.) less frequently (every 6 hours). Since energy data does not change as rapidly as device state, this reduces unnecessary API calls and improves overall stability.
+
+### 🛠️ Device Fixes
+
+- **LUH-A602S-WUS Humidifier**: Includes a specific patch to handle "Error processing bypass V2 API response result" errors. This ensures that the humidifier operates correctly without flooding the logs with API errors.
+
+### ✨ Key Features
+
 - **Extended Device Support**: Supports newer VeSync devices including humidifiers, air fryers, and air purifiers that may not be fully supported by the official integration.
 - **Enhanced Entities**: Provides detailed sensors and configuration options such as night light, auto preference, and more.
 - **Dynamic Fan Modes**: Fan modes are dynamically retrieved from device capabilities.
 - **Parallel Updates**: Improved performance with parallel energy monitoring updates.
 - **Localization**: Full support for Home Assistant translation keys.
-- **Platforms**:
-  - Binary Sensor
-  - Button
-  - Climate
-  - Fan
-  - Humidifier
-  - Light
-  - Number
-  - Select
-  - Sensor
-  - Switch
-  - Update
+
+## Supported Platforms
+
+This integration supports the following platforms:
+
+- **Binary Sensor**: Door open/closed status, tank status, etc.
+- **Button**: Reset filter, etc.
+- **Climate**: Thermostat control.
+- **Fan**: Air purifiers and fans.
+- **Humidifier**: Humidifier control with various modes.
+- **Light**: Night lights and display lights.
+- **Number**: Mist levels, fan speeds, etc.
+- **Select**: Mode selection, preset selection.
+- **Sensor**: Air quality, humidity, temperature, energy usage, filter life.
+- **Switch**: Power control, child lock, etc.
+- **Update**: Firmware update availability.
 
 ## Installation
 

@@ -23,7 +23,7 @@ from homeassistant.util import color as color_util
 
 from .common import iter_manager_devices
 from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
-from .coordinator import VeSyncDataCoordinator
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from .entity import VeSyncBaseEntity
 
 _LOGGER = logging.getLogger(__name__)
@@ -57,7 +57,7 @@ async def async_setup_entry(
 def _setup_entities(
     devices: list[VeSyncBaseDevice],
     async_add_entities: AddConfigEntryEntitiesCallback,
-    coordinator: VeSyncDataCoordinator,
+    coordinator: DataUpdateCoordinator,
 ) -> None:
     """Check if device is a light and add entity."""
     entities: list[VeSyncBaseEntity] = []
@@ -286,7 +286,7 @@ class VeSyncBacklightLightHA(VeSyncBaseEntity, LightEntity):
     def __init__(
         self,
         device: VeSyncBaseDevice,
-        coordinator: VeSyncDataCoordinator,
+        coordinator: DataUpdateCoordinator,
     ) -> None:
         super().__init__(device, coordinator)
         self._attr_unique_id = f"{self.base_unique_id}-backlight_color"

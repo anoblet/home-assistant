@@ -30,7 +30,7 @@ from .const import (
     VS_DISCOVERY,
     VS_MANAGER,
 )
-from .coordinator import VeSyncDataCoordinator
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from .entity import VeSyncBaseEntity
 
 _LOGGER = logging.getLogger(__name__)
@@ -160,7 +160,7 @@ async def async_setup_entry(
 def _setup_entities(
     devices: list[VeSyncBaseDevice],
     async_add_entities: AddConfigEntryEntitiesCallback,
-    coordinator: VeSyncDataCoordinator,
+    coordinator: DataUpdateCoordinator,
 ) -> None:
     """Add select entities."""
 
@@ -181,7 +181,7 @@ class VeSyncSelectEntity(VeSyncBaseEntity, SelectEntity):
         self,
         device: VeSyncBaseDevice,
         description: VeSyncSelectEntityDescription,
-        coordinator: VeSyncDataCoordinator,
+        coordinator: DataUpdateCoordinator,
     ) -> None:
         """Initialize the VeSync select device."""
         super().__init__(device, coordinator)

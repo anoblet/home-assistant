@@ -19,7 +19,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .common import is_fan, is_humidifier, iter_manager_devices
 from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
-from .coordinator import VeSyncDataCoordinator
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from .entity import VeSyncBaseEntity
 
 _LOGGER = logging.getLogger(__name__)
@@ -260,7 +260,7 @@ async def async_setup_entry(
 def _setup_entities(
     devices: list[VeSyncBaseDevice],
     async_add_entities: AddConfigEntryEntitiesCallback,
-    coordinator: VeSyncDataCoordinator,
+    coordinator: DataUpdateCoordinator,
 ) -> None:
     """Add number entities."""
 
@@ -281,7 +281,7 @@ class VeSyncNumberEntity(VeSyncBaseEntity, NumberEntity):
         self,
         device: VeSyncBaseDevice,
         description: VeSyncNumberEntityDescription,
-        coordinator: VeSyncDataCoordinator,
+        coordinator: DataUpdateCoordinator,
     ) -> None:
         """Initialize the VeSync number device."""
         super().__init__(device, coordinator)

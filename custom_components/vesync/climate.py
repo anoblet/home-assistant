@@ -28,7 +28,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .common import is_thermostat, iter_manager_devices
 from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
-from .coordinator import VeSyncDataCoordinator
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from .entity import VeSyncBaseEntity
 
 _LOGGER = logging.getLogger(__name__)
@@ -136,7 +136,7 @@ async def async_setup_entry(
 def _setup_entities(
     devices: list[VeSyncBaseDevice],
     async_add_entities: AddConfigEntryEntitiesCallback,
-    coordinator: VeSyncDataCoordinator,
+    coordinator: DataUpdateCoordinator,
 ) -> None:
     """Add climate entities."""
     entities = []
@@ -159,7 +159,7 @@ class VeSyncClimate(VeSyncBaseEntity, ClimateEntity):
     def __init__(
         self,
         device: VeSyncBaseDevice,
-        coordinator: VeSyncDataCoordinator,
+        coordinator: DataUpdateCoordinator,
     ) -> None:
         """Initialize the thermostat."""
         super().__init__(device, coordinator)

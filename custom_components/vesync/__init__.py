@@ -20,13 +20,15 @@ from .const import (
     DOMAIN,
     SERVICE_UPDATE_DEVS,
     VS_COORDINATOR,
+    VS_COORDINATOR_ENERGY,
     VS_DEVICES,
     VS_DISCOVERY,
     VS_MANAGER,
 )
-from .coordinator import VeSyncDataCoordinator
+from .coordinator import VeSyncStateCoordinator, VeSyncEnergyCoordinator
 from .common import get_base_unique_id, iter_manager_devices
 from .services import async_register_services, async_remove_services
+from .patches import apply_patches
 
 PLATFORMS = [
     Platform.BUTTON,
@@ -47,6 +49,7 @@ _LOGGER = logging.getLogger(__name__)
 
 async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> bool:
     """Set up Vesync as config entry."""
+    apply_patches()
     username = config_entry.data[CONF_USERNAME]
     password = config_entry.data[CONF_PASSWORD]
 
@@ -67,13 +70,20 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
     hass.data[DOMAIN].setdefault(config_entry.entry_id, {})
     hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER] = manager
 
-    coordinator = VeSyncDataCoordinator(hass, config_entry, manager)
+    state_coordinator = VeSyncStateCoordinator(hass, config_entry, manager)
+    energy_coordinator = VeSyncEnergyCoordinator(hass, config_entry, manager)
 
-    hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR] = coordinator
+    hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR] = state_coordinator
+    hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR_ENERGY] = energy_coordinator
+
     await manager.update()
     await manager.check_firmware()
 
-    await coordinator.async_config_entry_first_refresh()
+    await state_coordinator.async_config_entry_first_refresh()
+    # Start energy coordinator in background
+    config_entry.async_create_background_task(
+        hass, energy_coordinator.async_refresh(), "vesync_energy_refresh"
+    )
 
     await hass.config_entries.async_forward_entry_setups(config_entry, PLATFORMS)
 

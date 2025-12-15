@@ -28,10 +28,10 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 
 from .common import is_fryer, is_humidifier, is_outlet, is_purifier, iter_manager_devices, rgetattr
-from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
-from .coordinator import VeSyncDataCoordinator
+from .const import DOMAIN, VS_COORDINATOR, VS_COORDINATOR_ENERGY, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
 from .entity import VeSyncBaseEntity
 
 _LOGGER = logging.getLogger(__name__)
@@ -258,37 +258,39 @@ async def async_setup_entry(
     """Set up switches."""
 
     coordinator = hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR]
+    energy_coordinator = hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR_ENERGY]
 
     @callback
     def discover(devices: list[VeSyncBaseDevice]) -> None:
         """Add new devices to platform."""
-        _setup_entities(devices, async_add_entities, coordinator)
+        _setup_entities(devices, async_add_entities, coordinator, energy_coordinator)
 
     config_entry.async_on_unload(
         async_dispatcher_connect(hass, VS_DISCOVERY.format(VS_DEVICES), discover)
     )
 
     manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
-    _setup_entities(iter_manager_devices(manager), async_add_entities, coordinator)
+    _setup_entities(iter_manager_devices(manager), async_add_entities, coordinator, energy_coordinator)
 
 
 @callback
 def _setup_entities(
     devices: list[VeSyncBaseDevice],
     async_add_entities: AddConfigEntryEntitiesCallback,
-    coordinator: VeSyncDataCoordinator,
+    coordinator: DataUpdateCoordinator,
+    energy_coordinator: DataUpdateCoordinator,
 ) -> None:
     """Check if device is online and add entity."""
+    entities = []
+    for dev in devices:
+        for description in SENSORS:
+            if description.exists_fn(dev):
+                if description.key in ("energy-weekly", "energy-monthly", "energy-yearly"):
+                    entities.append(VeSyncSensorEntity(dev, description, energy_coordinator))
+                else:
+                    entities.append(VeSyncSensorEntity(dev, description, coordinator))
 
-    async_add_entities(
-        (
-            VeSyncSensorEntity(dev, description, coordinator)
-            for dev in devices
-            for description in SENSORS
-            if description.exists_fn(dev)
-        ),
-        update_before_add=True,
-    )
+    async_add_entities(entities, update_before_add=True)
 
 
 class VeSyncSensorEntity(VeSyncBaseEntity, SensorEntity):
@@ -300,7 +302,7 @@ class VeSyncSensorEntity(VeSyncBaseEntity, SensorEntity):
         self,
         device: VeSyncBaseDevice,
         description: VeSyncSensorEntityDescription,
-        coordinator: VeSyncDataCoordinator,
+        coordinator: DataUpdateCoordinator,
     ) -> None:
         """Initialize the VeSync outlet device."""
         super().__init__(device, coordinator)

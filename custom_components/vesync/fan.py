@@ -34,7 +34,7 @@ from .const import (
     VS_FAN_MODE_TURBO,
     VS_MANAGER,
 )
-from .coordinator import VeSyncDataCoordinator
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from .entity import VeSyncBaseEntity
 
 _LOGGER = logging.getLogger(__name__)
@@ -66,7 +66,7 @@ async def async_setup_entry(
 def _setup_entities(
     devices: list[VeSyncBaseDevice],
     async_add_entities: AddConfigEntryEntitiesCallback,
-    coordinator: VeSyncDataCoordinator,
+    coordinator: DataUpdateCoordinator,
 ) -> None:
     """Check if device is fan and add entity."""
 
@@ -92,7 +92,7 @@ class VeSyncFanHA(VeSyncBaseEntity, FanEntity):
     def __init__(
         self,
         device: VeSyncBaseDevice,
-        coordinator: VeSyncDataCoordinator,
+        coordinator: DataUpdateCoordinator,
     ) -> None:
         """Initialize the fan."""
         super().__init__(device, coordinator)

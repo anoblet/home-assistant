@@ -21,7 +21,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .common import is_purifier, iter_manager_devices, rgetattr
 from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
-from .coordinator import VeSyncDataCoordinator
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from .entity import VeSyncBaseEntity
 
 _LOGGER = logging.getLogger(__name__)
@@ -89,7 +89,7 @@ async def async_setup_entry(
 def _setup_entities(
     devices: list[VeSyncBaseDevice],
     async_add_entities: AddConfigEntryEntitiesCallback,
-    coordinator: VeSyncDataCoordinator,
+    coordinator: DataUpdateCoordinator,
 ) -> None:
     """Add entity."""
     async_add_entities(
@@ -111,7 +111,7 @@ class VeSyncBinarySensor(BinarySensorEntity, VeSyncBaseEntity):
         self,
         device: VeSyncBaseDevice,
         description: VeSyncBinarySensorEntityDescription,
-        coordinator: VeSyncDataCoordinator,
+        coordinator: DataUpdateCoordinator,
     ) -> None:
         """Initialize the sensor."""
         super().__init__(device, coordinator)

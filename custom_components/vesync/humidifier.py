@@ -32,7 +32,7 @@ from .const import (
     VS_HUMIDIFIER_MODE_SLEEP,
     VS_MANAGER,
 )
-from .coordinator import VeSyncDataCoordinator
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from .entity import VeSyncBaseEntity
 
 _LOGGER = logging.getLogger(__name__)
@@ -72,7 +72,7 @@ async def async_setup_entry(
 def _setup_entities(
     devices: list[VeSyncBaseDevice],
     async_add_entities: AddConfigEntryEntitiesCallback,
-    coordinator: VeSyncDataCoordinator,
+    coordinator: DataUpdateCoordinator,
 ) -> None:
     """Add humidifier entities."""
     async_add_entities(
@@ -103,7 +103,7 @@ class VeSyncHumidifierHA(VeSyncBaseEntity, HumidifierEntity):
     def __init__(
         self,
         device: VeSyncBaseDevice,
-        coordinator: VeSyncDataCoordinator,
+        coordinator: DataUpdateCoordinator,
     ) -> None:
         """Initialize the VeSyncHumidifierHA device."""
         super().__init__(device, coordinator)

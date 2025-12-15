@@ -10,7 +10,7 @@ from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .common import iter_manager_devices
 from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
-from .coordinator import VeSyncDataCoordinator
+from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from .entity import VeSyncBaseEntity
 
 
@@ -39,7 +39,7 @@ async def async_setup_entry(
 def _setup_entities(
     devices: list[VeSyncBaseDevice],
     async_add_entities: AddConfigEntryEntitiesCallback,
-    coordinator: VeSyncDataCoordinator,
+    coordinator: DataUpdateCoordinator,
 ) -> None:
     """Add update entities."""
 
@@ -58,7 +58,7 @@ class VeSyncDeviceUpdate(VeSyncBaseEntity, UpdateEntity):
     _attr_device_class = UpdateDeviceClass.FIRMWARE
     _attr_name = "Firmware"
 
-    def __init__(self, device: VeSyncBaseDevice, coordinator: VeSyncDataCoordinator) -> None:
+    def __init__(self, device: VeSyncBaseDevice, coordinator: DataUpdateCoordinator) -> None:
         """Initialize the update entity."""
         super().__init__(device, coordinator)
         # Never use the bare device base id for update entities; it collides with
