@@ -5,6 +5,7 @@ from pyvesync.base_devices.vesyncbasedevice import VeSyncBaseDevice
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
+from .common import get_base_unique_id
 from .const import DOMAIN
 from .coordinator import VeSyncDataCoordinator
 
@@ -35,9 +36,7 @@ class VeSyncBaseEntity(CoordinatorEntity[VeSyncDataCoordinator]):
         # The unique_id property may be overridden in subclasses, such as in
         # sensors. Maintaining base_unique_id allows us to group related
         # entities under a single device.
-        if isinstance(self.device.sub_device_no, int):
-            return f"{self.device.cid}{self.device.sub_device_no!s}"
-        return self.device.cid
+        return get_base_unique_id(self.device)
 
     @property
     def available(self) -> bool:

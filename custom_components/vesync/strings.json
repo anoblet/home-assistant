@@ -40,6 +40,15 @@
     "button": {
       "reset_filter": {
         "name": "Reset filter"
+      },
+      "pause_cooking": {
+        "name": "Pause cooking"
+      },
+      "resume_cooking": {
+        "name": "Resume cooking"
+      },
+      "end_cooking": {
+        "name": "End cooking"
       }
     },
     "fan": {
@@ -142,7 +151,7 @@
         "name": "Humidity"
       },
       "kitchen_mode": {
-        "name": "Kitchen mode"
+        "name": "Cook status"
       },
       "pm1": {
         "name": "PM1"
@@ -164,6 +173,9 @@
       "auto_stop": {
         "name": "Auto stop"
       },
+      "backlight": {
+        "name": "Backlight"
+      },
       "child_lock": {
         "name": "Child lock"
       },
@@ -178,6 +190,9 @@
       },
       "horizontal_oscillation": {
         "name": "Horizontal oscillation"
+      },
+      "indicator_light": {
+        "name": "Indicator light"
       },
       "light_detection": {
         "name": "Light detection"

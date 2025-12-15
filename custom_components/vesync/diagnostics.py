@@ -21,7 +21,7 @@ async def async_get_config_entry_diagnostics(
     hass: HomeAssistant, entry: ConfigEntry
 ) -> dict[str, Any]:
     """Return diagnostics for a config entry."""
-    manager: VeSync = hass.data[DOMAIN][VS_MANAGER]
+    manager: VeSync = hass.data[DOMAIN][entry.entry_id][VS_MANAGER]
 
     return {
         DOMAIN: {
@@ -42,7 +42,7 @@ async def async_get_device_diagnostics(
     hass: HomeAssistant, entry: ConfigEntry, device: DeviceEntry
 ) -> dict[str, Any]:
     """Return diagnostics for a device entry."""
-    manager: VeSync = hass.data[DOMAIN][VS_MANAGER]
+    manager: VeSync = hass.data[DOMAIN][entry.entry_id][VS_MANAGER]
     vesync_device_id = next(iden[1] for iden in device.identifiers if iden[0] == DOMAIN)
 
     def get_vesync_unique_id(dev: Any) -> str:

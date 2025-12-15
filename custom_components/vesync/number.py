@@ -17,7 +17,7 @@ from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
-from .common import is_humidifier
+from .common import is_humidifier, iter_manager_devices
 from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
 from .coordinator import VeSyncDataCoordinator
 from .entity import VeSyncBaseEntity
@@ -83,10 +83,9 @@ async def _set_timer_duration(device: VeSyncBaseDevice, value: float) -> bool:
             return await device.clear_timer()
         return False
 
-    hours = minutes // 60
-    mins = minutes % 60
     if hasattr(device, "set_timer"):
-        return await device.set_timer(hours, mins)
+        # pyvesync==3.3.3: set_timer(duration: int, action: str | None = None)
+        return await device.set_timer(minutes)
     return False
 
 
@@ -149,7 +148,7 @@ async def async_setup_entry(
 ) -> None:
     """Set up number entities."""
 
-    coordinator = hass.data[DOMAIN][VS_COORDINATOR]
+    coordinator = hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR]
 
     @callback
     def discover(devices: list[VeSyncBaseDevice]) -> None:
@@ -160,9 +159,8 @@ async def async_setup_entry(
         async_dispatcher_connect(hass, VS_DISCOVERY.format(VS_DEVICES), discover)
     )
 
-    _setup_entities(
-        hass.data[DOMAIN][VS_MANAGER].devices, async_add_entities, coordinator
-    )
+    manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
+    _setup_entities(iter_manager_devices(manager), async_add_entities, coordinator)
 
 
 @callback

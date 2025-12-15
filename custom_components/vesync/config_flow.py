@@ -30,7 +30,7 @@ class VeSyncFlowHandler(ConfigFlow, domain=DOMAIN):
     """Handle a config flow."""
 
     VERSION = 1
-    MINOR_VERSION = 6
+    MINOR_VERSION = 7
 
     @callback
     def _show_form(self, errors: dict[str, str] | None = None) -> ConfigFlowResult:

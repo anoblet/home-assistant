@@ -29,7 +29,7 @@ from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.typing import StateType
 
-from .common import is_humidifier, is_outlet, is_purifier, rgetattr
+from .common import is_fryer, is_humidifier, is_outlet, is_purifier, iter_manager_devices, rgetattr
 from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
 from .coordinator import VeSyncDataCoordinator
 from .entity import VeSyncBaseEntity
@@ -227,22 +227,25 @@ SENSORS: tuple[VeSyncSensorEntityDescription, ...] = (
         device_class=SensorDeviceClass.TEMPERATURE,
         native_unit_of_measurement=UnitOfTemperature.FAHRENHEIT,
         state_class=SensorStateClass.MEASUREMENT,
-        value_fn=lambda device: device.details.get("current_temp") if hasattr(device, "details") else None,
-        exists_fn=lambda device: "airfryer" in device.device_type.lower(),
+        value_fn=lambda device: rgetattr(device, "state.current_temp"),
+        exists_fn=lambda device: is_fryer(device)
+        and rgetattr(device, "state.current_temp") is not None,
     ),
     VeSyncSensorEntityDescription(
         key="cook_time_remaining",
         translation_key="cook_time_remaining",
         native_unit_of_measurement="min",
         state_class=SensorStateClass.MEASUREMENT,
-        value_fn=lambda device: device.details.get("cook_time_remaining") if hasattr(device, "details") else None,
-        exists_fn=lambda device: "airfryer" in device.device_type.lower(),
+        value_fn=lambda device: rgetattr(device, "state.cook_time_remaining"),
+        exists_fn=lambda device: is_fryer(device)
+        and rgetattr(device, "state.cook_time_remaining") is not None,
     ),
     VeSyncSensorEntityDescription(
         key="kitchen_mode",
         translation_key="kitchen_mode",
-        value_fn=lambda device: device.details.get("kitchen_mode") if hasattr(device, "details") else None,
-        exists_fn=lambda device: "airfryer" in device.device_type.lower(),
+        value_fn=lambda device: rgetattr(device, "state.cook_status"),
+        exists_fn=lambda device: is_fryer(device)
+        and rgetattr(device, "state.cook_status") is not None,
     ),
 )
 
@@ -254,7 +257,7 @@ async def async_setup_entry(
 ) -> None:
     """Set up switches."""
 
-    coordinator = hass.data[DOMAIN][VS_COORDINATOR]
+    coordinator = hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR]
 
     @callback
     def discover(devices: list[VeSyncBaseDevice]) -> None:
@@ -265,14 +268,8 @@ async def async_setup_entry(
         async_dispatcher_connect(hass, VS_DISCOVERY.format(VS_DEVICES), discover)
     )
 
-    manager = hass.data[DOMAIN][VS_MANAGER]
-    devices = list(manager.devices)
-    if hasattr(manager, "kitchen"):
-        devices.extend([d for d in manager.kitchen if d not in devices])
-
-    _setup_entities(
-        devices, async_add_entities, coordinator
-    )
+    manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
+    _setup_entities(iter_manager_devices(manager), async_add_entities, coordinator)
 
 
 @callback

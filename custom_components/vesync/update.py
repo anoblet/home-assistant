@@ -19,7 +19,7 @@ async def async_setup_entry(
     async_add_entities: AddConfigEntryEntitiesCallback,
 ) -> None:
     """Set up update entity."""
-    coordinator = hass.data[DOMAIN][VS_COORDINATOR]
+    coordinator = hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR]
 
     @callback
     def discover(devices: list[VeSyncBaseDevice]) -> None:
@@ -30,9 +30,8 @@ async def async_setup_entry(
         async_dispatcher_connect(hass, VS_DISCOVERY.format(VS_DEVICES), discover)
     )
 
-    _setup_entities(
-        hass.data[DOMAIN][VS_MANAGER].devices, async_add_entities, coordinator
-    )
+    manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
+    _setup_entities(manager.devices, async_add_entities, coordinator)
 
 
 @callback
@@ -41,7 +40,7 @@ def _setup_entities(
     async_add_entities: AddConfigEntryEntitiesCallback,
     coordinator: VeSyncDataCoordinator,
 ) -> None:
-    """Check if device is a light and add entity."""
+    """Add update entities."""
 
     async_add_entities(
         VeSyncDeviceUpdate(
@@ -56,6 +55,14 @@ class VeSyncDeviceUpdate(VeSyncBaseEntity, UpdateEntity):
     """Representation of a VeSync device update entity."""
 
     _attr_device_class = UpdateDeviceClass.FIRMWARE
+    _attr_name = "Firmware"
+
+    def __init__(self, device: VeSyncBaseDevice, coordinator: VeSyncDataCoordinator) -> None:
+        """Initialize the update entity."""
+        super().__init__(device, coordinator)
+        # Never use the bare device base id for update entities; it collides with
+        # primary entities (fan/humidifier/light/etc.).
+        self._attr_unique_id = f"{self.base_unique_id}-firmware"
 
     @property
     def installed_version(self) -> str | None:

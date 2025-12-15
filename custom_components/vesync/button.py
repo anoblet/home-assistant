@@ -15,6 +15,7 @@ from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
+from .common import is_fryer, iter_manager_devices
 from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
 from .coordinator import VeSyncDataCoordinator
 from .entity import VeSyncBaseEntity
@@ -39,6 +40,27 @@ BUTTON_DESCRIPTIONS: tuple[VeSyncButtonEntityDescription, ...] = (
         press_fn=lambda device: device.reset_filter(),
         exists_fn=lambda device: hasattr(device, "reset_filter"),
     ),
+    VeSyncButtonEntityDescription(
+        key="pause_cooking",
+        name="Pause cooking",
+        translation_key="pause_cooking",
+        press_fn=lambda device: device.pause(),
+        exists_fn=lambda device: is_fryer(device) and hasattr(device, "pause"),
+    ),
+    VeSyncButtonEntityDescription(
+        key="resume_cooking",
+        name="Resume cooking",
+        translation_key="resume_cooking",
+        press_fn=lambda device: device.resume(),
+        exists_fn=lambda device: is_fryer(device) and hasattr(device, "resume"),
+    ),
+    VeSyncButtonEntityDescription(
+        key="end_cooking",
+        name="End cooking",
+        translation_key="end_cooking",
+        press_fn=lambda device: device.end(),
+        exists_fn=lambda device: is_fryer(device) and hasattr(device, "end"),
+    ),
 )
 
 
@@ -49,7 +71,7 @@ async def async_setup_entry(
 ) -> None:
     """Set up the VeSync button platform."""
 
-    coordinator = hass.data[DOMAIN][VS_COORDINATOR]
+    coordinator = hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR]
 
     @callback
     def discover(devices: list[VeSyncBaseDevice]) -> None:
@@ -60,12 +82,8 @@ async def async_setup_entry(
         async_dispatcher_connect(hass, VS_DISCOVERY.format(VS_DEVICES), discover)
     )
 
-    manager = hass.data[DOMAIN][VS_MANAGER]
-    devices = list(manager.devices)
-    if hasattr(manager, "kitchen"):
-        devices.extend([d for d in manager.kitchen if d not in devices])
-
-    _setup_entities(devices, async_add_entities, coordinator)
+    manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
+    _setup_entities(iter_manager_devices(manager), async_add_entities, coordinator)
 
 
 @callback

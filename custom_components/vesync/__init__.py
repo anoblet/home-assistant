@@ -25,6 +25,8 @@ from .const import (
     VS_MANAGER,
 )
 from .coordinator import VeSyncDataCoordinator
+from .common import get_base_unique_id, iter_manager_devices
+from .services import async_register_services, async_remove_services
 
 PLATFORMS = [
     Platform.BUTTON,
@@ -61,13 +63,13 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
     except VeSyncLoginError as err:
         raise ConfigEntryAuthFailed from err
 
-    hass.data[DOMAIN] = {}
-    hass.data[DOMAIN][VS_MANAGER] = manager
+    hass.data.setdefault(DOMAIN, {})
+    hass.data[DOMAIN].setdefault(config_entry.entry_id, {})
+    hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER] = manager
 
     coordinator = VeSyncDataCoordinator(hass, config_entry, manager)
 
-    # Store coordinator at domain level since only single integration instance is permitted.
-    hass.data[DOMAIN][VS_COORDINATOR] = coordinator
+    hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR] = coordinator
     await manager.update()
     await manager.check_firmware()
 
@@ -75,13 +77,22 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
 
     await hass.config_entries.async_forward_entry_setups(config_entry, PLATFORMS)
 
+    # Register integration-wide services once.
+    async_register_services(hass)
+
     async def async_new_device_discovery(service: ServiceCall) -> None:
         """Discover and add new devices."""
-        manager = hass.data[DOMAIN][VS_MANAGER]
-        known_devices = list(manager.devices)
+        manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
+
+        known_devices = iter_manager_devices(manager)
+        known_ids = {get_base_unique_id(d) for d in known_devices if get_base_unique_id(d)}
         await manager.get_devices()
+
+        current_devices = iter_manager_devices(manager)
         new_devices = [
-            device for device in manager.devices if device not in known_devices
+            d
+            for d in current_devices
+            if (uid := get_base_unique_id(d)) and uid not in known_ids
         ]
 
         if new_devices:
@@ -92,9 +103,8 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
                 new_devices,
             )
 
-    hass.services.async_register(
-        DOMAIN, SERVICE_UPDATE_DEVS, async_new_device_discovery
-    )
+    if not hass.services.has_service(DOMAIN, SERVICE_UPDATE_DEVS):
+        hass.services.async_register(DOMAIN, SERVICE_UPDATE_DEVS, async_new_device_discovery)
 
     return True
 
@@ -103,7 +113,13 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Unload a config entry."""
     unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
     if unload_ok:
-        hass.data.pop(DOMAIN)
+        domain_data = hass.data.get(DOMAIN, {})
+        domain_data.pop(entry.entry_id, None)
+        if not domain_data:
+            hass.data.pop(DOMAIN, None)
+            async_remove_services(hass)
+            if hass.services.has_service(DOMAIN, SERVICE_UPDATE_DEVS):
+                hass.services.async_remove(DOMAIN, SERVICE_UPDATE_DEVS)
 
     return unload_ok
 
@@ -386,6 +402,39 @@ async def async_migrate_entry(hass: HomeAssistant, config_entry: ConfigEntry) ->
         hass.config_entries.async_update_entry(config_entry, minor_version=6)
         minor_version = 6
 
+    if minor_version < 7:
+        # Ensure update entities never use a bare device base unique_id, and normalize
+        # legacy binary_sensor unique_id suffixes that included dots.
+        _LOGGER.debug("Migrating VeSync config entry from version 6 to version 7")
+        entity_registry = er.async_get(hass)
+        registry_entries = er.async_entries_for_config_entry(
+            entity_registry, config_entry.entry_id
+        )
+
+        for reg_entry in registry_entries:
+            if reg_entry.domain == Platform.UPDATE and reg_entry.unique_id:
+                # Legacy update entity unique_id used the bare base id, colliding with
+                # primary entities. New scheme appends "-firmware".
+                if not reg_entry.unique_id.endswith("-firmware"):
+                    entity_registry.async_update_entity(
+                        reg_entry.entity_id,
+                        new_unique_id=f"{reg_entry.unique_id}-firmware",
+                    )
+                continue
+
+            if reg_entry.unique_id and reg_entry.unique_id.endswith(
+                "-details.water_tank_lifted"
+            ):
+                entity_registry.async_update_entity(
+                    reg_entry.entity_id,
+                    new_unique_id=reg_entry.unique_id.replace(
+                        "-details.water_tank_lifted", "-water_tank_lifted"
+                    ),
+                )
+
+        hass.config_entries.async_update_entry(config_entry, minor_version=7)
+        minor_version = 7
+
     return True
 
 
@@ -393,15 +442,17 @@ async def async_remove_config_entry_device(
     hass: HomeAssistant, config_entry: ConfigEntry, device_entry: DeviceEntry
 ) -> bool:
     """Remove a config entry from a device."""
-    manager = hass.data[DOMAIN][VS_MANAGER]
+    manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
     await manager.get_devices()
-    for dev in manager.devices:
-        if isinstance(dev.sub_device_no, int):
-            device_id = f"{dev.cid}{dev.sub_device_no!s}"
-        else:
-            device_id = dev.cid
-        identifier = next(iter(device_entry.identifiers), None)
-        if identifier and device_id == identifier[1]:
+
+    identifier = next(
+        (ident for ident in device_entry.identifiers if ident[0] == DOMAIN), None
+    )
+    if identifier is None:
+        return True
+
+    for dev in iter_manager_devices(manager):
+        if get_base_unique_id(dev) == identifier[1]:
             return False
 
     return True

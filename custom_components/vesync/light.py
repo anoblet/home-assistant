@@ -36,7 +36,7 @@ async def async_setup_entry(
 ) -> None:
     """Set up lights."""
 
-    coordinator = hass.data[DOMAIN][VS_COORDINATOR]
+    coordinator = hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR]
 
     @callback
     def discover(devices: list[VeSyncBaseDevice]) -> None:
@@ -47,9 +47,8 @@ async def async_setup_entry(
         async_dispatcher_connect(hass, VS_DISCOVERY.format(VS_DEVICES), discover)
     )
 
-    _setup_entities(
-        hass.data[DOMAIN][VS_MANAGER].devices, async_add_entities, coordinator
-    )
+    manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
+    _setup_entities(manager.devices, async_add_entities, coordinator)
 
 
 @callback
@@ -145,13 +144,16 @@ class VeSyncBaseLightHA(VeSyncBaseEntity, LightEntity):
             attribute_adjustment_only = True
         # check flag if should skip sending the turn_on command
         if attribute_adjustment_only:
+            await self.coordinator.async_request_refresh()
             return
         # send turn_on command to pyvesync api
         await self.device.turn_on()
+        await self.coordinator.async_request_refresh()
 
     async def async_turn_off(self, **kwargs: Any) -> None:
         """Turn the device off."""
         await self.device.turn_off()
+        await self.coordinator.async_request_refresh()
 
 
 class VeSyncDimmableLightHA(VeSyncBaseLightHA, LightEntity):
@@ -219,11 +221,11 @@ class VeSyncColorLightHA(VeSyncTunableWhiteLightHA):
     def hs_color(self) -> tuple[float, float] | None:
         """Return the hs color value."""
         if getattr(self.device.state, "color_mode", None) == "color":
-             # pyvesync usually stores hue/saturation in state
-             hue = getattr(self.device.state, "hue", None)
-             saturation = getattr(self.device.state, "saturation", None)
-             if hue is not None and saturation is not None:
-                 return (float(hue), float(saturation))
+            # pyvesync usually stores hue/saturation in state
+            hue = getattr(self.device.state, "hue", None)
+            saturation = getattr(self.device.state, "saturation", None)
+            if hue is not None and saturation is not None:
+                return (float(hue), float(saturation))
         return None
 
     async def async_turn_on(self, **kwargs: Any) -> None:
@@ -233,16 +235,17 @@ class VeSyncColorLightHA(VeSyncTunableWhiteLightHA):
             hs_color = kwargs[ATTR_HS_COLOR]
             hue = int(hs_color[0])
             saturation = int(hs_color[1])
-            
+
             brightness = kwargs.get(ATTR_BRIGHTNESS)
             if brightness is None:
                 brightness = self.brightness or 255
-            
+
             # Convert brightness to 0-100
             brightness_pct = round((brightness / 255) * 100)
             brightness_pct = max(1, min(brightness_pct, 100))
 
             await self.device.set_color(hue, saturation, brightness_pct)
+            await self.coordinator.async_request_refresh()
             return
 
         await super().async_turn_on(**kwargs)

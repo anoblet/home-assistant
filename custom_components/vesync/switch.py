@@ -18,12 +18,21 @@ from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
-from .common import is_outlet, is_wall_switch, rgetattr
+from .common import is_fryer, is_outlet, is_wall_switch, iter_manager_devices, rgetattr
 from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
 from .coordinator import VeSyncDataCoordinator
 from .entity import VeSyncBaseEntity
 
 _LOGGER = logging.getLogger(__name__)
+
+
+def _status_is_on(value: Any) -> bool:
+    """Normalize VeSync status values to a boolean."""
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        return value.lower() == "on"
+    return bool(value)
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -85,6 +94,20 @@ async def _async_set_light_detection(device: VeSyncBaseDevice, value: bool) -> b
     return False
 
 
+async def _async_fryer_pause(device: VeSyncBaseDevice) -> bool:
+    """Pause an air fryer cook session."""
+    if hasattr(device, "pause"):
+        return await device.pause()
+    return False
+
+
+async def _async_fryer_resume(device: VeSyncBaseDevice) -> bool:
+    """Resume an air fryer cook session."""
+    if hasattr(device, "resume"):
+        return await device.resume()
+    return False
+
+
 SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     VeSyncSwitchEntityDescription(
         key="device_status",
@@ -108,10 +131,31 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
         off_fn=lambda device: device.toggle_display(False),
     ),
     VeSyncSwitchEntityDescription(
+        key="indicator_light",
+        name="Indicator light",
+        is_on=lambda device: _status_is_on(rgetattr(device, "state.indicator_status")),
+        exists_fn=lambda device: bool(getattr(device, "supports_indicator_light", False))
+        and callable(getattr(device, "toggle_indicator_light", None)),
+        translation_key="indicator_light",
+        on_fn=lambda device: device.toggle_indicator_light(True),
+        off_fn=lambda device: device.toggle_indicator_light(False),
+    ),
+    VeSyncSwitchEntityDescription(
+        key="backlight",
+        name="Backlight",
+        is_on=lambda device: _status_is_on(rgetattr(device, "state.backlight_status")),
+        exists_fn=lambda device: bool(getattr(device, "supports_backlight", False))
+        and callable(getattr(device, "set_backlight_status", None)),
+        translation_key="backlight",
+        on_fn=lambda device: device.set_backlight_status(True),
+        off_fn=lambda device: device.set_backlight_status(False),
+    ),
+    VeSyncSwitchEntityDescription(
         key="child_lock",
         name="Child lock",
         is_on=lambda device: device.state.child_lock,
-        exists_fn=(lambda device: rgetattr(device, "state.child_lock") is not None),
+        exists_fn=lambda device: rgetattr(device, "state.child_lock") is not None
+        and callable(getattr(device, "toggle_child_lock", None)),
         translation_key="child_lock",
         on_fn=lambda device: device.toggle_child_lock(True),
         off_fn=lambda device: device.toggle_child_lock(False),
@@ -128,11 +172,13 @@ SENSOR_DESCRIPTIONS: Final[tuple[VeSyncSwitchEntityDescription, ...]] = (
     VeSyncSwitchEntityDescription(
         key="cooking_status",
         name="Cooking status",
-        is_on=lambda device: device.details.get("kitchen_mode") in ["cooking", "heating", "preheat"] if hasattr(device, "details") else False,
-        exists_fn=lambda device: "airfryer" in device.device_type.lower(),
+        is_on=lambda device: bool(rgetattr(device, "state.is_running")),
+        exists_fn=lambda device: is_fryer(device)
+        and hasattr(device, "pause")
+        and hasattr(device, "resume"),
         translation_key="cooking_status",
-        on_fn=lambda device: device.turn_on(), # Note: Might require parameters in reality
-        off_fn=lambda device: device.end_cooking() if hasattr(device, "end_cooking") else device.turn_off(),
+        on_fn=lambda device: _async_fryer_resume(device),
+        off_fn=lambda device: _async_fryer_pause(device),
     ),
     VeSyncSwitchEntityDescription(
         key="vertical_oscillation",
@@ -191,7 +237,7 @@ async def async_setup_entry(
 ) -> None:
     """Set up switch platform."""
 
-    coordinator = hass.data[DOMAIN][VS_COORDINATOR]
+    coordinator = hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR]
 
     @callback
     def discover(devices: list[VeSyncBaseDevice]) -> None:
@@ -202,14 +248,8 @@ async def async_setup_entry(
         async_dispatcher_connect(hass, VS_DISCOVERY.format(VS_DEVICES), discover)
     )
 
-    manager = hass.data[DOMAIN][VS_MANAGER]
-    devices = list(manager.devices)
-    if hasattr(manager, "kitchen"):
-        devices.extend([d for d in manager.kitchen if d not in devices])
-
-    _setup_entities(
-        devices, async_add_entities, coordinator
-    )
+    manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
+    _setup_entities(iter_manager_devices(manager), async_add_entities, coordinator)
 
 
 @callback

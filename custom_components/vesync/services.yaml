@@ -2,3 +2,99 @@ update_devices:
   name: Update devices
   description: Discover newly added VeSync devices and add them to Home Assistant.
   fields: {}
+
+fryer_cook:
+  name: Fryer cook
+  description: Start cooking on a supported VeSync air fryer using temperature and time (minutes).
+  target:
+    device:
+      integration: vesync
+  fields:
+    temperature:
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 500
+          mode: box
+    time:
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 720
+          mode: box
+          unit_of_measurement: min
+
+fryer_set_preheat:
+  name: Fryer set preheat
+  description: Set preheat on a supported VeSync air fryer, then cook time (minutes).
+  target:
+    device:
+      integration: vesync
+  fields:
+    temperature:
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 500
+          mode: box
+    cook_time:
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 720
+          mode: box
+          unit_of_measurement: min
+
+fryer_cook_from_preheat:
+  name: Fryer cook from preheat
+  description: Start the cook cycle after preheat has ended (supported models only).
+  target:
+    device:
+      integration: vesync
+  fields: {}
+
+thermostat_cancel_hold:
+  name: Thermostat cancel hold
+  description: Cancel the active hold on a supported VeSync thermostat.
+  target:
+    device:
+      integration: vesync
+  fields: {}
+
+thermostat_set_lock:
+  name: Thermostat set lock
+  description: Lock or unlock a supported VeSync thermostat. PIN is required when locking.
+  target:
+    device:
+      integration: vesync
+  fields:
+    locked:
+      required: true
+      selector:
+        boolean: {}
+    pin:
+      required: false
+      selector:
+        text: {}
+
+thermostat_set_eco_type:
+  name: Thermostat set eco type
+  description: Set the eco type on a supported VeSync thermostat.
+  target:
+    device:
+      integration: vesync
+  fields:
+    eco_type:
+      required: true
+      selector:
+        select:
+          options:
+            - comfort_second
+            - comfort_first
+            - balance
+            - eco_first
+            - eco_second

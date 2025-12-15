@@ -4,6 +4,15 @@ DOMAIN = "vesync"
 VS_DISCOVERY = "vesync_discovery_{}"
 SERVICE_UPDATE_DEVS = "update_devices"
 
+# Services (feature coverage helpers)
+SERVICE_FRYER_COOK = "fryer_cook"
+SERVICE_FRYER_SET_PREHEAT = "fryer_set_preheat"
+SERVICE_FRYER_COOK_FROM_PREHEAT = "fryer_cook_from_preheat"
+
+SERVICE_THERMOSTAT_CANCEL_HOLD = "thermostat_cancel_hold"
+SERVICE_THERMOSTAT_SET_ECO_TYPE = "thermostat_set_eco_type"
+SERVICE_THERMOSTAT_SET_LOCK = "thermostat_set_lock"
+
 UPDATE_INTERVAL = 60
 UPDATE_INTERVAL_ENERGY = 60 * 60 * 6
 """
