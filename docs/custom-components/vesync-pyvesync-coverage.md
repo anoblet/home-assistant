@@ -71,8 +71,12 @@ This block is the canonical, parseable “expected surface” used by audit tool
     ],
     "device_classes": {
       "VeSyncFanBase": { "platforms": ["fan", "number", "switch"] },
-      "VeSyncPurifier": { "platforms": ["binary_sensor", "button", "fan", "number", "select", "sensor", "switch"] },
-      "VeSyncHumidifier": { "platforms": ["binary_sensor", "humidifier", "number", "select", "sensor", "switch"] },
+      "VeSyncPurifier": {
+        "platforms": ["binary_sensor", "button", "fan", "number", "select", "sensor", "switch"]
+      },
+      "VeSyncHumidifier": {
+        "platforms": ["binary_sensor", "humidifier", "number", "select", "sensor", "switch"]
+      },
       "VeSyncOutlet": { "platforms": ["number", "select", "sensor", "switch"] },
       "VeSyncWallSwitch": { "platforms": ["light", "number", "switch"] },
       "VeSyncBulb": { "platforms": ["light", "number"] },
