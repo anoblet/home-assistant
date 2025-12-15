@@ -141,8 +141,7 @@ class VeSyncFanHA(VeSyncBaseEntity, FanEntity):
         preset_modes: list[str] = []
         for mode in getattr(self.device, "modes", []) or []:
             mode_value = getattr(mode, "value", mode)
-            if mode_value in VS_FAN_MODE_PRESET_LIST_HA:
-                preset_modes.append(mode_value)
+            preset_modes.append(mode_value)
 
         return preset_modes
 
@@ -232,15 +231,16 @@ class VeSyncFanHA(VeSyncBaseEntity, FanEntity):
 
     async def async_set_preset_mode(self, preset_mode: str) -> None:
         """Set the preset mode of device."""
-        if preset_mode not in VS_FAN_MODE_PRESET_LIST_HA:
+        if preset_mode not in (self.preset_modes or []):
             raise ValueError(
                 f"{preset_mode} is not one of the valid preset modes: "
-                f"{VS_FAN_MODE_PRESET_LIST_HA}"
+                f"{self.preset_modes}"
             )
 
         if not self.device.is_on:
             await self.device.turn_on()
 
+        success = False
         if preset_mode == VS_FAN_MODE_AUTO:
             success = await self.device.set_auto_mode()
         elif preset_mode == VS_FAN_MODE_SLEEP:
@@ -253,6 +253,12 @@ class VeSyncFanHA(VeSyncBaseEntity, FanEntity):
             success = await self.device.set_turbo_mode()
         elif preset_mode == VS_FAN_MODE_NORMAL:
             success = await self.device.set_normal_mode()
+        elif hasattr(self.device, "set_mode"):
+            success = await self.device.set_mode(preset_mode)
+        else:
+            _LOGGER.warning("No method found to set mode '%s'", preset_mode)
+            return
+
         if not success:
             raise HomeAssistantError(self.device.last_response.message)
 

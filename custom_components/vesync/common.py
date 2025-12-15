@@ -29,7 +29,7 @@ def get_base_unique_id(device: Any) -> str:
         return ""
 
     sub_device_no = getattr(device, "sub_device_no", None)
-    if isinstance(sub_device_no, int):
+    if sub_device_no is not None:
         return f"{cid}{sub_device_no!s}"
 
     return str(cid)
