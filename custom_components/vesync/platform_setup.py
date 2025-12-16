@@ -82,7 +82,7 @@ async def async_setup_vesync_platform_entry(
 
     unsub = async_dispatcher_connect(
         hass,
-        VS_DISCOVERY.format(VS_DEVICES),
+        VS_DISCOVERY.format(f"{VS_DEVICES}_{config_entry.entry_id}"),
         _async_discovered,
     )
     config_entry.async_on_unload(unsub)
@@ -116,7 +116,7 @@ async def async_setup_vesync_platform_entry_with_energy(
 
     unsub = async_dispatcher_connect(
         hass,
-        VS_DISCOVERY.format(VS_DEVICES),
+        VS_DISCOVERY.format(f"{VS_DEVICES}_{config_entry.entry_id}"),
         _async_discovered,
     )
     config_entry.async_on_unload(unsub)

@@ -7,6 +7,8 @@ _LOGGER = logging.getLogger(__name__)
 _PYVESYNC_HUMIDIFIER_LOGGER_NAME = "pyvesync.devices.vesynchumidifier"
 _BYPASS_V2_ERROR_SUBSTR = "Error processing bypass V2 API response result"
 
+_PATCHED_GET_DETAILS_ATTR = "__vesync_patched_get_details__"
+
 
 class _BypassV2HumidifierLogFilter(logging.Filter):
     def filter(self, record: logging.LogRecord) -> bool:
@@ -59,7 +61,13 @@ def _patch_humidifier_get_details() -> None:
     if not hasattr(VeSyncHumidifier, "get_details"):
         return
 
-    original_get_details = VeSyncHumidifier.get_details
+    # Idempotency: `apply_patches()` can be called multiple times (each config entry
+    # setup and on reload). Avoid stacking wrappers on wrappers.
+    current_get_details = VeSyncHumidifier.get_details
+    if getattr(current_get_details, _PATCHED_GET_DETAILS_ATTR, False):
+        return
+
+    original_get_details = current_get_details
 
     def patched_get_details(self, *args, **kwargs):
         try:
@@ -75,4 +83,6 @@ def _patch_humidifier_get_details() -> None:
                 )
                 return None
             raise
+
+    setattr(patched_get_details, _PATCHED_GET_DETAILS_ATTR, True)
     VeSyncHumidifier.get_details = patched_get_details

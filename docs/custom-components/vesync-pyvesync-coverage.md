@@ -9,6 +9,23 @@ Notes:
 - Mapping is intentionally conservative and tied to the pinned `pyvesync==3.3.3` requirement.
 - Some `pyvesync` capabilities exist but do not map cleanly to Home Assistant entity models; those are explicitly called out as “not exposed”.
 
+## Capability coverage summary (pinned: `pyvesync==3.3.3`)
+
+This custom integration aims to expose all *feasible* `pyvesync==3.3.3` capabilities in a Home Assistant-friendly way while keeping the external “surface contract” stable (platforms + services + unique_id scheme).
+
+| pyvesync area / device type | Home Assistant exposure | Notes |
+| --- | --- | --- |
+| Device discovery | Service: `vesync.update_devices` | Iterates all loaded config entries; dispatch signals are scoped per entry to avoid cross-entry churn. |
+| Firmware availability | `update` entities | Firmware checks run in the background and trigger a refresh so `update` entities reflect availability promptly. |
+| Fans / Purifiers / Humidifiers / Outlets / Wall switches / Bulbs | Standard entities (`fan`, `humidifier`, `switch`, `sensor`, `number`, `select`, `light`, etc.) | Capability-gated; methods/fields are mapped where HA semantics are stable. |
+| Air fryers (Cosori) | Services: `vesync.fryer_*` + entities (`button`/`sensor`) | Exposes non-standard controls without creating excessive entities; each service call requests a refresh. |
+| Thermostats | `climate` entities + services: `vesync.thermostat_*` | Core HVAC control maps to `climate`; additional discrete actions exposed via services. |
+
+**Not exposed (intentionally)**
+
+- Thermostat schedule/program editing and other routine programming: not exposed because the pinned library does not provide a stable, supported programming API in `pyvesync==3.3.3`.
+- Credential persistence helpers exposed by `pyvesync` are not used; Home Assistant config entries/reauth handle authentication lifecycle.
+
 ## Verification (runtime surface audit)
 
 To make “no missing/erroneous entities” reviewable against a real instance, this repo includes a small audit script that generates a runtime inventory from Home Assistant’s registry files under `.storage`.
@@ -233,6 +250,8 @@ Some humidifier models intermittently trigger a pyvesync-side failure during `ge
 
 - Filter that specific pyvesync error log message, and
 - Suppress that specific exception from `get_details()` while re-raising other unexpected exceptions.
+
+Implementation: [custom_components/vesync/patches.py](../../custom_components/vesync/patches.py)
 
 **Home Assistant exposure**
 

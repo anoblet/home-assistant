@@ -2,14 +2,15 @@
 
 import re
 import logging
+from typing import Any
 
 from pyvesync import VeSync
-from pyvesync.utils.errors import VeSyncLoginError
+from pyvesync.utils.errors import VeSyncError, VeSyncLoginError
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_PASSWORD, CONF_USERNAME, Platform
 from homeassistant.core import HomeAssistant, ServiceCall
-from homeassistant.exceptions import ConfigEntryAuthFailed
+from homeassistant.exceptions import ConfigEntryAuthFailed, ConfigEntryNotReady
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.device_registry import DeviceEntry
@@ -66,6 +67,18 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
     except VeSyncLoginError as err:
         raise ConfigEntryAuthFailed from err
 
+    # Device discovery is required before setting up platforms. If the API is
+    # temporarily unavailable, request a retry instead of leaving a partially
+    # initialized entry.
+    try:
+        await manager.update()
+    except VeSyncLoginError as err:
+        raise ConfigEntryAuthFailed from err
+    except VeSyncError as err:
+        raise ConfigEntryNotReady(f"VeSync update failed: {err}") from err
+    except Exception as err:  # noqa: BLE001
+        raise ConfigEntryNotReady(f"VeSync update failed: {err}") from err
+
     hass.data.setdefault(DOMAIN, {})
     hass.data[DOMAIN].setdefault(config_entry.entry_id, {})
     hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER] = manager
@@ -76,10 +89,26 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
     hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR] = state_coordinator
     hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR_ENERGY] = energy_coordinator
 
-    await manager.update()
-    await manager.check_firmware()
+    async def _async_check_firmware() -> None:
+        try:
+            await manager.check_firmware()
+        except Exception:  # noqa: BLE001
+            _LOGGER.debug("VeSync firmware check failed", exc_info=True)
+            return
+
+        # Firmware check updates device objects in-place. Request a refresh so
+        # firmware-related entities update promptly.
+        await state_coordinator.async_request_refresh()
 
     await state_coordinator.async_config_entry_first_refresh()
+
+    # Firmware checks are non-critical and can take time; run in the background.
+    config_entry.async_create_background_task(
+        hass,
+        _async_check_firmware(),
+        "vesync_check_firmware",
+    )
+
     # Start energy coordinator in background
     config_entry.async_create_background_task(
         hass,
@@ -93,27 +122,56 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
     async_register_services(hass)
 
     async def async_new_device_discovery(service: ServiceCall) -> None:
-        """Discover and add new devices."""
-        manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
+        """Discover and add new devices for all active VeSync config entries."""
 
-        known_devices = iter_manager_devices(manager)
-        known_ids = {get_base_unique_id(d) for d in known_devices if get_base_unique_id(d)}
-        await manager.get_devices()
+        domain_entries: dict[str, dict[str, Any]] = hass.data.get(DOMAIN, {})
+        if not domain_entries:
+            _LOGGER.debug("VeSync update_devices called but no entries are loaded")
+            return
 
-        current_devices = iter_manager_devices(manager)
-        new_devices = [
-            d
-            for d in current_devices
-            if (uid := get_base_unique_id(d)) and uid not in known_ids
-        ]
+        for entry_id, entry_data in list(domain_entries.items()):
+            manager = entry_data.get(VS_MANAGER)
+            coordinator = entry_data.get(VS_COORDINATOR)
+            if manager is None or coordinator is None:
+                continue
 
-        if new_devices:
-            _LOGGER.debug("Discovered %s new VeSync devices", len(new_devices))
-            async_dispatcher_send(
-                hass,
-                VS_DISCOVERY.format(VS_DEVICES),
-                new_devices,
-            )
+            try:
+                known_ids: set[str] = set()
+                for dev in iter_manager_devices(manager):
+                    uid = get_base_unique_id(dev)
+                    if uid:
+                        known_ids.add(uid)
+
+                await manager.get_devices()
+
+                new_devices: list[Any] = []
+                for dev in iter_manager_devices(manager):
+                    uid = get_base_unique_id(dev)
+                    if uid and uid not in known_ids:
+                        new_devices.append(dev)
+
+                if not new_devices:
+                    continue
+
+                _LOGGER.debug(
+                    "Discovered %s new VeSync devices for entry %s",
+                    len(new_devices),
+                    entry_id,
+                )
+
+                async_dispatcher_send(
+                    hass,
+                    VS_DISCOVERY.format(f"{VS_DEVICES}_{entry_id}"),
+                    new_devices,
+                )
+
+                # Trigger an immediate refresh so new entities get state quickly.
+                await coordinator.async_request_refresh()
+            except Exception:  # noqa: BLE001
+                _LOGGER.exception(
+                    "VeSync device discovery failed for entry %s",
+                    entry_id,
+                )
 
     if not hass.services.has_service(DOMAIN, SERVICE_UPDATE_DEVS):
         hass.services.async_register(DOMAIN, SERVICE_UPDATE_DEVS, async_new_device_discovery)

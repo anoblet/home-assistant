@@ -14,8 +14,7 @@ The integration exposes capabilities as standard Home Assistant entity platforms
 - **`fan`**: fans and air purifiers (power, speed/percentage, preset modes, oscillation when supported).
 - **`humidifier`**: humidifiers (power, mode, target humidity).
 - **`climate`**: thermostats (HVAC mode, target temperature, fan mode).
-- **`light`**: bulbs/dimmers and dimmer wall switches.
-- **`light`**: supported wall switches may also expose an RGB **backlight color** light entity.
+- **`light`**: bulbs/dimmers and dimmer wall switches; supported wall switches may also expose an RGB **backlight color** light entity.
 - **`switch`**: outlet/wall-switch power, plus capability-gated toggles (e.g., display, display type, child lock, mute, light detection, oscillation, drying mode, auto stop, indicator light, backlight). Air fryers may also expose a `cooking_status` switch as a pause/resume convenience (not a true power switch).
 - **`sensor`**: air quality metrics (AQ/PM/VOC/CO₂/temp/humidity), filter life, outlet power/voltage/energy histories, plus air fryer cook status/current temperature/time remaining.
 - **`binary_sensor`**: humidifier water/tank problem flags and purifier filter door open (when reported by the device).
@@ -45,7 +44,7 @@ For a device-by-device capability mapping against the pinned library version, se
 ## Services
 
 - `vesync.update_devices`
-  - Discovers newly added VeSync devices and forwards them to platform discovery.
+  - Discovers newly added VeSync devices across all loaded config entries and forwards them to platform discovery.
   - Discovery considers additional pyvesync device buckets (e.g., thermostats and kitchen devices) so newly added devices are detected consistently.
   - Service schemas (fields, selectors, targets) live in [custom_components/vesync/services.yaml](../../custom_components/vesync/services.yaml).
 
