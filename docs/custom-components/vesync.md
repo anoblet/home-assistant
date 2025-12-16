@@ -96,6 +96,7 @@ data:
 
 ## Troubleshooting
 
+- `pnpm home-assistant` requires Node.js `>= 22.6.0` (see `bin/cli/README.md`).
 - Enable debug logging for the integration and `pyvesync` in [packages/logger.yaml](../../packages/logger.yaml).
 - Typical validation loop:
   - `pnpm home-assistant services call homeassistant restart -d '{}'`

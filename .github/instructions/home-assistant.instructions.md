@@ -3,6 +3,7 @@
 ## Instructions
 
 - After each meaningful change to the configuration, run `pnpm reload`, then check runtime logs via `pnpm home-assistant raw request GET /api/hassio/core/logs --text` (Supervisor) to confirm there are no warnings or errors related to the changes.
+- `pnpm home-assistant` requires Node.js `>= 22.6.0` (see `bin/cli/README.md`).
 - Do not use `mode: single` in automations since it is the default
 - Do not use empty conditions
 - Do not add erronenous keys where the value is the same as the default value

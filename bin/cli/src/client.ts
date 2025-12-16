@@ -1,8 +1,5 @@
-import {
-    HttpClient,
-    HttpClientOptions,
-    RequestOptions
-} from './http';
+import type { HttpClientOptions, RequestOptions } from './http.ts';
+import { HttpClient } from './http.ts';
 
 export interface ApiOverview {
   message: string;
@@ -164,11 +161,11 @@ export class HomeAssistantClient {
 
   fireEvent(
     eventType: string,
-    eventData?: Record<string, unknown>,
+    eventData?: Record<string, unknown>
   ): Promise<Record<string, unknown>> {
     return this.http.postJson<Record<string, unknown>>(
       `/api/events/${encodeURIComponent(eventType)}`,
-      eventData ?? {},
+      eventData ?? {}
     );
   }
 
@@ -180,13 +177,11 @@ export class HomeAssistantClient {
   callService(
     domain: string,
     service: string,
-    serviceData?: Record<string, unknown>,
+    serviceData?: Record<string, unknown>
   ): Promise<unknown> {
     return this.http.postJson<unknown>(
-      `/api/services/${encodeURIComponent(domain)}/${encodeURIComponent(
-        service,
-      )}`,
-      serviceData ?? {},
+      `/api/services/${encodeURIComponent(domain)}/${encodeURIComponent(service)}`,
+      serviceData ?? {}
     );
   }
 
@@ -196,36 +191,26 @@ export class HomeAssistantClient {
   }
 
   getState(entityId: string): Promise<HaState> {
-    return this.http.getJson<HaState>(
-      `/api/states/${encodeURIComponent(entityId)}`,
-    );
+    return this.http.getJson<HaState>(`/api/states/${encodeURIComponent(entityId)}`);
   }
 
   setState(
     entityId: string,
     state: string,
-    attributes?: Record<string, unknown>,
+    attributes?: Record<string, unknown>
   ): Promise<HaState> {
-    return this.http.postJson<HaState>(
-      `/api/states/${encodeURIComponent(entityId)}`,
-      {
-        state,
-        attributes: attributes ?? {},
-      },
-    );
+    return this.http.postJson<HaState>(`/api/states/${encodeURIComponent(entityId)}`, {
+      state,
+      attributes: attributes ?? {},
+    });
   }
 
   deleteState(entityId: string): Promise<void> {
-    return this.http.deleteJson<void>(
-      `/api/states/${encodeURIComponent(entityId)}`,
-    );
+    return this.http.deleteJson<void>(`/api/states/${encodeURIComponent(entityId)}`);
   }
 
   // History
-  getHistory(
-    startTime: string,
-    params?: HistoryQueryParams,
-  ): Promise<HistoryResponse> {
+  getHistory(startTime: string, params?: HistoryQueryParams): Promise<HistoryResponse> {
     const query: Record<string, string | number | boolean | undefined> = {};
 
     if (params?.end_time) query.end_time = params.end_time;
@@ -245,25 +230,21 @@ export class HomeAssistantClient {
 
     return this.http.getJson<HistoryResponse>(
       `/api/history/period/${encodeURIComponent(startTime)}`,
-      { query },
+      { query }
     );
   }
 
   // Logbook
-  getLogbook(
-    startTime: string,
-    params?: LogbookQueryParams,
-  ): Promise<LogbookEntry[]> {
+  getLogbook(startTime: string, params?: LogbookQueryParams): Promise<LogbookEntry[]> {
     const query: Record<string, string | number | boolean | undefined> = {};
 
     if (params?.end_time) query.end_time = params.end_time;
     if (params?.entity) query.entity = params.entity;
     if (params?.context_id) query.context_id = params.context_id;
 
-    return this.http.getJson<LogbookEntry[]>(
-      `/api/logbook/${encodeURIComponent(startTime)}`,
-      { query },
-    );
+    return this.http.getJson<LogbookEntry[]>(`/api/logbook/${encodeURIComponent(startTime)}`, {
+      query,
+    });
   }
 
   // Error log
@@ -273,9 +254,7 @@ export class HomeAssistantClient {
 
   // Camera
   getCameraImage(entityId: string): Promise<Uint8Array> {
-    return this.http.getBinary(
-      `/api/camera_proxy/${encodeURIComponent(entityId)}`,
-    );
+    return this.http.getBinary(`/api/camera_proxy/${encodeURIComponent(entityId)}`);
   }
 
   // Calendars
@@ -283,20 +262,15 @@ export class HomeAssistantClient {
     return this.http.getJson<CalendarInfo[]>('/api/calendars');
   }
 
-  getCalendarEvents(
-    entityId: string,
-    start: string,
-    end: string,
-  ): Promise<CalendarEvent[]> {
+  getCalendarEvents(entityId: string, start: string, end: string): Promise<CalendarEvent[]> {
     const query: Record<string, string> = {
       start,
       end,
     };
 
-    return this.http.getJson<CalendarEvent[]>(
-      `/api/calendars/${encodeURIComponent(entityId)}`,
-      { query },
-    );
+    return this.http.getJson<CalendarEvent[]>(`/api/calendars/${encodeURIComponent(entityId)}`, {
+      query,
+    });
   }
 
   // Templates
@@ -306,29 +280,18 @@ export class HomeAssistantClient {
 
   // Config checks
   checkConfig(): Promise<CheckConfigResult> {
-    return this.http.postJson<CheckConfigResult>(
-      '/api/config/core/check_config',
-      {},
-    );
+    return this.http.postJson<CheckConfigResult>('/api/config/core/check_config', {});
   }
 
   // Intents
   handleIntent(request: IntentHandleRequest): Promise<IntentHandleResponse> {
-    return this.http.postJson<IntentHandleResponse>(
-      '/api/intent/handle',
-      request,
-    );
+    return this.http.postJson<IntentHandleResponse>('/api/intent/handle', request);
   }
 
   // Raw request helper for advanced usage
-  rawRequest<T = unknown>(
-    method: string,
-    path: string,
-    options?: RequestOptions,
-  ): Promise<T> {
+  rawRequest<T = unknown>(method: string, path: string, options?: RequestOptions): Promise<T> {
     return this.http.request<T>(method.toUpperCase(), path, options ?? {});
   }
 }
-export { HomeAssistantApiError, HttpClient } from './http';
-export type { HttpClientOptions, RequestOptions } from './http';
-
+export { HomeAssistantApiError, HttpClient } from './http.ts';
+export type { HttpClientOptions, RequestOptions } from './http.ts';

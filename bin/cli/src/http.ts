@@ -51,11 +51,14 @@ export class HttpClient {
       throw new Error('HttpClient requires an authentication token');
     }
 
-    this.base = options.baseUrl.endsWith('/')
-      ? options.baseUrl
-      : `${options.baseUrl}/`;
+    this.base = options.baseUrl.endsWith('/') ? options.baseUrl : `${options.baseUrl}/`;
     this.token = options.token;
-    this.timeoutMs = options.timeoutMs ?? 10000;
+
+    const timeoutCandidate = options.timeoutMs;
+    this.timeoutMs =
+      timeoutCandidate !== undefined && Number.isFinite(timeoutCandidate) && timeoutCandidate > 0
+        ? Math.trunc(timeoutCandidate)
+        : 10000;
     this.debug = !!options.debug;
 
     if (options.insecure) {
@@ -92,11 +95,7 @@ export class HttpClient {
     return this.request<T>('DELETE', path, { ...options, responseType: 'json' });
   }
 
-  async request<T>(
-    method: string,
-    path: string,
-    options: RequestOptions = {},
-  ): Promise<T> {
+  async request<T>(method: string, path: string, options: RequestOptions = {}): Promise<T> {
     const url = this.buildUrl(path, options.query);
     const headers: Record<string, string> = {
       Authorization: `Bearer ${this.token}`,
@@ -111,16 +110,11 @@ export class HttpClient {
     }, timeout);
 
     const body =
-      options.body === undefined || method === 'GET'
-        ? undefined
-        : JSON.stringify(options.body);
+      options.body === undefined || method === 'GET' ? undefined : JSON.stringify(options.body);
 
     if (this.debug) {
       // eslint-disable-next-line no-console
-      console.error(
-        `[ha-http] ${method} ${url} timeout=${timeout}ms body=${body ?? 'null'
-        }`,
-      );
+      console.error(`[ha-http] ${method} ${url} timeout=${timeout}ms body=${body ?? 'null'}`);
     }
 
     let res: Response;
@@ -184,9 +178,17 @@ export class HttpClient {
 
   private buildUrl(
     path: string,
-    query?: Record<string, string | number | boolean | undefined>,
+    query?: Record<string, string | number | boolean | undefined>
   ): string {
-    const normalizedPath = path.startsWith('/') ? path.slice(1) : path;
+    const trimmedPath = path.trim();
+    if (!trimmedPath) {
+      throw new Error('Request path must not be empty.');
+    }
+    if (trimmedPath.startsWith('//') || /^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(trimmedPath)) {
+      throw new Error('Absolute URLs are not allowed. Provide an API path like /api/config.');
+    }
+
+    const normalizedPath = trimmedPath.startsWith('/') ? trimmedPath.slice(1) : trimmedPath;
     const url = new URL(normalizedPath, this.base);
 
     if (query) {

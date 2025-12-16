@@ -2,6 +2,7 @@
   "name": "cli",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "Home Assistant REST API TypeScript client and CLI",
   "keywords": [
     "home-assistant",
@@ -9,16 +10,20 @@
     "rest",
     "api"
   ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "src/index.ts",
   "bin": {
-    "home-assistant": "dist/cli.js"
+    "home-assistant": "bin/home-assistant.cjs"
+  },
+  "engines": {
+    "node": ">=22.6.0"
   },
   "scripts": {
-    "home-assistant": "tsx src/cli.ts",
-    "build": "tsc -p tsconfig.json",
-    "dev": "tsx src/cli.ts",
-    "smoke": "tsx src/smoke.ts"
+    "home-assistant": "node bin/home-assistant.cjs",
+    "dev": "node bin/home-assistant.cjs",
+    "smoke": "node --no-warnings --experimental-strip-types src/smoke.ts",
+    "test": "node --no-warnings --test --experimental-strip-types src/**/*.test.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build": "pnpm run typecheck"
   },
   "author": "",
   "license": "ISC",
@@ -28,8 +33,7 @@
     "dotenv": "^16.6.1"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
-    "tsx": "^4.15.7",
+    "@types/node": "^22.19.3",
     "typescript": "^5.6.3"
   }
 }

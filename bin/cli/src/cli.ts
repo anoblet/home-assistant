@@ -1,21 +1,14 @@
-#!/usr/bin/env node
-
-import { Command } from 'commander';
+import { Command, CommanderError, InvalidArgumentError } from 'commander';
 import { promises as fs } from 'node:fs';
-import {
-    HomeAssistantApiError,
-    HomeAssistantClient,
-    RequestOptions,
-} from './client';
-import {
-    createClientFromEnv,
-    EnvOverrides,
-} from './config';
+import type { RequestOptions } from './client.ts';
+import { HomeAssistantApiError, HomeAssistantClient } from './client.ts';
+import type { EnvOverrides } from './config.ts';
+import { createClientFromEnv } from './config.ts';
 
 interface GlobalCliOptions {
   host?: string;
   token?: string;
-  timeout?: string;
+  timeout?: number;
   insecure?: boolean;
   output?: string;
   pretty?: boolean;
@@ -29,7 +22,7 @@ interface OutputOptions {
 async function writeOutput(
   data: unknown,
   cmd: Command,
-  options: OutputOptions = {},
+  options: OutputOptions = {}
 ): Promise<void> {
   const opts = cmd.optsWithGlobals() as GlobalCliOptions;
   const outputPath = opts.output;
@@ -37,9 +30,7 @@ async function writeOutput(
 
   if (format === 'binary') {
     const buffer =
-      data instanceof Uint8Array
-        ? Buffer.from(data)
-        : Buffer.from(data as ArrayBuffer);
+      data instanceof Uint8Array ? Buffer.from(data) : Buffer.from(data as ArrayBuffer);
 
     if (outputPath) {
       await fs.writeFile(outputPath, buffer);
@@ -51,9 +42,7 @@ async function writeOutput(
   }
 
   const text =
-    format === 'text'
-      ? String(data ?? '')
-      : JSON.stringify(data, null, opts.pretty ? 2 : 0);
+    format === 'text' ? String(data ?? '') : JSON.stringify(data, null, opts.pretty ? 2 : 0);
 
   if (outputPath) {
     await fs.writeFile(outputPath, text, 'utf8');
@@ -74,16 +63,35 @@ function readJsonOrThrow(json?: string): unknown {
   }
 }
 
+function parseBooleanEnv(value: string | undefined): boolean {
+  return value === '1' || value === 'true' || value === 'yes';
+}
+
+function isDebugEnabled(cmd?: Command): boolean {
+  if (cmd) {
+    const opts = cmd.optsWithGlobals() as GlobalCliOptions;
+    if (opts.debug) return true;
+  }
+  return parseBooleanEnv(process.env.HOME_ASSISTANT_DEBUG);
+}
+
+function parseTimeoutMs(value: string): number {
+  const trimmed = value.trim();
+  if (!/^\d+$/.test(trimmed)) {
+    throw new InvalidArgumentError('Timeout must be a positive integer (ms).');
+  }
+  const parsed = Number.parseInt(trimmed, 10);
+  if (!Number.isFinite(parsed) || parsed <= 0) {
+    throw new InvalidArgumentError('Timeout must be a positive integer (ms).');
+  }
+  return parsed;
+}
+
 function buildEnvOverrides(opts: GlobalCliOptions): EnvOverrides {
-  const timeoutMs =
-    opts.timeout !== undefined
-      ? Number.parseInt(opts.timeout, 10)
-      : undefined;
   return {
     host: opts.host,
     token: opts.token,
-    timeoutMs:
-      timeoutMs !== undefined && !Number.isNaN(timeoutMs) ? timeoutMs : undefined,
+    timeoutMs: opts.timeout,
     insecure: opts.insecure,
     debug: opts.debug,
   };
@@ -95,11 +103,18 @@ function createClientFromCommand(cmd: Command): HomeAssistantClient {
   return createClientFromEnv(overrides);
 }
 
-function handleCliError(error: unknown): void {
+function handleCliError(
+  error: unknown,
+  options: {
+    debug?: boolean;
+  } = {}
+): void {
+  const debug = !!options.debug;
+
   if (error instanceof HomeAssistantApiError) {
     // eslint-disable-next-line no-console
     console.error(
-      `Home Assistant API error (${error.status} ${error.statusText}) for ${error.path}`,
+      `Home Assistant API error (${error.status} ${error.statusText}) for ${error.path}`
     );
     if (error.responseBody) {
       // eslint-disable-next-line no-console
@@ -113,16 +128,17 @@ function handleCliError(error: unknown): void {
     console.error(String(error));
   }
 
+  if (debug && error instanceof Error && error.stack) {
+    // eslint-disable-next-line no-console
+    console.error(error.stack);
+  }
+
   process.exitCode = 1;
 }
 
 function actionWithClient<Args extends unknown[]>(
-  handler: (
-    client: HomeAssistantClient,
-    cmd: Command,
-    ...args: Args
-  ) => Promise<unknown> | unknown,
-  outputOptions?: OutputOptions,
+  handler: (client: HomeAssistantClient, cmd: Command, ...args: Args) => Promise<unknown> | unknown,
+  outputOptions?: OutputOptions
 ) {
   return async function action(this: Command, ...args: Args): Promise<void> {
     const cmd = this;
@@ -133,7 +149,7 @@ function actionWithClient<Args extends unknown[]>(
         await writeOutput(result, cmd, outputOptions);
       }
     } catch (error) {
-      handleCliError(error);
+      handleCliError(error, { debug: isDebugEnabled(cmd) });
     }
   };
 }
@@ -154,15 +170,21 @@ async function readStdin(): Promise<string> {
 export async function main(argv: string[] = process.argv): Promise<void> {
   const program = new Command();
 
+  program.exitOverride();
+  program.configureOutput({
+    writeOut: (str) => process.stdout.write(str),
+    writeErr: (str) => process.stderr.write(str),
+  });
+
   program
     .name('home-assistant')
     .description('Home Assistant REST API CLI')
     .option(
       '-H, --host <url>',
-      'Home Assistant base URL (default: HOME_ASSISTANT_HOST or http://localhost:8123)',
+      'Home Assistant base URL (default: HOME_ASSISTANT_HOST or http://localhost:8123)'
     )
     .option('-T, --token <token>', 'Long-lived access token (HOME_ASSISTANT_TOKEN)')
-    .option('--timeout <ms>', 'Request timeout in milliseconds')
+    .option('--timeout <ms>', 'Request timeout in milliseconds (digits-only)', parseTimeoutMs)
     .option('-k, --insecure', 'Allow insecure TLS (self-signed certificates)')
     .option('-o, --output <file>', 'Write output to file instead of stdout')
     .option('--pretty', 'Pretty-print JSON output')
@@ -211,11 +233,9 @@ export async function main(argv: string[] = process.argv): Promise<void> {
         const opts = cmd.optsWithGlobals() as GlobalCliOptions & {
           data?: string;
         };
-        const eventData = readJsonOrThrow(opts.data) as
-          | Record<string, unknown>
-          | undefined;
+        const eventData = readJsonOrThrow(opts.data) as Record<string, unknown> | undefined;
         return client.fireEvent(eventType, eventData);
-      }),
+      })
     );
 
   // Services
@@ -237,11 +257,9 @@ export async function main(argv: string[] = process.argv): Promise<void> {
         const opts = cmd.optsWithGlobals() as GlobalCliOptions & {
           data?: string;
         };
-        const serviceData = readJsonOrThrow(opts.data) as
-          | Record<string, unknown>
-          | undefined;
+        const serviceData = readJsonOrThrow(opts.data) as Record<string, unknown> | undefined;
         return client.callService(domain, service, serviceData);
-      }),
+      })
     );
 
   // States
@@ -256,11 +274,7 @@ export async function main(argv: string[] = process.argv): Promise<void> {
     .command('get')
     .description('Get state for an entity (/api/states/<entity_id>)')
     .argument('<entity_id>', 'Entity ID')
-    .action(
-      actionWithClient((client, _cmd, entityId: string) =>
-        client.getState(entityId),
-      ),
-    );
+    .action(actionWithClient((client, _cmd, entityId: string) => client.getState(entityId)));
 
   states
     .command('set')
@@ -269,28 +283,20 @@ export async function main(argv: string[] = process.argv): Promise<void> {
     .argument('<state>', 'State value')
     .option('-a, --attributes <json>', 'JSON attributes object')
     .action(
-      actionWithClient(
-        (client, cmd, entityId: string, state: string) => {
-          const opts = cmd.optsWithGlobals() as GlobalCliOptions & {
-            attributes?: string;
-          };
-          const attributes = readJsonOrThrow(opts.attributes) as
-            | Record<string, unknown>
-            | undefined;
-          return client.setState(entityId, state, attributes);
-        },
-      ),
+      actionWithClient((client, cmd, entityId: string, state: string) => {
+        const opts = cmd.optsWithGlobals() as GlobalCliOptions & {
+          attributes?: string;
+        };
+        const attributes = readJsonOrThrow(opts.attributes) as Record<string, unknown> | undefined;
+        return client.setState(entityId, state, attributes);
+      })
     );
 
   states
     .command('delete')
     .description('Delete state for an entity (/api/states/<entity_id>)')
     .argument('<entity_id>', 'Entity ID')
-    .action(
-      actionWithClient((client, _cmd, entityId: string) =>
-        client.deleteState(entityId),
-      ),
-    );
+    .action(actionWithClient((client, _cmd, entityId: string) => client.deleteState(entityId)));
 
   // History
   const history = program.command('history').description('History operations');
@@ -300,10 +306,7 @@ export async function main(argv: string[] = process.argv): Promise<void> {
     .description('Get history (/api/history/period/<timestamp>)')
     .argument('<start>', 'ISO8601 start timestamp')
     .option('--end <timestamp>', 'ISO8601 end timestamp')
-    .option(
-      '--entity-id <entity_id...>',
-      'Filter by one or more entity IDs',
-    )
+    .option('--entity-id <entity_id...>', 'Filter by one or more entity IDs')
     .option('--minimal', 'Return minimal response without attributes')
     .option('--no-attributes', 'Exclude attributes from the response')
     .action(
@@ -321,7 +324,7 @@ export async function main(argv: string[] = process.argv): Promise<void> {
           minimal_response: opts.minimal,
           no_attributes: opts.noAttributes,
         });
-      }),
+      })
     );
 
   // Logbook
@@ -347,7 +350,7 @@ export async function main(argv: string[] = process.argv): Promise<void> {
           entity: opts.entity,
           context_id: opts.contextId,
         });
-      }),
+      })
     );
 
   // Error log
@@ -369,8 +372,8 @@ export async function main(argv: string[] = process.argv): Promise<void> {
           const image = await client.getCameraImage(entityId);
           await writeOutput(image, cmd, { format: 'binary' });
         },
-        { format: 'binary' },
-      ),
+        { format: 'binary' }
+      )
     );
 
   // Calendars
@@ -384,7 +387,7 @@ export async function main(argv: string[] = process.argv): Promise<void> {
   calendars
     .command('events')
     .description(
-      'Get calendar events (/api/calendars/<entity_id>?start=<timestamp>&end=<timestamp>)',
+      'Get calendar events (/api/calendars/<entity_id>?start=<timestamp>&end=<timestamp>)'
     )
     .argument('<entity_id>', 'Calendar entity ID')
     .requiredOption('--start <timestamp>', 'ISO8601 start timestamp')
@@ -397,7 +400,7 @@ export async function main(argv: string[] = process.argv): Promise<void> {
         };
 
         return client.getCalendarEvents(entityId, opts.start, opts.end);
-      }),
+      })
     );
 
   // Templates
@@ -428,20 +431,16 @@ export async function main(argv: string[] = process.argv): Promise<void> {
         }
 
         if (!templateString) {
-          throw new Error(
-            'Template content is required (use --template, --file, or stdin).',
-          );
+          throw new Error('Template content is required (use --template, --file, or stdin).');
         }
 
-        const variables = readJsonOrThrow(opts.variables) as
-          | Record<string, unknown>
-          | undefined;
+        const variables = readJsonOrThrow(opts.variables) as Record<string, unknown> | undefined;
 
         return client.renderTemplate({
           template: templateString,
           variables,
         });
-      }),
+      })
     );
 
   // Intents
@@ -477,7 +476,7 @@ export async function main(argv: string[] = process.argv): Promise<void> {
         }
 
         return client.handleIntent(payload as any);
-      }),
+      })
     );
 
   // Raw requests
@@ -492,59 +491,58 @@ export async function main(argv: string[] = process.argv): Promise<void> {
     .option('-b, --body <json>', 'JSON request body')
     .option('--text', 'Treat response as plain text')
     .option('--binary', 'Treat response as binary data')
-    .action(
-      async function (this: Command, method: string, path: string) {
-        const cmd = this;
-        try {
-          const client = createClientFromCommand(cmd);
-          const opts = cmd.optsWithGlobals() as GlobalCliOptions & {
-            query?: string;
-            body?: string;
-            text?: boolean;
-            binary?: boolean;
-          };
+    .action(async function (this: Command, method: string, path: string) {
+      const cmd = this;
+      try {
+        const client = createClientFromCommand(cmd);
+        const opts = cmd.optsWithGlobals() as GlobalCliOptions & {
+          query?: string;
+          body?: string;
+          text?: boolean;
+          binary?: boolean;
+        };
 
-          const query = readJsonOrThrow(opts.query) as
-            | Record<string, string | number | boolean | undefined>
-            | undefined;
-          const body = readJsonOrThrow(opts.body);
+        const query = readJsonOrThrow(opts.query) as
+          | Record<string, string | number | boolean | undefined>
+          | undefined;
+        const body = readJsonOrThrow(opts.body);
 
-          const requestOptions: RequestOptions = {
-            query,
-            body,
-          };
+        const requestOptions: RequestOptions = {
+          query,
+          body,
+        };
 
-          if (opts.binary) {
-            const data = await client.rawRequest<Uint8Array>(method, path, {
-              ...requestOptions,
-              responseType: 'binary',
-            } as any);
-            await writeOutput(data, cmd, { format: 'binary' });
-          } else if (opts.text) {
-            const data = await client.rawRequest<string>(method, path, {
-              ...requestOptions,
-              responseType: 'text',
-            } as any);
-            await writeOutput(data, cmd, { format: 'text' });
-          } else {
-            const data = await client.rawRequest<unknown>(method, path, {
-              ...requestOptions,
-              responseType: 'json',
-            } as any);
-            await writeOutput(data, cmd, { format: 'json' });
-          }
-        } catch (error) {
-          handleCliError(error);
+        if (opts.binary) {
+          const data = await client.rawRequest<Uint8Array>(method, path, {
+            ...requestOptions,
+            responseType: 'binary',
+          } as any);
+          await writeOutput(data, cmd, { format: 'binary' });
+        } else if (opts.text) {
+          const data = await client.rawRequest<string>(method, path, {
+            ...requestOptions,
+            responseType: 'text',
+          } as any);
+          await writeOutput(data, cmd, { format: 'text' });
+        } else {
+          const data = await client.rawRequest<unknown>(method, path, {
+            ...requestOptions,
+            responseType: 'json',
+          } as any);
+          await writeOutput(data, cmd, { format: 'json' });
         }
-      },
-    );
+      } catch (error) {
+        handleCliError(error, { debug: isDebugEnabled(cmd) });
+      }
+    });
 
-  await program.parseAsync(argv);
-}
-
-if (require.main === module) {
-  // eslint-disable-next-line unicorn/prefer-top-level-await
-  main().catch((error) => {
-    handleCliError(error);
-  });
+  try {
+    await program.parseAsync(argv);
+  } catch (error) {
+    if (error instanceof CommanderError) {
+      process.exitCode = error.exitCode;
+      return;
+    }
+    throw error;
+  }
 }

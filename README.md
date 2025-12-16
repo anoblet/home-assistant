@@ -47,16 +47,16 @@ This repository captures the full Home Assistant setup that powers Andrew Noblet
 
 ## Tooling and Workflow
 
-- `npm run bootstrap` (via `tsx copilot/bootstrap/index.ts`) prepares local tooling, Git hooks, and auxiliary scripts.
-- Formatting relies on Prettier (`npm run format`), while `lint-staged` enforces clean YAML, JSON, and JS commits.
+- `pnpm bootstrap` (via `tsx copilot/bootstrap/index.ts`) prepares local tooling, Git hooks, and auxiliary scripts.
+- Formatting relies on Prettier (`pnpm format`), while `lint-staged` enforces clean YAML, JSON, and JS commits.
 - The custom `hass-cli` (GitHub: `anoblet/hass-cli`) provides commands for state inspection, automation validation, and reload routines, with expectations documented in `.github/instructions/home-assistant.instructions.md`.
-- Wireit tasks (`npm run git:commit`, `npm run git:push`) orchestrate commit and push workflows, optionally generating AI-assisted commit messages via GenAIScript.
+- Wireit tasks (`pnpm git:commit`, `pnpm git:push`) orchestrate commit and push workflows, optionally generating AI-assisted commit messages via GenAIScript.
 
 ## Getting Started
 
 1. Install Home Assistant Core or Supervised on a host with access to the devices defined in this repository.
 2. Clone the repository into your Home Assistant configuration directory (`/config` or equivalent) and ensure `secrets.yaml` contains the required credentials (InfluxDB, external URLs, API keys).
-3. Install Node.js 20+ and run `npm install` to set up tooling, then execute `npm run bootstrap` to provision local hooks.
+3. Install Node.js 22.6+ and run `pnpm install` to set up tooling, then execute `pnpm bootstrap` to provision local hooks.
 4. Review the instructions under `.github/instructions/` and `TASKS.md` to understand naming conventions, pending refactors, and required validation steps.
 5. Use Home Assistant's configuration validation, `hass-cli`, or `yamllint` before reloading the configuration; after reloads, inspect `home-assistant.log` for regressions.
 6. Build and flash ESPHome devices from the `esphome/` directory to keep sensor firmware aligned with the expected entities.

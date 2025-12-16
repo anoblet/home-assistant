@@ -1,4 +1,3 @@
-export * from './client';
-export * from './config';
-export * from './http';
-
+export * from './client.ts';
+export * from './config.ts';
+export * from './http.ts';

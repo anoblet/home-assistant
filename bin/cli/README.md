@@ -26,30 +26,39 @@ The CLI and client use environment variables by default:
 
 - `HOME_ASSISTANT_HOST` – Base URL, e.g. `http://localhost:8123`
 - `HOME_ASSISTANT_TOKEN` – Long‑lived access token
-- `HOME_ASSISTANT_TIMEOUT_MS` – Optional request timeout (ms, default `10000`)
+- `HOME_ASSISTANT_TIMEOUT_MS` – Optional request timeout in milliseconds (digits-only, default `10000`)
 - `HOME_ASSISTANT_INSECURE` – Set to `1`/`true`/`yes` to allow self‑signed TLS
 - `HOME_ASSISTANT_DEBUG` – Set to `1`/`true`/`yes` for debug logging
+
+You can use the included env template:
+
+```bash
+cp bin/cli/.env.example .env
+```
 
 CLI flags can override env vars:
 
 - `-H, --host <url>` – Base URL override
 - `-T, --token <token>` – Token override
-- `--timeout <ms>` – Timeout override
+- `--timeout <ms>` – Timeout override in milliseconds (digits-only)
 - `-k, --insecure` – Allow self‑signed TLS
 - `-o, --output <file>` – Write output to a file instead of stdout
 - `--pretty` – Pretty‑print JSON
-- `--debug` – Extra debug logging
+- `--debug` – Extra debug logging (HTTP request logging + stack traces)
 
-## Installing & Building
+## Runtime Requirements
+
+- Node.js `>= 22.6` (built-in `fetch` + native TypeScript type-stripping)
+
+The CLI runs directly from TypeScript sources (no build step required). The published `home-assistant` binary is a tiny shim that invokes Node with `--experimental-strip-types`.
+
+## Installing
 
 From the repo root:
 
 ```bash
- pnpm install
- pnpm --filter cli build
+pnpm install
 ```
-
-This produces `dist/index.js` and `dist/cli.js`.
 
 You can run the CLI without a global install from the repo root:
 
@@ -60,14 +69,29 @@ pnpm --filter cli home-assistant --help
 # Or via the root-level helper script
 pnpm home-assistant --help
 ```
-# Or run the built JS directly
-node bin/cli/dist/cli.js --help
+
+`pnpm --filter cli build` runs a TypeScript typecheck (`tsc --noEmit`).
+
+## Testing
+
+Run the CLI tests directly from TypeScript sources:
+
+```bash
+pnpm --filter cli test
 ```
+
+## Behavior Contract (Stability)
+
+- Invalid `HOME_ASSISTANT_TIMEOUT_MS` values fall back to the default (`10000`).
+- Invalid `--timeout <ms>` values fail fast as a usage error.
+- Absolute URLs are rejected; provide an API path like `/api/config`.
+- Errors are written to stderr.
+- Stack traces are only shown when `--debug` or `HOME_ASSISTANT_DEBUG` is enabled.
 
 ## Programmatic TypeScript Usage
 
 ```ts
-import { createClientFromEnv } from 'bin/cli';
+import { createClientFromEnv } from 'cli';
 
 async function main() {
   const client = createClientFromEnv();
@@ -78,7 +102,7 @@ async function main() {
 main().catch(console.error);
 ```
 
-> Note: when used from this repo, resolve the import path according to your build tooling (e.g. with a workspace alias). The public API is exported from `src/index.ts`.
+> Note: this repo is a pnpm workspace; the package name is `cli` and the public API is exported from `src/index.ts`.
 
 ## Endpoint‑Level Examples
 

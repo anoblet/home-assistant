@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  test_link.json: link:../root/.local/share/pnpm/global/5/node_modules/test_link.json
-
 importers:
   .:
     dependencies:
@@ -58,11 +55,8 @@ importers:
         version: 16.6.1
     devDependencies:
       '@types/node':
-        specifier: ^20.0.0
-        version: 20.19.25
-      tsx:
-        specifier: ^4.15.7
-        version: 4.20.6
+        specifier: ^22.19.3
+        version: 22.19.3
       typescript:
         specifier: ^5.6.3
         version: 5.9.3
@@ -604,10 +598,10 @@ packages:
         integrity: sha512-6C8nqWur3j98U6+lXDfTUWIfgvZU+EumvpHKcYjujKH7woYyLj2sUmff0tRhrqM7BohUw7Pz3ZB1jj2gW9Fvmg==,
       }
 
-  '@types/node@20.19.25':
+  '@types/node@22.19.3':
     resolution:
       {
-        integrity: sha512-ZsJzA5thDQMSQO788d7IocwwQbI8B5OPzmqNvpf3NY/+MHDAS759Wo0gd2WQeXYt5AAAQjzcrTVC6SKCuYgoCQ==,
+        integrity: sha512-1N9SBnWYOJTrNZCdh/yJE+t910Y128BoyY+zBLWhL3r0TYzlTmFdXrPwHL9DyFZmlEXNQQolTZh3KHV31QDhyA==,
       }
 
   '@types/trusted-types@2.0.7':
@@ -1872,10 +1866,10 @@ packages:
       }
     engines: { node: '>= 0.6' }
 
-  http-errors@2.0.0:
+  http-errors@2.0.1:
     resolution:
       {
-        integrity: sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ==,
+        integrity: sha512-4FbRdAX+bSdmo4AUFuS0WNiPz8NgFt+r8ThgNWmlrjQjt1Q7ZR9+zTlce2859x4KSXrwIsaeTqDoKQmtP8pLmQ==,
       }
     engines: { node: '>= 0.8' }
 
@@ -2337,12 +2331,12 @@ packages:
       }
     engines: { node: '>= 0.6' }
 
-  mime-types@3.0.1:
+  mime-types@3.0.2:
     resolution:
       {
-        integrity: sha512-xRc4oEhT6eaBpU1XF7AjpOFD+xQmXNB5OVKwp4tqCuBpHLS/ZbBDrc07mYTDqVMg6PfxUjjNp85O6Cd2Z/5HWA==,
+        integrity: sha512-Lbgzdk0h4juoQ9fCKXW4by0UJqj+nOOrI9MJ1sSj4nI8aI2eo1qmvQEie4VD1glsS250n15LsWsYtCugiStS5A==,
       }
-    engines: { node: '>= 0.6' }
+    engines: { node: '>=18' }
 
   mimic-fn@4.0.0:
     resolution:
@@ -2849,10 +2843,10 @@ packages:
     engines: { node: '>=10' }
     hasBin: true
 
-  send@1.2.0:
+  send@1.2.1:
     resolution:
       {
-        integrity: sha512-uaW0WwXKpL9blXE2o0bRhoL2EGXIrZxQ2ZQ4mgcfoBxdFmQold+qWsD2jLrfZ0trjKL6vOw0j//eAwcALFjKSw==,
+        integrity: sha512-1gnZf7DFcoIcajTjTwjwuDjzuz4PPcY2StKPlsGAQ1+YH20IRVrBaXSWmdjowTJ6u8Rc01PoYOGHXfP1mYcZNQ==,
       }
     engines: { node: '>= 18' }
 
@@ -3004,13 +2998,6 @@ packages:
         integrity: sha512-OpZ3zP+jT1PI7I8nemJX4AKmAX070ZkYPVWV/AaKTJl+tXCTGyVdC1a4SL8RUQYEwk/f34ZX8UTykN68FwrqAA==,
       }
     engines: { node: '>= 0.6' }
-
-  statuses@2.0.1:
-    resolution:
-      {
-        integrity: sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==,
-      }
-    engines: { node: '>= 0.8' }
 
   statuses@2.0.2:
     resolution:
@@ -3626,7 +3613,7 @@ snapshots:
 
   '@types/geojson@7946.0.16': {}
 
-  '@types/node@20.19.25':
+  '@types/node@22.19.3':
     dependencies:
       undici-types: 6.21.0
 
@@ -4438,12 +4425,12 @@ snapshots:
       setprototypeof: 1.1.0
       statuses: 1.5.0
 
-  http-errors@2.0.0:
+  http-errors@2.0.1:
     dependencies:
       depd: 2.0.0
       inherits: 2.0.4
       setprototypeof: 1.2.0
-      statuses: 2.0.1
+      statuses: 2.0.2
       toidentifier: 1.0.1
 
   http-parser-js@0.5.10: {}
@@ -4619,7 +4606,7 @@ snapshots:
       object-assign: 4.1.1
       opn: 6.0.0
       proxy-middleware: 0.15.0
-      send: 1.2.0
+      send: 1.2.1
       serve-index: 1.9.1
     transitivePeerDependencies:
       - supports-color
@@ -4716,7 +4703,7 @@ snapshots:
     dependencies:
       mime-db: 1.52.0
 
-  mime-types@3.0.1:
+  mime-types@3.0.2:
     dependencies:
       mime-db: 1.54.0
 
@@ -4978,15 +4965,15 @@ snapshots:
 
   semver@7.7.3: {}
 
-  send@1.2.0:
+  send@1.2.1:
     dependencies:
       debug: 4.4.3
       encodeurl: 2.0.0
       escape-html: 1.0.3
       etag: 1.8.1
       fresh: 2.0.0
-      http-errors: 2.0.0
-      mime-types: 3.0.1
+      http-errors: 2.0.1
+      mime-types: 3.0.2
       ms: 2.1.3
       on-finished: 2.4.1
       range-parser: 1.2.1
@@ -5099,8 +5086,6 @@ snapshots:
       object-copy: 0.1.0
 
   statuses@1.5.0: {}
-
-  statuses@2.0.1: {}
 
   statuses@2.0.2: {}
 
