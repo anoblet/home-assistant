@@ -34,7 +34,13 @@ For a device-by-device capability mapping against the pinned library version, se
 - Config entry setup performs an initial coordinator refresh to avoid "unknown" states on startup.
 - Energy readings (when supported) are refreshed by a separate coordinator on a slower schedule; the first energy refresh is started in the background during setup.
 - Runtime data is scoped by config entry id to keep unload/reload idempotent.
-- Config entry minor version `8` includes entity registry migrations to prevent `unique_id` collisions (firmware update entities are normalized to the `*-firmware` scheme) and to clean up legacy entity_ids created before runtime translations existed (e.g. duplicate `*_problem` / `*_problem_2` binary sensors are renamed to deterministic suffixes).
+- Config entry minor version `7` normalizes firmware update entity `unique_id`s to the `*-firmware` scheme (preventing collisions with primary entities) and fixes legacy binary_sensor unique_id suffixes.
+- Config entry minor version `8` cleans up legacy `binary_sensor` entity_id collisions created before translations existed (e.g. duplicate `*_problem` / `*_problem_2` are renamed to deterministic suffixes).
+
+## Scope decisions
+
+- **Device families**: This custom component tracks the pinned `pyvesync==3.3.3` capability set and intentionally includes device categories that the official Home Assistant `vesync` integration may omit (notably **kitchen devices / air fryers**). The supported surface is audited in [vesync-pyvesync-coverage.md](vesync-pyvesync-coverage.md).
+- **Authentication**: The integration continues to use the Home Assistant config entry username/password flow and calls `VeSync.login()` during setup. Token persistence helpers (if available upstream) are intentionally not used here to avoid introducing new storage behavior or configuration requirements.
 
 ## Services
 
@@ -97,6 +103,11 @@ data:
   - Wait for API to come back: `pnpm home-assistant api info`
   - Reload entities/config: `pnpm reload`
   - Logs (Supervisor): `pnpm home-assistant raw request GET /api/hassio/core/logs --text | grep -i -E "vesync|pyvesync|custom_components\.vesync"`
+
+If fetching logs times out (default request timeout is 10s), increase it via:
+
+- Env var: `HOME_ASSISTANT_TIMEOUT_MS=60000 pnpm home-assistant raw request GET /api/hassio/core/logs --text`
+- CLI flag: `pnpm home-assistant --timeout 60000 raw request GET /api/hassio/core/logs --text`
 
 ### Diagnostics
 

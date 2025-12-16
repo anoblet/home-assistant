@@ -17,14 +17,12 @@ from homeassistant.components.light import (
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.util import color as color_util
 
-from .common import iter_manager_devices
-from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from .entity import VeSyncBaseEntity
+from .platform_setup import async_setup_vesync_platform_entry
 
 _LOGGER = logging.getLogger(__name__)
 MAX_MIREDS = 370  # 1,000,000 divided by 2700 Kelvin = 370 Mireds
@@ -38,19 +36,12 @@ async def async_setup_entry(
 ) -> None:
     """Set up lights."""
 
-    coordinator = hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR]
-
-    @callback
-    def discover(devices: list[VeSyncBaseDevice]) -> None:
-        """Add new devices to platform."""
-        _setup_entities(devices, async_add_entities, coordinator)
-
-    config_entry.async_on_unload(
-        async_dispatcher_connect(hass, VS_DISCOVERY.format(VS_DEVICES), discover)
+    await async_setup_vesync_platform_entry(
+        hass,
+        config_entry,
+        async_add_entities,
+        _setup_entities,
     )
-
-    manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
-    _setup_entities(iter_manager_devices(manager), async_add_entities, coordinator)
 
 
 @callback

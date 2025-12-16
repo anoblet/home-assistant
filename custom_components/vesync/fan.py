@@ -11,19 +11,14 @@ from homeassistant.components.fan import FanEntity, FanEntityFeature
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import HomeAssistantError
-from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.util.percentage import (
     ordered_list_item_to_percentage,
     percentage_to_ordered_list_item,
 )
 
-from .common import is_fan, is_purifier, iter_manager_devices, rgetattr
+from .common import is_fan, is_purifier, rgetattr
 from .const import (
-    DOMAIN,
-    VS_COORDINATOR,
-    VS_DEVICES,
-    VS_DISCOVERY,
     VS_FAN_MODE_ADVANCED_SLEEP,
     VS_FAN_MODE_AUTO,
     VS_FAN_MODE_MANUAL,
@@ -32,10 +27,10 @@ from .const import (
     VS_FAN_MODE_PRESET_LIST_HA,
     VS_FAN_MODE_SLEEP,
     VS_FAN_MODE_TURBO,
-    VS_MANAGER,
 )
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from .entity import VeSyncBaseEntity
+from .platform_setup import async_setup_vesync_platform_entry
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -47,19 +42,12 @@ async def async_setup_entry(
 ) -> None:
     """Set up the VeSync fan platform."""
 
-    coordinator = hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR]
-
-    @callback
-    def discover(devices: list[VeSyncBaseDevice]) -> None:
-        """Add new devices to platform."""
-        _setup_entities(devices, async_add_entities, coordinator)
-
-    config_entry.async_on_unload(
-        async_dispatcher_connect(hass, VS_DISCOVERY.format(VS_DEVICES), discover)
+    await async_setup_vesync_platform_entry(
+        hass,
+        config_entry,
+        async_add_entities,
+        _setup_entities,
     )
-
-    manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
-    _setup_entities(iter_manager_devices(manager), async_add_entities, coordinator)
 
 
 @callback

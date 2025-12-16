@@ -34,7 +34,6 @@ VS_DEVICES = "devices"
 VS_COORDINATOR = "coordinator"
 VS_COORDINATOR_ENERGY = "coordinator_energy"
 VS_MANAGER = "manager"
-VS_LISTENERS = "listeners"
 VS_NUMBERS = "numbers"
 
 VS_HUMIDIFIER_MODE_AUTO = "auto"

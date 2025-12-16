@@ -5,13 +5,11 @@ from pyvesync.base_devices.vesyncbasedevice import VeSyncBaseDevice
 from homeassistant.components.update import UpdateDeviceClass, UpdateEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
-from .common import iter_manager_devices
-from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from .entity import VeSyncBaseEntity
+from .platform_setup import async_setup_vesync_platform_entry
 
 
 async def async_setup_entry(
@@ -20,19 +18,13 @@ async def async_setup_entry(
     async_add_entities: AddConfigEntryEntitiesCallback,
 ) -> None:
     """Set up update entity."""
-    coordinator = hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR]
 
-    @callback
-    def discover(devices: list[VeSyncBaseDevice]) -> None:
-        """Add new devices to platform."""
-        _setup_entities(devices, async_add_entities, coordinator)
-
-    config_entry.async_on_unload(
-        async_dispatcher_connect(hass, VS_DISCOVERY.format(VS_DEVICES), discover)
+    await async_setup_vesync_platform_entry(
+        hass,
+        config_entry,
+        async_add_entities,
+        _setup_entities,
     )
-
-    manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
-    _setup_entities(iter_manager_devices(manager), async_add_entities, coordinator)
 
 
 @callback

@@ -16,13 +16,12 @@ from homeassistant.components.binary_sensor import (
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.const import EntityCategory
-from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
-from .common import is_purifier, iter_manager_devices, rgetattr
-from .const import DOMAIN, VS_COORDINATOR, VS_DEVICES, VS_DISCOVERY, VS_MANAGER
+from .common import is_purifier, rgetattr
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
 from .entity import VeSyncBaseEntity
+from .platform_setup import async_setup_vesync_platform_entry
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -70,19 +69,12 @@ async def async_setup_entry(
 ) -> None:
     """Set up binary_sensor platform."""
 
-    coordinator = hass.data[DOMAIN][config_entry.entry_id][VS_COORDINATOR]
-
-    @callback
-    def discover(devices: list[VeSyncBaseDevice]) -> None:
-        """Add new devices to platform."""
-        _setup_entities(devices, async_add_entities, coordinator)
-
-    config_entry.async_on_unload(
-        async_dispatcher_connect(hass, VS_DISCOVERY.format(VS_DEVICES), discover)
+    await async_setup_vesync_platform_entry(
+        hass,
+        config_entry,
+        async_add_entities,
+        _setup_entities,
     )
-
-    manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
-    _setup_entities(iter_manager_devices(manager), async_add_entities, coordinator)
 
 
 @callback
