@@ -226,6 +226,14 @@ Common concrete implementations in `pyvesync/devices/vesynchumidifier.py` also i
 - `toggle_switch(toggle: bool | None = None) -> bool`
 - Timer helpers (models that support them): `get_timer() -> Timer | None`, `set_timer(duration: int, action: str | None = None) -> bool`, `clear_timer() -> bool`
 
+**Integration note (known library quirk)**
+
+Some humidifier models intermittently trigger a pyvesync-side failure during `get_details()` that includes the message
+`Error processing bypass V2 API response result`. This custom integration applies a narrow patch to:
+
+- Filter that specific pyvesync error log message, and
+- Suppress that specific exception from `get_details()` while re-raising other unexpected exceptions.
+
 **Home Assistant exposure**
 
 - `humidifier` platform: on/off (`toggle_switch`), modes (`set_mode`), target humidity (`set_humidity`).

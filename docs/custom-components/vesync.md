@@ -149,6 +149,7 @@ This integration surfaces the error messages where possible, but cannot always r
 - **Login/auth errors** (e.g., `VeSyncLoginError`, or repeated “invalid credentials” failures)
   - Re-check username/password, and confirm you can sign in via the VeSync mobile app.
   - If you recently changed your password, re-auth/reload the integration to ensure HA is using the new credentials.
+  - Re-auth UX note: the re-auth confirmation form should not show an error banner until after a failed submit.
 
 - **“Invalid response format” / unexpected payloads**
   - This commonly indicates the VeSync cloud returned an unexpected response shape (empty body, HTML, partial JSON, API change, transient outage).
@@ -157,6 +158,11 @@ This integration surfaces the error messages where possible, but cannot always r
     - Restart Home Assistant, then review debug logs for the first occurrence.
     - If it persists, capture redacted logs (no credentials/tokens) and include device model + time window when filing an issue.
   - Because this repo pins `pyvesync==3.3.3`, persistent API-shape changes may require a future pin bump and integration adjustments rather than a local config tweak.
+
+- **Humidifier “bypassV2” noise** (`Error processing bypass V2 API response result`)
+  - Some humidifier models intermittently trigger this pyvesync-side error during detail fetches.
+  - This custom integration filters that specific pyvesync error log message and suppresses that specific exception from `get_details()` to keep logs clean while allowing normal recovery.
+  - If you’re diagnosing humidifier update issues, enable debug logs and look for adjacent `custom_components.vesync` warnings/errors around the same timestamp.
 
 - **Service/entity calls fail but state doesn’t update**
   - Many controls return a boolean plus a `last_response.message` from the cloud API. If an action appears to succeed but the UI doesn’t update, check logs and confirm a coordinator refresh ran (or run `vesync.update_devices` if you recently added devices).

@@ -119,5 +119,5 @@ class VeSyncFlowHandler(ConfigFlow, domain=DOMAIN):
             step_id="reauth_confirm",
             data_schema=DATA_SCHEMA,
             description_placeholders={"name": "VeSync"},
-            errors={"base": "invalid_auth"},
+            errors={},
         )

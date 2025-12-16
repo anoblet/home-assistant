@@ -2,8 +2,6 @@
 
 import logging
 
-from pyvesync.devices.vesynchumidifier import VeSyncHumidifier
-
 _LOGGER = logging.getLogger(__name__)
 
 _PYVESYNC_HUMIDIFIER_LOGGER_NAME = "pyvesync.devices.vesynchumidifier"
@@ -22,10 +20,18 @@ class _BypassV2HumidifierLogFilter(logging.Filter):
 
         return _BYPASS_V2_ERROR_SUBSTR not in message
 
+
 def apply_patches():
     """Apply patches to pyvesync."""
-    _filter_pyvesync_humidifier_logs()
-    _patch_humidifier_get_details()
+    try:
+        _filter_pyvesync_humidifier_logs()
+    except Exception:  # noqa: BLE001
+        _LOGGER.exception("Failed to apply pyvesync log filters")
+
+    try:
+        _patch_humidifier_get_details()
+    except Exception:  # noqa: BLE001
+        _LOGGER.exception("Failed to apply pyvesync patches")
 
 
 def _filter_pyvesync_humidifier_logs() -> None:
@@ -41,16 +47,23 @@ def _filter_pyvesync_humidifier_logs() -> None:
         return
     logger.addFilter(_BypassV2HumidifierLogFilter())
 
-def _patch_humidifier_get_details():
+
+def _patch_humidifier_get_details() -> None:
     """Patch VeSyncHumidifier.get_details to handle specific errors."""
+    try:
+        from pyvesync.devices.vesynchumidifier import VeSyncHumidifier
+    except Exception:  # noqa: BLE001
+        _LOGGER.debug("pyvesync humidifier device class not available; skipping patch")
+        return
+
     if not hasattr(VeSyncHumidifier, "get_details"):
         return
 
     original_get_details = VeSyncHumidifier.get_details
 
-    def patched_get_details(self):
+    def patched_get_details(self, *args, **kwargs):
         try:
-            return original_get_details(self)
+            return original_get_details(self, *args, **kwargs)
         except Exception as err:  # noqa: BLE001
             # Suppress specific error for LUH-A602S-WUS and similar
             if _BYPASS_V2_ERROR_SUBSTR in str(err):
@@ -61,6 +74,5 @@ def _patch_humidifier_get_details():
                     err,
                 )
                 return None
-            else:
             raise
     VeSyncHumidifier.get_details = patched_get_details
