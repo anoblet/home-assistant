@@ -1,73 +1,95 @@
 # Home Assistant Configuration
 
-This repository captures the full Home Assistant setup that powers Andrew Noblet's apartment. It brings together automation packages, custom integrations, Lovelace dashboards, ESPHome device builds, and supporting tooling so the entire smart home can be reproduced, audited, or iterated in source control.
+![Home Assistant](https://img.shields.io/badge/Home%20Assistant-Core-blue?style=for-the-badge&logo=home-assistant)
+![ESPHome](https://img.shields.io/badge/ESPHome-Firmware-black?style=for-the-badge&logo=esphome)
+![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?style=for-the-badge&logo=typescript)
+![Lit](https://img.shields.io/badge/Lit-Components-324FFF?style=for-the-badge&logo=lit)
+![Node.js](https://img.shields.io/badge/Node.js-Tooling-339933?style=for-the-badge&logo=nodedotjs)
 
-## What You Will Find Here
+This repository functions as a **Professional Grade Home Assistant Configuration & AI Development Framework**. It goes beyond a standard smart home setup by integrating a comprehensive AI agent ecosystem, custom hardware firmware, and a sophisticated TypeScript-based frontend architecture.
 
-- Package-driven Home Assistant configuration organised by area, domain, and feature under `packages/`, with IDs that mirror the folder hierarchy for traceability.
-- A large automation catalog (144+ flows) covering presence, lighting, climate, media, appliance control, and safety scenarios, documented in `automation-flowchart.md`.
-- Lovelace dashboards, views, and supporting assets stored under `includes/lovelace/` with per-view directories to keep UI definitions modular.
-- Custom integrations and overrides in `custom_components/` (such as `adaptive_lighting`, `bambu_lab`, `vesync`, `wyzeapi`, and the in-house `spook` utilities) alongside templating helpers in `custom_templates/`.
-- ESPHome firmware definitions for room sensors, cover controllers, air-quality monitors, and utility devices inside `esphome/` so hardware deployments stay in sync with Home Assistant expectations.
-- Tooling to lint, format, document, and bootstrap the configuration via `package.json`, `copilot/`, and the bespoke `hass-cli` commands referenced throughout the instructions.
+It powers a real-world apartment with over **45 automation packages** and **25+ ESPHome devices**, serving as both a production system and a testbed for advanced home automation patterns.
 
 ## Configuration Architecture
 
-- `configuration.yaml` enables `packages: !include_dir_merge_named packages/`, making each package responsible for a small, well-scoped feature set (e.g., `packages/bedroom/light/...`, `packages/living_room/climate/...`).
-- Shared helpers, notifications, and global behaviours live in `packages/common/` and `packages/homeassistant/`, while dashboard registration is handled in `packages/lovelace/`.
-- Automation metadata, entity naming, and YAML style follow the guidelines in `.github/instructions/` and the [`docs/structure-guidelines.md`](./docs/structure-guidelines.md) reference to ensure consistency (two-space indentation, single quotes, ordered keys, descriptive IDs, `snake_case` paths).
-- Secrets, environment-specific values, and integration credentials are kept out of version control via `secrets.yaml` references and `.gitignore` rules.
+The system is architected for modularity, testability, and scale:
+
+- **Split Configuration**: Logic is decentralized into `packages/`, where each directory (e.g., `packages/bedroom/`) contains all relevant entities, automations, and scripts for a specific domain or area. This is merged via `!include_dir_merge_named`.
+- **Hardware-First**: Custom firmware for ESP32/ESP8266 devices lives in `esphome/`, ensuring sensor data (presence, air quality, environmental) is tightly coupled with Home Assistant entities.
+- **Custom Frontend**: The UI is built with **Lit** and **TypeScript** in `www/custom-elements/`, adhering to modern web standards rather than just YAML dashboards.
+- **AI-Driven DevOps**: The repository includes a custom "Copilot" framework for agentic development, automated refactoring, and semantic analysis.
+
+## The Copilot Framework
+
+A unique feature of this repository is the **Copilot Framework**, housed in the `copilot/` directory. This is a dedicated AI development environment that layers intelligent agents over the Home Assistant configuration.
+
+- **Agentic Workflow**: Uses custom AI agents to analyze, refactor, and generate configuration code.
+- **Context Awareness**: Integrates with Model Context Protocol (MCP) servers to understand the full repository state.
+- **Automation**: Scripts for bootstrapping, testing, and verifying system integrity.
+
+For a deep dive into the AI architecture, see the [Copilot Documentation](copilot/README.md).
+
+## Repository Structure
+
+```text
+├── packages/           # Feature bundles (Areas, Domains, Integrations)
+├── esphome/            # Firmware definitions for 25+ devices
+├── copilot/            # AI Tooling, Agents, and Bootstrap scripts
+├── www/
+│   └── custom-elements # Lit-based Typescript UI components
+├── custom_components/  # Custom integrations (Spook, VeSync, etc.)
+└── reports/            # System audits and complexity analysis
+```
+
+## Complexity & Scale
+
+This project is rated **5/5 (Professional Grade)** for complexity. It demonstrates exceptional technical depth but requires significant expertise to maintain.
+
+- **Scale**: 45+ Packages, 25+ ESPHome Devices, 10+ Custom Components.
+- **Stack**: Home Assistant YAML, ESPHome YAML/C++, TypeScript, Lit, Node.js, Python.
+- **Analysis**: See the full [Complexity Report](reports/complexity.md) for architectural insights.
 
 ## Automation Pillars
 
-- **Presence-driven logic** integrates device trackers, LD2410C radar sensors, and PIR motion across rooms to govern lighting, HVAC, and media states when occupants arrive, move, or leave.
-- **Time and sun scheduling** ties adaptive lighting, sleep transitions, and morning routines to sunrise, sunset, weekday/weekend windows, and user-defined timers.
-- **Environment management** monitors particulate matter, CO2, humidity, and temperature sensors to drive humidifiers, air purifiers, fans, and climate group set-points.
-- **Cover and light coordination** keeps blinds aligned with daylight and privacy needs, while adaptive lighting maintains colour temperature and brightness profiles.
-- **Security and safety responses** surface water leaks, door contact changes, and away-mode triggers through targeted notifications and automation resets.
-- **Appliance orchestration** handles vacuum scheduling, background music playback, printer consumable tracking, and other utility tasks.
+- **Presence-driven logic**: Integrates device trackers, LD2410C radar sensors, and PIR motion across rooms.
+- **Environmental management**: Monitors particulate matter, CO2, humidity, and temperature triggers.
+- **Adaptive Lighting**: Coordinates color temperature and brightness with circadian rhythms.
+- **Security & Safety**: Surfaces water leaks, door contacts, and unexpected occupancy.
 
 ## Dashboards and User Experience
 
-- Primary dashboards, including area-focused and task-oriented views, are assembled in `includes/lovelace/dashboards/` and `includes/lovelace/views/`.
-- Legacy `ui-lovelace.yaml` is retained for reference, while active views are modularised for reuse across dashboards.
-- The UI leans on Mushroom cards, adaptive lighting controls, media shortcuts, and status panels aligned with the Home Assistant style guidance captured in `packages/frontend/`.
-
-## Custom and Third-Party Integrations
-
-- The repository bundles several custom components under `custom_components/`, covering device-specific APIs (Bambu Lab printers, VeSync switches, Wyze sensors) and utility layers (`browser_mod`, `climate_group`, `spook_inverse`).
-- Notes for the in-repo VeSync integration (services, logging, feature coverage, and device-targeted controls for thermostats/air fryers) live in [`docs/custom-components/vesync.md`](./docs/custom-components/vesync.md) along with the version-pinned mapping in [`docs/custom-components/vesync-pyvesync-coverage.md`](./docs/custom-components/vesync-pyvesync-coverage.md).
-- HACS-managed resources live under `www/` and are referenced from Lovelace packages to extend the frontend with custom cards.
-- MQTT, InfluxDB, Google Assistant, and other platform integrations are configured through dedicated package files and secret references.
-
-## ESPHome Fleet
-
-- Each ESPHome YAML file in `esphome/` targets a specific room or device, pairing sensors (BME280, SCD30, SEN55, LD2410C) with Wi-Fi boards (ESP32, ESP8266, ESP32-S3) and aligning entity names with Home Assistant packages.
-- Shared packages under `esphome/packages/` standardise logging, sensor calibration, and entity metadata to keep deployments consistent.
-
-## Tooling and Workflow
-
-- `pnpm bootstrap` (via `tsx copilot/bootstrap/index.ts`) prepares local tooling, Git hooks, and auxiliary scripts.
-- Formatting relies on Prettier (`pnpm format`), while `lint-staged` enforces clean YAML, JSON, and JS commits.
-- The custom `hass-cli` (GitHub: `anoblet/hass-cli`) provides commands for state inspection, automation validation, and reload routines, with expectations documented in `.github/instructions/home-assistant.instructions.md`.
-- Wireit tasks (`pnpm git:commit`, `pnpm git:push`) orchestrate commit and push workflows, optionally generating AI-assisted commit messages via GenAIScript.
+- Primary dashboards are assembled in `includes/lovelace/`, referencing modular views.
+- The UI leverages custom Lit components (`www/custom-elements/`) alongside standard cards for a tailored experience.
 
 ## Getting Started
 
-1. Install Home Assistant Core or Supervised on a host with access to the devices defined in this repository.
-2. Clone the repository into your Home Assistant configuration directory (`/config` or equivalent) and ensure `secrets.yaml` contains the required credentials (InfluxDB, external URLs, API keys).
-3. Install Node.js 22.6+ and run `pnpm install` to set up tooling, then execute `pnpm bootstrap` to provision local hooks.
-4. Review the instructions under `.github/instructions/` and `TASKS.md` to understand naming conventions, pending refactors, and required validation steps.
-5. Use Home Assistant's configuration validation, `hass-cli`, or `yamllint` before reloading the configuration; after reloads, inspect `home-assistant.log` for regressions.
-6. Build and flash ESPHome devices from the `esphome/` directory to keep sensor firmware aligned with the expected entities.
+To utilize the tooling and AI features of this repository, you must bootstrap the environment.
 
-## Roadmap and Housekeeping
+**Prerequisites**:
 
-- Active refactors and clean-up tasks are tracked in `TASKS.md`, covering package hierarchy normalisation, Lovelace consolidation, YAML style enforcement, and automation metadata improvements.
-- Pull requests should reference the applicable task checklist, include validation notes, and follow the style requirements documented in `.github/instructions/`.
+- Node.js 22.6+
+- pnpm
 
-For inspiration, troubleshooting tips, and official platform guidance, consult the [Home Assistant documentation](https://www.home-assistant.io/docs/). Keeping configuration as code in this repository ensures every change is reviewable, testable, and reproducible across the smart home estate.
+**Bootstrap**:
 
-## Todo
+1. Clone the repository.
+2. Install dependencies and setup hooks:
+   ```bash
+   pnpm install
+   pnpm bootstrap
+   ```
+3. Establish your `secrets.yaml` (not included in the repo) based on the package references.
 
-- [ ] Custom VeSync component: validate latest fan/humidifier fixes via `pnpm home-assistant services call homeassistant restart -d '{}'` + `pnpm home-assistant raw request GET /api/hassio/core/logs --text`
+**Tooling**:
+
+- **Format**: `pnpm format` (Prettier)
+- **Lint**: `lint-staged` runs automatically on commit.
+- **Reload**: `pnpm reload` to apply configuration changes.
+- **CLI**: Use `pnpm home-assistant` for state inspection and validation.
+
+## Roadmap and Contributing
+
+- **Refactoring**: Ongoing work to normalize package hierarchies and standardize naming.
+- **Style Enforce**: Strict adherence to the guidelines in `.github/instructions/`.
+
+For detailed contribution rules, refer to the [Home Assistant Instructions](.github/instructions/home-assistant.instructions.md).

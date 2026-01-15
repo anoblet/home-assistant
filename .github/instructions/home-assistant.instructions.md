@@ -16,3 +16,8 @@ Use the `flex-card` and `grid-card` to create a responsive layout.
 Avoid using `grep` in the root directory. Instead, use it within specific subdirectories to limit the scope of the search and improve performance.
 
 Use the `pnpm home-assistant` command to run Home Assistant CLI commands. The documentation is located in the `bin/cli` directory.
+
+## Commands
+
+- Use `ha core logs` to view Home Assistant core logs.
+- Use `ha core restart` to restart Home Assistant core.
