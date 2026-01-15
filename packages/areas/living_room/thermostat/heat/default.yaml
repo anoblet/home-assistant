@@ -10,7 +10,7 @@ areas_living_room_thermostat_heat_default:
           seconds: '0'
         # Trigger when bedroom presence is off for 15 minutes
         - platform: state
-          entity_id: binary_sensor.bedroom_presence_presence
+          entity_id: binary_sensor.living_room_ld2410c_presence
           to: 'off'
           for:
             minutes: 15
