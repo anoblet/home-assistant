@@ -17,7 +17,7 @@ areas_living_room_thermostat_heat_default:
       action:
         - service: climate.set_temperature
           target:
-            entity_id: climate.living_room_thermostat
+            entity_id: climate.living_room_thermostat_heat
           data:
             temperature: "{{ states('input_number.living_room_thermostat_heat_default') | float(70) }}"
   input_number:
