@@ -9,6 +9,6 @@ areas_bathroom_contact_on:
       trigger:
         entity_id: binary_sensor.bathroom_door_contact
         for:
-          minutes: 5
+          minutes: 2
         platform: state
         to: 'on'

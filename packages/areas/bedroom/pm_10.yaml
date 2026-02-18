@@ -1,6 +1,7 @@
 areas_bedroom_pm_10:
   automation:
-    alias: 'Notify when PM10 is above 150'
+    alias: 'Bedroom - PM 10'
+    id: bedroom_pm_10
     trigger:
       platform: numeric_state
       entity_id: sensor.bedroom_sen55_pm_10
