@@ -1,1 +1,1 @@
-../../copilot/agents/documentation.agent.md
+../../copilot/.github/agents/documentation.agent.md
