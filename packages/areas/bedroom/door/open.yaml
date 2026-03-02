@@ -1,0 +1,20 @@
+bedroom_door_open:
+  automation:
+    - id: bedroom_door_open_notify_pixel_4_when_away
+      alias: Bedroom door open notify pixel 4 when away
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.bedroom_door_contact
+          from: 'off'
+          to: 'on'
+      condition:
+        - condition: not
+          conditions:
+            - condition: zone
+              entity_id: device_tracker.pixel_4_xl
+              zone: zone.home
+      action:
+        - service: notify.mobile_app_pixel_4_xl
+          data:
+            title: Bedroom Door
+            message: Bedroom door opened while you are away.
