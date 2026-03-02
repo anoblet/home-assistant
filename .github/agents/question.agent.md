@@ -1,0 +1,1 @@
+../../copilot/.github/agents/question.agent.md

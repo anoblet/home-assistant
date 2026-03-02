@@ -1,0 +1,1 @@
+../../copilot/.github/agents/mermaid.agent.md
