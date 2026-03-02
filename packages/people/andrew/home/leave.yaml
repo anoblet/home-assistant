@@ -1,0 +1,13 @@
+andrew_home_leave:
+  automation:
+    action:
+      - data:
+          message: Andrew has left
+        service: notify.mobile_app_pixel_4_xl
+    alias: Andrew - Home - Leave
+    id: andrew_home_leave
+    triggers:
+      - trigger: zone
+        entity_id: person.andrew_noblet
+        zone: zone.home
+        event: leave

@@ -1,0 +1,13 @@
+andrew_home_enter:
+  automation:
+    action:
+      - data:
+          message: Andrew has entered
+        service: notify.mobile_app_pixel_4_xl
+    alias: Andrew - Home - Enter
+    id: andrew_home_enter
+    triggers:
+      - trigger: zone
+        entity_id: person.andrew_noblet
+        zone: zone.home
+        event: enter

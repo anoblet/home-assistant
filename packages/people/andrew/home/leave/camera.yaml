@@ -1,0 +1,13 @@
+andrew_home_leave_camera:
+  automation:
+    actions:
+      - action: switch.turn_on
+        target:
+          entity_id: switch.my_camera_auto_tracking
+    alias: Andrew - Home - Leave - Camera
+    id: andrew_home_leave_camera
+    triggers:
+      - trigger: zone
+        entity_id: person.andrew_noblet
+        zone: zone.home
+        event: leave
