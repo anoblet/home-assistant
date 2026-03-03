@@ -7,4 +7,4 @@ areas_hallway_adaptive_lighting:
       name: Hallway
       sleep_brightness: 75
       sleep_color_temp: 2700
-      sleep_transition: 3600
+      sleep_transition: 120

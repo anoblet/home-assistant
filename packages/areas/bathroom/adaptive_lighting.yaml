@@ -8,4 +8,4 @@ areas_bathroom_adaptive_lighting:
       name: Bathroom
       sleep_brightness: 25
       sleep_color_temp: 2700
-      sleep_transition: 3600
+      sleep_transition: 120
