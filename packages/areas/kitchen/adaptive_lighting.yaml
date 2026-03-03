@@ -6,4 +6,4 @@ areas_kitchen_adaptive_lighting:
       min_color_temp: 3000
       name: Kitchen
       sleep_brightness: 50
-      sleep_transition: 120
+      sleep_transition: 600

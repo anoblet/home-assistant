@@ -8,4 +8,4 @@ areas_living_room_adaptive_lighting:
       min_color_temp: 2750
       name: Living Room
       sleep_brightness: 50
-      sleep_transition: 120
+      sleep_transition: 600
