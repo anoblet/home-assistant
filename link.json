@@ -16,6 +16,9 @@
       ],
       "hooks": [
         "../../copilot/.github/hooks/index.json"
+      ],
+      "skills": [
+        "../../copilot/.github/skills/home-assistant"
       ]
     },
     "../copilot/.github/copilot-instructions.md"
