@@ -3,3 +3,4 @@ domains_zone_home:
     name: Home
     latitude: 41.080228
     longitude: -73.8593
+    radius: 25
