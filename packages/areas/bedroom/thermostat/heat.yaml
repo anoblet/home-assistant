@@ -11,11 +11,3 @@ areas_bedroom_thermostat_heat:
     entity_config:
       climate.bedroom_thermostat_heat:
         expose: true
-  input_number:
-    bedroom_thermostat_heat_default:
-      name: Bedroom Thermostat Heat Default
-      min: 0
-      max: 100
-      mode: box
-      step: 1
-      unit_of_measurement: '°F'

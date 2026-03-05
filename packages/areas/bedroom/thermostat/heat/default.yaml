@@ -1,0 +1,31 @@
+areas_bedroom_thermostat_heat_default:
+  automation:
+    - alias: 'Bedroom - Thermostat - Heat - Default Reset'
+      id: bedroom_thermostat_heat_default_reset
+      mode: single
+      trigger:
+        - platform: time_pattern
+          hours: '*'
+          minutes: '0'
+          seconds: '0'
+        # Trigger when bedroom presence is off for 15 minutes
+        - platform: state
+          entity_id: binary_sensor.bedroom_presence_presence
+          to: 'off'
+          for:
+            minutes: 15
+      action:
+        - service: climate.set_temperature
+          target:
+            entity_id: climate.bedroom_thermostat_heat
+          data:
+            temperature: "{{ states('input_number.bedroom_thermostat_heat_default') | float(70) }}"
+  input_number:
+    bedroom_thermostat_heat_default:
+      name: Bedroom Thermostat Heat Default
+      min: 0
+      max: 100
+      mode: box
+      step: 1
+      unit_of_measurement: '°F'
+      icon: mdi:thermostat
