@@ -45,5 +45,5 @@ cards:
   - type: custom:decluttering-card
     template: media_player_card
     variables:
-      - entity: media_player.bedroom_display
+      - entity: media_player.bedroom_display_2
       - name: 'Display'
