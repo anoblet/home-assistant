@@ -25,14 +25,14 @@ background_music:
         - action: music_assistant.play_media
           data:
             entity_id: media_player.background_group_2 # @todo Fix the group name to ensure proper functionality
-            media_id: 'library://radio/2' # Identifier for the media to be played (e.g., a specific radio station)
+            media_id: 'library://radio/1' # Identifier for the media to be played (e.g., a specific radio station)
   automation:
     - alias: 'Play Background Music on Weekday Mornings'
       id: play_background_music_weekday_mornings
-      description: 'Automatically plays background music every weekday morning at 7:00 AM.'
+      description: 'Automatically plays background music every weekday morning at 8:00 AM.'
       trigger:
         - platform: time
-          at: '10:00:00'
+          at: '08:00:00'
       condition:
         - condition: time
           weekday:
