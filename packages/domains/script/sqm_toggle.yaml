@@ -50,7 +50,7 @@ domains_script_sqm_toggle:
             interval_min_seconds: 300
             interval_max_seconds: 600
             active_window_min_seconds: 60
-            active_window_max_seconds: 120
+            active_window_max_seconds: 300
         - repeat:
             sequence:
               - variables:
