@@ -33,6 +33,7 @@ This repo treats Home Assistant configuration as code. These guidelines exist to
 ## Validation workflow
 
 - After meaningful changes, run `pnpm reload`, then check runtime logs via `pnpm home-assistant raw request GET /api/hassio/core/logs --text`.
+- If you add or edit `shell_command:` entries, restart Home Assistant core before validating service availability; `pnpm reload` alone will not register new or changed shell-command services.
 - `pnpm home-assistant` requires Node.js `>= 22.6.0` (see `bin/cli/README.md`).
 - Follow the additional repo-specific instructions in [.github/instructions/home-assistant.instructions.md](../.github/instructions/home-assistant.instructions.md).
 

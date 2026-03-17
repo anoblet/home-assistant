@@ -16,7 +16,7 @@ background_music:
         # Step 1: Set the volume level for the media player group
         - action: media_player.volume_set
           data:
-            volume_level: 0.2 # Set the volume to 15% for a comfortable background level
+            volume_level: 0.35 # Set the volume to 3% for a comfortable background level
           target:
             entity_id: media_player.background_group_2 # Target media player group for volume adjustment
         - delay:
