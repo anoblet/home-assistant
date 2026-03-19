@@ -11,5 +11,3 @@ andrew_home_leave_sqm:
         entity_id: person.andrew_noblet
         zone: zone.home
         event: leave
-        for:
-          minutes: 5
