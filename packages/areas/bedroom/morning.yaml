@@ -1,4 +1,4 @@
-areas_bedroom_morning:
+bedroom_morning:
   input_datetime:
     bedroom_morning:
       has_time: true

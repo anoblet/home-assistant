@@ -1,4 +1,4 @@
-areas_living_room_thermostat_heat:
+living_room_thermostat_heat:
   climate:
     - cold_tolerance: 0
       heater: switch.living_room_heater

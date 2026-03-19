@@ -1,4 +1,4 @@
-areas_bedroom_thermostat_cool_default:
+bedroom_thermostat_cool_default:
   automation:
     - alias: 'Bedroom - Thermostat - Cool - Default Reset'
       id: bedroom_thermostat_cool_default_reset

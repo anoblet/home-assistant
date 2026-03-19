@@ -1,4 +1,4 @@
-domains_update_automatic:
+update_automatic:
   automation:
     action:
       - data:

@@ -1,4 +1,4 @@
-areas_bedroom_media_player_tv_off:
+bedroom_media_player_tv_off:
   automation:
     - action:
         # Turn on the automatic blinds

@@ -1,4 +1,4 @@
-domains_script_vacuum_storage_room:
+script_vacuum_storage_room:
   google_assistant:
     entity_config:
       script.vacuum_storage_room:

@@ -1,4 +1,4 @@
-areas_bedroom_presence_calibrate_still_mean:
+bedroom_presence_calibrate_still_mean:
   script:
     bedroom_presence_calibrate_still_mean:
       sequence:

@@ -1,4 +1,4 @@
-areas_kitchen_presence_calibrate_still_median:
+kitchen_presence_calibrate_still_median:
   script:
     kitchen_ld2410c_calibrate_still_median:
       sequence:

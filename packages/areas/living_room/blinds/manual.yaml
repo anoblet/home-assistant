@@ -1,4 +1,4 @@
-areas_living_room_blinds_manual:
+living_room_blinds_manual:
   automation:
     - action:
         - data:

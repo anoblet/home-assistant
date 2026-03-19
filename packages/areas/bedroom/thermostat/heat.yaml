@@ -1,4 +1,4 @@
-areas_bedroom_thermostat_heat:
+bedroom_thermostat_heat:
   climate:
     - cold_tolerance: 0
       heater: switch.bedroom_heater_switch

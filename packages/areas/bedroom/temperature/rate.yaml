@@ -1,4 +1,4 @@
-areas_bedroom_temperature_rate:
+bedroom_temperature_rate:
   sensor:
     - platform: derivative
       source: sensor.bedroom_temperature

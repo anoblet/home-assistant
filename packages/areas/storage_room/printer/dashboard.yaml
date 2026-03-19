@@ -1,4 +1,4 @@
-areas_storage_room_printer_dashboard:
+storage_room_printer_dashboard:
   lovelace:
     dashboards:
       storage-room-printer-dashboard:

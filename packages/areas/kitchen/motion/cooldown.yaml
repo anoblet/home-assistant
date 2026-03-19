@@ -1,4 +1,4 @@
-areas_kitchen_motion_cooldown:
+kitchen_motion_cooldown:
   input_number:
     kitchen_motion_cooldown:
       max: 60

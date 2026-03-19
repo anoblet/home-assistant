@@ -1,4 +1,4 @@
-areas_living_room_blinds_sunrise:
+living_room_blinds_sunrise:
   automation:
     - action:
         - choose:

@@ -1,4 +1,4 @@
-domains_intent_script_vacuum_battery:
+intent_script_vacuum_battery:
   intent_script:
     VacuumBattery:
       speech:

@@ -1,5 +1,5 @@
 ---
-areas_storage_room_water_leak_detected:
+storage_room_water_leak_detected:
   automation:
     - action:
         - data:

@@ -1,4 +1,4 @@
-areas_living_room_presence_gate_still:
+living_room_presence_gate_still:
   automation:
     - alias: 'Living Room Presence Still Gate'
       mode: single

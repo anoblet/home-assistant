@@ -1,4 +1,4 @@
-areas_living_room_tv_on:
+living_room_tv_on:
   automation:
     - action:
         # Set the ceiling light to 25%

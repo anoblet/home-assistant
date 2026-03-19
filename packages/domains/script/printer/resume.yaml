@@ -1,4 +1,4 @@
-domains_script_printer_resume:
+script_printer_resume:
   google_assistant:
     entity_config:
       script.printer_resume:

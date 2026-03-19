@@ -1,4 +1,4 @@
-areas_bathroom_google_assistant_entity_config:
+bathroom_google_assistant_entity_config:
   google_assistant:
     entity_config:
       binary_sensor.bathroom_door_contact:

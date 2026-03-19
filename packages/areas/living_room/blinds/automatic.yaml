@@ -1,4 +1,4 @@
-areas_living_room_blinds_automatic:
+living_room_blinds_automatic:
   google_assistant:
     entity_config:
       input_boolean.living_room_blinds_automatic:

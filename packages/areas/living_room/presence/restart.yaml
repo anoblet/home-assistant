@@ -1,4 +1,4 @@
-areas_living_room_presence_restart:
+living_room_presence_restart:
   automation:
     - alias: 'Living Room Presence Sensor - Daily Restart'
       id: living_room_presence_restart

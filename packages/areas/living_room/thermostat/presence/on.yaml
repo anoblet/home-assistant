@@ -1,4 +1,4 @@
-areas_living_room_thermostat_presence_on:
+living_room_thermostat_presence_on:
   input_number:
     living_room_thermostat_presence_on:
       name: Living Room Thermostat Presence On

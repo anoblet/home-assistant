@@ -1,4 +1,4 @@
-areas_living_room_blinds_one:
+living_room_blinds_one:
   automation:
     - action:
         - condition: state

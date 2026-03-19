@@ -1,4 +1,4 @@
-areas_kitchen_coffee_pot:
+kitchen_coffee_pot:
   automation:
     - action:
         - entity_id: switch.kitchen_coffee_pot

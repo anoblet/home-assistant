@@ -1,4 +1,4 @@
-areas_bathroom_motion_detected:
+bathroom_motion_detected:
   automation:
     - action:
         - data:

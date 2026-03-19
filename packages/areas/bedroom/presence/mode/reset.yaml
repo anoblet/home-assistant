@@ -1,4 +1,4 @@
-areas_bedroom_presence_mode_reset:
+bedroom_presence_mode_reset:
   automation:
     - action:
         action: select.select_option

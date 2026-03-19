@@ -1,4 +1,4 @@
-areas_storage_room_lights:
+storage_room_lights:
   light:
     - platform: group
       name: 'Storage Room Lights'

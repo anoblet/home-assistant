@@ -1,4 +1,4 @@
-areas_kitchen_light_transition_on:
+kitchen_light_transition_on:
   input_number:
     kitchen_light_transition_on:
       max: 60

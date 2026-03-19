@@ -1,4 +1,4 @@
-domains_lovelace_resources:
+lovelace_resources:
   lovelace:
     resources:
       - type: module

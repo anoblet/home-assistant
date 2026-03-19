@@ -1,4 +1,4 @@
-areas_bedroom_sunset:
+bedroom_sunset:
   automation:
     - action:
         - service: light.turn_off

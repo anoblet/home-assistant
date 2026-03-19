@@ -1,4 +1,4 @@
-areas_bedroom_display_off:
+bedroom_display_off:
   automation:
     - action:
         - service: camera.play_stream

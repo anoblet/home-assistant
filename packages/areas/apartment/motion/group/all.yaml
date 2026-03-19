@@ -1,4 +1,4 @@
-areas_apartment_motion_group_all:
+apartment_motion_group_all:
   group:
     motion_all:
       all: true

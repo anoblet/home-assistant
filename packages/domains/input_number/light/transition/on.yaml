@@ -1,4 +1,4 @@
-domains_input_number_light_transition_on:
+input_number_light_transition_on:
   input_number:
     light_transition_on:
       max: 60

@@ -1,4 +1,4 @@
-areas_living_room_thermostat_heat_default:
+living_room_thermostat_heat_default:
   automation:
     - alias: 'Living Room - Thermostat - Heat - Default Reset'
       id: living_room_thermostat_heat_default_reset

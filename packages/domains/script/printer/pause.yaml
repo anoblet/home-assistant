@@ -1,4 +1,4 @@
-domains_script_printer_pause:
+script_printer_pause:
   google_assistant:
     entity_config:
       script.printer_pause:

@@ -1,4 +1,4 @@
-areas_living_room_light_manual:
+living_room_light_manual:
   automation:
     - action:
         - delay: 5

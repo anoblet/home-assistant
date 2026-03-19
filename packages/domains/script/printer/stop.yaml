@@ -1,4 +1,4 @@
-domains_script_printer_stop:
+script_printer_stop:
   google_assistant:
     entity_config:
       script.printer_stop:

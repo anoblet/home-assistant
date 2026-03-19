@@ -1,4 +1,4 @@
-areas_kitchen_freezer:
+kitchen_freezer:
   automation:
     - alias: 'Kitchen Freezer Door Reminder'
       id: 'kitchen/freezer'

@@ -1,4 +1,4 @@
-domains_zone_tarrytown:
+zone_tarrytown:
   zone:
     name: Tarrytown
     latitude: 41.080228

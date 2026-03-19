@@ -1,4 +1,4 @@
-areas_bathroom_motion_cleared:
+bathroom_motion_cleared:
   automation:
     action:
       - data_template:

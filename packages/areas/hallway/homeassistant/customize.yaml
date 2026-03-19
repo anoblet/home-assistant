@@ -1,4 +1,4 @@
-areas_hallway_homeassistant_customize:
+hallway_homeassistant_customize:
   homeassistant:
     customize:
       light.hallway_light_group_zigbee:

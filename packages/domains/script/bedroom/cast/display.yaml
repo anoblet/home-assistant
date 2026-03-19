@@ -1,4 +1,4 @@
-domains_script_bedroom_cast_display:
+script_bedroom_cast_display:
   script:
     bedroom_cast_display:
       sequence:

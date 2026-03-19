@@ -1,4 +1,4 @@
-areas_living_room_presence_statistics_move_max:
+living_room_presence_statistics_move_max:
   sensor:
     - platform: statistics
       name: 'Living Room LD2410C G0 Move Energy Max'

@@ -1,4 +1,4 @@
-domains_lovelace_dashboards_dashboard:
+lovelace_dashboards_dashboard:
   lovelace:
     dashboards:
       dashboard-default:

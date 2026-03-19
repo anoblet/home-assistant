@@ -1,4 +1,4 @@
-domains_adaptive_lighting_reset:
+adaptive_lighting_reset:
   automation:
     action:
       - delay: '01:00:00'

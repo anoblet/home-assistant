@@ -1,4 +1,4 @@
-areas_bedroom_presence_on_ceiling_fan:
+bedroom_presence_on_ceiling_fan:
   automation:
     action:
       - service: switch.turn_off

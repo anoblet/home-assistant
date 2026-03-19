@@ -1,4 +1,4 @@
-domains_lovelace_dashboards_vacuum:
+lovelace_dashboards_vacuum:
   lovelace:
     dashboards:
       dashboard-vacuum:

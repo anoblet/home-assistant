@@ -1,4 +1,4 @@
-areas_storage_room_printer_two_time_remaining:
+storage_room_printer_two_time_remaining:
   google_assistant:
     entity_config:
       script.storage_room_printer_time_remaining:

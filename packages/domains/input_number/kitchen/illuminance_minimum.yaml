@@ -1,4 +1,4 @@
-domains_input_number_kitchen_illuminance_minimum:
+input_number_kitchen_illuminance_minimum:
   input_number:
     kitchen_illuminance_minimum:
       min: 0

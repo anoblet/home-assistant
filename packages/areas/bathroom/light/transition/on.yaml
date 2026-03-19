@@ -1,4 +1,4 @@
-areas_bathroom_light_transition_on:
+bathroom_light_transition_on:
   input_number:
     bathroom_light_transition_on:
       max: 60

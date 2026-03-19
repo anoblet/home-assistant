@@ -1,4 +1,4 @@
-domains_script_vacuum_stop:
+script_vacuum_stop:
   google_assistant:
     entity_config:
       script.vacuum_stop:

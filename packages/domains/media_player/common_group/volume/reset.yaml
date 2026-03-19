@@ -1,4 +1,4 @@
-domains_media_player_common_group_volume_reset:
+media_player_common_group_volume_reset:
   automation:
     action:
       - data:

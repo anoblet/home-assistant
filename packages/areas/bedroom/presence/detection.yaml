@@ -1,5 +1,5 @@
 # Relies on packages/common/presence/detection.yaml for the shared helper.
-areas_bedroom_presence_detection:
+bedroom_presence_detection:
   google_assistant:
     entity_config:
       input_boolean.bedroom_presence_detection:

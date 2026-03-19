@@ -1,4 +1,4 @@
-areas_bedroom_blinds_sunset:
+bedroom_blinds_sunset:
   automation:
     - action:
         - service: cover.set_cover_position

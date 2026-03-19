@@ -1,4 +1,4 @@
-areas_bathroom_motion_cooldown:
+bathroom_motion_cooldown:
   input_number:
     bathroom_motion_cooldown:
       max: 60

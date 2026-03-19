@@ -1,4 +1,4 @@
-domains_script_vacuum_hallway:
+script_vacuum_hallway:
   google_assistant:
     entity_config:
       script.vacuum_hallway:

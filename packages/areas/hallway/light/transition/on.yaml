@@ -1,4 +1,4 @@
-areas_hallway_light_transition_on:
+hallway_light_transition_on:
   input_number:
     hallway_light_transition_on:
       max: 60

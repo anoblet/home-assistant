@@ -1,4 +1,4 @@
-areas_apartment_motion_sunset:
+apartment_motion_sunset:
   automation:
     action:
       - service: input_boolean.turn_off

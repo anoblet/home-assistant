@@ -1,4 +1,4 @@
-areas_hallway_adaptive_lighting:
+hallway_adaptive_lighting:
   adaptive_lighting:
     - lights: light.hallway_light_group_zigbee
       max_color_temp: 4000

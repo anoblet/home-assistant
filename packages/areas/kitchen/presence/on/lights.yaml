@@ -1,4 +1,4 @@
-areas_kitchen_presence_on_lights:
+kitchen_presence_on_lights:
   automation:
     action:
       - service: light.turn_on

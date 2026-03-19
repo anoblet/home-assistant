@@ -1,4 +1,4 @@
-areas_bedroom_display_sunrise:
+bedroom_display_sunrise:
   automation:
     action:
       data:

@@ -1,4 +1,4 @@
-domains_lovelace_dashboards_tasks:
+lovelace_dashboards_tasks:
   lovelace:
     dashboards:
       dashboard-tasks:

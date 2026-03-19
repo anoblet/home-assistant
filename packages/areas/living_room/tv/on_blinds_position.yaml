@@ -1,4 +1,4 @@
-areas_living_room_tv_on_blinds_position:
+living_room_tv_on_blinds_position:
   input_number:
     living_room_tv_on_blinds_position:
       icon: mdi:blinds

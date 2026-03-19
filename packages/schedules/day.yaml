@@ -1,4 +1,4 @@
-schedules_day:
+schedule_day:
   schedule:
     day:
       name: 'Day'

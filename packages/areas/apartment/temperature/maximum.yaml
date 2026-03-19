@@ -1,4 +1,4 @@
-areas_apartment_temperature_maximum:
+apartment_temperature_maximum:
   input_number:
     apartment_temperature_maximum:
       max: 100

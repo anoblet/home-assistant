@@ -1,4 +1,4 @@
-domains_adaptive_lighting_sleep_mode_on_weekend:
+adaptive_lighting_sleep_mode_on_weekend:
   automation:
     - action:
         - service: switch.turn_on

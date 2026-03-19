@@ -1,4 +1,4 @@
-domains_script_bedroom_air_conditioner_temperature_up:
+script_bedroom_air_conditioner_temperature_up:
   google_assistant:
     entity_config:
       script.bedroom_air_conditioner_temperature_up:

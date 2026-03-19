@@ -1,4 +1,4 @@
-domains_zone_home_enter:
+zone_home_enter:
   automation:
     action:
       - choose:

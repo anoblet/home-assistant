@@ -1,4 +1,4 @@
-areas_bathroom_light_manual:
+bathroom_light_manual:
   automation:
     action:
       - delay: 5

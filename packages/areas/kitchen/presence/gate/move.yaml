@@ -1,4 +1,4 @@
-areas_kitchen_presence_gate_move:
+kitchen_presence_gate_move:
   automation:
     - alias: 'Kitchen Presence Move Gate'
       mode: single

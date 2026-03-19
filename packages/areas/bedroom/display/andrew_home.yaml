@@ -1,4 +1,4 @@
-areas_bedroom_display_andrew_home:
+bedroom_display_andrew_home:
   automation:
     - alias: 'Bedroom Display - Play Music When Andrew Returns Home'
       description: 'Plays TuneIn radio station when Andrew enters the home zone'

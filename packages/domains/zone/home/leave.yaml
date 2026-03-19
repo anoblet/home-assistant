@@ -1,4 +1,4 @@
-domains_zone_home_leave:
+zone_home_leave:
   automation:
     action:
       - choose:

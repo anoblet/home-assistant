@@ -1,4 +1,4 @@
-areas_living_room_presence_off_gate:
+living_room_presence_off_gate:
   automation:
     action:
       - service: input_number.set_value

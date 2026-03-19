@@ -1,4 +1,4 @@
-areas_bedroom_presence_on_lights:
+bedroom_presence_on_lights:
   automation:
     action:
       - service: light.turn_on

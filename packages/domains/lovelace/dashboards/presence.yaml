@@ -1,4 +1,4 @@
-domains_lovelace_dashboards_presence:
+lovelace_dashboards_presence:
   lovelace:
     dashboards:
       dashboard-presence:

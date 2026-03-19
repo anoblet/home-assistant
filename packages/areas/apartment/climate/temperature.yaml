@@ -1,4 +1,4 @@
-areas_apartment_climate_temperature:
+apartment_climate_temperature:
   sensor:
     - entity_ids:
         - sensor.bedroom_climate_temperature

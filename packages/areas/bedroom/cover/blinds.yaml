@@ -1,5 +1,5 @@
 # Package path: bedroom/cover/blinds
-areas_bedroom_cover_blinds:
+bedroom_cover_blinds:
   cover:
     - entities:
         - cover.bedroom_blind_one

@@ -1,4 +1,4 @@
-areas_storage_room_printer_pause:
+storage_room_printer_pause:
   automation:
     actions:
       # Notify when the printer is paused

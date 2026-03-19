@@ -1,4 +1,4 @@
-areas_hallway_motion_cooldown:
+hallway_motion_cooldown:
   input_number:
     hallway_motion_cooldown:
       max: 60

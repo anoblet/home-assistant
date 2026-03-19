@@ -1,4 +1,4 @@
-domains_cover_calibrate:
+cover_calibrate:
   automation:
     # Calibrate the blinds
     - action:

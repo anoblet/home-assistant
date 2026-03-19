@@ -1,4 +1,4 @@
-areas_living_room_humidifier_virtual:
+living_room_humidifier_virtual:
   generic_hygrostat:
     - dry_tolerance: 1
       name: Living Room Humidifier Virtual

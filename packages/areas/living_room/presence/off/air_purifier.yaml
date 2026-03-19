@@ -1,4 +1,4 @@
-areas_living_room_presence_off_air_purifier:
+living_room_presence_off_air_purifier:
   automation:
     action:
       - data:

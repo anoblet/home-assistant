@@ -1,4 +1,4 @@
-areas_storage_room_adaptive_lighting:
+storage_room_adaptive_lighting:
   adaptive_lighting:
     - lights:
         - light.storage_room_ceiling

@@ -1,4 +1,4 @@
-areas_bedroom_presence_off_lights:
+bedroom_presence_off_lights:
   automation:
     action:
       - action: light.turn_off

@@ -1,4 +1,4 @@
-domains_adaptive_lighting_sleep_mode_common:
+adaptive_lighting_sleep_mode_common:
   switch:
     - platform: group
       all: true

@@ -1,4 +1,4 @@
-areas_storage_room_printer_two_on:
+storage_room_printer_two_on:
   automation:
     action:
       - service: light.turn_on

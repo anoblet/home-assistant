@@ -1,4 +1,4 @@
-domains_domains_script_sqm_toggle:
+domains_script_sqm_toggle:
   automation:
     - alias: SQM Toggle Start Loop
       id: domains_script_sqm_toggle_start_loop

@@ -1,4 +1,4 @@
-domains_zone_ctown_enter:
+zone_ctown_enter:
   automation:
     - alias: 'Zone - CTown - Enter'
       id: zone_ctown_enter

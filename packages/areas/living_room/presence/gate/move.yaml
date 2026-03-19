@@ -1,4 +1,4 @@
-areas_living_room_presence_gate_move:
+living_room_presence_gate_move:
   automation:
     - alias: 'Living Room Presence Move Gate'
       mode: single

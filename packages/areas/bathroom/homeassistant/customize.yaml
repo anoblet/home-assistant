@@ -1,4 +1,4 @@
-areas_bathroom_homeassistant_customize:
+bathroom_homeassistant_customize:
   homeassistant:
     customize:
       light.bathroom_light_group_zigbee:

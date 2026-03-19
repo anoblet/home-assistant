@@ -1,4 +1,4 @@
-areas_kitchen_light_manual:
+kitchen_light_manual:
   automation:
     action:
       - delay: 5

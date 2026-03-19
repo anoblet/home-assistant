@@ -1,4 +1,4 @@
-domains_light_common:
+light_common:
   automation:
     - action:
         # Turn on the common light at sunset

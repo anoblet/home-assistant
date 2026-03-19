@@ -1,4 +1,4 @@
-domains_script_bedroom_air_conditioner_on:
+script_bedroom_air_conditioner_on:
   script:
     bedroom_air_conditioner_on:
       alias: Bedroom - Air Conditioner - On

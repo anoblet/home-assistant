@@ -1,4 +1,4 @@
-domains_zone_home:
+zone_home:
   zone:
     name: Home
     latitude: 41.080228

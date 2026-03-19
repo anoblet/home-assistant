@@ -1,4 +1,4 @@
-domains_light_living_room_ceiling_light_group_zigbee:
+light_living_room_ceiling_light_group_zigbee:
   google_assistant:
     entity_config:
       light.living_room_ceiling_light_group_zigbee:

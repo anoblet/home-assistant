@@ -1,4 +1,4 @@
-domains_homeassistant_customize:
+homeassistant_customize:
   homeassistant:
     customize:
       binary_sensor.bathroom_door_contact:

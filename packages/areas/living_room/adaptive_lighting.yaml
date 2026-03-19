@@ -1,4 +1,4 @@
-areas_living_room_adaptive_lighting:
+living_room_adaptive_lighting:
   adaptive_lighting:
     - lights:
         - light.living_room_ceiling_light_group_zigbee

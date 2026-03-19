@@ -1,4 +1,4 @@
-areas_living_room_thermostat_presence_off:
+living_room_thermostat_presence_off:
   input_number:
     living_room_thermostat_presence_off:
       name: Living Room Thermostat Presence Off

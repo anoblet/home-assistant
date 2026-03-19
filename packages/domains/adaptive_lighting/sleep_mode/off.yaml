@@ -1,4 +1,4 @@
-domains_adaptive_lighting_sleep_mode_off:
+adaptive_lighting_sleep_mode_off:
   automation:
     - action:
         - service: switch.turn_off

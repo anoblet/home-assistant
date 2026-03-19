@@ -1,4 +1,4 @@
-areas_hallway_light_reset:
+hallway_light_reset:
   automation:
     action:
       - data:

@@ -1,4 +1,4 @@
-domains_media_player_volume_group:
+media_player_volume_group:
   google_assistant:
     entity_config:
       media_player.volume_group:

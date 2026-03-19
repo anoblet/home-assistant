@@ -1,4 +1,4 @@
-areas_living_room_christmas_tree:
+living_room_christmas_tree:
   automation:
     - action:
         - service: switch.turn_off

@@ -1,4 +1,4 @@
-areas_bedroom_blinds_one:
+bedroom_blinds_one:
   automation:
     - action:
         - condition: state

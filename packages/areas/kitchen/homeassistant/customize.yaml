@@ -1,4 +1,4 @@
-areas_kitchen_homeassistant_customize:
+kitchen_homeassistant_customize:
   homeassistant:
     customize:
       light.kitchen_light_group_zigbee:

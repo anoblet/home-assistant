@@ -1,4 +1,4 @@
-areas_bedroom_climate_google_assistant:
+bedroom_climate_google_assistant:
   google_assistant:
     entity_config:
       sensor.bedroom_humidity:

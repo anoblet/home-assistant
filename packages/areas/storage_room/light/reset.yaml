@@ -1,4 +1,4 @@
-areas_storage_room_light_reset:
+storage_room_light_reset:
   automation:
     action:
       - data:

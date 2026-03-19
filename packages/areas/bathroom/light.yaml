@@ -1,4 +1,4 @@
-areas_bathroom_light:
+bathroom_light:
   automation:
     - action:
         - condition: state

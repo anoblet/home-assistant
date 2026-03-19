@@ -1,4 +1,4 @@
-areas_storage_room_printer_two_off:
+storage_room_printer_two_off:
   automation:
     action:
       - alias: 'Wait for the bed temperature to go below 40'

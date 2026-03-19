@@ -1,4 +1,4 @@
-areas_apartment_occupancy:
+apartment_occupancy:
   template:
     - binary_sensor:
         - name: 'Apartment - Occupancy'

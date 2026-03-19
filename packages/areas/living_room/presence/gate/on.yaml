@@ -1,4 +1,4 @@
-areas_living_room_presence_gate_on:
+living_room_presence_gate_on:
   input_number:
     living_room_ld2410c_last_on_gate:
       max: 8

@@ -1,4 +1,4 @@
-domains_lovelace_dashboards_bedroom_display:
+lovelace_dashboards_bedroom_display:
   lovelace:
     dashboards:
       bedroom-display:

@@ -1,4 +1,4 @@
-areas_bedroom_intent_script_climate:
+bedroom_intent_script_climate:
   intent_script:
     ClimateBedroom:
       speech:

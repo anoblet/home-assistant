@@ -1,4 +1,4 @@
-areas_kitchen_presence_statistics_still_mean:
+kitchen_presence_statistics_still_mean:
   sensor:
     - platform: statistics
       name: 'Kitchen LD2410C G0 Move Energy Mean'

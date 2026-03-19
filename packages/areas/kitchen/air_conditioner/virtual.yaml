@@ -1,4 +1,4 @@
-areas_kitchen_air_conditioner_virtual:
+kitchen_air_conditioner_virtual:
   switch:
     - platform: template
       switches:

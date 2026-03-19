@@ -1,4 +1,4 @@
-areas_bedroom_light_lamp_group:
+bedroom_light_lamp_group:
   homeassistant:
     customize:
       light.bedroom_lamp_group_zigbee:

@@ -1,4 +1,4 @@
-areas_storage_room_printer_finish:
+storage_room_printer_finish:
   automation:
     action:
       - service: fan.set_preset_mode

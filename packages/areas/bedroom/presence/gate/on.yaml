@@ -1,4 +1,4 @@
-areas_bedroom_presence_gate_on:
+bedroom_presence_gate_on:
   input_number:
     bedroom_presence_last_on_gate:
       max: 13

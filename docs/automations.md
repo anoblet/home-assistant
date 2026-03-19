@@ -290,30 +290,30 @@ flowchart TD
     Category -->|common| CommonPath[common/{feature}/...]
 
     AreaPath --> AreaDepth{Depth Level?}
-    AreaDepth -->|2 levels| AreaSimple["areas_{area}_{feature}"]
-    AreaSimple --> AreaEx1["areas/bedroom/bedtime.yaml<br/>→ areas_bedroom_bedtime:"]
+    AreaDepth -->|2 levels| AreaSimple["{area}_{feature}"]
+    AreaSimple --> AreaEx1["areas/bedroom/bedtime.yaml<br/>→ bedroom_bedtime:"]
 
-    AreaDepth -->|3+ levels| AreaNested["areas_{area}_{sub1}_{sub2}..."]
-    AreaNested --> AreaEx2["areas/living_room/tv/on.yaml<br/>→ areas_living_room_tv_on:"]
+    AreaDepth -->|3+ levels| AreaNested["{area}_{sub1}_{sub2}..."]
+    AreaNested --> AreaEx2["areas/living_room/tv/on.yaml<br/>→ living_room_tv_on:"]
 
-    AreaDepth -->|automation subdir| AreaAuto["areas_{area}_automation_{type}"]
-    AreaAuto --> AreaEx3["areas/bedroom/automation/pm_10.yaml<br/>→ areas_bedroom_automation_pm_10:"]
+    AreaDepth -->|automation subdir| AreaAuto["{area}_automation_{type}"]
+    AreaAuto --> AreaEx3["areas/bedroom/automation/pm_10.yaml<br/>→ bedroom_automation_pm_10:"]
 
     DomainPath --> DomainDepth{Depth Level?}
-    DomainDepth -->|2 levels| DomainSimple["domains_{domain}_{feature}"]
-    DomainSimple --> DomainEx1["domains/zone/home.yaml<br/>→ domains_zone_home:"]
+    DomainDepth -->|2 levels| DomainSimple["{domain}_{feature}"]
+    DomainSimple --> DomainEx1["domains/zone/home.yaml<br/>→ zone_home:"]
 
-    DomainDepth -->|3 levels| DomainNested["domains_{domain}_{sub1}_{sub2}"]
-    DomainNested --> DomainEx2["domains/zone/home/enter.yaml<br/>→ domains_zone_home_enter:"]
+    DomainDepth -->|3 levels| DomainNested["{domain}_{sub1}_{sub2}"]
+    DomainNested --> DomainEx2["domains/zone/home/enter.yaml<br/>→ zone_home_enter:"]
 
-    DomainDepth -->|4+ levels| DomainDeep["domains_{domain}_{sub1}_{sub2}_{sub3}..."]
-    DomainDeep --> DomainEx3["domains/adaptive_lighting/sleep_mode/on/weekday.yaml<br/>→ domains_adaptive_lighting_sleep_mode_on_weekday:"]
+    DomainDepth -->|4+ levels| DomainDeep["{domain}_{sub1}_{sub2}_{sub3}..."]
+    DomainDeep --> DomainEx3["domains/adaptive_lighting/sleep_mode/on/weekday.yaml<br/>→ adaptive_lighting_sleep_mode_on_weekday:"]
 
     ReminderPath --> ReminderPattern["reminders_{name}"]
     ReminderPattern --> ReminderEx["reminders/brush_teeth.yaml<br/>→ reminders_brush_teeth:"]
 
-    SchedulePath --> SchedulePattern["schedules_{name}"]
-    SchedulePattern --> ScheduleEx["schedules/day.yaml<br/>→ schedules_day:"]
+    SchedulePath --> SchedulePattern["schedule_{name}"]
+    SchedulePattern --> ScheduleEx["schedules/day.yaml<br/>→ schedule_day:"]
 
     CommonPath --> CommonPattern["common_{feature}_{sub}..."]
     CommonPattern --> CommonEx["common/presence/off/thermostat.yaml<br/>→ common_presence_off_thermostat:"]
@@ -332,7 +332,7 @@ flowchart TD
     Rule --> R1["1. Replace '/' with '_'"]
     R1 --> R2["2. Remove file extension"]
     R2 --> R3["3. Join path segments with '_'"]
-    R3 --> R4["4. Prefix with category for subdirs"]
+    R3 --> R4["4. Apply the category-specific root rule"]
     R4 --> End([Package Name])
 
     style Start fill:#161b22,stroke:#30363d,color:#e6edf3
@@ -354,27 +354,30 @@ flowchart TD
    - `packages/morning.yaml` → `morning:`
 
 2. **Nested packages**: Join path segments with underscores
-   - `packages/areas/bedroom/bedtime.yaml` → `areas_bedroom_bedtime:`
+
+- `packages/areas/bedroom/bedtime.yaml` → `bedroom_bedtime:`
 
 3. **Use snake_case**: All package names, IDs, and entity IDs use snake_case
    - Consistent with Home Assistant conventions
    - Easy to read and maintain
 
-4. **Descriptive hierarchy**: Names reflect the organizational structure
-   - Area-based: `areas_bedroom_automation_pm_10`
-   - Domain-based: `domains_adaptive_lighting_sleep_mode_on_weekday`
-   - Reminder-based: `reminders_brush_teeth`
+4. **Category-specific roots**: Areas and domains drop their leading category segment, while schedules use the singular `schedule_`
+
+- Area-based: `bedroom_automation_pm_10`
+- Domain-based: `adaptive_lighting_sleep_mode_on_weekday`
+- Schedule-based: `schedule_day`
+- Reminder-based: `reminders_brush_teeth`
 
 ### Naming Examples
 
-| File Path                                                       | Package Name                                       |
-| --------------------------------------------------------------- | -------------------------------------------------- |
-| `packages/morning.yaml`                                         | `morning:`                                         |
-| `packages/areas/bedroom/bedtime.yaml`                           | `areas_bedroom_bedtime:`                           |
-| `packages/areas/bedroom/automation/pm_10.yaml`                  | `areas_bedroom_automation_pm_10:`                  |
-| `packages/domains/zone/home/enter.yaml`                         | `domains_zone_home_enter:`                         |
-| `packages/domains/adaptive_lighting/sleep_mode/on/weekday.yaml` | `domains_adaptive_lighting_sleep_mode_on_weekday:` |
-| `packages/reminders/brush_teeth.yaml`                           | `reminders_brush_teeth:`                           |
+| File Path                                                       | Package Name                               |
+| --------------------------------------------------------------- | ------------------------------------------ |
+| `packages/morning.yaml`                                         | `morning:`                                 |
+| `packages/areas/bedroom/bedtime.yaml`                           | `bedroom_bedtime:`                         |
+| `packages/areas/bedroom/automation/pm_10.yaml`                  | `bedroom_automation_pm_10:`                |
+| `packages/domains/zone/home/enter.yaml`                         | `zone_home_enter:`                         |
+| `packages/domains/adaptive_lighting/sleep_mode/on/weekday.yaml` | `adaptive_lighting_sleep_mode_on_weekday:` |
+| `packages/reminders/brush_teeth.yaml`                           | `reminders_brush_teeth:`                   |
 
 ---
 
@@ -582,7 +585,7 @@ trigger:
 - Evening lighting changes
 - Scheduled tasks
 
-**Example:** `areas_bedroom_bedtime`
+**Example:** `bedroom_bedtime`
 
 - Triggers at bedtime
 - Turns on air purifier in auto mode
@@ -623,7 +626,7 @@ trigger:
 - Departure routines
 - Location-based triggers
 
-**Example:** `domains_zone_home_enter`
+**Example:** `zone_home_enter`
 
 - Turns on lights
 - Enables climate control
@@ -646,7 +649,7 @@ trigger:
 - Safety notifications
 - Threshold-based actions
 
-**Example:** `areas_bedroom_automation_pm_10`
+**Example:** `bedroom_automation_pm_10`
 
 - Alerts when PM10 exceeds 150 µg/m³
 - Suggests running air purifier
@@ -744,7 +747,7 @@ max: 10 # Maximum parallel instances
 
 ```yaml
 # Package path: bedroom/automation/pm_10
-areas_bedroom_automation_pm_10:
+bedroom_automation_pm_10:
   # Alerts when particulate matter exceeds the safe bedroom threshold.
   automation:
     - alias: 'Bedroom - PM10 Alert'
@@ -801,10 +804,10 @@ areas_bedroom_automation_pm_10:
 
 **File:** `packages/areas/bedroom/bedtime.yaml`
 
-**Package Name:** `areas_bedroom_bedtime`
+**Package Name:** `bedroom_bedtime`
 
 ```yaml
-areas_bedroom_bedtime:
+bedroom_bedtime:
   automation:
     - trigger:
         platform: time
@@ -834,10 +837,10 @@ areas_bedroom_bedtime:
 
 **File:** `packages/areas/bedroom/automation/pm_10.yaml`
 
-**Package Name:** `areas_bedroom_automation_pm_10`
+**Package Name:** `bedroom_automation_pm_10`
 
 ```yaml
-areas_bedroom_automation_pm_10:
+bedroom_automation_pm_10:
   # Alerts when particulate matter exceeds the safe bedroom threshold.
   automation:
     - alias: 'Bedroom - PM10 Alert'
@@ -871,10 +874,10 @@ areas_bedroom_automation_pm_10:
 
 **File:** `packages/domains/zone/home/enter.yaml`
 
-**Package Name:** `domains_zone_home_enter`
+**Package Name:** `zone_home_enter`
 
 ```yaml
-domains_zone_home_enter:
+zone_home_enter:
   automation:
     action:
       - choose:
@@ -919,10 +922,10 @@ domains_zone_home_enter:
 
 **File:** `packages/domains/adaptive_lighting/sleep_mode/on/weekday.yaml`
 
-**Package Name:** `domains_adaptive_lighting_sleep_mode_on_weekday`
+**Package Name:** `adaptive_lighting_sleep_mode_on_weekday`
 
 ```yaml
-domains_adaptive_lighting_sleep_mode_on_weekday:
+adaptive_lighting_sleep_mode_on_weekday:
   automation:
     - action:
         - service: switch.turn_on

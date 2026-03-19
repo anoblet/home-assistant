@@ -1,4 +1,4 @@
-areas_bedroom_presence_on_gate:
+bedroom_presence_on_gate:
   automation:
     action:
       - service: input_number.set_value

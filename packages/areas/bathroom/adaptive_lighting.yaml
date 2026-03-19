@@ -1,4 +1,4 @@
-areas_bathroom_adaptive_lighting:
+bathroom_adaptive_lighting:
   adaptive_lighting:
     - lights: light.bathroom_light_group_zigbee
       max_brightness: 60

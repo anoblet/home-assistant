@@ -1,6 +1,6 @@
 ---
 # Automation to cast the my-tasks view to the bedroom TV when idle or at 8 AM
-areas_bedroom_media_player_tv_morning_cast:
+bedroom_media_player_tv_morning_cast:
   automation:
     - alias: 'Bedroom TV - Cast Tasks View'
       description: 'Cast my-tasks view to bedroom TV when idle or at 8 AM, only between 8 AM and 10 PM'

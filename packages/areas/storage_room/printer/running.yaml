@@ -1,4 +1,4 @@
-areas_storage_room_printer_running:
+storage_room_printer_running:
   automation:
     action:
       # - service: fan.set_percentage

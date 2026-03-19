@@ -1,4 +1,4 @@
-areas_bathroom_speaker_off:
+bathroom_speaker_off:
   automation:
     action:
       - service: media_player.turn_off

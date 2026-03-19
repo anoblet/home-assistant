@@ -1,4 +1,4 @@
-domains_google_assistant_entity_config:
+google_assistant_entity_config:
   google_assistant:
     entity_config:
       group.adaptive_lighting_sleep_mode:

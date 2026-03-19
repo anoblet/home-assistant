@@ -1,4 +1,4 @@
-areas_hallway_light_manual:
+hallway_light_manual:
   automation:
     action:
       - delay: 5

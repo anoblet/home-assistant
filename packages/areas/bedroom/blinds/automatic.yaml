@@ -1,4 +1,4 @@
-areas_bedroom_blinds_automatic:
+bedroom_blinds_automatic:
   google_assistant:
     entity_config:
       input_boolean.bedroom_blinds_automatic:

@@ -1,4 +1,4 @@
-areas_apartment_motion_reset:
+apartment_motion_reset:
   automation:
     action:
       - service: input_boolean.turn_on

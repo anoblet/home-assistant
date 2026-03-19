@@ -1,4 +1,4 @@
-areas_living_room_light_transition_on:
+living_room_light_transition_on:
   input_number:
     living_room_light_transition_on:
       max: 600

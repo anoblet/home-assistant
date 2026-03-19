@@ -1,4 +1,4 @@
-domains_zone_tarrytown_enter:
+zone_tarrytown_enter:
   automation:
     action:
       - choose:

@@ -1,4 +1,4 @@
-areas_bedroom_media_player_tv_idle:
+bedroom_media_player_tv_idle:
   automation:
     - action:
         # Turn off the ceiling light

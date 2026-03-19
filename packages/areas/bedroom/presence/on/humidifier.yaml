@@ -1,4 +1,4 @@
-areas_bedroom_presence_on_humidifier:
+bedroom_presence_on_humidifier:
   automation:
     action:
       - service: humidifier.turn_on

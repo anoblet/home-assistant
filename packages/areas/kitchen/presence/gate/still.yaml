@@ -1,4 +1,4 @@
-areas_kitchen_presence_gate_still:
+kitchen_presence_gate_still:
   automation:
     - alias: 'Kitchen Presence Still Gate'
       mode: single

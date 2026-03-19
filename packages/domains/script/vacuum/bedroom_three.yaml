@@ -1,4 +1,4 @@
-domains_script_vacuum_bedroom_three:
+script_vacuum_bedroom_three:
   google_assistant:
     entity_config:
       script.vacuum_bedroom_three:

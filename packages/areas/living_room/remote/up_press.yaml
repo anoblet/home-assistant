@@ -1,4 +1,4 @@
-areas_living_room_remote_up_press:
+living_room_remote_up_press:
   automation:
     - action:
         - data:

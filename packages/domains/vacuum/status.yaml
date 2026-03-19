@@ -1,4 +1,4 @@
-domains_vacuum_status:
+vacuum_status:
   input_boolean:
     vacuum_bathroom:
       name: Bathroom

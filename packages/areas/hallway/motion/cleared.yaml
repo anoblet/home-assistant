@@ -1,4 +1,4 @@
-areas_hallway_motion_cleared:
+hallway_motion_cleared:
   automation:
     action:
       data_template:

@@ -1,4 +1,4 @@
-areas_bathroom_contact_on:
+bathroom_contact_on:
   automation:
     - action:
         - service: switch.turn_off

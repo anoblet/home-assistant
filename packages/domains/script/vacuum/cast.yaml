@@ -1,4 +1,4 @@
-domains_script_vacuum_cast:
+script_vacuum_cast:
   script:
     vacuum_cast:
       alias: Vacuum - Cast

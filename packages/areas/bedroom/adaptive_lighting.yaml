@@ -1,4 +1,4 @@
-areas_bedroom_adaptive_lighting:
+bedroom_adaptive_lighting:
   adaptive_lighting:
     - lights:
         - light.bedroom_ceiling

@@ -1,4 +1,4 @@
-areas_kitchen_presence_restart:
+kitchen_presence_restart:
   automation:
     - alias: 'Kitchen Presence Sensor - Daily Restart'
       id: kitchen_presence_restart

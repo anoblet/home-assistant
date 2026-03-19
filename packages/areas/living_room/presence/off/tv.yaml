@@ -1,4 +1,4 @@
-areas_living_room_presence_off_tv:
+living_room_presence_off_tv:
   automation:
     action:
       - service: media_player.media_pause

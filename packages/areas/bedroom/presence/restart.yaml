@@ -1,6 +1,6 @@
 # YAML file defining an automation to restart a bedroom presence sensor
 
-areas_bedroom_presence_restart:
+bedroom_presence_restart:
   automation:
     - alias: 'Bedroom - Presence - Restart'
       # Descriptive name for the automation to identify its purpose
