@@ -1,0 +1,13 @@
+andrew_home_enter_sqm:
+  automation:
+    actions:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.sqm_toggle
+    alias: Andrew - Home - Enter - SQM
+    id: andrew_home_enter_sqm
+    triggers:
+      - trigger: zone
+        entity_id: person.andrew_noblet
+        zone: zone.home
+        event: leave
