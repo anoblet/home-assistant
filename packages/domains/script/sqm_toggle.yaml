@@ -1,4 +1,4 @@
-domains_script_sqm_toggle:
+domains_domains_script_sqm_toggle:
   automation:
     - alias: SQM Toggle Start Loop
       id: domains_script_sqm_toggle_start_loop
@@ -54,9 +54,9 @@ domains_script_sqm_toggle:
       alias: SQM Toggle Loop
       sequence:
         - variables:
-            interval_min_seconds: 300
+            interval_min_seconds: 120
             interval_max_seconds: 600
-            active_window_min_seconds: 60
+            active_window_min_seconds: 120
             active_window_max_seconds: 300
         - repeat:
             sequence:
