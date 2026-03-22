@@ -24,7 +24,7 @@ storage_room_printer_finish:
       - delay:
           minutes: 5
       # Send mobile notification
-      - action: notify.mobile_app_pixel_4_xl
+      - action: notify.mobile_app_pixel_6_pro
         data:
           message: 'Printing has finished'
     alias: Storage Room - Printer - Finish

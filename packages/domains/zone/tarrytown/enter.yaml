@@ -17,7 +17,7 @@ zone_tarrytown_enter:
     id: zone_tarrytown_andrew_enter
     mode: single
     trigger:
-      - entity_id: device_tracker.pixel_4_xl
+      - entity_id: device_tracker.pixel_6_pro
         event: enter
         platform: zone
         zone: zone.tarrytown

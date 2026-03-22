@@ -3,7 +3,7 @@ andrew_home_leave:
     action:
       - data:
           message: Andrew has left
-        service: notify.mobile_app_pixel_4_xl
+        service: notify.mobile_app_pixel_6_pro
     alias: Andrew - Home - Leave
     id: andrew_home_leave
     triggers:

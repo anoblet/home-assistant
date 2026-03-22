@@ -8,7 +8,7 @@ storage_room_printer_two_off:
         service: input_boolean.turn_off
       - data:
           message: Printing has finished
-        service: notify.mobile_app_pixel_4_xl
+        service: notify.mobile_app_pixel_6_pro
     alias: Storage Room - Printer - Off
     condition:
       - condition: state

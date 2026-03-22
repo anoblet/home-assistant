@@ -19,7 +19,7 @@ reminders_water_plants:
           entity_id: input_boolean.water_plants_reminder
           state: 'on'
       action:
-        - service: notify.mobile_app_pixel_4_xl
+        - service: notify.mobile_app_pixel_6_pro
           data:
             title: 'Plant Watering Reminder'
             message: "Don't forget to water your plants!"
@@ -43,7 +43,7 @@ reminders_water_plants:
         - service: input_boolean.turn_on
           target:
             entity_id: input_boolean.water_plants_reminder
-        - service: notify.mobile_app_pixel_4_xl
+        - service: notify.mobile_app_pixel_6_pro
           data:
             title: 'Plant Watering Reminder'
             message: "It's time to water your plants this week!"
@@ -66,7 +66,7 @@ reminders_water_plants:
         - service: input_boolean.turn_off
           target:
             entity_id: input_boolean.water_plants_reminder
-        - service: notify.mobile_app_pixel_4_xl
+        - service: notify.mobile_app_pixel_6_pro
           data:
             title: 'Plants Watered'
             message: 'Great job! Plants marked as watered.'

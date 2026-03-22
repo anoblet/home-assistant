@@ -7,6 +7,6 @@ bedroom_pm_10:
       entity_id: sensor.bedroom_sen55_pm_10
       above: 150
     action:
-      action: notify.mobile_app_pixel_4_xl
+      action: notify.mobile_app_pixel_6_pro
       data:
         message: "The PM10 value is {{ states('sensor.bedroom_sen55_pm_10') }}"

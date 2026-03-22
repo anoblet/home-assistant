@@ -7,7 +7,7 @@ andrew_away:
     alias: Andrew - Away
     condition:
       - condition: template
-        value_template: “{{ not is_state('device_tracker.pixel_4_xl','home') }}”
+        value_template: “{{ not is_state('device_tracker.pixel_6_pro','home') }}”
     id: andrew_away
     mode: single
     trigger:

@@ -2,7 +2,7 @@ storage_room_printer_pause:
   automation:
     actions:
       # Notify when the printer is paused
-      - action: notify.mobile_app_pixel_4_xl
+      - action: notify.mobile_app_pixel_6_pro
         data:
           message: 'The printer is paused'
     alias: 'Storage Room - Printer - Pause'

@@ -3,7 +3,7 @@ storage_room_printer_two_paused:
     action:
       - data:
           message: Printing has paused
-        service: notify.mobile_app_pixel_4_xl
+        service: notify.mobile_app_pixel_6_pro
     alias: Storage Room - Printer - Paused
     id: storage_room_printer_paused
     mode: single
