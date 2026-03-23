@@ -7,10 +7,6 @@ bedroom_blinds_night:
       trigger:
         - platform: time
           at: '22:00:00'
-      condition:
-        - condition: state
-          entity_id: input_boolean.bedroom_blinds_automatic
-          state: 'on'
       action:
         - service: cover.close_cover
           target:

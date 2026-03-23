@@ -8,7 +8,7 @@ adaptive_lighting_sleep_mode_off:
       id: adaptive_lighting_sleep_mode_off
       mode: single
       trigger:
-        - at: input_datetime.morning
+        - at: '06:00:00'
           platform: time
   input_datetime:
     adaptive_lighting_sleep_mode_off:
