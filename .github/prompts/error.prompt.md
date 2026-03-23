@@ -15,3 +15,4 @@ name: error
 Notes:
 
 - If there are errors or issues that are not able to be fixed by modifying files in `includes` and `packages`, document those issues and any relevant error messages in a new file called `tmp/error-investigation.md` for further analysis.
+- Use reasonable default values when entity values are unavailable
