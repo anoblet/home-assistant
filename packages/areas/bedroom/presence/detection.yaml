@@ -1,4 +1,4 @@
-# Relies on packages/common/presence/detection.yaml for the shared helper.
+# Relies on packages/shared/presence/detection.yaml for the shared helper.
 bedroom_presence_detection:
   google_assistant:
     entity_config:

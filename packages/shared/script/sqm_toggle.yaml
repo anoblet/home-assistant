@@ -1,0 +1,111 @@
+shared_script_sqm_toggle:
+  automation:
+    - alias: SQM Toggle Start Loop
+      id: domains_script_sqm_toggle_start_loop
+      trigger:
+        - platform: state
+          entity_id: input_boolean.sqm_toggle
+          to: 'on'
+      action:
+        - service: script.turn_on
+          data:
+            entity_id: script.sqm_toggle_loop
+    - alias: SQM Toggle Stop Loop
+      id: domains_script_sqm_toggle_stop_loop
+      trigger:
+        - platform: state
+          entity_id: input_boolean.sqm_toggle
+          to: 'off'
+      action:
+        - service: system_log.write
+          data:
+            level: warning
+            logger: domains_script_sqm_toggle
+            message: >-
+              SQM Trace: helper turned off, stopping script.sqm_toggle_loop and
+              forcing shell_command.sqm_disable
+        - service: script.turn_off
+          data:
+            entity_id: script.sqm_toggle_loop
+        - service: shell_command.sqm_disable
+    - alias: SQM Toggle Schedule On
+      id: domains_script_sqm_toggle_schedule_on
+      trigger:
+        - platform: time
+          at: '22:00:00'
+      action:
+        - service: input_boolean.turn_on
+          data:
+            entity_id: input_boolean.sqm_toggle
+    - alias: SQM Toggle Schedule Off
+      id: domains_script_sqm_toggle_schedule_off
+      trigger:
+        - platform: time
+          at: '06:00:00'
+      action:
+        - service: input_boolean.turn_off
+          data:
+            entity_id: input_boolean.sqm_toggle
+  input_boolean:
+    sqm_toggle:
+      name: SQM Toggle
+  script:
+    sqm_toggle_loop:
+      alias: SQM Toggle Loop
+      sequence:
+        - variables:
+            interval_min_seconds: 120
+            interval_max_seconds: 600
+            active_window_min_seconds: 120
+            active_window_max_seconds: 300
+        - repeat:
+            sequence:
+              - variables:
+                  next_interval_seconds: >-
+                    {{ range(interval_min_seconds, interval_max_seconds + 60, 60) | random }}
+                  active_window_seconds: >-
+                    {{ range(active_window_min_seconds, active_window_max_seconds + 60, 60) | random }}
+              - service: system_log.write
+                data:
+                  level: warning
+                  logger: domains_script_sqm_toggle
+                  message: >-
+                    SQM Trace: next loop cycle waits {{ next_interval_seconds }}s
+                    before enable with {{ active_window_seconds }}s active window
+              - wait_for_trigger:
+                  - platform: state
+                    entity_id: input_boolean.sqm_toggle
+                    to: 'off'
+                timeout:
+                  seconds: '{{ next_interval_seconds }}'
+                continue_on_timeout: true
+              - condition: state
+                entity_id: input_boolean.sqm_toggle
+                state: 'on'
+              - service: system_log.write
+                data:
+                  level: warning
+                  logger: domains_script_sqm_toggle
+                  message: >-
+                    SQM Trace: calling shell_command.sqm_enable after
+                    {{ next_interval_seconds }}s wait
+              - service: shell_command.sqm_enable
+              - wait_for_trigger:
+                  - platform: state
+                    entity_id: input_boolean.sqm_toggle
+                    to: 'off'
+                timeout:
+                  seconds: '{{ active_window_seconds }}'
+                continue_on_timeout: true
+              - service: system_log.write
+                data:
+                  level: warning
+                  logger: domains_script_sqm_toggle
+                  message: >-
+                    SQM Trace: calling shell_command.sqm_disable after
+                    {{ active_window_seconds }}s active window
+              - service: shell_command.sqm_disable
+            while:
+              - condition: state
+                entity_id: input_boolean.sqm_toggle
+                state: 'on'

@@ -1,0 +1,9 @@
+bedroom_lovelace_dashboards_display:
+  lovelace:
+    dashboards:
+      bedroom-display:
+        filename: includes/lovelace/dashboards/bedroom/display.yaml
+        mode: yaml
+        show_in_sidebar: false
+        title: Bedroom
+        icon: mdi:bed

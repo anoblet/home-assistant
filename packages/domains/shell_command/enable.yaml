@@ -1,4 +1,0 @@
-shell_command_enable:
-  shell_command:
-    sqm_enable: |
-      ssh -i /config/.ssh/id_rsa -o UserKnownHostsFile=/config/.ssh/known_hosts root@192.168.1.1 "uci set sqm.@queue[0].enabled='1'; uci commit sqm; /etc/init.d/sqm restart"

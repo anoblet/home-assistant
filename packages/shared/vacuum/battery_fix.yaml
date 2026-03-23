@@ -1,0 +1,23 @@
+# Separate battery sensor for Valetudo vacuum to address deprecation warning
+shared_vacuum_battery_fix:
+  mqtt:
+    sensor:
+      - device_class: battery
+        icon: mdi:battery
+        name: 'Valetudo Vacuum Battery'
+        state_class: measurement
+        state_topic: 'valetudo/robot/battery_level'
+        unit_of_measurement: '%'
+        unique_id: 'valetudo_vacuum_battery'
+
+  # Template sensor as fallback if MQTT topic is different
+  template:
+    - sensor:
+        - availability: "{{ states('vacuum.valetudo_vacuum') not in ['unavailable', 'unknown'] }}"
+          device_class: battery
+          icon: mdi:battery
+          name: 'Valetudo Vacuum Battery Level'
+          state: "{{ state_attr('vacuum.valetudo_vacuum', 'battery_level') | int(0) }}"
+          state_class: measurement
+          unit_of_measurement: '%'
+          unique_id: 'valetudo_vacuum_battery_template'

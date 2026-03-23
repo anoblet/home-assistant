@@ -1,4 +1,0 @@
-dashboard-room:
-  filename: dashboards/dashboard-room.yaml
-  mode: yaml
-  title: Room

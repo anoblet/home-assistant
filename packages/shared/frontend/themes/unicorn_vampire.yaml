@@ -1,0 +1,227 @@
+shared_frontend_themes_unicorn_vampire:
+  frontend:
+    themes:
+      'Unicorn Vampire':
+        # Main palette - soft, magical dark
+        primary-color: '#d4b5d4'
+        accent-color: '#a0d9ae'
+        dark-primary-color: '#d4b5d4'
+        light-primary-color: '#d4b5d4'
+        mdc-theme-primary: '#d4b5d4'
+        mdc-theme-on-primary: '#2e2d38'
+        mdc-theme-secondary: '#a0d9ae'
+        mdc-theme-on-secondary: '#2e2d38'
+        mdc-theme-surface: '#2e2d38'
+        mdc-theme-background: '#292831'
+
+        # Text colors
+        primary-text-color: '#cccccc'
+        text-primary-color: 'var(--primary-text-color)'
+        secondary-text-color: '#d4b5d4'
+        disabled-text-color: '#5c6773'
+        label-badge-text-color: '#d4b5d4'
+        label-badge-background-color: '#2e2d38'
+        label-badge-border-color: '#d4b5d4'
+
+        # Backgrounds
+        primary-background-color: '#292831'
+        secondary-background-color: '#2e2d38'
+        clear-background-color: '#292831'
+        card-background-color: '#2e2d38'
+        paper-card-background-color: '#2e2d38'
+        paper-dialog-background-color: '#2e2d38'
+        paper-listbox-background-color: '#2e2d38'
+        divider-color: 'rgba(212, 181, 212, 0.24)'
+        outline-color: 'rgba(212, 181, 212, 0.24)'
+        outline-hover-color: 'rgba(212, 181, 212, 0.32)'
+
+        # Headers and navigation
+        app-header-background-color: '#2e2d38'
+        app-header-text-color: '#d4b5d4'
+        sidebar-background-color: '#2e2d38'
+        sidebar-icon-color: '#d4b5d4'
+        sidebar-text-color: '#cccccc'
+        sidebar-selected-text-color: '#d4b5d4'
+        sidebar-selected-icon-color: '#a0d9ae'
+
+        # Cards and badges
+        paper-card-header-color: '#eaeab1'
+        ha-card-border-color: 'rgba(212, 181, 212, 0.12)'
+        ha-card-border-radius: '10px'
+        ha-card-box-shadow: '0 4px 12px rgba(0, 0, 0, 0.35)'
+
+        # Controls - icons and base greys
+        paper-item-icon-color: '#d4b5d4'
+        paper-item-icon-active-color: '#a0d9ae'
+        paper-grey-50: '#292831'
+        paper-grey-200: '#3a3b47'
+
+        # Toggle switches
+        paper-toggle-button-checked-button-color: '#2e2d38'
+        paper-toggle-button-checked-bar-color: '#a0d9ae'
+        paper-toggle-button-checked-ink-color: '#a0d9ae'
+        paper-toggle-button-unchecked-button-color: '#5c6773'
+        paper-toggle-button-unchecked-bar-color: '#5c6773'
+        paper-toggle-button-unchecked-ink-color: '#5c6773'
+
+        # Sliders
+        paper-slider-knob-color: '#d4b5d4'
+        paper-slider-knob-start-color: '#d4b5d4'
+        paper-slider-active-color: '#d4b5d4'
+        paper-slider-container-color: 'linear-gradient(#292831, #2e2d38) no-repeat'
+        paper-slider-secondary-color: '#3a3b47'
+        paper-slider-disabled-active-color: '#5c6773'
+        paper-slider-disabled-secondary-color: '#3a3b47'
+
+        # Input fields and forms
+        paper-input-container-color: '#5c6773'
+        paper-input-container-focus-color: '#d4b5d4'
+        paper-input-container-invalid-color: '#f44747'
+        input-fill-color: '#292831'
+        input-label-ink-color: '#d4b5d4'
+        input-ink-color: '#cccccc'
+        input-disabled-fill-color: '#2e2d38'
+        input-disabled-ink-color: '#5c6773'
+        input-idle-line-color: '#5c6773'
+        input-hover-line-color: '#d4b5d4'
+        input-dropdown-icon-color: '#d4b5d4'
+
+        # Buttons and chips
+        mdc-button-outline-color: '#5c6773'
+        mdc-text-button-label-text-color: '#d4b5d4'
+        mdc-chip-background-color: '#2e2d38'
+
+        # Tables
+        table-row-background-color: '#2e2d38'
+        table-row-alternative-background-color: '#292831'
+        data-table-background-color: '#2e2d38'
+
+        # State colors
+        state-active-color: '#d4b5d4'
+        state-inactive-color: '#5c6773'
+        state-unavailable-color: '#5c6773'
+        state-alarm_control_panel-armed_away-color: '#a0d9ae'
+        state-alarm_control_panel-armed_home-color: '#cca700'
+        state-alarm_control_panel-disarmed-color: '#a0d9ae'
+        state-binary_sensor-active-color: '#d4b5d4'
+        state-binary_sensor-battery-on-color: '#f44747'
+        state-binary_sensor-carbon_monoxide-on-color: '#f44747'
+        state-binary_sensor-gas-on-color: '#f44747'
+        state-binary_sensor-problem-on-color: '#f44747'
+        state-binary_sensor-smoke-on-color: '#f44747'
+        state-binary_sensor-tamper-on-color: '#f44747'
+        state-climate-auto-color: '#a0d9ae'
+        state-climate-cool-color: '#9dceaa'
+        state-climate-dry-color: '#cca700'
+        state-climate-fan_only-color: '#a0d9ae'
+        state-climate-heat-color: '#f4b3b4'
+        state-climate-heat_cool-color: '#cca700'
+        state-climate-off-color: '#5c6773'
+        state-cover-active-color: '#d4b5d4'
+        state-fan-active-color: '#a0d9ae'
+        state-humidifier-active-color: '#9dceaa'
+        state-light-active-color: '#f4b3b4'
+        state-lock-jammed-color: '#f44747'
+        state-lock-locked-color: '#a0d9ae'
+        state-lock-pending-color: '#cca700'
+        state-lock-unlocked-color: '#f44747'
+        state-media_player-active-color: '#f4b3f4'
+        state-person-home-color: '#a0d9ae'
+        state-person-not_home-color: '#5c6773'
+        state-plant-problem-color: '#f44747'
+        state-switch-active-color: '#d4b5d4'
+        state-update-active-color: '#cca700'
+        state-vacuum-active-color: '#a0d9ae'
+
+        # Status colors
+        success-color: '#a0d9ae'
+        warning-color: '#cca700'
+        error-color: '#f44747'
+        info-color: '#3794ff'
+        rgb-success-color: '160, 217, 174'
+        rgb-warning-color: '204, 167, 0'
+        rgb-error-color: '244, 71, 71'
+        rgb-info-color: '55, 148, 255'
+
+        # RGB state colors
+        rgb-state-default-color: '#5c6773'
+        rgb-state-alarm_control_panel-armed_away-color: '160, 217, 174'
+        rgb-state-alarm_control_panel-armed_home-color: '204, 167, 0'
+        rgb-state-alarm_control_panel-disarmed-color: '160, 217, 174'
+        rgb-state-binary_sensor-active-color: '212, 181, 212'
+        rgb-state-climate-auto-color: '160, 217, 174'
+        rgb-state-climate-cool-color: '157, 206, 170'
+        rgb-state-climate-heat-color: '244, 179, 180'
+        rgb-state-climate-off-color: '92, 103, 115'
+        rgb-state-cover-active-color: '212, 181, 212'
+        rgb-state-fan-active-color: '160, 217, 174'
+        rgb-state-light-active-color: '244, 179, 180'
+        rgb-state-lock-locked-color: '160, 217, 174'
+        rgb-state-lock-unlocked-color: '244, 71, 71'
+        rgb-state-person-home-color: '160, 217, 174'
+        rgb-state-person-not_home-color: '92, 103, 115'
+        rgb-state-switch-active-color: '212, 181, 212'
+
+        # Energy colors
+        energy-grid-consumption-color: '#d4b5d4'
+        energy-grid-return-color: '#a0d9ae'
+        energy-solar-color: '#f4b3b4'
+        energy-non-fossil-color: '#a0d9ae'
+        energy-battery-out-color: '#d4b5d4'
+        energy-battery-in-color: '#a0d9ae'
+        energy-gas-color: '#cca700'
+        energy-water-color: '#9dceaa'
+
+        # Markdown and typography
+        markdown-code-background-color: '#2e2d38'
+        markdown-code-text-color: '#cccccc'
+
+        # Misc material colors
+        material-background-color: '#292831'
+        material-secondary-background-color: '#2e2d38'
+        material-disabled-color: '#5c6773'
+
+        # Switches
+        switch-checked-button-color: '#292831'
+        switch-checked-track-color: '#a0d9ae'
+        switch-unchecked-button-color: '#5c6773'
+        switch-unchecked-track-color: '#3a3b47'
+
+        # Scrollbar
+        scrollbar-thumb-color: 'rgba(212, 181, 212, 0.2)'
+
+        # Shadows
+        shadow-elevation-2dp_-_box-shadow: '0 2px 4px rgba(0, 0, 0, 0.35)'
+        shadow-elevation-4dp_-_box-shadow: '0 4px 8px rgba(0, 0, 0, 0.4)'
+        shadow-elevation-8dp_-_box-shadow: '0 8px 16px rgba(0, 0, 0, 0.45)'
+        shadow-elevation-16dp_-_box-shadow: '0 12px 24px rgba(0, 0, 0, 0.5)'
+
+        # Mask tints
+        lumo-tint-5pct: 'rgba(212, 181, 212, 0.05)'
+        lumo-tint-10pct: 'rgba(212, 181, 212, 0.1)'
+        lumo-tint-20pct: 'rgba(212, 181, 212, 0.2)'
+        lumo-tint-30pct: 'rgba(212, 181, 212, 0.3)'
+        lumo-tint-40pct: 'rgba(212, 181, 212, 0.4)'
+        lumo-tint-50pct: 'rgba(212, 181, 212, 0.5)'
+        lumo-tint-60pct: 'rgba(212, 181, 212, 0.6)'
+        lumo-tint-70pct: 'rgba(212, 181, 212, 0.7)'
+        lumo-tint-80pct: 'rgba(212, 181, 212, 0.8)'
+        lumo-tint-90pct: 'rgba(212, 181, 212, 0.9)'
+
+        # Code editor colors
+        code-editor-background-color: '#292831'
+        codemirror-atom: '#a0d9ae'
+        codemirror-builtin: '#f4b3b4'
+        codemirror-comment: '#5c6773'
+        codemirror-def: '#eaeab1'
+        codemirror-keyword: '#eaeab1'
+        codemirror-meta: '#cccccc'
+        codemirror-number: '#a0d9ae'
+        codemirror-property: '#a0d9ae'
+        codemirror-qualifier: '#f4b3b4'
+        codemirror-string: '#fefefe'
+        codemirror-tag: '#f4b3b4'
+        codemirror-type: '#fef2c1'
+        codemirror-variable: '#f4b3b4'
+        codemirror-variable-2: '#a0d9ae'
+        codemirror-variable-3: '#fef2c1'

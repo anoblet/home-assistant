@@ -1,0 +1,7 @@
+bedroom_input_select_climate_zone:
+  input_select:
+    bedroom_climate_zone:
+      name: Bedroom Climate Zone
+      options:
+        - Home
+        - Tarrytown

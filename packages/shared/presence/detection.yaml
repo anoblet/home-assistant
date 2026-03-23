@@ -1,0 +1,14 @@
+# Shared helper toggled by area packages such as
+# packages/areas/bedroom/presence/detection.yaml and
+# packages/areas/living_room/presence/detection.yaml.
+shared_presence_detection:
+  google_assistant:
+    entity_config:
+      input_boolean.common_presence_detection:
+        expose: true
+        name: Common Presence Detection
+  input_boolean:
+    common_presence_detection:
+      name: Common Presence Detection
+      initial: on
+      icon: mdi:motion-sensor

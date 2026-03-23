@@ -1,4 +1,4 @@
-# Relies on packages/common/presence/detection.yaml for the shared toggle.
+# Relies on packages/shared/presence/detection.yaml for the shared toggle.
 kitchen_presence_detection:
   google_assistant:
     entity_config:

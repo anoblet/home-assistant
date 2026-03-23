@@ -27,8 +27,61 @@ This repo treats Home Assistant configuration as code. These guidelines exist to
 
 ## Package layout
 
-- Feature packages live under `packages/` and are grouped by area/domain/feature.
+All package files live under `packages/` and are organized into six taxonomy directories:
+
+| Directory       | Purpose                                                                                           | Files |
+| --------------- | ------------------------------------------------------------------------------------------------- | ----- |
+| `areas/`        | Area-scoped configuration (per-room devices, automations, scripts)                                | 243   |
+| `integrations/` | Integration-specific configuration (adaptive_lighting, google_assistant, esphome, device_tracker) | 10    |
+| `people/`       | Person-scoped configuration                                                                       | 6     |
+| `reminders/`    | Reminder/notification packages                                                                    | 3     |
+| `schedules/`    | Time-of-day schedule anchors (morning, evening, night, day)                                       | 4     |
+| `shared/`       | Cross-cutting configuration (lovelace, presence, vacuum, zones, themes, media_player groups)      | 49    |
+
+### Naming conventions
+
+- **Directory and file names**: `snake_case` (no kebab-case).
+- **Top-level YAML keys** (the package key used by `!include_dir_merge_named`):
+  - Area packages: `{area}_{domain}_{feature}` — e.g., `bedroom_script_cast_display`
+  - Integration packages: `integrations_{name}` — e.g., `integrations_adaptive_lighting`
+  - Shared packages: `shared_{domain}_{feature}` — e.g., `shared_vacuum_start`
+  - Schedule packages: `schedules_{name}` — e.g., `schedules_morning`
+  - People packages: `people_{name}_{feature}`
+  - Reminder packages: `reminders_{name}`
+- All 315 top-level keys must be **globally unique** across `packages/`.
+
+### Placement rules
+
+- Do **not** place new files at the `packages/` root level.
+- Do **not** place new work under `packages/common/` or `packages/domains/` (legacy empty trees).
 - Keep packages small and focused; prefer one responsibility per file.
+- `homeassistant.packages` uses `!include_dir_merge_named packages/`, so every YAML file under `packages/` is loadable input. Do not place nested helper YAML fragments under active package owner folders unless each file is meant to be a standalone package entry.
+
+### Area package structure
+
+Each area directory follows a `{area}/{domain}/{feature}.yaml` hierarchy:
+
+```
+packages/areas/bedroom/
+├── adaptive_lighting/
+├── climate/
+│   ├── carbon_dioxide/
+│   └── ...
+├── cover/
+├── light/
+├── presence/
+├── script/
+│   ├── air_conditioner/
+│   ├── cast/
+│   └── vacuum.yaml
+└── ...
+```
+
+### Dashboard package conventions
+
+- Dashboard registration packages use `filename:` paths pointing to `includes/lovelace/dashboards/...`. These paths are independent of the package file location and must not be changed when moving packages.
+- Dashboard slugs (e.g., `bedroom-display`) are kebab-case by HA convention and must not be renamed.
+- Dashboard entrypoint filenames in `includes/lovelace/dashboards/` remain kebab-case (renaming is deferred due to high risk).
 
 ## Validation workflow
 

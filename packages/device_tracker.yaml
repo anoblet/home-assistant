@@ -1,6 +1,0 @@
-device_tracker_luci:
-  device_tracker:
-    - host: !secret luci_host
-      password: !secret luci_password
-      platform: luci
-      username: !secret luci_username

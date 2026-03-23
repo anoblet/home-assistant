@@ -1,6 +1,0 @@
-night:
-  input_datetime:
-    night:
-      name: Night
-      has_date: false
-      has_time: true

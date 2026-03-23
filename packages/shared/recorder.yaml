@@ -1,0 +1,10 @@
+shared_recorder:
+  recorder:
+    commit_interval: 60
+    exclude:
+      entity_globs:
+        - sensor.*ld2410c_g*
+        - sensor.*ld2410c_radar*
+        - sensor.*presence_g*
+        - sensor.*presence_r*
+    db_url: !secret recorder_db_url
