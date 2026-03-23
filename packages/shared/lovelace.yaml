@@ -2,17 +2,17 @@ shared_lovelace:
   lovelace:
     dashboards:
       dashboard-room:
-        filename: includes/lovelace/dashboards/dashboard-room.yaml
+        filename: includes/lovelace/dashboards/dashboard_room.yaml
         mode: yaml
         title: Rooms
         icon: mdi:floor-plan
       dashboard-devices:
-        filename: includes/lovelace/dashboards/dashboard-device.yaml
+        filename: includes/lovelace/dashboards/dashboard_device.yaml
         mode: yaml
         title: Devices
         icon: mdi:chip
       dashboard-overview:
-        filename: includes/lovelace/dashboards/dashboard-overview.yaml
+        filename: includes/lovelace/dashboards/dashboard_overview.yaml
         mode: yaml
         title: Overview
         icon: mdi:home
