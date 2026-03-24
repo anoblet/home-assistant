@@ -1,4 +1,4 @@
-andrew_home_leave_sqm:
+people_andrew_home_leave_sqm:
   automation:
     actions:
       - delay: 00:05:00

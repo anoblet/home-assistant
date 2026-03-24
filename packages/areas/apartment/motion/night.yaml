@@ -6,7 +6,6 @@ apartment_motion_night:
           entity_id: group.motion_common
     alias: Motion Common - Night
     id: motion_common_night
-    mode: single
     trigger:
       - at: '22:00:00'
         platform: time

@@ -13,7 +13,6 @@ hallway_motion_detected:
         - condition: template
           value_template: "{{ (states('sensor.hallway_motion_one_illuminance') | int) < (states('input_number.hallway_motion_illuminance_minimum') | int) }}"
       id: hallway_motion_detected
-      mode: single
       trigger:
         - entity_id: binary_sensor.hallway_motion_occupancy_group
           platform: state

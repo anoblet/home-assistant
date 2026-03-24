@@ -9,7 +9,6 @@ bedroom_presence_mode_reset:
       alias: Bedroom - Presence - Engineering Mode - Reset
       description: Turn off engineering mode after it has been on for an hour
       id: bedroom_presence_mode_reset
-      mode: single
       trigger:
         - entity_id: switch.bedroom_presence_mode
           for: '01:00:00'

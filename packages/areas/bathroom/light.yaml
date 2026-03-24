@@ -20,7 +20,6 @@ bathroom_light:
             entity_id: light.bathroom_light_group_zigbee
       alias: Bathroom - Light
       id: bathroom_light
-      mode: single
       trigger:
         - platform: time_pattern
           minutes: 0

@@ -8,7 +8,6 @@ living_room_presence_on_gate:
           entity_id: input_number.living_room_ld2410c_last_on_gate
     alias: Living Room - Presence - On - Gate
     id: living_room_ld2410c_on_gate
-    mode: single
     condition:
       - condition: state
         entity_id: input_boolean.living_room_presence_detection

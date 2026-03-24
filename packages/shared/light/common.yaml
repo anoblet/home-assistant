@@ -10,7 +10,6 @@ shared_light_common:
             entity_id: group.light_manual_common
       alias: Common - Light - Sunset
       id: common_light_sunset
-      mode: single
       trigger:
         - event: sunset
           platform: sun
@@ -20,7 +19,6 @@ shared_light_common:
             entity_id: group.light_manual_common
       alias: Common - Light - Night
       id: common_light_night
-      mode: single
       trigger:
         - at: input_datetime.night
           platform: time

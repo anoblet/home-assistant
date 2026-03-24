@@ -10,7 +10,6 @@ living_room_presence_on_lights:
     alias: Living Room - Presence - On - Lights
     description: Turn on living room lights when presence is detected
     id: living_room_ld2410c_on_lights
-    mode: single
     condition:
       - condition: state
         entity_id: input_boolean.living_room_presence_detection

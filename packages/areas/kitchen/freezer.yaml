@@ -1,7 +1,7 @@
 kitchen_freezer:
   automation:
     - alias: 'Kitchen Freezer Door Reminder'
-      id: 'kitchen/freezer'
+      id: 'kitchen_freezer'
       description: 'Sends a reminder every five minutes while the kitchen freezer door stays open longer than one minute, stopping once it closes.'
       trigger:
         # Freezer door has been open for one minute

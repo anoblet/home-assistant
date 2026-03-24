@@ -2,6 +2,5 @@ shared_home_assistant_restart:
   script:
     home_assistant_restart:
       alias: Home Assistant - Restart
-      mode: single
       sequence:
         - service: homeassistant.restart

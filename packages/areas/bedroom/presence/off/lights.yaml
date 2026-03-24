@@ -14,7 +14,6 @@ bedroom_presence_off_lights:
         state: 'on'
     description: Turn off bedroom lights when presence is no longer detected
     id: bedroom_presence_off_lights
-    mode: single
     trigger:
       - entity_id: binary_sensor.bedroom_presence_presence
         from: 'on'

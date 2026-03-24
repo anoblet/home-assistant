@@ -5,7 +5,6 @@ kitchen_coffee_pot:
           service: switch.turn_off
       alias: Switch - Kitchen - Coffee Pot - Off
       id: kitchen_coffee_pot_off
-      mode: single
       trigger:
         - entity_id: switch.kitchen_coffee_pot
           for: '00:15:00'

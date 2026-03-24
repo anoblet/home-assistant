@@ -2,7 +2,6 @@ bedroom_script_bedtime:
   script:
     bedroom_bedtime:
       alias: Bedroom - Bedtime
-      mode: single
       sequence:
         # - data:
         #     brightness_pct: 1

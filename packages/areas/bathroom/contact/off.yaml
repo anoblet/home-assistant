@@ -5,7 +5,6 @@ bathroom_contact_off:
           entity_id: switch.bathroom_exhaust_fan
       alias: 'Bathroom Door Off Exhaust Fan'
       id: bathroom_door_off_exhaust_fan
-      mode: single
       trigger:
         entity_id: binary_sensor.bathroom_door_contact
         for:

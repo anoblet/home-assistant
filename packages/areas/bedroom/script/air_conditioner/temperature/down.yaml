@@ -15,4 +15,3 @@ bedroom_script_air_conditioner_temperature_down:
             device: '74936935'
             command: TempCooler
             num_repeats: 5
-      mode: single

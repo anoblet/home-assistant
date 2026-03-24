@@ -15,4 +15,3 @@ bedroom_script_air_conditioner_temperature_up:
             device: '74936935'
             command: TempHotter
             num_repeats: 4
-      mode: single

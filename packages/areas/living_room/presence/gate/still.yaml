@@ -1,7 +1,6 @@
 living_room_presence_gate_still:
   automation:
     - alias: 'Living Room Presence Still Gate'
-      mode: single
       trigger:
         - platform: state
           entity_id: sensor.living_room_ld2410c_still_gate

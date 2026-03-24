@@ -8,6 +8,5 @@ shared_reload:
   script:
     homeassistant_reload:
       alias: Reload
-      mode: single
       sequence:
         - service: homeassistant.reload_all

@@ -6,7 +6,6 @@ bedroom_script_awake:
   script:
     bedroom_awake:
       alias: Bedroom - Awake
-      mode: single
       sequence:
         - service: light.turn_off
           data:

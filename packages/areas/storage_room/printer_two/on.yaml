@@ -19,7 +19,6 @@ storage_room_printer_two_on:
               entity_id: camera.storage_room_printer_camera
     alias: Storage Room - Printer - On
     id: 'storage_room_printer_on'
-    mode: single
     trigger:
       - entity_id: binary_sensor.octoprint_printing
         from: 'off'

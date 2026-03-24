@@ -15,7 +15,6 @@ storage_room_printer_two_off:
         entity_id: binary_sensor.storage_room_motion_occupancy
         state: 'off'
     id: storage_room_printer_off
-    mode: single
     trigger:
       - entity_id: binary_sensor.octoprint_printing
         from: 'on'

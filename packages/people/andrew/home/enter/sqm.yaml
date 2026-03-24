@@ -1,4 +1,4 @@
-andrew_home_enter_sqm:
+people_andrew_home_enter_sqm:
   automation:
     actions:
       - service: input_boolean.turn_off

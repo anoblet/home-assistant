@@ -8,7 +8,6 @@ bedroom_presence_restart:
       # Unique identifier for this automation
       id: bedroom_presence_restart
       # Ensures that only one instance of the automation runs at a time
-      mode: single
       trigger:
         # Trigger the automation when the state of the bedroom presence sensor changes
         - platform: state

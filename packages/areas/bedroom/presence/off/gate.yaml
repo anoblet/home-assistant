@@ -8,7 +8,6 @@ bedroom_presence_off_gate:
           entity_id: input_number.bedroom_presence_last_off_gate
     alias: Bedroom - Presence - Off - Gate
     id: bedroom_presence_off_gate
-    mode: single
     condition:
       - condition: state
         entity_id: input_boolean.bedroom_presence_detection

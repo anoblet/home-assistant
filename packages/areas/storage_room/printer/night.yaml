@@ -8,7 +8,6 @@ storage_room_printer_night:
           entity_id: select.x1c_00m00a2c0619044_printing_speed
     alias: Storage Room - Printer - Night
     id: storage_room_printer_night
-    mode: single
     trigger:
       - at: '22:00:00'
         platform: time

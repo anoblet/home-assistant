@@ -6,7 +6,6 @@ bedroom_script_tired:
   script:
     bedroom_tired:
       alias: Bedroom - Tired
-      mode: single
       sequence:
         - action: cover.close_cover
           target:

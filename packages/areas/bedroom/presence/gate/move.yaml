@@ -1,7 +1,6 @@
 bedroom_presence_gate_move:
   automation:
     - alias: 'Bedroom Presence Move Gate'
-      mode: single
       trigger:
         - platform: state
           entity_id: sensor.bedroom_presence_move_gate

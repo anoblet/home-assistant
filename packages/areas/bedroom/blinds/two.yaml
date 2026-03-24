@@ -20,7 +20,6 @@ bedroom_blinds_two:
                 entity_id: cover.bedroom_blind_two
       alias: Bedroom - Blinds - Two
       id: bedroom_blinds_two
-      mode: single
       trigger:
         - platform: state
           entity_id: sun.sun

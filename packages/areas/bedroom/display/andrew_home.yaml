@@ -3,7 +3,6 @@ bedroom_display_andrew_home:
     - alias: 'Bedroom Display - Play Music When Andrew Returns Home'
       description: 'Plays TuneIn radio station when Andrew enters the home zone'
       id: bedroom_display_andrew_home
-      mode: single
       trigger:
         - platform: zone
           entity_id: device_tracker.pixel_6_pro

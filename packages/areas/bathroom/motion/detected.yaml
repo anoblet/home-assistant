@@ -7,7 +7,6 @@ bathroom_motion_detected:
           service: light.turn_on
       alias: Bathroom - Motion - Detected
       id: bathroom_motion_detected
-      mode: single
       trigger:
         - entity_id: binary_sensor.bathroom_motion_occupancy
           platform: state

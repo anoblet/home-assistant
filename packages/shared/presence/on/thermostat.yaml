@@ -8,7 +8,6 @@ shared_presence_on_thermostat:
             - climate.living_room_thermostat_heat
     alias: Common - Presence - On - Thermostat
     id: common_presence_on_thermostat
-    mode: single
     condition:
       - condition: state
         entity_id: input_boolean.common_presence_detection

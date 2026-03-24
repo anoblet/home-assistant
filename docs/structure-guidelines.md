@@ -31,7 +31,7 @@ All package files live under `packages/` and are organized into six taxonomy dir
 
 | Directory       | Purpose                                                                                           | Files |
 | --------------- | ------------------------------------------------------------------------------------------------- | ----- |
-| `areas/`        | Area-scoped configuration (per-room devices, automations, scripts)                                | 243   |
+| `areas/`        | Area-scoped configuration (per-room devices, automations, scripts)                                | 242   |
 | `integrations/` | Integration-specific configuration (adaptive_lighting, google_assistant, esphome, device_tracker) | 10    |
 | `people/`       | Person-scoped configuration                                                                       | 6     |
 | `reminders/`    | Reminder/notification packages                                                                    | 3     |
@@ -48,12 +48,12 @@ All package files live under `packages/` and are organized into six taxonomy dir
   - Schedule packages: `schedules_{name}` — e.g., `schedules_morning`
   - People packages: `people_{name}_{feature}`
   - Reminder packages: `reminders_{name}`
-- All 315 top-level keys must be **globally unique** across `packages/`.
+- All top-level keys must be **globally unique** across `packages/`.
 
 ### Placement rules
 
 - Do **not** place new files at the `packages/` root level.
-- Do **not** place new work under `packages/common/` or `packages/domains/` (legacy empty trees).
+- Do **not** place new work outside the six taxonomy directories (`areas/`, `integrations/`, `people/`, `reminders/`, `schedules/`, `shared/`).
 - Keep packages small and focused; prefer one responsibility per file.
 - `homeassistant.packages` uses `!include_dir_merge_named packages/`, so every YAML file under `packages/` is loadable input. Do not place nested helper YAML fragments under active package owner folders unless each file is meant to be a standalone package entry.
 

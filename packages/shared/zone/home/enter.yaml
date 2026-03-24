@@ -27,7 +27,6 @@ shared_zone_home_enter:
                   entity_id: humidifier.bedroom_humidifier_virtual
     alias: Home - Andrew - Enter
     id: zone_home_andrew_enter
-    mode: single
     trigger:
       - entity_id: device_tracker.pixel_6_pro
         event: enter

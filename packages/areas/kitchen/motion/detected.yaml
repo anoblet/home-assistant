@@ -16,7 +16,6 @@ kitchen_motion_detected:
         - condition: template
           value_template: "{{ (states('sensor.kitchen_motion_one_illuminance') | int) < (states('input_number.kitchen_illuminance_minimum') | int) }}"
       id: kitchen_motion_detected
-      mode: single
       trigger:
         - entity_id: binary_sensor.kitchen_motion_occupancy_group
           from: 'off'

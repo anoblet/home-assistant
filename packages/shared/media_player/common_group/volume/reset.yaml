@@ -8,7 +8,6 @@ shared_media_player_common_group_volume_reset:
           entity_id: media_player.common_group_volume
     alias: Common Group - Volume - Reset
     id: common_group_volume_reset
-    mode: single
     trigger:
       - at: 00:00:00
         platform: time

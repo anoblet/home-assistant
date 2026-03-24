@@ -1,7 +1,7 @@
 shared_script_sqm_toggle:
   automation:
     - alias: SQM Toggle Start Loop
-      id: domains_script_sqm_toggle_start_loop
+      id: shared_script_sqm_toggle_start_loop
       trigger:
         - platform: state
           entity_id: input_boolean.sqm_toggle
@@ -11,7 +11,7 @@ shared_script_sqm_toggle:
           data:
             entity_id: script.sqm_toggle_loop
     - alias: SQM Toggle Stop Loop
-      id: domains_script_sqm_toggle_stop_loop
+      id: shared_script_sqm_toggle_stop_loop
       trigger:
         - platform: state
           entity_id: input_boolean.sqm_toggle
@@ -20,7 +20,7 @@ shared_script_sqm_toggle:
         - service: system_log.write
           data:
             level: warning
-            logger: domains_script_sqm_toggle
+            logger: shared_script_sqm_toggle
             message: >-
               SQM Trace: helper turned off, stopping script.sqm_toggle_loop and
               forcing shell_command.sqm_disable
@@ -29,7 +29,7 @@ shared_script_sqm_toggle:
             entity_id: script.sqm_toggle_loop
         - service: shell_command.sqm_disable
     - alias: SQM Toggle Schedule On
-      id: domains_script_sqm_toggle_schedule_on
+      id: shared_script_sqm_toggle_schedule_on
       trigger:
         - platform: time
           at: '22:00:00'
@@ -38,7 +38,7 @@ shared_script_sqm_toggle:
           data:
             entity_id: input_boolean.sqm_toggle
     - alias: SQM Toggle Schedule Off
-      id: domains_script_sqm_toggle_schedule_off
+      id: shared_script_sqm_toggle_schedule_off
       trigger:
         - platform: time
           at: '06:00:00'
@@ -68,7 +68,7 @@ shared_script_sqm_toggle:
               - service: system_log.write
                 data:
                   level: warning
-                  logger: domains_script_sqm_toggle
+                  logger: shared_script_sqm_toggle
                   message: >-
                     SQM Trace: next loop cycle waits {{ next_interval_seconds }}s
                     before enable with {{ active_window_seconds }}s active window
@@ -85,7 +85,7 @@ shared_script_sqm_toggle:
               - service: system_log.write
                 data:
                   level: warning
-                  logger: domains_script_sqm_toggle
+                  logger: shared_script_sqm_toggle
                   message: >-
                     SQM Trace: calling shell_command.sqm_enable after
                     {{ next_interval_seconds }}s wait
@@ -100,7 +100,7 @@ shared_script_sqm_toggle:
               - service: system_log.write
                 data:
                   level: warning
-                  logger: domains_script_sqm_toggle
+                  logger: shared_script_sqm_toggle
                   message: >-
                     SQM Trace: calling shell_command.sqm_disable after
                     {{ active_window_seconds }}s active window

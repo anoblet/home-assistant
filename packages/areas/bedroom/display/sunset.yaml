@@ -9,7 +9,6 @@ bedroom_display_sunset:
     alias: Bedroom - Display - Volume - Sunset
     description: ''
     id: bedroom_display_volume_sunset
-    mode: single
     trigger:
       - event: sunset
         platform: sun

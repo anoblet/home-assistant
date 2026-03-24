@@ -1,7 +1,6 @@
 kitchen_presence_gate_still:
   automation:
     - alias: 'Kitchen Presence Still Gate'
-      mode: single
       trigger:
         - platform: state
           entity_id: sensor.kitchen_ld2410c_still_gate

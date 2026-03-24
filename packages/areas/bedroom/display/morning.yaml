@@ -25,7 +25,6 @@ bedroom_display_morning:
             - fri
       description: 'Plays WFUV radio station on bedroom display at 8 AM on weekdays'
       id: bedroom_display_morning
-      mode: single
       trigger:
         - at: '08:00:00'
           platform: time

@@ -6,7 +6,6 @@ shared_media_player_common_group_night:
           entity_id: media_player.common_group
     alias: Common Group - Night
     id: common_group_night
-    mode: single
     trigger:
       - at: '22:00:00'
         platform: time

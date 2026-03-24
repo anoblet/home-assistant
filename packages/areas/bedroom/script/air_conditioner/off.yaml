@@ -15,4 +15,3 @@ bedroom_script_air_conditioner_off:
             device: '74936935'
             command: PowerToggle
             num_repeats: 2
-      mode: single

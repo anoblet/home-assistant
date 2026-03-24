@@ -9,7 +9,6 @@ kitchen_presence_mode_reset:
       alias: Kitchen - Presence - Engineering Mode - Reset
       description: Turn off engineering mode after it has been on for an hour
       id: kitchen_ld2410c_mode_reset
-      mode: single
       trigger:
         - entity_id: switch.kitchen_ld2410c_mode
           for: '01:00:00'

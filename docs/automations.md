@@ -615,7 +615,7 @@ Executes when a device enters or leaves a zone.
 ```yaml
 trigger:
   - platform: zone
-    entity_id: device_tracker.pixel_4_xl
+    entity_id: device_tracker.pixel_6_pro
     zone: zone.home
     event: enter
 ```
@@ -758,7 +758,7 @@ bedroom_automation_pm_10:
           entity_id: sensor.bedroom_sen55_pm_10
           above: 150
       action:
-        - service: notify.mobile_app_pixel_4_xl
+        - service: notify.mobile_app_pixel_6_pro
           data:
             title: 'Bedroom Air Quality'
             message: >-
@@ -851,7 +851,7 @@ bedroom_automation_pm_10:
           entity_id: sensor.bedroom_sen55_pm_10
           above: 150
       action:
-        - service: notify.mobile_app_pixel_4_xl
+        - service: notify.mobile_app_pixel_6_pro
           data:
             title: 'Bedroom Air Quality'
             message: >-
@@ -901,7 +901,7 @@ zone_home_enter:
     alias: Home - Andrew - Enter
     id: zone_home_andrew_enter
     trigger:
-      - entity_id: device_tracker.pixel_4_xl
+      - entity_id: device_tracker.pixel_6_pro
         event: enter
         platform: zone
         zone: zone.home
@@ -995,7 +995,7 @@ reminders_brush_teeth:
             title: 'Morning Reminder'
             message: 'Time to brush your teeth!'
             notification_id: 'morning_brush_teeth_reminder'
-        - service: notify.mobile_app_pixel_4_xl
+        - service: notify.mobile_app_pixel_6_pro
           data:
             title: 'Morning Routine'
             message: "Don't forget to brush your teeth!"
@@ -1020,7 +1020,7 @@ reminders_brush_teeth:
             title: 'Evening Reminder'
             message: 'Time to brush your teeth!'
             notification_id: 'evening_brush_teeth_reminder'
-        - service: notify.mobile_app_pixel_4_xl
+        - service: notify.mobile_app_pixel_6_pro
           data:
             title: 'Evening Routine'
             message: "Don't forget to brush your teeth!"

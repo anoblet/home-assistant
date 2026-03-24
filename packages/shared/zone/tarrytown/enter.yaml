@@ -15,7 +15,6 @@ shared_zone_tarrytown_enter:
                   entity_id: humidifier.bedroom_humidifier_virtual
     alias: Tarrytown - Andrew - Enter
     id: zone_tarrytown_andrew_enter
-    mode: single
     trigger:
       - entity_id: device_tracker.pixel_6_pro
         event: enter

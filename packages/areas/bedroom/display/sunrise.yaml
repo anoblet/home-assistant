@@ -9,7 +9,6 @@ bedroom_display_sunrise:
     alias: Bedroom - Display - Volume - Sunrise
     description: ''
     id: bedroom_display_volume_sunrise
-    mode: single
     trigger:
       - event: sunrise
         platform: sun

@@ -6,7 +6,6 @@ shared_climate_temperature_comfortable:
           service: notify.mobile_app_pixel_6_pro
       alias: Temperature - Comfortable
       id: climate_temperature_comfortable
-      mode: single
       trigger:
         - for: '00:01:00'
           platform: template

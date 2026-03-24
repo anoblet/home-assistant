@@ -6,7 +6,6 @@ bedroom_sunset:
             entity_id: light.bedroom_ceiling
       alias: Bedroom - Sunset
       id: bedroom_sunset
-      mode: single
       trigger:
         - event: sunset
           platform: sun

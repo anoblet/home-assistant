@@ -1,4 +1,4 @@
-bedroom_intent_script_climate_bedroom_carbon_dioxide:
+bedroom_intent_script_carbon_dioxide:
   intent_script:
     ClimateBedroomCarbonDioxide:
       speech:

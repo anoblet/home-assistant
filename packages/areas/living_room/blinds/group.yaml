@@ -1,4 +1,4 @@
-living_room_blinds_blinds:
+living_room_blinds_group:
   cover:
     - entities:
         - cover.living_room_blind_one

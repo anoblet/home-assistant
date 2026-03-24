@@ -6,7 +6,6 @@ apartment_motion_sunset:
           entity_id: group.motion_common
     alias: Motion Common - Evening
     id: motion_common_evening
-    mode: single
     trigger:
       - event: sunset
         platform: sun

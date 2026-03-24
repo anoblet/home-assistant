@@ -1,4 +1,4 @@
-andrew_home_enter_camera:
+people_andrew_home_enter_camera:
   automation:
     actions:
       - action: switch.turn_off

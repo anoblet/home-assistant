@@ -1,4 +1,4 @@
-my_tasks_reminder:
+reminders_my_tasks:
   automation:
     # Reminds about every pending to-do item while the helper is enabled
     - alias: 'My Tasks Reminder'

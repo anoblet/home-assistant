@@ -12,7 +12,6 @@ storage_room_water_leak_detected:
           service: notify.mobile_app_pixel_6_pro
       alias: Storage Room - Water Leak - Detected
       id: storage_room_water_leak_detected
-      mode: single
       trigger:
         - entity_id:
             - binary_sensor.storage_room_water_leak

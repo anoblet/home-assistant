@@ -14,7 +14,6 @@ integrations_adaptive_lighting_sleep_mode_on_weekday:
             - thu
             - sun
       id: adaptive_lighting_sleep_mode_on_weekday
-      mode: single
       trigger:
         - at: input_datetime.adaptive_lighting_sleep_mode_on_weekday
           platform: time

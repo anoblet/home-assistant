@@ -1,7 +1,6 @@
 bedroom_presence_gate_still:
   automation:
     - alias: 'Bedroom Presence Still Gate'
-      mode: single
       trigger:
         - platform: state
           entity_id: sensor.bedroom_presence_still_gate

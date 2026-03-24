@@ -20,7 +20,6 @@ living_room_blinds_three:
                 entity_id: cover.living_room_blind_three
       alias: Living Room - Blinds - Three
       id: living_room_blinds_three
-      mode: single
       trigger:
         - platform: state
           entity_id: sun.sun

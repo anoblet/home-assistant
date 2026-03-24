@@ -12,7 +12,6 @@ living_room_presence_off_tv:
         state: 'playing'
     description: Pause living room TV when presence is no longer detected
     id: living_room_ld2410c_off_tv
-    mode: single
     trigger:
       - entity_id: binary_sensor.living_room_ld2410c_presence
         platform: state

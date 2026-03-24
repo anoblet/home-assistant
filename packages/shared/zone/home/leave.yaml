@@ -27,7 +27,6 @@ shared_zone_home_leave:
                   entity_id: humidifier.bedroom_humidifier_virtual
     alias: Home - Andrew - Leave
     id: zone_home_andrew_leave
-    mode: single
     trigger:
       - entity_id: device_tracker.pixel_6_pro
         event: leave

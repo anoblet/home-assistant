@@ -15,7 +15,6 @@ bedroom_presence_on_thermostat:
         entity_id: input_boolean.bedroom_thermostat_manual
         state: 'off'
     id: bedroom_presence_on_thermostat
-    mode: single
     trigger:
       - entity_id: binary_sensor.bedroom_presence_presence
         from: 'off'

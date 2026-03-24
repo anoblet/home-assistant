@@ -8,7 +8,6 @@ bedroom_presence_off_air_purifier:
           entity_id: fan.bedroom_air_purifier
     alias: Bedroom - Presence - Off - Air Purifier
     id: bedroom_presence_off_air_purifier
-    mode: single
     condition:
       - condition: state
         entity_id: input_boolean.bedroom_presence_detection

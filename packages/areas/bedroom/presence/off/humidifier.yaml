@@ -7,7 +7,6 @@ bedroom_presence_off_humidifier:
             - humidifier.bedroom_humidifier_virtual
     alias: Bedroom - Presence - Off - Humidifier
     id: bedroom_presence_off_humidifier
-    mode: single
     condition:
       - condition: state
         entity_id: input_boolean.bedroom_presence_detection

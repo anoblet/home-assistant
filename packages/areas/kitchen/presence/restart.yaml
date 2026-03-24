@@ -4,7 +4,6 @@ kitchen_presence_restart:
       id: kitchen_presence_restart
       description: >
         This automation ensures the kitchen presence sensor (LD2410C) is restarted daily at 12 PM.
-      mode: single
       trigger:
         - platform: time
           at: '12:00:00'

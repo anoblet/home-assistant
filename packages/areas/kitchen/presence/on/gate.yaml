@@ -8,7 +8,6 @@ kitchen_presence_on_gate:
           entity_id: input_number.kitchen_ld2410c_last_on_gate
     alias: Kitchen - Presence - On - Gate
     id: kitchen_ld2410c_on_gate
-    mode: single
     condition:
       - condition: state
         entity_id: input_boolean.kitchen_ld2410c

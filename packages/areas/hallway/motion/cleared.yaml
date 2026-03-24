@@ -15,7 +15,6 @@ hallway_motion_cleared:
         entity_id: input_boolean.hallway_motion
         state: 'on'
     id: hallway_motion_cleared
-    mode: single
     trigger:
       - entity_id: binary_sensor.hallway_motion_occupancy_group
         for: 00:{{ states('input_number.hallway_motion_cooldown') | int }}:00
