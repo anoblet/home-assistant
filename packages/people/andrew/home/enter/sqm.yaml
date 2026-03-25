@@ -10,4 +10,4 @@ people_andrew_home_enter_sqm:
       - trigger: zone
         entity_id: person.andrew_noblet
         zone: zone.home
-        event: leave
+        event: enter
