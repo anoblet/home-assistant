@@ -69,4 +69,4 @@ secrets.yaml
 # CLI build outputs (this repo is allowlist-based; add explicit blocks)
 bin/cli/dist/
 
-TASK.md
+!AGENTS.md

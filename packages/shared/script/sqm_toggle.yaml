@@ -32,7 +32,7 @@ shared_script_sqm_toggle:
       id: shared_script_sqm_toggle_schedule_on
       trigger:
         - platform: time
-          at: '23:00:00'
+          at: input_datetime.sqm_toggle_on
       action:
         - service: input_boolean.turn_on
           data:
@@ -41,7 +41,7 @@ shared_script_sqm_toggle:
       id: shared_script_sqm_toggle_schedule_off
       trigger:
         - platform: time
-          at: '06:00:00'
+          at: input_datetime.sqm_toggle_off
       action:
         - service: input_boolean.turn_off
           data:
@@ -54,10 +54,14 @@ shared_script_sqm_toggle:
       alias: SQM Toggle Loop
       sequence:
         - variables:
-            interval_min_seconds: 300
-            interval_max_seconds: 600
-            active_window_min_seconds: 30
-            active_window_max_seconds: 60
+            interval_min_seconds: >-
+              {{ states('input_number.sqm_toggle_interval_min_seconds') | int(300) }}
+            interval_max_seconds: >-
+              {{ states('input_number.sqm_toggle_interval_max_seconds') | int(600) }}
+            active_window_min_seconds: >-
+              {{ states('input_number.sqm_toggle_active_window_min_seconds') | int(60) }}
+            active_window_max_seconds: >-
+              {{ states('input_number.sqm_toggle_active_window_max_seconds') | int(120) }}
         - repeat:
             sequence:
               - variables:

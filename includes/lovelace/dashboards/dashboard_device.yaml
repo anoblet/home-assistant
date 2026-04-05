@@ -115,3 +115,52 @@ views:
                         - domain: light
                     sort:
                       method: name
+
+  - title: SQM
+    path: devices_sqm
+    icon: mdi:speedometer
+    type: custom:default-view
+    cards:
+      - type: custom:generic-card
+        style:
+          'background-color': 'initial'
+        cards:
+          - type: custom:flex-card
+            style:
+              '--flex-card-min-width': '320px'
+              '--flex-card-max-width': '100vw'
+              'gap': '1rem'
+            cards:
+              - type: custom:grid-card
+                style:
+                  'gap': '1rem'
+                  'grid-template-columns': 'repeat(auto-fit, minmax(300px, auto))'
+                cards:
+                  - type: entities
+                    title: SQM Control
+                    show_header_toggle: false
+                    state_color: true
+                    entities:
+                      - entity: input_boolean.sqm_toggle
+                      - entity: input_datetime.sqm_toggle_on
+                      - entity: input_datetime.sqm_toggle_off
+                  - type: entities
+                    title: SQM Timing
+                    show_header_toggle: false
+                    entities:
+                      - entity: input_number.sqm_toggle_interval_min_seconds
+                      - entity: input_number.sqm_toggle_interval_max_seconds
+                      - entity: input_number.sqm_toggle_active_window_min_seconds
+                      - entity: input_number.sqm_toggle_active_window_max_seconds
+                  - type: entities
+                    title: SQM Runtime
+                    show_header_toggle: false
+                    state_color: true
+                    entities:
+                      - entity: script.sqm_toggle_loop
+                      - entity: automation.andrew_home_enter_sqm
+                      - entity: automation.andrew_home_leave_sqm
+                      - entity: automation.sqm_toggle_start_loop_2
+                      - entity: automation.sqm_toggle_stop_loop_2
+                      - entity: automation.sqm_toggle_schedule_on_2
+                      - entity: automation.sqm_toggle_schedule_off_2
