@@ -1,0 +1,14 @@
+living_room_tv_off_lights:
+  automation:
+    action:
+      # Turn on adaptive lighting
+      - action: adaptive_lighting.set_manual_control
+        data:
+          entity_id: switch.adaptive_lighting_living_room
+          manual_control: false
+    alias: Living Room - TV - Off - Lights
+    id: living_room_tv_off_lights
+    trigger:
+      - entity_id: remote.living_room_tv
+        platform: state
+        to: 'off'

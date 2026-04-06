@@ -1,0 +1,19 @@
+living_room_tv_on_blinds:
+  automation:
+    action:
+      # Turn off the automatic blinds
+      - action: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.living_room_blinds_automatic
+      # Set the blinds position based on the input number (if defined)
+      - action: cover.set_cover_position
+        data:
+          position: "{{ states('input_number.living_room_tv_on_blinds_position') | int }}"
+        target:
+          entity_id: cover.living_room_blinds
+    alias: Living Room - TV - On - Blinds
+    id: living_room_tv_on_blinds
+    trigger:
+      - entity_id: remote.living_room_tv
+        platform: state
+        to: 'on'

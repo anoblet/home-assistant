@@ -294,7 +294,7 @@ flowchart TD
     AreaSimple --> AreaEx1["areas/bedroom/bedtime.yaml<br/>→ bedroom_bedtime:"]
 
     AreaDepth -->|3+ levels| AreaNested["{area}_{sub1}_{sub2}..."]
-    AreaNested --> AreaEx2["areas/living_room/tv/on.yaml<br/>→ living_room_tv_on:"]
+    AreaNested --> AreaEx2["areas/living_room/tv/on/lights.yaml<br/>→ living_room_tv_on_lights:"]
 
     AreaDepth -->|automation subdir| AreaAuto["{area}_automation_{type}"]
     AreaAuto --> AreaEx3["areas/bedroom/automation/pm_10.yaml<br/>→ bedroom_automation_pm_10:"]

@@ -1,0 +1,23 @@
+living_room_tv_on_lights:
+  automation:
+    action:
+      # Set the ceiling light to 25%
+      - action: light.turn_on
+        data:
+          brightness_pct: 25
+          transition: 5
+        target:
+          entity_id: light.living_room_ceiling_light_group_zigbee
+      # Set floor lamp brightness to 75%
+      - action: light.turn_on
+        data:
+          brightness_pct: 75
+          transition: 5
+        target:
+          entity_id: light.living_room_floor_lamp
+    alias: Living Room - TV - On - Lights
+    id: living_room_tv_on_lights
+    trigger:
+      - entity_id: remote.living_room_tv
+        platform: state
+        to: 'on'
