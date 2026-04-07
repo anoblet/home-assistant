@@ -20,6 +20,8 @@
 !copilot/**
 !docs
 !docs/**
+!esphome
+!esphome/**
 !genaisrc
 !genaisrc/**/*
 !includes
