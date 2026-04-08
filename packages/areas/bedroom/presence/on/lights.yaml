@@ -1,12 +1,25 @@
 bedroom_presence_on_lights:
   automation:
     action:
-      - service: light.turn_on
-        target:
-          entity_id:
-            - light.bedroom_light_group
-        data:
-          transition: 1
+      - choose:
+          - conditions:
+              - condition: sun
+                after: sunset
+                before: sunrise
+            sequence:
+              - service: light.turn_on
+                target:
+                  entity_id:
+                    - light.bedroom_lamp_group_zigbee
+                data:
+                  transition: 1
+        default:
+          - service: light.turn_on
+            target:
+              entity_id:
+                - light.bedroom_light_group
+            data:
+              transition: 1
     alias: Bedroom - Presence - On - Lights
     description: Turn on bedroom lights when presence is detected
     id: bedroom_presence_on_lights
