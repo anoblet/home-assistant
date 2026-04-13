@@ -1,0 +1,38 @@
+bathroom_adaptive_lighting_sync:
+  automation:
+    - action:
+        - service: script.bathroom_adaptive_lighting_sync
+      alias: Bathroom Adaptive Lighting Sync
+      id: bathroom_adaptive_lighting_sync
+      trigger:
+        - event: start
+          platform: homeassistant
+        - event_type: automation_reloaded
+          platform: event
+        - entity_id:
+            - input_number.bathroom_adaptive_lighting_max_brightness
+            - input_number.bathroom_adaptive_lighting_max_color_temp
+            - input_number.bathroom_adaptive_lighting_min_brightness
+            - input_number.bathroom_adaptive_lighting_min_color_temp
+            - input_number.bathroom_adaptive_lighting_sleep_brightness
+            - input_number.bathroom_adaptive_lighting_sleep_color_temp
+            - input_number.bathroom_adaptive_lighting_sleep_transition
+          platform: state
+        - entity_id: switch.adaptive_lighting_bathroom
+          platform: state
+          to: 'on'
+  script:
+    bathroom_adaptive_lighting_sync:
+      alias: Bathroom Adaptive Lighting Sync
+      sequence:
+        - service: adaptive_lighting.change_switch_settings
+          data:
+            entity_id: switch.adaptive_lighting_bathroom
+            max_brightness: "{{ states('input_number.bathroom_adaptive_lighting_max_brightness') | int(60) }}"
+            max_color_temp: "{{ states('input_number.bathroom_adaptive_lighting_max_color_temp') | int(3500) }}"
+            min_brightness: "{{ states('input_number.bathroom_adaptive_lighting_min_brightness') | int(30) }}"
+            min_color_temp: "{{ states('input_number.bathroom_adaptive_lighting_min_color_temp') | int(3000) }}"
+            sleep_brightness: "{{ states('input_number.bathroom_adaptive_lighting_sleep_brightness') | int(25) }}"
+            sleep_color_temp: "{{ states('input_number.bathroom_adaptive_lighting_sleep_color_temp') | int(2700) }}"
+            sleep_transition: "{{ states('input_number.bathroom_adaptive_lighting_sleep_transition') | int(120) }}"
+            use_defaults: current

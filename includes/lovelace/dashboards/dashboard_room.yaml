@@ -3,6 +3,7 @@ title: Rooms
 views:
   - !include ../views/bedroom/index.yaml
   - !include ../views/bathroom/index.yaml
+  - !include ../views/bathroom/configuration.yaml
   - !include ../views/living_room/index.yaml
   - !include ../views/storage_room/index.yaml
   - !include ../views/kitchen/index.yaml

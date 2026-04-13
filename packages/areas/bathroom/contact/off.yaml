@@ -8,6 +8,6 @@ bathroom_contact_off:
       trigger:
         entity_id: binary_sensor.bathroom_door_contact
         for:
-          seconds: 5
+          seconds: "{{ states('input_number.bathroom_exhaust_fan_door_closed_delay') | int(5) }}"
         platform: state
         to: 'off'

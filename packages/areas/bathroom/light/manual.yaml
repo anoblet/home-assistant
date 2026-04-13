@@ -1,7 +1,8 @@
 bathroom_light_manual:
   automation:
     action:
-      - delay: 5
+      - delay:
+          seconds: "{{ states('input_number.bathroom_light_manual_delay') | int(5) }}"
       - condition: state
         entity_id: light.bathroom_light_group_zigbee
         state: 'on'
@@ -20,3 +21,11 @@ bathroom_light_manual:
   input_boolean:
     bathroom_light_manual:
       name: Bathroom Light Manual
+  input_number:
+    bathroom_light_manual_delay:
+      initial: 5
+      max: 600
+      min: 0
+      mode: box
+      name: Bathroom Light Manual Delay
+      unit_of_measurement: 's'

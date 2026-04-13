@@ -1,0 +1,53 @@
+cards:
+  - type: entities
+    entities:
+      - input_number.bathroom_light_transition_on
+      - input_number.bathroom_light_transition_off
+      - input_number.bathroom_motion_cooldown
+      - input_number.bathroom_light_restore_delay
+      - input_number.bathroom_light_manual_delay
+      - input_number.bathroom_light_restore_brightness
+      - input_number.bathroom_light_restore_color_temp
+    show_header_toggle: false
+    title: Lighting
+  - type: entities
+    entities:
+      - select.bathroom_exhaust_fan_mode
+      - number.bathroom_exhaust_fan_lower
+      - number.bathroom_exhaust_fan_upper
+      - number.bathroom_exhaust_fan_delay
+      - input_number.bathroom_exhaust_fan_door_open_delay
+      - input_number.bathroom_exhaust_fan_door_closed_delay
+    show_header_toggle: false
+    title: Exhaust Fan
+  - type: entities
+    entities:
+      - select.bathroom_one_power_on_behavior
+      - select.bathroom_two_power_on_behavior
+      - select.bathroom_three_power_on_behavior
+      - select.bathroom_four_power_on_behavior
+    show_header_toggle: false
+    title: Power On Behavior
+  - type: entities
+    entities:
+      - entity: switch.adaptive_lighting_bathroom
+        name: Adaptive Lighting
+      - entity: switch.adaptive_lighting_adapt_brightness_bathroom
+        name: Adaptive Lighting Brightness
+      - entity: switch.adaptive_lighting_adapt_color_bathroom
+        name: Adaptive Lighting Color
+      - entity: switch.adaptive_lighting_sleep_mode_bathroom
+        name: Adaptive Lighting Sleep Mode
+      - input_number.bathroom_adaptive_lighting_min_brightness
+      - input_number.bathroom_adaptive_lighting_max_brightness
+      - input_number.bathroom_adaptive_lighting_min_color_temp
+      - input_number.bathroom_adaptive_lighting_max_color_temp
+      - input_number.bathroom_adaptive_lighting_sleep_brightness
+      - input_number.bathroom_adaptive_lighting_sleep_color_temp
+      - input_number.bathroom_adaptive_lighting_sleep_transition
+    show_header_toggle: false
+    title: Adaptive Lighting
+path: bathroom-configuration
+subview: true
+title: Configuration
+type: masonry
