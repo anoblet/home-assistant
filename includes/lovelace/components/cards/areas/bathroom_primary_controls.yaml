@@ -1,28 +1,19 @@
-type: custom:flex-card
-style:
-  '--flex-card-min-width': '320px'
-  '--flex-card-max-width': '100vw'
-  'gap': '1rem'
+type: vertical-stack
 cards:
-  - type: tile
-    entity: light.bathroom_light_group_zigbee
-    name: Lights
-    features:
-      - type: light-brightness
-      - type: light-color-temp
-  - type: tile
-    entity: input_number.bathroom_light_restore_delay
-    color: '#6b7280'
-    hide_state: true
-    icon: mdi:tune
-    hold_action:
-      action: none
-    name: Configuration
-    tap_action:
-      action: navigate
-      navigation_path: /dashboard-room/bathroom-configuration
-  - type: custom:decluttering-card
-    template: media_player_card
-    variables:
-      - entity: media_player.bathroom_speaker
-      - name: 'Speaker'
+  - type: custom:flex-card
+    style:
+      '--flex-card-min-width': '320px'
+      '--flex-card-max-width': '100vw'
+      'gap': '1rem'
+    cards:
+      - type: tile
+        entity: light.bathroom_light_group_zigbee
+        name: Lights
+        features:
+          - type: light-brightness
+          - type: light-color-temp
+      - type: custom:decluttering-card
+        template: media_player_card
+        variables:
+          - entity: media_player.bathroom_speaker
+          - name: 'Speaker'
