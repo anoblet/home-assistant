@@ -1,0 +1,47 @@
+path: bedroom-configuration
+subview: true
+title: Configuration
+type: sections
+sections:
+  - type: grid
+    title: Window Automation
+    cards:
+      - type: tile
+        entity: input_boolean.bedroom_blinds_automatic
+        name: Automatic Blinds
+  - type: grid
+    title: Occupancy
+    cards:
+      - type: tile
+        entity: input_boolean.bedroom_presence_detection
+        name: Presence Detection
+  - type: grid
+    title: Climate Control
+    cards:
+      - type: tile
+        entity: input_select.bedroom_climate_zone
+        name: Climate Zone
+      - type: tile
+        entity: switch.bedroom_air_conditioner_virtual
+        name: Air Conditioner
+      - type: tile
+        entity: input_number.bedroom_thermostat_heat_default
+        name: Thermostat Heat Default
+      - type: tile
+        entity: input_number.bedroom_thermostat_cool_default
+        name: Thermostat Cool Default
+  - type: grid
+    title: Adaptive Lighting Modes
+    cards:
+      - type: tile
+        entity: switch.adaptive_lighting_bedroom
+        name: Adaptive Lighting
+      - type: tile
+        entity: switch.adaptive_lighting_adapt_brightness_bedroom
+        name: Adaptive Lighting Brightness
+      - type: tile
+        entity: switch.adaptive_lighting_adapt_color_bedroom
+        name: Adaptive Lighting Color
+      - type: tile
+        entity: switch.adaptive_lighting_sleep_mode_bedroom
+        name: Adaptive Lighting Sleep Mode

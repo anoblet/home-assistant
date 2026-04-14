@@ -9,6 +9,23 @@ cards:
         cards:
           - !include ../../components/cards/areas/storage_room_primary_controls.yaml
           - !include ../../components/cards/areas/storage_room_metrics.yaml
+          - type: custom:flex-card
+            style:
+              '--flex-card-min-width': '320px'
+              '--flex-card-max-width': '100vw'
+              'gap': '1rem'
+            cards:
+              - type: tile
+                entity: switch.adaptive_lighting_storage_room
+                color: '#6b7280'
+                hide_state: true
+                icon: mdi:tune
+                hold_action:
+                  action: none
+                name: Configuration
+                tap_action:
+                  action: navigate
+                  navigation_path: /dashboard-room/storage-room-configuration
 icon: mdi:washing-machine
 title: Storage Room
 type: custom:default-view

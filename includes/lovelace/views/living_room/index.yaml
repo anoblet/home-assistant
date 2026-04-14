@@ -6,14 +6,23 @@ cards:
         cards:
           - !include ../../components/cards/areas/living_room_primary_controls.yaml
           - !include ../../components/cards/areas/living_room_metrics.yaml
-          - type: custom:collapse-card
+          - type: custom:flex-card
+            style:
+              '--flex-card-min-width': '320px'
+              '--flex-card-max-width': '100vw'
+              'gap': '1rem'
             cards:
-              - type: custom:decluttering-card
-                template: entities
-                variables:
-                  - area: living_room
-                  - domain: input_number
-            summary: 'Entities'
+              - type: tile
+                entity: input_number.living_room_illuminance_minimum
+                color: '#6b7280'
+                hide_state: true
+                icon: mdi:tune
+                hold_action:
+                  action: none
+                name: Configuration
+                tap_action:
+                  action: navigate
+                  navigation_path: /dashboard-room/living-room-configuration
     style:
       'background-color': 'initial'
     type: custom:generic-card

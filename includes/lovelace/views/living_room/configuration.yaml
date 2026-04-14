@@ -1,0 +1,56 @@
+path: living-room-configuration
+subview: true
+title: Configuration
+type: sections
+sections:
+  - type: grid
+    title: Window Automation
+    cards:
+      - type: tile
+        entity: input_boolean.living_room_blinds_automatic
+        name: Automatic Blinds
+      - type: tile
+        entity: input_number.living_room_tv_on_blinds_position
+        name: TV On Blinds Position
+  - type: grid
+    title: Occupancy
+    cards:
+      - type: tile
+        entity: input_boolean.living_room_presence_detection
+        name: Presence Detection
+  - type: grid
+    title: Lighting Automation
+    cards:
+      - type: tile
+        entity: input_number.living_room_illuminance_minimum
+        name: Illuminance Minimum
+      - type: tile
+        entity: input_number.living_room_light_transition_on
+        name: Light Transition On
+      - type: tile
+        entity: input_number.living_room_light_transition_off
+        name: Light Transition Off
+  - type: grid
+    title: Thermostat Defaults
+    cards:
+      - type: tile
+        entity: input_number.living_room_thermostat_heat_default
+        name: Thermostat Heat Default
+      - type: tile
+        entity: input_number.living_room_thermostat_cool_default
+        name: Thermostat Cool Default
+  - type: grid
+    title: Adaptive Lighting Modes
+    cards:
+      - type: tile
+        entity: switch.adaptive_lighting_living_room
+        name: Adaptive Lighting
+      - type: tile
+        entity: switch.adaptive_lighting_adapt_brightness_living_room
+        name: Adaptive Lighting Brightness
+      - type: tile
+        entity: switch.adaptive_lighting_adapt_color_living_room
+        name: Adaptive Lighting Color
+      - type: tile
+        entity: switch.adaptive_lighting_sleep_mode_living_room
+        name: Adaptive Lighting Sleep Mode

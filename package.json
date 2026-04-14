@@ -79,8 +79,5 @@
     "*.{yaml,yml}": [
       "prettier --write"
     ]
-  },
-  "dependencies": {
-    "test_link.json": "link:../root/.local/share/pnpm/global/5/node_modules/test_link.json"
   }
 }

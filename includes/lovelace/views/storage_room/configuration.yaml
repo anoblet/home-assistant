@@ -1,0 +1,20 @@
+path: storage-room-configuration
+subview: true
+title: Configuration
+type: sections
+sections:
+  - type: grid
+    title: Adaptive Lighting Modes
+    cards:
+      - type: tile
+        entity: switch.adaptive_lighting_storage_room
+        name: Adaptive Lighting
+      - type: tile
+        entity: switch.adaptive_lighting_adapt_brightness_storage_room
+        name: Adaptive Lighting Brightness
+      - type: tile
+        entity: switch.adaptive_lighting_adapt_color_storage_room
+        name: Adaptive Lighting Color
+      - type: tile
+        entity: switch.adaptive_lighting_sleep_mode_storage_room
+        name: Adaptive Lighting Sleep Mode

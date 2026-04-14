@@ -6,10 +6,6 @@ settings:
 
 importers:
   .:
-    dependencies:
-      test_link.json:
-        specifier: link:../root/.local/share/pnpm/global/5/node_modules/test_link.json
-        version: link:../root/.local/share/pnpm/global/5/node_modules/test_link.json
     devDependencies:
       glob:
         specifier: ^11.0.3

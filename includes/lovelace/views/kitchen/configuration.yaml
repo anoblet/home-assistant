@@ -1,0 +1,50 @@
+path: kitchen-configuration
+subview: true
+title: Configuration
+type: sections
+sections:
+  - type: grid
+    title: Occupancy
+    cards:
+      - type: tile
+        entity: input_boolean.kitchen_ld2410c
+        name: Presence Detection
+  - type: grid
+    title: Lighting Automation
+    cards:
+      - type: tile
+        entity: input_boolean.kitchen_motion
+        name: Motion Lighting
+      - type: tile
+        entity: input_number.kitchen_motion_cooldown
+        name: Motion Cooldown
+      - type: tile
+        entity: input_number.kitchen_illuminance_minimum
+        name: Illuminance Minimum
+      - type: tile
+        entity: input_number.kitchen_light_transition_on
+        name: Light Transition On
+      - type: tile
+        entity: input_number.kitchen_light_transition_off
+        name: Light Transition Off
+  - type: grid
+    title: Climate Control
+    cards:
+      - type: tile
+        entity: switch.kitchen_air_conditioner_virtual
+        name: Air Conditioner
+  - type: grid
+    title: Adaptive Lighting Modes
+    cards:
+      - type: tile
+        entity: switch.adaptive_lighting_kitchen
+        name: Adaptive Lighting
+      - type: tile
+        entity: switch.adaptive_lighting_adapt_brightness_kitchen
+        name: Adaptive Lighting Brightness
+      - type: tile
+        entity: switch.adaptive_lighting_adapt_color_kitchen
+        name: Adaptive Lighting Color
+      - type: tile
+        entity: switch.adaptive_lighting_sleep_mode_kitchen
+        name: Adaptive Lighting Sleep Mode
