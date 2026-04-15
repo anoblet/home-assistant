@@ -6,15 +6,13 @@ sections:
   - type: grid
     title: Adaptive Lighting Modes
     cards:
-      - type: tile
-        entity: switch.adaptive_lighting_storage_room
-        name: Adaptive Lighting
-      - type: tile
-        entity: switch.adaptive_lighting_adapt_brightness_storage_room
-        name: Adaptive Lighting Brightness
-      - type: tile
-        entity: switch.adaptive_lighting_adapt_color_storage_room
-        name: Adaptive Lighting Color
-      - type: tile
-        entity: switch.adaptive_lighting_sleep_mode_storage_room
-        name: Adaptive Lighting Sleep Mode
+      - type: entities
+        entities:
+          - entity: switch.adaptive_lighting_storage_room
+            name: Adaptive Lighting
+          - entity: switch.adaptive_lighting_adapt_brightness_storage_room
+            name: Adaptive Lighting Brightness
+          - entity: switch.adaptive_lighting_adapt_color_storage_room
+            name: Adaptive Lighting Color
+          - entity: switch.adaptive_lighting_sleep_mode_storage_room
+            name: Adaptive Lighting Sleep Mode

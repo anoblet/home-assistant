@@ -86,8 +86,8 @@ packages/areas/bedroom/
 ### Room configuration subviews
 
 - Room-specific Configuration views for the Rooms dashboard live at `includes/lovelace/views/<area>/configuration.yaml` with `subview: true` and `type: sections` or the default sections behavior.
-- Declare room configuration content under a top-level `sections:` list and group tiles into concern-based section blocks. Use multiple sections when multiple concerns are surfaced, and allow a single named section when only one concern is present; the Bathroom configuration subview is the reference pattern for a multi-concern layout.
-- Use built-in card types only, and give each surfaced configuration entity its own built-in `tile` card rather than grouping multiple entities into a single `entities` card.
+- Declare room configuration content under a top-level `sections:` list and group surfaced entities into concern-based section blocks. Use multiple sections when multiple concerns are surfaced, and allow a single named section when only one concern is present; the Bathroom configuration subview is the reference pattern for a multi-concern layout.
+- Use built-in card types only, and place one built-in `entities` card in each concern section while preserving that section's entity ordering.
 - Keep labels area-free, include only entities created or configured by YAML packages under `packages/`, register each subview from `includes/lovelace/dashboards/dashboard_room.yaml`, and open it from a dedicated Configuration tile that stays last on its row in the area view.
 
 ## Validation workflow

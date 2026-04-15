@@ -6,72 +6,60 @@ sections:
   - type: grid
     title: Lighting Timing & Restore
     cards:
-      - type: tile
-        entity: input_number.bathroom_light_transition_on
-        name: Light Transition On
-      - type: tile
-        entity: input_number.bathroom_light_transition_off
-        name: Light Transition Off
-      - type: tile
-        entity: input_number.bathroom_motion_cooldown
-        name: Motion Cooldown
-      - type: tile
-        entity: input_number.bathroom_light_restore_delay
-        name: Light Restore Delay
-      - type: tile
-        entity: input_number.bathroom_light_manual_delay
-        name: Light Manual Delay
-      - type: tile
-        entity: input_number.bathroom_light_restore_brightness
-        name: Light Restore Brightness
-      - type: tile
-        entity: input_number.bathroom_light_restore_color_temp
-        name: Light Restore Color Temperature
+      - type: entities
+        entities:
+          - entity: input_number.bathroom_light_transition_on
+            name: Light Transition On
+          - entity: input_number.bathroom_light_transition_off
+            name: Light Transition Off
+          - entity: input_number.bathroom_motion_cooldown
+            name: Motion Cooldown
+          - entity: input_number.bathroom_light_restore_delay
+            name: Light Restore Delay
+          - entity: input_number.bathroom_light_manual_delay
+            name: Light Manual Delay
+          - entity: input_number.bathroom_light_restore_brightness
+            name: Light Restore Brightness
+          - entity: input_number.bathroom_light_restore_color_temp
+            name: Light Restore Color Temperature
   - type: grid
     title: Exhaust Fan Timing
     cards:
-      - type: tile
-        entity: input_number.bathroom_exhaust_fan_door_open_delay
-        name: Exhaust Fan Door Open Delay
-      - type: tile
-        entity: input_number.bathroom_exhaust_fan_door_closed_delay
-        name: Exhaust Fan Door Closed Delay
+      - type: entities
+        entities:
+          - entity: input_number.bathroom_exhaust_fan_door_open_delay
+            name: Exhaust Fan Door Open Delay
+          - entity: input_number.bathroom_exhaust_fan_door_closed_delay
+            name: Exhaust Fan Door Closed Delay
   - type: grid
     title: Adaptive Lighting Modes
     cards:
-      - type: tile
-        entity: switch.adaptive_lighting_bathroom
-        name: Adaptive Lighting
-      - type: tile
-        entity: switch.adaptive_lighting_adapt_brightness_bathroom
-        name: Adaptive Lighting Brightness
-      - type: tile
-        entity: switch.adaptive_lighting_adapt_color_bathroom
-        name: Adaptive Lighting Color
-      - type: tile
-        entity: switch.adaptive_lighting_sleep_mode_bathroom
-        name: Adaptive Lighting Sleep Mode
+      - type: entities
+        entities:
+          - entity: switch.adaptive_lighting_bathroom
+            name: Adaptive Lighting
+          - entity: switch.adaptive_lighting_adapt_brightness_bathroom
+            name: Adaptive Lighting Brightness
+          - entity: switch.adaptive_lighting_adapt_color_bathroom
+            name: Adaptive Lighting Color
+          - entity: switch.adaptive_lighting_sleep_mode_bathroom
+            name: Adaptive Lighting Sleep Mode
   - type: grid
     title: Adaptive Lighting Tuning
     cards:
-      - type: tile
-        entity: input_number.bathroom_adaptive_lighting_min_brightness
-        name: Adaptive Lighting Minimum Brightness
-      - type: tile
-        entity: input_number.bathroom_adaptive_lighting_max_brightness
-        name: Adaptive Lighting Maximum Brightness
-      - type: tile
-        entity: input_number.bathroom_adaptive_lighting_min_color_temp
-        name: Adaptive Lighting Minimum Color Temperature
-      - type: tile
-        entity: input_number.bathroom_adaptive_lighting_max_color_temp
-        name: Adaptive Lighting Maximum Color Temperature
-      - type: tile
-        entity: input_number.bathroom_adaptive_lighting_sleep_brightness
-        name: Adaptive Lighting Sleep Brightness
-      - type: tile
-        entity: input_number.bathroom_adaptive_lighting_sleep_color_temp
-        name: Adaptive Lighting Sleep Color Temperature
-      - type: tile
-        entity: input_number.bathroom_adaptive_lighting_sleep_transition
-        name: Adaptive Lighting Sleep Transition
+      - type: entities
+        entities:
+          - entity: input_number.bathroom_adaptive_lighting_min_brightness
+            name: Adaptive Lighting Minimum Brightness
+          - entity: input_number.bathroom_adaptive_lighting_max_brightness
+            name: Adaptive Lighting Maximum Brightness
+          - entity: input_number.bathroom_adaptive_lighting_min_color_temp
+            name: Adaptive Lighting Minimum Color Temperature
+          - entity: input_number.bathroom_adaptive_lighting_max_color_temp
+            name: Adaptive Lighting Maximum Color Temperature
+          - entity: input_number.bathroom_adaptive_lighting_sleep_brightness
+            name: Adaptive Lighting Sleep Brightness
+          - entity: input_number.bathroom_adaptive_lighting_sleep_color_temp
+            name: Adaptive Lighting Sleep Color Temperature
+          - entity: input_number.bathroom_adaptive_lighting_sleep_transition
+            name: Adaptive Lighting Sleep Transition
