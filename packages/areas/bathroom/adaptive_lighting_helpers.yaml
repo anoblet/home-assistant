@@ -1,49 +1,42 @@
 bathroom_adaptive_lighting_helpers:
   input_number:
     bathroom_adaptive_lighting_max_brightness:
-      initial: 60
       max: 100
       min: 1
       mode: box
       name: Bathroom Adaptive Lighting Maximum Brightness
       unit_of_measurement: '%'
     bathroom_adaptive_lighting_max_color_temp:
-      initial: 3500
       max: 10000
       min: 1000
       mode: box
       name: Bathroom Adaptive Lighting Maximum Color Temperature
       unit_of_measurement: K
     bathroom_adaptive_lighting_min_brightness:
-      initial: 30
       max: 100
       min: 1
       mode: box
       name: Bathroom Adaptive Lighting Minimum Brightness
       unit_of_measurement: '%'
     bathroom_adaptive_lighting_min_color_temp:
-      initial: 3000
       max: 10000
       min: 1000
       mode: box
       name: Bathroom Adaptive Lighting Minimum Color Temperature
       unit_of_measurement: K
     bathroom_adaptive_lighting_sleep_brightness:
-      initial: 25
       max: 100
       min: 1
       mode: box
       name: Bathroom Adaptive Lighting Sleep Brightness
       unit_of_measurement: '%'
     bathroom_adaptive_lighting_sleep_color_temp:
-      initial: 2700
       max: 10000
       min: 1000
       mode: box
       name: Bathroom Adaptive Lighting Sleep Color Temperature
       unit_of_measurement: K
     bathroom_adaptive_lighting_sleep_transition:
-      initial: 120
       max: 3600
       min: 0
       mode: box
