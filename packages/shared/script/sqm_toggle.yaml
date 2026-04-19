@@ -17,13 +17,6 @@ shared_script_sqm_toggle:
           entity_id: input_boolean.sqm_toggle
           to: 'off'
       action:
-        - service: system_log.write
-          data:
-            level: warning
-            logger: shared_script_sqm_toggle
-            message: >-
-              SQM Trace: helper turned off, stopping script.sqm_toggle_loop and
-              forcing shell_command.sqm_disable
         - service: script.turn_off
           data:
             entity_id: script.sqm_toggle_loop
@@ -53,29 +46,26 @@ shared_script_sqm_toggle:
     sqm_toggle_loop:
       alias: SQM Toggle Loop
       sequence:
-        - variables:
-            interval_min_seconds: >-
-              {{ states('input_number.sqm_toggle_interval_min_seconds') | int(300) }}
-            interval_max_seconds: >-
-              {{ states('input_number.sqm_toggle_interval_max_seconds') | int(600) }}
-            active_window_min_seconds: >-
-              {{ states('input_number.sqm_toggle_active_window_min_seconds') | int(60) }}
-            active_window_max_seconds: >-
-              {{ states('input_number.sqm_toggle_active_window_max_seconds') | int(120) }}
         - repeat:
             sequence:
               - variables:
+                  interval_min_seconds: >-
+                    {{ states('input_number.sqm_toggle_interval_min_seconds') | int(300) }}
+                  interval_max_seconds: >-
+                    {{ states('input_number.sqm_toggle_interval_max_seconds') | int(600) }}
+                  active_window_min_seconds: >-
+                    {{ states('input_number.sqm_toggle_active_window_min_seconds') | int(60) }}
+                  active_window_max_seconds: >-
+                    {{ states('input_number.sqm_toggle_active_window_max_seconds') | int(120) }}
+              - variables:
                   next_interval_seconds: >-
-                    {{ range(interval_min_seconds, interval_max_seconds + 60, 60) | random }}
+                    {% set interval_lower_seconds = [interval_min_seconds, interval_max_seconds] | min %}
+                    {% set interval_upper_seconds = [interval_min_seconds, interval_max_seconds] | max %}
+                    {{ range(interval_lower_seconds, interval_upper_seconds + 1) | random }}
                   active_window_seconds: >-
-                    {{ range(active_window_min_seconds, active_window_max_seconds + 60, 60) | random }}
-              - service: system_log.write
-                data:
-                  level: warning
-                  logger: shared_script_sqm_toggle
-                  message: >-
-                    SQM Trace: next loop cycle waits {{ next_interval_seconds }}s
-                    before enable with {{ active_window_seconds }}s active window
+                    {% set active_window_lower_seconds = [active_window_min_seconds, active_window_max_seconds] | min %}
+                    {% set active_window_upper_seconds = [active_window_min_seconds, active_window_max_seconds] | max %}
+                    {{ range(active_window_lower_seconds, active_window_upper_seconds + 1) | random }}
               - wait_for_trigger:
                   - platform: state
                     entity_id: input_boolean.sqm_toggle
@@ -86,13 +76,6 @@ shared_script_sqm_toggle:
               - condition: state
                 entity_id: input_boolean.sqm_toggle
                 state: 'on'
-              - service: system_log.write
-                data:
-                  level: warning
-                  logger: shared_script_sqm_toggle
-                  message: >-
-                    SQM Trace: calling shell_command.sqm_enable after
-                    {{ next_interval_seconds }}s wait
               - service: shell_command.sqm_enable
               - wait_for_trigger:
                   - platform: state
@@ -101,13 +84,6 @@ shared_script_sqm_toggle:
                 timeout:
                   seconds: '{{ active_window_seconds }}'
                 continue_on_timeout: true
-              - service: system_log.write
-                data:
-                  level: warning
-                  logger: shared_script_sqm_toggle
-                  message: >-
-                    SQM Trace: calling shell_command.sqm_disable after
-                    {{ active_window_seconds }}s active window
               - service: shell_command.sqm_disable
             while:
               - condition: state

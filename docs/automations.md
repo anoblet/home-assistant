@@ -4,7 +4,7 @@
 
 This document provides comprehensive documentation for the Home Assistant packages automation system. The packages directory structure provides a modular, organized approach to managing automations, configurations, and entities across the entire Home Assistant installation.
 
-Use this document as a deep reference. For day-to-day editing rules and validation workflow, start with `docs/structure-guidelines.md`.
+Use this document as a deep reference. For day-to-day editing rules and validation workflow, start with `docs/structure-guidelines.md`. Package placement and naming in this repo follow the current six-directory taxonomy: `areas/`, `integrations/`, `people/`, `reminders/`, `schedules/`, and `shared/`.
 
 ## Table of Contents
 
@@ -28,125 +28,39 @@ The Home Assistant packages system uses a hierarchical structure where `configur
 ```mermaid
 %%{init: {"theme": "base", "themeVariables": {"primaryColor": "#161b22", "primaryTextColor": "#e6edf3", "primaryBorderColor": "#30363d", "lineColor": "#7d8590", "secondaryColor": "#0d1117", "tertiaryColor": "#010409", "background": "#0d1117", "mainBkg": "#161b22", "secondBkg": "#0d1117", "tertiaryBkg": "#010409", "textColor": "#e6edf3", "border1": "#30363d", "border2": "#21262d", "arrowheadColor": "#7d8590", "fontFamily": "ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace", "fontSize": "14px", "nodeBorder": "#30363d", "clusterBkg": "#161b22", "clusterBorder": "#30363d", "defaultLinkColor": "#7d8590", "titleColor": "#e6edf3", "edgeLabelBackground": "#161b22", "nodeTextColor": "#e6edf3"}}}%%
 flowchart TB
-    config[configuration.yaml]
-    packages[packages/]
+  config[configuration.yaml]
+  packages[packages/]
 
-    config -->|"!include_dir_merge_named"| packages
+  config -->|"!include_dir_merge_named"| packages
 
-    packages --> toplevel[Top-Level Packages]
-    packages --> areas[areas/]
-    packages --> domains[domains/]
-    packages --> common[common/]
-    packages --> reminders[reminders/]
-    packages --> schedules[schedules/]
+  packages --> areas[areas/]
+  packages --> integrations[integrations/]
+  packages --> people[people/]
+  packages --> reminders[reminders/]
+  packages --> schedules[schedules/]
+  packages --> shared[shared/]
 
-    toplevel --> morning[morning.yaml]
-    toplevel --> evening[evening.yaml]
-    toplevel --> night[night.yaml]
-    toplevel --> climate[climate.yaml]
-    toplevel --> occupancy[occupancy.yaml]
-    toplevel --> vacuum[vacuum.yaml]
-    toplevel --> recorder[recorder.yaml]
-    toplevel --> logger[logger.yaml]
-    toplevel --> others["+10 more files"]
+  areas --> area_example["bedroom/light/group.yaml"]
+  integrations --> integration_example["adaptive_lighting.yaml"]
+  people --> people_example["andrew/home/enter/sqm.yaml"]
+  reminders --> reminders_example["brush_teeth.yaml"]
+  schedules --> schedules_example["morning.yaml"]
+  shared --> shared_example["script/sqm_toggle.yaml"]
 
-    areas --> bedroom[bedroom/]
-    areas --> living_room[living_room/]
-    areas --> kitchen[kitchen/]
-    areas --> bathroom[bathroom/]
-    areas --> hallway[hallway/]
-    areas --> storage_room[storage_room/]
-    areas --> apartment[apartment/]
-
-    bedroom --> bed_configs[Direct Configs]
-    bedroom --> bed_domains[Domain Subdirs]
-
-    bed_configs --> bed_adaptive[adaptive_lighting.yaml]
-    bed_configs --> bed_bedtime[bedtime.yaml]
-    bed_configs --> bed_morning[morning.yaml]
-    bed_configs --> bed_thermostat[thermostat.yaml]
-    bed_configs --> bed_others["+10 more files"]
-
-    bed_domains --> bed_automation[automation/]
-    bed_domains --> bed_light[light/]
-    bed_domains --> bed_climate[climate/]
-    bed_domains --> bed_cover[cover/]
-    bed_domains --> bed_blinds[blinds/]
-    bed_domains --> bed_media[media_player/]
-    bed_domains --> bed_more["+10 more domains"]
-
-    domains --> dom_adaptive[adaptive_lighting/]
-    domains --> dom_climate[climate/]
-    domains --> dom_cover[cover/]
-    domains --> dom_light[light/]
-    domains --> dom_media[media_player/]
-    domains --> dom_vacuum[vacuum/]
-    domains --> dom_script[script/]
-    domains --> dom_zone[zone/]
-    domains --> dom_more["+10 more domains"]
-
-    common --> presence_yaml[presence.yaml]
-    common --> presence_dir[presence/]
-
-    reminders --> brush[brush_teeth.yaml]
-    reminders --> tasks[my_tasks.yaml]
-    reminders --> water[water_plants.yaml]
-
-    schedules --> day[day.yaml]
-
-    style config fill:#161b22,stroke:#30363d,color:#e6edf3
-    style packages fill:#161b22,stroke:#30363d,color:#e6edf3
-    style toplevel fill:#161b22,stroke:#30363d,color:#e6edf3
-    style areas fill:#161b22,stroke:#30363d,color:#e6edf3
-    style domains fill:#161b22,stroke:#30363d,color:#e6edf3
-    style common fill:#161b22,stroke:#30363d,color:#e6edf3
-    style reminders fill:#161b22,stroke:#30363d,color:#e6edf3
-    style schedules fill:#161b22,stroke:#30363d,color:#e6edf3
-    style morning fill:#161b22,stroke:#30363d,color:#e6edf3
-    style evening fill:#161b22,stroke:#30363d,color:#e6edf3
-    style night fill:#161b22,stroke:#30363d,color:#e6edf3
-    style climate fill:#161b22,stroke:#30363d,color:#e6edf3
-    style occupancy fill:#161b22,stroke:#30363d,color:#e6edf3
-    style vacuum fill:#161b22,stroke:#30363d,color:#e6edf3
-    style recorder fill:#161b22,stroke:#30363d,color:#e6edf3
-    style logger fill:#161b22,stroke:#30363d,color:#e6edf3
-    style others fill:#161b22,stroke:#30363d,color:#e6edf3
-    style bedroom fill:#161b22,stroke:#30363d,color:#e6edf3
-    style living_room fill:#161b22,stroke:#30363d,color:#e6edf3
-    style kitchen fill:#161b22,stroke:#30363d,color:#e6edf3
-    style bathroom fill:#161b22,stroke:#30363d,color:#e6edf3
-    style hallway fill:#161b22,stroke:#30363d,color:#e6edf3
-    style storage_room fill:#161b22,stroke:#30363d,color:#e6edf3
-    style apartment fill:#161b22,stroke:#30363d,color:#e6edf3
-    style bed_configs fill:#161b22,stroke:#30363d,color:#e6edf3
-    style bed_domains fill:#161b22,stroke:#30363d,color:#e6edf3
-    style bed_adaptive fill:#161b22,stroke:#30363d,color:#e6edf3
-    style bed_bedtime fill:#161b22,stroke:#30363d,color:#e6edf3
-    style bed_morning fill:#161b22,stroke:#30363d,color:#e6edf3
-    style bed_thermostat fill:#161b22,stroke:#30363d,color:#e6edf3
-    style bed_others fill:#161b22,stroke:#30363d,color:#e6edf3
-    style bed_automation fill:#161b22,stroke:#30363d,color:#e6edf3
-    style bed_light fill:#161b22,stroke:#30363d,color:#e6edf3
-    style bed_climate fill:#161b22,stroke:#30363d,color:#e6edf3
-    style bed_cover fill:#161b22,stroke:#30363d,color:#e6edf3
-    style bed_blinds fill:#161b22,stroke:#30363d,color:#e6edf3
-    style bed_media fill:#161b22,stroke:#30363d,color:#e6edf3
-    style bed_more fill:#161b22,stroke:#30363d,color:#e6edf3
-    style dom_adaptive fill:#161b22,stroke:#30363d,color:#e6edf3
-    style dom_climate fill:#161b22,stroke:#30363d,color:#e6edf3
-    style dom_cover fill:#161b22,stroke:#30363d,color:#e6edf3
-    style dom_light fill:#161b22,stroke:#30363d,color:#e6edf3
-    style dom_media fill:#161b22,stroke:#30363d,color:#e6edf3
-    style dom_vacuum fill:#161b22,stroke:#30363d,color:#e6edf3
-    style dom_script fill:#161b22,stroke:#30363d,color:#e6edf3
-    style dom_zone fill:#161b22,stroke:#30363d,color:#e6edf3
-    style dom_more fill:#161b22,stroke:#30363d,color:#e6edf3
-    style presence_yaml fill:#161b22,stroke:#30363d,color:#e6edf3
-    style presence_dir fill:#161b22,stroke:#30363d,color:#e6edf3
-    style brush fill:#161b22,stroke:#30363d,color:#e6edf3
-    style tasks fill:#161b22,stroke:#30363d,color:#e6edf3
-    style water fill:#161b22,stroke:#30363d,color:#e6edf3
-    style day fill:#161b22,stroke:#30363d,color:#e6edf3
+  style config fill:#161b22,stroke:#30363d,color:#e6edf3
+  style packages fill:#161b22,stroke:#30363d,color:#e6edf3
+  style areas fill:#161b22,stroke:#30363d,color:#e6edf3
+  style integrations fill:#161b22,stroke:#30363d,color:#e6edf3
+  style people fill:#161b22,stroke:#30363d,color:#e6edf3
+  style reminders fill:#161b22,stroke:#30363d,color:#e6edf3
+  style schedules fill:#161b22,stroke:#30363d,color:#e6edf3
+  style shared fill:#161b22,stroke:#30363d,color:#e6edf3
+  style area_example fill:#161b22,stroke:#30363d,color:#e6edf3
+  style integration_example fill:#161b22,stroke:#30363d,color:#e6edf3
+  style people_example fill:#161b22,stroke:#30363d,color:#e6edf3
+  style reminders_example fill:#161b22,stroke:#30363d,color:#e6edf3
+  style schedules_example fill:#161b22,stroke:#30363d,color:#e6edf3
+  style shared_example fill:#161b22,stroke:#30363d,color:#e6edf3
 ```
 
 ### Configuration Loading
@@ -169,101 +83,33 @@ This directive:
 
 ## Package Organization
 
-The packages directory is organized into several top-level categories:
+The packages directory is organized into six taxonomy directories:
 
-### 1. Top-Level Packages
+### 1. Areas (`areas/`)
 
-Located directly in `packages/`, these files define global or cross-cutting concerns:
+Area-scoped configuration such as per-room devices, automations, scripts, and helpers. Area packages typically follow a `{area}/{domain}/{feature}.yaml` layout.
 
-- **Time-based**: `morning.yaml`, `evening.yaml`, `night.yaml`
-  - Define `input_datetime` entities for scheduling
-  - Used by automations as time triggers
+### 2. Integrations (`integrations/`)
 
-- **System**: `logger.yaml`, `recorder.yaml`, `reload.yaml`
-  - System configuration and debugging
-  - Database recording settings
-  - Quick reload utilities
+Integration-specific configuration for shared platforms and services such as `adaptive_lighting`, `google_assistant`, `esphome`, or tracking integrations.
 
-- **Global Features**: `climate.yaml`, `occupancy.yaml`, `vacuum.yaml`
-  - Cross-area functionality
-  - Centralized settings
+### 3. People (`people/`)
 
-### 2. Areas (`areas/`)
+Person-scoped configuration where helpers, automations, or scripts belong to a specific person rather than a room or global concern.
 
-Physical locations in your home, organized by room:
+### 4. Reminders (`reminders/`)
 
-```
-areas/
-├── bedroom/
-├── living_room/
-├── kitchen/
-├── bathroom/
-├── hallway/
-├── storage_room/
-└── apartment/
-```
+Reminder and notification packages for recurring tasks and personal prompts.
 
-Each area contains:
+### 5. Schedules (`schedules/`)
 
-- **Direct configuration files**: Settings specific to that area
-  - `adaptive_lighting.yaml` - Lighting automation for the area
-  - `bedtime.yaml` - Bedtime routines
-  - `morning.yaml` - Morning routines
-  - `thermostat.yaml` - Climate control
+Time-of-day schedule anchors such as `morning`, `evening`, `night`, and other reusable scheduling helpers.
 
-- **Domain subdirectories**: Organized by entity domain
-  - `automation/` - Automations specific to this area
-  - `light/` - Light entities and groups
-  - `climate/` - Climate control entities
-  - `cover/` - Window covers and blinds
-  - `script/` - Scripts for this area
+### 6. Shared (`shared/`)
 
-### 3. Domains (`domains/`)
+Cross-cutting configuration that is not tied to one room or person, including shared scripts, presence logic, Lovelace packages, zones, and grouped devices.
 
-Organized by Home Assistant domain/platform, containing cross-area functionality:
-
-```
-domains/
-├── adaptive_lighting/
-├── climate/
-├── cover/
-├── light/
-├── media_player/
-├── vacuum/
-├── script/
-├── zone/
-└── update/
-```
-
-Use cases:
-
-- Cross-area automations
-- Domain-specific utilities
-- Platform configurations
-- Zone enter/exit automations
-
-### 4. Common (`common/`)
-
-Shared functionality and templates:
-
-- `presence/` - Presence detection logic
-- Reusable automation patterns
-- Helper entities
-
-### 5. Reminders (`reminders/`)
-
-Personal reminders and recurring tasks:
-
-- `brush_teeth.yaml` - Daily hygiene reminders
-- `my_tasks.yaml` - Task management
-- `water_plants.yaml` - Plant care reminders
-
-### 6. Schedules (`schedules/`)
-
-Time-based scheduling configurations:
-
-- `day.yaml` - Daily schedules
-- Time-of-day automations
+Do not place new package files at the `packages/` root. Every package under `packages/` is loadable input through `!include_dir_merge_named`, so only create standalone package files inside the active taxonomy directories.
 
 ---
 
@@ -276,108 +122,61 @@ Package names follow a strict hierarchical pattern that maps directly to their f
 ```mermaid
 %%{init: {"theme": "base", "themeVariables": {"primaryColor": "#161b22", "primaryTextColor": "#e6edf3", "primaryBorderColor": "#30363d", "lineColor": "#7d8590", "secondaryColor": "#0d1117", "tertiaryColor": "#010409", "background": "#0d1117", "mainBkg": "#161b22", "secondBkg": "#0d1117", "tertiaryBkg": "#010409", "textColor": "#e6edf3", "border1": "#30363d", "border2": "#21262d", "arrowheadColor": "#7d8590", "fontFamily": "ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace", "fontSize": "14px", "nodeBorder": "#30363d", "clusterBkg": "#161b22", "clusterBorder": "#30363d", "defaultLinkColor": "#7d8590", "titleColor": "#e6edf3", "edgeLabelBackground": "#161b22", "nodeTextColor": "#e6edf3"}}}%%
 flowchart TD
-    Start([Package File Path]) --> Root{Root Level?}
+  Start([Package File Path]) --> Category{Category Type}
 
-    Root -->|Yes| RootPattern[Simple Name Pattern]
-    RootPattern --> RootExample["packages/morning.yaml<br/>→ morning:"]
+  Category -->|areas| AreaPattern["{area}_{domain}_{feature...}"]
+  Category -->|integrations| IntegrationPattern["integrations_{name}"]
+  Category -->|people| PeoplePattern["people_{name}_{feature...}"]
+  Category -->|reminders| ReminderPattern["reminders_{name}"]
+  Category -->|schedules| SchedulePattern["schedules_{name}"]
+  Category -->|shared| SharedPattern["shared_{domain}_{feature...}"]
 
-    Root -->|No| Category{Category Type?}
+  AreaPattern --> AreaExample["areas/bedroom/light/group.yaml<br/>→ bedroom_light_group:"]
+  IntegrationPattern --> IntegrationExample["integrations/adaptive_lighting.yaml<br/>→ integrations_adaptive_lighting:"]
+  PeoplePattern --> PeopleExample["people/andrew/home/enter/sqm.yaml<br/>→ people_andrew_home_enter_sqm:"]
+  ReminderPattern --> ReminderExample["reminders/brush_teeth.yaml<br/>→ reminders_brush_teeth:"]
+  SchedulePattern --> ScheduleExample["schedules/day.yaml<br/>→ schedules_day:"]
+  SharedPattern --> SharedExample["shared/script/sqm_toggle.yaml<br/>→ shared_script_sqm_toggle:"]
 
-    Category -->|areas| AreaPath[areas/{area}/...]
-    Category -->|domains| DomainPath[domains/{domain}/...]
-    Category -->|reminders| ReminderPath[reminders/{name}]
-    Category -->|schedules| SchedulePath[schedules/{name}]
-    Category -->|common| CommonPath[common/{feature}/...]
-
-    AreaPath --> AreaDepth{Depth Level?}
-    AreaDepth -->|2 levels| AreaSimple["{area}_{feature}"]
-    AreaSimple --> AreaEx1["areas/bedroom/bedtime.yaml<br/>→ bedroom_bedtime:"]
-
-    AreaDepth -->|3+ levels| AreaNested["{area}_{sub1}_{sub2}..."]
-    AreaNested --> AreaEx2["areas/living_room/tv/on/lights.yaml<br/>→ living_room_tv_on_lights:"]
-
-    AreaDepth -->|automation subdir| AreaAuto["{area}_automation_{type}"]
-    AreaAuto --> AreaEx3["areas/bedroom/automation/pm_10.yaml<br/>→ bedroom_automation_pm_10:"]
-
-    DomainPath --> DomainDepth{Depth Level?}
-    DomainDepth -->|2 levels| DomainSimple["{domain}_{feature}"]
-    DomainSimple --> DomainEx1["domains/zone/home.yaml<br/>→ zone_home:"]
-
-    DomainDepth -->|3 levels| DomainNested["{domain}_{sub1}_{sub2}"]
-    DomainNested --> DomainEx2["domains/zone/home/enter.yaml<br/>→ zone_home_enter:"]
-
-    DomainDepth -->|4+ levels| DomainDeep["{domain}_{sub1}_{sub2}_{sub3}..."]
-    DomainDeep --> DomainEx3["domains/adaptive_lighting/sleep_mode/on/weekday.yaml<br/>→ adaptive_lighting_sleep_mode_on_weekday:"]
-
-    ReminderPath --> ReminderPattern["reminders_{name}"]
-    ReminderPattern --> ReminderEx["reminders/brush_teeth.yaml<br/>→ reminders_brush_teeth:"]
-
-    SchedulePath --> SchedulePattern["schedule_{name}"]
-    SchedulePattern --> ScheduleEx["schedules/day.yaml<br/>→ schedule_day:"]
-
-    CommonPath --> CommonPattern["common_{feature}_{sub}..."]
-    CommonPattern --> CommonEx["common/presence/off/thermostat.yaml<br/>→ common_presence_off_thermostat:"]
-
-    RootExample --> Rule[Naming Rules]
-    AreaEx1 --> Rule
-    AreaEx2 --> Rule
-    AreaEx3 --> Rule
-    DomainEx1 --> Rule
-    DomainEx2 --> Rule
-    DomainEx3 --> Rule
-    ReminderEx --> Rule
-    ScheduleEx --> Rule
-    CommonEx --> Rule
-
-    Rule --> R1["1. Replace '/' with '_'"]
-    R1 --> R2["2. Remove file extension"]
-    R2 --> R3["3. Join path segments with '_'"]
-    R3 --> R4["4. Apply the category-specific root rule"]
-    R4 --> End([Package Name])
-
-    style Start fill:#161b22,stroke:#30363d,color:#e6edf3
-    style End fill:#161b22,stroke:#30363d,color:#e6edf3
-    style Root fill:#161b22,stroke:#30363d,color:#e6edf3
-    style Category fill:#161b22,stroke:#30363d,color:#e6edf3
-    style AreaDepth fill:#161b22,stroke:#30363d,color:#e6edf3
-    style DomainDepth fill:#161b22,stroke:#30363d,color:#e6edf3
-    style Rule fill:#0d1117,stroke:#30363d,color:#e6edf3
-    style R1 fill:#0d1117,stroke:#30363d,color:#e6edf3
-    style R2 fill:#0d1117,stroke:#30363d,color:#e6edf3
-    style R3 fill:#0d1117,stroke:#30363d,color:#e6edf3
-    style R4 fill:#0d1117,stroke:#30363d,color:#e6edf3
+  style Start fill:#161b22,stroke:#30363d,color:#e6edf3
+  style Category fill:#161b22,stroke:#30363d,color:#e6edf3
+  style AreaPattern fill:#0d1117,stroke:#30363d,color:#e6edf3
+  style IntegrationPattern fill:#0d1117,stroke:#30363d,color:#e6edf3
+  style PeoplePattern fill:#0d1117,stroke:#30363d,color:#e6edf3
+  style ReminderPattern fill:#0d1117,stroke:#30363d,color:#e6edf3
+  style SchedulePattern fill:#0d1117,stroke:#30363d,color:#e6edf3
+  style SharedPattern fill:#0d1117,stroke:#30363d,color:#e6edf3
 ```
 
 ### Naming Rules
 
-1. **Root-level packages**: Use the filename without extension
-   - `packages/morning.yaml` → `morning:`
+1. **No root-level packages**: Place all new package files under one of the six active taxonomy directories.
 
-2. **Nested packages**: Join path segments with underscores
-
-- `packages/areas/bedroom/bedtime.yaml` → `bedroom_bedtime:`
-
-3. **Use snake_case**: All package names, IDs, and entity IDs use snake_case
+2. **Use snake_case**: All package names, IDs, and entity IDs use snake_case.
    - Consistent with Home Assistant conventions
    - Easy to read and maintain
 
-4. **Category-specific roots**: Areas and domains drop their leading category segment, while schedules use the singular `schedule_`
+3. **Use the taxonomy-specific prefix rule**: The package key should match the active directory convention.
 
-- Area-based: `bedroom_automation_pm_10`
-- Domain-based: `adaptive_lighting_sleep_mode_on_weekday`
-- Schedule-based: `schedule_day`
+- Area-based: `bedroom_light_group`
+- Integration-based: `integrations_adaptive_lighting`
+- People-based: `people_andrew_home_enter_sqm`
+- Schedule-based: `schedules_day`
+- Shared-based: `shared_script_sqm_toggle`
 - Reminder-based: `reminders_brush_teeth`
+
+4. **Keep package keys globally unique**: `!include_dir_merge_named` merges every YAML file under `packages/`, so duplicate top-level keys will collide.
 
 ### Naming Examples
 
 | File Path                                                       | Package Name                               |
 | --------------------------------------------------------------- | ------------------------------------------ |
-| `packages/morning.yaml`                                         | `morning:`                                 |
-| `packages/areas/bedroom/bedtime.yaml`                           | `bedroom_bedtime:`                         |
-| `packages/areas/bedroom/automation/pm_10.yaml`                  | `bedroom_automation_pm_10:`                |
-| `packages/domains/zone/home/enter.yaml`                         | `zone_home_enter:`                         |
-| `packages/domains/adaptive_lighting/sleep_mode/on/weekday.yaml` | `adaptive_lighting_sleep_mode_on_weekday:` |
+| `packages/areas/bedroom/light/group.yaml`                       | `bedroom_light_group:`                     |
+| `packages/integrations/adaptive_lighting.yaml`                  | `integrations_adaptive_lighting:`          |
+| `packages/people/andrew/home/enter/sqm.yaml`                    | `people_andrew_home_enter_sqm:`            |
 | `packages/reminders/brush_teeth.yaml`                           | `reminders_brush_teeth:`                   |
+| `packages/schedules/day.yaml`                                   | `schedules_day:`                           |
+| `packages/shared/script/sqm_toggle.yaml`                        | `shared_script_sqm_toggle:`                |
 
 ---
 
@@ -626,7 +425,7 @@ trigger:
 - Departure routines
 - Location-based triggers
 
-**Example:** `zone_home_enter`
+**Example:** `shared_zone_home_enter`
 
 - Turns on lights
 - Enables climate control
@@ -649,7 +448,7 @@ trigger:
 - Safety notifications
 - Threshold-based actions
 
-**Example:** `bedroom_automation_pm_10`
+**Example:** `bedroom_pm_10`
 
 - Alerts when PM10 exceeds 150 µg/m³
 - Suggests running air purifier
@@ -746,8 +545,8 @@ max: 10 # Maximum parallel instances
 **Example:**
 
 ```yaml
-# Package path: bedroom/automation/pm_10
-bedroom_automation_pm_10:
+# Package path: packages/areas/bedroom/pm_10.yaml
+bedroom_pm_10:
   # Alerts when particulate matter exceeds the safe bedroom threshold.
   automation:
     - alias: 'Bedroom - PM10 Alert'
@@ -835,12 +634,12 @@ bedroom_bedtime:
 
 ### Example 2: Numeric State Alert
 
-**File:** `packages/areas/bedroom/automation/pm_10.yaml`
+**File:** `packages/areas/bedroom/pm_10.yaml`
 
-**Package Name:** `bedroom_automation_pm_10`
+**Package Name:** `bedroom_pm_10`
 
 ```yaml
-bedroom_automation_pm_10:
+bedroom_pm_10:
   # Alerts when particulate matter exceeds the safe bedroom threshold.
   automation:
     - alias: 'Bedroom - PM10 Alert'
@@ -872,12 +671,12 @@ bedroom_automation_pm_10:
 
 ### Example 3: Zone-Based Automation
 
-**File:** `packages/domains/zone/home/enter.yaml`
+**File:** `packages/shared/zone/home/enter.yaml`
 
-**Package Name:** `zone_home_enter`
+**Package Name:** `shared_zone_home_enter`
 
 ```yaml
-zone_home_enter:
+shared_zone_home_enter:
   automation:
     action:
       - choose:
@@ -920,12 +719,12 @@ zone_home_enter:
 
 ### Example 4: Conditional Time Automation
 
-**File:** `packages/domains/adaptive_lighting/sleep_mode/on/weekday.yaml`
+**File:** `packages/integrations/adaptive_lighting/sleep_mode/on/weekday.yaml`
 
-**Package Name:** `adaptive_lighting_sleep_mode_on_weekday`
+**Package Name:** `integrations_adaptive_lighting_sleep_mode_on_weekday`
 
 ```yaml
-adaptive_lighting_sleep_mode_on_weekday:
+integrations_adaptive_lighting_sleep_mode_on_weekday:
   automation:
     - action:
         - service: switch.turn_on
