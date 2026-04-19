@@ -3,6 +3,7 @@ living_room_adaptive_lighting:
     - lights:
         - light.living_room_ceiling_light_group_zigbee
         - light.living_room_floor_lamp
+      adapt_only_on_bare_turn_on: true
       max_color_temp: 3500
       min_brightness: 50
       min_color_temp: 2750
