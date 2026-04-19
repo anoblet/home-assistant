@@ -4,9 +4,7 @@ schedules_sqm_toggle:
       name: SQM Toggle - On
       has_date: false
       has_time: true
-      initial: '23:00:00'
     sqm_toggle_off:
       name: SQM Toggle - Off
       has_date: false
       has_time: true
-      initial: '06:00:00'

@@ -1,7 +1,6 @@
 people_andrew_home_leave_sqm:
   automation:
     actions:
-      - delay: 00:05:00
       - service: input_boolean.turn_on
         data:
           entity_id: input_boolean.sqm_toggle

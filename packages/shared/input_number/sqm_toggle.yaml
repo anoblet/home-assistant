@@ -5,26 +5,22 @@ shared_input_number_sqm_toggle:
       max: 3600
       mode: box
       name: SQM Toggle - Interval - Min
-      initial: 300
       unit_of_measurement: 's'
     sqm_toggle_interval_max_seconds:
       min: 0
       max: 3600
       mode: box
       name: SQM Toggle - Interval - Max
-      initial: 600
       unit_of_measurement: 's'
     sqm_toggle_active_window_min_seconds:
       min: 0
       max: 3600
       mode: box
       name: SQM Toggle - Active Window - Min
-      initial: 60
       unit_of_measurement: 's'
     sqm_toggle_active_window_max_seconds:
       min: 0
       max: 3600
       mode: box
       name: SQM Toggle - Active Window - Max
-      initial: 120
       unit_of_measurement: 's'
