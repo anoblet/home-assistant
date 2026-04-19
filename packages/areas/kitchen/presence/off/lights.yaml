@@ -21,5 +21,3 @@ kitchen_presence_off_lights:
       - entity_id: binary_sensor.kitchen_ld2410c_presence
         platform: state
         to: 'off'
-        for:
-          minutes: 5
