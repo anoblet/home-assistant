@@ -36,7 +36,7 @@ All package files live under `packages/` and are organized into six taxonomy dir
 | `people/`       | Person-scoped configuration                                                                       | 6     |
 | `reminders/`    | Reminder/notification packages                                                                    | 3     |
 | `schedules/`    | Time-of-day schedule anchors (morning, evening, night, day)                                       | 4     |
-| `shared/`       | Cross-cutting configuration (lovelace, presence, vacuum, zones, themes, media_player groups)      | 49    |
+| `shared/`       | Cross-cutting configuration (lovelace, presence, vacuum, zones, themes, media_player groups)      | 50    |
 
 ### Naming conventions
 
@@ -56,6 +56,7 @@ All package files live under `packages/` and are organized into six taxonomy dir
 - Do **not** place new work outside the six taxonomy directories (`areas/`, `integrations/`, `people/`, `reminders/`, `schedules/`, `shared/`).
 - Keep packages small and focused; prefer one responsibility per file.
 - `homeassistant.packages` uses `!include_dir_merge_named packages/`, so every YAML file under `packages/` is loadable input. Do not place nested helper YAML fragments under active package owner folders unless each file is meant to be a standalone package entry.
+- When a package needs `input_*` helpers, keep those helper definitions in a separate standalone package file rather than mixing them with the package's `automation`, `script`, or integration logic. When one feature owns helpers across multiple input domains, prefer a feature-scoped `_input` package key and filename such as `shared_background_music_input`.
 
 ### Area package structure
 

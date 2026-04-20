@@ -9,32 +9,6 @@ shared_background_music:
           - 'Play Background Music' # Alternate voice commands for triggering the script
           - 'Start Background Music'
           - "It's too quiet" # Allows for more natural language commands
-  input_datetime:
-    background_music_start_time:
-      has_date: false
-      has_time: true
-      name: Background Music Start Time
-    background_music_stop_time:
-      has_date: false
-      has_time: true
-      name: Background Music Stop Time
-  input_number:
-    background_music_play_delay_seconds:
-      min: 0
-      max: 3600
-      mode: box
-      name: Background Music Play Delay Seconds
-      unit_of_measurement: 's'
-    background_music_volume:
-      min: 0
-      max: 1
-      mode: box
-      name: Background Music Volume
-      step: 0.01
-  input_text:
-    background_music_media_id:
-      max: 255
-      name: Background Music Media ID
   script:
     background_music:
       alias: Background Music # User-friendly name for the script

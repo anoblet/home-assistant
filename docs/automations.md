@@ -111,6 +111,8 @@ Cross-cutting configuration that is not tied to one room or person, including sh
 
 Do not place new package files at the `packages/` root. Every package under `packages/` is loadable input through `!include_dir_merge_named`, so only create standalone package files inside the active taxonomy directories.
 
+When automations, scripts, or integration logic need package-owned helpers, define the `input_*` blocks in a separate standalone package file rather than mixing them into the logic package. When one feature owns helpers across multiple input domains, prefer a feature-scoped `_input` package key such as `shared_background_music_input`.
+
 ---
 
 ## Naming Conventions
@@ -504,6 +506,7 @@ max: 10 # Maximum parallel instances
 - Group related automations by area or domain
 - Use descriptive filenames that match content
 - Keep files small and focused (single responsibility)
+- Keep package-owned `input_*` helpers in a separate standalone package file; use a feature-scoped `_input` name when one feature spans multiple input domains
 - Use subdirectories for complex areas
 
 **Don't:**
@@ -743,21 +746,18 @@ integrations_adaptive_lighting_sleep_mode_on_weekday:
       trigger:
         - at: input_datetime.adaptive_lighting_sleep_mode_on_weekday
           platform: time
-  input_datetime:
-    adaptive_lighting_sleep_mode_on_weekday:
-      has_date: false
-      has_time: true
-      name: Adaptive Lighting - Sleep Mode - On - Weekday
 ```
+
+Pair `input_datetime.adaptive_lighting_sleep_mode_on_weekday` with a separate standalone input package, for example `integrations_adaptive_lighting_sleep_mode_on_weekday_input`, so the logic file stays focused on the automation.
 
 **Purpose:** Enables adaptive lighting sleep mode on weekday evenings.
 
 **Key Points:**
 
 - Time-based trigger with weekday condition
-- Includes helper entity definition
+- References a helper defined in a separate standalone input package
 - Only runs on specified days
-- Demonstrates package merging (includes both automation and input_datetime)
+- Keeps the logic package focused on automation behavior
 
 ---
 
@@ -769,14 +769,6 @@ integrations_adaptive_lighting_sleep_mode_on_weekday:
 
 ```yaml
 reminders_brush_teeth:
-  # Brush Teeth Reminder Switch
-  input_boolean:
-    brush_teeth_reminder:
-      name: Brush Teeth Reminder
-      icon: mdi:tooth-outline
-      initial: on
-
-  # Automations for morning and evening reminders
   automation:
     - id: morning_brush_teeth_reminder
       alias: Morning Brush Teeth Reminder
@@ -829,15 +821,17 @@ reminders_brush_teeth:
                   title: 'Mark as Complete'
 ```
 
+Define `input_boolean.brush_teeth_reminder` in a separate standalone input package, for example `reminders_brush_teeth_input`, instead of in the same file as the automations.
+
 **Purpose:** Daily reminders for brushing teeth, morning and evening.
 
 **Key Points:**
 
 - Multiple automations in one package
-- Toggle switch to enable/disable
+- Toggle switch lives in a separate standalone input package
 - Both persistent notifications and mobile notifications
 - Actionable notifications
-- Demonstrates full package composition (input_boolean + automations)
+- Keeps helper ownership separate from automation logic
 
 ---
 
