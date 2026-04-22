@@ -1,0 +1,13 @@
+title: Reminders
+path: reminders
+icon: mdi:bell-cog-outline
+type: sections
+sections:
+  - type: grid
+    title: Daily Reminders
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.brush_teeth_reminder
+          - entity: input_boolean.my_tasks_reminder
+          - entity: input_boolean.water_plants_reminder

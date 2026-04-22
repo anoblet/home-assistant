@@ -1,0 +1,61 @@
+title: Shared
+path: shared
+icon: mdi:share-variant
+type: sections
+sections:
+  - type: grid
+    title: Background Music
+    cards:
+      - type: entities
+        entities:
+          - entity: input_datetime.background_music_start_time
+          - entity: input_datetime.background_music_stop_time
+          - entity: input_number.background_music_play_delay_seconds
+          - entity: input_number.background_music_volume
+          - entity: input_text.background_music_media_id
+          - entity: input_text.background_music_play_target_entity_id
+          - entity: input_text.background_music_stop_target_entity_id
+          - entity: input_boolean.background_music_monday
+          - entity: input_boolean.background_music_tuesday
+          - entity: input_boolean.background_music_wednesday
+          - entity: input_boolean.background_music_thursday
+          - entity: input_boolean.background_music_friday
+          - entity: input_boolean.background_music_saturday
+          - entity: input_boolean.background_music_sunday
+  - type: grid
+    title: Light Transition
+    cards:
+      - type: entities
+        entities:
+          - entity: input_number.light_transition_on
+  - type: grid
+    title: Presence
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.common_presence_detection
+  - type: grid
+    title: SQM Toggle
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.sqm_toggle
+          - entity: input_datetime.sqm_toggle_on
+          - entity: input_datetime.sqm_toggle_off
+          - entity: input_number.sqm_toggle_interval_min_seconds
+          - entity: input_number.sqm_toggle_interval_max_seconds
+          - entity: input_number.sqm_toggle_active_window_min_seconds
+          - entity: input_number.sqm_toggle_active_window_max_seconds
+  - type: grid
+    title: Vacuum Status
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.vacuum_bathroom
+          - entity: input_boolean.vacuum_bedroom
+          - entity: input_boolean.vacuum_bedroom_two
+          - entity: input_boolean.vacuum_bedroom_three
+          - entity: input_boolean.vacuum_hallway
+          - entity: input_boolean.vacuum_kitchen
+          - entity: input_boolean.vacuum_living_room
+          - entity: input_boolean.vacuum_storage_room

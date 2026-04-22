@@ -1,0 +1,11 @@
+title: Apartment
+path: apartment
+icon: mdi:home-thermometer-outline
+type: sections
+sections:
+  - type: grid
+    title: Climate
+    cards:
+      - type: entities
+        entities:
+          - entity: input_number.apartment_temperature_maximum

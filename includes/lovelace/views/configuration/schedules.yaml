@@ -1,0 +1,13 @@
+title: Schedules
+path: schedules
+icon: mdi:clock-outline
+type: sections
+sections:
+  - type: grid
+    title: Time Anchors
+    cards:
+      - type: entities
+        entities:
+          - entity: input_datetime.morning
+          - entity: input_datetime.evening
+          - entity: input_datetime.night

@@ -25,3 +25,24 @@ shared_background_music_input:
     background_music_media_id:
       max: 255
       name: Background Music Media ID
+    background_music_play_target_entity_id:
+      max: 255
+      name: Background Music Play Target Entity ID
+    background_music_stop_target_entity_id:
+      max: 255
+      name: Background Music Stop Target Entity ID
+  input_boolean:
+    background_music_monday:
+      name: Background Music Monday
+    background_music_tuesday:
+      name: Background Music Tuesday
+    background_music_wednesday:
+      name: Background Music Wednesday
+    background_music_thursday:
+      name: Background Music Thursday
+    background_music_friday:
+      name: Background Music Friday
+    background_music_saturday:
+      name: Background Music Saturday
+    background_music_sunday:
+      name: Background Music Sunday

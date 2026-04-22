@@ -1,0 +1,48 @@
+title: Bedroom
+path: bedroom
+icon: mdi:bed-king-outline
+type: sections
+sections:
+  - type: grid
+    title: Window Automation
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.bedroom_blinds_automatic
+  - type: grid
+    title: Schedule
+    cards:
+      - type: entities
+        entities:
+          - entity: input_datetime.bedroom_morning
+  - type: grid
+    title: Climate
+    cards:
+      - type: entities
+        entities:
+          - entity: input_select.bedroom_climate_zone
+          - entity: input_number.bedroom_carbon_dioxide_warning
+          - entity: input_number.bedroom_carbon_dioxide_maximum
+  - type: grid
+    title: Presence
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.bedroom_presence_detection
+  - type: grid
+    title: Presence Gates
+    cards:
+      - type: entities
+        entities:
+          - entity: input_number.bedroom_presence_last_on_gate
+          - entity: input_number.bedroom_presence_last_off_gate
+          - entity: input_number.bedroom_presence_last_move_gate
+          - entity: input_number.bedroom_presence_last_still_gate
+  - type: grid
+    title: Thermostat
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.bedroom_thermostat_manual
+          - entity: input_number.bedroom_thermostat_heat_default
+          - entity: input_number.bedroom_thermostat_cool_default

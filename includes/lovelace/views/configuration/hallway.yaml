@@ -1,0 +1,21 @@
+title: Hallway
+path: hallway
+icon: mdi:door-open
+type: sections
+sections:
+  - type: grid
+    title: Motion
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.hallway_motion
+          - entity: input_number.hallway_motion_cooldown
+          - entity: input_number.hallway_motion_illuminance_minimum
+  - type: grid
+    title: Lighting
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.hallway_light_manual
+          - entity: input_number.hallway_light_transition_on
+          - entity: input_number.hallway_light_transition_off

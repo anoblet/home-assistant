@@ -1,0 +1,17 @@
+title: Storage Room
+path: storage-room
+icon: mdi:archive-outline
+type: sections
+sections:
+  - type: grid
+    title: Lighting
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.storage_room_light_manual
+  - type: grid
+    title: Motion
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.storage_room_motion

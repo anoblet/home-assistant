@@ -1,0 +1,14 @@
+title: Configuration
+views:
+  - !include ../views/configuration/index.yaml
+  - !include ../views/configuration/shared.yaml
+  - !include ../views/configuration/schedules.yaml
+  - !include ../views/configuration/integrations.yaml
+  - !include ../views/configuration/reminders.yaml
+  - !include ../views/configuration/apartment.yaml
+  - !include ../views/configuration/bathroom.yaml
+  - !include ../views/configuration/bedroom.yaml
+  - !include ../views/configuration/hallway.yaml
+  - !include ../views/configuration/kitchen.yaml
+  - !include ../views/configuration/living_room.yaml
+  - !include ../views/configuration/storage_room.yaml

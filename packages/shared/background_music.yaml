@@ -1,31 +1,81 @@
 shared_background_music:
   google_assistant:
     entity_config:
-      # Configuration for exposing the background music script to Google Assistant
       script.background_music:
-        name: 'Background Music' # The name that will appear in Google Assistant
-        expose: true # Ensures this script is available for Google Assistant integration
+        name: 'Background Music'
+        expose: true
         aliases:
-          - 'Play Background Music' # Alternate voice commands for triggering the script
+          - 'Play Background Music'
           - 'Start Background Music'
-          - "It's too quiet" # Allows for more natural language commands
+          - "It's too quiet"
   script:
-    background_music:
-      alias: Background Music # User-friendly name for the script
+    background_music_seed_helper_defaults:
+      alias: Seed Background Music Helper Defaults
+      description: 'Seeds the migrated background music targets and weekday toggles once on installs that still have blank helper state.'
       sequence:
-        # Step 1: Set the volume level for the media player group
-        - action: media_player.volume_set
-          data:
-            volume_level: "{{ states('input_number.background_music_volume') | float }}"
-          target:
-            entity_id: media_player.background_group_2 # Target media player group for volume adjustment
-        - delay:
-            seconds: "{{ states('input_number.background_music_play_delay_seconds') | int }}"
-        # Step 2: Play a specific media item (e.g., a radio station) on the media player group
-        - action: music_assistant.play_media
-          data:
-            entity_id: media_player.background_group_2 # @todo Fix the group name to ensure proper functionality
+        - variables:
+            play_target_entity_id: "{{ states('input_text.background_music_play_target_entity_id') }}"
+            stop_target_entity_id: "{{ states('input_text.background_music_stop_target_entity_id') }}"
+        - if:
+            - condition: template
+              value_template: >-
+                {{ play_target_entity_id in ['unknown', 'unavailable', 'none', '']
+                   and stop_target_entity_id in ['unknown', 'unavailable', 'none', ''] }}
+          then:
+            - action: input_text.set_value
+              target:
+                entity_id: input_text.background_music_play_target_entity_id
+              data:
+                value: media_player.background_group_2
+            - action: input_text.set_value
+              target:
+                entity_id: input_text.background_music_stop_target_entity_id
+              data:
+                value: media_player.background_group
+            - action: input_boolean.turn_on
+              target:
+                entity_id:
+                  - input_boolean.background_music_monday
+                  - input_boolean.background_music_tuesday
+                  - input_boolean.background_music_wednesday
+                  - input_boolean.background_music_thursday
+                  - input_boolean.background_music_friday
+            - action: input_boolean.turn_off
+              target:
+                entity_id:
+                  - input_boolean.background_music_saturday
+                  - input_boolean.background_music_sunday
+          else:
+            - stop: Background music helper defaults already seeded.
+    background_music:
+      alias: Background Music
+      sequence:
+        - variables:
+            play_target_entity_id: "{{ states('input_text.background_music_play_target_entity_id') }}"
             media_id: "{{ states('input_text.background_music_media_id') }}"
+            volume_level: "{{ states('input_number.background_music_volume') }}"
+            play_delay_seconds: "{{ states('input_number.background_music_play_delay_seconds') }}"
+        - if:
+            - condition: template
+              value_template: >-
+                {{ play_target_entity_id not in ['unknown', 'unavailable', 'none', '']
+                   and media_id not in ['unknown', 'unavailable', 'none', '']
+                   and volume_level not in ['unknown', 'unavailable', 'none', '']
+                   and play_delay_seconds not in ['unknown', 'unavailable', 'none', ''] }}
+          then:
+            - action: media_player.volume_set
+              data:
+                volume_level: '{{ volume_level | float }}'
+              target:
+                entity_id: '{{ play_target_entity_id }}'
+            - delay:
+                seconds: '{{ play_delay_seconds | int }}'
+            - action: music_assistant.play_media
+              data:
+                entity_id: '{{ play_target_entity_id }}'
+                media_id: '{{ media_id }}'
+          else:
+            - stop: Background music helpers are not fully configured.
   automation:
     - alias: 'Play Background Music on Weekday Mornings'
       id: play_background_music_weekday_mornings
@@ -34,15 +84,16 @@ shared_background_music:
         - platform: time
           at: input_datetime.background_music_start_time
       condition:
-        - condition: time
-          weekday:
-            - mon
-            - tue
-            - wed
-            - thu
-            - fri
+        - condition: template
+          value_template: >-
+            {% set weekday = now().strftime('%A') | lower %}
+            {% set play_target = states('input_text.background_music_play_target_entity_id') %}
+            {% set media_id = states('input_text.background_music_media_id') %}
+            {{ play_target not in ['unknown', 'unavailable', 'none', '']
+               and media_id not in ['unknown', 'unavailable', 'none', '']
+               and is_state('input_boolean.background_music_' ~ weekday, 'on') }}
       action:
-        - service: script.background_music
+        - action: script.background_music
     - alias: 'Stop Background Music on Weekday Nights'
       id: stop_background_music_weekday_nights
       description: 'Automatically stops background music every weekday night at 8:00 PM.'
@@ -50,14 +101,13 @@ shared_background_music:
         - platform: time
           at: input_datetime.background_music_stop_time
       condition:
-        - condition: time
-          weekday:
-            - mon
-            - tue
-            - wed
-            - thu
-            - fri
+        - condition: template
+          value_template: >-
+            {% set weekday = now().strftime('%A') | lower %}
+            {% set stop_target = states('input_text.background_music_stop_target_entity_id') %}
+            {{ stop_target not in ['unknown', 'unavailable', 'none', '']
+               and is_state('input_boolean.background_music_' ~ weekday, 'on') }}
       action:
         - action: media_player.media_stop
           target:
-            entity_id: media_player.background_group
+            entity_id: "{{ states('input_text.background_music_stop_target_entity_id') }}"

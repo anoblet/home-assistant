@@ -1,26 +1,34 @@
-cards:
-  - type: custom:generic-card
+title: Overview
+path: overview
+icon: mdi:cog-box
+type: sections
+sections:
+  - type: grid
+    title: Scope
     cards:
-      - type: entities
-        entities:
-          - input_number.bathroom_light_transition_off
-          - input_number.bathroom_light_transition_on
-          - input_number.bathroom_motion_cooldown
-    title: Bathroom
-  - type: custom:generic-card
+      - type: markdown
+        content: |
+          This dashboard surfaces every YAML-defined input helper under `packages/` exactly once.
+      - type: markdown
+        content: |
+          ### Shared & Global
+          - [Shared](/dashboard-configuration/shared)
+          - [Schedules](/dashboard-configuration/schedules)
+          - [Integrations](/dashboard-configuration/integrations)
+          - [Reminders](/dashboard-configuration/reminders)
+      - type: markdown
+        content: |
+          ### Areas
+          - [Apartment](/dashboard-configuration/apartment)
+          - [Bathroom](/dashboard-configuration/bathroom)
+          - [Bedroom](/dashboard-configuration/bedroom)
+          - [Hallway](/dashboard-configuration/hallway)
+          - [Kitchen](/dashboard-configuration/kitchen)
+          - [Living Room](/dashboard-configuration/living-room)
+          - [Storage Room](/dashboard-configuration/storage-room)
+  - type: grid
+    title: Existing Room Views
     cards:
-      - type: entities
-        entities:
-          - input_number.kitchen_light_transition_off
-          - input_number.kitchen_light_transition_on
-          - input_number.kitchen_motion_cooldown
-    title: Kitchen
-  - type: custom:generic-card
-    cards:
-      - type: custom:custom-theme-card
-    title: Theme
-icon: mdi:cog
-title: Configuration
-type: custom:default-view
-visible:
-  - user: e19a51e0a67944d782371b93c2a2c2e7
+      - type: markdown
+        content: |
+          The Rooms dashboard keeps the existing room-specific Configuration subviews intact.

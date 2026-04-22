@@ -13,7 +13,7 @@ This repository contains a production Home Assistant configuration plus a local 
 - `packages/`: Home Assistant packages grouped by area/domain/feature (for example `packages/areas/bedroom/`).
 - `esphome/`: ESPHome firmware for room and device controllers.
 - `custom_components/`: Third-party or custom integrations.
-- `includes/lovelace/`: Dashboard view definitions.
+- `includes/lovelace/`: Dashboard view definitions, including the unified Configuration dashboard at `/dashboard-configuration`.
 - `www/`: Frontend assets and custom web components.
 - `copilot/`: Copilot-focused tooling and documentation.
 - `docs/`: Internal architecture and operator documentation.
@@ -60,7 +60,9 @@ Use `pnpm` across the entire repository.
 - Format files: `pnpm format`
 - Run Home Assistant CLI: `pnpm home-assistant --help`
 - Apply config reload: `pnpm reload`
+- Restart Home Assistant core when brand-new `input_*` helpers do not appear after reload: `pnpm home-assistant core restart`
 - Generate docs HTML preview: `pnpm docs:html`
+- Open the unified helper dashboard: `/dashboard-configuration`
 
 ## Safety Notes
 
@@ -73,5 +75,6 @@ Use `pnpm` across the entire repository.
 1. Keep changes focused and update documentation with code/config edits in the same pass.
 2. Follow repository instructions in `.github/instructions/` and keep package names, IDs, and entity IDs in `snake_case`.
 3. Run `pnpm reload` after meaningful Home Assistant changes.
-4. Verify runtime health with `pnpm home-assistant raw request GET /api/hassio/core/logs --text` and resolve warnings/errors before merge.
-5. Confirm committed docs artifacts are sanitized (for example `docs/api/states.json`) and do not include private addresses, signed URLs, or secrets.
+4. If you added brand-new `input_*` helpers and they do not register after reload, restart Home Assistant core before first-time seeding and verification.
+5. Verify runtime health with `pnpm home-assistant raw request GET /api/hassio/core/logs --text` and resolve warnings/errors before merge.
+6. Confirm committed docs artifacts are sanitized (for example `docs/api/states.json`) and do not include private addresses, signed URLs, or secrets.

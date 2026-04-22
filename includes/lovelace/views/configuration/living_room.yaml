@@ -1,0 +1,46 @@
+title: Living Room
+path: living-room
+icon: mdi:sofa-outline
+type: sections
+sections:
+  - type: grid
+    title: Window Automation
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.living_room_blinds_automatic
+          - entity: input_number.living_room_tv_on_blinds_position
+  - type: grid
+    title: Presence
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.living_room_presence_detection
+  - type: grid
+    title: Presence Gates
+    cards:
+      - type: entities
+        entities:
+          - entity: input_number.living_room_ld2410c_last_on_gate
+          - entity: input_number.living_room_ld2410c_last_off_gate
+          - entity: input_number.living_room_ld2410c_last_move_gate
+          - entity: input_number.living_room_ld2410c_last_still_gate
+  - type: grid
+    title: Lighting
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.living_room_light_manual
+          - entity: input_number.living_room_illuminance_minimum
+          - entity: input_number.living_room_light_transition_on
+          - entity: input_number.living_room_light_transition_off
+  - type: grid
+    title: Thermostat
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.living_room_thermostat_manual
+          - entity: input_number.living_room_thermostat_heat_default
+          - entity: input_number.living_room_thermostat_cool_default
+          - entity: input_number.living_room_thermostat_presence_on
+          - entity: input_number.living_room_thermostat_presence_off

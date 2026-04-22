@@ -1,0 +1,13 @@
+title: Integrations
+path: integrations
+icon: mdi:puzzle-outline
+type: sections
+sections:
+  - type: grid
+    title: Adaptive Lighting Sleep Schedule
+    cards:
+      - type: entities
+        entities:
+          - entity: input_datetime.adaptive_lighting_sleep_mode_on_weekday
+          - entity: input_datetime.adaptive_lighting_sleep_mode_on_weekend
+          - entity: input_datetime.adaptive_lighting_sleep_mode_off

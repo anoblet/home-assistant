@@ -29,14 +29,14 @@ This repo treats Home Assistant configuration as code. These guidelines exist to
 
 All package files live under `packages/` and are organized into six taxonomy directories:
 
-| Directory       | Purpose                                                                                           | Files |
-| --------------- | ------------------------------------------------------------------------------------------------- | ----- |
-| `areas/`        | Area-scoped configuration (per-room devices, automations, scripts)                                | 242   |
-| `integrations/` | Integration-specific configuration (adaptive_lighting, google_assistant, esphome, device_tracker) | 10    |
-| `people/`       | Person-scoped configuration                                                                       | 6     |
-| `reminders/`    | Reminder/notification packages                                                                    | 3     |
-| `schedules/`    | Time-of-day schedule anchors (morning, evening, night, day)                                       | 4     |
-| `shared/`       | Cross-cutting configuration (lovelace, presence, vacuum, zones, themes, media_player groups)      | 50    |
+| Directory       | Purpose                                                                                           |
+| --------------- | ------------------------------------------------------------------------------------------------- |
+| `areas/`        | Area-scoped configuration (per-room devices, automations, scripts)                                |
+| `integrations/` | Integration-specific configuration (adaptive_lighting, google_assistant, esphome, device_tracker) |
+| `people/`       | Person-scoped configuration                                                                       |
+| `reminders/`    | Reminder/notification packages                                                                    |
+| `schedules/`    | Time-of-day schedule anchors (morning, evening, night, day)                                       |
+| `shared/`       | Cross-cutting configuration (lovelace, presence, vacuum, zones, themes, media_player groups)      |
 
 ### Naming conventions
 
@@ -57,6 +57,7 @@ All package files live under `packages/` and are organized into six taxonomy dir
 - Keep packages small and focused; prefer one responsibility per file.
 - `homeassistant.packages` uses `!include_dir_merge_named packages/`, so every YAML file under `packages/` is loadable input. Do not place nested helper YAML fragments under active package owner folders unless each file is meant to be a standalone package entry.
 - When a package needs `input_*` helpers, keep those helper definitions in a separate standalone package file rather than mixing them with the package's `automation`, `script`, or integration logic. When one feature owns helpers across multiple input domains, prefer a feature-scoped `_input` package key and filename such as `shared_background_music_input`.
+- User-configurable values should be helper-backed instead of hard-coded inside automations, scripts, or integration logic. When migrating an existing user-editable value into helpers, avoid YAML `initial` values for the new helpers and preserve the current live behavior with a one-time post-reload seed plus explicit state verification. Newly added `input_*` helpers may need a Home Assistant core restart before the first seed or verification because `pnpm reload` does not always register brand-new helper entities.
 
 ### Area package structure
 
@@ -82,7 +83,8 @@ packages/areas/bedroom/
 
 - Dashboard registration packages use `filename:` paths pointing to `includes/lovelace/dashboards/...`. These paths are independent of the package file location and must not be changed when moving packages.
 - Dashboard slugs (e.g., `bedroom-display`) are kebab-case by HA convention and must not be renamed.
-- Dashboard entrypoint filenames in `includes/lovelace/dashboards/` remain kebab-case (renaming is deferred due to high risk).
+- Dashboard entrypoint filenames in `includes/lovelace/dashboards/` follow the current underscore role-based pattern, for example `dashboard_overview.yaml`, `dashboard_device.yaml`, `dashboard_room.yaml`, `dashboard_vacuum.yaml`, `configuration.yaml`, `presence.yaml`, and `tasks.yaml`.
+- The unified helper dashboard lives at `includes/lovelace/dashboards/configuration.yaml` and draws detail views from `includes/lovelace/views/configuration/`. Surface every YAML-defined `input_*` helper under `packages/` there exactly once, grouped by shared concerns plus each helper-owning area or scope.
 
 ### Room configuration subviews
 
@@ -94,6 +96,7 @@ packages/areas/bedroom/
 ## Validation workflow
 
 - After meaningful changes, run `pnpm reload`, then check runtime logs via `pnpm home-assistant raw request GET /api/hassio/core/logs --text`.
+- If you add new `input_*` helpers, be prepared to restart Home Assistant core before first-time seeding or runtime verification; `pnpm reload` may not register brand-new helper entities on its own.
 - If you add or edit `shell_command:` entries, restart Home Assistant core before validating service availability; `pnpm reload` alone will not register new or changed shell-command services.
 - `pnpm home-assistant` requires Node.js `>= 22.6.0` (see `bin/cli/README.md`).
 - Follow the additional repo-specific instructions in [.github/instructions/home-assistant.instructions.md](../.github/instructions/home-assistant.instructions.md).

@@ -1,0 +1,8 @@
+shared_lovelace_dashboards_configuration:
+  lovelace:
+    dashboards:
+      dashboard-configuration:
+        filename: includes/lovelace/dashboards/configuration.yaml
+        mode: yaml
+        title: Configuration
+        icon: mdi:cog-box

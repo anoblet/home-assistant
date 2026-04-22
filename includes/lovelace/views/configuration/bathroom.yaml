@@ -1,0 +1,48 @@
+title: Bathroom
+path: bathroom
+icon: mdi:shower
+type: sections
+sections:
+  - type: grid
+    title: Motion
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.bathroom_motion
+          - entity: input_number.bathroom_motion_cooldown
+  - type: grid
+    title: Lighting
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.bathroom_light_manual
+          - entity: input_number.bathroom_light_manual_delay
+          - entity: input_number.bathroom_light_transition_on
+          - entity: input_number.bathroom_light_transition_off
+  - type: grid
+    title: Light Restore
+    cards:
+      - type: entities
+        entities:
+          - entity: input_number.bathroom_light_restore_delay
+          - entity: input_number.bathroom_light_restore_brightness
+          - entity: input_number.bathroom_light_restore_color_temp
+  - type: grid
+    title: Exhaust Fan
+    cards:
+      - type: entities
+        entities:
+          - entity: input_number.bathroom_exhaust_fan_door_open_delay
+          - entity: input_number.bathroom_exhaust_fan_door_closed_delay
+  - type: grid
+    title: Adaptive Lighting
+    cards:
+      - type: entities
+        entities:
+          - entity: input_number.bathroom_adaptive_lighting_min_brightness
+          - entity: input_number.bathroom_adaptive_lighting_max_brightness
+          - entity: input_number.bathroom_adaptive_lighting_min_color_temp
+          - entity: input_number.bathroom_adaptive_lighting_max_color_temp
+          - entity: input_number.bathroom_adaptive_lighting_sleep_brightness
+          - entity: input_number.bathroom_adaptive_lighting_sleep_color_temp
+          - entity: input_number.bathroom_adaptive_lighting_sleep_transition

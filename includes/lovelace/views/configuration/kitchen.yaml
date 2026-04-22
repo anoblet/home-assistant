@@ -1,0 +1,31 @@
+title: Kitchen
+path: kitchen
+icon: mdi:countertop-outline
+type: sections
+sections:
+  - type: grid
+    title: Presence
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.kitchen_ld2410c
+  - type: grid
+    title: Presence Gates
+    cards:
+      - type: entities
+        entities:
+          - entity: input_number.kitchen_ld2410c_last_on_gate
+          - entity: input_number.kitchen_ld2410c_last_off_gate
+          - entity: input_number.kitchen_ld2410c_last_move_gate
+          - entity: input_number.kitchen_ld2410c_last_still_gate
+  - type: grid
+    title: Lighting
+    cards:
+      - type: entities
+        entities:
+          - entity: input_boolean.kitchen_light_manual
+          - entity: input_boolean.kitchen_motion
+          - entity: input_number.kitchen_motion_cooldown
+          - entity: input_number.kitchen_illuminance_minimum
+          - entity: input_number.kitchen_light_transition_on
+          - entity: input_number.kitchen_light_transition_off

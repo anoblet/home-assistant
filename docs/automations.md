@@ -507,6 +507,7 @@ max: 10 # Maximum parallel instances
 - Use descriptive filenames that match content
 - Keep files small and focused (single responsibility)
 - Keep package-owned `input_*` helpers in a separate standalone package file; use a feature-scoped `_input` name when one feature spans multiple input domains
+- Move user-configurable values into helpers instead of hard-coding them in automation or script logic, and surface those helpers on the unified Configuration dashboard
 - Use subdirectories for complex areas
 
 **Don't:**
@@ -514,6 +515,7 @@ max: 10 # Maximum parallel instances
 - Mix unrelated automations in one file
 - Create deeply nested directory structures
 - Use generic names like `automation1.yaml`
+- Leave user-editable entity targets, schedules, thresholds, or toggles hard-coded in logic packages
 
 ### 2. Naming Conventions
 
@@ -972,6 +974,10 @@ This reloads:
 - Groups
 - Input helpers
 - And more
+
+When migrating user-editable values from hard-coded YAML into new helpers, do not add helper `initial` values just to force the current setting into place. Reload the configuration, restart Home Assistant core if the brand-new helper entities do not register yet, seed the new helper state once with an explicit service call or committed manual migration script, then verify the resulting runtime state so later user edits continue to persist.
+
+For the background music helper migration, use `script.background_music_seed_helper_defaults` once after the new helper entities exist. It seeds the legacy play target, stop target, and Monday-through-Friday schedule only when the target helpers are still blank, so later user edits are not overwritten. The live background music script and weekday automations intentionally fail closed until those helper values are populated, so run the seed script before expecting the schedule to resume on an existing install.
 
 ### Best Practices for Debugging
 
