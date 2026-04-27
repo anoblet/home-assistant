@@ -3,3 +3,4 @@ views:
   - !include ../views/presence/bedroom/index.yaml
   - !include ../views/presence/kitchen/index.yaml
   - !include ../views/presence/living_room/index.yaml
+  - !include ../views/motion/index.yaml
