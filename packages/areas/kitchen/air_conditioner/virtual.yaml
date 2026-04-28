@@ -7,15 +7,15 @@ kitchen_air_conditioner_virtual:
           turn_off:
             - service: climate.turn_off
               target:
-                entity_id: climate.midea_ac_141837000017808
+                entity_id: climate.kitchen_air_conditioner
           turn_on:
             - service: climate.turn_on
               target:
-                entity_id: climate.midea_ac_141837000017808
+                entity_id: climate.kitchen_air_conditioner
             - action: climate.set_preset_mode
               data:
                 preset_mode: boost
               target:
-                entity_id: climate.midea_ac_141837000017808
+                entity_id: climate.kitchen_air_conditioner
           unique_id: kitchen_air_conditioner_virtual
-          value_template: "{{ is_state('climate.midea_ac_141837000017808', 'cool') }}"
+          value_template: "{{ is_state('climate.kitchen_air_conditioner', 'cool') }}"
