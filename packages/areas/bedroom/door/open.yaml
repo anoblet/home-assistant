@@ -18,3 +18,15 @@ bedroom_door_open:
           data:
             title: Bedroom Door
             message: Bedroom door is open
+    - id: bedroom_three_door_open
+      alias: Bedroom Three - Door - Open
+      trigger:
+        - platform: state
+          entity_id: binary_sensor.bedroom_three_door_contact
+          from: 'off'
+          to: 'on'
+      action:
+        - service: notify.mobile_app_pixel_6_pro
+          data:
+            title: Bedroom Three Door
+            message: Bedroom Three door is open

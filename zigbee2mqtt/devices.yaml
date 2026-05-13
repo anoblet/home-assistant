@@ -62,9 +62,7 @@
   friendly_name: Bedroom Ceiling Fan
 '0x00158d008b809acf':
   friendly_name: Kitchen Freezer
-'0x00158d0007bc1015':
-  friendly_name: Bathroom Door
-'0x54ef4410005a893f':
-  friendly_name: Bedroom Three Motion
 '0xffffb40e06058130':
   friendly_name: Kitchen Air Conditioner
+'0x00158d008c7a29ee':
+  friendly_name: Bedroom Three Door
