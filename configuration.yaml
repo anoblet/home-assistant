@@ -45,15 +45,6 @@ homeassistant:
   external_url: https://31w3e.andrewnoblet.com
   packages: !include_dir_merge_named packages/
 
-influxdb:
-  host: a0d7b954-influxdb
-  port: 8086
-  database: homeassistant
-  username: homeassistant
-  password: !secret influxdb_password
-  max_retries: 3
-  default_measurement: state
-
 script: !include scripts.yaml
 
 stream:

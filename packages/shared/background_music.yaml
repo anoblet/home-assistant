@@ -83,15 +83,6 @@ shared_background_music:
       trigger:
         - platform: time
           at: input_datetime.background_music_start_time
-      condition:
-        - condition: template
-          value_template: >-
-            {% set weekday = now().strftime('%A') | lower %}
-            {% set play_target = states('input_text.background_music_play_target_entity_id') %}
-            {% set media_id = states('input_text.background_music_media_id') %}
-            {{ play_target not in ['unknown', 'unavailable', 'none', '']
-               and media_id not in ['unknown', 'unavailable', 'none', '']
-               and is_state('input_boolean.background_music_' ~ weekday, 'on') }}
       action:
         - action: script.background_music
     - alias: 'Stop Background Music on Weekday Nights'
@@ -100,13 +91,6 @@ shared_background_music:
       trigger:
         - platform: time
           at: input_datetime.background_music_stop_time
-      condition:
-        - condition: template
-          value_template: >-
-            {% set weekday = now().strftime('%A') | lower %}
-            {% set stop_target = states('input_text.background_music_stop_target_entity_id') %}
-            {{ stop_target not in ['unknown', 'unavailable', 'none', '']
-               and is_state('input_boolean.background_music_' ~ weekday, 'on') }}
       action:
         - action: media_player.media_stop
           target:

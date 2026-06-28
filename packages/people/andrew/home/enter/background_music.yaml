@@ -1,0 +1,16 @@
+people_andrew_home_enter_background_music:
+  automation:
+    alias: 'Andrew - Home - Enter - Background Music'
+    id: andrew_home_enter_background_music
+    description: 'Starts background music when Andrew arrives home between 8 AM and 8 PM.'
+    triggers:
+      - trigger: zone
+        entity_id: person.andrew_noblet
+        zone: zone.home
+        event: enter
+    conditions:
+      - condition: time
+        after: '08:00:00'
+        before: '20:00:00'
+    actions:
+      - action: script.background_music

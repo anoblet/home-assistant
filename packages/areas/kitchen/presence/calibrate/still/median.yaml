@@ -3,8 +3,8 @@ kitchen_presence_calibrate_still_median:
     kitchen_ld2410c_calibrate_still_median:
       sequence:
         - variables:
-            increase: 0
-            round: 1
+            increase: 2
+            round: 5
         - action: button.press
           target:
             entity_id: button.kitchen_ld2410c_restart

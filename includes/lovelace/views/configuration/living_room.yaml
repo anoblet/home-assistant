@@ -43,4 +43,5 @@ sections:
           - entity: input_number.living_room_thermostat_heat_default
           - entity: input_number.living_room_thermostat_cool_default
           - entity: input_number.living_room_thermostat_presence_on
-          - entity: input_number.living_room_thermostat_presence_off
+          - entity: input_number.living_room_thermostat_presence_off_heat
+          - entity: input_number.living_room_thermostat_presence_off_cool

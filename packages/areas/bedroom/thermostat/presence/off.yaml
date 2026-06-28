@@ -1,15 +1,15 @@
-living_room_thermostat_presence_off:
+bedroom_thermostat_presence_off:
   input_number:
-    living_room_thermostat_presence_off_heat:
-      name: Living Room Thermostat Presence Off Heat
+    bedroom_thermostat_presence_off_heat:
+      name: Bedroom Thermostat Presence Off Heat
       min: 0
       max: 100
       mode: box
       step: 1
       unit_of_measurement: '°F'
       icon: mdi:thermostat
-    living_room_thermostat_presence_off_cool:
-      name: Living Room Thermostat Presence Off Cool
+    bedroom_thermostat_presence_off_cool:
+      name: Bedroom Thermostat Presence Off Cool
       min: 0
       max: 100
       mode: box

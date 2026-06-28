@@ -1,9 +1,16 @@
 bedroom_presence_off_thermostat:
   automation:
     action:
-      - service: climate.turn_off
+      - service: climate.set_temperature
         target:
-          entity_id: climate.bedroom_thermostat
+          entity_id: climate.bedroom_thermostat_heat
+        data:
+          temperature: "{{ states('input_number.bedroom_thermostat_presence_off_heat') | float(68) }}"
+      - service: climate.set_temperature
+        target:
+          entity_id: climate.bedroom_thermostat_cool
+        data:
+          temperature: "{{ states('input_number.bedroom_thermostat_presence_off_cool') | float(78) }}"
     alias: Bedroom - Presence - Off - Thermostat
     condition:
       - condition: state
