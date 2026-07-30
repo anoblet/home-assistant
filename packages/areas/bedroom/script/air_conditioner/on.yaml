@@ -12,11 +12,3 @@ bedroom_script_air_conditioner_on:
           data:
             device: '74936935'
             command: PowerToggle
-        - service: remote.send_command
-          target:
-            device_id: 3e7ee94a7c26430387bfc75775ba00bd
-          data:
-            delay_secs: 1
-            device: '74936935'
-            command: TempCooler
-            num_repeats: 8

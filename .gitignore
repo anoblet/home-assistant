@@ -50,6 +50,7 @@ secrets.yaml
 www/custom-elements/build
 zigbee2mqtt/configuration_*
 zigbee2mqtt/coordinator_backup.json
+zigbee2mqtt/devices.yaml
 zigbee2mqtt/secrets.yaml
 
 # Never commit Python bytecode/cache (allowlist repo needs explicit blocks).

@@ -1,0 +1,26 @@
+bedroom_script_relax:
+  google_assistant:
+    entity_config:
+      script.bedroom_relax:
+        aliases:
+          - BEDROOM_RELAX
+          - RELAX
+        expose: true
+  script:
+    bedroom_relax:
+      alias: Bedroom - Relax
+      sequence:
+        - action: light.turn_on
+          data:
+            color_temp_kelvin: 2000
+            brightness_pct: 5
+            transition: 10
+          target:
+            entity_id: light.bedroom_light_group_zigbee
+        - delay:
+            seconds: 10
+        - service: light.turn_off
+          data:
+            transition: 10
+          target:
+            entity_id: light.bedroom_ceiling

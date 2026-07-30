@@ -1,0 +1,11 @@
+bedroom_blinds_sunrise:
+  automation:
+    - action:
+        - data:
+            entity_id: input_boolean.bedroom_blinds_automatic
+          service: input_boolean.turn_on
+      alias: Bedroom - Blinds - Sunrise
+      id: bedroom_blinds_sunrise
+      trigger:
+        - event: sunrise
+          platform: sun

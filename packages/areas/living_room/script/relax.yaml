@@ -1,0 +1,23 @@
+living_room_script_relax:
+  google_assistant:
+    entity_config:
+      script.living_room_relax:
+        expose: true
+  script:
+    living_room_relax:
+      alias: Living Room - Relax
+      sequence:
+        - action: light.turn_on
+          data:
+            color_temp_kelvin: 2000
+            brightness_pct: 5
+            transition: 10
+          target:
+            entity_id: light.living_room_light_group_zigbee
+        - delay:
+            seconds: 10
+        - service: light.turn_off
+          data:
+            transition: 10
+          target:
+            entity_id: light.living_room_ceiling_light_group_zigbee
