@@ -1,0 +1,9 @@
+living_room_blinds_sunset_position:
+  input_number:
+    living_room_blinds_sunset_position:
+      icon: mdi:blinds
+      max: 100
+      min: 0
+      name: Living Room Sunset Blinds Position
+      step: 1
+      unit_of_measurement: '%'

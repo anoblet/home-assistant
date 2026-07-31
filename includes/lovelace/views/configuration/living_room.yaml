@@ -10,6 +10,7 @@ sections:
         entities:
           - entity: input_boolean.living_room_blinds_automatic
           - entity: input_number.living_room_tv_on_blinds_position
+          - entity: input_number.living_room_blinds_sunset_position
   - type: grid
     title: Presence
     cards:

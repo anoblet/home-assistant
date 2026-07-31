@@ -12,6 +12,8 @@ sections:
             name: Automatic Blinds
           - entity: input_number.living_room_tv_on_blinds_position
             name: TV On Blinds Position
+          - entity: input_number.living_room_blinds_sunset_position
+            name: Sunset Blinds Position
   - type: grid
     title: Occupancy
     cards:
