@@ -13,6 +13,12 @@ integrations_esphome_sensor_fixes:
         unit_of_measurement: 'µg/m³'
         icon: mdi:air-filter
 
+      # Fix presence light sensor - LD2412 reports light level as a percentage, not lux
+      sensor.bedroom_presence_light:
+        device_class: null
+        unit_of_measurement: '%'
+        icon: mdi:lightbulb
+
       # Fix reactive power sensor - change unit to match device class expectation
       sensor.bedroom_two_reactive_power:
         unit_of_measurement: 'var'

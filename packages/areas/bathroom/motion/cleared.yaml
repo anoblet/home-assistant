@@ -2,7 +2,7 @@ bathroom_motion_cleared:
   automation:
     action:
       - data_template:
-          transition: "{{ states('input_number.bathroom_light_transition_off') | int }}"
+          transition: "{{ states('input_number.bathroom_light_transition_off') | int(0) }}"
         service: light.turn_off
         target:
           entity_id: light.bathroom_light_group_zigbee
@@ -14,6 +14,6 @@ bathroom_motion_cleared:
     id: bathroom_motion_cleared
     trigger:
       - entity_id: binary_sensor.bathroom_motion_occupancy
-        for: 00:{{ states('input_number.bathroom_motion_cooldown') | int }}:00
+        for: 00:{{ states('input_number.bathroom_motion_cooldown') | int(0) }}:00
         platform: state
         to: 'off'

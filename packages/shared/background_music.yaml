@@ -69,7 +69,7 @@ shared_background_music:
               target:
                 entity_id: '{{ play_target_entity_id }}'
             - delay:
-                seconds: '{{ play_delay_seconds | int }}'
+                seconds: '{{ play_delay_seconds | int(0) }}'
             - action: music_assistant.play_media
               data:
                 entity_id: '{{ play_target_entity_id }}'

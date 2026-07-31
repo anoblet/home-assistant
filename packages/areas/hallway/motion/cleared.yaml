@@ -2,7 +2,7 @@ hallway_motion_cleared:
   automation:
     action:
       data_template:
-        transition: "{{ states('input_number.hallway_light_transition_off') | int }}"
+        transition: "{{ states('input_number.hallway_light_transition_off') | int(0) }}"
       service: light.turn_off
       target:
         entity_id: light.hallway_light_group_zigbee
@@ -17,7 +17,7 @@ hallway_motion_cleared:
     id: hallway_motion_cleared
     trigger:
       - entity_id: binary_sensor.hallway_motion_occupancy_group
-        for: 00:{{ states('input_number.hallway_motion_cooldown') | int }}:00
+        for: 00:{{ states('input_number.hallway_motion_cooldown') | int(0) }}:00
         from: 'on'
         platform: state
         to: 'off'

@@ -2,7 +2,7 @@ kitchen_motion_cleared:
   automation:
     - action:
         - data_template:
-            transition: "{{ states('input_number.kitchen_light_transition_off') | int }}"
+            transition: "{{ states('input_number.kitchen_light_transition_off') | int(0) }}"
           service: light.turn_off
           target:
             entity_id: light.kitchen_light_group_zigbee
@@ -17,7 +17,7 @@ kitchen_motion_cleared:
       id: kitchen_motion_cleared
       trigger:
         - entity_id: binary_sensor.kitchen_motion_occupancy_group
-          for: 00:{{ states('input_number.kitchen_motion_cooldown') | int }}:00
+          for: 00:{{ states('input_number.kitchen_motion_cooldown') | int(0) }}:00
           from: 'on'
           platform: state
           to: 'off'

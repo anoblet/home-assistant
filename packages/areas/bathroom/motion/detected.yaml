@@ -3,7 +3,7 @@ bathroom_motion_detected:
     - action:
         - data:
             entity_id: light.bathroom_light_group_zigbee
-            transition: "{{ states('input_number.bathroom_light_transition_on') | int }}"
+            transition: "{{ states('input_number.bathroom_light_transition_on') | int(0) }}"
           service: light.turn_on
       alias: Bathroom - Motion - Detected
       id: bathroom_motion_detected
