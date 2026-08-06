@@ -3,11 +3,6 @@ bedroom_script_air_conditioner_off:
     bedroom_air_conditioner_off:
       alias: Bedroom - Air Conditioner - Off
       sequence:
-        - condition: state
-          entity_id: switch.bedroom_air_conditioner_virtual
-          state: 'on'
-        - wait_template: >-
-            {{ (as_timestamp(now()) - as_timestamp(states.switch.bedroom_air_conditioner_virtual.last_changed)) > 300 }}
         - service: remote.send_command
           target:
             device_id: 3e7ee94a7c26430387bfc75775ba00bd

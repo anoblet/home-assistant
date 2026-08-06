@@ -13,9 +13,10 @@ Use this document as a deep reference. For day-to-day editing rules and validati
 3. [Naming Conventions](#naming-conventions)
 4. [Automation Lifecycle](#automation-lifecycle)
 5. [Trigger Types and Flow](#trigger-types-and-flow)
-6. [Best Practices](#best-practices)
-7. [Examples](#examples)
-8. [Troubleshooting](#troubleshooting)
+6. [Bedroom AC Off-on-Vacancy Flow](#bedroom-ac-off-on-vacancy-flow)
+7. [Best Practices](#best-practices)
+8. [Examples](#examples)
+9. [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -409,6 +410,11 @@ trigger:
 - Cascading automations
 - Reset logic
 
+**Example:** `bedroom_presence_off_thermostat`
+
+- Fires when `binary_sensor.bedroom_presence_presence` goes `off` and stays `off` for 15 s (`for: seconds: 15`)
+- Turns off both bedroom thermostats (see [Example 6](#example-6-presence-based-climate-control))
+
 #### 3. Zone Trigger
 
 Executes when a device enters or leaves a zone.
@@ -493,6 +499,56 @@ max: 5 # Maximum queue size
 ```yaml
 mode: parallel
 max: 10 # Maximum parallel instances
+```
+
+---
+
+## Bedroom AC Off-on-Vacancy Flow
+
+When the bedroom is vacated, the ESPHome LD2412 radar (`binary_sensor.bedroom_presence_presence`, device `bedroom-presence`) must hold `off` for **15 s** before `automation.bedroom_presence_off_thermostat` fires. The automation is gated by two helper conditions — `input_boolean.bedroom_presence_detection` must be `on` and `input_boolean.bedroom_thermostat_manual` must be `off` — and then calls `climate.turn_off` on both `climate.bedroom_thermostat_cool` and `climate.bedroom_thermostat_heat`. Because the cool thermostat (generic_thermostat, `ac_mode: true`) uses `switch.bedroom_air_conditioner_virtual` as its heater, turning it off cascades into the template switch's `turn_off` action, which runs `script.bedroom_air_conditioner_off`. The script only proceeds while the virtual switch reports `on`, debounces up to **30 s** (`timeout: '00:00:30'`), then sends a Harmony `remote.send_command` `PowerToggle` (device `74936935`) to cut the physical AC. On return, presence `on` (no hold) fires `automation.bedroom_presence_on_thermostat`, which calls `climate.turn_on` and resumes cooling at the stored setpoint (e.g., 78 °F).
+
+```mermaid
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#161b22", "primaryTextColor": "#e6edf3", "primaryBorderColor": "#30363d", "lineColor": "#7d8590", "secondaryColor": "#0d1117", "tertiaryColor": "#010409", "background": "#0d1117", "mainBkg": "#161b22", "secondBkg": "#0d1117", "tertiaryBkg": "#010409", "textColor": "#e6edf3", "border1": "#30363d", "border2": "#21262d", "arrowheadColor": "#7d8590", "fontFamily": "ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace", "fontSize": "14px", "nodeBorder": "#30363d", "clusterBkg": "#161b22", "clusterBorder": "#30363d", "defaultLinkColor": "#7d8590", "titleColor": "#e6edf3", "edgeLabelBackground": "#161b22", "nodeTextColor": "#e6edf3"}}}%%
+flowchart TD
+    Sensor["binary_sensor.bedroom_presence_presence<br/>ESPHome LD2412 mmWave · bedroom-presence"] -->|"off · hold 15 s"| OffAuto["automation.bedroom_presence_off_thermostat<br/>packages/areas/bedroom/presence/off/thermostat.yaml"]
+
+    OffAuto --> Gate1{"input_boolean.bedroom_presence_detection<br/>== 'on'?"}
+    Gate1 -->|no| Skip([No action])
+    Gate1 -->|yes| Gate2{"input_boolean.bedroom_thermostat_manual<br/>== 'off'?"}
+    Gate2 -->|no| Skip
+    Gate2 -->|yes| TurnOff["climate.turn_off<br/>cool + heat"]
+
+    TurnOff -->|cool| Cool["climate.bedroom_thermostat_cool<br/>generic_thermostat · ac_mode: true"]
+    TurnOff -->|heat| Heat["climate.bedroom_thermostat_heat<br/>generic_thermostat"]
+    Heat --> Skip
+    Cool -->|"heater → switch.turn_off"| Virtual["switch.bedroom_air_conditioner_virtual<br/>template switch"]
+    Virtual -->|turn_off| OffScript["script.bedroom_air_conditioner_off<br/>packages/areas/bedroom/script/air_conditioner/off.yaml"]
+    OffScript --> Guard{"switch.bedroom_air_conditioner_virtual<br/>state == 'on'?"}
+    Guard -->|no| Skip
+    Guard -->|yes| Wait["30 s debounce<br/>timeout '00:00:30'"]
+    Wait -->|"remote.send_command"| Harmony["PowerToggle<br/>Harmony device 74936935"]
+    Harmony -->|"physical relay / IR"| AcOff(["AC off"])
+
+    Sensor -.->|"on · no hold"| OnAuto["automation.bedroom_presence_on_thermostat<br/>packages/areas/bedroom/presence/on/thermostat.yaml"]
+    OnAuto -.->|"climate.turn_on"| Resume["Resumes cooling<br/>at stored setpoint · e.g., 78 °F"]
+    Resume -.-> Virtual
+
+    style Sensor fill:#161b22,stroke:#58a6ff,color:#e6edf3
+    style OffAuto fill:#161b22,stroke:#58a6ff,color:#e6edf3
+    style Gate1 fill:#0d1117,stroke:#30363d,color:#e6edf3
+    style Gate2 fill:#0d1117,stroke:#30363d,color:#e6edf3
+    style TurnOff fill:#161b22,stroke:#3fb950,color:#e6edf3
+    style Cool fill:#161b22,stroke:#30363d,color:#e6edf3
+    style Heat fill:#161b22,stroke:#30363d,color:#e6edf3
+    style Virtual fill:#161b22,stroke:#f778ba,color:#e6edf3
+    style OffScript fill:#161b22,stroke:#f778ba,color:#e6edf3
+    style Guard fill:#0d1117,stroke:#30363d,color:#e6edf3
+    style Wait fill:#161b22,stroke:#f778ba,color:#e6edf3
+    style Harmony fill:#161b22,stroke:#3fb950,color:#e6edf3
+    style AcOff fill:#0d1117,stroke:#3fb950,color:#e6edf3
+    style Skip fill:#0d1117,stroke:#f85149,color:#e6edf3
+    style OnAuto fill:#161b22,stroke:#58a6ff,color:#e6edf3
+    style Resume fill:#161b22,stroke:#3fb950,color:#e6edf3
 ```
 
 ---
@@ -719,6 +775,7 @@ shared_zone_home_enter:
 - Conditional logic with choose
 - Multiple coordinated actions
 - Respects climate zone preference
+- The companion zone-leave automations call `climate.turn_off` on `climate.bedroom_thermostat` as a phone-zone backup; room-vacancy handling lives in the presence automations (see [Example 6](#example-6-presence-based-climate-control))
 
 ---
 
@@ -837,6 +894,98 @@ Define `input_boolean.brush_teeth_reminder` in a separate standalone input packa
 
 ---
 
+### Example 6: Presence-Based Climate Control
+
+**Files:** `packages/areas/bedroom/presence/on/thermostat.yaml`, `packages/areas/bedroom/presence/off/thermostat.yaml`, and `packages/areas/bedroom/script/air_conditioner/off.yaml`
+
+**Package Names:** `bedroom_presence_on_thermostat` / `bedroom_presence_off_thermostat` / `bedroom_script_air_conditioner_off`
+
+```yaml
+# packages/areas/bedroom/presence/on/thermostat.yaml
+bedroom_presence_on_thermostat:
+  automation:
+    action:
+      - service: climate.turn_on
+        target:
+          entity_id:
+            - climate.bedroom_thermostat_cool
+            - climate.bedroom_thermostat_heat
+    alias: Bedroom - Presence - On - Thermostat
+    condition:
+      - condition: state
+        entity_id: input_boolean.bedroom_presence_detection
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.bedroom_thermostat_manual
+        state: 'off'
+    id: bedroom_presence_on_thermostat
+    trigger:
+      - entity_id: binary_sensor.bedroom_presence_presence
+        from: 'off'
+        platform: state
+        to: 'on'
+```
+
+```yaml
+# packages/areas/bedroom/presence/off/thermostat.yaml
+bedroom_presence_off_thermostat:
+  automation:
+    action:
+      - service: climate.turn_off
+        target:
+          entity_id:
+            - climate.bedroom_thermostat_cool
+            - climate.bedroom_thermostat_heat
+    alias: Bedroom - Presence - Off - Thermostat
+    condition:
+      - condition: state
+        entity_id: input_boolean.bedroom_presence_detection
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.bedroom_thermostat_manual
+        state: 'off'
+    id: bedroom_presence_off_thermostat
+    trigger:
+      - entity_id: binary_sensor.bedroom_presence_presence
+        for:
+          seconds: 15
+        platform: state
+        to: 'off'
+```
+
+```yaml
+# packages/areas/bedroom/script/air_conditioner/off.yaml
+bedroom_script_air_conditioner_off:
+  script:
+    bedroom_air_conditioner_off:
+      alias: Bedroom - Air Conditioner - Off
+      sequence:
+        - condition: state
+          entity_id: switch.bedroom_air_conditioner_virtual
+          state: 'on'
+        - wait_template: >-
+            {{ (as_timestamp(now()) - as_timestamp(states.switch.bedroom_air_conditioner_virtual.last_changed)) > 30 }}
+          timeout: '00:00:30'
+        - service: remote.send_command
+          target:
+            device_id: 3e7ee94a7c26430387bfc75775ba00bd
+          data:
+            device: '74936935'
+            command: PowerToggle
+```
+
+**Purpose:** Turns the bedroom air conditioner off when the room is vacated and back on when presence returns. Vacating the room starts a 15 s hold on `binary_sensor.bedroom_presence_presence`; once it holds, `climate.turn_off` flips both thermostats (`climate.bedroom_thermostat_cool` and `climate.bedroom_thermostat_heat`) to `off`. The generic thermostat turns off its heater switch, the template switch `switch.bedroom_air_conditioner_virtual` follows, and `script.bedroom_air_conditioner_off` debounces for at most 30 s (`timeout: '00:00:30'`) before sending the Harmony `PowerToggle` that powers the physical AC off. When presence returns, `climate.turn_on` resumes both thermostats at the last setpoint (78 °F cool default).
+
+**Key Points:**
+
+- Symmetric on/off pair on the same presence sensor: on fires immediately (`from: 'off'` → `to: 'on'`), off requires a 15 s hold to absorb radar blips
+- The off action is `climate.turn_off`, not setpoint changes — previously the off path only raised away setpoints (80 °F cool / 62 °F heat) behind a 1-minute hold that almost never completed, so the AC never stopped
+- Both automations are gated by `input_boolean.bedroom_presence_detection` (`on`) and `input_boolean.bedroom_thermostat_manual` (`off`) so manual control wins
+- The physical toggle is a debounced Harmony IR `PowerToggle`, bounded by `timeout: '00:00:30'` so the AC powers down within ~30–60 s of vacancy
+- Zone-leave automations (`packages/shared/zone/*/leave.yaml`) provide a phone-zone backup that also calls `climate.turn_off`
+
+---
+
 ## Troubleshooting
 
 ### Common Issues
@@ -855,6 +1004,7 @@ Define `input_boolean.brush_teeth_reminder` in a separate standalone input packa
 3. Test conditions manually in Developer Tools
 4. Check automation mode isn't preventing execution
 5. Review trace in Developer Tools > Automation
+6. Check the trigger's `for:` hold — a hold that is rarely satisfied (for example a long hold on a flickering sensor) silently prevents the automation from ever firing; compare `last_triggered` age against sibling automations on the same entity
 
 **Solutions:**
 
@@ -862,6 +1012,7 @@ Define `input_boolean.brush_teeth_reminder` in a separate standalone input packa
 - Fix entity_id references
 - Adjust conditions
 - Change mode if needed
+- Shorten or remove an unsatisfiable `for:` hold so the trigger can fire
 
 #### 2. Configuration Not Loading
 
