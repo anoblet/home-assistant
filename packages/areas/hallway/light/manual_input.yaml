@@ -1,0 +1,4 @@
+hallway_light_manual_input:
+  input_boolean:
+    hallway_light_manual:
+      name: Hallway Light Manual

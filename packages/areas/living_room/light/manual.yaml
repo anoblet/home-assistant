@@ -18,6 +18,3 @@ living_room_light_manual:
             - light.living_room_ceiling_light_group_zigbee
             - light.living_room_floor_lamp
           platform: state
-  input_boolean:
-    living_room_light_manual:
-      name: Living Room Light Manual

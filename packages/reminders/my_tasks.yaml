@@ -59,7 +59,7 @@ reminders_my_tasks:
                             message: >-
                               {{ notification_message }}
                             notification_id: '{{ notification_tag }}'
-                        - service: notify.notify
+                        - action: notify.mobile_app_pixel_6_pro
                           data:
                             title: 'My Tasks'
                             message: >-
@@ -68,8 +68,3 @@ reminders_my_tasks:
                               tag: '{{ notification_tag }}'
                               url: '{{ todo_url }}'
                               clickAction: '{{ todo_url }}'
-  input_boolean:
-    my_tasks_reminder:
-      name: 'My Tasks Reminder'
-      icon: 'mdi:clipboard-check-outline'
-      initial: 'on'

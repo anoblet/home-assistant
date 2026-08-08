@@ -1,0 +1,5 @@
+living_room_presence_detection_input:
+  input_boolean:
+    living_room_presence_detection:
+      name: Living Room Presence Detection
+      icon: mdi:motion-sensor

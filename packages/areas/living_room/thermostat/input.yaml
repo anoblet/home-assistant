@@ -1,0 +1,20 @@
+living_room_thermostat_input:
+  input_boolean:
+    living_room_thermostat_manual:
+      name: Living Room Thermostat Manual
+  input_number:
+    living_room_thermostat_cool_default:
+      name: Living Room Thermostat Cool Default
+      min: 0
+      max: 100
+      mode: box
+      step: 1
+      unit_of_measurement: '°F'
+      icon: mdi:thermostat
+    living_room_thermostat_heat_default:
+      name: Living Room Thermostat Heat Default
+      min: 0
+      max: 100
+      mode: box
+      step: 1
+      unit_of_measurement: '°F'

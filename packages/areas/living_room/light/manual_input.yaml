@@ -1,0 +1,4 @@
+living_room_light_manual_input:
+  input_boolean:
+    living_room_light_manual:
+      name: Living Room Light Manual

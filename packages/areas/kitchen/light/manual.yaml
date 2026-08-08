@@ -17,6 +17,3 @@ kitchen_light_manual:
       - entity_id:
           - light.kitchen_light_group_zigbee
         platform: state
-  input_boolean:
-    kitchen_light_manual:
-      name: Kitchen Light Manual

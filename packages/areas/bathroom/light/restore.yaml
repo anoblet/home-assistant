@@ -1,21 +1,18 @@
 bathroom_light_restore:
   input_number:
     bathroom_light_restore_brightness:
-      initial: 100
       max: 100
       min: 1
       mode: box
       name: Bathroom Light Restore Brightness
       unit_of_measurement: '%'
     bathroom_light_restore_color_temp:
-      initial: 153
       max: 500
       min: 153
       mode: box
       name: Bathroom Light Restore Color Temperature
       unit_of_measurement: mired
     bathroom_light_restore_delay:
-      initial: 60
       max: 600
       min: 0
       mode: box

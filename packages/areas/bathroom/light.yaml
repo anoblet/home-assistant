@@ -7,15 +7,21 @@ bathroom_light:
         - condition: state
           entity_id: binary_sensor.bathroom_motion_occupancy
           state: 'off'
+        - condition: template
+          value_template: >-
+            {{ ['input_number.bathroom_light_restore_delay',
+                'input_number.bathroom_light_restore_brightness',
+                'input_number.bathroom_light_restore_color_temp']
+               | map('states') | select('is_number') | list | count == 3 }}
         - delay:
-            seconds: "{{ states('input_number.bathroom_light_restore_delay') | int(60) }}"
+            seconds: "{{ states('input_number.bathroom_light_restore_delay') | int }}"
         - service: light.turn_off
           target:
             entity_id: light.bathroom_light_group_zigbee
         - service: light.turn_on
           data:
-            brightness_pct: "{{ states('input_number.bathroom_light_restore_brightness') | int(100) }}"
-            color_temp: "{{ states('input_number.bathroom_light_restore_color_temp') | int(153) }}"
+            brightness_pct: "{{ states('input_number.bathroom_light_restore_brightness') | int }}"
+            color_temp: "{{ states('input_number.bathroom_light_restore_color_temp') | int }}"
           target:
             entity_id: light.bathroom_light_group_zigbee
       alias: Bathroom - Light

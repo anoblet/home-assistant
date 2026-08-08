@@ -1,0 +1,10 @@
+bedroom_blinds_sunset_position:
+  input_number:
+    bedroom_blinds_sunset_position:
+      name: Bedroom Blinds Sunset Position
+      icon: mdi:blinds-horizontal
+      min: 0
+      max: 100
+      step: 1
+      mode: slider
+      unit_of_measurement: '%'

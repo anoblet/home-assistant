@@ -17,6 +17,3 @@ storage_room_light_manual:
       - entity_id:
           - light.storage_room_light_group_zigbee
         platform: state
-  input_boolean:
-    storage_room_light_manual:
-      name: Storage Room Light Manual

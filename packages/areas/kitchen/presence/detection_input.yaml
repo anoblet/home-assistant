@@ -1,0 +1,5 @@
+kitchen_presence_detection_input:
+  input_boolean:
+    kitchen_ld2410c:
+      name: Kitchen Presence Detection
+      icon: mdi:motion-sensor

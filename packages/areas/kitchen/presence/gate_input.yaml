@@ -1,0 +1,10 @@
+kitchen_presence_gate_input:
+  input_number:
+    kitchen_ld2410c_last_move_gate:
+      max: 8
+      min: 0
+      name: Kitchen Presence Last Move Gate
+    kitchen_ld2410c_last_still_gate:
+      max: 8
+      min: 0
+      name: Kitchen Presence Last Still Gate

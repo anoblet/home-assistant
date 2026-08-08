@@ -9,8 +9,3 @@ integrations_adaptive_lighting_sleep_mode_off:
       trigger:
         - at: '06:00:00'
           platform: time
-  input_datetime:
-    adaptive_lighting_sleep_mode_off:
-      has_date: false
-      has_time: true
-      name: Adaptive Lighting - Sleep Mode - Off

@@ -11,12 +11,3 @@ living_room_thermostat_cool_default:
             entity_id: climate.living_room_thermostat_cool
           data:
             temperature: "{{ states('input_number.living_room_thermostat_cool_default') | float }}"
-  input_number:
-    living_room_thermostat_cool_default:
-      name: Living Room Thermostat Cool Default
-      min: 0
-      max: 100
-      mode: box
-      step: 1
-      unit_of_measurement: '°F'
-      icon: mdi:thermostat

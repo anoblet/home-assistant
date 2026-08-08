@@ -1,0 +1,4 @@
+storage_room_light_manual_input:
+  input_boolean:
+    storage_room_light_manual:
+      name: Storage Room Light Manual

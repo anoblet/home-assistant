@@ -1,0 +1,5 @@
+shared_presence_detection_input:
+  input_boolean:
+    common_presence_detection:
+      name: Common Presence Detection
+      icon: mdi:motion-sensor

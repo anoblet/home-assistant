@@ -14,11 +14,6 @@ bedroom_presence_gate_move:
             entity_id: input_number.bedroom_presence_last_move_gate
             value: "{{ states('sensor.bedroom_presence_move_gate') | int(0) }}"
       id: bedroom_presence_move_gate
-  input_number:
-    bedroom_presence_last_move_gate:
-      max: 13
-      min: 0
-      name: Bedroom Presence Last Move Gate
   template:
     - sensor:
         - name: 'Bedroom Presence Move Gate'

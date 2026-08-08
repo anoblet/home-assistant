@@ -1,0 +1,11 @@
+bathroom_light_manual_input:
+  input_boolean:
+    bathroom_light_manual:
+      name: Bathroom Light Manual
+  input_number:
+    bathroom_light_manual_delay:
+      max: 600
+      min: 0
+      mode: box
+      name: Bathroom Light Manual Delay
+      unit_of_measurement: 's'

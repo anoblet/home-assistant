@@ -1,0 +1,5 @@
+bedroom_presence_detection_input:
+  input_boolean:
+    bedroom_presence_detection:
+      name: Bedroom Presence Detection
+      icon: mdi:motion-sensor

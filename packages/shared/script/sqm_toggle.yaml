@@ -39,24 +39,28 @@ shared_script_sqm_toggle:
         - service: input_boolean.turn_off
           data:
             entity_id: input_boolean.sqm_toggle
-  input_boolean:
-    sqm_toggle:
-      name: SQM Toggle
   script:
     sqm_toggle_loop:
       alias: SQM Toggle Loop
       sequence:
         - repeat:
             sequence:
+              - condition: template
+                value_template: >-
+                  {{ ['input_number.sqm_toggle_interval_min_seconds',
+                      'input_number.sqm_toggle_interval_max_seconds',
+                      'input_number.sqm_toggle_active_window_min_seconds',
+                      'input_number.sqm_toggle_active_window_max_seconds']
+                     | map('states') | select('is_number') | list | count == 4 }}
               - variables:
                   interval_min_seconds: >-
-                    {{ states('input_number.sqm_toggle_interval_min_seconds') | int(300) }}
+                    {{ states('input_number.sqm_toggle_interval_min_seconds') | int }}
                   interval_max_seconds: >-
-                    {{ states('input_number.sqm_toggle_interval_max_seconds') | int(600) }}
+                    {{ states('input_number.sqm_toggle_interval_max_seconds') | int }}
                   active_window_min_seconds: >-
-                    {{ states('input_number.sqm_toggle_active_window_min_seconds') | int(60) }}
+                    {{ states('input_number.sqm_toggle_active_window_min_seconds') | int }}
                   active_window_max_seconds: >-
-                    {{ states('input_number.sqm_toggle_active_window_max_seconds') | int(120) }}
+                    {{ states('input_number.sqm_toggle_active_window_max_seconds') | int }}
               - variables:
                   next_interval_seconds: >-
                     {% set interval_lower_seconds = [interval_min_seconds, interval_max_seconds] | min %}

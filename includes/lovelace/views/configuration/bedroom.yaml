@@ -9,6 +9,7 @@ sections:
       - type: entities
         entities:
           - entity: input_boolean.bedroom_blinds_automatic
+          - entity: input_number.bedroom_blinds_sunset_position
   - type: grid
     title: Schedule
     cards:

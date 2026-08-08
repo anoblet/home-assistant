@@ -1,11 +1,5 @@
 # Daily plant watering reminder automation until completed
 reminders_water_plants:
-  # Input boolean to track watering status
-  input_boolean:
-    water_plants_reminder:
-      name: Water Plants Reminder
-      icon: mdi:flower
-
   # Automation to send the reminder
   automation:
     - id: water_plants_daily_reminder

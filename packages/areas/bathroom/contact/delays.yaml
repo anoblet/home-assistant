@@ -1,14 +1,12 @@
 bathroom_contact_delays:
   input_number:
     bathroom_exhaust_fan_door_closed_delay:
-      initial: 5
       max: 600
       min: 0
       mode: box
       name: Bathroom Exhaust Fan Door Closed Delay
       unit_of_measurement: 's'
     bathroom_exhaust_fan_door_open_delay:
-      initial: 120
       max: 3600
       min: 0
       mode: box

@@ -1,0 +1,4 @@
+bedroom_blinds_automatic_input:
+  input_boolean:
+    bedroom_blinds_automatic:
+      name: Bedroom Automatic Blinds

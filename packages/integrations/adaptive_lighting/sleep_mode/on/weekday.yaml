@@ -17,8 +17,3 @@ integrations_adaptive_lighting_sleep_mode_on_weekday:
       trigger:
         - at: input_datetime.adaptive_lighting_sleep_mode_on_weekday
           platform: time
-  input_datetime:
-    adaptive_lighting_sleep_mode_on_weekday:
-      has_date: false
-      has_time: true
-      name: Adaptive Lighting - Sleep Mode - On - Weekday

@@ -11,12 +11,3 @@ bedroom_thermostat_cool_default:
             entity_id: climate.bedroom_thermostat_cool
           data:
             temperature: "{{ states('input_number.bedroom_thermostat_cool_default') | float }}"
-  input_number:
-    bedroom_thermostat_cool_default:
-      name: Bedroom Thermostat Cool Default
-      min: 0
-      max: 100
-      mode: box
-      step: 1
-      unit_of_measurement: '°F'
-      icon: mdi:thermostat

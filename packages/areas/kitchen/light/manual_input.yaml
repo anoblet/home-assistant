@@ -1,0 +1,4 @@
+kitchen_light_manual_input:
+  input_boolean:
+    kitchen_light_manual:
+      name: Kitchen Light Manual

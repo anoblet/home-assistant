@@ -9,10 +9,14 @@ bedroom_media_player_tv_idle:
         - service: input_boolean.turn_off
           target:
             entity_id: input_boolean.bedroom_blinds_automatic
-        # Set blinds to 75%
-        - service: cover.set_cover_position
+        # The idle scene uses the same preferred position as sunset.
+        - condition: template
+          value_template: >-
+            {{ states('input_number.bedroom_blinds_sunset_position') | is_number }}
+        - action: cover.set_cover_position
           data:
-            position: 75
+            position: >-
+              {{ states('input_number.bedroom_blinds_sunset_position') | int }}
           target:
             entity_id: cover.bedroom_blinds
       alias: Bedroom - Media Player - TV - Idle

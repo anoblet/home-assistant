@@ -7,8 +7,3 @@ shared_presence_detection:
       input_boolean.common_presence_detection:
         expose: true
         name: Common Presence Detection
-  input_boolean:
-    common_presence_detection:
-      name: Common Presence Detection
-      initial: on
-      icon: mdi:motion-sensor

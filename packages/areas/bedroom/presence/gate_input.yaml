@@ -1,0 +1,10 @@
+bedroom_presence_gate_input:
+  input_number:
+    bedroom_presence_last_move_gate:
+      max: 13
+      min: 0
+      name: Bedroom Presence Last Move Gate
+    bedroom_presence_last_still_gate:
+      max: 13
+      min: 0
+      name: Bedroom Presence Last Still Gate

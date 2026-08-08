@@ -14,11 +14,6 @@ kitchen_presence_gate_move:
             entity_id: input_number.kitchen_ld2410c_last_move_gate
             value: "{{ states('sensor.kitchen_ld2410c_move_gate') | int(0) }}"
       id: kitchen_ld2410c_move_gate
-  input_number:
-    kitchen_ld2410c_last_move_gate:
-      max: 8
-      min: 0
-      name: Kitchen Presence Last Move Gate
   template:
     - sensor:
         - name: 'Kitchen Presence Move Gate'

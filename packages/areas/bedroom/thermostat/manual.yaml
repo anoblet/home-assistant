@@ -33,7 +33,3 @@ bedroom_thermostat_manual:
           to: 'on'
           for:
             hours: 1
-  input_boolean:
-    bedroom_thermostat_manual:
-      initial: false
-      name: Bedroom Thermostat Manual

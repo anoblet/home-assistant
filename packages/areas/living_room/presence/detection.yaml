@@ -5,8 +5,3 @@ living_room_presence_detection:
       input_boolean.living_room_presence_detection:
         expose: true
         name: Living Room Presence Detection
-  input_boolean:
-    living_room_presence_detection:
-      name: Living Room Presence Detection
-      initial: on
-      icon: mdi:motion-sensor

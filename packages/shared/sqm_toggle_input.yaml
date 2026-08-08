@@ -1,0 +1,4 @@
+shared_sqm_toggle_input:
+  input_boolean:
+    sqm_toggle:
+      name: SQM Toggle

@@ -10,6 +10,8 @@ sections:
         entities:
           - entity: input_boolean.bedroom_blinds_automatic
             name: Automatic Blinds
+          - entity: input_number.bedroom_blinds_sunset_position
+            name: Sunset Position
   - type: grid
     title: Occupancy
     cards:

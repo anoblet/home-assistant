@@ -33,13 +33,15 @@
 !package-lock.json
 !packages
 !packages/**/*
-!README.md
 !reports
 !reports/**
 !scripts
 !scripts/**
 !www/custom/**/*
 !www/custom-elements/**/*
+
+!CHANGELOG.md
+!README.md
 
 # Exclude
 esphome/secrets.yaml

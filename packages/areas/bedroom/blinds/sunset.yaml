@@ -1,13 +1,20 @@
 bedroom_blinds_sunset:
   automation:
     - action:
-        - service: cover.set_cover_position
+        - condition: template
+          value_template: >-
+            {{ states('input_number.bedroom_blinds_sunset_position') | is_number }}
+        - action: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.bedroom_blinds_automatic
+        - action: cover.set_cover_position
           data:
-            position: 75
+            position: >-
+              {{ states('input_number.bedroom_blinds_sunset_position') | int }}
           target:
             entity_id: cover.bedroom_blinds
       alias: Bedroom - Blinds - Sunset
       id: bedroom_blinds_sunset
-      trigger:
+      triggers:
         - event: sunset
-          platform: sun
+          trigger: sun

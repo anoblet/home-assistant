@@ -1,11 +1,4 @@
 reminders_brush_teeth:
-  # Brush Teeth Reminder Switch
-  input_boolean:
-    brush_teeth_reminder:
-      name: Brush Teeth Reminder
-      icon: mdi:tooth-outline
-      initial: on
-
   # Automations for morning and evening reminders
   automation:
     - id: morning_brush_teeth_reminder

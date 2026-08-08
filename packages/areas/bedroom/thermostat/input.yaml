@@ -1,0 +1,21 @@
+bedroom_thermostat_input:
+  input_boolean:
+    bedroom_thermostat_manual:
+      name: Bedroom Thermostat Manual
+  input_number:
+    bedroom_thermostat_cool_default:
+      name: Bedroom Thermostat Cool Default
+      min: 0
+      max: 100
+      mode: box
+      step: 1
+      unit_of_measurement: '°F'
+      icon: mdi:thermostat
+    bedroom_thermostat_heat_default:
+      name: Bedroom Thermostat Heat Default
+      min: 0
+      max: 100
+      mode: box
+      step: 1
+      unit_of_measurement: '°F'
+      icon: mdi:thermostat

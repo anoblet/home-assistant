@@ -14,17 +14,11 @@ bedroom_thermostat_heat_default:
           for:
             minutes: 15
       action:
+        - condition: template
+          value_template: >-
+            {{ states('input_number.bedroom_thermostat_heat_default') | is_number }}
         - service: climate.set_temperature
           target:
             entity_id: climate.bedroom_thermostat_heat
           data:
-            temperature: "{{ states('input_number.bedroom_thermostat_heat_default') | float(70) }}"
-  input_number:
-    bedroom_thermostat_heat_default:
-      name: Bedroom Thermostat Heat Default
-      min: 0
-      max: 100
-      mode: box
-      step: 1
-      unit_of_measurement: '°F'
-      icon: mdi:thermostat
+            temperature: "{{ states('input_number.bedroom_thermostat_heat_default') | float }}"

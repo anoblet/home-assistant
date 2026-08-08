@@ -35,7 +35,3 @@ living_room_thermostat_manual:
           to: 'on'
           for:
             hours: 4
-  input_boolean:
-    living_room_thermostat_manual:
-      initial: false
-      name: Living Room Thermostat Manual

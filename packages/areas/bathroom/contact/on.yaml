@@ -1,6 +1,9 @@
 bathroom_contact_on:
   automation:
     - action:
+        - condition: template
+          value_template: >-
+            {{ states('input_number.bathroom_exhaust_fan_door_open_delay') | is_number }}
         - service: switch.turn_off
           entity_id: switch.bathroom_exhaust_fan
       alias: 'Bathroom Door On Exhaust Fan'

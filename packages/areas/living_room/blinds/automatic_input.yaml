@@ -1,0 +1,4 @@
+living_room_blinds_automatic_input:
+  input_boolean:
+    living_room_blinds_automatic:
+      name: Living Room Automatic Blinds

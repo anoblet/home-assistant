@@ -1,0 +1,14 @@
+integrations_adaptive_lighting_sleep_mode_input:
+  input_datetime:
+    adaptive_lighting_sleep_mode_off:
+      has_date: false
+      has_time: true
+      name: Adaptive Lighting - Sleep Mode - Off
+    adaptive_lighting_sleep_mode_on_weekday:
+      has_date: false
+      has_time: true
+      name: Adaptive Lighting - Sleep Mode - On - Weekday
+    adaptive_lighting_sleep_mode_on_weekend:
+      has_date: false
+      has_time: true
+      name: Adaptive Lighting - Sleep Mode - On - Weekend
