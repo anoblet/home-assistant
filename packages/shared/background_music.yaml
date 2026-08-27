@@ -51,8 +51,8 @@ shared_background_music:
       alias: Background Music
       sequence:
         - variables:
-            play_target_entity_id: "{{ states('input_text.background_music_play_target_entity_id') }}"
-            media_id: "{{ states('input_text.background_music_media_id') }}"
+            play_target_entity_id: "{{ states('input_text.background_music_play_target_entity_id') | trim }}"
+            media_id: "{{ states('input_text.background_music_media_id') | trim }}"
             volume_level: "{{ states('input_number.background_music_volume') }}"
             play_delay_seconds: "{{ states('input_number.background_music_play_delay_seconds') }}"
         - if:
@@ -83,6 +83,10 @@ shared_background_music:
       trigger:
         - platform: time
           at: input_datetime.background_music_start_time
+      condition:
+        - condition: template
+          value_template: >-
+            {{ is_state('input_boolean.background_music_' ~ now().strftime('%A') | lower, 'on') }}
       action:
         - action: script.background_music
     - alias: 'Stop Background Music on Weekday Nights'
@@ -91,7 +95,11 @@ shared_background_music:
       trigger:
         - platform: time
           at: input_datetime.background_music_stop_time
+      condition:
+        - condition: template
+          value_template: >-
+            {{ is_state('input_boolean.background_music_' ~ now().strftime('%A') | lower, 'on') }}
       action:
         - action: media_player.media_stop
           target:
-            entity_id: "{{ states('input_text.background_music_stop_target_entity_id') }}"
+            entity_id: "{{ states('input_text.background_music_stop_target_entity_id') | trim }}"

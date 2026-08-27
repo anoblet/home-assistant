@@ -1,5 +1,5 @@
 - [copilot-instructions](.github/copilot-instructions.md)
-- [home-assistant](.github/instructions/home-assistant.instructions.md)
+- [home-assistant skill](.agents/skills/home-assistant/SKILL.md)
 
 ## Current Project Notes
 
@@ -16,4 +16,4 @@
 - Lovelace dashboard entrypoint filenames under `includes/lovelace/dashboards/` follow the current underscore role-based pattern, for example `dashboard_overview.yaml`, `dashboard_device.yaml`, `dashboard_room.yaml`, `dashboard_vacuum.yaml`, `configuration.yaml`, `presence.yaml`, and `tasks.yaml`, while dashboard slugs remain unchanged.
 - After moving or renaming Lovelace dashboard entrypoint files, `pnpm reload` may not fully refresh the running instance. Check logs and be prepared to restart Home Assistant if an old dashboard path is still referenced.
 - Keep documentation updates in the same change when package or include discoverability changes.
-- Update `.github/instructions/home-assistant.instructions.md` after each session to reflect any new learnings or adjustments to the above notes, ensuring that future sessions have the most accurate and up-to-date guidance.
+- After every interaction that uses the Home Assistant skill, perform its required continuous-improvement pass and update `.agents/skills/home-assistant/SKILL.md` when the interaction yields durable new guidance.
