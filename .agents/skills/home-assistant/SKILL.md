@@ -57,11 +57,10 @@ After each meaningful configuration change:
 
 1. Resolve every Lovelace `!include` and `!include_dir_named` path statically, including paths in dashboard files that are not currently registered; Home Assistant's configuration check may not load orphaned dashboards.
 1. Run `pnpm reload`.
-2. Read runtime logs with `pnpm home-assistant raw request GET /api/hassio/core/logs --text`.
-3. If the Supervisor endpoint is unavailable or returns an upstream error, use `pnpm home-assistant error-log`.
-4. Confirm there are no warnings or errors caused by the change and verify relevant runtime entity state or behavior.
+2. Read runtime logs with `ha core logs`.
+3. Confirm there are no warnings or errors caused by the change and verify relevant runtime entity state or behavior.
 
-Use `pnpm home-assistant` for Home Assistant CLI operations; its documentation is in `bin/cli`, and it requires Node.js 22.6.0 or newer. From the Home Assistant host, add `-H http://localhost:8123` when the configured external URL is unavailable or slow. `ha core logs` and `ha core restart` are available for direct host administration when appropriate.
+Use the native `ha` CLI for Home Assistant administration, including `ha core check`, `ha core logs`, and `ha core restart`. Do not use the custom `pnpm home-assistant` command.
 
 ## Continuous improvement
 
