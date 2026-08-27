@@ -55,6 +55,7 @@ Apply the repository conventions below to Home Assistant work in this workspace.
 
 After each meaningful configuration change:
 
+1. Resolve every Lovelace `!include` and `!include_dir_named` path statically, including paths in dashboard files that are not currently registered; Home Assistant's configuration check may not load orphaned dashboards.
 1. Run `pnpm reload`.
 2. Read runtime logs with `pnpm home-assistant raw request GET /api/hassio/core/logs --text`.
 3. If the Supervisor endpoint is unavailable or returns an upstream error, use `pnpm home-assistant error-log`.
