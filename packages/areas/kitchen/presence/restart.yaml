@@ -9,8 +9,10 @@ kitchen_presence_restart:
           at: '12:00:00'
           # Trigger the automation precisely at 12:00 PM daily.
       action:
-        - service: esphome.kitchen_ld2410c_restart
-          # Calls the ESPHome service to restart the kitchen presence sensor.
+        - action: button.press
+          target:
+            entity_id: button.kitchen_ld2410c_restart_radar
+          # Presses the ESPHome restart button for the kitchen presence sensor.
         - service: notify.mobile_app_pixel_6_pro
           data:
             title: 'Sensor Maintenance'

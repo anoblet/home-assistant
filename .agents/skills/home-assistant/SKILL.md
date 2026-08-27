@@ -45,6 +45,8 @@ Apply the repository conventions below to Home Assistant work in this workspace.
 
 ## Established feature patterns
 
+- Call current ESPHome maintenance controls through their entity platform (for example, `button.press` on an `*_restart_radar` entity) rather than legacy dynamically generated `esphome.*` services. Resolve the live entity registry before migrating a removed service.
+- Automatic update jobs must build their target list from `update` entities whose state is `on` and skip `update.install` when that list is empty; targeting every known update entity causes failures when no update is offered.
 - Presence-off climate behavior should fully turn thermostats off with `climate.turn_off` after a 15-second absence hold. Use `packages/areas/bedroom/presence/off/thermostat.yaml` as the reference. Bound Harmony `PowerToggle` debounce waits to 30 seconds as in `script.bedroom_air_conditioner_off`. Living-room and shared presence-off thermostat logic may still need migration from the older setpoint-only behavior.
 - Expose the combined `climate.bedroom_thermostat` group to Google Assistant, not its separate heating and cooling implementation entities.
 - For sunset blinds, use helper-backed positions. The living-room pattern disables `input_boolean.living_room_blinds_automatic`, then reads `input_number.living_room_blinds_sunset_position` when positioning `cover.living_room_blinds`. Prefer it to older hard-coded patterns.

@@ -6,9 +6,10 @@ storage_room_motion_cleared:
           entity_id: light.storage_room_ceiling
       - choose:
           - conditions:
-              - condition: state
-                entity_id: binary_sensor.octoprint_printing
-                state: 'off'
+              - condition: template
+                value_template: >-
+                  {{ states('sensor.x1c_00m00a2c0619044_print_status')
+                     not in ['running', 'pause'] }}
             sequence:
               - service: light.turn_off
                 target:
