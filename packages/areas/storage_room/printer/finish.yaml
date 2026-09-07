@@ -43,5 +43,6 @@ storage_room_printer_finish:
     id: storage_room_printer_finish
     trigger:
       - to: 'finish'
+        from: 'running'
         entity_id: sensor.x1c_00m00a2c0619044_print_status
         platform: state

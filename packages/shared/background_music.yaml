@@ -89,16 +89,12 @@ shared_background_music:
             {{ is_state('input_boolean.background_music_' ~ now().strftime('%A') | lower, 'on') }}
       action:
         - action: script.background_music
-    - alias: 'Stop Background Music on Weekday Nights'
+    - alias: 'Stop Background Music Every Night'
       id: stop_background_music_weekday_nights
-      description: 'Automatically stops background music every weekday night at 8:00 PM.'
+      description: 'Automatically stops background music every night at 8:00 PM.'
       trigger:
         - platform: time
           at: input_datetime.background_music_stop_time
-      condition:
-        - condition: template
-          value_template: >-
-            {{ is_state('input_boolean.background_music_' ~ now().strftime('%A') | lower, 'on') }}
       action:
         - action: media_player.media_stop
           target:

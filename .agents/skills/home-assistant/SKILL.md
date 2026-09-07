@@ -52,6 +52,7 @@ Apply the repository conventions below to Home Assistant work in this workspace.
 - For sunset blinds, use helper-backed positions. The living-room pattern disables `input_boolean.living_room_blinds_automatic`, then reads `input_number.living_room_blinds_sunset_position` when positioning `cover.living_room_blinds`. Prefer it to older hard-coded patterns.
 - Bedroom sunset and TV-idle positioning intentionally share `input_number.bedroom_blinds_sunset_position`; its migration value was seeded once to 75.
 - Background music uses Music Assistant library URIs such as `library://radio/2`, not opaque numeric media IDs. Target Music Assistant player entities, trim text-helper values when reading them, and gate scheduled play and stop actions with per-day enable helpers.
+- Bambu printer completion must require a `running` to `finish` transition; the sensor can recover from `offline` directly to `finish`, which otherwise retriggers completion actions without a new print.
 
 ## Validation
 
