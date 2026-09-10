@@ -1183,3 +1183,7 @@ Key takeaways:
 - **Test thoroughly:** Verify automations before deploying
 
 Remember: Good organization at the start pays dividends as your system grows. Take time to structure your packages properly, and you'll thank yourself later.
+
+## Bedroom Night Radio
+
+`packages/areas/bedroom/display/night.yaml` plays radio daily on the bedroom display through Music Assistant. The time and URI are configured by the helpers in `display/night_input.yaml`, available in both bedroom Configuration views. They are seeded to 22:00 (Home Assistant local time) and `library://radio/5`; subsequent user changes persist.

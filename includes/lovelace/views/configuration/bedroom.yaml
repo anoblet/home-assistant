@@ -49,3 +49,12 @@ sections:
           - entity: input_number.bedroom_thermostat_cool_default
           - entity: input_number.bedroom_thermostat_presence_off_heat
           - entity: input_number.bedroom_thermostat_presence_off_cool
+  - type: grid
+    title: Night Radio
+    cards:
+      - type: entities
+        entities:
+          - entity: input_datetime.bedroom_display_night_time
+            name: Playback Time
+          - entity: input_text.bedroom_display_night_uri
+            name: Radio URI

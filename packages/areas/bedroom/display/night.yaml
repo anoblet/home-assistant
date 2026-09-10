@@ -1,0 +1,20 @@
+bedroom_display_night:
+  automation:
+    - id: bedroom_display_night
+      alias: Bedroom Display - Night Radio
+      description: Plays the configured radio on the bedroom display every night.
+      trigger:
+        - platform: time
+          at: input_datetime.bedroom_display_night_time
+      condition:
+        - condition: template
+          value_template: >-
+            {{ states('input_text.bedroom_display_night_uri') | trim
+               not in ['', 'unknown', 'unavailable', 'none'] }}
+      action:
+        - action: music_assistant.play_media
+          target:
+            entity_id: media_player.bedroom_display_2
+          data:
+            media_id: "{{ states('input_text.bedroom_display_night_uri') | trim }}"
+            media_type: radio

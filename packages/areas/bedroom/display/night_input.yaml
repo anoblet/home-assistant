@@ -1,0 +1,10 @@
+bedroom_display_night_input:
+  input_datetime:
+    bedroom_display_night_time:
+      name: Bedroom Display Night Time
+      has_date: false
+      has_time: true
+  input_text:
+    bedroom_display_night_uri:
+      name: Bedroom Display Night URI
+      max: 255

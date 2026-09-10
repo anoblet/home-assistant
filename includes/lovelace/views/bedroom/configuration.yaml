@@ -45,3 +45,12 @@ sections:
             name: Adaptive Lighting Color
           - entity: switch.adaptive_lighting_sleep_mode_bedroom
             name: Adaptive Lighting Sleep Mode
+  - type: grid
+    title: Night Radio
+    cards:
+      - type: entities
+        entities:
+          - entity: input_datetime.bedroom_display_night_time
+            name: Playback Time
+          - entity: input_text.bedroom_display_night_uri
+            name: Radio URI

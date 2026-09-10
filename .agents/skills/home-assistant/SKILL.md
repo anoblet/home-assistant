@@ -65,6 +65,8 @@ After each meaningful configuration change:
 
 Use the native `ha` CLI for Home Assistant administration, including `ha core check`, `ha core logs`, and `ha core restart`. Do not use the custom `pnpm home-assistant` command.
 
+If `hass-cli` times out through the configured URL or localhost, use the core IP and port reported by `ha core info` with a per-command `HASS_API_URL` override. A reload response that merely assumes success after a timeout must be verified against live entities.
+
 ## Continuous improvement
 
 Before completing every interaction in which this skill is used, perform a maintenance pass on this `SKILL.md`:
