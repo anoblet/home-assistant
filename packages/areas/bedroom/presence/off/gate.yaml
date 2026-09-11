@@ -9,6 +9,9 @@ bedroom_presence_off_gate:
     alias: Bedroom - Presence - Off - Gate
     id: bedroom_presence_off_gate
     condition:
+      - condition: time
+        after: input_datetime.bedroom_presence_off_start
+        before: input_datetime.bedroom_presence_off_end
       - condition: state
         entity_id: input_boolean.bedroom_presence_detection
         state: 'on'

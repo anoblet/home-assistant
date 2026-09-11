@@ -3,3 +3,12 @@ bedroom_presence_detection_input:
     bedroom_presence_detection:
       name: Bedroom Presence Detection
       icon: mdi:motion-sensor
+  input_datetime:
+    bedroom_presence_off_start:
+      name: Bedroom Presence Off Start
+      has_date: false
+      has_time: true
+    bedroom_presence_off_end:
+      name: Bedroom Presence Off End
+      has_date: false
+      has_time: true

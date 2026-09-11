@@ -8,6 +8,9 @@ bedroom_presence_off_thermostat:
             - climate.bedroom_thermostat_heat
     alias: Bedroom - Presence - Off - Thermostat
     condition:
+      - condition: time
+        after: input_datetime.bedroom_presence_off_start
+        before: input_datetime.bedroom_presence_off_end
       - condition: state
         entity_id: input_boolean.bedroom_presence_detection
         state: 'on'

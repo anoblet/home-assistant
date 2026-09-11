@@ -1,5 +1,7 @@
 # Home Assistant Packages Automation Documentation
 
+Bedroom presence-off automations (air purifier, ceiling fan, gate tracking, humidifier, lights, and thermostat) run only within the daily window defined by `input_datetime.bedroom_presence_off_start` and `input_datetime.bedroom_presence_off_end`, configured to 08:00–22:00 in Home Assistant local time. These helpers live in `packages/areas/bedroom/presence/detection_input.yaml` and appear in both bedroom Configuration views. Skipped overnight triggers are not replayed at 08:00.
+
 ## Overview
 
 This document provides comprehensive documentation for the Home Assistant packages automation system. The packages directory structure provides a modular, organized approach to managing automations, configurations, and entities across the entire Home Assistant installation.

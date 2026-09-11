@@ -19,6 +19,10 @@ sections:
         entities:
           - entity: input_boolean.bedroom_presence_detection
             name: Presence Detection
+          - entity: input_datetime.bedroom_presence_off_start
+            name: Presence Off Start
+          - entity: input_datetime.bedroom_presence_off_end
+            name: Presence Off End
   - type: grid
     title: Climate Control
     cards:

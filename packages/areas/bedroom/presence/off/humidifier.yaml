@@ -8,6 +8,9 @@ bedroom_presence_off_humidifier:
     alias: Bedroom - Presence - Off - Humidifier
     id: bedroom_presence_off_humidifier
     condition:
+      - condition: time
+        after: input_datetime.bedroom_presence_off_start
+        before: input_datetime.bedroom_presence_off_end
       - condition: state
         entity_id: input_boolean.bedroom_presence_detection
         state: 'on'
