@@ -17,7 +17,7 @@ cards:
               'gap': '1rem'
             cards:
               - type: tile
-                entity: input_number.bedroom_thermostat_heat_default
+                entity: input_number.bedroom_thermostat_heat_default_day
                 color: '#6b7280'
                 hide_state: true
                 icon: mdi:tune

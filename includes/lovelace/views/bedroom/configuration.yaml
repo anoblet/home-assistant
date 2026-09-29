@@ -32,8 +32,10 @@ sections:
             name: Climate Zone
           - entity: switch.bedroom_air_conditioner_virtual
             name: Air Conditioner
-          - entity: input_number.bedroom_thermostat_heat_default
-            name: Thermostat Heat Default
+          - entity: input_number.bedroom_thermostat_heat_default_day
+            name: Thermostat Heat Default Day
+          - entity: input_number.bedroom_thermostat_heat_default_night
+            name: Thermostat Heat Default Night
           - entity: input_number.bedroom_thermostat_cool_default
             name: Thermostat Cool Default
   - type: grid

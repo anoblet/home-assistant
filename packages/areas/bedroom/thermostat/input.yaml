@@ -11,8 +11,16 @@ bedroom_thermostat_input:
       step: 1
       unit_of_measurement: '°F'
       icon: mdi:thermostat
-    bedroom_thermostat_heat_default:
-      name: Bedroom Thermostat Heat Default
+    bedroom_thermostat_heat_default_day:
+      name: Bedroom Thermostat Heat Default Day
+      min: 0
+      max: 100
+      mode: box
+      step: 1
+      unit_of_measurement: '°F'
+      icon: mdi:thermostat
+    bedroom_thermostat_heat_default_night:
+      name: Bedroom Thermostat Heat Default Night
       min: 0
       max: 100
       mode: box

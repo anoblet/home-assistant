@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-09-29
+
+- Split the single bedroom thermostat heat default helper into day and night helpers (`input_number.bedroom_thermostat_heat_default_day` and `input_number.bedroom_thermostat_heat_default_night`) in `packages/areas/bedroom/thermostat/input.yaml`.
+- Updated `packages/areas/bedroom/thermostat/heat/default.yaml` so the default-reset automation selects the day helper while `schedule.day` is `on` and the night helper otherwise, keeping the `is_number` guard and the stable automation id.
+- Surfaced both helpers on the bedroom `Configuration` subview and the unified Configuration dashboard, and repointed the bedroom `Configuration` tile at the day helper.
+- Seeded both new helpers with the previous live value (68 °F) after reload. Note that a newly added `input_number` without `initial` registers at its minimum (`0`), so the automation's `is_number` guard does not protect against an unseeded helper.
+
 ## 2026-08-06
 
 - Fixed the bedroom AC off-on-vacancy behavior: `packages/areas/bedroom/presence/off/thermostat.yaml` now calls `climate.turn_off` on both thermostats after a 15 s presence-off hold (the old 1-minute hold with setpoint-only actions never fired, so the AC never stopped), and `packages/areas/bedroom/script/air_conditioner/off.yaml` bounds the physical `PowerToggle` debounce to 30 s via `timeout: '00:00:30'` (was an unbounded 300 s wait).

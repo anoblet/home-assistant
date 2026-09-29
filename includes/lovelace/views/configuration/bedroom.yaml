@@ -49,7 +49,8 @@ sections:
       - type: entities
         entities:
           - entity: input_boolean.bedroom_thermostat_manual
-          - entity: input_number.bedroom_thermostat_heat_default
+          - entity: input_number.bedroom_thermostat_heat_default_day
+          - entity: input_number.bedroom_thermostat_heat_default_night
           - entity: input_number.bedroom_thermostat_cool_default
           - entity: input_number.bedroom_thermostat_presence_off_heat
           - entity: input_number.bedroom_thermostat_presence_off_cool
