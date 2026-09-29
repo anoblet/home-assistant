@@ -45,6 +45,7 @@ Apply the repository conventions below to Home Assistant work in this workspace.
 
 ## Established feature patterns
 
+- Bedroom display night radio targets the `media_player.bedroom_display` group entity, matching the other bedroom display automations, rather than the secondary `media_player.bedroom_display_2` entity.
 - Call current ESPHome maintenance controls through their entity platform (for example, `button.press` on an `*_restart_radar` entity) rather than legacy dynamically generated `esphome.*` services. Resolve the live entity registry before migrating a removed service.
 - Automatic update jobs must build their target list from `update` entities whose state is `on` and skip `update.install` when that list is empty; targeting every known update entity causes failures when no update is offered.
 - Gate every bedroom presence-off concern, including ceiling fan and gate tracking, with the shared daily window in `input_datetime.bedroom_presence_off_start` and `input_datetime.bedroom_presence_off_end`. Keep the overnight exclusion consistent across all files in `packages/areas/bedroom/presence/off/`.

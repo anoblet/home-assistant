@@ -1,3 +1,6 @@
 [submodule "copilot"]
 	path = copilot
 	url = git@github.com:anoblet/copilot.git
+[submodule "storage"]
+	path = storage
+	url = git@github.com:anoblet/storage.git

@@ -14,7 +14,7 @@ bedroom_display_night:
       action:
         - action: music_assistant.play_media
           target:
-            entity_id: media_player.bedroom_display_2
+            entity_id: media_player.bedroom_display
           data:
             media_id: "{{ states('input_text.bedroom_display_night_uri') | trim }}"
             media_type: radio
