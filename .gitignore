@@ -19,7 +19,6 @@
 !bin
 !bin/**
 !copilot
-!copilot/**
 !docs
 !docs/**
 !esphome
@@ -28,7 +27,6 @@
 !genaisrc/**/*
 !includes
 !includes/**/*
-!link.json
 !memory
 !memory/**
 !package.json
@@ -39,6 +37,7 @@
 !reports/**
 !scripts
 !scripts/**
+!storage
 !www/custom/**/*
 !www/custom-elements/**/*
 
