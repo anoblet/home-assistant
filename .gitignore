@@ -6,7 +6,6 @@
 !.github
 !.github/**/*
 !.agents
-!.agents/**/*
 !.gitignore
 !.gitmodules
 !.husky/**/*

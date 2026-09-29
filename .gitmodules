@@ -4,3 +4,6 @@
 [submodule "storage"]
 	path = storage
 	url = git@github.com:anoblet/storage.git
+[submodule ".agents"]
+	path = .agents
+	url = git@github.com:anoblet/.agents.git
