@@ -1,0 +1,139 @@
+# ESPHome bring-up config for the 2026 Halloween float controller.
+# Board: ESP32-C3 Super Mini (ESP32-C3, RISC-V, 4 MB flash, 400 KB SRAM).
+# Signal-only: this firmware drives the external 24 V solenoid switching stage
+# and never switches valve current itself.
+#
+# Pin choice: all three outputs use the pins with no boot or system role on this
+# board — GPIO0, GPIO1, GPIO3 (GPIO10 is the fourth free pin). On the C3 Super Mini
+# most exposed pins carry boot-time or flash duties, so the safe set is small.
+# Avoid: GPIO2/4/5/6/7 (bootstrapping and/or internal flash), GPIO8 (strapping + onboard
+# blue LED), GPIO9 (boot-mode select / BOOT button), GPIO20/21 (UART0 console).
+# The receiver side must provide hardware pull-downs so all channels stay OFF
+# through reset and boot.
+#
+# Sequence: one "Run sequence" action pulses channel 1, then channel 2, then
+# channel 3, with a configurable gap between activations (default 90 s). The gap
+# is exposed as a runtime-adjustable number and survives reboot (restore_value).
+
+packages:
+  common: !include packages/common.yaml
+
+substitutions:
+  esphome_name: halloween-float-2026
+  esphome_friendly_name: Halloween Float 2026
+  channel_1_pin: GPIO0
+  channel_2_pin: GPIO1
+  channel_3_pin: GPIO3
+  pulse_ms: '1000'
+  default_interval_s: '90'
+
+esphome:
+  min_version: 2025.2.0
+
+esp32:
+  board: esp32-c3-devkitm-1 # ESPHome/PlatformIO board id for the ESP32-C3; use for the Super Mini
+  variant: esp32c3
+  framework:
+    type: esp-idf
+
+# Runtime-adjustable gap between channel activations. Change from Home Assistant,
+# the web UI, or the API; the value persists across reboots.
+number:
+  - platform: template
+    name: 'Interval between activations'
+    id: interval_s
+    optimistic: true
+    restore_value: true
+    min_value: 1
+    max_value: 600
+    step: 1
+    unit_of_measurement: s
+    icon: mdi:timer-sand
+    mode: box
+    initial_value: ${default_interval_s}
+
+switch:
+  - platform: gpio
+    id: channel_1_output
+    internal: true
+    pin:
+      number: ${channel_1_pin}
+      inverted: false
+    restore_mode: ALWAYS_OFF
+  - platform: gpio
+    id: channel_2_output
+    internal: true
+    pin:
+      number: ${channel_2_pin}
+      inverted: false
+    restore_mode: ALWAYS_OFF
+  - platform: gpio
+    id: channel_3_output
+    internal: true
+    pin:
+      number: ${channel_3_pin}
+      inverted: false
+    restore_mode: ALWAYS_OFF
+
+script:
+  # One-shot pulse on a single channel (manual override / bench test).
+  - id: pulse_channel_1
+    mode: single
+    then:
+      - switch.turn_on: channel_1_output
+      - delay: ${pulse_ms}ms
+      - switch.turn_off: channel_1_output
+  - id: pulse_channel_2
+    mode: single
+    then:
+      - switch.turn_on: channel_2_output
+      - delay: ${pulse_ms}ms
+      - switch.turn_off: channel_2_output
+  - id: pulse_channel_3
+    mode: single
+    then:
+      - switch.turn_on: channel_3_output
+      - delay: ${pulse_ms}ms
+      - switch.turn_off: channel_3_output
+  # Sequence: channel 1 -> gap -> channel 2 -> gap -> channel 3, gap configurable.
+  - id: run_sequence
+    mode: restart
+    then:
+      - switch.turn_on: channel_1_output
+      - delay: ${pulse_ms}ms
+      - switch.turn_off: channel_1_output
+      - delay: !lambda 'return (uint32_t)(id(interval_s).state * 1000.0f);'
+      - switch.turn_on: channel_2_output
+      - delay: ${pulse_ms}ms
+      - switch.turn_off: channel_2_output
+      - delay: !lambda 'return (uint32_t)(id(interval_s).state * 1000.0f);'
+      - switch.turn_on: channel_3_output
+      - delay: ${pulse_ms}ms
+      - switch.turn_off: channel_3_output
+
+button:
+  - platform: template
+    name: 'Run sequence'
+    on_press:
+      - script.execute: run_sequence
+  - platform: template
+    name: 'Stop sequence'
+    on_press:
+      - script.stop: run_sequence
+  - platform: template
+    name: 'Channel 1 pulse'
+    on_press:
+      - script.execute: pulse_channel_1
+  - platform: template
+    name: 'Channel 2 pulse'
+    on_press:
+      - script.execute: pulse_channel_2
+  - platform: template
+    name: 'Channel 3 pulse'
+    on_press:
+      - script.execute: pulse_channel_3
+web_server:
+  port: 80
+  auth:
+    username: admin
+    password: password

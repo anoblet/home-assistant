@@ -11,7 +11,10 @@ shared_lovelace:
         mode: yaml
         title: Devices
         icon: mdi:chip
-      dashboard-overview:
+      # `lovelace` is the reserved url_path for the default dashboard. Defining
+      # it here overrides the empty default Overview that Home Assistant would
+      # otherwise auto-create from the unused `ui-lovelace.yaml` in yaml mode.
+      lovelace:
         filename: includes/lovelace/dashboards/dashboard_overview.yaml
         mode: yaml
         title: Overview
