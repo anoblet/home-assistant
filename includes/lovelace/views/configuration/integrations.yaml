@@ -4,6 +4,14 @@ icon: mdi:puzzle-outline
 type: sections
 sections:
   - type: grid
+    title: Hisense Backlight
+    cards:
+      - type: entities
+        entities:
+          - entity: input_text.hisense_backlight_host
+          - entity: input_number.hisense_backlight_sunset
+          - entity: input_number.hisense_backlight_sunrise
+  - type: grid
     title: Adaptive Lighting Sleep Schedule
     cards:
       - type: entities

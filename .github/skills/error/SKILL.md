@@ -1,7 +1,8 @@
 ---
 name: error
+description: error
+disable-model-invocation: true
 ---
-
 # Error Prompt
 
 ## Instructions

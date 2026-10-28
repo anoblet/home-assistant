@@ -1,3 +1,8 @@
+---
+name: theme
+description: theme
+disable-model-invocation: true
+---
 Use all of the color variables defined in Home Assistant's global color definitions to ensure compatibility and consistency across the platform.
 
 <global-color-definition>

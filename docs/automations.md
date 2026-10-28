@@ -4,6 +4,8 @@ Bedroom presence-off automations (air purifier, ceiling fan, gate tracking, humi
 
 ## Overview
 
+Hisense backlight sunrise and sunset automations live in `packages/integrations/hisense_backlight.yaml`, with editable host and level helpers in `hisense_backlight_input.yaml` and the Configuration dashboard's Integrations view. The helpers are seeded once to the TV host, sunset 0 and sunrise 50; subsequent edits persist. `script.hisense_backlight_set` calls `bin/hisense_backlight.py` in Home Assistant Core's Python runtime using the verified TCP 7310 BKLV protocol, validating reply checksums and reading back the vendor value after 700 ms. The TV's native IP Control Port must be enabled. Unreachable or rejected commands fail visibly in the script trace; missed sun events are not replayed and the automation does not turn the TV on.
+
 This document provides comprehensive documentation for the Home Assistant packages automation system. The packages directory structure provides a modular, organized approach to managing automations, configurations, and entities across the entire Home Assistant installation.
 
 Use this document as a deep reference. For day-to-day editing rules and validation workflow, start with `docs/structure-guidelines.md`. Package placement and naming in this repo follow the current six-directory taxonomy: `areas/`, `integrations/`, `people/`, `reminders/`, `schedules/`, and `shared/`.
