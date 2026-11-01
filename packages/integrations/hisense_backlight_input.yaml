@@ -1,16 +1,16 @@
-integrations_hisense_backlight_input:
+integrations_living_room_tv_backlight_input:
   input_text:
-    hisense_backlight_host:
-      name: Hisense Backlight Host
+    living_room_tv_backlight_host:
+      name: Living Room TV Backlight Host
       max: 253
   input_number:
-    hisense_backlight_sunset:
-      name: Hisense Backlight Sunset
+    living_room_tv_backlight_sunset:
+      name: Living Room TV Backlight Sunset
       min: 0
       max: 100
       step: 1
-    hisense_backlight_sunrise:
-      name: Hisense Backlight Sunrise
+    living_room_tv_backlight_sunrise:
+      name: Living Room TV Backlight Sunrise
       min: 0
       max: 100
       step: 1

@@ -1,0 +1,49 @@
+living_room_tv_backlight_control:
+  automation:
+    - id: living_room_tv_backlight_control
+      alias: Living Room TV - Backlight
+      mode: restart
+      trigger:
+        - platform: state
+          entity_id: input_number.living_room_tv_backlight
+      condition:
+        - condition: template
+          value_template: >-
+            {{ trigger.from_state is not none and trigger.to_state is not none
+               and is_number(trigger.from_state.state) and is_number(trigger.to_state.state)
+               and trigger.from_state.state != trigger.to_state.state }}
+      action:
+        - action: script.living_room_tv_backlight_set
+          data:
+            level: '{{ trigger.to_state.state | int }}'
+  template:
+    - light:
+        - name: Living Room TV Backlight
+          unique_id: living_room_tv_backlight
+          availability: "{{ has_value('input_number.living_room_tv_backlight') }}"
+          state: "{{ states('input_number.living_room_tv_backlight') | float(0) > 0 }}"
+          level: "{{ (states('input_number.living_room_tv_backlight') | float(0) * 255 / 100) | round(0) }}"
+          turn_on:
+            - action: input_number.set_value
+              target:
+                entity_id: input_number.living_room_tv_backlight
+              data:
+                value: 100
+          turn_off:
+            - action: input_number.set_value
+              target:
+                entity_id: input_number.living_room_tv_backlight
+              data:
+                value: 0
+          set_level:
+            - action: input_number.set_value
+              target:
+                entity_id: input_number.living_room_tv_backlight
+              data:
+                value: '{{ (brightness * 100 / 255) | round(0) }}'
+  google_assistant:
+    entity_config:
+      light.living_room_tv_backlight:
+        expose: true
+        name: Living Room TV Backlight
+        room: Living Room

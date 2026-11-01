@@ -3,8 +3,10 @@ bathroom_google_assistant_entity_config:
     entity_config:
       binary_sensor.bathroom_door_contact:
         expose: true
+        name: Bathroom Door
       light.bathroom_light_group_zigbee:
         expose: true
+        name: Bathroom Lights
       sensor.bathroom_climate_humidity:
         expose: true
       sensor.bathroom_climate_pressure:
