@@ -1,12 +1,12 @@
-integrations_hisense_backlight:
+integrations_living_room_tv_backlight:
   shell_command:
-    hisense_backlight_set: >-
+    living_room_tv_backlight_set: >-
       python3 /config/bin/hisense_backlight.py
-      {{ states('input_text.hisense_backlight_host') | to_json }}
+      {{ states('input_text.living_room_tv_backlight_host') | to_json }}
       {{ level | int(-1) }}
   script:
-    hisense_backlight_set:
-      alias: Hisense - Backlight - Set
+    living_room_tv_backlight_set:
+      alias: Living Room TV - Backlight - Set
       mode: queued
       fields:
         level:
@@ -19,11 +19,11 @@ integrations_hisense_backlight:
       sequence:
         - condition: template
           value_template: >-
-            {{ has_value('input_text.hisense_backlight_host')
-               and states('input_text.hisense_backlight_host') is match('^[A-Za-z0-9][A-Za-z0-9.-]*$')
+            {{ has_value('input_text.living_room_tv_backlight_host')
+               and states('input_text.living_room_tv_backlight_host') is match('^[A-Za-z0-9][A-Za-z0-9.-]*$')
                and is_number(level) and 0 <= level | float <= 100
                and level | float == level | int }}
-        - action: shell_command.hisense_backlight_set
+        - action: shell_command.living_room_tv_backlight_set
           data:
             level: '{{ level }}'
           response_variable: result
@@ -34,27 +34,31 @@ integrations_hisense_backlight:
             - stop: 'Hisense backlight command failed; inspect the shell command response.'
               error: true
   automation:
-    - id: hisense_backlight_sunset
-      alias: Hisense - Backlight - Sunset
+    - id: living_room_tv_backlight_sunset
+      alias: Living Room TV - Backlight - Sunset
       trigger:
         - platform: sun
           event: sunset
       condition:
         - condition: template
-          value_template: '{{ is_number(states("input_number.hisense_backlight_sunset")) }}'
+          value_template: '{{ is_number(states("input_number.living_room_tv_backlight_sunset")) }}'
       action:
-        - action: script.hisense_backlight_set
+        - action: input_number.set_value
+          target:
+            entity_id: input_number.living_room_tv_backlight
           data:
-            level: '{{ states("input_number.hisense_backlight_sunset") | int }}'
-    - id: hisense_backlight_sunrise
-      alias: Hisense - Backlight - Sunrise
+            value: '{{ states("input_number.living_room_tv_backlight_sunset") | int }}'
+    - id: living_room_tv_backlight_sunrise
+      alias: Living Room TV - Backlight - Sunrise
       trigger:
         - platform: sun
           event: sunrise
       condition:
         - condition: template
-          value_template: '{{ is_number(states("input_number.hisense_backlight_sunrise")) }}'
+          value_template: '{{ is_number(states("input_number.living_room_tv_backlight_sunrise")) }}'
       action:
-        - action: script.hisense_backlight_set
+        - action: input_number.set_value
+          target:
+            entity_id: input_number.living_room_tv_backlight
           data:
-            level: '{{ states("input_number.hisense_backlight_sunrise") | int }}'
+            value: '{{ states("input_number.living_room_tv_backlight_sunrise") | int }}'

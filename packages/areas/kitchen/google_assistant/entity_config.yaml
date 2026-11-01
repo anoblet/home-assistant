@@ -3,3 +3,4 @@ kitchen_google_assistant_entity_config:
     entity_config:
       light.kitchen_light_group_zigbee:
         expose: true
+        name: Kitchen Lights

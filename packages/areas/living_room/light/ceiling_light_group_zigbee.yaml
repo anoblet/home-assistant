@@ -3,6 +3,7 @@ living_room_light_ceiling_light_group_zigbee:
     entity_config:
       light.living_room_ceiling_light_group_zigbee:
         expose: true
+        name: Living Room Ceiling
   homeassistant:
     customize:
       light.living_room_ceiling_light_group_zigbee:

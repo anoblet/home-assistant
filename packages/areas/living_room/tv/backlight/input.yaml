@@ -1,0 +1,9 @@
+living_room_tv_backlight_input:
+  input_number:
+    living_room_tv_backlight:
+      name: Living Room TV Backlight
+      icon: mdi:brightness-6
+      min: 0
+      max: 100
+      step: 1
+      unit_of_measurement: '%'

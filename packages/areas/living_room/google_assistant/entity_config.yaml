@@ -3,6 +3,7 @@ living_room_google_assistant_entity_config:
     entity_config:
       light.living_room_floor_lamp:
         expose: true
+        name: Living Room Floor Lamp
       sensor.living_room_climate_humidity:
         expose: true
         name: Living Room Humidity
