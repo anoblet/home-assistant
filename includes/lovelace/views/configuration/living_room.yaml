@@ -46,9 +46,3 @@ sections:
           - entity: input_number.living_room_thermostat_presence_on
           - entity: input_number.living_room_thermostat_presence_off_heat
           - entity: input_number.living_room_thermostat_presence_off_cool
-  - type: grid
-    title: Television
-    cards:
-      - type: entities
-        entities:
-          - entity: input_number.living_room_tv_backlight

@@ -4,13 +4,13 @@ icon: mdi:puzzle-outline
 type: sections
 sections:
   - type: grid
-    title: Living Room TV Backlight
+    title: Hisense Backlight
     cards:
       - type: entities
         entities:
-          - entity: input_text.living_room_tv_backlight_host
-          - entity: input_number.living_room_tv_backlight_sunset
-          - entity: input_number.living_room_tv_backlight_sunrise
+          - entity: input_text.hisense_backlight_host
+          - entity: input_number.hisense_backlight_sunset
+          - entity: input_number.hisense_backlight_sunrise
   - type: grid
     title: Adaptive Lighting Sleep Schedule
     cards:

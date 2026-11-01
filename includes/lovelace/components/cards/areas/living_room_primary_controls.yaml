@@ -53,10 +53,6 @@ cards:
     variables:
       - entity: media_player.living_room_tv_2
       - name: 'Television'
-  - type: entities
-    entities:
-      - entity: input_number.living_room_tv_backlight
-        name: TV Backlight
   - type: custom:decluttering-card
     template: media_player_card
     variables:

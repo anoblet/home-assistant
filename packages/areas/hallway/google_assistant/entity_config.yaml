@@ -3,4 +3,3 @@ hallway_google_assistant_entity_config:
     entity_config:
       light.hallway_light_group_zigbee:
         expose: true
-        name: Hallway Lights

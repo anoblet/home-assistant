@@ -9,7 +9,7 @@ bedroom_media_player_tv_idle:
         - service: input_boolean.turn_off
           target:
             entity_id: input_boolean.bedroom_blinds_automatic
-        # Use the saved preferred position for the idle scene.
+        # The idle scene uses the same preferred position as sunset.
         - condition: template
           value_template: >-
             {{ states('input_number.bedroom_blinds_sunset_position') | is_number }}

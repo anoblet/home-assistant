@@ -139,7 +139,3 @@ node -e "import { readFileSync } from 'node:fs'; JSON.parse(readFileSync('/homea
 - Utility/verification scripts live under `scripts/` (for example, offline audits that read `.storage/`).
 - Script output intended for in-repo storage must be safe/redacted (no tokens, passwords, or unredacted email-like identifiers).
 - This repo uses an allowlist-style `.gitignore`; when adding new top-level folders, ensure they are explicitly included.
-
-Living room TV backlight: `packages/areas/living_room/tv/backlight/` owns the 0–100 direct-control helper and Google-compatible template light. The living room primary controls show the slider immediately after the Television card; the unified Configuration dashboard lists it under Television. Sunrise and sunset presets update the same helper, which invokes the verified Hisense backlight script. Google on/off selects backlight 100/0, without controlling TV power.
-
-All living room TV backlight entities use the `living_room_tv_backlight` prefix and Living Room TV display names, including host, sunrise/sunset presets, setter script, and scheduling automations.

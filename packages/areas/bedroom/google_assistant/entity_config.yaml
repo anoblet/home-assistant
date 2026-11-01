@@ -3,7 +3,6 @@ bedroom_google_assistant_entity_config:
     entity_config:
       light.bedroom_ceiling:
         expose: true
-        name: Bedroom Ceiling
       light.bedroom_lamp_group_zigbee:
         expose: true
         name: Bedroom Lamps
