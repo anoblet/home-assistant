@@ -2,6 +2,8 @@
 
 Bedroom presence-off automations (air purifier, ceiling fan, gate tracking, humidifier, lights, and thermostat) run only within the daily window defined by `input_datetime.bedroom_presence_off_start` and `input_datetime.bedroom_presence_off_end`, configured to 08:00–22:00 in Home Assistant local time. These helpers live in `packages/areas/bedroom/presence/detection_input.yaml` and appear in both bedroom Configuration views. Skipped overnight triggers are not replayed at 08:00.
 
+Bedroom display daily reboot lives in `packages/areas/bedroom/display/reboot.yaml` and presses the Google Home integration’s `button.bedroom_display_reboot`. Its time-only helper in `reboot_input.yaml` is seeded to noon (12:00 Home Assistant local time) and is editable in both bedroom Configuration views. Missed reboots are not replayed.
+
 ## Overview
 
 Living Room TV backlight sunrise and sunset automations live in `packages/integrations/hisense_backlight.yaml`, with editable host and level helpers in `hisense_backlight_input.yaml` and the Configuration dashboard's Integrations view. The helpers are seeded once to the TV host, sunset 0 and sunrise 50; subsequent edits persist. `script.living_room_tv_backlight_set` calls `bin/hisense_backlight.py` in Home Assistant Core's Python runtime using the verified TCP 7310 BKLV protocol, validating reply checksums and reading back the vendor value after 700 ms. The TV's native IP Control Port must be enabled. Unreachable or rejected commands fail visibly in the script trace; missed sun events are not replayed and the automation does not turn the TV on.

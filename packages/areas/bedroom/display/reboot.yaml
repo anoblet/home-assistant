@@ -1,0 +1,12 @@
+bedroom_display_reboot:
+  automation:
+    - id: bedroom_display_reboot
+      alias: Bedroom Display - Daily Reboot
+      description: Reboots the bedroom display daily at the configured local time.
+      trigger:
+        - platform: time
+          at: input_datetime.bedroom_display_reboot_time
+      action:
+        - action: button.press
+          target:
+            entity_id: button.bedroom_display_reboot

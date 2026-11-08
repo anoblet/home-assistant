@@ -60,3 +60,10 @@ sections:
             name: Playback Time
           - entity: input_text.bedroom_display_night_uri
             name: Radio URI
+  - type: grid
+    title: Display Maintenance
+    cards:
+      - type: entities
+        entities:
+          - entity: input_datetime.bedroom_display_reboot_time
+            name: Reboot Time

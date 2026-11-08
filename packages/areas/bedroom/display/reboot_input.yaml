@@ -1,0 +1,6 @@
+bedroom_display_reboot_input:
+  input_datetime:
+    bedroom_display_reboot_time:
+      name: Bedroom Display Reboot Time
+      has_date: false
+      has_time: true
