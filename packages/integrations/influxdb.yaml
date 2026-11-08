@@ -1,9 +1,17 @@
-integrations_influxdb:
-  influxdb:
-    host: a0d7b954-influxdb
-    port: 8086
-    database: homeassistant
-    username: homeassistant
-    password: !secret influxdb_password
-    max_retries: 3
-    default_measurement: state
+# Export retired; retain the connection settings for an explicit rollback.
+# The imported InfluxDB config entry is disabled and the app starts manually.
+integrations_influxdb: {}
+#  influxdb:
+#    host: a0d7b954-influxdb
+#    port: 8086
+#    database: homeassistant
+#    username: homeassistant
+#    password: !secret influxdb_password
+#    max_retries: 3
+#    default_measurement: state
+#    exclude:
+#      entity_globs:
+#        - sensor.*ld2410c_g*
+#        - sensor.*ld2410c_radar*
+#        - sensor.*presence_g*
+#        - sensor.*presence_r*
