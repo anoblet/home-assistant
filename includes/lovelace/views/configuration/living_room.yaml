@@ -52,3 +52,10 @@ sections:
       - type: entities
         entities:
           - entity: input_number.living_room_tv_backlight
+  - type: grid
+    title: Humidifier
+    cards:
+      - type: entities
+        entities:
+          - entity: input_number.living_room_humidifier_target_humidity
+            name: Target Humidity

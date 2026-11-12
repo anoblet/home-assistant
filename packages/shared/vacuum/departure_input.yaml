@@ -1,0 +1,19 @@
+shared_vacuum_departure_input:
+  input_number:
+    vacuum_departure_delay_minutes:
+      name: Vacuum Departure Delay Minutes
+      min: 1
+      max: 60
+      step: 1
+      unit_of_measurement: min
+    vacuum_departure_interval_days:
+      name: Vacuum Departure Interval Days
+      min: 7
+      max: 30
+      step: 1
+      unit_of_measurement: d
+  input_datetime:
+    vacuum_departure_last_start:
+      name: Vacuum Departure Last Completed
+      has_date: true
+      has_time: true

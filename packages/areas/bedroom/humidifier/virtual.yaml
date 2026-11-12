@@ -2,6 +2,7 @@ bedroom_humidifier_virtual:
   generic_hygrostat:
     - dry_tolerance: 1
       name: Bedroom Humidifier Virtual
+      unique_id: bedroom_humidifier_virtual
       humidifier: humidifier.bedroom_humidifier
       target_sensor: sensor.bedroom_humidity
       wet_tolerance: 1

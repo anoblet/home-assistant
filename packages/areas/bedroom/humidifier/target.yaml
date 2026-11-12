@@ -1,0 +1,55 @@
+bedroom_humidifier_target:
+  automation:
+    - alias: Bedroom - Humidifier - Apply Target
+      id: bedroom_humidifier_apply_target
+      trigger:
+        - platform: homeassistant
+          event: start
+        - platform: event
+          event_type: automation_reloaded
+        - platform: state
+          entity_id: input_number.bedroom_humidifier_target_humidity
+        - platform: state
+          entity_id: humidifier.bedroom_humidifier_virtual
+          from: unavailable
+        - platform: state
+          entity_id: humidifier.bedroom_humidifier_virtual
+          from: unknown
+      condition:
+        - condition: template
+          value_template: >-
+            {{ is_number(states('input_number.bedroom_humidifier_target_humidity'))
+               and states('humidifier.bedroom_humidifier_virtual') in ['on', 'off']
+               and state_attr('humidifier.bedroom_humidifier_virtual', 'humidity')
+                   != states('input_number.bedroom_humidifier_target_humidity') | float }}
+      action:
+        - service: humidifier.set_humidity
+          target:
+            entity_id: humidifier.bedroom_humidifier_virtual
+          data:
+            humidity: "{{ states('input_number.bedroom_humidifier_target_humidity') | int }}"
+    - alias: Bedroom - Humidifier - Remember Target
+      id: bedroom_humidifier_remember_target
+      trigger:
+        - platform: state
+          entity_id: humidifier.bedroom_humidifier_virtual
+          attribute: humidity
+      condition:
+        # Ignore entity creation and recovery: the helper owns the restored target.
+        - condition: template
+          value_template: >-
+            {{ trigger.from_state is not none
+               and trigger.to_state is not none
+               and trigger.from_state.state in ['on', 'off']
+               and trigger.to_state.state in ['on', 'off']
+               and is_number(trigger.from_state.attributes.get('humidity'))
+               and is_number(trigger.to_state.attributes.get('humidity'))
+               and is_number(states('input_number.bedroom_humidifier_target_humidity'))
+               and trigger.to_state.attributes.humidity
+                   != states('input_number.bedroom_humidifier_target_humidity') | float }}
+      action:
+        - service: input_number.set_value
+          target:
+            entity_id: input_number.bedroom_humidifier_target_humidity
+          data:
+            value: '{{ trigger.to_state.attributes.humidity }}'

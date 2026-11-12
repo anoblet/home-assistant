@@ -54,3 +54,10 @@ sections:
             name: Adaptive Lighting Color
           - entity: switch.adaptive_lighting_sleep_mode_living_room
             name: Adaptive Lighting Sleep Mode
+  - type: grid
+    title: Humidifier
+    cards:
+      - type: entities
+        entities:
+          - entity: input_number.living_room_humidifier_target_humidity
+            name: Target Humidity

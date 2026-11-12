@@ -70,3 +70,10 @@ sections:
         entities:
           - entity: input_datetime.bedroom_display_reboot_time
             name: Reboot Time
+  - type: grid
+    title: Humidifier
+    cards:
+      - type: entities
+        entities:
+          - entity: input_number.bedroom_humidifier_target_humidity
+            name: Target Humidity

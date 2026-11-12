@@ -1,0 +1,102 @@
+people_andrew_home_leave_vacuum:
+  automation:
+    - id: andrew_home_leave_vacuum
+      alias: Andrew - Home - Leave - Vacuum
+      triggers:
+        - trigger: template
+          value_template: >-
+            {{ states('person.andrew_noblet') not in ['home', 'unknown', 'unavailable'] }}
+          for:
+            minutes: "{{ states('input_number.vacuum_departure_delay_minutes') | float(5) }}"
+      conditions:
+        - condition: state
+          entity_id: vacuum.valetudo_vacuum
+          state:
+            - docked
+            - paused
+            - idle
+        - condition: template
+          value_template: >-
+            {{ is_number(states('input_number.vacuum_departure_delay_minutes'))
+               and is_number(states('input_number.vacuum_departure_interval_days'))
+               and states('input_datetime.vacuum_departure_last_start') not in ['unknown', 'unavailable']
+               and as_timestamp(now()) - as_timestamp(states('input_datetime.vacuum_departure_last_start'), as_timestamp(now()))
+                   >= states('input_number.vacuum_departure_interval_days') | float(7) * 86400 }}
+      actions:
+        - action: script.vacuum_start
+        # A command acknowledgement does not establish that cleaning started.
+        - wait_template: "{{ is_state('vacuum.valetudo_vacuum', 'cleaning') }}"
+          timeout: '00:01:00'
+          continue_on_timeout: false
+        # Any departure from cleaning other than returning invalidates this attempt.
+        - wait_for_trigger:
+            - trigger: template
+              value_template: "{{ not is_state('vacuum.valetudo_vacuum', 'cleaning') }}"
+              id: finished_cleaning
+            - trigger: event
+              event_type: call_service
+              event_data:
+                domain: vacuum
+                service: stop
+              id: interrupted
+            - trigger: event
+              event_type: call_service
+              event_data:
+                domain: vacuum
+                service: return_to_base
+              id: interrupted
+            - trigger: event
+              event_type: call_service
+              event_data:
+                domain: script
+                service: vacuum_stop
+              id: interrupted
+          timeout: '06:00:00'
+          continue_on_timeout: false
+        - condition: template
+          value_template: "{{ wait.trigger.id == 'finished_cleaning' }}"
+        # MQTT publishes status and flag separately; allow the flag to catch up.
+        - wait_template: >-
+            {{ is_state('sensor.valetudo_vacuum_status_flag', 'none')
+               or not is_state('vacuum.valetudo_vacuum', 'returning') }}
+          timeout: '00:00:10'
+          continue_on_timeout: false
+        - condition: template
+          value_template: >-
+            {{ is_state('vacuum.valetudo_vacuum', 'returning')
+               and is_state('sensor.valetudo_vacuum_status_flag', 'none') }}
+        # Resumable returns (for example, low battery) do not count as complete.
+        - wait_for_trigger:
+            - trigger: template
+              value_template: "{{ not is_state('vacuum.valetudo_vacuum', 'returning') }}"
+              id: returned
+            - trigger: event
+              event_type: call_service
+              event_data:
+                domain: vacuum
+                service: stop
+              id: interrupted
+            - trigger: event
+              event_type: call_service
+              event_data:
+                domain: vacuum
+                service: return_to_base
+              id: interrupted
+            - trigger: event
+              event_type: call_service
+              event_data:
+                domain: script
+                service: vacuum_stop
+              id: interrupted
+          timeout: '00:30:00'
+          continue_on_timeout: false
+        - condition: template
+          value_template: >-
+            {{ wait.trigger.id == 'returned'
+               and is_state('vacuum.valetudo_vacuum', 'docked')
+               and is_state('sensor.valetudo_vacuum_status_flag', 'none') }}
+        - action: input_datetime.set_datetime
+          target:
+            entity_id: input_datetime.vacuum_departure_last_start
+          data:
+            timestamp: '{{ as_timestamp(now()) }}'

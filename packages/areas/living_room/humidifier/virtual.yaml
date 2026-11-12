@@ -2,6 +2,7 @@ living_room_humidifier_virtual:
   generic_hygrostat:
     - dry_tolerance: 1
       name: Living Room Humidifier Virtual
+      unique_id: living_room_humidifier_virtual
       humidifier: humidifier.living_room_humidifier
       target_sensor: sensor.living_room_climate_humidity
       wet_tolerance: 1

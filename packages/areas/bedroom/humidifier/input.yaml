@@ -1,0 +1,9 @@
+bedroom_humidifier_input:
+  input_number:
+    bedroom_humidifier_target_humidity:
+      name: Bedroom Humidifier Target Humidity
+      min: 0
+      max: 100
+      step: 1
+      unit_of_measurement: '%'
+      icon: mdi:water-percent

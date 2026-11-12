@@ -59,3 +59,11 @@ sections:
           - entity: input_boolean.vacuum_kitchen
           - entity: input_boolean.vacuum_living_room
           - entity: input_boolean.vacuum_storage_room
+  - type: grid
+    title: Vacuum Departure Schedule
+    cards:
+      - type: entities
+        entities:
+          - entity: input_number.vacuum_departure_delay_minutes
+          - entity: input_number.vacuum_departure_interval_days
+          - entity: input_datetime.vacuum_departure_last_start
