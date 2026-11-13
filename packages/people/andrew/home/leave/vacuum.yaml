@@ -9,6 +9,16 @@ people_andrew_home_leave_vacuum:
           for:
             minutes: "{{ states('input_number.vacuum_departure_delay_minutes') | float(5) }}"
       conditions:
+        - condition: template
+          value_template: >-
+            {% set start = states('input_datetime.vacuum_departure_start_time') %}
+            {% set end = states('input_datetime.vacuum_departure_end_time') %}
+            {{ start not in ['', 'unknown', 'unavailable']
+               and end not in ['', 'unknown', 'unavailable']
+               and start < end }}
+        - condition: time
+          after: input_datetime.vacuum_departure_start_time
+          before: input_datetime.vacuum_departure_end_time
         - condition: state
           entity_id: vacuum.valetudo_vacuum
           state:

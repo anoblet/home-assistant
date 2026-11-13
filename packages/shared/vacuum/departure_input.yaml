@@ -13,6 +13,14 @@ shared_vacuum_departure_input:
       step: 1
       unit_of_measurement: d
   input_datetime:
+    vacuum_departure_start_time:
+      name: Vacuum Departure Earliest Start
+      has_date: false
+      has_time: true
+    vacuum_departure_end_time:
+      name: Vacuum Departure Latest Start
+      has_date: false
+      has_time: true
     vacuum_departure_last_start:
       name: Vacuum Departure Last Completed
       has_date: true

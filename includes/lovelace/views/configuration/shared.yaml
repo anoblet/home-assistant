@@ -66,4 +66,6 @@ sections:
         entities:
           - entity: input_number.vacuum_departure_delay_minutes
           - entity: input_number.vacuum_departure_interval_days
+          - entity: input_datetime.vacuum_departure_start_time
+          - entity: input_datetime.vacuum_departure_end_time
           - entity: input_datetime.vacuum_departure_last_start

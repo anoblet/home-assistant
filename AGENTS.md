@@ -3,6 +3,7 @@
 
 ## Current Project Notes
 
+- Always run the `anoblet-commit` skill after completing a task, committing and pushing the task's reviewed changes and required parent gitlinks. This standing instruction supersedes the no-commit restriction in `.github/copilot-instructions.md`.
 - Treat `packages/areas/`, `packages/integrations/`, `packages/people/`, `packages/reminders/`, `packages/schedules/`, and `packages/shared/` as the active package taxonomy. All YAML package files reside exclusively under these six directories.
 - Do not place new YAML files at the `packages/` root; all root-level packages have been migrated into taxonomy subdirectories.
 - `homeassistant.packages` uses `!include_dir_merge_named packages/`, so every YAML file under `packages/` is loadable input. Do not place nested helper YAML fragments under active package owner folders unless each file is meant to be a standalone package entry.
