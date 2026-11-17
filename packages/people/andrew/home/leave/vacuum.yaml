@@ -65,17 +65,10 @@ people_andrew_home_leave_vacuum:
           continue_on_timeout: false
         - condition: template
           value_template: "{{ wait.trigger.id == 'finished_cleaning' }}"
-        # MQTT publishes status and flag separately; allow the flag to catch up.
-        - wait_template: >-
-            {{ is_state('sensor.valetudo_vacuum_status_flag', 'none')
-               or not is_state('vacuum.valetudo_vacuum', 'returning') }}
-          timeout: '00:00:10'
-          continue_on_timeout: false
-        - condition: template
-          value_template: >-
-            {{ is_state('vacuum.valetudo_vacuum', 'returning')
-               and is_state('sensor.valetudo_vacuum_status_flag', 'none') }}
-        # Resumable returns (for example, low battery) do not count as complete.
+        - condition: state
+          entity_id: vacuum.valetudo_vacuum
+          state: returning
+        # Valetudo can retain resumable throughout a successful return trip.
         - wait_for_trigger:
             - trigger: template
               value_template: "{{ not is_state('vacuum.valetudo_vacuum', 'returning') }}"
@@ -103,7 +96,16 @@ people_andrew_home_leave_vacuum:
         - condition: template
           value_template: >-
             {{ wait.trigger.id == 'returned'
-               and is_state('vacuum.valetudo_vacuum', 'docked')
+               and is_state('vacuum.valetudo_vacuum', 'docked') }}
+        # Docked and flag arrive separately; require both before recording success.
+        - wait_template: >-
+            {{ is_state('sensor.valetudo_vacuum_status_flag', 'none')
+               or not is_state('vacuum.valetudo_vacuum', 'docked') }}
+          timeout: '00:00:10'
+          continue_on_timeout: false
+        - condition: template
+          value_template: >-
+            {{ is_state('vacuum.valetudo_vacuum', 'docked')
                and is_state('sensor.valetudo_vacuum_status_flag', 'none') }}
         - action: input_datetime.set_datetime
           target:
