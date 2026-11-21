@@ -1,0 +1,18 @@
+reminders_open_windows_input:
+  input_datetime:
+    open_windows_reminder_time:
+      name: Open Windows Reminder Time
+      has_date: false
+      has_time: true
+    open_windows_last_confirmed:
+      name: Windows Last Opened
+      has_date: true
+      has_time: true
+  input_number:
+    open_windows_interval_days:
+      name: Open Windows Interval
+      min: 1
+      max: 30
+      step: 1
+      unit_of_measurement: days
+      mode: box

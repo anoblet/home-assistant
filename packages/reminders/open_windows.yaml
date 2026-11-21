@@ -1,0 +1,43 @@
+reminders_open_windows:
+  automation:
+    - id: open_windows_daily_reminder
+      alias: Open Windows Daily Reminder
+      description: Remind daily when due until opening the windows is confirmed.
+      trigger:
+        - platform: time
+          at: input_datetime.open_windows_reminder_time
+      condition:
+        - condition: template
+          value_template: >-
+            {% set last = as_datetime(states('input_datetime.open_windows_last_confirmed'), none) %}
+            {% set interval = states('input_number.open_windows_interval_days') | int(0) %}
+            {{ last is not none and interval > 0 and
+               (now().date() - last.date()).days >= interval }}
+      action:
+        - action: notify.mobile_app_pixel_6_pro
+          data:
+            title: Open the windows
+            message: Open up the windows for some fresh air, then confirm below.
+            data:
+              tag: open-windows-reminder
+              actions:
+                - action: OPEN_WINDOWS_DONE
+                  title: Windows opened
+    - id: open_windows_notification_confirmation
+      alias: Open Windows Notification Confirmation
+      trigger:
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: OPEN_WINDOWS_DONE
+      action:
+        - action: input_datetime.set_datetime
+          target:
+            entity_id: input_datetime.open_windows_last_confirmed
+          data:
+            datetime: '{{ now().strftime("%Y-%m-%d %H:%M:%S") }}'
+        - action: notify.mobile_app_pixel_6_pro
+          data:
+            message: clear_notification
+            data:
+              tag: open-windows-reminder

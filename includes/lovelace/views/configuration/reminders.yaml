@@ -11,3 +11,11 @@ sections:
           - entity: input_boolean.brush_teeth_reminder
           - entity: input_boolean.my_tasks_reminder
           - entity: input_boolean.water_plants_reminder
+  - type: grid
+    title: Open Windows
+    cards:
+      - type: entities
+        entities:
+          - entity: input_datetime.open_windows_reminder_time
+          - entity: input_number.open_windows_interval_days
+          - entity: input_datetime.open_windows_last_confirmed
