@@ -7,6 +7,10 @@ bedroom_media_player_tv_off:
             entity_id: input_boolean.bedroom_blinds_automatic
       alias: Bedroom - Media Player - TV - Off
       id: bedroom_media_player_tv_off
+      condition:
+        - condition: state
+          entity_id: sensor.season
+          state: summer
       trigger:
         - entity_id: media_player.bedroom_tv
           platform: state

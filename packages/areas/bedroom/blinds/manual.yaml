@@ -22,6 +22,10 @@ bedroom_blinds_manual:
           service: input_boolean.turn_on
       alias: Bedroom - Blinds - Manual - Reset
       id: Bedroom_blinds_manual_reset
+      condition:
+        - condition: state
+          entity_id: sensor.season
+          state: summer
       trigger:
         - platform: state
           entity_id: binary_sensor.bedroom_presence_presence

@@ -3,3 +3,23 @@ bedroom_blinds_automatic:
     entity_config:
       input_boolean.bedroom_blinds_automatic:
         expose: true
+  automation:
+    - alias: Bedroom - Blinds - Automatic - Season Guard
+      id: bedroom_blinds_automatic_season_guard
+      trigger:
+        - platform: state
+          entity_id: sensor.season
+        - platform: state
+          entity_id: input_boolean.bedroom_blinds_automatic
+          to: 'on'
+        - platform: homeassistant
+          event: start
+        - platform: event
+          event_type: automation_reloaded
+      condition:
+        - condition: template
+          value_template: "{{ not is_state('sensor.season', 'summer') }}"
+      action:
+        - action: input_boolean.turn_off
+          target:
+            entity_id: input_boolean.bedroom_blinds_automatic

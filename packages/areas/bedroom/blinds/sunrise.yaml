@@ -6,6 +6,10 @@ bedroom_blinds_sunrise:
           service: input_boolean.turn_on
       alias: Bedroom - Blinds - Sunrise
       id: bedroom_blinds_sunrise
+      condition:
+        - condition: state
+          entity_id: sensor.season
+          state: summer
       trigger:
         - event: sunrise
           platform: sun

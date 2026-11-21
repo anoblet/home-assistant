@@ -1195,3 +1195,13 @@ Remember: Good organization at the start pays dividends as your system grows. Ta
 ## Bedroom Night Radio
 
 `packages/areas/bedroom/display/night.yaml` plays radio daily on the bedroom display through Music Assistant. The time and URI are configured by the helpers in `display/night_input.yaml`, available in both bedroom Configuration views. They are seeded to 22:00 (Home Assistant local time) and `library://radio/5`; subsequent user changes persist.
+
+## Bedroom Morning and Seasonal Blinds
+
+`packages/areas/bedroom/blinds/morning.yaml` opens all bedroom blinds daily at
+`input_datetime.bedroom_morning` (configured to 08:00), independently of automatic
+sun tracking. The existing Morning helper is available in the unified Configuration
+dashboard. Sunrise, TV-off and manual-reset enable automatic control only while
+`sensor.season` is `summer`. The season guard in `blinds/automatic.yaml` turns
+automatic control off outside summer, including after startup, reload, season
+changes or a direct attempt to enable it. Unknown or unavailable season fails closed.
