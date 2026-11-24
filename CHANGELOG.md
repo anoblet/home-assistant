@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-24
+
+- Added the bedroom blinds vacancy automation in `packages/areas/bedroom/blinds/vacancy.yaml`. It opens the blinds after 15 uninterrupted minutes without bedroom presence in autumn, winter, and spring.
+
 ## 2026-09-29
 
 - Split the single bedroom thermostat heat default helper into day and night helpers (`input_number.bedroom_thermostat_heat_default_day` and `input_number.bedroom_thermostat_heat_default_night`) in `packages/areas/bedroom/thermostat/input.yaml`.

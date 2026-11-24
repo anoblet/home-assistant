@@ -1,0 +1,21 @@
+area_bedroom_blinds_vacancy:
+  automation:
+    - alias: Bedroom - Blinds - Vacancy
+      id: bedroom_blinds_vacancy
+      triggers:
+        - trigger: state
+          entity_id: binary_sensor.bedroom_presence_presence
+          to: 'off'
+          for:
+            minutes: 15
+      conditions:
+        - condition: state
+          entity_id: sensor.season
+          state:
+            - autumn
+            - winter
+            - spring
+      actions:
+        - action: cover.open_cover
+          target:
+            entity_id: cover.bedroom_blinds
