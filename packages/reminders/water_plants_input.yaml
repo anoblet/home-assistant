@@ -1,0 +1,18 @@
+reminders_water_plants_input:
+  input_datetime:
+    water_plants_reminder_time:
+      name: Water Plants Reminder Time
+      has_date: false
+      has_time: true
+    water_plants_last_confirmed:
+      name: Plants Last Watered
+      has_date: true
+      has_time: true
+  input_number:
+    water_plants_interval_days:
+      name: Water Plants Interval
+      min: 1
+      max: 30
+      step: 1
+      unit_of_measurement: days
+      mode: box

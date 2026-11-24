@@ -6,6 +6,3 @@ reminders_input:
     my_tasks_reminder:
       name: My Tasks Reminder
       icon: mdi:clipboard-check-outline
-    water_plants_reminder:
-      name: Water Plants Reminder
-      icon: mdi:flower

@@ -1,82 +1,43 @@
-# Daily plant watering reminder automation until completed
 reminders_water_plants:
-  # Automation to send the reminder
   automation:
     - id: water_plants_daily_reminder
       alias: Water Plants Daily Reminder
-      description: Sends a reminder to water plants every morning until completed
+      description: Remind daily when due until watering the plants is confirmed.
       trigger:
         - platform: time
-          at: '09:00:00'
+          at: input_datetime.water_plants_reminder_time
       condition:
-        - condition: state
-          entity_id: input_boolean.water_plants_reminder
-          state: 'on'
+        - condition: template
+          value_template: >-
+            {% set last = as_datetime(states('input_datetime.water_plants_last_confirmed'), none) %}
+            {% set interval = states('input_number.water_plants_interval_days') | int(0) %}
+            {{ last is not none and interval > 0 and
+               (now().date() - last.date()).days >= interval }}
       action:
-        - service: notify.mobile_app_pixel_6_pro
+        - action: notify.mobile_app_pixel_6_pro
           data:
-            title: 'Plant Watering Reminder'
-            message: "Don't forget to water your plants!"
+            title: Water the plants
+            message: Water your plants, then confirm below.
             data:
               tag: water-plants-reminder
               actions:
                 - action: WATER_PLANTS_DONE
                   title: Plants watered
-
-    # Weekly trigger to start the reminder cycle
-    - id: water_plants_weekly_start
-      alias: Water Plants Weekly Start
-      description: Starts the weekly plant watering reminder cycle
-      trigger:
-        - platform: time
-          at: '08:00:00'
-      condition:
-        - condition: time
-          weekday: mon
-      action:
-        - service: input_boolean.turn_on
-          target:
-            entity_id: input_boolean.water_plants_reminder
-        - service: notify.mobile_app_pixel_6_pro
-          data:
-            title: 'Plant Watering Reminder'
-            message: "It's time to water your plants this week!"
-            data:
-              tag: water-plants-reminder
-              actions:
-                - action: WATER_PLANTS_DONE
-                  title: Plants watered
-
-    # Handle notification actions
     - id: water_plants_notification_action
       alias: Water Plants Notification Action
-      description: Handles actions from the plant watering notification
       trigger:
         - platform: event
           event_type: mobile_app_notification_action
           event_data:
             action: WATER_PLANTS_DONE
       action:
-        - service: input_boolean.turn_off
+        - action: input_datetime.set_datetime
           target:
-            entity_id: input_boolean.water_plants_reminder
-        - service: notify.mobile_app_pixel_6_pro
+            entity_id: input_datetime.water_plants_last_confirmed
+          data:
+            datetime: '{{ now().strftime("%Y-%m-%d %H:%M:%S") }}'
+        - action: notify.mobile_app_pixel_6_pro
           data:
             message: clear_notification
             data:
               tag: water-plants-reminder
-
-    # Auto-reset weekly for next reminder cycle
-    - id: water_plants_weekly_reset
-      alias: Water Plants Weekly Reset
-      description: Resets the watering status at the end of the week
-      trigger:
-        - platform: time
-          at: '23:55:00'
-      condition:
-        - condition: time
-          weekday: sun
-      action:
-        - service: input_boolean.turn_off
-          target:
-            entity_id: input_boolean.water_plants_reminder
