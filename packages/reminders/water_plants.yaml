@@ -18,10 +18,10 @@ reminders_water_plants:
             title: 'Plant Watering Reminder'
             message: "Don't forget to water your plants!"
             data:
+              tag: water-plants-reminder
               actions:
                 - action: WATER_PLANTS_DONE
-                  title: 'Mark as Completed'
-                  icon: 'mdi:check'
+                  title: Plants watered
 
     # Weekly trigger to start the reminder cycle
     - id: water_plants_weekly_start
@@ -42,10 +42,10 @@ reminders_water_plants:
             title: 'Plant Watering Reminder'
             message: "It's time to water your plants this week!"
             data:
+              tag: water-plants-reminder
               actions:
                 - action: WATER_PLANTS_DONE
-                  title: 'Mark as Completed'
-                  icon: 'mdi:check'
+                  title: Plants watered
 
     # Handle notification actions
     - id: water_plants_notification_action
@@ -62,8 +62,9 @@ reminders_water_plants:
             entity_id: input_boolean.water_plants_reminder
         - service: notify.mobile_app_pixel_6_pro
           data:
-            title: 'Plants Watered'
-            message: 'Great job! Plants marked as watered.'
+            message: clear_notification
+            data:
+              tag: water-plants-reminder
 
     # Auto-reset weekly for next reminder cycle
     - id: water_plants_weekly_reset
