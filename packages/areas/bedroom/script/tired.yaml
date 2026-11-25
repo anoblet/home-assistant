@@ -7,7 +7,7 @@ bedroom_script_tired:
     bedroom_tired:
       alias: Bedroom - Tired
       sequence:
-        - action: cover.set
+        - action: cover.close_cover
           target:
             entity_id: cover.bedroom_blinds
         - action: light.turn_on
