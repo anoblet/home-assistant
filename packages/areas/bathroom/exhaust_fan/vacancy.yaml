@@ -1,0 +1,36 @@
+area_bathroom_exhaust_fan_vacancy:
+  automation:
+    - alias: Bathroom - Exhaust Fan - Apartment Vacancy
+      id: bathroom_exhaust_fan_apartment_vacancy
+      triggers:
+        - trigger: template
+          value_template: >-
+            {{ is_state('binary_sensor.bedroom_presence_presence', 'off')
+               and is_state('binary_sensor.kitchen_ld2410c_presence', 'off')
+               and is_state('binary_sensor.living_room_ld2410c_presence', 'off') }}
+          for:
+            minutes: 5
+        - trigger: time
+          at: '08:00:00'
+      conditions:
+        - condition: time
+          after: '08:00:00'
+          before: '20:00:00'
+        - condition: template
+          value_template: >-
+            {% set sensors = expand(
+              'binary_sensor.bedroom_presence_presence',
+              'binary_sensor.kitchen_ld2410c_presence',
+              'binary_sensor.living_room_ld2410c_presence'
+            ) %}
+            {% set cutoff = now() - timedelta(minutes=5) %}
+            {{ sensors | count == 3
+               and sensors | rejectattr('state', 'eq', 'off') | list | count == 0
+               and sensors | rejectattr('last_changed', 'le', cutoff) | list | count == 0 }}
+        - condition: state
+          entity_id: switch.bathroom_exhaust_fan
+          state: 'off'
+      actions:
+        - action: switch.turn_on
+          target:
+            entity_id: switch.bathroom_exhaust_fan

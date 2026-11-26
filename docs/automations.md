@@ -1,5 +1,7 @@
 # Home Assistant Packages Automation Documentation
 
+Bathroom exhaust fan vacancy control lives in `packages/areas/bathroom/exhaust_fan/vacancy.yaml`. Between 08:00 and 20:00 Home Assistant local time, it starts the fan after the bedroom, kitchen, and living room presence sensors have all been clear for five continuous minutes. It also checks at 08:00 for an apartment that is already vacant. Each sensor must report clear. The existing bathroom door automations still control the fan on door events. The vacancy automation only starts the fan, so 20:00 is a cutoff for new vacancy starts.
+
 Bedroom presence-off automations (air purifier, ceiling fan, gate tracking, humidifier, lights, and thermostat) run only within the daily window defined by `input_datetime.bedroom_presence_off_start` and `input_datetime.bedroom_presence_off_end`, configured to 08:00–22:00 in Home Assistant local time. These helpers live in `packages/areas/bedroom/presence/detection_input.yaml` and appear in both bedroom Configuration views. Skipped overnight triggers are not replayed at 08:00.
 
 Bedroom display daily reboot lives in `packages/areas/bedroom/display/reboot.yaml` and presses the Google Home integration’s `button.bedroom_display_reboot`. Its time-only helper in `reboot_input.yaml` is seeded to noon (12:00 Home Assistant local time) and is editable in both bedroom Configuration views. Missed reboots are not replayed.
