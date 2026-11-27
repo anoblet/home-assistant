@@ -31,6 +31,33 @@ area_bathroom_exhaust_fan_vacancy:
           entity_id: switch.bathroom_exhaust_fan
           state: 'off'
       actions:
+        - variables:
+            run_context: '{{ states[this.entity_id].context.id }}'
         - action: switch.turn_on
+          target:
+            entity_id: switch.bathroom_exhaust_fan
+        # The MQTT state must confirm this run's command before it can stop the fan.
+        - wait_template: >-
+            {{ is_state('switch.bathroom_exhaust_fan', 'on')
+               and states.switch.bathroom_exhaust_fan.context.id == run_context }}
+          timeout: '00:00:05'
+          continue_on_timeout: false
+        - variables:
+            fan_started_at: '{{ states.switch.bathroom_exhaust_fan.last_changed.isoformat() }}'
+        - condition: template
+          value_template: >-
+            {{ is_state('switch.bathroom_exhaust_fan', 'on')
+               and states.switch.bathroom_exhaust_fan.context.id == run_context }}
+        - wait_template: >-
+            {{ is_state('binary_sensor.bedroom_presence_presence', 'on')
+               or is_state('binary_sensor.kitchen_ld2410c_presence', 'on')
+               or is_state('binary_sensor.living_room_ld2410c_presence', 'on')
+               or not is_state('switch.bathroom_exhaust_fan', 'on')
+               or states.switch.bathroom_exhaust_fan.last_changed.isoformat() != fan_started_at }}
+        - condition: template
+          value_template: >-
+            {{ is_state('switch.bathroom_exhaust_fan', 'on')
+               and states.switch.bathroom_exhaust_fan.last_changed.isoformat() == fan_started_at }}
+        - action: switch.turn_off
           target:
             entity_id: switch.bathroom_exhaust_fan
