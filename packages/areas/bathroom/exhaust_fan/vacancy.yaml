@@ -2,12 +2,32 @@ area_bathroom_exhaust_fan_vacancy:
   automation:
     - alias: Bathroom - Exhaust Fan - Apartment Vacancy
       id: bathroom_exhaust_fan_apartment_vacancy
+      trigger_variables: &occupancy_variables
+        occupancy_sensors:
+          - binary_sensor.bathroom_motion_occupancy
+          - binary_sensor.bedroom_presence_presence
+          - binary_sensor.hallway_motion_one_occupancy
+          - binary_sensor.hallway_motion_two_occupancy
+          - binary_sensor.kitchen_ld2410c_presence
+          - binary_sensor.living_room_ld2410c_presence
+          - binary_sensor.storage_room_motion_occupancy
+        # These registered detectors currently report no usable state.
+        optional_occupancy_sensors: &optional_occupancy_sensors
+          - binary_sensor.bedroom_ld2410c_presence
+          - binary_sensor.0x54ef44100050bf85_occupancy
+      variables: *occupancy_variables
       triggers:
         - trigger: template
           value_template: >-
-            {{ is_state('binary_sensor.bedroom_presence_presence', 'off')
-               and is_state('binary_sensor.kitchen_ld2410c_presence', 'off')
-               and is_state('binary_sensor.living_room_ld2410c_presence', 'off') }}
+            {% set required = expand(occupancy_sensors) %}
+            {{ required | count == occupancy_sensors | count
+               and required | rejectattr('state', 'eq', 'off') | list | count == 0
+               and expand(optional_occupancy_sensors) | selectattr('state', 'eq', 'on') | list | count == 0 }}
+          for:
+            minutes: 5
+        - trigger: state
+          entity_id: *optional_occupancy_sensors
+          to: 'off'
           for:
             minutes: 5
         - trigger: time
@@ -18,15 +38,13 @@ area_bathroom_exhaust_fan_vacancy:
           before: '20:00:00'
         - condition: template
           value_template: >-
-            {% set sensors = expand(
-              'binary_sensor.bedroom_presence_presence',
-              'binary_sensor.kitchen_ld2410c_presence',
-              'binary_sensor.living_room_ld2410c_presence'
-            ) %}
+            {% set required = expand(occupancy_sensors) %}
+            {% set optional = expand(optional_occupancy_sensors)
+               | selectattr('state', 'in', ['on', 'off']) | list %}
             {% set cutoff = now() - timedelta(minutes=5) %}
-            {{ sensors | count == 3
-               and sensors | rejectattr('state', 'eq', 'off') | list | count == 0
-               and sensors | rejectattr('last_changed', 'le', cutoff) | list | count == 0 }}
+            {{ required | count == occupancy_sensors | count
+               and (required + optional) | rejectattr('state', 'eq', 'off') | list | count == 0
+               and (required + optional) | rejectattr('last_changed', 'le', cutoff) | list | count == 0 }}
         - condition: state
           entity_id: switch.bathroom_exhaust_fan
           state: 'off'
@@ -49,9 +67,8 @@ area_bathroom_exhaust_fan_vacancy:
             {{ is_state('switch.bathroom_exhaust_fan', 'on')
                and states.switch.bathroom_exhaust_fan.context.id == run_context }}
         - wait_template: >-
-            {{ is_state('binary_sensor.bedroom_presence_presence', 'on')
-               or is_state('binary_sensor.kitchen_ld2410c_presence', 'on')
-               or is_state('binary_sensor.living_room_ld2410c_presence', 'on')
+            {{ expand(occupancy_sensors + optional_occupancy_sensors)
+               | selectattr('state', 'eq', 'on') | list | count > 0
                or not is_state('switch.bathroom_exhaust_fan', 'on')
                or states.switch.bathroom_exhaust_fan.last_changed.isoformat() != fan_started_at }}
         - condition: template
